@@ -10,7 +10,7 @@
 
 	<h1>지도 테스트</h1>
 	<div id="map" style="width: 500px; height: 400px;"></div>
-	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=abeff6b37bdae9b75916de80e28649f3"></script>
+	<script type="text/javascript" src=""></script>
 	<script>
 		var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 		mapOption = {

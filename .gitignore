@@ -1,11 +1,8 @@
 # Compiled class file
 *.class
-<<<<<<< HEAD
 build/
 target/
-*.properties
-=======
->>>>>>> parent of b521cd1 (gitignore update)
+properties/
 
 # Log file
 *.log

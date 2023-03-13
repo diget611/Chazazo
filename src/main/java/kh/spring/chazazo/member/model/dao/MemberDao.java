@@ -17,4 +17,20 @@ public class MemberDao {
 	public List<MemberVo> selectList() {
 		return sqlSession.selectList("memberMapper.selectList");
 	}
+	
+	public MemberVo selectOne(String id) {
+		return sqlSession.selectOne("memberMapper.selectOne", id);
+	}
+	
+	public int insert(MemberVo vo) {
+		return sqlSession.insert("memberMapper.insert", vo);
+	}
+	
+	public int update(MemberVo vo) {
+		return sqlSession.update("memberMapper.update", vo);
+	}
+	
+	public int delete(String id) {
+		return sqlSession.delete("memberMapper.delete", id);
+	}
 }

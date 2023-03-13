@@ -19,4 +19,24 @@ public class MemberServiceImp implements MemberService {
 		return dao.selectList();
 	}
 
+	@Override
+	public MemberVo selectOne(String id) {
+		return dao.selectOne(id);
+	}
+
+	@Override
+	public int insert(MemberVo vo) {
+		return dao.insert(vo);
+	}
+
+	@Override
+	public int update(MemberVo vo) {
+		return dao.update(vo);
+	}
+
+	@Override
+	public int delete(String id) {
+		return dao.delete(id);
+	}
+
 }

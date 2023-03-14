@@ -7,9 +7,13 @@
 	
 	<typeAliases>
 		<typeAlias type="kh.spring.chazazo.member.model.vo.MemberVo" alias="mvo"/>
+		<typeAlias type="kh.spring.chazazo.review.vo.ReviewVo" alias="rvo"/>
 	</typeAliases>
-	
+
+
+
 	<mappers>
 		<mapper resource="mappers/member-mapper.xml"/>
+		<mapper resource="mappers/review-mapper.xml"/>
 	</mappers>
 </configuration>

@@ -14,7 +14,7 @@ public class ReviewVo {
 		private int idx;
 		private int vehicleIdx;
 		private String content;
-		private Date date;
+		private Date reviewdate;
 		private int reviewlike;
 		
 	

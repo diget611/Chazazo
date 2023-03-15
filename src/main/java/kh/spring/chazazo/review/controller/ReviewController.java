@@ -35,7 +35,7 @@ public class ReviewController {
 			vo.setIdx(2);
 			vo.setVehicleIdx(1);
 			vo.setContent("리뷰내용");
-			vo.setDate(new Date(20230314));
+			vo.setReviewdate(new Date(20230314));
 			vo.setReviewlike(2);
 			 service.insert(vo);
 			mv.setViewName("review/insert");
@@ -63,7 +63,7 @@ public class ReviewController {
 			vo.setIdx(2);
 			vo.setVehicleIdx(2);
 	        vo.setContent("리뷰업뎃");
-	        vo.setDate(date);
+	        vo.setReviewdate(date);
 	        vo.setReviewlike(2);
 
 	        service.update(vo);

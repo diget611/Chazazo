@@ -44,6 +44,6 @@ insert into NOTICE (IDX, TITLE, CONTENT, CREATE_DATE, READ_COUNT, UPDATE_DATE,DE
      UNION ALL
     SELECT 4, '차자조렌터카 사용방법', '비회원도 렌트가능합니다 예약번호를 꼭 기억하세요', SYSDATE, 0, NULL , TO_DATE('230413')FROM DUAL
      UNION ALL
-    SELECT 5, '1:1채팅문의 사용방법', '채팅문의 사용 시 하단의 채팅버튼을 클릭하여주세요 아니면 문의게시판을 이용해주세요',SYSDATE, 0,TO_DATE('230513'),TO_DATE('230413') FROM DUAL;
-    
+    SELECT 5, '1:1채팅문의 사용방법', '채팅문의 사용 시 하단의 채팅버튼을 클릭하여주세요 아니면 문의게시판을 이용해주세요',SYSDATE, 0,TO_DATE('230513'),TO_DATE('230413') 
+    FROM DUAL;
 

@@ -34,3 +34,16 @@ INSERT ALL INTO VEHICLE(IDX, MODEL,YEAR,PRICE,IMAGE,MAKER,LOCATION_IDX,FUELTYPE_
          INTO VEHICLE(IDX, MODEL,YEAR,PRICE,IMAGE,MAKER,LOCATION_IDX,FUELTYPE_IDX,CARTYPE_IDX) VALUES(3,'트럭',8,25000,'이미지주소3','몰라',3,3,3)
         INTO VEHICLE(IDX, MODEL,YEAR,PRICE,IMAGE,MAKER,LOCATION_IDX,FUELTYPE_IDX,CARTYPE_IDX) VALUES(4,'스파크',7,33000,'이미지주소','쉐보레',4,2,3)
         SELECT * FROM DUAL; 
+        
+insert into NOTICE (IDX, TITLE, CONTENT, CREATE_DATE, READ_COUNT, UPDATE_DATE,DELETE_DATE)
+    SELECT 1, '올뉴K3 신차 출고!!', '올뉴K3신차가 업데이트 되었습니다. 연식이 좋아요', TO_DATE('230313'), 0, NULL,NULL FROM DUAL
+    UNION ALL
+    SELECT 2, '더뉴K5 신차 출고!!', '더뉴K5신차가 업데이트 되었습니다. 연식이 좋아요', SYSDATE , 0, TO_DATE('230313') ,NULL FROM DUAL
+     UNION ALL
+    SELECT 3, '차자조렌터가 올뉴K7 썬루프 입고', '풀옵션 입고 가능', SYSDATE, 0,TO_DATE('220513'),TO_DATE('230313') FROM DUAL
+     UNION ALL
+    SELECT 4, '차자조렌터카 사용방법', '비회원도 렌트가능합니다 예약번호를 꼭 기억하세요', SYSDATE, 0, NULL , TO_DATE('230413')FROM DUAL
+     UNION ALL
+    SELECT 5, '1:1채팅문의 사용방법', '채팅문의 사용 시 하단의 채팅버튼을 클릭하여주세요 아니면 문의게시판을 이용해주세요',SYSDATE, 0,TO_DATE('230513'),TO_DATE('230413') 
+    FROM DUAL;
+

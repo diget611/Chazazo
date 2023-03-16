@@ -90,7 +90,11 @@
 					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
 						Eligendi deserunt deleniti, ullam commodi sit ipsam laboriosam
 						velit adipisci quibusdam aliquam teneturo!</p>
-					<div class="search-form wow pulse" data-wow-delay="0.8s">
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="search-form wow pulse" data-wow-delay="0.8s">
 
 						<form action="" class=" form-inline">
 
@@ -264,10 +268,6 @@
 
 						</form>
 					</div>
-				</div>
-			</div>
-		</div>
-	</div>
 	<div class="content-area home-area-1 recent-property"
 		style="background-color: #FCFCFC; padding-bottom: 55px;">
 		<div class="container">
@@ -328,9 +328,51 @@
 			</div>
 		</div>
 	</div>
-	<div>통계</div>
-	<div>리뷰</div>
-	<div>자주묻는질문</div>
+	
+	
+	
+	<div class="content-area home-area-1 recent-property"
+		style="background-color: #FCFCFC; padding-bottom: 55px;">
+		<div class="container">
+			<div class="row">
+				<div
+					class="col-md-10 col-md-offset-1 col-sm-12 text-center page-title">
+					<!-- /.feature title -->
+					<h2>통계</h2>
+					<p>Nulla quis dapibus nisl. Suspendisse ultricies commodo arcu
+						nec pretium. Nullam sed arcu ultricies .</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="content-area home-area-1 recent-property"
+		style="background-color: #FCFCFC; padding-bottom: 55px;">
+		<div class="container">
+			<div class="row">
+				<div
+					class="col-md-10 col-md-offset-1 col-sm-12 text-center page-title">
+					<!-- /.feature title -->
+					<h2>리뷰</h2>
+					<p>Nulla quis dapibus nisl. Suspendisse ultricies commodo arcu
+						nec pretium. Nullam sed arcu ultricies .</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="content-area home-area-1 recent-property"
+		style="background-color: #FCFCFC; padding-bottom: 55px;">
+		<div class="container">
+			<div class="row">
+				<div
+					class="col-md-10 col-md-offset-1 col-sm-12 text-center page-title">
+					<!-- /.feature title -->
+					<h2>자주묻는질문</h2>
+					<p>Nulla quis dapibus nisl. Suspendisse ultricies commodo arcu
+						nec pretium. Nullam sed arcu ultricies .</p>
+				</div>
+			</div>
+		</div>
+	</div>
 	<jsp:include page="footer.jsp" />
 
 	<script

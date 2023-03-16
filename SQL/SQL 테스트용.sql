@@ -46,4 +46,23 @@ insert into NOTICE (IDX, TITLE, CONTENT, CREATE_DATE, READ_COUNT, UPDATE_DATE,DE
      UNION ALL
     SELECT 5, '1:1채팅문의 사용방법', '채팅문의 사용 시 하단의 채팅버튼을 클릭하여주세요 아니면 문의게시판을 이용해주세요',SYSDATE, 0,TO_DATE('230513'),TO_DATE('230413') 
     FROM DUAL;
+    SELECT * FROM MEMBER;
+    SELECT * FROM NOTICE;
+CREATE TABLE INQUIRY (
+       IDX NUMBER CONSTRAINT INQUIRY_IDX_PK PRIMARY KEY NOT NULL
+     , TITLE VARCHAR2(100) NOT NULL 
+     , CONTENT CLOB NOT NULL
+);
 
+insert ALL into INQUIRY (IDX, TITLE, CONTENT) VALUES(1,'예약 문의','부산지점에서 예약했는데 다른 지점으로 예약 변경 가능한가요?')
+            into INQUIRY (IDX, TITLE, CONTENT) VALUES (2,'운전자 문의','운전자 추가나 변경이 가능한가요?')
+          into INQUIRY (IDX, TITLE, CONTENT) VALUES(3,'쿠폰 사용 문의','쿠폰사용하려는데 중복 사용 가능한가요?')
+           into INQUIRY (IDX, TITLE, CONTENT) VALUES (4,'예약 문의','예약 취소 시 환불 수수료는 얼마인가요? 반납 장소 변경은 어디서 해야하나요?')
+           SELECT * FROM DUAL; 
+
+COMMIT;
+
+SELECT * FROM FUELTYPE;
+
+DROP TABLE NOTICE;
+COMMIT;

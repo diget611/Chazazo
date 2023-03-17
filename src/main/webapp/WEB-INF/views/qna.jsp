@@ -63,7 +63,7 @@
 </head>
 <body>
 	<jsp:include page="header.jsp"/>
-<div class="content-area blog-page padding-top-40" style="background-color: #FCFCFC; padding-bottom: 55px;">
+		<div class="content-area blog-page padding-top-40" style="background-color: #FCFCFC; padding-bottom: 55px;">
             <div class="container">
                 <div class="row">
                     

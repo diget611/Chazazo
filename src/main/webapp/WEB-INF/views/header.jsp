@@ -20,16 +20,16 @@
 				<button
 					class="navbar-btn nav-button wow bounceInRight login animated"
 					onclick=" window.open('register.html')" data-wow-delay="0.45s"
-					style="visibility: visible; animation-delay: 0.45s; animation-name: bounceInRight;">Login</button>
+					style="visibility: visible; animation-delay: 0.45s; animation-name: bounceInRight;">로그인</button>
 				<button class="navbar-btn nav-button wow fadeInRight animated"
 					onclick=" window.open('submit-property.html')"
 					data-wow-delay="0.48s"
-					style="visibility: visible; animation-delay: 0.48s; animation-name: fadeInRight;">Submit</button>
+					style="visibility: visible; animation-delay: 0.48s; animation-name: fadeInRight;">로그아웃</button>
 			</div>
 			<ul class="main-nav nav navbar-nav navbar-right">
 				<li class="dropdown ymm-sw " data-wow-delay="0.1s"><a
 					href="index.html" class="dropdown-toggle active"
-					data-toggle="dropdown" data-hover="dropdown" data-delay="200">Home
+					data-toggle="dropdown" data-hover="dropdown" data-delay="200">예약
 						<b class="caret"></b>
 				</a>
 					<ul class="dropdown-menu navbar-nav">
@@ -42,13 +42,13 @@
 
 				<li class="wow fadeInDown animated" data-wow-delay="0.2s"
 					style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInDown;"><a
-					class="" href="properties.html">Properties</a></li>
+					class="" href="properties.html">이벤트</a></li>
 				<li class="wow fadeInDown animated" data-wow-delay="0.3s"
 					style="visibility: visible; animation-delay: 0.3s; animation-name: fadeInDown;"><a
-					class="" href="property.html">Property</a></li>
+					class="" href="property.html">마이페이지</a></li>
 				<li class="dropdown yamm-fw" data-wow-delay="0.4s"><a href="#"
 					class="dropdown-toggle" data-toggle="dropdown"
-					data-hover="dropdown" data-delay="200">Template <b
+					data-hover="dropdown" data-delay="200">지점 안내<b
 						class="caret"></b></a>
 					<ul class="dropdown-menu">
 						<li>
@@ -122,7 +122,7 @@
 
 				<li class="wow fadeInDown animated" data-wow-delay="0.5s"
 					style="visibility: visible; animation-delay: 0.5s; animation-name: fadeInDown;"><a
-					href="contact.html">Contact</a></li>
+					href="contact.html">마이페이지</a></li>
 			</ul>
 		</div>
 		<!-- /.navbar-collapse -->

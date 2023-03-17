@@ -68,4 +68,45 @@ public class HomeController {
 		return mv;
 	}
 	
+	@GetMapping("/login")
+	public ModelAndView getLogin(ModelAndView mv) {
+		mv.setViewName("login");
+		return mv;
+	}
+	
+	@GetMapping("/register")
+	public ModelAndView getRegister(ModelAndView mv) {
+		mv.setViewName("register");
+		return mv;
+	}
+	
+	
+	@GetMapping("/find")
+	public ModelAndView getFind(ModelAndView mv) {
+		mv.setViewName("find");
+		return mv;
+	}
+	
+	@GetMapping("/qna")
+	public ModelAndView getQna(ModelAndView mv) {
+		mv.setViewName("qna");
+		return mv;
+	}
+	
+	
+	@GetMapping("/location")
+	public ModelAndView getLocation(ModelAndView mv) {
+		mv.setViewName("location");
+		return mv;
+	}
+	
+	@GetMapping("/mypage")
+	public ModelAndView getMypage(ModelAndView mv) {
+		mv.setViewName("mypage");
+		return mv;
+	}
+	
+	
+	
+	
 }

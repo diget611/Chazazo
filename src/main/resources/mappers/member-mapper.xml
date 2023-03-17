@@ -1,19 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="memberMapper">
-	<select id="selectList" resultType="mvo">
-		SELECT * FROM MEMBER
-	</select>
-	<select id="selectOne" resultType="mvo">	
-		SELECT * FROM MEMBER WHERE ID = #{id}
-	</select>
-	<insert id="insert">
-		INSERT INTO MEMBER VALUES(#{idx}, #{id}, #{password}, #{name}, #{email})
+	<insert id="insert" parameterType="mvo">
+		INSERT INTO MEMBER
+		VALUES(MEMBER_SEQ.NEXTVAL, #{username}, #{password}, DEFAULT, DEFAULT)
 	</insert>
-	<update id="update">
-		UPDATE MEMBER SET PASSWORD = #{password}, EMAIL = #{email} WHERE ID = #{id}
-	</update>
-	<delete id="delete">
-		DELETE FROM MEMBER WHERE ID = #{id}	
-	</delete>
 </mapper>

@@ -9,9 +9,9 @@ import lombok.Data;
 public class MemberVo {
 	
 	private int idx;
-	private String id;
+	private String username;
 	private String password;
-	private String name;
-	private String email;
+	private int enabled;
+	private String auth;
 	
 }

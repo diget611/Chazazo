@@ -4,13 +4,59 @@
 	xmlns:security="http://www.springframework.org/schema/security"
 	xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<bean class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" id="BCryptPasswordEncoder" />
+	
+	<security:http>
+		<security:intercept-url pattern="/test/user" access="hasRole('ROLE_USER')" />
+		<security:intercept-url pattern="/test/admin" access="hasRole('ROLE_ADMIN')" />
+		<security:intercept-url pattern="/test/manager" access="hasRole('ROLE_MANAGER')" />
+		<security:form-login 
+			username-parameter="username"
+			password-parameter="password"
+			login-processing-url="/member/login-check"
+			login-page="/member/login"
+			default-target-url="/test/success"
+		/>
+		<security:logout
+			logout-url="/logout"
+			logout-success-url="/"
+			invalidate-session="true"
+			delete-cookies="true"
+		/>
+		<security:session-management invalid-session-url="/member/login">
+			<security:concurrency-control max-sessions="1"
+										  expired-url="/member/login"
+										  error-if-maximum-exceeded="true"/>
+		</security:session-management>
+	</security:http>
+	
+	<security:authentication-manager>
+		<security:authentication-provider>
+			<security:password-encoder hash="bcrypt"/>
+			<security:jdbc-user-service data-source-ref="dataSource"
+				users-by-username-query="SELECT USERNAME, PASSWORD, ENABLED FROM MEMBER WHERE USERNAME = ?"
+				authorities-by-username-query="SELECT USERNAME, AUTH AS authority FROM MEMBER WHERE USERNAME = ?"/>
+		</security:authentication-provider>
+	</security:authentication-manager>
+	
+	<!-- 테스트용 -->
+	<!-- 
+	<security:http auto-config="true" use-expressions="false">
+		<security:intercept-url pattern="/test/user" access="ROLE_USER" />
+		<security:intercept-url pattern="/test/admin" access="ROLE_ADMIN" />
+		<security:intercept-url pattern="/test/manager" access="ROLE_MANAGER" />
+		<security:form-login />
+	</security:http>
 
-<security:http>
-	<security:form-login />
-</security:http>
-
-<security:authentication-manager>
-
-</security:authentication-manager>
-
+	<security:authentication-manager>
+		<security:authentication-provider>
+			<security:user-service>
+				<security:user name="user" password="{noop}user" authorities="ROLE_USER" />
+				<security:user name="admin" password="{noop}admin" authorities="ROLE_ADMIN" />
+				<security:user name="manager" password="{noop}manager" authorities="ROLE_MANAGER" />
+			</security:user-service>
+		</security:authentication-provider>
+	</security:authentication-manager>
+ 	-->
 </beans>

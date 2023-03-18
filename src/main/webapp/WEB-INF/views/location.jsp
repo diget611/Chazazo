@@ -69,27 +69,19 @@
                 
                 
                 <div class="col">
+                
                     <div class="blog-asside-right col-md-3" style="float: left;">
-                        <div class="panel panel-default sidebar-menu wow fadeInRight animated animated" style="visibility: visible; animation-name: fadeInRight;">
-                            <div class="panel-heading">
-                                <h3 class="panel-title">지점 안내</h3>
+         
+                                <h4>지점 안내 </h4>
+                                <div class="footer-title-line"></div>
+                                <ul class="footer-menu">
+                                    <li><a href="#">강남점</a>  </li> 
+                                    <li><a href="#">용산점</a>  </li> 
+                        			<li><a href="#">수원점</a>  </li> 
+                                    <li><a href="#">송도점</a>  </li> 
+                                    <li><a href="#">일산점</a>  </li> 
+                                </ul>
                             </div>
-                        </div>
-                                      
-                         <div class="btn-group btn-group-vertical" role="group" aria-label="Basic outlined example" style=" width:200px;">
-								<div class="list-group" >
-									  <a href="#" class="list-group-item list-group-item-action active" aria-current="true">
-									    강남점
-									  </a>
-									  <a href="#" class="list-group-item list-group-item-action">강남점</a>
-									  <a href="#" class="list-group-item list-group-item-action">용산점</a>
-									  <a href="#" class="list-group-item list-group-item-action">수원점</a>
-									  <a href="#" class="list-group-item list-group-item-action">일산점</a>
-							
-						</div>
-										
-    
-                    </div>   
                   </div>  
                     
                     
@@ -146,7 +138,7 @@
 
            		    </div>   
            		    </section>
-                </div>
+           			     </div>
 
                    
 
@@ -154,7 +146,7 @@
                     </div>                    
                  
                 </div>
-
+		</div>
 
       
 	

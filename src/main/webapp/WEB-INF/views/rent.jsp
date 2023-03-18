@@ -244,7 +244,7 @@
                             <div class="col-sm-6 col-md-4 p0">
                                     <div class="box-two proerty-item">
                                         <div class="item-thumb">
-                                            <a href="/chazazo/details" ><img src="./resources/garoestate/assets/img/demo/property-3.jpg"></a>
+                                            <a href="/chazazo/details" >	<img src="https://d1masd123hbmlx.cloudfront.net/20211025062033_778_CARMST/20211025062033_778_CARMST_587.png" /></a>
                                         </div>
 
                                         <div class="item-entry overflow">

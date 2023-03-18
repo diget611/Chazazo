@@ -124,4 +124,10 @@ public class HomeController {
 		return mv;
 	}
 	
+	@GetMapping("/payment")
+	public ModelAndView getPayment(ModelAndView mv) {
+		mv.setViewName("payment");
+		return mv;
+	}
+	
 }

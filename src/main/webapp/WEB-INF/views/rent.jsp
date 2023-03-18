@@ -244,19 +244,19 @@
                             <div class="col-sm-6 col-md-4 p0">
                                     <div class="box-two proerty-item">
                                         <div class="item-thumb">
-                                            <a href="property-1.html" ><img src="assets/img/demo/property-3.jpg"></a>
+                                            <a href="/chazazo/details" ><img src="./resources/garoestate/assets/img/demo/property-3.jpg"></a>
                                         </div>
 
                                         <div class="item-entry overflow">
-                                            <h5><a href="property-1.html"> Super nice villa </a></h5>
+                                            <h5><a href="/chazazo/details">K5 2세대 </a></h5>
                                             <div class="dot-hr"></div>
-                                            <span class="pull-left"><b> Area :</b> 120m </span>
-                                            <span class="proerty-price pull-right"> $ 300,000</span>
+                                            <span class="pull-left"><b> 대여지점 :</b> 강남점 </span>
+                                            <span class="proerty-price pull-right"> 18,000원</span>
                                             <p style="display: none;">Suspendisse ultricies Suspendisse ultricies Nulla quis dapibus nisl. Suspendisse ultricies commodo arcu nec pretium ...</p>
                                             <div class="property-icon">
-                                                <img src="assets/img/icon/bed.png">(5)|
-                                                <img src="assets/img/icon/shawer.png">(2)|
-                                                <img src="assets/img/icon/cars.png">(1)  
+                                                <img src="./resources/garoestate/assets/img/icon/bed.png">(5)|
+                                                <img src="./resources/garoestate/assets/img/icon/shawer.png">(2)|
+                                                <img src="./resources/garoestate/assets/img/icon/cars.png">(1)  
                                             </div>
                                         </div>
 

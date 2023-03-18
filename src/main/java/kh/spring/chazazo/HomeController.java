@@ -118,5 +118,10 @@ public class HomeController {
 		return mv;
 	}
 
+	@GetMapping("/details")
+	public ModelAndView getDetails(ModelAndView mv) {
+		mv.setViewName("details");
+		return mv;
+	}
 	
 }

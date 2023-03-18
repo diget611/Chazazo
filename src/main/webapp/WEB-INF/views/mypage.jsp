@@ -106,48 +106,33 @@
                     <div class="blog-asside-right" >
 						<div class="panel panel-default sidebar-menu wow fadeInRight animated animated animated" style="visibility: visible; animation-name: fadeInRight;">
                             <div class="panel-heading">
-                                <h3 class="panel-title">예약</h3>
-                            </div>
-                            <div class="panel-body text-widget">
-                                <p>예약 내역  </p>
-                            </div>
-                             <div class="panel-body text-widget">
-                                <p>예약 수정 / 취소 </p>
-                            </div>
-                              <div class="panel-body text-widget">
-                                <p>비회원 예약 확인 </p>
-                            </div>
+                                <h3 class="panel-title">
+		                            <button type="button" class="btn btn-outline-primary">예약내역</button><br>
+		                            <button type="button" class="btn btn-outline-primary">예약 수정 / 취소</button><br>
+		                            <button type="button" class="btn btn-outline-primary">비회원 예약 확인</button></h3>
+		                     </div>
                         </div>
                     </div>  
                     <div class="blog-asside-right" >
 						<div class="panel panel-default sidebar-menu wow fadeInRight animated animated animated" style="visibility: visible; animation-name: fadeInRight;">
                             <div class="panel-heading">
-                                <h3 class="panel-title">개인 정보</h3>
+                                <h3 class="panel-title">
+                                <button type="button" class="btn btn-outline-primary">회원정보 수정</button><br></h3>
                             </div>
-                            <div class="panel-body text-widget">
-                                <p>회원 정보 수정  </p>
-                            </div>
-                        
                         </div>
                     </div>
-     			   <div class="blog-asside-right" >
-					<div class="panel panel-default sidebar-menu wow fadeInRight animated animated animated" style="visibility: visible; animation-name: fadeInRight;">
-                              <div class="panel-heading">
-                                <h3 class="panel-title">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h3>
-                            </div>
-                            <div class="panel-body text-widget">
-                                <p>쿠폰 관리</p>
-                            </div>
-                            <div class="panel-body text-widget">
-                                <p>1:1 문의</p>
-                            </div>
-                            <div class="panel-body text-widget">
-                                <p>회원 탈퇴</p>
+     			
+                    <div class="blog-asside-right" >
+						<div class="panel panel-default sidebar-menu wow fadeInRight animated animated animated" style="visibility: visible; animation-name: fadeInRight;">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">
+                                <button type="button" class="btn btn-outline-primary">1:1 문의</button><br>
+                                <button type="button" class="btn btn-outline-primary">쿠폰 관리</button><br>
+                                <button type="button" class="btn btn-outline-primary">회원탈퇴</button></h3>
                             </div>
                         </div>
-                    </div>    
-                    
-                            
+                    </div>
+     			  
                
              
     

@@ -105,6 +105,12 @@ public class HomeController {
 		mv.setViewName("mypage");
 		return mv;
 	}
+	
+	@GetMapping("/event")
+	public ModelAndView getEvent(ModelAndView mv) {
+		mv.setViewName("event");
+		return mv;
+	}
 
 	
 }

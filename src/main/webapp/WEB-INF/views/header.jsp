@@ -42,7 +42,7 @@
 
 				<li class="wow fadeInDown animated" data-wow-delay="0.2s"
 					style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInDown;"><a
-					class="" href="properties.html">이벤트</a></li>
+					class="" href="/chazazo/event">이벤트</a></li>
 				<li class="wow fadeInDown animated" data-wow-delay="0.3s"
 					style="visibility: visible; animation-delay: 0.3s; animation-name: fadeInDown;"><a
 					class="" href="/chazazo/mypage">마이페이지</a></li>

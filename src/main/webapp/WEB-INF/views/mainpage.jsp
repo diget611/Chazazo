@@ -67,7 +67,7 @@
 			<div id="bg-slider" class="owl-carousel owl-theme">
 				<div class="item">
 					<img
-						src="<%=request.getContextPath()%>/resources/garoestate/assets/img/slide1/slider-image-1.jpg"
+						src="<%=request.getContextPath()%>/resources/garoestate/assets/img/slide1/cars.jpg"
 						alt="GTA V">
 				</div>
 				<div class="item">

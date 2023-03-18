@@ -74,9 +74,9 @@ public class HomeController {
 		return mv;
 	}
 	
-	@GetMapping("/register")
-	public ModelAndView getRegister(ModelAndView mv) {
-		mv.setViewName("register");
+	@GetMapping("/join")
+	public ModelAndView getJoin(ModelAndView mv) {
+		mv.setViewName("join");
 		return mv;
 	}
 	
@@ -105,8 +105,6 @@ public class HomeController {
 		mv.setViewName("mypage");
 		return mv;
 	}
-	
-	
-	
+
 	
 }

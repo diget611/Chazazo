@@ -67,81 +67,104 @@
          <div class="container">
                 
                 
-                <div class="col">
-                    <div class="blog-asside-right" style="float: left;">
+                <div class="col-md-4" style="float: left;">
+                
+                     <div class="blog-asside-right">
                         <div class="panel panel-default sidebar-menu wow fadeInRight animated animated" style="visibility: visible; animation-name: fadeInRight;">
                             <div class="panel-heading">
-                                <h3 class="panel-title">마이페이지</h3>
+                                <h3 class="panel-title">회원정보</h3>
                             </div>
                         </div>
-                        <div class="btn-group btn-group-lg btn-group-vertical" role="group" aria-label="Basic outlined example">
-						  <button type="button" class="btn btn-outline-primary">예약/취소</button>
-						  <button type="button" class="btn btn-outline-primary">이용방법</button>
-						  <button type="button" class="btn btn-outline-primary">보험/사고</button>
-						  <button type="button" class="btn btn-outline-primary">전기차</button>
-						</div>
+              			    <div class="dealer-widget  row-md-4">
+                                <div class="dealer-content">
+                                    <div class="inner-wrapper">
+
+                                        <div class="clear">
+                                         
+                                            <div class="col-xs-8 col-sm-8 ">
+                                                <h3 class="dealer-name">
+                                                    <span>김땡땡</span>        
+                                                </h3>
+
+
+                                            </div>
+                                        </div>
+
+                                        <div class="clear">
+                                            <ul class="dealer-contacts">                                       
+                                                <li><i class="pe-7s-call strong"> </i> +1 908 967 5906</li>
+                                                <li><i class="pe-7s-mail strong"> </i> email@yourcompany.com</li>
+                                                <li><i class="pe-7s-map-marker strong"> </i> 주소주소</li>
+                                            </ul>
+                                            <p>Duis mollis  blandit tempus porttitor curabiturDuis mollis  blandit tempus porttitor curabitur , est non…</p>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+    
+                    <div class="blog-asside-right" >
+						<div class="panel panel-default sidebar-menu wow fadeInRight animated animated animated" style="visibility: visible; animation-name: fadeInRight;">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">예약</h3>
+                            </div>
+                            <div class="panel-body text-widget">
+                                <p>예약 내역  </p>
+                            </div>
+                             <div class="panel-body text-widget">
+                                <p>예약 수정 / 취소 </p>
+                            </div>
+                              <div class="panel-body text-widget">
+                                <p>비회원 예약 확인 </p>
+                            </div>
+                        </div>
+                    </div>  
+                    <div class="blog-asside-right" >
+						<div class="panel panel-default sidebar-menu wow fadeInRight animated animated animated" style="visibility: visible; animation-name: fadeInRight;">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">개인 정보</h3>
+                            </div>
+                            <div class="panel-body text-widget">
+                                <p>회원 정보 수정  </p>
+                            </div>
+                        
+                        </div>
+                    </div>
+     			   <div class="blog-asside-right" >
+					<div class="panel panel-default sidebar-menu wow fadeInRight animated animated animated" style="visibility: visible; animation-name: fadeInRight;">
+                              <div class="panel-heading">
+                                <h3 class="panel-title">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h3>
+                            </div>
+                            <div class="panel-body text-widget">
+                                <p>쿠폰 관리</p>
+                            </div>
+                            <div class="panel-body text-widget">
+                                <p>1:1 문의</p>
+                            </div>
+                            <div class="panel-body text-widget">
+                                <p>회원 탈퇴</p>
+                            </div>
+                        </div>
+                    </div>    
+                    
+                            
+               
+             
     
                     </div>   
                   </div>  
                     
                     
-                    <div class="blog-lst col-md-9 p0 col-7" style="float: right;">
+                    <div class="blog-lst col-md-8 p0 " style="float: right;">
                         <section id="id-100" class="post single">
 
 							
-                        <div class="panel panel-default sidebar-menu wow  fadeInRight animated animated" style="visibility: visible; animation-name: fadeInRight;">
-                            <div class="panel-heading">
-                                <h3 class="panel-title">검색</h3>
-                            </div>
-                            <div class="panel-body">
-                                <form role="search">
-                                    <div class="input-group">
-                                        <input class="form-control" placeholder="질문을 입력하세요" type="text">
-                                        <span class="input-group-btn">
-                                            <button type="submit" class="btn btn-smal">
-                                                <i class="fa fa-search"></i>
-                                            </button>
-                                        </span>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
+               
 							
-                            <div class="post-header single">
-                                <div class="">
-                                    <h2 class="wow fadeInLeft animated animated" style="visibility: visible; animation-name: fadeInLeft;">FASHIN NOW 2016</h2>
-                                    <div class="title-line wow fadeInRight animated animated" style="visibility: visible; animation-name: fadeInRight;"></div>
-                                </div>
-                                <div class="row wow fadeInRight animated animated" style="visibility: visible; animation-name: fadeInRight;">
-                                    <div class="col-sm-6">
-                                        <p class="author-category">
-                                            By <a href="#">John Snow</a>
-                                            in <a href="blog.html">Webdesign</a>
-                                        </p>
-                                    </div>
-                                    <div class="col-sm-6 right">
-                                        <p class="date-comments">
-                                            <a href="single.html"><i class="fa fa-calendar-o"></i> June 20, 2013</a>
-                                            <a href="single.html"><i class="fa fa-comment-o"></i> 8 Comments</a>
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="image wow fadeInRight animated animated" style="visibility: visible; animation-name: fadeInRight;"> 
-                                    <img src="assets/img/blog2.jpg" class="img-responsive" alt="Example blog post alt">
-                                </div>
-                            </div> 
+                     
 
                             <div id="post-content" class="post-body single wow fadeInLeft animated animated" style="visibility: visible; animation-name: fadeInLeft;">
-                                <p>
-                                    <strong>Pellentesque habitant morbi tristique</strong> 
-                                    senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas
-                                    semper. <em>Aenean ultricies mi vitae est.</em> 
-                                    Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, <code>commodo vitae</code>, ornare sit amet, wisi. Aenean
-                                    fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. <a href="#">Donec non enim</a> in turpis pulvinar facilisis. Ut felis.</p>
-                                <p>
-                                    <img src="assets/img/blog10.jpg" class="img-responsive" alt="Example blog post alt">
-                                </p>
-
+                        
                                 <h2>Header Level 2</h2>
                                 <ol>
                                     <li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</li>
@@ -186,89 +209,7 @@
 
                         </section>
 
-                        <section id="comments" class="comments wow fadeInRight animated animated" style="visibility: visible; animation-name: fadeInRight;"> 
-                            <h4 class="text-uppercase wow fadeInLeft animated animated" style="visibility: visible; animation-name: fadeInLeft;">3 comments</h4>
 
-
-                            <div class="row comment">
-                                <div class="col-sm-3 col-md-2 text-center-xs">
-                                    <p>
-                                        <img src="assets/img/client-face1.png" class="img-responsive img-circle" alt="">
-                                    </p>
-                                </div>
-                                <div class="col-sm-9 col-md-10">
-                                    <h5 class="text-uppercase">Julie Alma</h5>
-                                    <p class="posted"><i class="fa fa-clock-o"></i> September 23, 2011 at 12:00 am</p>
-                                    <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper.
-                                        Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
-                                    <p class="reply"><a href="#"><i class="fa fa-reply"></i> Reply</a>
-                                    </p>
-                                </div>
-                            </div>
-                            <!-- /.comment -->
-
-
-                            <div class="row comment last">
-
-                                <div class="col-sm-3 col-md-2 text-center-xs">
-                                    <p>
-                                        <img src="assets/img/client-face2.png" class="img-responsive img-circle" alt="">
-                                    </p>
-                                </div>
-
-                                <div class="col-sm-9 col-md-10">
-                                    <h5 class="text-uppercase">Louise Armero</h5>
-                                    <p class="posted"><i class="fa fa-clock-o"></i> September 23, 2012 at 12:00 am</p>
-                                    <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper.
-                                        Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
-                                    <p class="reply"><a href="#"><i class="fa fa-reply"></i> Reply</a>
-                                    </p>
-                                </div>
-
-                            </div>
-                            <!-- /.comment -->
-                        </section>
-
-                        <section id="comment-form" class="add-comments">
-                            <h4 class="text-uppercase wow fadeInLeft animated" style="visibility: hidden; animation-name: none;">Leave comment</h4>
-                            <form>
-                                <div class="row wow fadeInLeft animated" style="visibility: hidden; animation-name: none;">
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <label for="name">Name <span class="required">*</span>
-                                            </label>
-                                            <input class="form-control" id="name" type="text">
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="row wow fadeInLeft animated" style="visibility: hidden; animation-name: none;">
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <label for="email">Email <span class="required">*</span>
-                                            </label>
-                                            <input class="form-control" id="email" type="text">
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="row wow fadeInLeft animated" style="visibility: hidden; animation-name: none;">
-                                    <div class="col-sm-12">
-                                        <div class="form-group">
-                                            <label for="comment">Comment <span class="required">*</span>
-                                            </label>
-                                            <textarea class="form-control" id="comment" rows="4"></textarea>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="row wow fadeInLeft animated" style="visibility: hidden; animation-name: none;">
-                                    <div class="col-sm-12 text-right">
-                                        <button class="btn btn-primary"><i class="fa fa-comment-o"></i> Post comment</button>
-                                    </div>
-                                </div>
-                            </form>
-                        </section>
                     </div>                    
                  
                 </div>

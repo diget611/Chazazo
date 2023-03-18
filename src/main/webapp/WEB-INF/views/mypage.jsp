@@ -64,55 +64,28 @@
 	<jsp:include page="header.jsp"/>
 	
 	<div class="content-area blog-page padding-top-40" style="background-color: #FCFCFC; padding-bottom: 55px;">
-            <div class="container">
-                <div class="row">
+         <div class="container">
                 
-                <div class="container col-3">    
-                    <div class="blog-asside-right">
+                
+                <div class="col">
+                    <div class="blog-asside-right" style="float: left;">
                         <div class="panel panel-default sidebar-menu wow fadeInRight animated animated" style="visibility: visible; animation-name: fadeInRight;">
                             <div class="panel-heading">
                                 <h3 class="panel-title">마이페이지</h3>
                             </div>
-                   
                         </div>
-
-                        
                         <div class="btn-group btn-group-lg btn-group-vertical" role="group" aria-label="Basic outlined example">
 						  <button type="button" class="btn btn-outline-primary">예약/취소</button>
 						  <button type="button" class="btn btn-outline-primary">이용방법</button>
 						  <button type="button" class="btn btn-outline-primary">보험/사고</button>
 						  <button type="button" class="btn btn-outline-primary">전기차</button>
 						</div>
-                            
-
-
+    
                     </div>   
+                  </div>  
                     
                     
-                    
-                                  <div class="blog-asside-right">
-                        <div class="panel panel-default sidebar-menu wow fadeInRight animated animated" style="visibility: visible; animation-name: fadeInRight;">
-                            <div class="panel-heading">
-                                <h3 class="panel-title">마이페이지</h3>
-                            </div>
-                   
-                        </div>
-
-                        
-                        <div class="btn-group btn-group-lg btn-group-vertical" role="group" aria-label="Basic outlined example">
-						  <button type="button" class="btn btn-outline-primary">예약/취소</button>
-						  <button type="button" class="btn btn-outline-primary">이용방법</button>
-						  <button type="button" class="btn btn-outline-primary">보험/사고</button>
-						  <button type="button" class="btn btn-outline-primary">전기차</button>
-						</div>
-                            
-
-
-                    </div> 
-                    
-                    </div>
-                    
-                    <div class="blog-lst col-md-9 p0 col-7">
+                    <div class="blog-lst col-md-9 p0 col-7" style="float: right;">
                         <section id="id-100" class="post single">
 
 							
@@ -301,7 +274,7 @@
                 </div>
 
             </div>
-        </div>
+      
 	
 	
 	

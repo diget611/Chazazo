@@ -111,6 +111,12 @@ public class HomeController {
 		mv.setViewName("event");
 		return mv;
 	}
+	
+	@GetMapping("/rent")
+	public ModelAndView getRent(ModelAndView mv) {
+		mv.setViewName("rent");
+		return mv;
+	}
 
 	
 }

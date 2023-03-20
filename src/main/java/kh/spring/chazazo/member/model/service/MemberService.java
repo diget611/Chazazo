@@ -1,9 +1,9 @@
 package kh.spring.chazazo.member.model.service;
 
-import kh.spring.chazazo.member.model.dto.MemberDto;
-import kh.spring.chazazo.member.model.dto.MemberInfoDto;
+import kh.spring.chazazo.member.model.dto.MemberReqDto;
+import kh.spring.chazazo.member.model.dto.MemberInfoReqDto;
 
 public interface MemberService {
 	
-	public int insert(MemberDto memberDto, MemberInfoDto memberInfoDto);
+	public int insert(MemberReqDto memberDto, MemberInfoReqDto memberInfoDto);
 }

@@ -6,7 +6,7 @@ import lombok.Data;
 
 @Component
 @Data
-public class MemberDto {
+public class MemberReqDto {
 	
 	private String username;
 	private String password;

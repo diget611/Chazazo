@@ -6,7 +6,7 @@ import lombok.Data;
 
 @Component
 @Data
-public class MemberInfoDto {
+public class MemberInfoReqDto {
 
 	private String name;
 	private int gender;

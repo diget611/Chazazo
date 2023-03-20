@@ -7,7 +7,8 @@
 	</settings>
 	
 	<typeAliases>
-		<typeAlias type="kh.spring.chazazo.review.vo.ReviewVo" alias="rvo"/>
-		<typeAlias type="kh.spring.chazazo.notice.model.vo.NoticeVo" alias="nvo"/>
+		<typeAlias type="kh.spring.chazazo.member.model.dto.MemberReqDto" alias="memberReqDto"/>
+		<typeAlias type="kh.spring.chazazo.member.model.dto.MemberInfoReqDto" alias="memberInfoReqDto"/>
+		<typeAlias type="kh.spring.chazazo.review.model.dto.ReviewDto" alias="reviewDto"/>	
 	</typeAliases>
 </configuration>

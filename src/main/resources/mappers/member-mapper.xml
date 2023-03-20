@@ -1,12 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="memberMapper">
-	<insert id="insert" parameterType="kh.spring.chazazo.member.model.dto.MemberDto">
+<mapper namespace="member">
+	<select id="selectList">
+		SELECT * FROM MEMBER
+	</select>
+	<select id="selectOne">
+		SELECT * FROM MEMBER WHERE USERNAME = #{username}
+	</select>
+	<insert id="insert" parameterType="memberReqDto">
 		INSERT INTO MEMBER
 		VALUES(MEMBER_SEQ.NEXTVAL, #{username}, #{password}, DEFAULT, DEFAULT)
 	</insert>
-	<insert id="insertInfo" parameterType="kh.spring.chazazo.member.model.dto.MemberInfoDto">
+	<insert id="insertInfo" parameterType="memberInfoReqDto">
 		INSERT INTO MEMBER_INFO
 		VALUES(MEMBER_SEQ.CURRVAL, #{name}, #{gender}, #{birth}, #{phoneNumber}, #{license}, #{email})
 	</insert>
+	<update id="update">
+	</update>
+	<delete id="delete">
+	</delete>
 </mapper>

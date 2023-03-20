@@ -4,8 +4,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import kh.spring.chazazo.member.model.dto.MemberDto;
-import kh.spring.chazazo.member.model.dto.MemberInfoDto;
+import kh.spring.chazazo.member.model.dto.MemberReqDto;
+import kh.spring.chazazo.member.model.dto.MemberInfoReqDto;
 
 @Repository
 public class MemberDao {
@@ -13,11 +13,11 @@ public class MemberDao {
 	@Autowired
 	private SqlSession sqlSession;
 	
-	public int insert(MemberDto dto) {
-		return sqlSession.insert("memberMapper.insert", dto);
+	public int insert(MemberReqDto dto) {
+		return sqlSession.insert("member.insert", dto);
 	}
 	
-	public int insertInfo(MemberInfoDto dto) {
-		return sqlSession.insert("memberMapper.insertInfo", dto);
+	public int insertInfo(MemberInfoReqDto dto) {
+		return sqlSession.insert("member.insertInfo", dto);
 	}
 }

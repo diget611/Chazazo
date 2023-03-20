@@ -6,8 +6,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import kh.spring.chazazo.member.model.dao.MemberDao;
-import kh.spring.chazazo.member.model.dto.MemberDto;
-import kh.spring.chazazo.member.model.dto.MemberInfoDto;
+import kh.spring.chazazo.member.model.dto.MemberReqDto;
+import kh.spring.chazazo.member.model.dto.MemberInfoReqDto;
 
 @Service
 public class MemberServiceImp implements MemberService {
@@ -20,7 +20,7 @@ public class MemberServiceImp implements MemberService {
 
 	@Override
 	@Transactional
-	public int insert(MemberDto memberDto, MemberInfoDto memberInfoDto) {
+	public int insert(MemberReqDto memberDto, MemberInfoReqDto memberInfoDto) {
 		String encodingPass = bcryptPasswordEncoder.encode(memberDto.getPassword());
 		memberDto.setPassword(encodingPass);
 		int result = dao.insert(memberDto);

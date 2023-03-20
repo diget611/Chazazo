@@ -6,46 +6,42 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kh.spring.chazazo.review.model.dao.ReviewDao;
-import kh.spring.chazazo.review.vo.ReviewVo;
+import kh.spring.chazazo.review.model.dto.ReviewDto;
 
 @Service
-public class ReviewServiceImpl implements ReviewService {
+public class ReviewServiceImpl implements ReviewService{
 
-
-		@Autowired
-		private ReviewDao dao;
-
-		@Override
-		public ReviewVo selectOne(int idx) {
-			return dao.selectOne(idx);
-		}
-		@Override
-		public List<ReviewVo> selectList() {
-			return dao.selectList();
-		}
-
-
-		@Override
-		public int insert(ReviewVo vo) {
-			return dao.insert(vo);
-		}
-
-		@Override
-		public int update(ReviewVo vo) {
-			return dao.update(vo);
-		}
-
-		@Override
-		public int delete(int idx) {
-			return dao.delete(idx);
-		}
-		@Override
-		public List<ReviewVo> selectReviewList(int vehicleidx) {
-			// TODO Auto-generated method stub
-			return dao.selectList(vehicleidx);
-		}
+	@Autowired
+	private ReviewDao dao;
 	
+	@Override
+	public int insert(ReviewDto dto) {
+		return dao.insert(dto);
+	}
 
+	@Override
+	public int update(ReviewDto dto) {
+		return dao.update(dto);
+	}
 
-	
+	@Override
+	public int delete(int idx) {
+		return dao.delete(idx);
+	}
+
+	@Override
+	public ReviewDto selectOne(int idx) {
+		return dao.selectOne(idx);
+	}
+
+	@Override
+	public List<ReviewDto> selectList() {
+		return dao.selectList();
+	}
+
+	@Override
+	public List<ReviewDto> selectList(int vehicleidx) {
+		return dao.selectList(vehicleidx);
+	}
+
 }

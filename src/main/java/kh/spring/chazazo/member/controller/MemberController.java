@@ -20,7 +20,7 @@ public class MemberController {
 	private MemberService service;
 	
 	@GetMapping("/register")
-	public ModelAndView viewRegisterPage(ModelAndView mv) {
+	public ModelAndView viewRegister(ModelAndView mv) {
 		mv.setViewName("member/register");
 		return mv;
 	}

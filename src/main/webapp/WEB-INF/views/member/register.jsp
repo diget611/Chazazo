@@ -133,9 +133,9 @@
 	<jsp:include page="../footer.jsp" />
 	
 	<script>
-		// ID 유효성 체크
+		// ID 유효성 체크 (영어 소문자로 시작, 영어 소문자, 숫자, 특수문자(-, _) 가능)
 		$('[name=username]').on('blur', function() {
-			var testId = /[a-z0-9_-]{5,20}/;
+			var testId = /^[a-z]{1}[a-z0-9_-]{4,19}$/;
 			if($('[name=username]').val() == '') {
 				$('[name=username]').nextAll().html('');
 				$('[name=username]').after('<div>아이디를 입력하세요.</div>');
@@ -150,6 +150,12 @@
 		
 		// 패스워드 유효성 체크
 		$('[name=password]').on('blur', function(){});
+		
+		// 이름 유효성 체크
+		// 생년월일 유효성 체크
+		// 전화번호 유효성 체크
+		// 면허증 번호 유효성 체크
+		// 이메일 유효성 체크
 		
 	</script>
 	

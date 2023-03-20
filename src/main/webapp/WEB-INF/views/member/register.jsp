@@ -129,8 +129,30 @@
 			</div>
 		</div>
 	</div>
+	
 	<jsp:include page="../footer.jsp" />
-
+	
+	<script>
+		// ID 유효성 체크
+		$('[name=username]').on('blur', function() {
+			var testId = /[a-z0-9_-]{5,20}/;
+			if($('[name=username]').val() == '') {
+				$('[name=username]').nextAll().html('');
+				$('[name=username]').after('<div>아이디를 입력하세요.</div>');
+			} else if(!testId.test($('[name=username]').val())){
+				$('[name=username]').nextAll().html('');
+				$('[name=username]').after('<div>1234667</div>');
+			} else {
+				$('[name=username]').nextAll().html('');
+				$('[name=username]').after('');
+			}
+		});
+		
+		// 패스워드 유효성 체크
+		$('[name=password]').on('blur', function(){});
+		
+	</script>
+	
 	<script
 		src="<%=request.getContextPath()%>/resources/garoestate/assets/js/modernizr-2.6.2.min.js"></script>
 

@@ -7,8 +7,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import kh.spring.chazazo.member.model.dto.MemberDto;
+import kh.spring.chazazo.member.model.dto.MemberInfoDto;
 import kh.spring.chazazo.member.model.service.MemberService;
-import kh.spring.chazazo.member.model.vo.MemberVo;
 
 @Controller
 @RequestMapping("/member")
@@ -17,15 +18,15 @@ public class MemberController {
 	@Autowired
 	private MemberService service;
 	
-	@GetMapping("/insert")
+	@GetMapping("/register")
 	public ModelAndView viewRegisterPage(ModelAndView mv) {
-		mv.setViewName("member/insert");
+		mv.setViewName("member/register");
 		return mv;
 	}
 	
-	@PostMapping("/insert")
-	public ModelAndView register(ModelAndView mv, MemberVo vo) {
-		service.insert(vo);
+	@PostMapping("/register")
+	public ModelAndView register(ModelAndView mv, MemberDto memberDto, MemberInfoDto memberInfoDto) {
+		service.insert(memberDto, memberInfoDto);
 		return mv;
 	}
 

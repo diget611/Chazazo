@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import kh.spring.chazazo.member.model.vo.MemberVo;
 import kh.spring.chazazo.review.model.dao.ReviewDao;
 import kh.spring.chazazo.review.vo.ReviewVo;
 

@@ -37,6 +37,7 @@ public class ReviewController {
 	
 //	@GetMapping
 	public ModelAndView insertReview(ModelAndView mv) {
+		// 리뷰 점수 추가하면서 평균 별점 업데이트 동시에 진행
 		return mv;
 	}
 	

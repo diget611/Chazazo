@@ -63,49 +63,35 @@
 <body>
 	<jsp:include page="header.jsp"/>
 
-	<div class="register-area vh-100" style="background-color: rgb(249, 249, 249) ;">
-         
-            <div class="container">
-
-       
-
-                <div>
-                    <div class="box-for overflow">                         
-                        <div class="col-md-12 col-xs-12 login-blocks">
-                            <h2>로그인 : </h2> 
-                            <form action="" method="post">
-                                <div class="form-group">
-                                    <label for="email">아이디</label>
-                                    <input type="text" class="form-control" id="email">
-                                </div>
-                                <div class="form-group">
-                                    <label for="password">비밀번호</label>
-                                    <input type="password" class="form-control" id="password">
-                                </div>
-                                
-                                
-                                <div class="text-center">
-                                    <button type="submit" class="btn btn-default"> 로그인 </button>
-                                </div>
-                                
-                                
-                                <div class="text-center">
-                                    <button type="submit" class="btn btn-default"> 회원가입 </button>
-                                </div>
-                            </form>
-                            <br>
-                            
-  
-                
-                <span> 아이디 찾기 | 비밀번호 찾기 </span>
-                        </div>
-                        
-                    </div>
-                </div>
-                
-
-            </div>
-        </div>
+	<div class="register-area vh-100" style="background-color: rgb(249, 249, 249) ;">     
+		<div class="container">
+			<div>
+				<div class="box-for overflow">                         
+					<div class="col-md-12 col-xs-12 login-blocks">
+						<h2>로그인 : </h2> 
+							<form action="login-check" method="post">
+								<div class="form-group">
+									<label>아이디</label>
+									<input type="text" class="form-control" name="username">
+								</div>
+								<div class="form-group">
+									<label>비밀번호</label>
+									<input type="password" class="form-control" name="password">
+								</div>
+								<div class="text-center">
+									<button type="submit" class="btn btn-default"> 로그인 </button>
+								</div>
+								<div class="text-center">
+									<button type="submit" class="btn btn-default" value="login"> 회원가입 </button>
+								</div>
+							</form>
+						<span> 아이디 찾기 | 비밀번호 찾기 </span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
 	<jsp:include page="footer.jsp"/>
 	
 	

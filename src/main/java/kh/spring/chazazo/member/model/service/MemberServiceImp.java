@@ -3,9 +3,11 @@ package kh.spring.chazazo.member.model.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import kh.spring.chazazo.member.model.dao.MemberDao;
-import kh.spring.chazazo.member.model.vo.MemberVo;
+import kh.spring.chazazo.member.model.dto.MemberDto;
+import kh.spring.chazazo.member.model.dto.MemberInfoDto;
 
 @Service
 public class MemberServiceImp implements MemberService {
@@ -15,17 +17,17 @@ public class MemberServiceImp implements MemberService {
 	
 	@Autowired
 	private BCryptPasswordEncoder bcryptPasswordEncoder;
-	
+
 	@Override
-	public int insert(MemberVo vo) {
-		System.out.println("###################################");
-		System.out.println("before encoding : " + vo.getPassword());
-		String encodingPass = bcryptPasswordEncoder.encode(vo.getPassword());
-		System.out.println("after encoding : " + encodingPass);
-		System.out.println("userinfo : " + vo);
-		System.out.println("###################################");
-		vo.setPassword(encodingPass);
-		return dao.insert(vo);
+	@Transactional
+	public int insert(MemberDto memberDto, MemberInfoDto memberInfoDto) {
+		String encodingPass = bcryptPasswordEncoder.encode(memberDto.getPassword());
+		memberDto.setPassword(encodingPass);
+		int result = dao.insert(memberDto);
+		if(result == 1) {
+			dao.insertInfo(memberInfoDto);
+		}
+		return result;	
 	}
 
 }

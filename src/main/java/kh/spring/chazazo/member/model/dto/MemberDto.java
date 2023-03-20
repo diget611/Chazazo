@@ -1,4 +1,4 @@
-package kh.spring.chazazo.member.model.vo;
+package kh.spring.chazazo.member.model.dto;
 
 import org.springframework.stereotype.Component;
 
@@ -6,12 +6,15 @@ import lombok.Data;
 
 @Component
 @Data
-public class MemberVo {
+public class MemberDto {
 	
-	private int idx;
 	private String username;
 	private String password;
 	private int enabled;
 	private String auth;
+	
+	public void setPassword(String password) {
+		this.password = password;
+	}
 	
 }

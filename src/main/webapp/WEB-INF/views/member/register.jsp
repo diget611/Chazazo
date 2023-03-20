@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -61,38 +61,103 @@
 	href="<%=request.getContextPath()%>/resources/garoestate/assets/css/responsive.css">
 </head>
 <body>
-	<jsp:include page="../header.jsp"/>
+	<jsp:include page="../header.jsp" />
 
-	<div class="register-area vh-100" style="background-color: rgb(249, 249, 249) ;">     
+	<div class="register-area vh-100" style="background-color: rgb(249, 249, 249);">
 		<div class="container">
 			<div>
-				<div class="box-for overflow">                         
+				<div class="box-for overflow">
 					<div class="col-md-12 col-xs-12 login-blocks">
-						<h2>로그인 : </h2> 
-							<form action="login-check" method="post">
-								<div class="form-group">
-									<label>아이디</label>
-									<input type="text" class="form-control" name="username">
+						<h2>회원가입 :</h2>
+						<form action="<%=request.getContextPath() %>/member/register" method="post">
+							<div class="form-group">
+								<label>아이디</label>
+								<input type="text" class="form-control" name="username">
+							</div>
+							<div class="form-group">
+								<label>비밀번호</label>
+								<input type="password" class="form-control" name="password">
+							</div>
+							<div class="form-group">
+								<label>이름</label>
+								<input type="text" class="form-control" name="name">
+							</div>
+							<div class="form-group">
+								<label>성별</label>
+								<select class="form-control" name="name">
+									<option selected="selected" hidden="hidden">성별</option>
+									<option value="0">남성</option>
+									<option value="1">여성</option>
+								</select>
+							</div>
+							<div class="form-group">
+								<label>생년월일</label>
+								<input type="text" class="form-control" name="birth">
+							</div>
+							<div class="form-group">
+								<label>전화번호</label>
+								<input type="text" class="form-control" name="phoneNumber">
+							</div>
+							<div class="form-group container">
+								<label>면허증 번호</label> 
+								<div class="row">
+									<div class="col-xs-10" >
+										<input type="text" class="form-control" name="license" style="width:100%;">
+									</div>
+									<div class="col-xs-2" >
+										<button type="submit" class="btn btn-default" style="width: 100px;">확인</button>
+									</div>
 								</div>
-								<div class="form-group">
-									<label>비밀번호</label>
-									<input type="password" class="form-control" name="password">
+							</div>
+							<div class="form-group container">
+								<label>이메일 </label> 
+								<div class="row">
+									<div class="col-xs-10" >
+										<input type="text" class="form-control" name="email" style="width:100%;">
+									</div>
+									<div class="col-xs-2" >
+										<button type="submit" class="btn btn-default" style="width: 100px;">확인</button>
+									</div>
 								</div>
-								<div class="text-center">
-									<button type="submit" class="btn btn-default"> 로그인 </button>
-								</div>
-								<div class="text-center">
-									<button type="submit" class="btn btn-default" value="login"> 회원가입 </button>
-								</div>
-							</form>
-						<span> 아이디 찾기 | 비밀번호 찾기 </span>
+							</div>							
+							<div class="text-center">
+								<button type="submit" class="btn btn-default">회원가입</button>
+							</div>
+						</form>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 	
-	<jsp:include page="../footer.jsp"/>
+	<jsp:include page="../footer.jsp" />
+	
+	<script>
+		// ID 유효성 체크 (영어 소문자로 시작, 영어 소문자, 숫자, 특수문자(-, _) 가능)
+		$('[name=username]').on('blur', function() {
+			var testId = /^[a-z]{1}[a-z0-9_-]{4,19}$/;
+			if($('[name=username]').val() == '') {
+				$('[name=username]').nextAll().html('');
+				$('[name=username]').after('<div>아이디를 입력하세요.</div>');
+			} else if(!testId.test($('[name=username]').val())){
+				$('[name=username]').nextAll().html('');
+				$('[name=username]').after('<div>1234667</div>');
+			} else {
+				$('[name=username]').nextAll().html('');
+				$('[name=username]').after('');
+			}
+		});
+		
+		// 패스워드 유효성 체크
+		$('[name=password]').on('blur', function(){});
+		
+		// 이름 유효성 체크
+		// 생년월일 유효성 체크
+		// 전화번호 유효성 체크
+		// 면허증 번호 유효성 체크
+		// 이메일 유효성 체크
+		
+	</script>
 	
 	<script
 		src="<%=request.getContextPath()%>/resources/garoestate/assets/js/modernizr-2.6.2.min.js"></script>

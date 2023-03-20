@@ -75,32 +75,7 @@
                                 <h3 class="panel-title">카테고리</h3>
                             </div>
                                  
-                                    <fieldset class="padding-5" style="margin-bottom:50px">
-                                      <h5>보험</h5>
-                                        <div class="row">
-                                            <div class="col-xs-6">
-                                                <div class="checkbox">
-                                                    <label> <input type="checkbox" checked> 전체</label>
-                                                </div> 
-                                            </div>
-
-                                            <div class="col-xs-6">
-                                                <div class="checkbox">
-                                                    <label> <input type="checkbox"> 일반자차</label>
-                                                </div>
-                                            </div>   
-                                             <div class="col-xs-6">
-                                                <div class="checkbox">
-                                                    <label> <input type="checkbox"> 완전자차</label>
-                                                </div>
-                                            </div>   
-                                           <div class="col-xs-6">
-                                                <div class="checkbox">
-                                                    <label> <input type="checkbox"> 슈퍼자차</label>
-                                                </div>
-                                            </div>                                         
-                                        </div>
-                                  </fieldset>
+                        
                                     
                                <div class="form-group" style="margin-bottom:50px">
                                <h5>차량 모델</h5>

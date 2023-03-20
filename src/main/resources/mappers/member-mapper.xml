@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="memberMapper">
-	<insert id="insert" parameterType="mvo">
+	<insert id="insert" parameterType="kh.spring.chazazo.member.model.dto.MemberDto">
 		INSERT INTO MEMBER
 		VALUES(MEMBER_SEQ.NEXTVAL, #{username}, #{password}, DEFAULT, DEFAULT)
+	</insert>
+	<insert id="insertInfo" parameterType="kh.spring.chazazo.member.model.dto.MemberInfoDto">
+		INSERT INTO MEMBER_INFO
+		VALUES(MEMBER_SEQ.CURRVAL, #{name}, #{gender}, #{birth}, #{phoneNumber}, #{license}, #{email})
 	</insert>
 </mapper>

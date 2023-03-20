@@ -22,12 +22,16 @@ public class ReviewDao {
 		}
 		public int delete(int idx) {
 			return sqlSession.delete("reviewMapper.delete", idx);
-		}
+		}		
 		public ReviewVo selectOne(int idx ) {
 			return sqlSession.selectOne("reviewMapper.selectOne", idx);
 		}
+	
 		public List<ReviewVo> selectList() {
 			return sqlSession.selectList("reviewMapper.selectList");
+		}
+		public List<ReviewVo> selectList(int vehicleidx) {
+			return sqlSession.selectList("reviewMapper.reviewList",vehicleidx);
 		}
 }
 

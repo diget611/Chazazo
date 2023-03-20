@@ -8,6 +8,7 @@ public interface ReviewService {
 
 	public ReviewVo selectOne(int Idx);;
     public List<ReviewVo> selectList();
+    public List<ReviewVo> selectReviewList(int vehicleidx);
 	public int insert(ReviewVo vo);
 	public int update(ReviewVo vo);
 	public int delete(int idx);

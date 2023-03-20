@@ -39,6 +39,12 @@ public class ReviewServiceImpl implements ReviewService {
 		public int delete(int idx) {
 			return dao.delete(idx);
 		}
+		@Override
+		public List<ReviewVo> selectReviewList(int vehicleidx) {
+			// TODO Auto-generated method stub
+			return dao.selectList(vehicleidx);
+		}
+	
 
 
 	

@@ -16,13 +16,11 @@
 		<!-- Collect the nav links, forms, and other content for toggling -->
 		<div class="collapse navbar-collapse yamm" id="navigation">
 			<div class="button navbar-right">
-				<button
-					class="navbar-btn nav-button wow bounceInRight login animated"
-					onclick=" window.open('member/login')" data-wow-delay="0.45s"
+				<button id="loginBtn"
+					class="navbar-btn nav-button wow bounceInRight login animated" type="button" data-wow-delay="0.45s"
 					style="visibility: visible; animation-delay: 0.45s; animation-name: bounceInRight;">로그인</button>
-				<button class="navbar-btn nav-button wow fadeInRight animated"
-					onclick=" window.open('member/register')"
-					data-wow-delay="0.48s"
+				<button id="registerBtn"
+					class="navbar-btn nav-button wow fadeInRight animated" type="button" data-wow-delay="0.48s"
 					style="visibility: visible; animation-delay: 0.48s; animation-name: fadeInRight;">회원가입</button>
 			</div>
 			<ul class="main-nav nav navbar-nav navbar-right">
@@ -46,4 +44,14 @@
 		<!-- /.navbar-collapse -->
 	</div>
 	<!-- /.container-fluid -->
+	<script>
+		$('#loginBtn').on('click', function() {
+			console.log('로그인 클릭');
+			location.href='<%=request.getContextPath()%>/member/login';
+		});
+		$('#registerBtn').on('click', function() {
+			console.log('가입 클릭');
+			location.href='<%=request.getContextPath()%>/member/register';
+		});
+	</script>
 </nav>

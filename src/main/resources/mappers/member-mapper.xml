@@ -19,7 +19,7 @@
 	</update>
 	<delete id="delete">
 	</delete>
-	<select id="checkDup">
+	<select id="checkDup" resultType="_int">
 		SELECT COUNT(*) FROM MEMBER WHERE USERNAME = #{username}
 	</select>
 </mapper>

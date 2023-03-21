@@ -46,11 +46,9 @@
 	<!-- /.container-fluid -->
 	<script>
 		$('#loginBtn').on('click', function() {
-			console.log('로그인 클릭');
 			location.href='<%=request.getContextPath()%>/member/login';
 		});
 		$('#registerBtn').on('click', function() {
-			console.log('가입 클릭');
 			location.href='<%=request.getContextPath()%>/member/register';
 		});
 	</script>

@@ -8,10 +8,10 @@
 <title>Insert title here</title>
 </head>
 <body>
-[[ ${vehicleList } ]]
+
 	<c:forEach items="${vehicleList }" var="vehicle">
-		 <div>${vehicle }</div>
-		 <div>${vehicle }</div>
+		 <div>${vehicle.idx }</div>
+		 <div>${vehicle.model }</div>
 	</c:forEach>
 </body>
 </html>

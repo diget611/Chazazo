@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.Mapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -43,6 +44,17 @@ public class MemberController {
 	public ModelAndView insertMember(ModelAndView mv, MemberReqDto memberDto, MemberInfoReqDto memberInfoDto) {
 		mService.insert(memberDto, memberInfoDto);
 		return mv;
+	}
+	
+	@GetMapping("/register/{username}")
+	public String checkDup(@PathVariable String username) {
+		int result = mService.checkDup(username);
+		if(result == 1) {
+			
+		} else {
+			
+		}
+		return null;
 	}
 	
 //	@GetMapping

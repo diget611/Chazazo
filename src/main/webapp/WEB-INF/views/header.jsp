@@ -13,7 +13,6 @@
 			<a class="navbar-brand" href="<%=request.getContextPath() %>"><img
 				src="assets/img/logo.png" alt=""></a>
 		</div>
-
 		<!-- Collect the nav links, forms, and other content for toggling -->
 		<div class="collapse navbar-collapse yamm" id="navigation">
 			<div class="button navbar-right">
@@ -27,11 +26,9 @@
 					style="visibility: visible; animation-delay: 0.48s; animation-name: fadeInRight;">회원가입</button>
 			</div>
 			<ul class="main-nav nav navbar-nav navbar-right">
-				
 				<li class="wow fadeInDown animated" data-wow-delay="0.2s"
 					style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInDown;"><a
 					class="" href="/chazazo/rent">예약</a></li>
-
 				<li class="wow fadeInDown animated" data-wow-delay="0.2s"
 					style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInDown;"><a
 					class="" href="/chazazo/event">이벤트</a></li>

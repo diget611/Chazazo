@@ -4,8 +4,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="pull-left">
-				<span> (C) <a href="http://www.KimaroTec.com">KimaroTheme</a>
-					, All rights reserved 2016
+				<span> (C) <a href="http://www.KimaroTec.com">KimaroTheme</a>, All rights reserved 2016
 				</span>
 			</div>
 			<div class="bottom-menu pull-right">

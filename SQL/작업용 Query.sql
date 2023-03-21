@@ -33,5 +33,7 @@
 -- ReviewController
 
 -- VehicleController
-
-
+    -- 선택한 날짜 범위 내에 존재하는 차량 인덱스 조회
+        SELECT VEHICLE_IDX FROM RESERVATION WHERE RESRV_START BETWEEN 날짜 AND 날짜 OR RESERV_END BETWEEN 날짜 AND 날짜;
+    -- 조회한 인덱스가 아닌 차량 조회
+        SELECT * FROM VEHICLE WHERE IDX NOT IN();

@@ -11,7 +11,7 @@
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>GARO ESTATE | Home page</title>
+<title>회원 정보 수정 페이지</title>
 <meta name="description" content="GARO is a real-estate template">
 <meta name="author" content="Kimarotec">
 <meta name="keyword"
@@ -135,51 +135,77 @@
 				</div>   
 			</div>
 			<div class="blog-lst col-md-8 p0 " style="float: right;">
-				<section id="id-100" class="post single">
-					<div id="post-content" class="post-body single wow fadeInLeft animated animated" style="visibility: visible; animation-name: fadeInLeft;">
-						<h2>Header Level 2</h2>
-						<ol>
-							<li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</li>
-							<li>Aliquam tincidunt mauris eu risus.</li>
-						</ol>
-						<blockquote>
-							<p>
-								Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus magna. Cras in mi at felis aliquet congue. Ut a est eget ligula molestie gravida. Curabitur massa. Donec eleifend, libero at sagittis mollis, tellus est malesuada
-								tellus, at luctus turpis elit sit amet quam. Vivamus pretium ornare est.
-							</p>
-						</blockquote>
-						<h3>Header Level 3</h3>
-						<p>
-							Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean
-							ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt
-						</p>
-						<ul>
-							<li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</li>
-							<li>Aliquam tincidunt mauris eu risus.</li>
-						</ul>
-						<p>
-							<img src="assets/img/blog.jpg" class="img-responsive" alt="Example blog post alt">
-						</p>
-						<p>
-							Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean
-							condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros
-							eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus
-						</p>
+			<div class="carmore-section p-0 m-0">
+				<div class="container">
+					<h3>내 정보 관리</h3>
+					<div class="container">
+						<div class="pt-5 pb-3">
+							<div class="text-center">
+								<div id="js_vmp_user_profile">
+									<img class="img-user-profile img-user-profile-large object-fit center-crop mx-auto mb-3 dc-none">
+								</div>
+								<div class="js-vmp-txt-nickname text-18 color-grey-3 font-weight-bold">닉네임</div>
+								<div class="js-vmp-txt-email text-12 color-grey-5">이메일</div>
+							</div>
+						</div>
 					</div>
-					<div class="post-footer single wow fadeInBottum animated animated" style="visibility: visible;">
-						<ul class="pager">
-							<li class="previous"><a href="#"><i class=""></i>← Older </a></li>
-							<li class="next disabled"><a href="#">Newer →<i class=""></i> </a></li>
-						</ul> 
-					</div>
-				</section> 
-				<section class="about-autor">
+			
+					<section class="carmore-section pt-0">
+						<div class="container">
+							<div class="list-group list-group-flush">
+								<a class="list-group-item list-group-item-action d-flex justify-content-between align-items-center px-0 click-effect-press" id="js_vmp_btn_email" href="javascript:void(0)">
+								<div class="dc-flex w-50">
+									<span class="mb-0 text-14 line-height-1">이메일 계정</span>
+									<span class="badge badge-soft-primary line-height-1 ml-2" id="js_vmp_badge_email_certification" style="display: none;">인증완료</span>
+									<span class="badge badge-soft-warning line-height-1 ml-2 dc-none" id="js_vmp_badge_email_uncertificated" style="display: none;">미인증</span>
+								</div>
+								
+							<div class="dc-flex justify-content-end w-50">
+								<span class="js-vmp-txt-email text-14 color-grey-4 line-height-1 ellipsis pr-1">이메일</span>
+								<img class="line-height-1 ml-2" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMCIgaGVpZ2h0PSIxNiIgZmlsbD0ibm9uZSIgdmlld0JveD0iMCAwIDEwIDE2Ij4KICAgIDxwYXRoIGZpbGw9IiM5OTkiIGZpbGwtcnVsZT0iZXZlbm9kZCIgZD0iTTMuMTI0IDQuNjdjLjE4Mi0uMjA3LjQ5Ny0uMjI4LjcwNS0uMDQ2bDQgMy41Yy4xMDkuMDk1LjE3MS4yMzIuMTcxLjM3NnMtLjA2Mi4yODEtLjE3LjM3NmwtNCAzLjVjLS4yMDkuMTgyLS41MjQuMTYxLS43MDYtLjA0Ny0uMTgyLS4yMDgtLjE2MS0uNTIzLjA0Ny0uNzA1TDYuNzQgOC41IDMuMTcgNS4zNzZjLS4yMDgtLjE4Mi0uMjMtLjQ5Ny0uMDQ3LS43MDV6IiBjbGlwLXJ1bGU9ImV2ZW5vZGQiLz4KPC9zdmc+Cg=="></div></a></div><div class="list-group list-group-flush">
+								<a class="list-group-item list-group-item-action d-flex justify-content-between align-items-center px-0 click-effect-press" id="js_vmp_btn_phone" href="javascript:void(0)"><div class="dc-flex"><span class="mb-0 text-14 line-height-1">휴대폰 번호</span>
+								<span class="badge badge-soft-primary line-height-1 ml-2 dc-none" id="js_vmp_badge_phone_certification" style="display: none;">인증완료</span>
+								<span class="badge badge-soft-warning line-height-1 ml-2" id="js_vmp_badge_phone_uncertificated" style="display: none;">미인증</span>
+							</div>
+							<div class="dc-flex justify-content-end w-50">
+									<span class="text-14 color-grey-4 line-height-1 ellipsis pr-1" id="js_vmp_txt_phone"></span>
+									<img class="line-height-1 ml-2" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMCIgaGVpZ2h0PSIxNiIgZmlsbD0ibm9uZSIgdmlld0JveD0iMCAwIDEwIDE2Ij4KICAgIDxwYXRoIGZpbGw9IiM5OTkiIGZpbGwtcnVsZT0iZXZlbm9kZCIgZD0iTTMuMTI0IDQuNjdjLjE4Mi0uMjA3LjQ5Ny0uMjI4LjcwNS0uMDQ2bDQgMy41Yy4xMDkuMDk1LjE3MS4yMzIuMTcxLjM3NnMtLjA2Mi4yODEtLjE3LjM3NmwtNCAzLjVjLS4yMDkuMTgyLS41MjQuMTYxLS43MDYtLjA0Ny0uMTgyLS4yMDgtLjE2MS0uNTIzLjA0Ny0uNzA1TDYuNzQgOC41IDMuMTcgNS4zNzZjLS4yMDgtLjE4Mi0uMjMtLjQ5Ny0uMDQ3LS43MDV6IiBjbGlwLXJ1bGU9ImV2ZW5vZGQiLz4KPC9zdmc+Cg=="></div></a></div><div class="list-group list-group-flush">
+									<a class="list-group-item list-group-item-action d-flex justify-content-between align-items-center px-0 click-effect-press" id="js_vmp_btn_nickname" href="javascript:void(0)">
+										<div>
+											<span class="mb-0 text-14 line-height-1">닉네임</span>
+										</div>
+							<div class="dc-flex justify-content-end w-50">
+									<span class="js-vmp-txt-nickname text-14 color-grey-4 ellipsis pr-1">힘겨운호떡</span>
+									<img class="ml-2" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMCIgaGVpZ2h0PSIxNiIgZmlsbD0ibm9uZSIgdmlld0JveD0iMCAwIDEwIDE2Ij4KICAgIDxwYXRoIGZpbGw9IiM5OTkiIGZpbGwtcnVsZT0iZXZlbm9kZCIgZD0iTTMuMTI0IDQuNjdjLjE4Mi0uMjA3LjQ5Ny0uMjI4LjcwNS0uMDQ2bDQgMy41Yy4xMDkuMDk1LjE3MS4yMzIuMTcxLjM3NnMtLjA2Mi4yODEtLjE3LjM3NmwtNCAzLjVjLS4yMDkuMTgyLS41MjQuMTYxLS43MDYtLjA0Ny0uMTgyLS4yMDgtLjE2MS0uNTIzLjA0Ny0uNzA1TDYuNzQgOC41IDMuMTcgNS4zNzZjLS4yMDgtLjE4Mi0uMjMtLjQ5Ny0uMDQ3LS43MDV6IiBjbGlwLXJ1bGU9ImV2ZW5vZGQiLz4KPC9zdmc+Cg=="></div></a></div><div class="list-group list-group-flush">
+									<a class="list-group-item list-group-item-action d-flex justify-content-between align-items-center px-0 click-effect-press" id="js_vmp_btn_birthday" href="javascript:void(0)"><div><span class="mb-0 text-14 line-height-1">생년월일</span></div><div class="dc-flex justify-content-end w-50"><span class="text-14 color-grey-4 ellipsis pr-1" id="js_vmp_txt_birthday">1998.3.28</span>
+									<img class="ml-2" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMCIgaGVpZ2h0PSIxNiIgZmlsbD0ibm9uZSIgdmlld0JveD0iMCAwIDEwIDE2Ij4KICAgIDxwYXRoIGZpbGw9IiM5OTkiIGZpbGwtcnVsZT0iZXZlbm9kZCIgZD0iTTMuMTI0IDQuNjdjLjE4Mi0uMjA3LjQ5Ny0uMjI4LjcwNS0uMDQ2bDQgMy41Yy4xMDkuMDk1LjE3MS4yMzIuMTcxLjM3NnMtLjA2Mi4yODEtLjE3LjM3NmwtNCAzLjVjLS4yMDkuMTgyLS41MjQuMTYxLS43MDYtLjA0Ny0uMTgyLS4yMDgtLjE2MS0uNTIzLjA0Ny0uNzA1TDYuNzQgOC41IDMuMTcgNS4zNzZjLS4yMDgtLjE4Mi0uMjMtLjQ5Ny0uMDQ3LS43MDV6IiBjbGlwLXJ1bGU9ImV2ZW5vZGQiLz4KPC9zdmc+Cg=="></div></a></div><div class="list-group list-group-flush"><a class="list-group-item list-group-item-action d-flex justify-content-between align-items-center px-0 click-effect-press" id="js_vmp_btn_gender" href="javascript:void(0)">
+										<div>
+											<span class="mb-0 text-14 line-height-1">성별</span>
+										</div>
+							<div class="dc-flex justify-content-end w-50">
+								<span class="text-14 color-grey-4 ellipsis pr-1" id="js_vmp_txt_gender">여</span>
+								<img class="ml-2" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMCIgaGVpZ2h0PSIxNiIgZmlsbD0ibm9uZSIgdmlld0JveD0iMCAwIDEwIDE2Ij4KICAgIDxwYXRoIGZpbGw9IiM5OTkiIGZpbGwtcnVsZT0iZXZlbm9kZCIgZD0iTTMuMTI0IDQuNjdjLjE4Mi0uMjA3LjQ5Ny0uMjI4LjcwNS0uMDQ2bDQgMy41Yy4xMDkuMDk1LjE3MS4yMzIuMTcxLjM3NnMtLjA2Mi4yODEtLjE3LjM3NmwtNCAzLjVjLS4yMDkuMTgyLS41MjQuMTYxLS43MDYtLjA0Ny0uMTgyLS4yMDgtLjE2MS0uNTIzLjA0Ny0uNzA1TDYuNzQgOC41IDMuMTcgNS4zNzZjLS4yMDgtLjE4Mi0uMjMtLjQ5Ny0uMDQ3LS43MDV6IiBjbGlwLXJ1bGU9ImV2ZW5vZGQiLz4KPC9zdmc+Cg==">
+							</div>
+							</a>
+						</div>
+						</div>
 				</section>
-			</div>                    
+				<div class="container my-4 tmobi-dc-none">
+				<div class="dc-flex justify-content-end">
+				<div class="text-14 color-grey-5 click-effect-press" id="js_vmp_btn_logout">로그아웃
+				</div>
+				<div class="text-14 color-grey-5 mx-3">|</div>
+				<div class="text-14 color-grey-5 click-effect-press" id="js_vmp_btn_leave_member">회원탈퇴
+				</div>
+				</div>
+				</div>
+				</div>
+			</div>
+			</div>
 		</div>
 	</div>
     
-	<jsp:include page="<%=request.getContextPath() %>/footer.jsp"/>
+	<jsp:include page="../footer.jsp"/>
 	
 	<script
 		src="<%=request.getContextPath()%>/resources/garoestate/assets/js/modernizr-2.6.2.min.js"></script>

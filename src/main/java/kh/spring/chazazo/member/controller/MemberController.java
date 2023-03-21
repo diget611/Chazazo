@@ -5,7 +5,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.Mapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -28,9 +27,12 @@ public class MemberController {
 		return mv;
 	}
 	
-//	@GetMapping
+	@GetMapping("/mypage")
 	public ModelAndView viewMemberOne(ModelAndView mv, String username) {
 		// 회원 상세 조회
+		
+		mv.setViewName("member/mypage");
+		
 		return mv;
 	}
 	
@@ -46,20 +48,10 @@ public class MemberController {
 		return mv;
 	}
 	
-	@GetMapping("/register/{username}")
-	public String checkDup(@PathVariable String username) {
-		int result = mService.checkDup(username);
-		if(result == 1) {
-			
-		} else {
-			
-		}
-		return null;
-	}
-	
-//	@GetMapping
+	@GetMapping("/mypage/profile")
 	public ModelAndView viewUpdateMember(ModelAndView mv) {
 		// 회원정보 수정 페이지 조회
+		mv.setViewName("member/profile");
 		return mv;
 	}
 	

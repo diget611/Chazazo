@@ -1,15 +1,31 @@
 package kh.spring.chazazo.vehicle.controller;
 
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import kh.spring.chazazo.vehicle.model.dto.VehicleReqDto;
+import kh.spring.chazazo.vehicle.model.service.VehicleService;
+
 @RestController
+@RequestMapping
 public class VehicleController {
 	
-//	@GetMapping
+	@Autowired
+	private VehicleService vservice;
+	
+	@GetMapping("/rent")
 	public ModelAndView searchVehicle(ModelAndView mv) {
 		// 메인페이지 / 예약페이지 / 결제페이지 차량 정보 검색
+		mv.addObject("vehicleList", vservice.selectList());
+		mv.setViewName("reservation/rent");
 		return mv;
 	}
 	

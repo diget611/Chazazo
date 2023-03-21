@@ -6,11 +6,14 @@ import org.springframework.web.servlet.ModelAndView;
 @RestController
 public class PaymentController {
 	
-//	@GetMapping
-	public ModelAndView viewPaymentOne(ModelAndView mv) {
-		// 결제 상세 조회 -> 결제창이랑 비슷한 모양
-		return mv;
-	}
+//	@GetMapping 
+//	public ModelAndView viewPaymentOne(ModelAndView mv) {
+//		// 결제 상세 조회 -> 결제창이랑 비슷한 모양
+//		return mv;
+//	}
+	
+	
+	
 
 //	@GetMapping
 	public ModelAndView viewInsertPayment(ModelAndView mv) {

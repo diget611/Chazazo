@@ -112,11 +112,6 @@ public class HomeController {
 		return mv;
 	}
 	
-	@GetMapping("/rent")
-	public ModelAndView getRent(ModelAndView mv) {
-		mv.setViewName("rent");
-		return mv;
-	}
 
 	@GetMapping("/details")
 	public ModelAndView getDetails(ModelAndView mv) {

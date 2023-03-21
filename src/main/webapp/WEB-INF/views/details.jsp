@@ -216,25 +216,27 @@
                                     <li><a href="properties.html">2 Lawn</a></li>
                                     <li><a href="properties.html">Bike Path</a></li>
                                 </ul>
+ 							
+ 							<!-- 리뷰 영역 시작 -->
  							<div class="section">
                                 <h4 class="s-property-title">리뷰</h4>
                                 <div class="s-property-content">
                                     <p>Nulla quis dapibus nisl. Suspendisse ultricies Nulla quis dapibus nisl. Suspendisse ultricies commodo arcu nec pretium. Nullam sed arcu ultricies commodo arcu nec pretium. Nullam sed arcu ultricies Nulla quis dapibus nisl. Suspendisse ultricies commodo arcu nec pretium. Nullam sed arcu ultricies Nulla quis dapibus nisl. Suspendisse ultricies commodo arcu nec pretium. Nullam sed arcu ultricies                                </p>
                                 </div>
                             </div>
+                            <div>
+
+           
+                            <!-- 리뷰 영역 끝 -->
+                            
                             </div>
                             <!-- End features area  -->
           		         </div>
           		      </div>
 
-
-
-
-
+					<!-- 결제영역 시작 -->
                     <div class="col-md-4 p0" style="padding-left:30px">
                         <aside class="sidebar sidebar-property blog-asside-right">
-                        
-							
 							<section class="mt-3 p-3">
 								<h5>결제 정보</h5><hr>
 								<table class="table">
@@ -252,15 +254,13 @@
 											<td>17000원</td>
 										</tr>
 									</tbody>
-							
 								</table>
-							
 							</section>
 							<button class="btn btn-default" type="button" onclick=" window.open('payment')" >결제하기</button>
-
-
                         </aside>
                     </div>
+                   <!-- 결제영역 끝 --> 
+                   
                 </div>
 
             </div>

@@ -21,7 +21,7 @@ public class ReviewController {
 	
 	@GetMapping("/list")
 	public ModelAndView viewReviewList(ModelAndView mv) {
-		mv.addObject("list", rService.selectList());
+		mv.addObject("replylist", rService.selectList());
 		mv.setViewName("review/list");
 		return mv;
 	}

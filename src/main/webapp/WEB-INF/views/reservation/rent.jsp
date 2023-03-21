@@ -201,11 +201,11 @@
 					</div>
 					<div class="col-md-12 clear"> 
 						<div id="list-type" class="proerty-th">
+						<c:forEach items="${vehicleList }" var="vehicle" >
 							<div class="col-sm-6 col-md-4 p0">
 								<div class="box-two proerty-item">
-									<c:forEach items="${vehicleList }" var="vehicle" >
 										<div class="item-thumb">
-											<a href="/chazazo/details"><img src="${vehicle.image }"  style="width:255px; height:220px;"></a>                               			
+										<a href="<%=request.getContextPath()%>/rent/details/${vehicle.idx }"><img src="https://placeimg.com/327/220/animals" /></a>                               			
 										</div>
 										<!-- 썸네일 한 칸 시작 -->
 										<div class="item-entry overflow">
@@ -220,10 +220,10 @@
 												<img src="./resources/garoestate/assets/img/icon/cars.png">(1)  
 											</div>
 										</div>
-									</c:forEach>
 									<!-- 썸네일 한 칸 끝 -->
 								</div>
 							</div> 
+						</c:forEach>
 						</div>
 					</div>
 					<!-- 페이징 처리 시작 -->

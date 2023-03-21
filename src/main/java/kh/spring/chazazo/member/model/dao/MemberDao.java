@@ -20,4 +20,8 @@ public class MemberDao {
 	public int insertInfo(MemberInfoReqDto dto) {
 		return sqlSession.insert("member.insertInfo", dto);
 	}
+	
+	public int checkDup(String username) {
+		return sqlSession.selectOne("member.checkDup", username);
+	}
 }

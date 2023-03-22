@@ -63,116 +63,118 @@
 <body>
 	<jsp:include page="../header.jsp"/>
 	
-	<div class="content-area blog-page padding-top-40" style="background-color: #FCFCFC; padding-bottom: 55px;">
-		<div class="container">
-			<div class="pc-mobile-header-container">
-				<div class="pc-header space-2 text-center dc-none dc-lg-block">
-					<div class="container">
-						<h2 class="text-grey-3 underline-bg dc-inline-block">마이페이지</h2>
-						<p class="text-grey-5 mb-0">내 정보</p>
+	<section>
+		<div class="content-area blog-page padding-top-40" style="background-color: #FCFCFC; padding-bottom: 55px;">
+			<div class="container">
+				<div class="pc-mobile-header-container">
+					<div class="pc-header space-2 text-center dc-none dc-lg-block">
+						<div class="container">
+							<h2 class="text-grey-3 underline-bg dc-inline-block">마이페이지</h2>
+							<p class="text-grey-5 mb-0">내 정보</p>
+						</div>
 					</div>
 				</div>
-			</div>
-			<div class="col-md-4" style="float: left;">    
-				<div class="blog-asside-right">
-					<div class="panel panel-default sidebar-menu wow fadeInRight animated animated" style="visibility: visible; animation-name: fadeInRight;">
-						<div class="panel-heading">
-							<h3 class="panel-title">회원정보</h3>
+				<div class="col-md-4" style="float: left;">    
+					<div class="blog-asside-right">
+						<div class="panel panel-default sidebar-menu wow fadeInRight animated animated" style="visibility: visible; animation-name: fadeInRight;">
+							<div class="panel-heading">
+								<h3 class="panel-title">회원정보</h3>
+							</div>
 						</div>
-					</div>
-					<div class="dealer-widget  row-md-4">
-						<div class="dealer-content">
-							<div class="inner-wrapper">
-								<div class="clear">
-									<div class="col-xs-8 col-sm-8 ">
-										<h3 class="dealer-name"><span>김땡땡</span></h3>
+						<div class="dealer-widget  row-md-4">
+							<div class="dealer-content">
+								<div class="inner-wrapper">
+									<div class="clear">
+										<div class="col-xs-8 col-sm-8 ">
+											<h3 class="dealer-name"><span>김땡땡</span></h3>
+										</div>
+									</div>
+									<div class="clear">
+										<ul class="dealer-contacts">                                       
+											<li><i class="pe-7s-call strong"> </i> +1 908 967 5906</li>
+											<li><i class="pe-7s-mail strong"> </i> email@yourcompany.com</li>
+											<li><i class="pe-7s-map-marker strong"> </i> 주소주소</li>
+										</ul>
+										<p>Duis mollis  blandit tempus porttitor curabiturDuis mollis  blandit tempus porttitor curabitur , est non…</p>
 									</div>
 								</div>
-								<div class="clear">
-									<ul class="dealer-contacts">                                       
-										<li><i class="pe-7s-call strong"> </i> +1 908 967 5906</li>
-										<li><i class="pe-7s-mail strong"> </i> email@yourcompany.com</li>
-										<li><i class="pe-7s-map-marker strong"> </i> 주소주소</li>
-									</ul>
-									<p>Duis mollis  blandit tempus porttitor curabiturDuis mollis  blandit tempus porttitor curabitur , est non…</p>
+							</div>
+						</div>
+						<div class="blog-asside-right" >
+							<div class="panel panel-default sidebar-menu wow fadeInRight animated animated animated" style="visibility: visible; animation-name: fadeInRight;">
+								<div class="panel-heading">
+									<h3 class="panel-title">
+									<button type="button" class="btn btn-outline-primary">예약내역</button><br>
+									<button type="button" class="btn btn-outline-primary">예약 수정 / 취소</button><br>
+									<button type="button" class="btn btn-outline-primary">비회원 예약 확인</button></h3>
+								</div>
+							</div>
+						</div>  
+						<div class="blog-asside-right" >
+							<div class="panel panel-default sidebar-menu wow fadeInRight animated animated animated" style="visibility: visible; animation-name: fadeInRight;">
+								<div class="panel-heading">
+									<h3 class="panel-title">
+									<button id="updateinfoBtn" type="button" class="btn btn-outline-primary">회원정보 수정</button><br></h3>
 								</div>
 							</div>
 						</div>
-					</div>
-					<div class="blog-asside-right" >
-						<div class="panel panel-default sidebar-menu wow fadeInRight animated animated animated" style="visibility: visible; animation-name: fadeInRight;">
-							<div class="panel-heading">
-								<h3 class="panel-title">
-								<button type="button" class="btn btn-outline-primary">예약내역</button><br>
-								<button type="button" class="btn btn-outline-primary">예약 수정 / 취소</button><br>
-								<button type="button" class="btn btn-outline-primary">비회원 예약 확인</button></h3>
+						<div class="blog-asside-right" >
+							<div class="panel panel-default sidebar-menu wow fadeInRight animated animated animated" style="visibility: visible; animation-name: fadeInRight;">
+								<div class="panel-heading">
+									<h3 class="panel-title">
+									<button type="button" class="btn btn-outline-primary">1:1 문의</button><br>
+									<button type="button" class="btn btn-outline-primary">쿠폰 관리</button><br>
+									<button type="button" class="btn btn-outline-primary">회원탈퇴</button></h3>
+								</div>
 							</div>
 						</div>
-					</div>  
-					<div class="blog-asside-right" >
-						<div class="panel panel-default sidebar-menu wow fadeInRight animated animated animated" style="visibility: visible; animation-name: fadeInRight;">
-							<div class="panel-heading">
-								<h3 class="panel-title">
-								<button id="updateinfoBtn" type="button" class="btn btn-outline-primary">회원정보 수정</button><br></h3>
-							</div>
-						</div>
-					</div>
-					<div class="blog-asside-right" >
-						<div class="panel panel-default sidebar-menu wow fadeInRight animated animated animated" style="visibility: visible; animation-name: fadeInRight;">
-							<div class="panel-heading">
-								<h3 class="panel-title">
-								<button type="button" class="btn btn-outline-primary">1:1 문의</button><br>
-								<button type="button" class="btn btn-outline-primary">쿠폰 관리</button><br>
-								<button type="button" class="btn btn-outline-primary">회원탈퇴</button></h3>
-							</div>
-						</div>
-					</div>
-				</div>   
-			</div>
-			<div class="blog-lst col-md-8 p0 " style="float: right;">
-				<section id="id-100" class="post single">
-					<div id="post-content" class="post-body single wow fadeInLeft animated animated" style="visibility: visible; animation-name: fadeInLeft;">
-						<h2>Header Level 2</h2>
-						<ol>
-							<li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</li>
-							<li>Aliquam tincidunt mauris eu risus.</li>
-						</ol>
-						<blockquote>
+					</div>   
+				</div>
+				<div class="blog-lst col-md-8 p0 " style="float: right;">
+					<section id="id-100" class="post single">
+						<div id="post-content" class="post-body single wow fadeInLeft animated animated" style="visibility: visible; animation-name: fadeInLeft;">
+							<h2>Header Level 2</h2>
+							<ol>
+								<li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</li>
+								<li>Aliquam tincidunt mauris eu risus.</li>
+							</ol>
+							<blockquote>
+								<p>
+									Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus magna. Cras in mi at felis aliquet congue. Ut a est eget ligula molestie gravida. Curabitur massa. Donec eleifend, libero at sagittis mollis, tellus est malesuada
+									tellus, at luctus turpis elit sit amet quam. Vivamus pretium ornare est.
+								</p>
+							</blockquote>
+							<h3>Header Level 3</h3>
 							<p>
-								Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus magna. Cras in mi at felis aliquet congue. Ut a est eget ligula molestie gravida. Curabitur massa. Donec eleifend, libero at sagittis mollis, tellus est malesuada
-								tellus, at luctus turpis elit sit amet quam. Vivamus pretium ornare est.
+								Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean
+								ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt
 							</p>
-						</blockquote>
-						<h3>Header Level 3</h3>
-						<p>
-							Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean
-							ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt
-						</p>
-						<ul>
-							<li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</li>
-							<li>Aliquam tincidunt mauris eu risus.</li>
-						</ul>
-						<p><img src="assets/img/blog.jpg" class="img-responsive" alt="Example blog post alt"></p>
-						<p>
-							Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean
-							condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros
-							eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus
-						</p>
-					</div>
-					<div class="post-footer single wow fadeInBottum animated animated" style="visibility: visible;">
-						<ul class="pager">
-							<li class="previous"><a href="#"><i class=""></i>← Older </a></li>
-							<li class="next disabled"><a href="#">Newer →<i class=""></i> </a></li>
-						</ul> 
-					</div>
-				</section>
-				<!-- 얜 뭐지 --> 
-				<section class="about-autor">
-				</section>
-				<!-- 얜 뭐지 -->
-			</div>                    
+							<ul>
+								<li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</li>
+								<li>Aliquam tincidunt mauris eu risus.</li>
+							</ul>
+							<p><img src="assets/img/blog.jpg" class="img-responsive" alt="Example blog post alt"></p>
+							<p>
+								Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean
+								condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros
+								eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus
+							</p>
+						</div>
+						<div class="post-footer single wow fadeInBottum animated animated" style="visibility: visible;">
+							<ul class="pager">
+								<li class="previous"><a href="#"><i class=""></i>← Older </a></li>
+								<li class="next disabled"><a href="#">Newer →<i class=""></i> </a></li>
+							</ul> 
+						</div>
+					</section>
+					<!-- 얜 뭐지 --> 
+					<section class="about-autor">
+					</section>
+					<!-- 얜 뭐지 -->
+				</div>                    
+			</div>
 		</div>
-	</div>
+	</section>
     
 	<jsp:include page="../footer.jsp"/>
 	

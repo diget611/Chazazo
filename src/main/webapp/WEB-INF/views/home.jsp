@@ -16,6 +16,6 @@
 		<button type="submit">삭제</button>
 	</form>
 	
-	<spring:eval expression="@keyProperty['kakao']"/>
+	<spring:eval expression="@keyProperty['kakao-admin-key']"/>
 </body>
 </html>

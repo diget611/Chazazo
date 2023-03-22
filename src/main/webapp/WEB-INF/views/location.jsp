@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -17,7 +18,8 @@
 <meta name="keyword"
 	content="html5, css, bootstrap, property, real-estate theme , bootstrap template">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=821c76be4ff3fe0a1581bbd2df06eb91"></script>
+<spring:eval expression="@keyProperty['kakao-admin-key']" var="key"/>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=${key }"></script>
 <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
 <link
 	href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700,800'

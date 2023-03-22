@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import kh.spring.chazazo.vehicle.model.dao.VehicleDao;
 import kh.spring.chazazo.vehicle.model.dto.VehicleReqDto;
+import kh.spring.chazazo.vehicle.model.dto.VehicleRespDto;
 
 @Service
 public class VehicleServiceImpl implements VehicleService{
@@ -16,6 +17,11 @@ public class VehicleServiceImpl implements VehicleService{
 	@Override
 	public List<VehicleReqDto> selectList() {
 		return dao.selectList();
+	}
+
+	@Override
+	public List<VehicleRespDto> selectDetails(int idx) {
+		return dao.selectDetails(idx);
 	}
 
 }

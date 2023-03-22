@@ -205,7 +205,7 @@
 							<div class="col-sm-6 col-md-4 p0">
 								<div class="box-two proerty-item">
 										<div class="item-thumb">
-										<a href="<%=request.getContextPath()%>/rent/details/${vehicle.idx }"><img src="https://placeimg.com/327/220/animals" /></a>                               			
+										<a href="<%=request.getContextPath()%>/rent/carlist/${vehicle.idx }"><img src="https://placeimg.com/327/220/animals" /></a>                               			
 										</div>
 										<!-- 썸네일 한 칸 시작 -->
 										<div class="item-entry overflow">

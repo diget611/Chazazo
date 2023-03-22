@@ -7,11 +7,13 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import kh.spring.chazazo.vehicle.model.dto.VehicleReqDto;
+import kh.spring.chazazo.vehicle.model.dto.VehicleRespDto;
 import kh.spring.chazazo.vehicle.model.service.VehicleService;
 
 @RestController
@@ -29,9 +31,15 @@ public class VehicleController {
 		return mv;
 	}
 	
+	
 	@GetMapping("/carlist/{idx}")
-	public ModelAndView viewVehicle(ModelAndView mv) {
+	public ModelAndView viewVehicle(ModelAndView mv, @PathVariable int idx) {
 		// 차량 정보랑 리뷰랑 동시에
+	
+		List<VehicleRespDto> carlist = vService.selectDetails(idx);
+		mv.addObject("carlist", carlist);
+		mv.setViewName("/rent/carlist");
+		
 		return mv;
 	}
 	

@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="vehicleMapper">
+<mapper namespace="vehicle">
 
-	<select id="selectListid" resultType="vehicleReqDto">
+	<select id="selectList" resultType="vehicleReqDto">
 		SELECT * FROM VEHICLE 
+	</select>
+
+	<select id="selectDetails" resultType="vehicleReqDto">
+		SELECT * FROM VEHICLE WHERE IDX = #{IDX}
 	</select>
 </mapper>

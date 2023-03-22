@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import kh.spring.chazazo.vehicle.model.dto.VehicleReqDto;
+import kh.spring.chazazo.vehicle.model.dto.VehicleRespDto;
 
 @Repository
 public class VehicleDao {
@@ -15,7 +16,13 @@ public class VehicleDao {
 	private SqlSession sqlSession;
 	
 	public List<VehicleReqDto> selectList() {
-		return sqlSession.selectList("vehicleMapper.selectListid");
+		return sqlSession.selectList("vehicle.selectList");
+	}
+
+
+	public List<VehicleRespDto> selectDetails(int idx) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("vehicle.selectDetails",idx);
 	}
 
 }

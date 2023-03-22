@@ -12,5 +12,8 @@ public class VehicleRespDto {
 	public int price;
 	public String image;
 	public String maker;
+	public int location_idx;
+	public int fueltype_idx;
+	public int cartype_idx;
 	
 }

@@ -65,7 +65,14 @@
 	
 	<div class="content-area blog-page padding-top-40" style="background-color: #FCFCFC; padding-bottom: 55px;">
          <div class="container">
-                
+                 <div class="pc-mobile-header-container">
+	                 <div class="pc-header space-2 text-center dc-none dc-lg-block">
+		                 <div class="container">
+		                 	<h2 class="text-grey-3 underline-bg dc-inline-block">마이페이지</h2>
+		                 	<p class="text-grey-5 mb-0">내 정보</p>
+		                 </div>
+	                 </div>
+                 </div>
                 
                 <div class="col-md-4" style="float: left;">
                 
@@ -117,7 +124,7 @@
 						<div class="panel panel-default sidebar-menu wow fadeInRight animated animated animated" style="visibility: visible; animation-name: fadeInRight;">
                             <div class="panel-heading">
                                 <h3 class="panel-title">
-                                <button type="button" class="btn btn-outline-primary">회원정보 수정</button><br></h3>
+                                <button id="updateinfoBtn" type="button" class="btn btn-outline-primary" >회원정보 수정</button><br></h3>
                             </div>
                         </div>
                     </div>
@@ -139,63 +146,7 @@
                     </div>   
                   </div>  
                     
-                    
-                    <div class="blog-lst col-md-8 p0 " style="float: right;">
-                        <section id="id-100" class="post single">
-
-							
-               
-							
-                     
-
-                            <div id="post-content" class="post-body single wow fadeInLeft animated animated" style="visibility: visible; animation-name: fadeInLeft;">
-                        
-                                <h2>Header Level 2</h2>
-                                <ol>
-                                    <li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</li>
-                                    <li>Aliquam tincidunt mauris eu risus.</li>
-                                </ol>
-
-                                <blockquote>
-                                    <p>
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus magna. Cras in mi at felis aliquet congue. Ut a est eget ligula molestie gravida. Curabitur massa. Donec eleifend, libero at sagittis mollis, tellus est malesuada
-                                        tellus, at luctus turpis elit sit amet quam. Vivamus pretium ornare est.
-                                    </p>
-                                </blockquote>
-
-                                <h3>Header Level 3</h3>
-
-                                <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean
-                                    ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt
-                                </p><ul>
-                                    <li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</li>
-                                    <li>Aliquam tincidunt mauris eu risus.</li>
-                                </ul>
-                                <p>
-                                    <img src="assets/img/blog.jpg" class="img-responsive" alt="Example blog post alt">
-                                </p>
-                                <p>
-                                    Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean
-                                    condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros
-                                    eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus
-                                </p>
-
-                            </div>
-                            <div class="post-footer single wow fadeInBottum animated animated" style="visibility: visible;">
-                                <ul class="pager">
-                                    <li class="previous"><a href="#"><i class=""></i>← Older </a></li>
-                                    <li class="next disabled"><a href="#">Newer →<i class=""></i> </a></li>
-                                </ul> 
-                            </div>    
-
-                        </section> 
-
-                        <section class="about-autor">
-
-                        </section>
-
-
-                    </div>                    
+                                       
                  
                 </div>
 
@@ -235,6 +186,11 @@
 
 	<script
 		src="<%=request.getContextPath()%>/resources/garoestate/assets/js/main.js"></script>
+	<script>
+		$('#updateinfoBtn').on('click', function() {
+			location.href='<%=request.getContextPath()%>/member/mypage/profile';
+		});
+	</script>
 
 </body>
 </html>

@@ -29,6 +29,12 @@ public class MemberController {
 		return mv;
 	}
 	
+	@GetMapping("/login")
+	public ModelAndView viewLogin(ModelAndView mv) {
+		mv.setViewName("member/login");
+		return mv;
+	}
+	
 	@GetMapping("/profile")
 	public ModelAndView viewMemberOne(ModelAndView mv, String username) {
 		// 마이페이지에 들어가는 url
@@ -47,6 +53,21 @@ public class MemberController {
 	public ModelAndView insertMember(ModelAndView mv, MemberReqDto memberDto, MemberInfoReqDto memberInfoDto) {
 		mService.insert(memberDto, memberInfoDto);
 		return mv;
+	}
+	
+	@GetMapping("/register/exist")
+	public int checkDup(String username) {
+		int result = mService.checkDup(username);
+		return result;
+	}
+	
+	@GetMapping("/register/email")
+	public String checkEmail(String email) {
+		String result = null;
+		System.out.println("#################");
+		System.out.println(email);
+		System.out.println("#################");
+		return result;
 	}
 	
 	@GetMapping("/profile/{username}")

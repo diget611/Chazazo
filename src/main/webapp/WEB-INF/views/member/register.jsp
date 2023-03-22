@@ -119,16 +119,27 @@
 									</div>
 								</div>
 								<div class="form-group container">
-									<label>이메일 </label> 
+									<label>이메일</label> 
 									<div class="row">
 										<div class="col-xs-10" >
 											<input type="text" class="form-control" name="email" style="width:100%;">
 										</div>
 										<div class="col-xs-2" >
-											<button type="submit" class="btn btn-default" style="width: 100px;">확인</button>
+											<button id="checkEmailBtn" type="submit" class="btn btn-default" style="width: 100px;">인증번호</button>
 										</div>
 									</div>
-								</div>							
+								</div>
+								<div class="form-group container">
+									<div class="row">
+										<div class="col-xs-10" >
+											<input type="text" class="form-control" name="checkEmail"
+											disabled="disabled" placeholder="인증번호를 입력하세요." style="width:100%;">
+										</div>
+										<div class="col-xs-2" >
+											<button id="confirmEmailBtn" type="submit" class="btn btn-default" style="width: 100px;">확인</button>
+										</div>
+									</div>
+								</div>
 								<div class="text-center">
 									<button type="submit" class="btn btn-default">회원가입</button>
 								</div>
@@ -176,8 +187,6 @@
 		
 		function checkDup() {
 			let username = $('[name=username]').val();
-			console.log("버튼클릭");
-			console.log(username);
 			$.ajax({
 				url: "<%=request.getContextPath()%>/member/register/exist",
 				type: 'get',
@@ -317,6 +326,44 @@
 				$('[name=email]').next().remove();
 			}
 		});
+			
+		// 이메일 인증번호 발송
+		$('#checkEmailBtn').on('click', checkEmail);
+		
+		function checkEmail() {
+			let email = $('[name=email]').val();
+			$.ajax({
+				url: "<%=request.getContextPath()%>/member/register/email",
+				type: 'get',
+				data: {email: email},
+				success: function(result){
+					let testEmail = /([!#-'*+-9=?A-Z^-~-]+(\.[!#-'*+-9=?A-Z^-~-]+)*|\"\(\[\]!#-[^-~ \t]|(\\[\t -~])+\")@([!#-'*+-9=?A-Z^-~-]+(\.[!#-'*+-9=?A-Z^-~-]+)*|\[[\t -Z^-~]*])/;
+					if(email != null && testEmail.test(email)) {
+						alert("인증번호가 발송되었습니다.")
+						$('[name=checkEmail]').attr('disabled', false);
+					} else {
+						alert("이메일 주소를 확인하세요.");
+					}
+				},
+				error: function(){
+					
+				}
+			});
+		}
+		
+		$("#confirmEmailBtn").on('click', confirmEmail);
+		
+		function confirmEmail() {
+			if($('[name=checkEmail]').val() == '') {
+				$('[name=checkEmail]').next().remove();
+				$('[name=checkEmail]').after('<div style="color: red;">인증번호를 입력하세요.</div>');
+			} else if(!testEmail.test($('[name=email]').val())){
+				$('[name=checkEmail]').next().remove();
+				$('[name=checkEmail]').after('<div style="color: red;">인증번호가 일치하지 않습니다.</div>');
+			} else {
+				$('[name=checkEmail]').next().remove();
+			}
+		}
 	</script>
 	
 	<script

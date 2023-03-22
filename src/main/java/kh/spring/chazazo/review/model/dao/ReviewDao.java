@@ -29,7 +29,7 @@ public class ReviewDao {
 	public List<ReviewDto> selectList() {
 		return sqlSession.selectList("review.selectList");
 	}
-	public List<ReviewDto> selectList(int vehicleidx) {
-		return sqlSession.selectList("review.reviewList", vehicleidx);
+	public List<ReviewDto> selectList(int vehicleIdx) {
+		return sqlSession.selectList("review.reviewList", vehicleIdx);
 	}
 }

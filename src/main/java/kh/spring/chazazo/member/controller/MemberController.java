@@ -2,9 +2,11 @@ package kh.spring.chazazo.member.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.Mapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -21,16 +23,15 @@ public class MemberController {
 	@Autowired
 	private MemberService mService;
 	
-	@GetMapping
+	// 관리자
 	public ModelAndView viewMemberList(ModelAndView mv) {
 		// 관리자 회원 리스트 조회
 		return mv;
 	}
 	
-	@GetMapping("/mypage")
+	@GetMapping("/profile")
 	public ModelAndView viewMemberOne(ModelAndView mv, String username) {
-		// 회원 상세 조회
-		
+		// 마이페이지에 들어가는 url
 		mv.setViewName("member/mypage");
 		
 		return mv;
@@ -48,22 +49,22 @@ public class MemberController {
 		return mv;
 	}
 	
-	@GetMapping("/mypage/profile")
+	@GetMapping("/profile/{username}")
 	public ModelAndView viewUpdateMember(ModelAndView mv) {
 		// 회원정보 수정 페이지 조회
 		mv.setViewName("member/profile");
 		return mv;
 	}
 	
-//	@PostMapping
+	@PatchMapping("/profile/{username}")
 	public ModelAndView updateMember(ModelAndView mv, String password, MemberInfoReqDto dto) {
 		// 회원정보 수정 / Put, Patch 
 		return mv;
 	}
 	
-//	@PostMapping
+	@DeleteMapping("/profile/{username}")
 	public ModelAndView deleteMember(ModelAndView mv) {
-		// 회원탈퇴 / DeleteMapping
+		// 회원탈퇴
 		return mv;
 	}
 	

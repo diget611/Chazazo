@@ -40,8 +40,8 @@ public class ReviewServiceImpl implements ReviewService{
 	}
 
 	@Override
-	public List<ReviewDto> selectList(int vehicleidx) {
-		return dao.selectList(vehicleidx);
+	public List<ReviewDto> selectList(int vehicleIdx) {
+		return dao.selectList(vehicleIdx);
 	}
 
 }

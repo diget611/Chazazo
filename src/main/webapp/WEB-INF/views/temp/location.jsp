@@ -64,7 +64,7 @@
 	href="<%=request.getContextPath()%>/resources/garoestate/assets/css/responsive.css">
 </head>
 <body>
-	<jsp:include page="header.jsp"/>
+	<jsp:include page="../header.jsp"/>
 	
 	<section>
 		<div class="content-area blog-page padding-top-40" style="background-color: #FCFCFC; padding-bottom: 55px;">
@@ -91,7 +91,7 @@
 		</div>
 	</section>
 
-	<jsp:include page="footer.jsp"/>
+	<jsp:include page="../footer.jsp"/>
 	
 	<script>
 		var mapContainer = document.getElementById('map'), // 지도를 표시할 div 

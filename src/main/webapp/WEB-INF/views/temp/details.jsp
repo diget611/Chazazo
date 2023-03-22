@@ -63,7 +63,7 @@
 	href="<%=request.getContextPath()%>/resources/garoestate/assets/css/lightslider.min.css">
 </head>
 <body>
-	<jsp:include page="header.jsp"/>
+	<jsp:include page="../header.jsp"/>
 	
 	<section>
 		<div class="content-area single-property" style="background-color: #FCFCFC;">
@@ -234,7 +234,7 @@
 		</div>
 	</section>
 	
-	<jsp:include page="footer.jsp"/>
+	<jsp:include page="../footer.jsp"/>
 	
 	<script
 		src="<%=request.getContextPath()%>/resources/garoestate/assets/js/modernizr-2.6.2.min.js"></script>

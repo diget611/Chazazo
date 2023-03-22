@@ -61,8 +61,52 @@
 	href="<%=request.getContextPath()%>/resources/garoestate/assets/css/responsive.css">
 </head>
 <body>
-	<jsp:include page="header.jsp"/>
-	<jsp:include page="footer.jsp"/>
+	<jsp:include page="../header.jsp"/>
+	
+	<section>
+		<div style="text-align:center">
+			<h2>결제 정보</h2>
+		</div>
+		<div style="overflow: hidden;">
+			<div class="blog-asside-right col-md-6" style="padding: 80px;" >
+				<div class="form-group">
+					<h6 style="text-align:center">운전자 정보</h6>
+					<label class="small">이름</label>  <input type="text" class="form-control" placeholder="성명">
+					<label class="small">생년월일</label>  <input type="text" class="form-control" placeholder="생년월일 6자리">
+					<label class="small">휴대폰 번호</label>  <input type="text" class="form-control" placeholder="휴대폰 번호">
+					<label class="small">이메일</label>  <input type="text" class="form-control" placeholder="이메일">
+					<label class="small">보험선택</label><br>
+					<label class="small">반납 장소 선택</label>
+				</div>
+			</div>
+			<div class="col-md-6" style="padding:80px">
+				<aside class="sidebar sidebar-property blog-asside-right">
+					<section class="mt-3 p-3">
+						<h5>결제 정보</h5><hr>
+						<table class="table">
+							<tbody>
+								<tr>
+									<th>대여요금</th>
+									<td>22000원</td>
+								</tr>
+								<tr>
+									<th>할인적용</th>
+									<td>5000원</td>
+								</tr>
+								<tr>
+									<th>총 결제금액</th>
+									<td>17000원</td>
+								</tr>
+							</tbody>
+						</table>
+					</section>
+					<button class="btn btn-default" type="button" onclick=" window.open('payment')" >결제하기</button>
+				</aside>
+			</div>
+		</div>
+	</section>
+	 
+	<jsp:include page="../footer.jsp"/>
 	
 	<script
 		src="<%=request.getContextPath()%>/resources/garoestate/assets/js/modernizr-2.6.2.min.js"></script>

@@ -5,7 +5,7 @@
 		SELECT * FROM REVIEW 
 	</select>
 	<select id="reviewList" resultType="reviewDto">
-		SELECT * FROM REVIEW where VEHICLE_IDX=#{vehicleidx} 
+		SELECT * FROM REVIEW where VEHICLE_IDX=#{vehicleIdx} 
 	</select>
 	<insert id="insert">
 		INSERT INTO MEMBER REVIEW(#{idx}, #{vehicleIdx}, #{content}, #{reviewdate}, #{reviewlike})

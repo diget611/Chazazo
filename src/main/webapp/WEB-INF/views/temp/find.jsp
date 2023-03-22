@@ -61,7 +61,7 @@
 	href="<%=request.getContextPath()%>/resources/garoestate/assets/css/responsive.css">
 </head>
 <body>
-	<jsp:include page="header.jsp"/>
+	<jsp:include page="../header.jsp"/>
 	
 	<section>
 		<div class="register-area" style="background-color: rgb(249, 249, 249);">
@@ -106,7 +106,7 @@
 		</div>
 	</section>
 	
-	<jsp:include page="footer.jsp"/>
+	<jsp:include page="../footer.jsp"/>
 	
 	<script
 		src="<%=request.getContextPath()%>/resources/garoestate/assets/js/modernizr-2.6.2.min.js"></script>

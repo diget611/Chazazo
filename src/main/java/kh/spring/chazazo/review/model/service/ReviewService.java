@@ -11,6 +11,6 @@ public interface ReviewService {
 	public int delete(int idx);
 	public ReviewDto selectOne(int idx);
 	public List<ReviewDto> selectList();
-	public List<ReviewDto> selectList(int vehicleidx);
+	public List<ReviewDto> selectList(int vehicleIdx);
 	
 }

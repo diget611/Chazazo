@@ -61,81 +61,8 @@
 	href="<%=request.getContextPath()%>/resources/garoestate/assets/css/responsive.css">
 </head>
 <body>
-	<jsp:include page="header.jsp"/>
-	
-	<section>
-		<div class="content-area blog-page padding-top-40" style="background-color: #FCFCFC; padding-bottom: 55px;">
-			<div class="container">
-				<div class="row">
-					<div class="blog-asside-right col-md-3">
-						<div class="panel panel-default sidebar-menu wow fadeInRight animated animated" style="visibility: visible; animation-name: fadeInRight;">
-							<div class="panel-heading">
-								<h3 class="panel-title">진행중인 이벤트</h3>
-							</div>
-							<div class="panel-body text-widget">
-								<p>목록 리스트</p>
-							</div>
-						</div>
-						<div class="panel panel-default sidebar-menu wow fadeInRight animated animated" style="visibility: visible; animation-name: fadeInRight;">
-							<div class="panel-heading">
-								<h3 class="panel-title">종료된 이벤트</h3>
-							</div>
-							<div class="panel-body text-widget">
-								<p>목록 리스트</p>
-							</div>
-						</div>
-						<div class="panel sidebar-menu wow  fadeInRight animated animated" style="visibility: visible; animation-name: fadeInRight;">
-							<div class="panel-heading">
-								<h3 class="panel-title">Tags</h3>
-							</div>
-							<div class="panel-body">
-								<ul class="tag-cloud">
-									<li><a href="#"><i class="fa fa-tags"></i> html5</a></li>
-									<li><a href="#"><i class="fa fa-tags"></i> css3</a></li>
-									<li><a href="#"><i class="fa fa-tags"></i> jquery</a></li>
-									<li><a href="#"><i class="fa fa-tags"></i> ajax</a></li>
-									<li><a href="#"><i class="fa fa-tags"></i> php</a></li>
-									<li><a href="#"><i class="fa fa-tags"></i> responsive</a></li>
-									<li><a href="#"><i class="fa fa-tags"></i> visio</a></li>
-									<li><a href="#"><i class="fa fa-tags"></i> bootstrap</a></li>
-								</ul>
-							</div>
-						</div>
-					</div>   
-					<div class="blog-lst col-md-9 p0">
-						<section id="id-100" class="post single">
-							<div id="post-content" class="post-body single wow fadeInLeft animated animated" style="visibility: visible; animation-name: fadeInLeft;">
-								<h2>이벤트 목록1</h2>
-								<ol>
-									<li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</li>
-									<li>Aliquam tincidunt mauris eu risus.</li>
-								</ol>
-								<blockquote>
-									<p>
-										Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus magna. Cras in mi at felis aliquet congue. Ut a est eget ligula molestie gravida. Curabitur massa. Donec eleifend, libero at sagittis mollis, tellus est malesuada
-										tellus, at luctus turpis elit sit amet quam. Vivamus pretium ornare est.
-									</p>
-								</blockquote>
-								<h2>이벤트 목록2</h2>
-								<ol>
-									<li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</li>
-									<li>Aliquam tincidunt mauris eu risus.</li>
-								</ol>
-								<blockquote>
-									<p>
-										Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus magna. Cras in mi at felis aliquet congue. Ut a est eget ligula molestie gravida. Curabitur massa. Donec eleifend, libero at sagittis mollis, tellus est malesuada
-										tellus, at luctus turpis elit sit amet quam. Vivamus pretium ornare est.
-									</p>
-								</blockquote>
-							</div>
-						</section> 
-					</div>                    
-				</div>
-			</div>
-		</div>
-	</section> 
-	
-	<jsp:include page="footer.jsp"/>
+	<jsp:include page="../header.jsp"/>
+	<jsp:include page="../footer.jsp"/>
 	
 	<script
 		src="<%=request.getContextPath()%>/resources/garoestate/assets/js/modernizr-2.6.2.min.js"></script>

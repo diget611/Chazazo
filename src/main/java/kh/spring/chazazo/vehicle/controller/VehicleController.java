@@ -19,48 +19,54 @@ import kh.spring.chazazo.vehicle.model.service.VehicleService;
 public class VehicleController {
 	
 	@Autowired
-	private VehicleService vservice;
+	private VehicleService vService;
 	
-	@GetMapping("/rent")
+	@GetMapping("/carist")
 	public ModelAndView searchVehicle(ModelAndView mv) {
 		// 메인페이지 / 예약페이지 / 결제페이지 차량 정보 검색
-		mv.addObject("vehicleList", vservice.selectList());
+		mv.addObject("vehicleList", vService.selectList());
 		mv.setViewName("reservation/rent");
 		return mv;
 	}
 	
-//	@GetMapping
+	@GetMapping("/carlist/{idx}")
+	public ModelAndView viewVehicle(ModelAndView mv) {
+		// 차량 정보랑 리뷰랑 동시에
+		return mv;
+	}
+	
+	// 관리자
 	public ModelAndView viewVehicleList(ModelAndView mv) {
 		// 관리자 페이지 차량 관리
 		return mv;
 	}
 	
-//	@GetMapping
+	// 관리자
 	public ModelAndView viewVehicleOne(ModelAndView mv) {
 		// 관리자 페이지 차량 관리 / 예약, 결제 페이지 차량 정보 출력
 		return mv;
 	}
-//	@GetMapping
+	// 관리자
 	public ModelAndView viewInsertVehicle(ModelAndView mv) {
 		// 관리자 페이지 차량 관리
 		return mv;
 	}
-//	@GetMapping
+	// 관리자
 	public ModelAndView insertVehicle(ModelAndView mv) {
 		// 관리자 페이지 차량 관리
 		return mv;
 	}
-//	@GetMapping
+	// 관리자
 	public ModelAndView viewUpdateVehicle(ModelAndView mv) {
 		// 관리자 페이지 차량 관리
 		return mv;
 	}
-//	@GetMapping
+	// 관리자
 	public ModelAndView updateVehicle(ModelAndView mv) {
 		// 관리자 페이지 차량 관리
 		return mv;
 	}
-//	@GetMapping
+	// 관리자
 	public ModelAndView deleteVehicle(ModelAndView mv) {
 		// 관리자 페이지 차량 관리
 		return mv;

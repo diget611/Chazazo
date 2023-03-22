@@ -1,15 +1,13 @@
 package kh.spring.chazazo.review.controller;
 
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
-import kh.spring.chazazo.review.model.dto.ReviewDto;
 import kh.spring.chazazo.review.model.service.ReviewService;
 
 @RestController
@@ -19,29 +17,13 @@ public class ReviewController {
 	@Autowired
 	private ReviewService rService;
 	
-	@GetMapping("/list")
-	public ModelAndView viewReviewList(ModelAndView mv) {
-		mv.addObject("replylist", rService.selectList());
-		mv.setViewName("review/list");
-		return mv;
-	}
-	
-	//특정 자동차모델에 대한 리뷰조회
-	@GetMapping("/list/{vehicleidx}")
-	public ModelAndView viewReivewOne(ModelAndView mv, @PathVariable int vehicleidx) {
-		List<ReviewDto> reviewlist = rService.selectList(vehicleidx);
-		mv.addObject("reviewlist", reviewlist);
-		mv.setViewName("review/list");
-		return mv;
-	}
-	
-//	@GetMapping
+	@PostMapping("/carlist/{vehicleIdx}")
 	public ModelAndView insertReview(ModelAndView mv) {
-		// 리뷰 점수 추가하면서 평균 별점 업데이트 동시에 진행
+		// 리뷰 점수 추가하면서 평균 별점 업데이트 동시에 진행 -> ajax
 		return mv;
 	}
 	
-//	@GetMapping
+	@DeleteMapping("/carlist/{vehicleIdx}/remove")
 	public ModelAndView deleteReview(ModelAndView mv) {
 		return mv;
 	}

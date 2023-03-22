@@ -141,23 +141,28 @@
 	<jsp:include page="../footer.jsp" />
 	
 	<script>
+		var allowRegister = 0;
+		var checkDupId = 0;
+		
 		function checkForm(){
-			var testId = /^[a-z]{1}[a-z0-9_-]{4,19}$/;
-			var testPass = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&\*])[\da-zA-Z!@#$%^&\*]{8,30}$/;
-			var testName = /^[가-힣]{2,10}$/;
-			var testBirth = /^(19[0-9]{2}|20[0-1]{1}[0-9]{1}|202[0-3]{1})(0[1-9]|1[0-2])(0[1-9]|[1-2][0-9]|3[0-1])$/;
-			var testPhone = /^01[0|1|6|7|8|9][0-9]{7,8}$/;
-			var testLicense = /^(1[1-9]|2[0-68-8])([0-9]{2}[0-9]{6}[0-9]{2})$/;
-			var testEmail = /([!#-'*+-9=?A-Z^-~-]+(\.[!#-'*+-9=?A-Z^-~-]+)*|\"\(\[\]!#-[^-~ \t]|(\\[\t -~])+\")@([!#-'*+-9=?A-Z^-~-]+(\.[!#-'*+-9=?A-Z^-~-]+)*|\[[\t -Z^-~]*])/;
+			let testId = /^[a-z]{1}[a-z0-9_-]{4,19}$/;
+			let testPass = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&\*])[\da-zA-Z!@#$%^&\*]{8,30}$/;
+			let testName = /^[가-힣]{2,10}$/;
+			let testBirth = /^(19[0-9]{2}|20[0-1]{1}[0-9]{1}|202[0-3]{1})(0[1-9]|1[0-2])(0[1-9]|[1-2][0-9]|3[0-1])$/;
+			let testPhone = /^01[0|1|6|7|8|9][0-9]{7,8}$/;
+			let testLicense = /^(1[1-9]|2[0-68-8])([0-9]{2}[0-9]{6}[0-9]{2})$/;
+			let testEmail = /([!#-'*+-9=?A-Z^-~-]+(\.[!#-'*+-9=?A-Z^-~-]+)*|\"\(\[\]!#-[^-~ \t]|(\\[\t -~])+\")@([!#-'*+-9=?A-Z^-~-]+(\.[!#-'*+-9=?A-Z^-~-]+)*|\[[\t -Z^-~]*])/;
 			
-			if($('[name=username]').val() == '' | $('[name=password]').val() == '' | $('[name=name]').val() == ''
+			if(allowRegister == 0 || checkDupId == 0){
+				return false;
+			} else if($('[name=username]').val() == '' | $('[name=password]').val() == '' | $('[name=name]').val() == ''
 			| $('[name=birth]').val() == '' | $('[name=gender]').val() == '' | $('[name=phonNumber]').val() == ''
 			| $('[name=license]').val() == '' | $('[name=email]').val() == '') {
 				return false;
 			} else if(!testId.test($('[name=username]').val()) | !testPass.test($('[name=password]').val())
-					| !testName.test($('[name=name]').val()) | !testBirth.test($('[name=birth]').val())
-					| !testPhone.test($('[name=phoneNumber]').val()) | !testLicense.test($('[name=license]').val())
-					| !testEmail.test($('[name=email]').val())) {
+			| !testName.test($('[name=name]').val()) | !testBirth.test($('[name=birth]').val())
+			| !testPhone.test($('[name=phoneNumber]').val()) | !testLicense.test($('[name=license]').val())
+			| !testEmail.test($('[name=email]').val())) {
 				return false;	
 			} else {
 				return true;
@@ -168,20 +173,43 @@
 		$('#checkDupBtn').on('click', checkDup);
 		
 		function checkDup() {
-			console.log("중복확인 버튼 클릭");
-			
-			var username = $('[name=username]').val();
-			
+			let username = $('[name=username]').val();
+			console.log("버튼클릭");
 			console.log(username);
-			
 			$.ajax({
-				url: "<%=request.getContextPath()%>/member/register/${username}"
+				url: "<%=request.getContextPath()%>/member/register/exist",
+				type: 'get',
+				data: {username: username},
+				success: function(result){
+					let testId = /^[a-z]{1}[a-z0-9_-]{4,19}$/;
+					if(username != null && testId.test(username)) {
+						if(result > 0){
+							alert("중복된 아이디가 존재합니다.");
+							checkDupId = 1;
+						} else {
+							alert("가입 가능한 아이디입니다.");
+							checkDupId = 1;
+							allowRegister = 1;
+						}						
+					} else {
+						alert("아이디를 확인하세요.");
+						checkDupId = 1;
+					}
+				},
+				error: function(){
+					
+				}
 			});
 		}
 		
+		// 아이디 중복확인 후 다시 아이디 작성 시 폼 onsubmit return값 관리
+		$('[name=username]').on('change', function(){
+			checkDupId = 0;
+		})
+		
 		// ID 유효성 체크 (영어 소문자로 시작, 영어 소문자, 숫자, 특수문자(-, _) 가능)
 		$('[name=username]').on('blur', function(){
-			var testId = /^[a-z]{1}[a-z0-9_-]{4,19}$/;
+			let testId = /^[a-z]{1}[a-z0-9_-]{4,19}$/;
 			if($('[name=username]').val() == '') {
 				$('[name=username]').next().remove();
 				$('[name=username]').after('<div style="color: red;">아이디를 입력하세요.</div>');
@@ -196,7 +224,7 @@
 		
 		// 패스워드 유효성 체크
 		$('[name=password]').on('blur', function(){
-			var testPass = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&\*])[\da-zA-Z!@#$%^&\*]{8,30}$/;
+			let testPass = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&\*])[\da-zA-Z!@#$%^&\*]{8,30}$/;
 			if($('[name=password]').val() == ''){
 				$('[name=password]').next().remove();
 				$('[name=password]').after('<div style="color: red;">비밀번호를 입력하세요.</div>');
@@ -210,7 +238,7 @@
 		
 		// 이름 유효성 체크
 		$('[name=name]').on('blur', function(){
-			var testName = /^[가-힣]{2,10}$/;
+			let testName = /^[가-힣]{2,10}$/;
 			if($('[name=name]').val() == ''){
 				$('[name=name]').next().remove();
 				$('[name=name]').after('<div style="color: red;">이름을 입력하세요.</div>')
@@ -224,7 +252,7 @@
 		
 		// 생년월일 유효성 체크
 		$('[name=birth]').on('blur', function(){
-			var testBirth = /^(19[0-9]{2}|20[0-1]{1}[0-9]{1}|202[0-3]{1})(0[1-9]|1[0-2])(0[1-9]|[1-2][0-9]|3[0-1])$/;
+			let testBirth = /^(19[0-9]{2}|20[0-1]{1}[0-9]{1}|202[0-3]{1})(0[1-9]|1[0-2])(0[1-9]|[1-2][0-9]|3[0-1])$/;
 			if($('[name=birth]').val() == ''){
 				$('[name=birth]').next().remove();
 				$('[name=birth]').after('<div style="color: red;">생년월일을 입력하세요.</div>');
@@ -248,7 +276,7 @@
 		
 		// 전화번호 유효성 체크
 		$('[name=phoneNumber]').on('blur', function(){
-			var testPhone = /^01[0|1|6|7|8|9][0-9]{7,8}$/;
+			let testPhone = /^01[0|1|6|7|8|9][0-9]{7,8}$/;
 			if($('[name=phoneNumber]').val() == ''){
 				$('[name=phoneNumber]').next().remove();
 				$('[name=phoneNumber]').after('<div style="color: red;">전화번호를 입력하세요.</div>');
@@ -262,7 +290,7 @@
 		
 		// 면허증 번호 유효성 체크
 		$('[name=license]').on('blur', function(){
-			var testLicense = /^(1[1-9]|2[0-68-8])([0-9]{2}[0-9]{6}[0-9]{2})$/;
+			let testLicense = /^(1[1-9]|2[0-68-8])([0-9]{2}[0-9]{6}[0-9]{2})$/;
 			if($('[name=license]').val() == ''){
 				$('[name=license]').next().remove();
 				$('[name=license]').after('<div style="color: red;">면허증 번호를 입력하세요.</div>');
@@ -276,7 +304,7 @@
 		
 		// 이메일 유효성 체크
 		$('[name=email]').on('blur', function(){
-			var testEmail = /([!#-'*+-9=?A-Z^-~-]+(\.[!#-'*+-9=?A-Z^-~-]+)*|\"\(\[\]!#-[^-~ \t]|(\\[\t -~])+\")@([!#-'*+-9=?A-Z^-~-]+(\.[!#-'*+-9=?A-Z^-~-]+)*|\[[\t -Z^-~]*])/;
+			let testEmail = /([!#-'*+-9=?A-Z^-~-]+(\.[!#-'*+-9=?A-Z^-~-]+)*|\"\(\[\]!#-[^-~ \t]|(\\[\t -~])+\")@([!#-'*+-9=?A-Z^-~-]+(\.[!#-'*+-9=?A-Z^-~-]+)*|\[[\t -Z^-~]*])/;
 			if($('[name=email]').val() == '') {
 				$('[name=email]').next().remove();
 				$('[name=email]').after('<div style="color: red;">이메일 주소를 입력하세요.</div>');

@@ -2,14 +2,6 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="vehicleMapper">
 
-<resultMap type="vehicleReqDto" id="vvoMap">
-	<id column="idx" property="idx" />
-	<result column="model" property="model"/>
-	<result column="year" property="year"/>
-	<result column="price" property="price"/>
-	<result column="image" property="image"/>
-</resultMap>
-
 	<select id="selectListid" resultType="vehicleReqDto">
 		SELECT * FROM VEHICLE 
 	</select>

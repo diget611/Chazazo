@@ -11,7 +11,7 @@
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>회원 정보 수정 페이지</title>
+<title>GARO ESTATE | Home page</title>
 <meta name="description" content="GARO is a real-estate template">
 <meta name="author" content="Kimarotec">
 <meta name="keyword"
@@ -66,14 +66,13 @@
 	<div class="content-area blog-page padding-top-40" style="background-color: #FCFCFC; padding-bottom: 55px;">
 		<div class="container">
 			<div class="pc-mobile-header-container">
-	                 <div class="pc-header space-2 text-center dc-none dc-lg-block">
-		                 <div class="container">
-		                 	<h2 class="text-grey-3 underline-bg dc-inline-block">마이페이지</h2>
-		                 	<p class="text-grey-5 mb-0">내 정보</p>
-		                 </div>
-	                 </div>
-                 </div>
-                 
+				<div class="pc-header space-2 text-center dc-none dc-lg-block">
+					<div class="container">
+						<h2 class="text-grey-3 underline-bg dc-inline-block">마이페이지</h2>
+						<p class="text-grey-5 mb-0">내 정보</p>
+					</div>
+				</div>
+			</div>
 			<div class="col-md-4" style="float: left;">    
 				<div class="blog-asside-right">
 					<div class="panel panel-default sidebar-menu wow fadeInRight animated animated" style="visibility: visible; animation-name: fadeInRight;">
@@ -81,7 +80,6 @@
 							<h3 class="panel-title">회원정보</h3>
 						</div>
 					</div>
-				
 					<div class="dealer-widget  row-md-4">
 						<div class="dealer-content">
 							<div class="inner-wrapper">
@@ -101,18 +99,16 @@
 							</div>
 						</div>
 					</div>
-				
 					<div class="blog-asside-right" >
 						<div class="panel panel-default sidebar-menu wow fadeInRight animated animated animated" style="visibility: visible; animation-name: fadeInRight;">
 							<div class="panel-heading">
 								<h3 class="panel-title">
-									<button type="button" class="btn btn-outline-primary">예약내역</button><br>
-									<button type="button" class="btn btn-outline-primary">예약 수정 / 취소</button><br>
-									<button type="button" class="btn btn-outline-primary">비회원 예약 확인</button></h3>
+								<button type="button" class="btn btn-outline-primary">예약내역</button><br>
+								<button type="button" class="btn btn-outline-primary">예약 수정 / 취소</button><br>
+								<button type="button" class="btn btn-outline-primary">비회원 예약 확인</button></h3>
 							</div>
 						</div>
 					</div>  
-				
 					<div class="blog-asside-right" >
 						<div class="panel panel-default sidebar-menu wow fadeInRight animated animated animated" style="visibility: visible; animation-name: fadeInRight;">
 							<div class="panel-heading">
@@ -121,7 +117,6 @@
 							</div>
 						</div>
 					</div>
-     			
 					<div class="blog-asside-right" >
 						<div class="panel panel-default sidebar-menu wow fadeInRight animated animated animated" style="visibility: visible; animation-name: fadeInRight;">
 							<div class="panel-heading">
@@ -135,73 +130,55 @@
 				</div>   
 			</div>
 			<div class="blog-lst col-md-8 p0 " style="float: right;">
-			<div class="carmore-section p-0 m-0">
-				<div class="container">
-					<h3>내 정보 관리</h3>
-					<div class="container">
-						<div class="pt-5 pb-3">
+				<section id="id-100" class="post single">
+					<form action="<%=request.getContextPath() %>/member/register"
+							method="post" onsubmit="return checkForm()">
+							<div class="form-group">
+								<label>아이디</label>
+								<input type="password" class="form-control" name="username">
+							</div>
+							<div class="form-group">
+								<label>비밀번호</label>
+								<input type="password" class="form-control" name="password">
+							</div>
+							<div class="form-group">
+								<label>이름</label>
+								<input type="text" class="form-control" name="name">
+							</div>
+							<div class="form-group">
+								<label>성별</label>
+								<select class="form-control" name="gender">
+									<option selected="selected" hidden="hidden" value="2">성별</option>
+									<option value="0">남성</option>
+									<option value="1">여성</option>
+								</select>
+							</div>
+							<div class="form-group">
+								<label>생년월일</label>
+								<input type="text" class="form-control" name="birth">
+							</div>
+							<div class="form-group">
+								<label>전화번호</label>
+								<input type="text" class="form-control" name="phoneNumber">
+							</div>
+							<div class="form-group">
+								<label>면허증 번호</label>
+								<input type="text" class="form-control" name="license">
+							</div>
+							<div class="form-group">
+								<label>이메일</label>
+								<input type="text" class="form-control" name="email">
+							</div>						
 							<div class="text-center">
-								<div id="js_vmp_user_profile">
-									<img class="img-user-profile img-user-profile-large object-fit center-crop mx-auto mb-3 dc-none">
-								</div>
-								<div class="js-vmp-txt-nickname text-18 color-grey-3 font-weight-bold">닉네임</div>
-								<div class="js-vmp-txt-email text-12 color-grey-5">이메일</div>
+								<button type="submit" class="btn btn-default">회원 정보 수정</button>
 							</div>
-						</div>
-					</div>
-			
-					<section class="carmore-section pt-0">
-						<div class="container">
-							<div class="list-group list-group-flush">
-								<a class="list-group-item list-group-item-action d-flex justify-content-between align-items-center px-0 click-effect-press" id="js_vmp_btn_email" href="javascript:void(0)">
-								<div class="dc-flex w-50">
-									<span class="mb-0 text-14 line-height-1">이메일 계정</span>
-									<span class="badge badge-soft-primary line-height-1 ml-2" id="js_vmp_badge_email_certification" style="display: none;">인증완료</span>
-									<span class="badge badge-soft-warning line-height-1 ml-2 dc-none" id="js_vmp_badge_email_uncertificated" style="display: none;">미인증</span>
-								</div>
-								
-							<div class="dc-flex justify-content-end w-50">
-								<span class="js-vmp-txt-email text-14 color-grey-4 line-height-1 ellipsis pr-1">이메일</span>
-								<img class="line-height-1 ml-2" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMCIgaGVpZ2h0PSIxNiIgZmlsbD0ibm9uZSIgdmlld0JveD0iMCAwIDEwIDE2Ij4KICAgIDxwYXRoIGZpbGw9IiM5OTkiIGZpbGwtcnVsZT0iZXZlbm9kZCIgZD0iTTMuMTI0IDQuNjdjLjE4Mi0uMjA3LjQ5Ny0uMjI4LjcwNS0uMDQ2bDQgMy41Yy4xMDkuMDk1LjE3MS4yMzIuMTcxLjM3NnMtLjA2Mi4yODEtLjE3LjM3NmwtNCAzLjVjLS4yMDkuMTgyLS41MjQuMTYxLS43MDYtLjA0Ny0uMTgyLS4yMDgtLjE2MS0uNTIzLjA0Ny0uNzA1TDYuNzQgOC41IDMuMTcgNS4zNzZjLS4yMDgtLjE4Mi0uMjMtLjQ5Ny0uMDQ3LS43MDV6IiBjbGlwLXJ1bGU9ImV2ZW5vZGQiLz4KPC9zdmc+Cg=="></div></a></div><div class="list-group list-group-flush">
-								<a class="list-group-item list-group-item-action d-flex justify-content-between align-items-center px-0 click-effect-press" id="js_vmp_btn_phone" href="javascript:void(0)"><div class="dc-flex"><span class="mb-0 text-14 line-height-1">휴대폰 번호</span>
-								<span class="badge badge-soft-primary line-height-1 ml-2 dc-none" id="js_vmp_badge_phone_certification" style="display: none;">인증완료</span>
-								<span class="badge badge-soft-warning line-height-1 ml-2" id="js_vmp_badge_phone_uncertificated" style="display: none;">미인증</span>
-							</div>
-							<div class="dc-flex justify-content-end w-50">
-									<span class="text-14 color-grey-4 line-height-1 ellipsis pr-1" id="js_vmp_txt_phone"></span>
-									<img class="line-height-1 ml-2" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMCIgaGVpZ2h0PSIxNiIgZmlsbD0ibm9uZSIgdmlld0JveD0iMCAwIDEwIDE2Ij4KICAgIDxwYXRoIGZpbGw9IiM5OTkiIGZpbGwtcnVsZT0iZXZlbm9kZCIgZD0iTTMuMTI0IDQuNjdjLjE4Mi0uMjA3LjQ5Ny0uMjI4LjcwNS0uMDQ2bDQgMy41Yy4xMDkuMDk1LjE3MS4yMzIuMTcxLjM3NnMtLjA2Mi4yODEtLjE3LjM3NmwtNCAzLjVjLS4yMDkuMTgyLS41MjQuMTYxLS43MDYtLjA0Ny0uMTgyLS4yMDgtLjE2MS0uNTIzLjA0Ny0uNzA1TDYuNzQgOC41IDMuMTcgNS4zNzZjLS4yMDgtLjE4Mi0uMjMtLjQ5Ny0uMDQ3LS43MDV6IiBjbGlwLXJ1bGU9ImV2ZW5vZGQiLz4KPC9zdmc+Cg=="></div></a></div><div class="list-group list-group-flush">
-									<a class="list-group-item list-group-item-action d-flex justify-content-between align-items-center px-0 click-effect-press" id="js_vmp_btn_nickname" href="javascript:void(0)">
-										<div>
-											<span class="mb-0 text-14 line-height-1">닉네임</span>
-										</div>
-							<div class="dc-flex justify-content-end w-50">
-									<span class="js-vmp-txt-nickname text-14 color-grey-4 ellipsis pr-1">힘겨운호떡</span>
-									<img class="ml-2" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMCIgaGVpZ2h0PSIxNiIgZmlsbD0ibm9uZSIgdmlld0JveD0iMCAwIDEwIDE2Ij4KICAgIDxwYXRoIGZpbGw9IiM5OTkiIGZpbGwtcnVsZT0iZXZlbm9kZCIgZD0iTTMuMTI0IDQuNjdjLjE4Mi0uMjA3LjQ5Ny0uMjI4LjcwNS0uMDQ2bDQgMy41Yy4xMDkuMDk1LjE3MS4yMzIuMTcxLjM3NnMtLjA2Mi4yODEtLjE3LjM3NmwtNCAzLjVjLS4yMDkuMTgyLS41MjQuMTYxLS43MDYtLjA0Ny0uMTgyLS4yMDgtLjE2MS0uNTIzLjA0Ny0uNzA1TDYuNzQgOC41IDMuMTcgNS4zNzZjLS4yMDgtLjE4Mi0uMjMtLjQ5Ny0uMDQ3LS43MDV6IiBjbGlwLXJ1bGU9ImV2ZW5vZGQiLz4KPC9zdmc+Cg=="></div></a></div><div class="list-group list-group-flush">
-									<a class="list-group-item list-group-item-action d-flex justify-content-between align-items-center px-0 click-effect-press" id="js_vmp_btn_birthday" href="javascript:void(0)"><div><span class="mb-0 text-14 line-height-1">생년월일</span></div><div class="dc-flex justify-content-end w-50"><span class="text-14 color-grey-4 ellipsis pr-1" id="js_vmp_txt_birthday">1998.3.28</span>
-									<img class="ml-2" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMCIgaGVpZ2h0PSIxNiIgZmlsbD0ibm9uZSIgdmlld0JveD0iMCAwIDEwIDE2Ij4KICAgIDxwYXRoIGZpbGw9IiM5OTkiIGZpbGwtcnVsZT0iZXZlbm9kZCIgZD0iTTMuMTI0IDQuNjdjLjE4Mi0uMjA3LjQ5Ny0uMjI4LjcwNS0uMDQ2bDQgMy41Yy4xMDkuMDk1LjE3MS4yMzIuMTcxLjM3NnMtLjA2Mi4yODEtLjE3LjM3NmwtNCAzLjVjLS4yMDkuMTgyLS41MjQuMTYxLS43MDYtLjA0Ny0uMTgyLS4yMDgtLjE2MS0uNTIzLjA0Ny0uNzA1TDYuNzQgOC41IDMuMTcgNS4zNzZjLS4yMDgtLjE4Mi0uMjMtLjQ5Ny0uMDQ3LS43MDV6IiBjbGlwLXJ1bGU9ImV2ZW5vZGQiLz4KPC9zdmc+Cg=="></div></a></div><div class="list-group list-group-flush"><a class="list-group-item list-group-item-action d-flex justify-content-between align-items-center px-0 click-effect-press" id="js_vmp_btn_gender" href="javascript:void(0)">
-										<div>
-											<span class="mb-0 text-14 line-height-1">성별</span>
-										</div>
-							<div class="dc-flex justify-content-end w-50">
-								<span class="text-14 color-grey-4 ellipsis pr-1" id="js_vmp_txt_gender">여</span>
-								<img class="ml-2" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMCIgaGVpZ2h0PSIxNiIgZmlsbD0ibm9uZSIgdmlld0JveD0iMCAwIDEwIDE2Ij4KICAgIDxwYXRoIGZpbGw9IiM5OTkiIGZpbGwtcnVsZT0iZXZlbm9kZCIgZD0iTTMuMTI0IDQuNjdjLjE4Mi0uMjA3LjQ5Ny0uMjI4LjcwNS0uMDQ2bDQgMy41Yy4xMDkuMDk1LjE3MS4yMzIuMTcxLjM3NnMtLjA2Mi4yODEtLjE3LjM3NmwtNCAzLjVjLS4yMDkuMTgyLS41MjQuMTYxLS43MDYtLjA0Ny0uMTgyLS4yMDgtLjE2MS0uNTIzLjA0Ny0uNzA1TDYuNzQgOC41IDMuMTcgNS4zNzZjLS4yMDgtLjE4Mi0uMjMtLjQ5Ny0uMDQ3LS43MDV6IiBjbGlwLXJ1bGU9ImV2ZW5vZGQiLz4KPC9zdmc+Cg==">
-							</div>
-							</a>
-						</div>
-						</div>
+						</form>
 				</section>
-				<div class="container my-4 tmobi-dc-none">
-				<div class="dc-flex justify-content-end">
-				<div class="text-14 color-grey-5 click-effect-press" id="js_vmp_btn_logout">로그아웃
-				</div>
-				<div class="text-14 color-grey-5 mx-3">|</div>
-				<div class="text-14 color-grey-5 click-effect-press" id="js_vmp_btn_leave_member">회원탈퇴
-				</div>
-				</div>
-				</div>
-				</div>
-			</div>
-			</div>
+				<!-- 얜 뭐지 --> 
+				<section class="about-autor">
+				</section>
+				<!-- 얜 뭐지 -->
+			</div>                    
 		</div>
 	</div>
     

@@ -62,81 +62,83 @@
 </head>
 <body>
 	<jsp:include page="../header.jsp" />
-
-	<div class="register-area vh-100" style="background-color: rgb(249, 249, 249);">
-		<div class="container">
-			<div>
-				<div class="box-for overflow">
-					<div class="col-md-12 col-xs-12 login-blocks">
-						<h2>회원가입 :</h2>
-						<form action="<%=request.getContextPath() %>/member/register"
-							method="post" onsubmit="return checkForm()">
-							<div class="form-group">
-								<label>아이디</label>
-								<div class="row">
-									<div class="col-xs-10" >
-										<input type="text" class="form-control" name="username" style="width:100%;">
-									</div>
-									<div class="col-xs-2" >
-										<button id="checkDupBtn" type="button" class="btn btn-default" style="width: 100px;">중복 확인</button>
-									</div>
-								</div>
-							</div>
-							<div class="form-group">
-								<label>비밀번호</label>
-								<input type="password" class="form-control" name="password">
-							</div>
-							<div class="form-group">
-								<label>이름</label>
-								<input type="text" class="form-control" name="name">
-							</div>
-							<div class="form-group">
-								<label>성별</label>
-								<select class="form-control" name="gender">
-									<option selected="selected" hidden="hidden" value="2">성별</option>
-									<option value="0">남성</option>
-									<option value="1">여성</option>
-								</select>
-							</div>
-							<div class="form-group">
-								<label>생년월일</label>
-								<input type="text" class="form-control" name="birth">
-							</div>
-							<div class="form-group">
-								<label>전화번호</label>
-								<input type="text" class="form-control" name="phoneNumber">
-							</div>
-							<div class="form-group container">
-								<label>면허증 번호</label> 
-								<div class="row">
-									<div class="col-xs-10" >
-										<input type="text" class="form-control" name="license" style="width:100%;">
-									</div>
-									<div class="col-xs-2" >
-										<button type="submit" class="btn btn-default" style="width: 100px;">확인</button>
+	
+	<section>
+		<div class="register-area vh-100" style="background-color: rgb(249, 249, 249);">
+			<div class="container">
+				<div>
+					<div class="box-for overflow">
+						<div class="col-md-12 col-xs-12 login-blocks">
+							<h2>회원가입 :</h2>
+							<form action="<%=request.getContextPath() %>/member/register"
+								method="post" onsubmit="return checkForm()">
+								<div class="form-group">
+									<label>아이디</label>
+									<div class="row">
+										<div class="col-xs-10" >
+											<input type="text" class="form-control" name="username" style="width:100%;">
+										</div>
+										<div class="col-xs-2" >
+											<button id="checkDupBtn" type="button" class="btn btn-default" style="width: 100px;">중복 확인</button>
+										</div>
 									</div>
 								</div>
-							</div>
-							<div class="form-group container">
-								<label>이메일 </label> 
-								<div class="row">
-									<div class="col-xs-10" >
-										<input type="text" class="form-control" name="email" style="width:100%;">
-									</div>
-									<div class="col-xs-2" >
-										<button type="submit" class="btn btn-default" style="width: 100px;">확인</button>
+								<div class="form-group">
+									<label>비밀번호</label>
+									<input type="password" class="form-control" name="password">
+								</div>
+								<div class="form-group">
+									<label>이름</label>
+									<input type="text" class="form-control" name="name">
+								</div>
+								<div class="form-group">
+									<label>성별</label>
+									<select class="form-control" name="gender">
+										<option selected="selected" hidden="hidden" value="2">성별</option>
+										<option value="0">남성</option>
+										<option value="1">여성</option>
+									</select>
+								</div>
+								<div class="form-group">
+									<label>생년월일</label>
+									<input type="text" class="form-control" name="birth">
+								</div>
+								<div class="form-group">
+									<label>전화번호</label>
+									<input type="text" class="form-control" name="phoneNumber">
+								</div>
+								<div class="form-group container">
+									<label>면허증 번호</label> 
+									<div class="row">
+										<div class="col-xs-10" >
+											<input type="text" class="form-control" name="license" style="width:100%;">
+										</div>
+										<div class="col-xs-2" >
+											<button type="submit" class="btn btn-default" style="width: 100px;">확인</button>
+										</div>
 									</div>
 								</div>
-							</div>							
-							<div class="text-center">
-								<button type="submit" class="btn btn-default">회원가입</button>
-							</div>
-						</form>
+								<div class="form-group container">
+									<label>이메일 </label> 
+									<div class="row">
+										<div class="col-xs-10" >
+											<input type="text" class="form-control" name="email" style="width:100%;">
+										</div>
+										<div class="col-xs-2" >
+											<button type="submit" class="btn btn-default" style="width: 100px;">확인</button>
+										</div>
+									</div>
+								</div>							
+								<div class="text-center">
+									<button type="submit" class="btn btn-default">회원가입</button>
+								</div>
+							</form>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
+	</section>
 	
 	<jsp:include page="../footer.jsp" />
 	

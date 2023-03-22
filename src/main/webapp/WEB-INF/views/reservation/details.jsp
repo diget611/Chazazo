@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="cpath" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -64,7 +65,6 @@
 </head>
 <body>
 	<jsp:include page="../header.jsp"/>
-	
 	<section>
 		<div class="content-area single-property" style="background-color: #FCFCFC;">
 			<div class="container">
@@ -77,14 +77,14 @@
 										<a class="add-to-fav" href="#login-modal" data-toggle="modal"><i class="fa fa-star-o"></i></a>
 										<a class="printer-icon " href="javascript:window.print()"><i class="fa fa-print"></i></a>
 									</div> 
-									<img src="https://d1masd123hbmlx.cloudfront.net/20211025062033_778_CARMST/20211025062033_778_CARMST_587.png" />
+									<img src="${car.image }" />
 								</div>
 							</div>
 						</div>
 						<div class="single-property-wrapper">
 							<div class="single-property-header">                                          
-								<h1 class="property-title pull-left">K5 2세대</h1>
-								<span class="property-price pull-right">$825,000</span>
+								<h1 class="property-title pull-left">${car.model } </h1>
+								<span class="property-price pull-right">${car.price }원</span>
 							</div>
 							<div class="property-meta entry-meta clearfix ">   
 								<div class="col-xs-3 col-sm-3 col-md-3 p-b-15">

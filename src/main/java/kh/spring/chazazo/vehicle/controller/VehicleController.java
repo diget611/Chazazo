@@ -23,11 +23,11 @@ public class VehicleController {
 	@Autowired
 	private VehicleService vService;
 	
-	@GetMapping("/carist")
+	@GetMapping("/carlist")
 	public ModelAndView searchVehicle(ModelAndView mv) {
 		// 메인페이지 / 예약페이지 / 결제페이지 차량 정보 검색
-		mv.addObject("vehicleList", vService.selectList());
-		mv.setViewName("reservation/rent");
+		mv.addObject("carlist", vService.selectList());
+		mv.setViewName("reservation/carlist");
 		return mv;
 	}
 	
@@ -36,9 +36,13 @@ public class VehicleController {
 	public ModelAndView viewVehicle(ModelAndView mv, @PathVariable int idx) {
 		// 차량 정보랑 리뷰랑 동시에
 	
+		VehicleRespDto vResp = vService.selectOne(idx);
+		mv.addObject("car", vResp);
+		
 		List<VehicleRespDto> carlist = vService.selectDetails(idx);
+		
 		mv.addObject("carlist", carlist);
-		mv.setViewName("/rent/carlist");
+		mv.setViewName("reservation/details");
 		
 		return mv;
 	}

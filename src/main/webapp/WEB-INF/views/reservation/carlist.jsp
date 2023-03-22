@@ -201,21 +201,21 @@
 					</div>
 					<div class="col-md-12 clear"> 
 						<div id="list-type" class="proerty-th">
-						<c:forEach items="${vehicleList }" var="vehicle" >
+						<c:forEach items="${carlist }" var="car" >
 							<div class="col-sm-6 col-md-4 p0">
 								<div class="box-two proerty-item">
 										<div class="item-thumb">
-										<a href="<%=request.getContextPath()%>/rent/carlist/${vehicle.idx }"><img src="https://placeimg.com/327/220/animals" /></a>                               			
+										<a href="<%=request.getContextPath()%>/carlist/${car.idx }"><img src="https://placeimg.com/327/220/animals" /></a>                               			
 										</div>
 										<!-- 썸네일 한 칸 시작 -->
 										<div class="item-entry overflow">
-											<h5><a href="/chazazo/details">${vehicle.model } </a></h5>
+											<h5><a href="/chazazo/details">${car.model } </a></h5>
 											<div class="dot-hr"></div>
 											<span class="pull-left"><b> 대여지점 :</b> 강남점 </span>
 											<span class="proerty-price pull-right"> ${vehicle.price }원</span>
 											<p style="display: none;">Suspendisse ultricies Suspendisse ultricies Nulla quis dapibus nisl. Suspendisse ultricies commodo arcu nec pretium ...</p>
 											<div class="property-icon">
-												<img src="./resources/garoestate/assets/img/icon/bed.png">${vehicle.year }년|
+												<img src="./resources/garoestate/assets/img/icon/bed.png">${car.year }년|
 												<img src="./resources/garoestate/assets/img/icon/shawer.png">(2)|
 												<img src="./resources/garoestate/assets/img/icon/cars.png">(1)  
 											</div>

@@ -25,4 +25,9 @@ public class VehicleDao {
 		return sqlSession.selectList("vehicle.selectDetails",idx);
 	}
 
+
+	public VehicleRespDto selectOne(int idx) {
+		return sqlSession.selectOne("vehicle.selectOne", idx);
+	}
+
 }

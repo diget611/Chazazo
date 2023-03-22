@@ -24,4 +24,10 @@ public class VehicleServiceImpl implements VehicleService{
 		return dao.selectDetails(idx);
 	}
 
+	@Override
+	public VehicleRespDto selectOne(int idx) {
+		VehicleRespDto result = dao.selectOne(idx);
+		return result;
+	}
+
 }

@@ -26,7 +26,7 @@
 			<ul class="main-nav nav navbar-nav navbar-right">
 				<li class="wow fadeInDown animated" data-wow-delay="0.2s"
 					style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInDown;"><a
-					class="" href="/chazazo/rent">예약</a></li>
+					class="" href="../chazazo/carlist">예약</a></li>
 				<li class="wow fadeInDown animated" data-wow-delay="0.2s"
 					style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInDown;"><a
 					class="" href="/chazazo/event">이벤트</a></li>

@@ -6,7 +6,12 @@
 		SELECT * FROM VEHICLE 
 	</select>
 
-	<select id="selectDetails" resultType="vehicleReqDto">
+	<select id="selectDetails" resultType="vehicleRespDto">
 		SELECT * FROM VEHICLE WHERE IDX = #{IDX}
 	</select>
+	
+	<select id="selectOne" resultType="vehicleRespDto">
+		SELECT * FROM VEHICLE WHERE IDX = #{IDX}
+	</select>
+
 </mapper>

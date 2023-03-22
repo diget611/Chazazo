@@ -12,4 +12,7 @@ public interface VehicleService {
 
 	public List<VehicleRespDto> selectDetails(int idx);
 
+
+	public VehicleRespDto selectOne(int idx);
+
 }

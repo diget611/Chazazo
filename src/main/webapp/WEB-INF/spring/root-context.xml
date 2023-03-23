@@ -11,7 +11,9 @@
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
 	<!-- property 이용 -->
-	<context:property-placeholder location="classpath:properties/chazazo.properties"/>	
+	<context:property-placeholder location="classpath:properties/chazazo.properties,
+											classpath:properties/mailservice.properties"/>
+												
 	<bean class="org.apache.commons.dbcp.BasicDataSource" id="dataSource" destroy-method="close">
 		<property name="driverClassName" value="${jdbc.driverName}"/>
 		<property name="url" value="${jdbc.url}"/>
@@ -37,4 +39,23 @@
 	
 	<!-- app key property -->
 	<util:properties id="keyProperty" location="classpath:properties/appkey.properties"/>
+	
+	<!-- Mail Service -->
+	<bean class="org.springframework.mail.javamail.JavaMailSenderImpl" id="mailSender">
+		<property name="host" value="smtp.gmail.com"/>
+		<property name="port" value="587"/>
+		<property name="username" value="${smtp.id}"/>
+		<property name="password" value="${smtp.pass}"/>
+		<property name="javaMailProperties">
+			<props>
+				<prop key="mail.transport.protocol">smtp</prop>
+				<prop key="mail.smtp.auth">true</prop>
+				<prop key="mail.smtp.socketFactory.class">javax.net.ssl.SSLSocketFactory</prop>
+				<prop key="mail.smtp.starttls.enable">true</prop>
+				<prop key="mail.debug">true</prop>
+				<prop key="mail.smtp.ssl.trust">smtp.gmail.com</prop>
+				<prop key="mail.smtp.ssl.protocols">TLSv1.2</prop>
+			</props>
+		</property>
+	</bean>
 </beans>

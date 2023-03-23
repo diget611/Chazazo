@@ -88,6 +88,10 @@
 									<input type="password" class="form-control" name="password">
 								</div>
 								<div class="form-group">
+									<label>비밀번호 확인</label>
+									<input type="password" class="form-control" name="passwordCheck">
+								</div>
+								<div class="form-group">
 									<label>이름</label>
 									<input type="text" class="form-control" name="name">
 								</div>
@@ -125,7 +129,7 @@
 											<input type="text" class="form-control" name="email" style="width:100%;">
 										</div>
 										<div class="col-xs-2" >
-											<button id="checkEmailBtn" type="submit" class="btn btn-default" style="width: 100px;">인증번호</button>
+											<button id="checkEmailBtn" type="button" class="btn btn-default" style="width: 100px;">인증번호</button>
 										</div>
 									</div>
 								</div>
@@ -136,7 +140,7 @@
 											disabled="disabled" placeholder="인증번호를 입력하세요." style="width:100%;">
 										</div>
 										<div class="col-xs-2" >
-											<button id="confirmEmailBtn" type="submit" class="btn btn-default" style="width: 100px;">확인</button>
+											<button id="confirmEmailBtn" type="button" class="btn btn-default" style="width: 100px;">확인</button>
 										</div>
 									</div>
 								</div>
@@ -154,8 +158,13 @@
 	<jsp:include page="../footer.jsp" />
 	
 	<script>
+		// 값이 1이면 회원가입 가능 상태
 		var allowRegister = 0;
 		var checkDupId = 0;
+		var checkEmailCert = 0;
+		var checkPass = 0;
+		// 이메일 인증 번호
+		var certNum = 0;
 		
 		function checkForm(){
 			let testId = /^[a-z]{1}[a-z0-9_-]{4,19}$/;
@@ -166,11 +175,11 @@
 			let testLicense = /^(1[1-9]|2[0-68-8])([0-9]{2}[0-9]{6}[0-9]{2})$/;
 			let testEmail = /([!#-'*+-9=?A-Z^-~-]+(\.[!#-'*+-9=?A-Z^-~-]+)*|\"\(\[\]!#-[^-~ \t]|(\\[\t -~])+\")@([!#-'*+-9=?A-Z^-~-]+(\.[!#-'*+-9=?A-Z^-~-]+)*|\[[\t -Z^-~]*])/;
 			
-			if(allowRegister == 0 || checkDupId == 0){
+			if(allowRegister == 0 || checkDupId == 0 || checkEmailCert == 0 || checkPass == 0){
 				return false;
 			} else if($('[name=username]').val() == '' | $('[name=password]').val() == '' | $('[name=name]').val() == ''
 			| $('[name=birth]').val() == '' | $('[name=gender]').val() == '' | $('[name=phonNumber]').val() == ''
-			| $('[name=license]').val() == '' | $('[name=email]').val() == '') {
+			| $('[name=license]').val() == '' | $('[name=email]').val() == '' | $('[name=checkEmail]'.val() == '')) {
 				return false;
 			} else if(!testId.test($('[name=username]').val()) | !testPass.test($('[name=password]').val())
 			| !testName.test($('[name=name]').val()) | !testBirth.test($('[name=birth]').val())
@@ -213,9 +222,43 @@
 			});
 		}
 		
+		$('[name=password]').on('change', isPassEq);
+		$('[name=passwordCheck]').on('change', isPassEq);
+		
+		function isPassEq() {
+			let pass = $('[name=password]').val();
+			let passChk = $('[name=passwordCheck]').val();
+			
+			if(pass != passChk) {
+				$('[name=passwordCheck]').next().remove();
+				$('[name=passwordCheck]').after('<div style="color: red;">비밀번호가 일치하지 않습니다.</div>');
+			} else {
+				$('[name=passwordCheck]').next().remove();
+				$('[name=passwordCheck]').after('<div style="color: green;">비밀번호가 일치합니다.</div>');
+				checkPass = 1;
+			}
+		}
+		
 		// 아이디 중복확인 후 다시 아이디 작성 시 폼 onsubmit return값 관리
 		$('[name=username]').on('change', function(){
 			checkDupId = 0;
+		})
+		
+		// 이메일 인증 후 다시 이메일 작성 시 폼 onsubmit return값 관리
+		$('[name=email]').on('change', function(){
+			$('[name=checkEmail]').next().remove();
+			checkEmailCert = 0;
+		})
+		
+		// 패스워드 일치 확인 후 다시 패스워드 작성 시 폼 onsubmit return값 관리
+		$('[name=passowrd]').on('change', function(){
+			$('[name=passwordCheck]').next().remove();
+			checkPass = 0;
+		})
+		
+		$('[name=passwordCheck]').on('change', function(){
+			$('[name=passwordCheck]').next().remove();
+			checkPass = 0;
 		})
 		
 		// ID 유효성 체크 (영어 소문자로 시작, 영어 소문자, 숫자, 특수문자(-, _) 가능)
@@ -341,6 +384,7 @@
 					if(email != null && testEmail.test(email)) {
 						alert("인증번호가 발송되었습니다.")
 						$('[name=checkEmail]').attr('disabled', false);
+						certNum = result;
 					} else {
 						alert("이메일 주소를 확인하세요.");
 					}
@@ -354,14 +398,13 @@
 		$("#confirmEmailBtn").on('click', confirmEmail);
 		
 		function confirmEmail() {
-			if($('[name=checkEmail]').val() == '') {
+			if($('[name=checkEmail]').val() == certNum) {
 				$('[name=checkEmail]').next().remove();
-				$('[name=checkEmail]').after('<div style="color: red;">인증번호를 입력하세요.</div>');
-			} else if(!testEmail.test($('[name=email]').val())){
-				$('[name=checkEmail]').next().remove();
-				$('[name=checkEmail]').after('<div style="color: red;">인증번호가 일치하지 않습니다.</div>');
+				$('[name=checkEmail]').after('<div style="color: green;">인증번호가 일치합니다.</div>');
+				checkEmailCert = 1;
 			} else {
 				$('[name=checkEmail]').next().remove();
+				$('[name=checkEmail]').after('<div style="color: red;">인증번호가 일치하지 않습니다. 인증번호를 확인하세요.</div>');
 			}
 		}
 	</script>

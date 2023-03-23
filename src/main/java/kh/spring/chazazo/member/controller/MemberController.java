@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import kh.spring.chazazo.member.model.dto.MemberReqDto;
+import kh.spring.chazazo.common.email.MailSendService;
 import kh.spring.chazazo.member.model.dto.MemberInfoReqDto;
 import kh.spring.chazazo.member.model.service.MemberService;
 
@@ -22,6 +23,8 @@ public class MemberController {
 	
 	@Autowired
 	private MemberService mService;
+	@Autowired
+	private MailSendService mailService;
 	
 	// 관리자
 	public ModelAndView viewMemberList(ModelAndView mv) {
@@ -51,7 +54,12 @@ public class MemberController {
 	
 	@PostMapping("/register")
 	public ModelAndView insertMember(ModelAndView mv, MemberReqDto memberDto, MemberInfoReqDto memberInfoDto) {
-		mService.insert(memberDto, memberInfoDto);
+		int result = mService.insert(memberDto, memberInfoDto);
+		if(result > 0) {
+			mv.setViewName("redirect:/member/login");
+		} else {
+			mv.setViewName("redirect:/");
+		}
 		return mv;
 	}
 	
@@ -63,11 +71,7 @@ public class MemberController {
 	
 	@GetMapping("/register/email")
 	public String checkEmail(String email) {
-		String result = null;
-		System.out.println("#################");
-		System.out.println(email);
-		System.out.println("#################");
-		return result;
+		return mailService.joinEmail(email);
 	}
 	
 	@GetMapping("/profile/{username}")

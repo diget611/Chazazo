@@ -34,6 +34,45 @@
 <script src="<%=request.getContextPath()%>/resources/garoestate/assets/js/owl.carousel.min.js"></script>
 <script src="<%=request.getContextPath()%>/resources/garoestate/assets/js/price-range.js"></script>
 <script src="<%=request.getContextPath()%>/resources/garoestate/assets/js/main.js"></script>
+
+<style>
+	.modal {
+			position: absolute;
+			top: 0;
+			left: 0;
+
+			width: 100%;
+			height: 100%;
+
+			display: none;
+
+			background-color: rgba(0, 0, 0, 0.4);
+	}
+      
+	.modal.show {
+				display: block;
+	}
+
+	.modal_body {
+				position: absolute;
+				top: 50%;
+				left: 50%;
+
+				width: 400px;
+				height: auto;
+
+				padding: 10px;
+
+				text-align: center;
+
+				background-color: rgb(255, 255, 255);
+				border-radius: 10px;
+				box-shadow: 0 2px 3px 0 rgba(34, 36, 38, 0.15);
+
+				transform: translateX(-50%) translateY(-50%);
+	}
+</style>
+    
 </head>
 <body>
 	<jsp:include page="../header.jsp"/>
@@ -45,13 +84,13 @@
 					<div class="box-for overflow">
 						<div class="col-md-12 col-xs-12 register-blocks">
 							<h2>아이디 찾기 : </h2> 
-							<form action="" method="post">
+							<form action="" method="get">
 								<div class="form-group">
-									<label for="findemail">가입하신 이메일 주소를 입력해주세요.</label>
-									<input type="text" class="form-control" id="findemail">
+									<label>가입하신 이메일 주소를 입력해주세요.</label>
+									<input type="text" class="form-control" id="findId" name="email">
 								</div>
 								<div class="text-center">
-									<button type="submit" class="btn btn-default">아이디 찾기</button>
+									<button id="findIdBtn" type="button" class="btn btn-default">아이디 찾기</button>
 								</div>
 							</form>
 						</div>
@@ -61,17 +100,17 @@
 					<div class="box-for overflow">
 						<div class="col-md-12 col-xs-12 register-blocks">
 							<h2>비밀번호 찾기 : </h2> 
-							<form action="" method="post">
+							<form action="" method="get">
 								<div class="form-group">
-									<label for="findid">아이디를 입력해주세요.</label>
-									<input type="text" class="form-control" id="findid">
+									<label>아이디를 입력해주세요.</label>
+									<input type="text" class="form-control" id="findId" name="username">
 								</div>
 								<div class="form-group">
-									<label for="findemail">가입하신 이메일 주소를 입력해주세요.</label>
-									<input type="text" class="form-control" id="findemail">
+									<label>가입하신 이메일 주소를 입력해주세요.</label>
+									<input type="text" class="form-control" id="findEmail" name="email">
 								</div>
 								<div class="text-center">
-									<button type="submit" class="btn btn-default">비밀번호 찾기</button>
+									<button type="button" class="btn btn-default">비밀번호 찾기</button>
 								</div>
 							</form>
 						</div>
@@ -81,6 +120,41 @@
 		</div>
 	</section>
 	
+	<div class="modal">
+		<div class="modal_body">
+			<div id="resultBox"></div>
+			<button type="button" id="modalCloseBtn">확인</button>
+		</div>		
+	</div>
+	<button type="button" id="modalOpenBtn">Modal 띄우기</button>
+	
 	<jsp:include page="../footer.jsp"/>
+	
+	<script>
+		var modal = document.querySelector('.modal');
+
+		$('#modalCloseBtn').on('click', function() {
+			modal.style.display = 'none';
+		});
+		
+		$('#findIdBtn').on('click', findId);
+		
+		function findId() {
+			let email = $('[name=email]').val()
+			$.ajax({
+				url: "<%=request.getContextPath()%>/member/findid",
+				type: 'get',
+				data: {email: email},
+				success: function(result){
+					$('#resultBox').html(result);
+					modal.style.display = 'block';
+				},
+				error: function(){
+					
+				}
+			});
+		}
+    </script>
+
 </body>
 </html>

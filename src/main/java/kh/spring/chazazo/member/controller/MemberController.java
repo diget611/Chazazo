@@ -84,13 +84,11 @@ public class MemberController {
 		return mv;
 	}
 	
-	@GetMapping("/find/{email}")
-	public ModelAndView findId(ModelAndView mv, @PathVariable String email) {
+	@GetMapping("/findid")
+	public List<String> findId(ModelAndView mv, String email) {
 		List<String> idxList = new ArrayList<String>();
 		idxList = mService.forFindId(email);
-		System.out.println(idxList);
-		mv.setViewName("member/idpop");
-		return mv;
+		return idxList;
 	}
 	
 	@GetMapping("/profile/{username}")

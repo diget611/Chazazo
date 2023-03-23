@@ -147,7 +147,7 @@
 				success: function(result){
 					let list = "";
 					for(let i = 0; i < result.length; i++) {
-						list = "<div>" + result + "</div>";
+						list += "<div>" + result[i] + "</div>";
 					}
 					console.log(list);
 					$('#modalCloseBtn').before(list);

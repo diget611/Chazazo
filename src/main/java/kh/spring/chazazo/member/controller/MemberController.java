@@ -74,6 +74,12 @@ public class MemberController {
 		return mailService.joinEmail(email);
 	}
 	
+	@GetMapping("/find")
+	public ModelAndView viewFindPage(ModelAndView mv) {
+		mv.setViewName("member/find");
+		return mv;
+	}
+	
 	@GetMapping("/profile/{username}")
 	public ModelAndView viewUpdateMember(ModelAndView mv) {
 		// 회원정보 수정 페이지 조회

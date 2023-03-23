@@ -2,29 +2,15 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!-->
-<html class="no-js">
-<!--<![endif]-->
+<html>
 <head>
 <meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
 <title>GARO ESTATE | Home page</title>
-<meta name="description" content="GARO is a real-estate template">
-<meta name="author" content="Kimarotec">
-<meta name="keyword"
-	content="html5, css, bootstrap, property, real-estate theme , bootstrap template">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
 <link
 	href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700,800'
 	rel='stylesheet' type='text/css'>
-
-<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-<link rel="icon" href="favicon.ico" type="image/x-icon">
 
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/resources/garoestate/assets/css/normalize.css">

@@ -10,5 +10,5 @@ public interface MemberService {
 	
 	public int insert(MemberReqDto memberDto, MemberInfoReqDto memberInfoDto);
 	public int checkDup(String username);
-	public List<String> forFindId(String email);
+	public List<String> findId(String email);
 }

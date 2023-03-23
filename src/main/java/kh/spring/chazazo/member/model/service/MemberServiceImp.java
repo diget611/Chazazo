@@ -38,8 +38,8 @@ public class MemberServiceImp implements MemberService {
 	}
 
 	@Override
-	public List<String> forFindId(String email) {
-		return dao.forFindId(email);
+	public List<String> findId(String email) {
+		return dao.findId(email);
 	}
 
 }

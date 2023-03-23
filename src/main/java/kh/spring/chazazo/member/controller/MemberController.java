@@ -4,10 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.Mapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -30,6 +28,12 @@ public class MemberController {
 	@GetMapping
 	public ModelAndView viewMemberList(ModelAndView mv) {
 		// 관리자 회원 리스트 조회
+		return mv;
+	}
+	
+	@GetMapping("/login")
+	public ModelAndView viewLogin(ModelAndView mv) {
+		mv.setViewName("member/login");
 		return mv;
 	}
 	
@@ -79,7 +83,7 @@ public class MemberController {
 	@GetMapping("/findid")
 	public List<String> findId(ModelAndView mv, String email) {
 		List<String> idxList = new ArrayList<String>();
-		idxList = mService.forFindId(email);
+		idxList = mService.findId(email);
 		return idxList;
 	}
 	

@@ -27,7 +27,7 @@ public class MemberDao {
 		return sqlSession.selectOne("member.checkDup", username);
 	}
 	
-	public List<String> forFindId(String email) {
-		return sqlSession.selectList("member.forFindId", email);
+	public List<String> findId(String email) {
+		return sqlSession.selectList("member.findId", email);
 	}
 }

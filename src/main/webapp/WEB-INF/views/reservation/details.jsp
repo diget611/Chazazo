@@ -18,7 +18,19 @@
 <meta name="keyword"
 	content="html5, css, bootstrap, property, real-estate theme , bootstrap template">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+
+
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+
+
+
 <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
+
 <link
 	href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700,800'
 	rel='stylesheet' type='text/css'>
@@ -62,9 +74,13 @@
 	href="<%=request.getContextPath()%>/resources/garoestate/assets/css/responsive.css">
 <link rel="stylesheet" 
 	href="<%=request.getContextPath()%>/resources/garoestate/assets/css/lightslider.min.css">
+
 </head>
 <body>
+
 	<jsp:include page="../header.jsp"/>
+						
+	
 	<section>
 		<div class="content-area single-property" style="background-color: #FCFCFC;">
 			<div class="container">
@@ -145,14 +161,21 @@
 							</div>
 							<!-- .property-meta -->
 							<div class="section">
-								<h4 class="s-property-title">Description</h4>
+								<h4 class="s-property-title">운전자 대여조건</h4>
 								<div class="s-property-content">
-									<p>Nulla quis dapibus nisl. Suspendisse ultricies Nulla quis dapibus nisl. Suspendisse ultricies commodo arcu nec pretium. Nullam sed arcu ultricies commodo arcu nec pretium. Nullam sed arcu ultricies Nulla quis dapibus nisl. Suspendisse ultricies commodo arcu nec pretium. Nullam sed arcu ultricies Nulla quis dapibus nisl. Suspendisse ultricies commodo arcu nec pretium. Nullam sed arcu ultricies                                </p>
+								<p>
+										운전자 나이 만 21세 이상<br>
+										
+										면허취득일 1년 이상<br>
+										
+										차량 대여 시 실물면허증 소지 (2종 보통 면허 이상 필요)<br>
+										
+										업체별 대여규정 준수 (외국인 대여, 낚시용품/애견 동반, 주행거리제한 규정 등)
 								</div>
 							</div>
 							<!-- End description area  -->
 							<div class="section additional-details">
-								<h4 class="s-property-title">Additional Details</h4>
+								<h4 class="s-property-title">차량 정보</h4>
 								<ul class="additional-details-list clearfix">
 									<li>
 										<span class="col-xs-6 col-sm-4 col-md-4 add-d-title">Waterfront</span>
@@ -182,14 +205,9 @@
 							</div>  
 							<!-- End additional-details area  -->
 							<div class="section property-features">      
-								<h4 class="s-property-title">Features</h4>                            
+								<h4 class="s-property-title">대여점 정보</h4>                            
 								<ul>
-									<li><a href="properties.html">Swimming Pool</a></li>   
-									<li><a href="properties.html">3 Stories</a></li>
-									<li><a href="properties.html">Central Cooling</a></li>
-									<li><a href="properties.html">Jog Path 2</a></li>
-									<li><a href="properties.html">2 Lawn</a></li>
-									<li><a href="properties.html">Bike Path</a></li>
+									<p> 대여점 이름, 주소, 정보....
 								</ul>
 								<!-- 리뷰 영역 시작 -->
 								<div class="section">
@@ -202,10 +220,39 @@
 								<!-- End features area  -->
 							</div>
 						</div>
-						<!-- 결제영역 시작 -->
-						<div class="col-md-4 p0" style="padding-left:30px">
+					</div>
+					
+					
+					<!-- 우측 카테고리 시작 -->
+						<!-- 날짜 선택 시작 -->
+	
+						<div class="col-md-4 p0" style="padding-left:30px  float:rigth">
 							<aside class="sidebar sidebar-property blog-asside-right">
 								<section class="mt-3 p-3">
+									<h5>날짜 선택</h5><hr>
+									<!--
+										<div class="form-group mb-0">
+											<div class="dc-flex align-items-center justify-content-start mb-1">
+												<img class="icon mr-1" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTciIHZpZXdCb3g9IjAgMCAxNiAxNyIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxnIGNsaXAtcGF0aD0idXJsKCMwcXVhOHdkMzZhKSIgZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGZpbGw9IiNENEQ0RDQiPgogICAgICAgIDxwYXRoIGQ9Ik04IDIuNWE2IDYgMCAxIDAgMCAxMiA2IDYgMCAwIDAgMC0xMnptLTcgNmE3IDcgMCAxIDEgMTQgMCA3IDcgMCAwIDEtMTQgMHoiLz4KICAgICAgICA8cGF0aCBkPSJNOCA0LjVhLjUuNSAwIDAgMSAuNS41djMuNUgxMGEuNS41IDAgMCAxIDAgMUg4YS41LjUgMCAwIDEtLjUtLjVWNWEuNS41IDAgMCAxIC41LS41eiIvPgogICAgPC9nPgogICAgPGRlZnM+CiAgICAgICAgPGNsaXBQYXRoIGlkPSIwcXVhOHdkMzZhIj4KICAgICAgICAgICAgPHBhdGggZmlsbD0iI2ZmZiIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMCAuNSkiIGQ9Ik0wIDBoMTZ2MTZIMHoiLz4KICAgICAgICA8L2NsaXBQYXRoPgogICAgPC9kZWZzPgo8L3N2Zz4K"><label class="text-14 color-grey-4 mb-0">대여일</label>
+											</div>
+											<div class="col">
+												<input type="date" id="sday" class="form-control" value="today">
+											</div>
+												<img class="icon mr-1" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTciIHZpZXdCb3g9IjAgMCAxNiAxNyIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxnIGNsaXAtcGF0aD0idXJsKCMwcXVhOHdkMzZhKSIgZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGZpbGw9IiNENEQ0RDQiPgogICAgICAgIDxwYXRoIGQ9Ik04IDIuNWE2IDYgMCAxIDAgMCAxMiA2IDYgMCAwIDAgMC0xMnptLTcgNmE3IDcgMCAxIDEgMTQgMCA3IDcgMCAwIDEtMTQgMHoiLz4KICAgICAgICA8cGF0aCBkPSJNOCA0LjVhLjUuNSAwIDAgMSAuNS41djMuNUgxMGEuNS41IDAgMCAxIDAgMUg4YS41LjUgMCAwIDEtLjUtLjVWNWEuNS41IDAgMCAxIC41LS41eiIvPgogICAgPC9nPgogICAgPGRlZnM+CiAgICAgICAgPGNsaXBQYXRoIGlkPSIwcXVhOHdkMzZhIj4KICAgICAgICAgICAgPHBhdGggZmlsbD0iI2ZmZiIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMCAuNSkiIGQ9Ik0wIDBoMTZ2MTZIMHoiLz4KICAgICAgICA8L2NsaXBQYXRoPgogICAgPC9kZWZzPgo8L3N2Zz4K"><label class="text-14 color-grey-4 mb-0">반납일</label>					
+											<div class="col">
+												<input type="date" id="eday" class="form-control" value="today">
+											</div>
+										</div>
+										  -->
+								</section>
+							</aside>
+						</div>
+						<!-- 날짜 선택 끝 -->
+						<!-- 결제영역 시작 -->
+						<div class="col-md-4 p0" style="padding-left:30px  float:rigth">
+							<aside class="sidebar sidebar-property blog-asside-right">
+								<section class="mt-3 p-3">
+								<jsp:include page="datepicker.jsp"/>
 									<h5>결제 정보</h5><hr>
 									<table class="table">
 										<tbody>
@@ -228,7 +275,7 @@
 							</aside>
 						</div>
 						<!-- 결제영역 끝 --> 
-					</div>
+						<!-- 우측 카테고리 시작 -->
 				</div>
 			</div>
 		</div>
@@ -268,4 +315,17 @@
 	 <script type="text/javascript" src="<%=request.getContextPath()%>/resources/garoestate/assets/js/lightslider.min.js"></script>
 
 </body>
+
+<script>
+
+;(function($){
+	$.fn.datepicker.dates['kr'] = {
+		days: ["일요일", "월요일", "화요일", "수요일", "목요일", "금요일", "토요일", "일요일"],
+		daysShort: ["일", "월", "화", "수", "목", "금", "토", "일"],
+		daysMin: ["일", "월", "화", "수", "목", "금", "토", "일"],
+		months: ["1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월"],
+		monthsShort: ["1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월"]
+	};
+}(jQuery));
+</script>
 </html>

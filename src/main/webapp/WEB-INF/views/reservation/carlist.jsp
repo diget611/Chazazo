@@ -212,7 +212,7 @@
 											<h5><a href="/chazazo/details">${car.model } </a></h5>
 											<div class="dot-hr"></div>
 											<span class="pull-left"><b> 대여지점 :</b> 강남점 </span>
-											<span class="proerty-price pull-right"> ${vehicle.price }원</span>
+											<span class="proerty-price pull-right"> ${car.price }원</span>
 											<p style="display: none;">Suspendisse ultricies Suspendisse ultricies Nulla quis dapibus nisl. Suspendisse ultricies commodo arcu nec pretium ...</p>
 											<div class="property-icon">
 												<img src="./resources/garoestate/assets/img/icon/bed.png">${car.year }년|

@@ -1,80 +1,39 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<c:set var="cpath" value="${pageContext.request.contextPath}"/>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!-->
-<html class="no-js">
-<!--<![endif]-->
+<html>
 <head>
 <meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>GARO ESTATE | Home page</title>
-<meta name="description" content="GARO is a real-estate template">
-<meta name="author" content="Kimarotec">
-<meta name="keyword"
-	content="html5, css, bootstrap, property, real-estate theme , bootstrap template">
+<title>예약 하기</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-
-
-
-
-<link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-
-
-
-
 <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700,800' rel='stylesheet' type='text/css'>
 
-<link
-	href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700,800'
-	rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/garoestate/assets/css/normalize.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/garoestate/assets/css/font-awesome.min.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/garoestate/assets/css/fontello.css">
+<link href="<%=request.getContextPath()%>/resources/garoestate/assets/fonts/icon-7-stroke/css/pe-icon-7-stroke.css" rel="stylesheet">
+<link href="<%=request.getContextPath()%>/resources/garoestate/assets/fonts/icon-7-stroke/css/helper.css" rel="stylesheet">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/garoestate/assets/css/bootstrap-select.min.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/garoestate/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/garoestate/assets/css/icheck.min_all.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/garoestate/assets/css/price-range.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/garoestate/assets/css/style.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/garoestate/assets/css/responsive.css">
 
-<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-<link rel="icon" href="favicon.ico" type="image/x-icon">
-
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/resources/garoestate/assets/css/normalize.css">
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/resources/garoestate/assets/css/font-awesome.min.css">
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/resources/garoestate/assets/css/fontello.css">
-<link
-	href="<%=request.getContextPath()%>/resources/garoestate/assets/fonts/icon-7-stroke/css/pe-icon-7-stroke.css"
-	rel="stylesheet">
-<link
-	href="<%=request.getContextPath()%>/resources/garoestate/assets/fonts/icon-7-stroke/css/helper.css"
-	rel="stylesheet">
-<link
-	href="<%=request.getContextPath()%>/resources/garoestate/assets/css/animate.css"
-	rel="stylesheet" media="screen">
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/resources/garoestate/assets/css/bootstrap-select.min.css">
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/resources/garoestate/bootstrap/css/bootstrap.min.css">
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/resources/garoestate/assets/css/icheck.min_all.css">
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/resources/garoestate/assets/css/price-range.css">
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/resources/garoestate/assets/css/owl.carousel.css">
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/resources/garoestate/assets/css/owl.theme.css">
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/resources/garoestate/assets/css/owl.transitions.css">
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/resources/garoestate/assets/css/style.css">
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/resources/garoestate/assets/css/responsive.css">
-<link rel="stylesheet" 
-	href="<%=request.getContextPath()%>/resources/garoestate/assets/css/lightslider.min.css">
-
+<script src="<%=request.getContextPath()%>/resources/garoestate/assets/js/modernizr-2.6.2.min.js"></script>
+<script src="<%=request.getContextPath()%>/resources/garoestate/assets/js/jquery-1.10.2.min.js"></script>
+<script src="<%=request.getContextPath()%>/resources/garoestate/bootstrap/js/bootstrap.min.js"></script>
+<script src="<%=request.getContextPath()%>/resources/garoestate/assets/js/bootstrap-select.min.js"></script>
+<script src="<%=request.getContextPath()%>/resources/garoestate/assets/js/bootstrap-hover-dropdown.js"></script>
+<script src="<%=request.getContextPath()%>/resources/garoestate/assets/js/easypiechart.min.js"></script>
+<script src="<%=request.getContextPath()%>/resources/garoestate/assets/js/jquery.easypiechart.min.js"></script>
+<script src="<%=request.getContextPath()%>/resources/garoestate/assets/js/wow.js"></script>
+<script src="<%=request.getContextPath()%>/resources/garoestate/assets/js/icheck.min.js"></script>
+<script src="<%=request.getContextPath()%>/resources/garoestate/assets/js/owl.carousel.min.js"></script>
+<script src="<%=request.getContextPath()%>/resources/garoestate/assets/js/price-range.js"></script>
+<script src="<%=request.getContextPath()%>/resources/garoestate/assets/js/main.js"></script>
 </head>
 <body>
 
@@ -229,21 +188,8 @@
 						<div class="col-md-4 p0" style="padding-left:30px  float:rigth">
 							<aside class="sidebar sidebar-property blog-asside-right">
 								<section class="mt-3 p-3">
-									<h5>날짜 선택</h5><hr>
-									<!--
-										<div class="form-group mb-0">
-											<div class="dc-flex align-items-center justify-content-start mb-1">
-												<img class="icon mr-1" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTciIHZpZXdCb3g9IjAgMCAxNiAxNyIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxnIGNsaXAtcGF0aD0idXJsKCMwcXVhOHdkMzZhKSIgZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGZpbGw9IiNENEQ0RDQiPgogICAgICAgIDxwYXRoIGQ9Ik04IDIuNWE2IDYgMCAxIDAgMCAxMiA2IDYgMCAwIDAgMC0xMnptLTcgNmE3IDcgMCAxIDEgMTQgMCA3IDcgMCAwIDEtMTQgMHoiLz4KICAgICAgICA8cGF0aCBkPSJNOCA0LjVhLjUuNSAwIDAgMSAuNS41djMuNUgxMGEuNS41IDAgMCAxIDAgMUg4YS41LjUgMCAwIDEtLjUtLjVWNWEuNS41IDAgMCAxIC41LS41eiIvPgogICAgPC9nPgogICAgPGRlZnM+CiAgICAgICAgPGNsaXBQYXRoIGlkPSIwcXVhOHdkMzZhIj4KICAgICAgICAgICAgPHBhdGggZmlsbD0iI2ZmZiIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMCAuNSkiIGQ9Ik0wIDBoMTZ2MTZIMHoiLz4KICAgICAgICA8L2NsaXBQYXRoPgogICAgPC9kZWZzPgo8L3N2Zz4K"><label class="text-14 color-grey-4 mb-0">대여일</label>
-											</div>
-											<div class="col">
-												<input type="date" id="sday" class="form-control" value="today">
-											</div>
-												<img class="icon mr-1" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTciIHZpZXdCb3g9IjAgMCAxNiAxNyIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxnIGNsaXAtcGF0aD0idXJsKCMwcXVhOHdkMzZhKSIgZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGZpbGw9IiNENEQ0RDQiPgogICAgICAgIDxwYXRoIGQ9Ik04IDIuNWE2IDYgMCAxIDAgMCAxMiA2IDYgMCAwIDAgMC0xMnptLTcgNmE3IDcgMCAxIDEgMTQgMCA3IDcgMCAwIDEtMTQgMHoiLz4KICAgICAgICA8cGF0aCBkPSJNOCA0LjVhLjUuNSAwIDAgMSAuNS41djMuNUgxMGEuNS41IDAgMCAxIDAgMUg4YS41LjUgMCAwIDEtLjUtLjVWNWEuNS41IDAgMCAxIC41LS41eiIvPgogICAgPC9nPgogICAgPGRlZnM+CiAgICAgICAgPGNsaXBQYXRoIGlkPSIwcXVhOHdkMzZhIj4KICAgICAgICAgICAgPHBhdGggZmlsbD0iI2ZmZiIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMCAuNSkiIGQ9Ik0wIDBoMTZ2MTZIMHoiLz4KICAgICAgICA8L2NsaXBQYXRoPgogICAgPC9kZWZzPgo8L3N2Zz4K"><label class="text-14 color-grey-4 mb-0">반납일</label>					
-											<div class="col">
-												<input type="date" id="eday" class="form-control" value="today">
-											</div>
-										</div>
-										  -->
+									<h6>날짜 선택</h6><hr>
+										<jsp:include page="datepicker.jsp"/>
 								</section>
 							</aside>
 						</div>
@@ -252,7 +198,6 @@
 						<div class="col-md-4 p0" style="padding-left:30px  float:rigth">
 							<aside class="sidebar sidebar-property blog-asside-right">
 								<section class="mt-3 p-3">
-								<jsp:include page="datepicker.jsp"/>
 									<h5>결제 정보</h5><hr>
 									<table class="table">
 										<tbody>
@@ -283,49 +228,7 @@
 	
 	<jsp:include page="../footer.jsp"/>
 	
-	<script
-		src="<%=request.getContextPath()%>/resources/garoestate/assets/js/modernizr-2.6.2.min.js"></script>
-
-	<script
-		src="<%=request.getContextPath()%>/resources/garoestate/assets/js/jquery-1.10.2.min.js"></script>
-	<script
-		src="<%=request.getContextPath()%>/resources/garoestate/bootstrap/js/bootstrap.min.js"></script>
-	<script
-		src="<%=request.getContextPath()%>/resources/garoestate/assets/js/bootstrap-select.min.js"></script>
-	<script
-		src="<%=request.getContextPath()%>/resources/garoestate/assets/js/bootstrap-hover-dropdown.js"></script>
-
-	<script
-		src="<%=request.getContextPath()%>/resources/garoestate/assets/js/easypiechart.min.js"></script>
-	<script
-		src="<%=request.getContextPath()%>/resources/garoestate/assets/js/jquery.easypiechart.min.js"></script>
-
-	<script
-		src="<%=request.getContextPath()%>/resources/garoestate/assets/js/owl.carousel.min.js"></script>
-	<script
-		src="<%=request.getContextPath()%>/resources/garoestate/assets/js/wow.js"></script>
-
-	<script
-		src="<%=request.getContextPath()%>/resources/garoestate/assets/js/icheck.min.js"></script>
-	<script
-		src="<%=request.getContextPath()%>/resources/garoestate/assets/js/price-range.js"></script>
-
-	<script
-		src="<%=request.getContextPath()%>/resources/garoestate/assets/js/main.js"></script>
-	 <script type="text/javascript" src="<%=request.getContextPath()%>/resources/garoestate/assets/js/lightslider.min.js"></script>
-
 </body>
 
-<script>
 
-;(function($){
-	$.fn.datepicker.dates['kr'] = {
-		days: ["일요일", "월요일", "화요일", "수요일", "목요일", "금요일", "토요일", "일요일"],
-		daysShort: ["일", "월", "화", "수", "목", "금", "토", "일"],
-		daysMin: ["일", "월", "화", "수", "목", "금", "토", "일"],
-		months: ["1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월"],
-		monthsShort: ["1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월"]
-	};
-}(jQuery));
-</script>
 </html>

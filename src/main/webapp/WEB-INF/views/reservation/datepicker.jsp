@@ -11,6 +11,7 @@
     <title>Bootstrap datepicket demo</title>
 
     <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
+    
 
 	<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/style/css/jquery-ui.min.css">
 
@@ -35,51 +36,47 @@
 
 <body>
 
+	<!-- 날짜 선택 시작 -->
     <div class="container">
-
-        <h1>Bootstrap datepicker</h1>
-
-        <div class="input-group date" style="width:300px">
-
-            <input type="text" class="form-control" ><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
-          
-
-        </div>
-
+    	<div class="date">
+			 <div>
+				 <label>대여일</label> 
+					 <div class="input-group date" style="width:300px">
+			           <input type="text" class="form-control" ><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+			   	    </div>
+		     </div>
+		     <div>
+			     <label>반납일</label> 
+				 <div class="input-group date" style="width:300px">
+			           <input type="text" class="form-control" ><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+			      </div>
+			</div>
+	    
+		    <script>
+					;(function($){
+						$.fn.datepicker.dates['kr'] = {
+							days: ["일요일", "월요일", "화요일", "수요일", "목요일", "금요일", "토요일", "일요일"],
+							daysShort: ["일", "월", "화", "수", "목", "금", "토", "일"],
+							daysMin: ["일", "월", "화", "수", "목", "금", "토", "일"],
+							months: ["1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월"],
+							monthsShort: ["1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월"]
+						};
+					}(jQuery));
+			</script>
+		    <script type='text/javascript'>
+		        $('.input-group.date').datepicker({
+		            calendarWeeks: false,
+		            todayHighlight: true,
+		            autoclose: true,
+		            format: "yyyy/mm/dd",
+		            language: "kr"
+		        });
+		  	 </script>
+   		 </div>
     </div>
-    
-        <script type='text/javascript'>
-
-
-
-        $('.input-group.date').datepicker({
-
-            calendarWeeks: false,
-
-            todayHighlight: true,
-
-            autoclose: true,
-
-            format: "yyyy/mm/dd",
-
-            language: "kr"
-
-        });
-
-    </script>
+    <!-- 날짜 선택 끝 -->
 
 </body>
-<script>
 
-;(function($){
-	$.fn.datepicker.dates['kr'] = {
-		days: ["일요일", "월요일", "화요일", "수요일", "목요일", "금요일", "토요일", "일요일"],
-		daysShort: ["일", "월", "화", "수", "목", "금", "토", "일"],
-		daysMin: ["일", "월", "화", "수", "목", "금", "토", "일"],
-		months: ["1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월"],
-		monthsShort: ["1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월"]
-	};
-}(jQuery));
-</script>
 
 </html>

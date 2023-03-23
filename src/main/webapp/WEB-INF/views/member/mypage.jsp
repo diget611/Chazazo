@@ -26,6 +26,7 @@
 <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
 <link rel="icon" href="favicon.ico" type="image/x-icon">
 
+
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/resources/garoestate/assets/css/normalize.css">
 <link rel="stylesheet"
@@ -63,6 +64,17 @@
 <body>
 	<jsp:include page="../header.jsp"/>
 	
+	<script type="text/javascript">
+	function moveRent(){
+		location.href="../carlist";
+	}
+	function moveNoneMemberReservation(){
+		location.href="../carlist";
+	}
+	
+	
+	</script>
+	
 	<section>
 		<div class="content-area blog-page padding-top-40" style="background-color: #FCFCFC; padding-bottom: 55px;">
 			<div class="container">
@@ -93,9 +105,17 @@
 										<ul class="dealer-contacts">                                       
 											<li><i class="pe-7s-call strong"> </i> +1 908 967 5906</li>
 											<li><i class="pe-7s-mail strong"> </i> email@yourcompany.com</li>
-											<li><i class="pe-7s-map-marker strong"> </i> 주소주소</li>
+											
 										</ul>
-										<p>Duis mollis  blandit tempus porttitor curabiturDuis mollis  blandit tempus porttitor curabitur , est non…</p>
+										<div>
+										<div class="dc-flex justify-content-between px-2 mb-4 is-only-member">
+											<div class="js-mypage-btn-rent-history dc-flex flex-column flex-grow-1 text-center click-effect-press">
+												<img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjYiIGhlaWdodD0iMjYiIHZpZXdCb3g9IjAgMCAyNiAyNiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxnIGNsaXAtcGF0aD0idXJsKCMxb2IzMno2c2RhKSI+CiAgICAgICAgPHBhdGggZD0iTTMgNy4yNTZhMiAyIDAgMCAxIDItMmgxNmEyIDIgMCAwIDEgMiAydjE1Ljc0M2EyIDIgMCAwIDEtMiAySDVhMiAyIDAgMCAxLTItMlY3LjI1NnoiIGZpbGw9IiNDN0UwRkYiLz4KICAgICAgICA8cGF0aCBkPSJNOC4yMDMgMTAuODZoOS41OTVNOC4yMDMgMTUuMTI3aDkuNTk1TTguMjAzIDE5LjM5NWg2LjM5NiIgc3Ryb2tlPSIjRTZFRkZDIiBzdHJva2Utd2lkdGg9IjEuNCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+CiAgICAgICAgPHBhdGggZD0iTTExLjI2OCAzLjAwNWMuNzY5LTEuMzM1IDIuNjk1LTEuMzM1IDMuNDY1IDBsMS4yOTggMi4yNTJIOS45N2wxLjI5OS0yLjI1MnoiIGZpbGw9IiM5NkM2RkYiLz4KICAgIDwvZz4KICAgIDxkZWZzPgogICAgICAgIDxjbGlwUGF0aCBpZD0iMW9iMzJ6NnNkYSI+CiAgICAgICAgICAgIDxwYXRoIGZpbGw9IiNmZmYiIGQ9Ik0wIDBoMjZ2MjZIMHoiLz4KICAgICAgICA8L2NsaXBQYXRoPgogICAgPC9kZWZzPgo8L3N2Zz4K" height="26px"><span class="color-grey-3 text-14">예약내역</span></div><div class="js-mypage-btn-myreview dc-flex flex-column flex-grow-1 text-center click-effect-press"><img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjciIGhlaWdodD0iMjYiIHZpZXdCb3g9IjAgMCAyNyAyNiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxnIGNsaXAtcGF0aD0idXJsKCN4anBrYjR1NTlhKSI+CiAgICAgICAgPHJlY3QgeD0iMi4zMzMiIHk9IjQuNTEiIHdpZHRoPSIxOS4wMTIiIGhlaWdodD0iMTkuNDkiIHJ4PSIyIiBmaWxsPSIjQzdFMEZGIi8+CiAgICAgICAgPHBhdGggZD0iTTE5Ljc3MyA2LjgzM2MtLjk3NS0uOTU4LTEuMDU3LTIuNTA2LS4xODMtMy40NGwxLjU5Ni0xLjcwNWMuODczLS45MzQgMi4zODUtLjkxNCAzLjM2LjA0My45NzQuOTU4IDEuMDU2IDIuNTA2LjE4MiAzLjQ0bC0xLjU5NiAxLjcwNmMtLjg3My45MzMtMi4zODUuOTE0LTMuMzYtLjA0NHoiIGZpbGw9IiM5NkM2RkYiLz4KICAgICAgICA8cGF0aCBkPSJtMTAuNDM4IDEzLjEyMS0yLjI0OCA1LjU4Yy0uMTMxLjMyNS4xODMuNjM2LjQ5Ni40ODhsNS4zNDgtMi41MzUtMy41OTctMy41MzZ2LjAwM3oiIGZpbGw9IiNGQkZDRkYiLz4KICAgICAgICA8cGF0aCBkPSJtOC42NDYgMTcuNTcyIDEuMTI1IDEuMTA1LTEuMjE1LjU3N2MtLjI2My4xMjUtLjUyOS0uMTM3LS40MTgtLjQxMWwuNTExLTEuMjY4LS4wMDMtLjAwM3oiIGZpbGw9IiM5NkM2RkYiLz4KICAgICAgICA8cGF0aCBkPSJtMjEuODY0IDMuMzY0LTEuMTk4LTEuMTc4LTEwLjIyOCAxMC45MzUgMS4xOTcgMS4xNzZMMjEuODY0IDMuMzY0eiIgZmlsbD0iI0I5RDVGRiIvPgogICAgICAgIDxwYXRoIGQ9Ik0yMy4wNjQgNC41MzkgMjEuODY3IDMuMzZsLTEwLjIzIDEwLjkzNCAxLjE5OCAxLjE3OCA1LjExNC01LjQ2NyA1LjExNS01LjQ2N3pNMjQuMjYgNS43MmwtMS4xOTctMS4xNzgtNS4xMTUgNS40NjctNS4xMTQgNS40NjcgMS4xOTcgMS4xNzdMMjQuMjYxIDUuNzJ6IiBmaWxsPSIjOUFDMkZGIi8+CiAgICA8L2c+CiAgICA8ZGVmcz4KICAgICAgICA8Y2xpcFBhdGggaWQ9InhqcGtiNHU1OWEiPgogICAgICAgICAgICA8cGF0aCBmaWxsPSIjZmZmIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSguMzMzKSIgZD0iTTAgMGgyNnYyNkgweiIvPgogICAgICAgIDwvY2xpcFBhdGg+CiAgICA8L2RlZnM+Cjwvc3ZnPgo=" height="26px"><span class="color-grey-3 text-14">나의리뷰</span></div></div>
+										</div>
+										
+										<div>
+										<div class="bg-color-grey-7 border-radius-6 text-14 color-grey-3 text-center w-100 py-1 click-effect-press"><div class="js-mypage-txt-coupon-cnt text-16-b">4 장</div>쿠폰</div>
+										</div>
 									</div>
 								</div>
 							</div>
@@ -104,7 +124,10 @@
 							<div class="panel panel-default sidebar-menu wow fadeInRight animated animated animated" style="visibility: visible; animation-name: fadeInRight;">
 								<div class="panel-heading">
 									<h3 class="panel-title">
-									<button type="button" class="btn btn-outline-primary">예약내역</button><br>
+									<button id="historyBtn" type="button" class="btn btn-outline-primary">예약내역</button><br>
+								
+									
+									
 									<button type="button" class="btn btn-outline-primary">예약 수정 / 취소</button><br>
 									<button type="button" class="btn btn-outline-primary">비회원 예약 확인</button></h3>
 								</div>
@@ -132,45 +155,23 @@
 				</div>
 				<div class="blog-lst col-md-8 p0 " style="float: right;">
 					<section id="id-100" class="post single">
-						<div id="post-content" class="post-body single wow fadeInLeft animated animated" style="visibility: visible; animation-name: fadeInLeft;">
-							<h2>Header Level 2</h2>
-							<ol>
-								<li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</li>
-								<li>Aliquam tincidunt mauris eu risus.</li>
-							</ol>
-							<blockquote>
-								<p>
-									Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus magna. Cras in mi at felis aliquet congue. Ut a est eget ligula molestie gravida. Curabitur massa. Donec eleifend, libero at sagittis mollis, tellus est malesuada
-									tellus, at luctus turpis elit sit amet quam. Vivamus pretium ornare est.
-								</p>
-							</blockquote>
-							<h3>Header Level 3</h3>
-							<p>
-								Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean
-								ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt
-							</p>
-							<ul>
-								<li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</li>
-								<li>Aliquam tincidunt mauris eu risus.</li>
-							</ul>
-							<p><img src="assets/img/blog.jpg" class="img-responsive" alt="Example blog post alt"></p>
-							<p>
-								Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean
-								condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros
-								eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus
-							</p>
-						</div>
-						<div class="post-footer single wow fadeInBottum animated animated" style="visibility: visible;">
-							<ul class="pager">
-								<li class="previous"><a href="#"><i class=""></i>← Older </a></li>
-								<li class="next disabled"><a href="#">Newer →<i class=""></i> </a></li>
-							</ul> 
-						</div>
+						<div id="post-content" style="visibility: visible; animation-name: fadeInLeft;">
+							<div class="container-loading-dot" id="mypage_loading_rent_list" style="display:none;">
+								
+							
+							</div>
+							<div id="mypage_none_rent_history" style="display:block; margin-top:100px;">
+								<div class="text-center">
+									<h4>진행중인 렌트내역이 없습니다</h4>
+									<button class="js-mypage-btn-go-car-list btn btn-outline-primary btn-block max-w-lg-40rem mx-auto py-1" onclick="moveRent();">렌트하러 가기</button>
+									<button class="js-mypage-btn-none-member-search btn btn-link btn-block color-grey-3 font-weight-normal max-w-lg-40rem mx-auto py-1 tmobi-dc-none" onclick="moveNoneMemberReservation();">비회원 예약조회</button>
+								</div>
+							
+							</div>
+							
+							
 					</section>
-					<!-- 얜 뭐지 --> 
-					<section class="about-autor">
-					</section>
-					<!-- 얜 뭐지 -->
+					
 				</div>                    
 			</div>
 		</div>
@@ -207,10 +208,17 @@
 
 	<script
 		src="<%=request.getContextPath()%>/resources/garoestate/assets/js/main.js"></script>
+	
 	<script>
 		$('#updateinfoBtn').on('click', function() {
-			location.href='<%=request.getContextPath()%>/member/mypage/profile';
+			location.href='<%=request.getContextPath()%>/member/profile';
 		});
+		$('#historyBtn').on('click', function() {
+			location.href='<%=request.getContextPath()%>/member/history';
+		});
+	
+	
+		
 	</script>
 </body>
 </html>

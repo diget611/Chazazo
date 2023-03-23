@@ -32,7 +32,7 @@
 					class="" href="<%=request.getContextPath() %>/event">이벤트</a></li>
 				<li class="wow fadeInDown animated" data-wow-delay="0.3s"
 					style="visibility: visible; animation-delay: 0.3s; animation-name: fadeInDown;"><a
-					class="" href="<%=request.getContextPath() %>/mypage">마이페이지</a></li>
+					class="" href="<%=request.getContextPath() %>/member/mypage">마이페이지</a></li>
 				<li class="wow fadeInDown animated" data-wow-delay="0.5s"
 					style="visibility: visible; animation-delay: 0.5s; animation-name: fadeInDown;"><a
 					href="<%=request.getContextPath() %>/location">지점 안내</a></li>

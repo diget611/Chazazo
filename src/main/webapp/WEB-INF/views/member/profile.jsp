@@ -105,6 +105,9 @@
 								<div class="panel-heading">
 									<h3 class="panel-title">
 									<button type="button" class="btn btn-outline-primary">예약내역</button><br>
+									
+									
+									
 									<button type="button" class="btn btn-outline-primary">예약 수정 / 취소</button><br>
 									<button type="button" class="btn btn-outline-primary">비회원 예약 확인</button></h3>
 								</div>
@@ -132,7 +135,7 @@
 				</div>
 				<div class="blog-lst col-md-8 p0 " style="float: right;">
 					<section id="id-100" class="post single">
-						<form action="<%=request.getContextPath() %>/member/register"
+						<form action="<%=request.getContextPath() %>/member/mypage"
 								method="post" onsubmit="return checkForm()">
 								<div class="form-group">
 									<label>아이디</label>
@@ -175,6 +178,7 @@
 								</div>
 							</form>
 					</section>
+					
 					<!-- 얜 뭐지 --> 
 					<section class="about-autor">
 					</section>
@@ -217,7 +221,7 @@
 		src="<%=request.getContextPath()%>/resources/garoestate/assets/js/main.js"></script>
 	<script>
 		$('#updateinfoBtn').on('click', function() {
-			location.href='<%=request.getContextPath()%>/member/mypage/profile';
+			location.href='<%=request.getContextPath()%>/member/profile';
 		});
 	</script>
 </body>

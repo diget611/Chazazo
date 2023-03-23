@@ -232,6 +232,7 @@
 			if(pass != passChk) {
 				$('[name=passwordCheck]').next().remove();
 				$('[name=passwordCheck]').after('<div style="color: red;">비밀번호가 일치하지 않습니다.</div>');
+				checkPass = 0;
 			} else {
 				$('[name=passwordCheck]').next().remove();
 				$('[name=passwordCheck]').after('<div style="color: green;">비밀번호가 일치합니다.</div>');
@@ -248,17 +249,6 @@
 		$('[name=email]').on('change', function(){
 			$('[name=checkEmail]').next().remove();
 			checkEmailCert = 0;
-		})
-		
-		// 패스워드 일치 확인 후 다시 패스워드 작성 시 폼 onsubmit return값 관리
-		$('[name=passowrd]').on('change', function(){
-			$('[name=passwordCheck]').next().remove();
-			checkPass = 0;
-		})
-		
-		$('[name=passwordCheck]').on('change', function(){
-			$('[name=passwordCheck]').next().remove();
-			checkPass = 0;
 		})
 		
 		// ID 유효성 체크 (영어 소문자로 시작, 영어 소문자, 숫자, 특수문자(-, _) 가능)
@@ -278,13 +268,13 @@
 		
 		// 패스워드 유효성 체크
 		$('[name=password]').on('blur', function(){
-			let testPass = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&\*])[\da-zA-Z!@#$%^&\*]{8,30}$/;
+			let testPass = /^(?=.*\d)(?=.*[a-z])(?=.*[!@#$%^&\*])[\da-zA-Z!@#$%^&\*]{8,30}$/;
 			if($('[name=password]').val() == ''){
 				$('[name=password]').next().remove();
 				$('[name=password]').after('<div style="color: red;">비밀번호를 입력하세요.</div>');
 			} else if(!testPass.test($('[name=password]').val())){
 				$('[name=password]').next().remove();
-				$('[name=password]').after('<div style="color: red;">8 ~ 30자 사이의 하나 이상의 알파벳 대소문자, 숫자, 특수문자로 이루어진 비밀번호를 작성하세요.</div>');
+				$('[name=password]').after('<div style="color: red;">8 ~ 30자 사이의 하나 이상의 알파벳 소문자, 숫자, 특수문자로 이루어진 비밀번호를 작성하세요.</div>');
 			} else {
 				$('[name=password]').next().remove();
 			}

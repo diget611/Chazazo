@@ -7,6 +7,9 @@
 	<select id="selectOne">
 		SELECT * FROM MEMBER WHERE USERNAME = #{username}
 	</select>
+	<select id="forFindId" resultType="string">
+		SELECT IDX FROM MEMBER_INFO WHERE EMAIL = #{email}
+	</select>
 	<insert id="insert" parameterType="memberReqDto">
 		INSERT INTO MEMBER
 		VALUES(MEMBER_SEQ.NEXTVAL, #{username}, #{password}, DEFAULT, DEFAULT)

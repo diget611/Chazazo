@@ -1,5 +1,7 @@
 package kh.spring.chazazo.member.model.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -23,5 +25,9 @@ public class MemberDao {
 	
 	public int checkDup(String username) {
 		return sqlSession.selectOne("member.checkDup", username);
+	}
+	
+	public List<String> forFindId(String email) {
+		return sqlSession.selectList("member.forFindId", email);
 	}
 }

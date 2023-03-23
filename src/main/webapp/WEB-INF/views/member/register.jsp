@@ -2,63 +2,38 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!-->
-<html class="no-js">
-<!--<![endif]-->
+<html>
 <head>
 <meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>GARO ESTATE | Home page</title>
-<meta name="description" content="GARO is a real-estate template">
-<meta name="author" content="Kimarotec">
-<meta name="keyword"
-	content="html5, css, bootstrap, property, real-estate theme , bootstrap template">
+<title>회원가입</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
-<link
-	href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700,800'
-	rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700,800' rel='stylesheet' type='text/css'>
 
-<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-<link rel="icon" href="favicon.ico" type="image/x-icon">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/garoestate/assets/css/normalize.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/garoestate/assets/css/font-awesome.min.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/garoestate/assets/css/fontello.css">
+<link href="<%=request.getContextPath()%>/resources/garoestate/assets/fonts/icon-7-stroke/css/pe-icon-7-stroke.css" rel="stylesheet">
+<link href="<%=request.getContextPath()%>/resources/garoestate/assets/fonts/icon-7-stroke/css/helper.css" rel="stylesheet">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/garoestate/assets/css/bootstrap-select.min.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/garoestate/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/garoestate/assets/css/icheck.min_all.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/garoestate/assets/css/price-range.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/garoestate/assets/css/style.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/garoestate/assets/css/responsive.css">
 
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/resources/garoestate/assets/css/normalize.css">
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/resources/garoestate/assets/css/font-awesome.min.css">
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/resources/garoestate/assets/css/fontello.css">
-<link
-	href="<%=request.getContextPath()%>/resources/garoestate/assets/fonts/icon-7-stroke/css/pe-icon-7-stroke.css"
-	rel="stylesheet">
-<link
-	href="<%=request.getContextPath()%>/resources/garoestate/assets/fonts/icon-7-stroke/css/helper.css"
-	rel="stylesheet">
-<link
-	href="<%=request.getContextPath()%>/resources/garoestate/assets/css/animate.css"
-	rel="stylesheet" media="screen">
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/resources/garoestate/assets/css/bootstrap-select.min.css">
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/resources/garoestate/bootstrap/css/bootstrap.min.css">
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/resources/garoestate/assets/css/icheck.min_all.css">
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/resources/garoestate/assets/css/price-range.css">
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/resources/garoestate/assets/css/owl.carousel.css">
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/resources/garoestate/assets/css/owl.theme.css">
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/resources/garoestate/assets/css/owl.transitions.css">
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/resources/garoestate/assets/css/style.css">
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/resources/garoestate/assets/css/responsive.css">
+<script src="<%=request.getContextPath()%>/resources/garoestate/assets/js/modernizr-2.6.2.min.js"></script>
+<script src="<%=request.getContextPath()%>/resources/garoestate/assets/js/jquery-1.10.2.min.js"></script>
+<script src="<%=request.getContextPath()%>/resources/garoestate/bootstrap/js/bootstrap.min.js"></script>
+<script src="<%=request.getContextPath()%>/resources/garoestate/assets/js/bootstrap-select.min.js"></script>
+<script src="<%=request.getContextPath()%>/resources/garoestate/assets/js/bootstrap-hover-dropdown.js"></script>
+<script src="<%=request.getContextPath()%>/resources/garoestate/assets/js/easypiechart.min.js"></script>
+<script src="<%=request.getContextPath()%>/resources/garoestate/assets/js/jquery.easypiechart.min.js"></script>
+<script src="<%=request.getContextPath()%>/resources/garoestate/assets/js/wow.js"></script>
+<script src="<%=request.getContextPath()%>/resources/garoestate/assets/js/icheck.min.js"></script>
+<script src="<%=request.getContextPath()%>/resources/garoestate/assets/js/owl.carousel.min.js"></script>
+<script src="<%=request.getContextPath()%>/resources/garoestate/assets/js/price-range.js"></script>
+<script src="<%=request.getContextPath()%>/resources/garoestate/assets/js/main.js"></script>
 </head>
 <body>
 	<jsp:include page="../header.jsp" />
@@ -86,6 +61,10 @@
 								<div class="form-group">
 									<label>비밀번호</label>
 									<input type="password" class="form-control" name="password">
+								</div>
+								<div class="form-group">
+									<label>비밀번호 확인</label>
+									<input type="password" class="form-control" name="passwordCheck">
 								</div>
 								<div class="form-group">
 									<label>이름</label>
@@ -125,7 +104,7 @@
 											<input type="text" class="form-control" name="email" style="width:100%;">
 										</div>
 										<div class="col-xs-2" >
-											<button id="checkEmailBtn" type="submit" class="btn btn-default" style="width: 100px;">인증번호</button>
+											<button id="checkEmailBtn" type="button" class="btn btn-default" style="width: 100px;">인증번호</button>
 										</div>
 									</div>
 								</div>
@@ -136,7 +115,7 @@
 											disabled="disabled" placeholder="인증번호를 입력하세요." style="width:100%;">
 										</div>
 										<div class="col-xs-2" >
-											<button id="confirmEmailBtn" type="submit" class="btn btn-default" style="width: 100px;">확인</button>
+											<button id="confirmEmailBtn" type="button" class="btn btn-default" style="width: 100px;">확인</button>
 										</div>
 									</div>
 								</div>
@@ -154,8 +133,13 @@
 	<jsp:include page="../footer.jsp" />
 	
 	<script>
+		// 값이 1이면 회원가입 가능 상태
 		var allowRegister = 0;
 		var checkDupId = 0;
+		var checkEmailCert = 0;
+		var checkPass = 0;
+		// 이메일 인증 번호
+		var certNum = 0;
 		
 		function checkForm(){
 			let testId = /^[a-z]{1}[a-z0-9_-]{4,19}$/;
@@ -166,11 +150,11 @@
 			let testLicense = /^(1[1-9]|2[0-68-8])([0-9]{2}[0-9]{6}[0-9]{2})$/;
 			let testEmail = /([!#-'*+-9=?A-Z^-~-]+(\.[!#-'*+-9=?A-Z^-~-]+)*|\"\(\[\]!#-[^-~ \t]|(\\[\t -~])+\")@([!#-'*+-9=?A-Z^-~-]+(\.[!#-'*+-9=?A-Z^-~-]+)*|\[[\t -Z^-~]*])/;
 			
-			if(allowRegister == 0 || checkDupId == 0){
+			if(allowRegister == 0 || checkDupId == 0 || checkEmailCert == 0 || checkPass == 0){
 				return false;
 			} else if($('[name=username]').val() == '' | $('[name=password]').val() == '' | $('[name=name]').val() == ''
 			| $('[name=birth]').val() == '' | $('[name=gender]').val() == '' | $('[name=phonNumber]').val() == ''
-			| $('[name=license]').val() == '' | $('[name=email]').val() == '') {
+			| $('[name=license]').val() == '' | $('[name=email]').val() == '' | $('[name=checkEmail]'.val() == '')) {
 				return false;
 			} else if(!testId.test($('[name=username]').val()) | !testPass.test($('[name=password]').val())
 			| !testName.test($('[name=name]').val()) | !testBirth.test($('[name=birth]').val())
@@ -213,9 +197,33 @@
 			});
 		}
 		
+		$('[name=password]').on('change', isPassEq);
+		$('[name=passwordCheck]').on('change', isPassEq);
+		
+		function isPassEq() {
+			let pass = $('[name=password]').val();
+			let passChk = $('[name=passwordCheck]').val();
+			
+			if(pass != passChk) {
+				$('[name=passwordCheck]').next().remove();
+				$('[name=passwordCheck]').after('<div style="color: red;">비밀번호가 일치하지 않습니다.</div>');
+				checkPass = 0;
+			} else {
+				$('[name=passwordCheck]').next().remove();
+				$('[name=passwordCheck]').after('<div style="color: green;">비밀번호가 일치합니다.</div>');
+				checkPass = 1;
+			}
+		}
+		
 		// 아이디 중복확인 후 다시 아이디 작성 시 폼 onsubmit return값 관리
 		$('[name=username]').on('change', function(){
 			checkDupId = 0;
+		})
+		
+		// 이메일 인증 후 다시 이메일 작성 시 폼 onsubmit return값 관리
+		$('[name=email]').on('change', function(){
+			$('[name=checkEmail]').next().remove();
+			checkEmailCert = 0;
 		})
 		
 		// ID 유효성 체크 (영어 소문자로 시작, 영어 소문자, 숫자, 특수문자(-, _) 가능)
@@ -235,13 +243,13 @@
 		
 		// 패스워드 유효성 체크
 		$('[name=password]').on('blur', function(){
-			let testPass = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&\*])[\da-zA-Z!@#$%^&\*]{8,30}$/;
+			let testPass = /^(?=.*\d)(?=.*[a-z])(?=.*[!@#$%^&\*])[\da-zA-Z!@#$%^&\*]{8,30}$/;
 			if($('[name=password]').val() == ''){
 				$('[name=password]').next().remove();
 				$('[name=password]').after('<div style="color: red;">비밀번호를 입력하세요.</div>');
 			} else if(!testPass.test($('[name=password]').val())){
 				$('[name=password]').next().remove();
-				$('[name=password]').after('<div style="color: red;">8 ~ 30자 사이의 하나 이상의 알파벳 대소문자, 숫자, 특수문자로 이루어진 비밀번호를 작성하세요.</div>');
+				$('[name=password]').after('<div style="color: red;">8 ~ 30자 사이의 하나 이상의 알파벳 소문자, 숫자, 특수문자로 이루어진 비밀번호를 작성하세요.</div>');
 			} else {
 				$('[name=password]').next().remove();
 			}
@@ -341,6 +349,7 @@
 					if(email != null && testEmail.test(email)) {
 						alert("인증번호가 발송되었습니다.")
 						$('[name=checkEmail]').attr('disabled', false);
+						certNum = result;
 					} else {
 						alert("이메일 주소를 확인하세요.");
 					}
@@ -354,47 +363,16 @@
 		$("#confirmEmailBtn").on('click', confirmEmail);
 		
 		function confirmEmail() {
-			if($('[name=checkEmail]').val() == '') {
+			if($('[name=checkEmail]').val() == certNum) {
 				$('[name=checkEmail]').next().remove();
-				$('[name=checkEmail]').after('<div style="color: red;">인증번호를 입력하세요.</div>');
-			} else if(!testEmail.test($('[name=email]').val())){
-				$('[name=checkEmail]').next().remove();
-				$('[name=checkEmail]').after('<div style="color: red;">인증번호가 일치하지 않습니다.</div>');
+				$('[name=checkEmail]').after('<div style="color: green;">인증번호가 일치합니다.</div>');
+				checkEmailCert = 1;
 			} else {
 				$('[name=checkEmail]').next().remove();
+				$('[name=checkEmail]').after('<div style="color: red;">인증번호가 일치하지 않습니다. 인증번호를 확인하세요.</div>');
 			}
 		}
 	</script>
-	
-	<script
-		src="<%=request.getContextPath()%>/resources/garoestate/assets/js/modernizr-2.6.2.min.js"></script>
-
-	<script
-		src="<%=request.getContextPath()%>/resources/garoestate/assets/js/jquery-1.10.2.min.js"></script>
-	<script
-		src="<%=request.getContextPath()%>/resources/garoestate/bootstrap/js/bootstrap.min.js"></script>
-	<script
-		src="<%=request.getContextPath()%>/resources/garoestate/assets/js/bootstrap-select.min.js"></script>
-	<script
-		src="<%=request.getContextPath()%>/resources/garoestate/assets/js/bootstrap-hover-dropdown.js"></script>
-
-	<script
-		src="<%=request.getContextPath()%>/resources/garoestate/assets/js/easypiechart.min.js"></script>
-	<script
-		src="<%=request.getContextPath()%>/resources/garoestate/assets/js/jquery.easypiechart.min.js"></script>
-
-	<script
-		src="<%=request.getContextPath()%>/resources/garoestate/assets/js/owl.carousel.min.js"></script>
-	<script
-		src="<%=request.getContextPath()%>/resources/garoestate/assets/js/wow.js"></script>
-
-	<script
-		src="<%=request.getContextPath()%>/resources/garoestate/assets/js/icheck.min.js"></script>
-	<script
-		src="<%=request.getContextPath()%>/resources/garoestate/assets/js/price-range.js"></script>
-
-	<script
-		src="<%=request.getContextPath()%>/resources/garoestate/assets/js/main.js"></script>
 
 </body>
 </html>

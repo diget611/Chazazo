@@ -1,5 +1,8 @@
 package kh.spring.chazazo.member.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -11,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import kh.spring.chazazo.member.model.dto.MemberReqDto;
+import kh.spring.chazazo.common.email.MailSendService;
 import kh.spring.chazazo.member.model.dto.MemberInfoReqDto;
 import kh.spring.chazazo.member.model.service.MemberService;
 
@@ -20,6 +24,8 @@ public class MemberController {
 	
 	@Autowired
 	private MemberService mService;
+	@Autowired
+	private MailSendService mailService;
 	
 	@GetMapping
 	public ModelAndView viewMemberList(ModelAndView mv) {
@@ -44,11 +50,40 @@ public class MemberController {
 	
 	@PostMapping("/register")
 	public ModelAndView insertMember(ModelAndView mv, MemberReqDto memberDto, MemberInfoReqDto memberInfoDto) {
-		mService.insert(memberDto, memberInfoDto);
+		int result = mService.insert(memberDto, memberInfoDto);
+		if(result > 0) {
+			mv.setViewName("redirect:/member/login");
+		} else {
+			mv.setViewName("redirect:/");
+		}
 		return mv;
 	}
 	
-	@GetMapping("/profile")
+	@GetMapping("/register/exist")
+	public int checkDup(String username) {
+		int result = mService.checkDup(username);
+		return result;
+	}
+	
+	@GetMapping("/register/email")
+	public String checkEmail(String email) {
+		return mailService.joinEmail(email);
+	}
+	
+	@GetMapping("/find")
+	public ModelAndView viewFindPage(ModelAndView mv) {
+		mv.setViewName("member/find");
+		return mv;
+	}
+	
+	@GetMapping("/findid")
+	public List<String> findId(ModelAndView mv, String email) {
+		List<String> idxList = new ArrayList<String>();
+		idxList = mService.forFindId(email);
+		return idxList;
+	}
+	
+	@GetMapping("/profile/{username}")
 	public ModelAndView viewUpdateMember(ModelAndView mv) {
 		// 회원정보 수정 페이지 조회
 		mv.setViewName("member/profile");

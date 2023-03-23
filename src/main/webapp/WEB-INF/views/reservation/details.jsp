@@ -1,70 +1,45 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<c:set var="cpath" value="${pageContext.request.contextPath}"/>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!-->
-<html class="no-js">
-<!--<![endif]-->
+<html>
 <head>
 <meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>GARO ESTATE | Home page</title>
-<meta name="description" content="GARO is a real-estate template">
-<meta name="author" content="Kimarotec">
-<meta name="keyword"
-	content="html5, css, bootstrap, property, real-estate theme , bootstrap template">
+<title>예약 하기</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
-<link
-	href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700,800'
-	rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700,800' rel='stylesheet' type='text/css'>
 
-<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-<link rel="icon" href="favicon.ico" type="image/x-icon">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/garoestate/assets/css/normalize.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/garoestate/assets/css/font-awesome.min.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/garoestate/assets/css/fontello.css">
+<link href="<%=request.getContextPath()%>/resources/garoestate/assets/fonts/icon-7-stroke/css/pe-icon-7-stroke.css" rel="stylesheet">
+<link href="<%=request.getContextPath()%>/resources/garoestate/assets/fonts/icon-7-stroke/css/helper.css" rel="stylesheet">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/garoestate/assets/css/bootstrap-select.min.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/garoestate/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/garoestate/assets/css/icheck.min_all.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/garoestate/assets/css/price-range.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/garoestate/assets/css/style.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/garoestate/assets/css/responsive.css">
 
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/resources/garoestate/assets/css/normalize.css">
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/resources/garoestate/assets/css/font-awesome.min.css">
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/resources/garoestate/assets/css/fontello.css">
-<link
-	href="<%=request.getContextPath()%>/resources/garoestate/assets/fonts/icon-7-stroke/css/pe-icon-7-stroke.css"
-	rel="stylesheet">
-<link
-	href="<%=request.getContextPath()%>/resources/garoestate/assets/fonts/icon-7-stroke/css/helper.css"
-	rel="stylesheet">
-<link
-	href="<%=request.getContextPath()%>/resources/garoestate/assets/css/animate.css"
-	rel="stylesheet" media="screen">
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/resources/garoestate/assets/css/bootstrap-select.min.css">
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/resources/garoestate/bootstrap/css/bootstrap.min.css">
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/resources/garoestate/assets/css/icheck.min_all.css">
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/resources/garoestate/assets/css/price-range.css">
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/resources/garoestate/assets/css/owl.carousel.css">
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/resources/garoestate/assets/css/owl.theme.css">
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/resources/garoestate/assets/css/owl.transitions.css">
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/resources/garoestate/assets/css/style.css">
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/resources/garoestate/assets/css/responsive.css">
-<link rel="stylesheet" 
-	href="<%=request.getContextPath()%>/resources/garoestate/assets/css/lightslider.min.css">
+<script src="<%=request.getContextPath()%>/resources/garoestate/assets/js/modernizr-2.6.2.min.js"></script>
+<script src="<%=request.getContextPath()%>/resources/garoestate/assets/js/jquery-1.10.2.min.js"></script>
+<script src="<%=request.getContextPath()%>/resources/garoestate/bootstrap/js/bootstrap.min.js"></script>
+<script src="<%=request.getContextPath()%>/resources/garoestate/assets/js/bootstrap-select.min.js"></script>
+<script src="<%=request.getContextPath()%>/resources/garoestate/assets/js/bootstrap-hover-dropdown.js"></script>
+<script src="<%=request.getContextPath()%>/resources/garoestate/assets/js/easypiechart.min.js"></script>
+<script src="<%=request.getContextPath()%>/resources/garoestate/assets/js/jquery.easypiechart.min.js"></script>
+<script src="<%=request.getContextPath()%>/resources/garoestate/assets/js/wow.js"></script>
+<script src="<%=request.getContextPath()%>/resources/garoestate/assets/js/icheck.min.js"></script>
+<script src="<%=request.getContextPath()%>/resources/garoestate/assets/js/owl.carousel.min.js"></script>
+<script src="<%=request.getContextPath()%>/resources/garoestate/assets/js/price-range.js"></script>
+<script src="<%=request.getContextPath()%>/resources/garoestate/assets/js/main.js"></script>
 </head>
 <body>
+
 	<jsp:include page="../header.jsp"/>
+						
+	
 	<section>
 		<div class="content-area single-property" style="background-color: #FCFCFC;">
 			<div class="container">
@@ -145,14 +120,21 @@
 							</div>
 							<!-- .property-meta -->
 							<div class="section">
-								<h4 class="s-property-title">Description</h4>
+								<h4 class="s-property-title">운전자 대여조건</h4>
 								<div class="s-property-content">
-									<p>Nulla quis dapibus nisl. Suspendisse ultricies Nulla quis dapibus nisl. Suspendisse ultricies commodo arcu nec pretium. Nullam sed arcu ultricies commodo arcu nec pretium. Nullam sed arcu ultricies Nulla quis dapibus nisl. Suspendisse ultricies commodo arcu nec pretium. Nullam sed arcu ultricies Nulla quis dapibus nisl. Suspendisse ultricies commodo arcu nec pretium. Nullam sed arcu ultricies                                </p>
+								<p>
+										운전자 나이 만 21세 이상<br>
+										
+										면허취득일 1년 이상<br>
+										
+										차량 대여 시 실물면허증 소지 (2종 보통 면허 이상 필요)<br>
+										
+										업체별 대여규정 준수 (외국인 대여, 낚시용품/애견 동반, 주행거리제한 규정 등)
 								</div>
 							</div>
 							<!-- End description area  -->
 							<div class="section additional-details">
-								<h4 class="s-property-title">Additional Details</h4>
+								<h4 class="s-property-title">차량 정보</h4>
 								<ul class="additional-details-list clearfix">
 									<li>
 										<span class="col-xs-6 col-sm-4 col-md-4 add-d-title">Waterfront</span>
@@ -182,14 +164,9 @@
 							</div>  
 							<!-- End additional-details area  -->
 							<div class="section property-features">      
-								<h4 class="s-property-title">Features</h4>                            
+								<h4 class="s-property-title">대여점 정보</h4>                            
 								<ul>
-									<li><a href="properties.html">Swimming Pool</a></li>   
-									<li><a href="properties.html">3 Stories</a></li>
-									<li><a href="properties.html">Central Cooling</a></li>
-									<li><a href="properties.html">Jog Path 2</a></li>
-									<li><a href="properties.html">2 Lawn</a></li>
-									<li><a href="properties.html">Bike Path</a></li>
+									<p> 대여점 이름, 주소, 정보....
 								</ul>
 								<!-- 리뷰 영역 시작 -->
 								<div class="section">
@@ -202,8 +179,23 @@
 								<!-- End features area  -->
 							</div>
 						</div>
+					</div>
+					
+					
+					<!-- 우측 카테고리 시작 -->
+						<!-- 날짜 선택 시작 -->
+	
+						<div class="col-md-4 p0" style="padding-left:30px  float:rigth">
+							<aside class="sidebar sidebar-property blog-asside-right">
+								<section class="mt-3 p-3">
+									<h6>날짜 선택</h6><hr>
+										<jsp:include page="datepicker.jsp"/>
+								</section>
+							</aside>
+						</div>
+						<!-- 날짜 선택 끝 -->
 						<!-- 결제영역 시작 -->
-						<div class="col-md-4 p0" style="padding-left:30px">
+						<div class="col-md-4 p0" style="padding-left:30px  float:rigth">
 							<aside class="sidebar sidebar-property blog-asside-right">
 								<section class="mt-3 p-3">
 									<h5>결제 정보</h5><hr>
@@ -228,7 +220,7 @@
 							</aside>
 						</div>
 						<!-- 결제영역 끝 --> 
-					</div>
+						<!-- 우측 카테고리 시작 -->
 				</div>
 			</div>
 		</div>
@@ -236,36 +228,7 @@
 	
 	<jsp:include page="../footer.jsp"/>
 	
-	<script
-		src="<%=request.getContextPath()%>/resources/garoestate/assets/js/modernizr-2.6.2.min.js"></script>
-
-	<script
-		src="<%=request.getContextPath()%>/resources/garoestate/assets/js/jquery-1.10.2.min.js"></script>
-	<script
-		src="<%=request.getContextPath()%>/resources/garoestate/bootstrap/js/bootstrap.min.js"></script>
-	<script
-		src="<%=request.getContextPath()%>/resources/garoestate/assets/js/bootstrap-select.min.js"></script>
-	<script
-		src="<%=request.getContextPath()%>/resources/garoestate/assets/js/bootstrap-hover-dropdown.js"></script>
-
-	<script
-		src="<%=request.getContextPath()%>/resources/garoestate/assets/js/easypiechart.min.js"></script>
-	<script
-		src="<%=request.getContextPath()%>/resources/garoestate/assets/js/jquery.easypiechart.min.js"></script>
-
-	<script
-		src="<%=request.getContextPath()%>/resources/garoestate/assets/js/owl.carousel.min.js"></script>
-	<script
-		src="<%=request.getContextPath()%>/resources/garoestate/assets/js/wow.js"></script>
-
-	<script
-		src="<%=request.getContextPath()%>/resources/garoestate/assets/js/icheck.min.js"></script>
-	<script
-		src="<%=request.getContextPath()%>/resources/garoestate/assets/js/price-range.js"></script>
-
-	<script
-		src="<%=request.getContextPath()%>/resources/garoestate/assets/js/main.js"></script>
-	 <script type="text/javascript" src="<%=request.getContextPath()%>/resources/garoestate/assets/js/lightslider.min.js"></script>
-
 </body>
+
+
 </html>

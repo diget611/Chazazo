@@ -1,5 +1,7 @@
 package kh.spring.chazazo.member.model.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -33,6 +35,11 @@ public class MemberServiceImp implements MemberService {
 	@Override
 	public int checkDup(String username) {
 		return dao.checkDup(username);
+	}
+
+	@Override
+	public List<String> forFindId(String email) {
+		return dao.forFindId(email);
 	}
 
 }

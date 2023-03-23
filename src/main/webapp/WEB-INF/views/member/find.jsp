@@ -126,7 +126,6 @@
 			<button type="button" id="modalCloseBtn">확인</button>
 		</div>		
 	</div>
-	<button type="button" id="modalOpenBtn">Modal 띄우기</button>
 	
 	<jsp:include page="../footer.jsp"/>
 	
@@ -146,7 +145,12 @@
 				type: 'get',
 				data: {email: email},
 				success: function(result){
-					$('#resultBox').html(result);
+					let list = "";
+					for(let i = 0; i < result.length; i++) {
+						list = "<div>" + result + "</div>";
+					}
+					console.log(list);
+					$('#modalCloseBtn').before(list);
 					modal.style.display = 'block';
 				},
 				error: function(){

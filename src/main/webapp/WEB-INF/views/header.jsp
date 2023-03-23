@@ -26,19 +26,19 @@
 			<ul class="main-nav nav navbar-nav navbar-right">
 				<li class="wow fadeInDown animated" data-wow-delay="0.2s"
 					style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInDown;"><a
-					class="" href="http://localhost:8080/chazazo/carlist">예약</a></li>
+					class="" href="<%=request.getContextPath() %>/carlist">예약</a></li>
 				<li class="wow fadeInDown animated" data-wow-delay="0.2s"
 					style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInDown;"><a
-					class="" href="http://localhost:8080/chazazo/event">이벤트</a></li>
+					class="" href="<%=request.getContextPath() %>/event">이벤트</a></li>
 				<li class="wow fadeInDown animated" data-wow-delay="0.3s"
 					style="visibility: visible; animation-delay: 0.3s; animation-name: fadeInDown;"><a
-					class="" href="http://localhost:8080/chazazo/mypage">마이페이지</a></li>
+					class="" href="<%=request.getContextPath() %>/mypage">마이페이지</a></li>
 				<li class="wow fadeInDown animated" data-wow-delay="0.5s"
 					style="visibility: visible; animation-delay: 0.5s; animation-name: fadeInDown;"><a
-					href="http://localhost:8080/chazazo/location">지점 안내</a></li>
+					href="<%=request.getContextPath() %>/location">지점 안내</a></li>
 				<li class="wow fadeInDown animated" data-wow-delay="0.5s"
 					style="visibility: visible; animation-delay: 0.5s; animation-name: fadeInDown;"><a
-					href="http://localhost:8080/chazazo/qna">문의</a></li>	
+					href="<%=request.getContextPath() %>/qna">문의</a></li>	
 			</ul>
 		</div>
 		<!-- /.navbar-collapse -->

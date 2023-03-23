@@ -27,27 +27,7 @@
     <script type='text/javascript' src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/js/bootstrap-datepicker.min.js"></script>
 
 
-    <script type='text/javascript'>
 
-    $(function(){
-
-        $('.input-group.date').datepicker({
-
-            calendarWeeks: false,
-
-            todayHighlight: true,
-
-            autoclose: true,
-
-            format: "yyyy/mm/dd",
-
-            language: "kr"
-
-        });
-
-    });
-
-    </script>
 
 </head>
 
@@ -67,6 +47,26 @@
         </div>
 
     </div>
+    
+        <script type='text/javascript'>
+
+
+
+        $('.input-group.date').datepicker({
+
+            calendarWeeks: false,
+
+            todayHighlight: true,
+
+            autoclose: true,
+
+            format: "yyyy/mm/dd",
+
+            language: "kr"
+
+        });
+
+    </script>
 
 </body>
 <script>

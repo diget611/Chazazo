@@ -10,6 +10,8 @@
 <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
 <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700,800' rel='stylesheet' type='text/css'>
 
+<!-- CSS only -->
+
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/garoestate/assets/css/normalize.css">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/garoestate/assets/css/font-awesome.min.css">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/garoestate/assets/css/fontello.css">
@@ -190,37 +192,42 @@
 						<div class="col-md-4 p0" style="padding-left:30px  float:rigth">
 							<aside class="sidebar sidebar-property blog-asside-right">
 								<section class="mt-3 p-3">
-									<h6>날짜 선택</h6><hr>
-										<form action="" id="dateForm">
-
-											대여일<input type="date" name="startDate" id="startDate" min="today">
-											
-											반납일<input type="date" name="endDate" id="endDate"  min="today">
-
-											<button type="button" id="calculate" style="color:blue">날짜 선택 완료</button>
-											
-											</form>
-											
-											
+										<form>
+											<label>대여일</label><input type="date" name="startDate" id="startDate" min="today">
+											<label>반납일</label><input type="date" name="endDate" id="endDate"  min="today">
+										</form>
 											<hr>
+									<div class="col-md-12" style="padding-bottom:100px">                                   
+                                        <div class="btn-group bootstrap-select">
+                                 
+	                                   	  <select id="select" name="select" class="selectpicker" >
+	                                            <option selected disabled>보험 선택</option>
+	                                            <option value="0.1">일반자차(기본)</option>
+	                                            <option value="0.2">완전자차</option>
+	                                            <option value="0.5">슈퍼자차</option>
+	                                        </select>
+                                        </div>
+                                    </div>
+                                    
 									<section class="mt-3 p-3">
-									<h5>결제 정보</h5><hr>
+									<h6>결제 정보</h6><hr>
 									<table class="table">
 										<tbody>
 											<tr>
 												<th>대여 일수</th>
-												<td><span id="day-count"> </span>일</td>
-												
-												<th>대여요금</th>
-												<td>22000원</td>
+												<td><label id="day-count"></label><label>일</label></td>
 											</tr>
 											<tr>
-												<th>할인적용</th>
-												<td>5000원</td>
+												<th>기본 대여 요금</th>
+												<td><label id="rentPrice"></label><label>원</label></td>
+											</tr>
+											<tr>
+												<th>보험 추가 요금</th>
+												<td><label id="addIns"></label><label>원</label></td>
 											</tr>
 											<tr>
 												<th>예상결제금액</th>
-												<td>17000원</td>
+												<td><label id="expIns"></label><label>원</label></td>
 											</tr>
 										</tbody>
 									</table>
@@ -242,13 +249,13 @@
 
 <script>
 	 document.getElementById('startDate').valueAsDate = new Date();
+	 document.getElementById('endDate').valueAsDate = new Date(); 
      var today = new Date();   
 
      var dd = today.getDate();
      var mm = today.getMonth() + 1; 
      var yyyy = today.getFullYear();
-     var compareDate;
-  
+    
      if (mm < 10) {
      	   mm = '0' + mm;
      	} 
@@ -256,23 +263,36 @@
      today = yyyy + '-' + mm + '-' + dd;
      document.getElementById("startDate").setAttribute("min", today);
      document.getElementById("endDate").setAttribute("min", today);
+     
 
 </script>
 
 <script>
      
-     $('#calculate').on('click', btnClick);
-       
-      function btnClick () {
+  
+     
+     $('#startDate').on('change', calc);
+     $('#endDate').on('change', calc);
+     $('#select').on('change', calc);
+
+     
+     function calc () {
         var startDate = new Date($('#startDate').val());
         var endDate = new Date($('#endDate').val());
-      	 compareDate = Math.round((endDate.getTime() - startDate.getTime()) / 1000 / 60 / 60 / 24) + 1;
-      
+         compareDate = Math.round((endDate.getTime() - startDate.getTime()) / 1000 / 60 / 60 / 24) + 1;
+      	var price = ${car.price};
+      	var insurance = $('#select').val(); //추가요금
+     
+      	
        if(compareDate <0) {
-    	   alert("반납일은 대여일보다 먼저 올 수 없습니다.");
+    	   alert("반납일이 대여일보다 먼저 올 수 없습니다.다시 선택해 주세요.");
 			return false;
        }else {
-     	  $('#day-count').text(compareDate);    	   
+     	  $('#day-count').text(compareDate);
+     	  $('#rentPrice').text((price * compareDate).toLocaleString());
+     	  $("#addIns").text((price * insurance).toLocaleString());
+     	  $("#expIns").text((compareDate*price+price * insurance).toLocaleString());
+     	
        }
        
       }

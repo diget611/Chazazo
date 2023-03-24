@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>회원가입</title>
+<title>아이디 | 비밀번호 찾기</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
 <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700,800' rel='stylesheet' type='text/css'>
@@ -87,7 +87,7 @@
 							<form action="" method="get">
 								<div class="form-group">
 									<label>가입하신 이메일 주소를 입력해주세요.</label>
-									<input type="text" class="form-control" id="findId" name="email">
+									<input type="text" class="form-control" id="findId" name="idemail">
 								</div>
 								<div class="text-center">
 									<button id="findIdBtn" type="button" class="btn btn-default">아이디 찾기</button>
@@ -107,10 +107,10 @@
 								</div>
 								<div class="form-group">
 									<label>가입하신 이메일 주소를 입력해주세요.</label>
-									<input type="text" class="form-control" id="findEmail" name="email">
+									<input type="text" class="form-control" id="findEmail" name="passemail">
 								</div>
 								<div class="text-center">
-									<button type="button" class="btn btn-default">비밀번호 찾기</button>
+									<button type="button" class="btn btn-default" id="findPassBtn">비밀번호 찾기</button>
 								</div>
 							</form>
 						</div>
@@ -122,7 +122,6 @@
 	
 	<div class="modal">
 		<div class="modal_body">
-			<div id="resultBox"></div>
 			<button type="button" id="modalCloseBtn">확인</button>
 		</div>		
 	</div>
@@ -130,28 +129,51 @@
 	<jsp:include page="../footer.jsp"/>
 	
 	<script>
-		var modal = document.querySelector('.modal');
-
 		$('#modalCloseBtn').on('click', function() {
-			modal.style.display = 'none';
+			$('.modal').css('display', 'none');
 		});
 		
 		$('#findIdBtn').on('click', findId);
 		
-		function findId() {
-			let email = $('[name=email]').val()
+		function findId(){
+			let email = $('[name=idemail]').val();
 			$.ajax({
 				url: "<%=request.getContextPath()%>/member/findid",
 				type: 'get',
 				data: {email: email},
 				success: function(result){
 					let list = "";
-					for(let i = 0; i < result.length; i++) {
-						list += "<div>" + result[i] + "</div>";
-					}
-					console.log(list);
-					$('#modalCloseBtn').before(list);
-					modal.style.display = 'block';
+					if(result != '') {
+						// TODO : 내용 정리 어떻게 하지
+						$('#modalCloseBtn').before('');
+						for(let i = 0; i < result.length; i++) {
+							list += "<div>" + result[i] + "</div>";
+						}
+						$('#modalCloseBtn').before(list);						
+					} else {
+						$('#modalCloseBtn').before('');
+						list = "<div>입력하신 이메일로 가입한 아이디가 존재하지 않습니다.</div>"
+						$('#modalCloseBtn').before(list);
+					}					
+					$('.modal').css('display', 'block');
+				},
+				error: function(){
+					
+				}
+			});
+		}
+		
+		$('#findPassBtn').on('click', findPass);
+		
+		function findPass(){
+			let username = $('[name=username]').val();
+			let email = $('[name=passemail]').val();
+			$.ajax({
+				url: "<%=request.getContextPath()%>/member/findpass",
+				type: 'get',
+				data: {username: username, email: email},
+				success: function(result){
+					
 				},
 				error: function(){
 					

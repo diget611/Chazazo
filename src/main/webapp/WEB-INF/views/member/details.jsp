@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -129,39 +130,29 @@
 					</div>   
 				</div>
 				<div class="blog-lst col-md-8 p0 " style="float: right;">
-					
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
 					<section id="id-100" class="post single">
-						<div id="post-content" style="visibility: visible; animation-name: fadeInLeft;">
-							<div class="container-loading-dot" id="mypage_loading_rent_list" style="display:none;">
-								
-							
-							</div>
-							<div id="mypage_none_rent_history" style="display:block; margin-top:100px;">
-								<div class="text-center">
-									<h4>진행중인 렌트내역이 없습니다</h4>
-									<button class="js-mypage-btn-go-car-list btn btn-outline-primary btn-block max-w-lg-40rem mx-auto py-1" onclick="moveRent();">렌트하러 가기</button>
-									<button class="js-mypage-btn-none-member-search btn btn-link btn-block color-grey-3 font-weight-normal max-w-lg-40rem mx-auto py-1 tmobi-dc-none" onclick="moveNoneMemberReservation();">비회원 예약조회</button>
-								</div>
-							
-							</div>
-							
-							
+						<div>
+							<div>예약 상세 조회</div>
+										<table>
+											<tr>
+												<th scope="row">예약자</th>
+												<td>${reservation.idx }</td>
+												<th scope="row">예약시작날짜</th>
+												<td>${reservation.reservStart }</td>
+												<th scope="row">예약날자</th>
+												<td>${reservation.reservEnd }</td>
+												<th scope="row">보험종류</th>
+												<td>${reservation.insuranceIdx }</td>
+												<th scope="row">차종류</th>
+												<td>${reservation.vehicleIdx }</td>
+												<th scope="row">대여지점</th>
+												<td>${reservation.rentLocation }</td>
+												<th scope="row">반납지점</th>
+												<td>${reservation.returnLocation }</td>
+											</tr>
+										</table>
+								</div>	
 					</section>
-					
 				</div>                    
 			</div>
 		</div>
@@ -179,3 +170,4 @@
 	</script>
 </body>
 </html>
+

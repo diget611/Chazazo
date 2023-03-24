@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>회원정보수정</title>
+<title>회원 정보 수정</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
 <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700,800' rel='stylesheet' type='text/css'>
@@ -110,7 +110,7 @@
 				</div>
 				<div class="blog-lst col-md-8 p0 " style="float: right;">
 					<section id="id-100" class="post single">
-						<form action="<%=request.getContextPath() %>/member/mypage"
+						<form action="<%=request.getContextPath() %>/member/profile"
 								method="post" onsubmit="return false">
 								<div class="form-group">
 									<label>아이디</label>
@@ -163,7 +163,7 @@
 	
 	<script>
 		$('#updateinfoBtn').on('click', function() {
-			location.href='<%=request.getContextPath()%>/member/profile';
+			location.href='<%=request.getContextPath()%>/profile/reservation';
 		});
 	</script>
 </body>

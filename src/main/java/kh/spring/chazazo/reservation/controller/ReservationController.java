@@ -19,6 +19,8 @@ import kh.spring.chazazo.reservation.model.service.ReservationService;
 import kh.spring.chazazo.vehicle.model.dto.VehicleRespDto;
 
 @RestController
+
+
 public class ReservationController {
 	
 	@Autowired
@@ -41,9 +43,13 @@ public class ReservationController {
 	}
 
 	@GetMapping("/profile/reservation/{idx}")
-	public ModelAndView viewReservationOne(ModelAndView mv) {
+	public ModelAndView viewReservationOne(ModelAndView mv
+				, @PathVariable int idx) {
 		// 예약 정보 상세 조회
 		
+		mv.addObject("reservation", rService.selectOne(idx) );
+		
+		mv.setViewName("member/details");
 		
 		return mv;
 	}

@@ -118,7 +118,7 @@ public class MemberController {
 	@GetMapping("/profile/{username}/update")
 	public ModelAndView viewUpdateMember(ModelAndView mv) {
 		// 회원정보 수정 페이지 조회
-		mv.setViewName("member/profile");
+		
 		return mv;
 	}
 	

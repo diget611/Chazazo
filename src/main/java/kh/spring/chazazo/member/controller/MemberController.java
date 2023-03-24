@@ -4,8 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -37,12 +39,10 @@ public class MemberController {
 		return mv;
 	}
 	
-	@GetMapping("/mypage")
+	@GetMapping("/profile")
 	public ModelAndView viewMemberOne(ModelAndView mv, String username) {
-		// 회원 상세 조회
-		
+		// 마이페이지에 들어가는 url
 		mv.setViewName("/member/mypage");
-		
 		return mv;
 	}
 	
@@ -94,13 +94,13 @@ public class MemberController {
 		return mv;
 	}
 	
-//	@PostMapping
+	@PatchMapping("/profile/{username}")
 	public ModelAndView updateMember(ModelAndView mv, String password, MemberInfoReqDto dto) {
 		// 회원정보 수정 / Put, Patch 
 		return mv;
 	}
 	
-//	@PostMapping
+	@DeleteMapping("/profile/{username}")
 	public ModelAndView deleteMember(ModelAndView mv) {
 		// 회원탈퇴 / DeleteMapping
 		return mv;

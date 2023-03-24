@@ -87,10 +87,10 @@
 							<form action="" method="get">
 								<div class="form-group">
 									<label>가입하신 이메일 주소를 입력해주세요.</label>
-									<input type="text" class="form-control" id="findId" name="idemail">
+									<input type="text" class="form-control" id="findIdEmail" name="idemail">
 								</div>
 								<div class="text-center">
-									<button id="findIdBtn" type="button" class="btn btn-default">아이디 찾기</button>
+									<button type="button" class="btn btn-default" id="findIdBtn">아이디 찾기</button>
 								</div>
 							</form>
 						</div>
@@ -103,11 +103,11 @@
 							<form action="" method="get">
 								<div class="form-group">
 									<label>아이디를 입력해주세요.</label>
-									<input type="text" class="form-control" id="findId" name="username">
+									<input type="text" class="form-control" id="findPassId" name="username">
 								</div>
 								<div class="form-group">
 									<label>가입하신 이메일 주소를 입력해주세요.</label>
-									<input type="text" class="form-control" id="findEmail" name="passemail">
+									<input type="text" class="form-control" id="findPassEmail" name="passemail">
 								</div>
 								<div class="text-center">
 									<button type="button" class="btn btn-default" id="findPassBtn">비밀번호 찾기</button>
@@ -130,6 +130,22 @@
 	<jsp:include page="../footer.jsp"/>
 	
 	<script>
+		// 입력창에서 엔터 누를 시 작동할 버튼 할당
+		$('#findIdEmail').keydown(function() {
+			if(event.keyCode == 13) {
+				$('#findIdBtn').click();
+			}
+		});
+		
+		$('#findPassId').keydown(moveToFindPassBtn);
+		$('#findPassEmail').keydown(moveToFindPassBtn);
+		
+		function moveToFindPassBtn() {
+			if(event.keyCode == 13) {
+				$('#findPassBtn').click();
+			}
+		}
+		
 		$('#modalCloseBtn').on('click', function() {
 			$('.modal').css('display', 'none');
 		});

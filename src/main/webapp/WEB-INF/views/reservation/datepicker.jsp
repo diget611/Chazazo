@@ -72,6 +72,11 @@
 		            language: "kr"
 		        });
 		  	 </script>
+		  	 <script type='text/javascript'>
+				
+		
+		  	 
+		  	 </script>
    		 </div>
     </div>
     <!-- 날짜 선택 끝 -->

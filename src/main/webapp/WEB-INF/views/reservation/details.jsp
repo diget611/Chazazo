@@ -34,6 +34,39 @@
 <script src="<%=request.getContextPath()%>/resources/garoestate/assets/js/owl.carousel.min.js"></script>
 <script src="<%=request.getContextPath()%>/resources/garoestate/assets/js/price-range.js"></script>
 <script src="<%=request.getContextPath()%>/resources/garoestate/assets/js/main.js"></script>
+
+<!-- 날짜 선택 script -->
+
+
+<script type="text/javascript">
+	$(function() {
+	
+		$("#dateForm").submit(function(){
+
+	        var startDate = $('#startDate').val();
+	        var endDate = $('#endDate').val();
+	        
+	        var startArray = startDate.split('-');
+	        var endArray = endDate.split('-');   
+	        
+	        var start_date = new Date(startArray[0], startArray[1], startArray[2]);
+	        var end_date = new Date(endArray[0], endArray[1], endArray[2]);
+
+		    
+	        if(start_date.getTime() > end_date.getTime()) {
+	            alert("반납일이 대여일보다 먼저 올 수 없습니다.",start_date);
+	            return false;
+	        }
+	     });
+
+	});
+
+</script>
+	
+
+			
+	
+<!-- 날짜 선택 script 끝-->
 </head>
 <body>
 
@@ -189,19 +222,28 @@
 							<aside class="sidebar sidebar-property blog-asside-right">
 								<section class="mt-3 p-3">
 									<h6>날짜 선택</h6><hr>
-										<jsp:include page="datepicker.jsp"/>
-								</section>
-							</aside>
-						</div>
-						<!-- 날짜 선택 끝 -->
-						<!-- 결제영역 시작 -->
-						<div class="col-md-4 p0" style="padding-left:30px  float:rigth">
-							<aside class="sidebar sidebar-property blog-asside-right">
-								<section class="mt-3 p-3">
+										<form action="" id="dateForm">
+
+											대여일<input type="date" name="startDate" id="startDate">
+											
+											반납일<input type="date" name="endDate" id="endDate">
+
+											
+											<input type="submit" value="전송">
+											<button type="button" id="calculate">대여기간 계산</button>
+											
+											</form>
+											
+											
+											<hr>
+									<section class="mt-3 p-3">
 									<h5>결제 정보</h5><hr>
 									<table class="table">
 										<tbody>
 											<tr>
+												<th>대여 일수</th>
+												<td><span id="day-count"> </span>일</td>
+												
 												<th>대여요금</th>
 												<td>22000원</td>
 											</tr>
@@ -217,10 +259,11 @@
 									</table>
 								</section>
 								<button class="btn btn-default" type="button" onclick=" window.open('payment')" >결제하기</button>
+								</section>
 							</aside>
 						</div>
-						<!-- 결제영역 끝 --> 
-						<!-- 우측 카테고리 시작 -->
+						<!-- 날짜 선택 끝 -->
+						
 				</div>
 			</div>
 		</div>
@@ -229,6 +272,25 @@
 	<jsp:include page="../footer.jsp"/>
 	
 </body>
+<script>
+document.getElementById('startDate').valueAsDate = new Date();
+
+</script>
+<script>
+      // 코드를 입력하세요!
+      $('#calculate').on('click', btnClick);
+       
+      function btnClick () {
+        var startDate = new Date($('#startDate').val());
+        var endDate = new Date($('#endDate').val());
+        var compareDate;
+        var today = new Date();
+              
+       compareDate = Math.round((endDate.getTime() - startDate.getTime()) / 1000 / 60 / 60 / 24) + 1;
+       $('#day-count').text(compareDate);
+       
+      }
+ </script>
 
 
 </html>

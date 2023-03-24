@@ -40,7 +40,7 @@ public class MemberController {
 		return mv;
 	}
 	
-	@GetMapping("/mypage")
+	@GetMapping("/profile")
 	public ModelAndView viewMemberOne(ModelAndView mv, String username) {
 		// 마이페이지에 들어가는 url
 		mv.setViewName("/member/mypage");
@@ -115,14 +115,14 @@ public class MemberController {
 		return result;
 	}
 	
-	@GetMapping("/profile/{username}")
+	@GetMapping("/profile/{username}/update")
 	public ModelAndView viewUpdateMember(ModelAndView mv) {
 		// 회원정보 수정 페이지 조회
 		mv.setViewName("member/profile");
 		return mv;
 	}
 	
-	@PatchMapping("/profile/{username}")
+	@PatchMapping("/profile/{username}/update")
 	public ModelAndView updateMember(ModelAndView mv, String password, MemberInfoReqDto dto) {
 		// 회원정보 수정 / Put, Patch 
 		return mv;

@@ -31,7 +31,7 @@ public class ReservationController {
 		return mv;
 	}
 	
-	@GetMapping("/member/history")
+	@GetMapping("/profile/reservation")
 	public ModelAndView viewReservationListUser(ModelAndView mv) {
 		// 유저 예약 리스트 조회
 		
@@ -40,7 +40,7 @@ public class ReservationController {
 		return mv;
 	}
 
-	@GetMapping("/mypage/reservation/{idx}")
+	@GetMapping("/profile/reservation/{idx}")
 	public ModelAndView viewReservationOne(ModelAndView mv) {
 		// 예약 정보 상세 조회
 		
@@ -48,13 +48,13 @@ public class ReservationController {
 		return mv;
 	}
 
-	@PatchMapping("/mypage/reservation/{idx}")
+	@PatchMapping("/profile/reservation/{idx}")
 	public ModelAndView updateReservation(ModelAndView mv) {
 		// 예약 정보 수정
 		return mv;
 	}
 	
-	@DeleteMapping("/mypage/reservation/{idx}")
+	@DeleteMapping("/profile/reservation/{idx}")
 	public ModelAndView deleteReservation(ModelAndView mv) {
 		// 예약 정보 삭제
 		return mv;

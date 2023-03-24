@@ -84,7 +84,7 @@
 					<div class="box-for overflow">
 						<div class="col-md-12 col-xs-12 register-blocks">
 							<h2>아이디 찾기 : </h2> 
-							<form action="" method="get">
+							<form>
 								<div class="form-group">
 									<label>가입하신 이메일 주소를 입력해주세요.</label>
 									<input type="text" class="form-control" id="findIdEmail" name="idemail">
@@ -100,7 +100,7 @@
 					<div class="box-for overflow">
 						<div class="col-md-12 col-xs-12 register-blocks">
 							<h2>비밀번호 찾기 : </h2> 
-							<form action="" method="get">
+							<form>
 								<div class="form-group">
 									<label>아이디를 입력해주세요.</label>
 									<input type="text" class="form-control" id="findPassId" name="username">
@@ -134,6 +134,7 @@
 		$('#findIdEmail').keydown(function() {
 			if(event.keyCode == 13) {
 				$('#findIdBtn').click();
+				return false;
 			}
 		});
 		
@@ -163,11 +164,11 @@
 					if(result != '') {
 						// TODO : 내용 정리 어떻게 하지
 						$('.modal_body').children().eq(0).remove();
-						list += '입력하신 이메일 정보와 일치하는 아이디는';
+						list += '<div>입력하신 이메일 정보와 일치하는 아이디는</div>';
 						for(let i = 0; i < result.length; i++) {
 							list += '<div>' + result[i] + '</div>';
 						}
-						list += '입니다.';
+						list += '<div>입니다.</div>';
 						$('#modalCloseBtn').before(list);						
 					} else {
 						$('.modal_body').children().eq(0).remove();

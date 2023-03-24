@@ -84,13 +84,13 @@
 					<div class="box-for overflow">
 						<div class="col-md-12 col-xs-12 register-blocks">
 							<h2>아이디 찾기 : </h2> 
-							<form action="" method="get">
+							<form>
 								<div class="form-group">
 									<label>가입하신 이메일 주소를 입력해주세요.</label>
-									<input type="text" class="form-control" id="findId" name="idemail">
+									<input type="text" class="form-control" id="findIdEmail" name="idemail">
 								</div>
 								<div class="text-center">
-									<button id="findIdBtn" type="button" class="btn btn-default">아이디 찾기</button>
+									<button type="button" class="btn btn-default" id="findIdBtn">아이디 찾기</button>
 								</div>
 							</form>
 						</div>
@@ -100,14 +100,14 @@
 					<div class="box-for overflow">
 						<div class="col-md-12 col-xs-12 register-blocks">
 							<h2>비밀번호 찾기 : </h2> 
-							<form action="" method="get">
+							<form>
 								<div class="form-group">
 									<label>아이디를 입력해주세요.</label>
-									<input type="text" class="form-control" id="findId" name="username">
+									<input type="text" class="form-control" id="findPassId" name="username">
 								</div>
 								<div class="form-group">
 									<label>가입하신 이메일 주소를 입력해주세요.</label>
-									<input type="text" class="form-control" id="findEmail" name="passemail">
+									<input type="text" class="form-control" id="findPassEmail" name="passemail">
 								</div>
 								<div class="text-center">
 									<button type="button" class="btn btn-default" id="findPassBtn">비밀번호 찾기</button>
@@ -122,6 +122,7 @@
 	
 	<div class="modal">
 		<div class="modal_body">
+			<div></div>
 			<button type="button" id="modalCloseBtn">확인</button>
 		</div>		
 	</div>
@@ -129,6 +130,23 @@
 	<jsp:include page="../footer.jsp"/>
 	
 	<script>
+		// 입력창에서 엔터 누를 시 작동할 버튼 할당
+		$('#findIdEmail').keydown(function() {
+			if(event.keyCode == 13) {
+				$('#findIdBtn').click();
+				return false;
+			}
+		});
+		
+		$('#findPassId').keydown(moveToFindPassBtn);
+		$('#findPassEmail').keydown(moveToFindPassBtn);
+		
+		function moveToFindPassBtn() {
+			if(event.keyCode == 13) {
+				$('#findPassBtn').click();
+			}
+		}
+		
 		$('#modalCloseBtn').on('click', function() {
 			$('.modal').css('display', 'none');
 		});
@@ -142,17 +160,19 @@
 				type: 'get',
 				data: {email: email},
 				success: function(result){
-					let list = "";
+					let list = '';
 					if(result != '') {
 						// TODO : 내용 정리 어떻게 하지
-						$('#modalCloseBtn').before('');
+						$('.modal_body').children().eq(0).remove();
+						list += '<div>입력하신 이메일 정보와 일치하는 아이디는</div>';
 						for(let i = 0; i < result.length; i++) {
-							list += "<div>" + result[i] + "</div>";
+							list += '<div>' + result[i] + '</div>';
 						}
+						list += '<div>입니다.</div>';
 						$('#modalCloseBtn').before(list);						
 					} else {
-						$('#modalCloseBtn').before('');
-						list = "<div>입력하신 이메일로 가입한 아이디가 존재하지 않습니다.</div>"
+						$('.modal_body').children().eq(0).remove();
+						list = '<div>입력하신 이메일로 가입한 아이디가 존재하지 않습니다.</div>'
 						$('#modalCloseBtn').before(list);
 					}					
 					$('.modal').css('display', 'block');
@@ -173,7 +193,20 @@
 				type: 'get',
 				data: {username: username, email: email},
 				success: function(result){
-					
+					if(result == 0) {
+						$('.modal_body').children().eq(0).remove();
+						list = '<div>입력하신 아이디와 이메일 정보가 일치하지 않습니다. 다시 확인해주세요.</div>';
+						$('#modalCloseBtn').before(list);
+					} else if(result == 2) {
+						$('.modal_body').children().eq(0).remove();
+						list = '<div>오류가 발생했습니다. 다시 한 번 시도해주세요.</div>';
+						$('#modalCloseBtn').before(list);
+					} else {
+						$('.modal_body').children().eq(0).remove()
+						list = '<div>임시 비밀번호를 이메일로 전송했습니다. 로그인 후 변경해주세요.</div>';
+						$('#modalCloseBtn').before(list);
+					}
+					$('.modal').css('display', 'block');
 				},
 				error: function(){
 					

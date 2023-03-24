@@ -34,6 +34,8 @@
 <script src="<%=request.getContextPath()%>/resources/garoestate/assets/js/owl.carousel.min.js"></script>
 <script src="<%=request.getContextPath()%>/resources/garoestate/assets/js/price-range.js"></script>
 <script src="<%=request.getContextPath()%>/resources/garoestate/assets/js/main.js"></script>
+
+
 </head>
 <body>
 
@@ -189,19 +191,26 @@
 							<aside class="sidebar sidebar-property blog-asside-right">
 								<section class="mt-3 p-3">
 									<h6>날짜 선택</h6><hr>
-										<jsp:include page="datepicker.jsp"/>
-								</section>
-							</aside>
-						</div>
-						<!-- 날짜 선택 끝 -->
-						<!-- 결제영역 시작 -->
-						<div class="col-md-4 p0" style="padding-left:30px  float:rigth">
-							<aside class="sidebar sidebar-property blog-asside-right">
-								<section class="mt-3 p-3">
+										<form action="" id="dateForm">
+
+											대여일<input type="date" name="startDate" id="startDate" min="today">
+											
+											반납일<input type="date" name="endDate" id="endDate"  min="today">
+
+											<button type="button" id="calculate" style="color:blue">날짜 선택 완료</button>
+											
+											</form>
+											
+											
+											<hr>
+									<section class="mt-3 p-3">
 									<h5>결제 정보</h5><hr>
 									<table class="table">
 										<tbody>
 											<tr>
+												<th>대여 일수</th>
+												<td><span id="day-count"> </span>일</td>
+												
 												<th>대여요금</th>
 												<td>22000원</td>
 											</tr>
@@ -217,10 +226,11 @@
 									</table>
 								</section>
 								<button class="btn btn-default" type="button" onclick=" window.open('payment')" >결제하기</button>
+								</section>
 							</aside>
 						</div>
-						<!-- 결제영역 끝 --> 
-						<!-- 우측 카테고리 시작 -->
+						<!-- 날짜 선택 끝 -->
+						
 				</div>
 			</div>
 		</div>
@@ -229,6 +239,47 @@
 	<jsp:include page="../footer.jsp"/>
 	
 </body>
+
+<script>
+	 document.getElementById('startDate').valueAsDate = new Date();
+     var today = new Date();   
+
+     var dd = today.getDate();
+     var mm = today.getMonth() + 1; 
+     var yyyy = today.getFullYear();
+     var compareDate;
+  
+     if (mm < 10) {
+     	   mm = '0' + mm;
+     	} 
+     	    
+     today = yyyy + '-' + mm + '-' + dd;
+     document.getElementById("startDate").setAttribute("min", today);
+     document.getElementById("endDate").setAttribute("min", today);
+
+</script>
+
+<script>
+     
+     $('#calculate').on('click', btnClick);
+       
+      function btnClick () {
+        var startDate = new Date($('#startDate').val());
+        var endDate = new Date($('#endDate').val());
+      	 compareDate = Math.round((endDate.getTime() - startDate.getTime()) / 1000 / 60 / 60 / 24) + 1;
+      
+       if(compareDate <0) {
+    	   alert("반납일은 대여일보다 먼저 올 수 없습니다.");
+			return false;
+       }else {
+     	  $('#day-count').text(compareDate);    	   
+       }
+       
+      }
+      
+      
+      
+ </script>
 
 
 </html>

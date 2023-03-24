@@ -3,6 +3,7 @@ package kh.spring.chazazo.member.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -85,6 +86,33 @@ public class MemberController {
 		List<String> idxList = new ArrayList<String>();
 		idxList = mService.findId(email);
 		return idxList;
+	}
+	
+	@GetMapping("/findpass")
+	public int findPass(ModelAndView mv, String username, String email) {
+		int result = 0;
+		
+		String emailChk = mService.forFindPass(username);
+		if(email.equals(emailChk)) {
+			// 입력한 아이디의 이메일 정보와 입력한 이메일이 일치하면 비밀번호 변경 후 메일 전송, result = 1
+			
+			// 임시 비밀번호용 랜덤 문자열 생성
+			String randomPass = RandomStringUtils.randomAlphanumeric(6);
+			int changePass = mService.findPass(username, randomPass);
+			
+			if(changePass == 1) {
+				// 임시 비밀번호로 비밀번호 변경 완료 -> 메일 전송
+				mailService.findPassEmail(email, randomPass);
+				result = 1;
+			} else {
+				// 오류 발생, result = 2
+				result = 2;
+			}
+		} else {
+			// 입력한 아이디의 이메일 정보와 입력한 이메일이 일치하지 않으면 아무런 변경사항없이 리턴, result = 0
+			result = 0;
+		}
+		return result;
 	}
 	
 	@GetMapping("/profile/{username}")

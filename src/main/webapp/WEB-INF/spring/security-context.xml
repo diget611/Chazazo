@@ -20,7 +20,7 @@
 			password-parameter="password"
 			login-processing-url="/member/login-check"
 			login-page="/member/login"
-			default-target-url="/test/success"
+			default-target-url="/"
 		/>
 		<security:logout
 			logout-url="/logout"

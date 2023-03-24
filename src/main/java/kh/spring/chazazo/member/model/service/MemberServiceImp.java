@@ -1,6 +1,8 @@
 package kh.spring.chazazo.member.model.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -40,6 +42,20 @@ public class MemberServiceImp implements MemberService {
 	@Override
 	public List<String> findId(String email) {
 		return dao.findId(email);
+	}
+
+	@Override
+	public String forFindPass(String username) {
+		return dao.forFindPass(username);
+	}
+
+	@Override
+	public int findPass(String username, String password) {
+		Map<String, String> info = new HashMap<String, String>();
+		String encodingPass = bcryptPasswordEncoder.encode(password);
+		info.put("username", username);
+		info.put("password", encodingPass);
+		return dao.findPass(info);
 	}
 
 }

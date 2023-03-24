@@ -122,6 +122,7 @@
 	
 	<div class="modal">
 		<div class="modal_body">
+			<div></div>
 			<button type="button" id="modalCloseBtn">확인</button>
 		</div>		
 	</div>
@@ -142,17 +143,19 @@
 				type: 'get',
 				data: {email: email},
 				success: function(result){
-					let list = "";
+					let list = '';
 					if(result != '') {
 						// TODO : 내용 정리 어떻게 하지
-						$('#modalCloseBtn').before('');
+						$('.modal_body').children().eq(0).remove();
+						list += '입력하신 이메일 정보와 일치하는 아이디는';
 						for(let i = 0; i < result.length; i++) {
-							list += "<div>" + result[i] + "</div>";
+							list += '<div>' + result[i] + '</div>';
 						}
+						list += '입니다.';
 						$('#modalCloseBtn').before(list);						
 					} else {
-						$('#modalCloseBtn').before('');
-						list = "<div>입력하신 이메일로 가입한 아이디가 존재하지 않습니다.</div>"
+						$('.modal_body').children().eq(0).remove();
+						list = '<div>입력하신 이메일로 가입한 아이디가 존재하지 않습니다.</div>'
 						$('#modalCloseBtn').before(list);
 					}					
 					$('.modal').css('display', 'block');
@@ -173,7 +176,20 @@
 				type: 'get',
 				data: {username: username, email: email},
 				success: function(result){
-					
+					if(result == 0) {
+						$('.modal_body').children().eq(0).remove();
+						list = '<div>입력하신 아이디와 이메일 정보가 일치하지 않습니다. 다시 확인해주세요.</div>';
+						$('#modalCloseBtn').before(list);
+					} else if(result == 2) {
+						$('.modal_body').children().eq(0).remove();
+						list = '<div>오류가 발생했습니다. 다시 한 번 시도해주세요.</div>';
+						$('#modalCloseBtn').before(list);
+					} else {
+						$('.modal_body').children().eq(0).remove()
+						list = '<div>임시 비밀번호를 이메일로 전송했습니다. 로그인 후 변경해주세요.</div>';
+						$('#modalCloseBtn').before(list);
+					}
+					$('.modal').css('display', 'block');
 				},
 				error: function(){
 					

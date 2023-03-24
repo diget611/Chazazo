@@ -27,7 +27,7 @@ public class MailSendService {
 		authNum = num;
 	}
 	
-	// 이메일 양식
+	// 가입 인증 이메일 양식
 	public String joinEmail(String email) {
 		makeRandomNum();
 		// 발송하는 이메일 주소
@@ -37,11 +37,23 @@ public class MailSendService {
 		String title = "회원가입 인증 이메일입니다.";
 		// 이메일 내용
 		String content = "회원가입을 환영합니다.<br><br>"
-				+ "인증번호는 <strong>" + authNum + "</strong> 입니다."
+				+ "인증번호는 <strong>" + authNum + "</strong> 입니다.<br><br>"
 				+ "해당 인증번호를 인증번호 확인란에 입력해주세요.";
 		
 		mailSend(setFrom, toMail, title, content);
 		return Integer.toString(authNum);
+	}
+	
+	// 비밀번호 찾기 이메일 양식
+	public void findPassEmail(String email, String randomPass) {
+		String setFrom = "shlee6271@gmail.com";
+		String toMail = email;
+		String title = "로그인을 위한 임시 비밀번호입니다.";
+		String content = "로그인을 위한 임시 비밀번호입니다."
+				+ "비밀번호는는 <strong>" + randomPass + "</strong> 입니다.<br><br>"
+				+ "로그인 후 비밀번호를 변경해주세요.";
+				
+		mailSend(setFrom, toMail, title, content);
 	}
 	
 	// 이메일 전송 메소드

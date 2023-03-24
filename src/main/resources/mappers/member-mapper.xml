@@ -13,6 +13,15 @@
 		 INNER JOIN MEMBER_INFO ON MEMBER.IDX = MEMBER_INFO.IDX
 		 WHERE EMAIL = #{email}
 	</select>
+	<select id="forFindPass" resultType="string">
+		SELECT EMAIL
+		  FROM MEMBER_INFO
+		 INNER JOIN MEMBER ON MEMBER_INFO.IDX = MEMBER.IDX
+		 WHERE USERNAME = #{username}
+	</select>
+	<update id="findPass" parameterType="map">
+		UPDATE MEMBER SET PASSWORD = #{password} WHERE USERNAME = #{username}
+	</update>
 	<insert id="insert" parameterType="memberReqDto">
 		INSERT INTO MEMBER
 		VALUES(MEMBER_SEQ.NEXTVAL, #{username}, #{password}, DEFAULT, DEFAULT)

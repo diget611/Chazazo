@@ -35,38 +35,7 @@
 <script src="<%=request.getContextPath()%>/resources/garoestate/assets/js/price-range.js"></script>
 <script src="<%=request.getContextPath()%>/resources/garoestate/assets/js/main.js"></script>
 
-<!-- 날짜 선택 script -->
 
-
-<script type="text/javascript">
-	$(function() {
-	
-		$("#dateForm").submit(function(){
-
-	        var startDate = $('#startDate').val();
-	        var endDate = $('#endDate').val();
-	        
-	        var startArray = startDate.split('-');
-	        var endArray = endDate.split('-');   
-	        
-	        var start_date = new Date(startArray[0], startArray[1], startArray[2]);
-	        var end_date = new Date(endArray[0], endArray[1], endArray[2]);
-
-		    
-	        if(start_date.getTime() > end_date.getTime()) {
-	            alert("반납일이 대여일보다 먼저 올 수 없습니다.",start_date);
-	            return false;
-	        }
-	     });
-
-	});
-
-</script>
-	
-
-			
-	
-<!-- 날짜 선택 script 끝-->
 </head>
 <body>
 
@@ -224,13 +193,11 @@
 									<h6>날짜 선택</h6><hr>
 										<form action="" id="dateForm">
 
-											대여일<input type="date" name="startDate" id="startDate">
+											대여일<input type="date" name="startDate" id="startDate" min="today">
 											
-											반납일<input type="date" name="endDate" id="endDate">
+											반납일<input type="date" name="endDate" id="endDate"  min="today">
 
-											
-											<input type="submit" value="전송">
-											<button type="button" id="calculate">대여기간 계산</button>
+											<button type="button" id="calculate" style="color:blue">날짜 선택 완료</button>
 											
 											</form>
 											
@@ -272,24 +239,46 @@
 	<jsp:include page="../footer.jsp"/>
 	
 </body>
+
 <script>
-document.getElementById('startDate').valueAsDate = new Date();
+	 document.getElementById('startDate').valueAsDate = new Date();
+     var today = new Date();   
+
+     var dd = today.getDate();
+     var mm = today.getMonth() + 1; 
+     var yyyy = today.getFullYear();
+     var compareDate;
+  
+     if (mm < 10) {
+     	   mm = '0' + mm;
+     	} 
+     	    
+     today = yyyy + '-' + mm + '-' + dd;
+     document.getElementById("startDate").setAttribute("min", today);
+     document.getElementById("endDate").setAttribute("min", today);
 
 </script>
+
 <script>
-      // 코드를 입력하세요!
-      $('#calculate').on('click', btnClick);
+     
+     $('#calculate').on('click', btnClick);
        
       function btnClick () {
         var startDate = new Date($('#startDate').val());
         var endDate = new Date($('#endDate').val());
-        var compareDate;
-        var today = new Date();
-              
-       compareDate = Math.round((endDate.getTime() - startDate.getTime()) / 1000 / 60 / 60 / 24) + 1;
-       $('#day-count').text(compareDate);
+      	 compareDate = Math.round((endDate.getTime() - startDate.getTime()) / 1000 / 60 / 60 / 24) + 1;
+      
+       if(compareDate <0) {
+    	   alert("반납일은 대여일보다 먼저 올 수 없습니다.");
+			return false;
+       }else {
+     	  $('#day-count').text(compareDate);    	   
+       }
        
       }
+      
+      
+      
  </script>
 
 

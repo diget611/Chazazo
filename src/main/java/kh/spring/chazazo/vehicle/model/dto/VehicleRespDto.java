@@ -9,9 +9,6 @@ import lombok.ToString;
 
 @Component
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
-@ToString
 public class VehicleRespDto {
 	// 자동차 검색용 dto
 	
@@ -21,8 +18,8 @@ public class VehicleRespDto {
 	public int price;
 	public String image;
 	public String maker;
-	public int location_idx;
-	public int fueltype_idx;
-	public int cartype_idx;
+	public int locationIdx;
+	public int fueltypeIdx;
+	public int cartypeIdx;
 	
 }

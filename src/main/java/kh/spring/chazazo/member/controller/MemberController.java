@@ -39,7 +39,7 @@ public class MemberController {
 		return mv;
 	}
 	
-	@GetMapping("/profile")
+	@GetMapping("/mypage")
 	public ModelAndView viewMemberOne(ModelAndView mv, String username) {
 		// 마이페이지에 들어가는 url
 		mv.setViewName("/member/mypage");

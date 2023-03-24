@@ -8,23 +8,10 @@
 <title>예약내역확인</title>
 </head>
 <body>
-
-
-
-		<div>
-			<input type="hidden" value="${reservation.idx }" readonly="readonly">
-		</div>
-										
-		<c:choose>
-			<c:when test="${empty reservation }">
-				예약정보가 없습니다.
-			</c:when>
-			<c:otherwise>
-				<tr>
-					<th scope="row">예약자</th>
-					<td>${RESERVATION.MEMBER_IDX }</td>
-				</tr>
-			</c:otherwise>
-		</c:choose>
+ 	${reservation }
+		<c:forEach items="${reservation }" var="list">
+			${list.idx }
+		</c:forEach>
+		
 </body>
 </html>

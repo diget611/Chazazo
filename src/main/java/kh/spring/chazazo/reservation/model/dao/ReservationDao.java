@@ -7,18 +7,31 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import kh.spring.chazazo.reservation.model.dto.ReservationReqDto;
+import kh.spring.chazazo.reservation.model.dto.ReservationRespDto;
 import kh.spring.chazazo.review.model.dto.ReviewDto;
 
 @Repository
 public class ReservationDao {
+	
 	@Autowired
 	private SqlSession session;
 	
-	public ReservationReqDto reservaionListUser(int idx) {
-		//TODO
-		return null;
+	
+	
+	public List<ReservationRespDto> selectList(){
+		
+		return session.selectList("reservation.selectList");
+		
 	}
 	
+	public ReservationRespDto selectOne(int idx){
+		
+		return session.selectOne("reservation.reservaionList",idx);
+		
+	}
+
+
+
 	
 	
 

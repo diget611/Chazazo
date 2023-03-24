@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import kh.spring.chazazo.reservation.model.dto.ReservationReqDto;
+import kh.spring.chazazo.reservation.model.dto.ReservationRespDto;
 import kh.spring.chazazo.reservation.model.service.ReservationService;
 import kh.spring.chazazo.vehicle.model.dto.VehicleRespDto;
 
@@ -31,10 +32,10 @@ public class ReservationController {
 	}
 	
 	@GetMapping("/member/history")
-	public ModelAndView viewReservationListUser(ModelAndView mv, @PathVariable int idx) {
+	public ModelAndView viewReservationListUser(ModelAndView mv) {
 		// 유저 예약 리스트 조회
-
-	
+		
+		mv.addObject("reservation", rService.selectList());
 		mv.setViewName("member/history");
 		return mv;
 	}
@@ -42,6 +43,8 @@ public class ReservationController {
 	@GetMapping("/mypage/reservation/{idx}")
 	public ModelAndView viewReservationOne(ModelAndView mv) {
 		// 예약 정보 상세 조회
+		
+		
 		return mv;
 	}
 

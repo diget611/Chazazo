@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>회원가입</title>
+<title>회원정보수정</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
 <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700,800' rel='stylesheet' type='text/css'>
@@ -111,22 +111,22 @@
 				<div class="blog-lst col-md-8 p0 " style="float: right;">
 					<section id="id-100" class="post single">
 						<form action="<%=request.getContextPath() %>/member/mypage"
-								method="post" onsubmit="return checkForm()">
+								method="post" onsubmit="return false">
 								<div class="form-group">
 									<label>아이디</label>
-									<input type="password" class="form-control" name="username">
+									<input type="text" class="form-control" name="username" value="${param.username }">
 								</div>
 								<div class="form-group">
 									<label>비밀번호</label>
-									<input type="password" class="form-control" name="password">
+									<input type="password" class="form-control" name="password" value="${param.password }">
 								</div>
 								<div class="form-group">
 									<label>이름</label>
-									<input type="text" class="form-control" name="name">
+									<input type="text" class="form-control" name="name" value="${param.name }">
 								</div>
 								<div class="form-group">
 									<label>성별</label>
-									<select class="form-control" name="gender">
+									<select class="form-control" name="gender" value="${param.gender }">
 										<option selected="selected" hidden="hidden" value="2">성별</option>
 										<option value="0">남성</option>
 										<option value="1">여성</option>
@@ -134,19 +134,15 @@
 								</div>
 								<div class="form-group">
 									<label>생년월일</label>
-									<input type="text" class="form-control" name="birth">
+									<input type="text" class="form-control" name="birth" value="${param.birth }">
 								</div>
 								<div class="form-group">
 									<label>전화번호</label>
-									<input type="text" class="form-control" name="phoneNumber">
-								</div>
-								<div class="form-group">
-									<label>면허증 번호</label>
-									<input type="text" class="form-control" name="license">
+									<input type="text" class="form-control" name="phoneNumber" value="${param.phoneNumber }">
 								</div>
 								<div class="form-group">
 									<label>이메일</label>
-									<input type="text" class="form-control" name="email">
+									<input type="email" class="form-control" name="email" value="${param.email }">
 								</div>						
 								<div class="text-center">
 									<button type="submit" class="btn btn-default">회원 정보 수정</button>

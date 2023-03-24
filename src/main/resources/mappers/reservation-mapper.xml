@@ -2,8 +2,24 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="reservation">
 
-	<select id="reservaionList" resultType="ReservationReqDto" >
+	<select id="selectList" resultType="ReservationRespDto">
+		SELECT * FROM RESERVATION
+	</select>
+	
+	<select id="reservaionList" resultType="ReservationRespDto" >
 		SELECT * FROM RESERVATION WHERE IDX = #{IDX}
 	</select>
 	
+	<update id="resUpdate">
+		UPDATE RESERVATION SET RESERV_START=#{reserv_start}, RESERV_END=#{reserv_end},
+							RESERV_STATE=#{reserv_state},INSURANCE_IDX=#{insurance_idx},
+							VEHICLE_IDX=#{vehicle_idx},RESERV_START=#{RENT_LOCATION},
+							RESERV_START=#{RETURN_LOCATION},RESERV_START=#{COUPON_IDX},
+				  WHERE IDX = #{IDX}
+	</update>
+	
+	<delete id="resDelete">
+		DELETE FROM RESERVATION WHERE IDX = #{IDX};
+	
+	</delete>
 </mapper>

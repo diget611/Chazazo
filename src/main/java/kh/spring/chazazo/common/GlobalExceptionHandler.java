@@ -7,6 +7,8 @@ import org.springframework.web.servlet.ModelAndView;
 @ControllerAdvice
 public class GlobalExceptionHandler {
 	
+	// 404, 409 
+	
 	@ExceptionHandler(Exception.class)
 	public ModelAndView memberExceptionHandler(Exception e) {
 		e.printStackTrace();

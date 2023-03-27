@@ -70,6 +70,7 @@ public class MemberController {
 		return result;
 	}
 	
+	// 이메일 인증번호 보내기
 	@GetMapping("/register/email")
 	public String checkEmail(String email) {
 		return mailService.joinEmail(email);

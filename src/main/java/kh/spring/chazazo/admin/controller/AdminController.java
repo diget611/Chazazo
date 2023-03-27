@@ -9,7 +9,7 @@ public class AdminController {
 	// 전부 다른 테이블에서 끌어오거나 하니까 adminservice 같은건 필요없을거 같고. 다른 서비스들 주워와서 쓰면 될듯?
 	
 //	@GetMapping
-	public ModelAndView viewStatistcs(ModelAndView mv) {
+	public ModelAndView viewStatistics(ModelAndView mv) {
 		// 통계 조회용
 		return mv;
 	}

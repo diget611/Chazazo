@@ -14,7 +14,7 @@ public class CarCrawling {
 	
 	   
 		public static final String WEB_DRIVER_ID ="webdriver.chrome.driver";
-		public static final String WEB_DRIVER_PATH = "C:\\tools\\chromedriver_win32\\chromedriver.exe";
+		public static final String WEB_DRIVER_PATH = "C:\\tools\\chromedriver\\chromedriver.exe";
 		
 	  
 	
@@ -40,10 +40,19 @@ public class CarCrawling {
 			
 			WebElement el2 = driver.findElement(By.className("list_lineup"));
 			List<WebElement> el3 = el2.findElements(By.tagName("li"));
+			
+			WebElement el4 = driver.findElement(By.className("wrap_thumb"));
+			String el5 = el4.findElement(By.tagName("img")).getAttribute("src");
+			
 			int count = 0;
 			for (int i = 0; i < el3.size(); i++) {
 				System.out.println(++count + "번 차: "+ el3.get(i).getText());
+				System.out.println(++count + "번 차 썸네일: "+ el5);
 			}
+			
+			
+			
+			
 			
 			
 			try {

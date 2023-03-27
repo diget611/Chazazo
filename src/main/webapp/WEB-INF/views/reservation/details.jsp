@@ -194,7 +194,7 @@
 								<section class="mt-3 p-3">
 										<form>
 											<label>대여일</label><input type="date" name="startDate" id="startDate" min="today">
-											<label>반납일</label><input type="date" name="endDate" id="endDate" min="sDate" >
+											<label>반납일</label><input type="date" name="endDate" id="endDate"  min="today">
 										</form>
 											<hr>
 									<div class="col-md-12" style="padding-bottom:100px">                                   
@@ -255,19 +255,14 @@
      var dd = today.getDate();
      var mm = today.getMonth() + 1; 
      var yyyy = today.getFullYear();
-     
-  
-     
     
      if (mm < 10) {
      	   mm = '0' + mm;
      	} 
-     	  
-     
+     	    
      today = yyyy + '-' + mm + '-' + dd;
-     
      document.getElementById("startDate").setAttribute("min", today);
-  
+     document.getElementById("endDate").setAttribute("min", today);
      
 
 </script>
@@ -275,27 +270,11 @@
 <script>
      
   
-     
-     $('#startDate').on('change', mincalc);
+	$('#startDate').on('change', mincalc);
+ //    $('#startDate').on('change', calc);
      $('#endDate').on('change', calc);
      $('#select').on('change', calc);
 
-     function mincalc() {
-    	  var startDate = new Date($('#startDate').val()); 
-    	  var endDate = new Date($('#endDate').val());
-    	  
-    	  var sDate = new Date();
-    	     var sdd = startDate.getDate();
-    	     var smm = startDate.getMonth() +1;
-    	     var syyyy = startDate.getFullYear();
-    	     if (smm < 10) {
-    	     	   smm = '0' + smm;
-    	     	} 
-    	    sDate = syyyy+ '-' + smm + '-' +sdd;
-    	    document.getElementById("endDate").setAttribute("min", sDate);
-    	     
-    	  
-     }
      
      function calc () {
         var startDate = new Date($('#startDate').val());
@@ -317,6 +296,26 @@
        }
        
       }
+     function mincalc() {
+     $("#day-count").empty();
+     $("#rentPrice").empty();
+     $("#addIns").empty();
+     $("#expIns").empty();
+   	  var startDate = new Date($('#startDate').val()); 
+   	  var endDate = new Date($('#endDate').val());
+   	  
+   	  var sDate = new Date();
+   	     var sdd = startDate.getDate();
+   	     var smm = startDate.getMonth() +1;
+   	     var syyyy = startDate.getFullYear();
+   	     if (smm < 10) {
+   	     	   smm = '0' + smm;
+   	     	} 
+   	    sDate = syyyy+ '-' + smm + '-' +sdd;
+   	    document.getElementById("endDate").setAttribute("min", sDate);
+   	     
+   	  
+    }
       
       
       

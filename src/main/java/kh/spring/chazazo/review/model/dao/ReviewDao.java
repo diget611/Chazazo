@@ -22,14 +22,11 @@ public class ReviewDao {
 	public int delete(int idx) {
 		return sqlSession.delete("review.delete", idx);
 	}		
-	public ReviewDto selectOne(int idx) {
-		return sqlSession.selectOne("review.selectOne", idx);
-	}
 
 	public List<ReviewDto> selectList() {
 		return sqlSession.selectList("review.selectList");
 	}
-	public List<ReviewDto> selectList(int vehicleIdx) {
-		return sqlSession.selectList("review.reviewList", vehicleIdx);
+	public List<ReviewDto> selectOne(int vehicleIdx) {
+		return sqlSession.selectList("review.reviewOne", vehicleIdx);
 	}
 }

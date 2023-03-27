@@ -11,9 +11,10 @@ import lombok.Data;
 public class ReviewDto {
 	
 	private int idx;
-	private int vehicleIdx;
 	private String content;
-	private Date reviewdate;
-	private int reviewlike;
+	private Date createdate;
+	private int recommend;
+	private int score;
+	private int vehicleIdx;
 	
 }

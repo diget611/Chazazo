@@ -29,10 +29,7 @@ public class ReviewServiceImpl implements ReviewService{
 		return dao.delete(idx);
 	}
 
-	@Override
-	public ReviewDto selectOne(int idx) {
-		return dao.selectOne(idx);
-	}
+
 
 	@Override
 	public List<ReviewDto> selectList() {
@@ -40,8 +37,8 @@ public class ReviewServiceImpl implements ReviewService{
 	}
 
 	@Override
-	public List<ReviewDto> selectList(int vehicleIdx) {
-		return dao.selectList(vehicleIdx);
+	public List<ReviewDto> selectOne(int vehicleIdx) {
+		return dao.selectOne(vehicleIdx);
 	}
 
 }

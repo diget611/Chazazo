@@ -4,7 +4,7 @@
 	<select id="selectList" resultType="reviewDto">
 		SELECT * FROM REVIEW 
 	</select>
-	<select id="reviewList" resultType="reviewDto">
+	<select id="selectOne" resultType="reviewDto">
 		SELECT * FROM REVIEW where VEHICLE_IDX=#{vehicleIdx} 
 	</select>
 	<insert id="insert">

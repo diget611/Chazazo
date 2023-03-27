@@ -20,88 +20,88 @@ import kh.spring.chazazo.member.model.dto.MemberInfoReqDto;
 import kh.spring.chazazo.member.model.service.MemberService;
 
 @RestController
-@RequestMapping("/member") 
+@RequestMapping("/member")
 public class MemberController {
-	
+
 	@Autowired
 	private MemberService mService;
 	@Autowired
 	private MailSendService mailService;
-	
+
 	@GetMapping
 	public ModelAndView viewMemberList(ModelAndView mv) {
 		// 관리자 회원 리스트 조회
 		return mv;
 	}
-	
+
 	@GetMapping("/login")
 	public ModelAndView viewLogin(ModelAndView mv) {
 		mv.setViewName("member/login");
 		return mv;
 	}
-	
+
 	@GetMapping("/profile")
 	public ModelAndView viewMemberOne(ModelAndView mv, String username) {
 		// 마이페이지에 들어가는 url
 		mv.setViewName("/member/mypage");
 		return mv;
 	}
-	
+
 	@GetMapping("/register")
 	public ModelAndView viewInsertMember(ModelAndView mv) {
 		mv.setViewName("member/register");
 		return mv;
 	}
-	
+
 	@PostMapping("/register")
 	public ModelAndView insertMember(ModelAndView mv, MemberReqDto memberDto, MemberInfoReqDto memberInfoDto) {
 		int result = mService.insert(memberDto, memberInfoDto);
-		if(result > 0) {
+		if (result > 0) {
 			mv.setViewName("redirect:/member/login");
 		} else {
 			mv.setViewName("redirect:/");
 		}
 		return mv;
 	}
-	
+
 	@GetMapping("/register/exist")
 	public int checkDup(String username) {
 		int result = mService.checkDup(username);
 		return result;
 	}
-	
+
 	// 이메일 인증번호 보내기
 	@GetMapping("/register/email")
 	public String checkEmail(String email) {
 		return mailService.joinEmail(email);
 	}
-	
+
 	@GetMapping("/find")
 	public ModelAndView viewFindPage(ModelAndView mv) {
 		mv.setViewName("member/find");
 		return mv;
 	}
-	
+
 	@GetMapping("/findid")
 	public List<String> findId(ModelAndView mv, String email) {
 		List<String> idxList = new ArrayList<String>();
 		idxList = mService.findId(email);
 		return idxList;
 	}
-	
+
 	@GetMapping("/findpass")
 	public int findPass(ModelAndView mv, String username, String email) {
 		int result = 0;
-		
+
 		String emailChk = mService.forFindPass(username);
-		if(email.equals(emailChk)) {
+		if (email.equals(emailChk)) {
 			// 입력한 아이디의 이메일 정보와 입력한 이메일이 일치하면 비밀번호 변경 후 메일 전송, result = 1
-			
+
 			// 임시 비밀번호용 랜덤 문자열 생성
 			String randomPass = RandomStringUtils.randomAlphanumeric(6);
 			int changePass = mService.findPass(username, randomPass);
-			
-			if(changePass == 1) {
+
+			if (changePass == 1) {
 				// 임시 비밀번호로 비밀번호 변경 완료 -> 메일 전송
 				mailService.findPassEmail(email, randomPass);
 				result = 1;
@@ -115,37 +115,34 @@ public class MemberController {
 		}
 		return result;
 	}
-	
+
 	@GetMapping("/profile/{username}/update")
 	public ModelAndView viewUpdateMember(ModelAndView mv) {
 		// 회원정보 수정 페이지 조회
-		
+
 		return mv;
 	}
-	
+
 	@PatchMapping("/profile/{username}/update")
 	public ModelAndView updateMember(ModelAndView mv, String password, MemberInfoReqDto dto) {
-		// 회원정보 수정 / Put, Patch 
+		// 회원정보 수정 / Put, Patch
 		return mv;
 	}
-	
+
 	@DeleteMapping("/profile/{username}")
 	public ModelAndView deleteMember(ModelAndView mv) {
 		// 회원탈퇴 / DeleteMapping
 		return mv;
 	}
 	
-	@ExceptionHandler(Exception.class)
-	public ModelAndView memberExceptionHandler(Exception e
-			/* 오류발생함 ModelAndView mv */) {
-		e.printStackTrace();
-		
-		ModelAndView mv = new ModelAndView();
-		mv.addObject("msg", e.getMessage() + "오류가       발생했습니다. 다시 시도해주세요.");
-		mv.setViewName("error/error500");
-		
-		return mv;
-	}
-
+	/*
+	 * @ExceptionHandler(Exception.class) public ModelAndView
+	 * memberExceptionHandler(Exception e 오류발생함 ModelAndView mv ) {
+	 * e.printStackTrace();
+	 * 
+	 * ModelAndView mv = new ModelAndView(); mv.addObject("msg", e.getMessage() +
+	 * "오류가       발생했습니다. 다시 시도해주세요."); mv.setViewName("error/error500");
+	 * 
+	 * return mv; }
+	 */
 }
- 

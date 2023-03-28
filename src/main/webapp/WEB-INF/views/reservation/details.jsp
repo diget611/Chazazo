@@ -40,7 +40,7 @@
 
 </head>
 <body>
-
+ 		
 	<jsp:include page="../header.jsp"/>
 						
 	
@@ -170,7 +170,12 @@
 							<div class="section property-features">      
 								<h4 class="s-property-title">대여점 정보</h4>                            
 								<ul>
-									<p> 대여점 이름, 주소, 정보....
+								<div>
+									<label>대여점: <h4> ${car.name } </h4></label><hr>
+									<label>전화번호: <h5> ${car.phoneNumber } </h4></label><hr>
+									<label>운영 시간:<h5> ${car.businessHours } </h4></label><hr>
+									<label>주소:<h5> ${car.address } </h4></label><hr>
+								</div>
 								</ul>
 								<!-- 리뷰 영역 시작 -->
 								<div class="section">

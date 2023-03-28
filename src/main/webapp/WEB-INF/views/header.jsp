@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 <nav class="navbar navbar-default ">
 	<div class="container">
 		<!-- Brand and toggle get grouped for better mobile display -->
@@ -16,9 +17,16 @@
 		<!-- Collect the nav links, forms, and other content for toggling -->
 		<div class="collapse navbar-collapse yamm" id="navigation">
 			<div class="button navbar-right">
+				<sec:authorize access="!isAuthenticated()">
 				<button id="loginBtn"
 					class="navbar-btn nav-button wow bounceInRight login animated" type="button" data-wow-delay="0.45s"
 					style="visibility: visible; animation-delay: 0.45s; animation-name: bounceInRight;">로그인</button>
+				</sec:authorize>
+				<sec:authorize access="isAuthenticated()">
+				<button id="logoutBtn"
+					class="navbar-btn nav-button wow bounceInRight login animated" type="button" data-wow-delay="0.45s"
+					style="visibility: visible; animation-delay: 0.45s; animation-name: bounceInRight;">로그아웃</button>
+				</sec:authorize>
 				<button id="registerBtn"
 					class="navbar-btn nav-button wow fadeInRight animated" type="button" data-wow-delay="0.48s"
 					style="visibility: visible; animation-delay: 0.48s; animation-name: fadeInRight;">회원가입</button>
@@ -47,6 +55,9 @@
 	<script>
 		$('#loginBtn').on('click', function() {
 			location.href='<%=request.getContextPath()%>/member/login';
+		});
+		$('#logoutBtn').on('click', function() {
+			location.href='<%=request.getContextPath()%>/logout';
 		});
 		$('#registerBtn').on('click', function() {
 			location.href='<%=request.getContextPath()%>/member/register';

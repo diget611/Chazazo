@@ -1,7 +1,10 @@
 package kh.spring.chazazo.vehicle.model.dto;
 
+import java.util.List;
+
 import org.springframework.stereotype.Component;
 
+import kh.spring.chazazo.location.model.dto.LocationReqDto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -21,5 +24,5 @@ public class VehicleRespDto {
 	public int locationIdx;
 	public int fueltypeIdx;
 	public int cartypeIdx;
-	
+
 }

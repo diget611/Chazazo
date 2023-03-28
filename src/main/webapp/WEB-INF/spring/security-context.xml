@@ -6,10 +6,11 @@
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 	
 	<bean class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" id="BCryptPasswordEncoder" />
+	
+	
 		
 	<security:http>
 		<security:csrf disabled="true" />
-		<security:intercept-url pattern="/member/*" access="permitAll" />
 		<!-- 
 		<security:intercept-url pattern="/test/user" access="hasRole('ROLE_USER')" />
 		<security:intercept-url pattern="/test/admin" access="hasRole('ROLE_ADMIN')" />
@@ -28,6 +29,7 @@
 			invalidate-session="true"
 			delete-cookies="true"
 		/>
+		<security:remember-me data-source-ref="dataSource" token-validity-seconds="604800"/>
 		<security:session-management invalid-session-url="/member/login">
 			<security:concurrency-control max-sessions="1"
 										  expired-url="/member/login"

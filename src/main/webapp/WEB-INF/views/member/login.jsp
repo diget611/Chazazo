@@ -58,6 +58,8 @@
 										<button type="submit" class="btn btn-default" value="login"> 회원가입 </button>
 									</div>
 									<div class="text-center">
+										<input type="checkbox" name="remember-me">로그인 유지<br>									</div>
+									<div class="text-center">
 									 	<a href="<%=request.getContextPath()%>/member/find">아이디 찾기</a>
 										<span> | </span>
 										<a href="<%=request.getContextPath()%>/member/find">비밀번호 찾기</a> 

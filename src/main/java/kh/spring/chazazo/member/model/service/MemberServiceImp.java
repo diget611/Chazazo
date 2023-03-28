@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import kh.spring.chazazo.member.model.dao.MemberDao;
 import kh.spring.chazazo.member.model.dto.MemberReqDto;
 import kh.spring.chazazo.member.model.dto.MemberInfoReqDto;
+import kh.spring.chazazo.member.model.dto.MemberInfoRespDto;
 
 @Service
 public class MemberServiceImp implements MemberService {
@@ -58,4 +59,17 @@ public class MemberServiceImp implements MemberService {
 		return dao.findPass(info);
 	}
 
+	@Override
+	public MemberInfoReqDto selectOne(int idx) {
+		// TODO Auto-generated method stub
+		return dao.selectOne(idx);
+	}
+
+//	@Override
+//	public int updateInfo(MemberInfoRespDto dto) {
+//		// TODO Auto-generated method stub
+//		return 0;
+//	}
+
+	
 }

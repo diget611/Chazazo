@@ -8,6 +8,7 @@ import lombok.Data;
 @Data
 public class MemberInfoReqDto {
 
+	private int idx;
 	private String name;
 	private int gender;
 	private String birth;

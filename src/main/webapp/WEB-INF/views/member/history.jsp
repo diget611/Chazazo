@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>마이페이지</title>
+<title>예약 내역 조회</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
 <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700,800' rel='stylesheet' type='text/css'>
@@ -74,14 +74,24 @@
 								<div class="inner-wrapper">
 									<div class="clear">
 										<div class="col-xs-8 col-sm-8 ">
-											<h3 class="dealer-name"><span>김땡땡</span></h3>
+											<h3 class="dealer-name">
+												<span>
+													<input type="text" class="form-control" name="name" value="${memberinfo.name }" readonly >
+												</span>
+											</h3>
 										</div>
 									</div>
 									<div class="clear">
 										<ul class="dealer-contacts">                                       
-											<li><i class="pe-7s-call strong"> </i> +1 908 967 5906</li>
-											<li><i class="pe-7s-mail strong"> </i> email@yourcompany.com</li>
-											
+											<li>
+												<i class="pe-7s-call strong"> </i>
+												<input type="text" class="form-control" name="phoneNumber" value="${memberinfo.phoneNumber}" readonly >
+											</li>
+											<li>
+												<i class="pe-7s-mail strong"> </i> 
+												<input type="text" class="form-control" name="email" value="${memberinfo.email }" readonly >
+											</li>
+											<li><i class="pe-7s-map-marker strong"> </i> 주소주소</li>
 										</ul>
 										<div>
 										<div class="dc-flex justify-content-between px-2 mb-4 is-only-member">

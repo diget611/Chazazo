@@ -61,16 +61,25 @@
 								<div class="inner-wrapper">
 									<div class="clear">
 										<div class="col-xs-8 col-sm-8 ">
-											<h3 class="dealer-name"><span>김땡땡</span></h3>
+											<h3 class="dealer-name">
+												<span>
+													<input type="text" class="form-control" name="name" value="${memberinfo.name }" readonly >
+												</span>
+											</h3>
 										</div>
 									</div>
 									<div class="clear">
 										<ul class="dealer-contacts">                                       
-											<li><i class="pe-7s-call strong"> </i> +1 908 967 5906</li>
-											<li><i class="pe-7s-mail strong"> </i> email@yourcompany.com</li>
+											<li>
+												<i class="pe-7s-call strong"> </i>
+												<input type="text" class="form-control" name="phoneNumber" value="${memberinfo.phoneNumber}" readonly >
+											</li>
+											<li>
+												<i class="pe-7s-mail strong"> </i> 
+												<input type="text" class="form-control" name="email" value="${memberinfo.email }" readonly >
+											</li>
 											<li><i class="pe-7s-map-marker strong"> </i> 주소주소</li>
 										</ul>
-										<p>Duis mollis  blandit tempus porttitor curabiturDuis mollis  blandit tempus porttitor curabitur , est non…</p>
 									</div>
 								</div>
 							</div>
@@ -79,10 +88,7 @@
 							<div class="panel panel-default sidebar-menu wow fadeInRight animated animated animated" style="visibility: visible; animation-name: fadeInRight;">
 								<div class="panel-heading">
 									<h3 class="panel-title">
-									<button type="button" class="btn btn-outline-primary">예약내역</button><br>
-									
-									
-									
+									<button id="historyBtn" type="button" class="btn btn-outline-primary">예약내역</button><br>
 									<button type="button" class="btn btn-outline-primary">예약 수정 / 취소</button><br>
 									<button type="button" class="btn btn-outline-primary">비회원 예약 확인</button></h3>
 								</div>
@@ -92,7 +98,7 @@
 							<div class="panel panel-default sidebar-menu wow fadeInRight animated animated animated" style="visibility: visible; animation-name: fadeInRight;">
 								<div class="panel-heading">
 									<h3 class="panel-title">
-									<button id="updateinfoBtn" type="button" class="btn btn-outline-primary">회원정보 수정</button><br></h3>
+									<button type="button" class="btn btn-outline-primary">회원정보 수정</button><br></h3>
 								</div>
 							</div>
 						</div>
@@ -110,23 +116,14 @@
 				</div>
 				<div class="blog-lst col-md-8 p0 " style="float: right;">
 					<section id="id-100" class="post single">
-						<form action="<%=request.getContextPath() %>/member/profile"
-								method="post" onsubmit="return false">
-								<div class="form-group">
-									<label>아이디</label>
-									<input type="text" class="form-control" name="username" value="${param.username }">
-								</div>
-								<div class="form-group">
-									<label>비밀번호</label>
-									<input type="password" class="form-control" name="password" value="${param.password }">
-								</div>
-								<div class="form-group">
+						<form>
+							<div class="form-group">
 									<label>이름</label>
-									<input type="text" class="form-control" name="name" value="${param.name }">
+									<input type="text" class="form-control" name="name" value="${memberinfo.name }" >
 								</div>
 								<div class="form-group">
 									<label>성별</label>
-									<select class="form-control" name="gender" value="${param.gender }">
+									<select class="form-control" name="gender" value="${memberinfo.gender }" >
 										<option selected="selected" hidden="hidden" value="2">성별</option>
 										<option value="0">남성</option>
 										<option value="1">여성</option>
@@ -134,26 +131,21 @@
 								</div>
 								<div class="form-group">
 									<label>생년월일</label>
-									<input type="text" class="form-control" name="birth" value="${param.birth }">
+									<input type="text" class="form-control" name="birth" value="${memberinfo.birth }" >
 								</div>
 								<div class="form-group">
 									<label>전화번호</label>
-									<input type="text" class="form-control" name="phoneNumber" value="${param.phoneNumber }">
+									<input type="text" class="form-control" name="phoneNumber" value="${memberinfo.phoneNumber }" >
 								</div>
 								<div class="form-group">
 									<label>이메일</label>
-									<input type="email" class="form-control" name="email" value="${param.email }">
+									<input type="email" class="form-control" name="email" value="${memberinfo.email }" >
 								</div>						
 								<div class="text-center">
-									<button type="submit" class="btn btn-default">회원 정보 수정</button>
+									<button id="btn-update" type="submit" class="btn btn-default">회원 정보 수정</button>
 								</div>
 							</form>
 					</section>
-					
-					<!-- 얜 뭐지 --> 
-					<section class="about-autor">
-					</section>
-					<!-- 얜 뭐지 -->
 				</div>                    
 			</div>
 		</div>
@@ -162,7 +154,8 @@
 	<jsp:include page="../footer.jsp"/>
 	
 	<script>
-		$('#updateinfoBtn').on('click', function() {
+	
+		$('#historyBtn').on('click', function() {
 			location.href='<%=request.getContextPath()%>/profile/reservation';
 		});
 	</script>

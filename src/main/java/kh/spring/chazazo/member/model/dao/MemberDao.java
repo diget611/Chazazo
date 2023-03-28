@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import kh.spring.chazazo.member.model.dto.MemberReqDto;
 import kh.spring.chazazo.member.model.dto.MemberInfoReqDto;
+import kh.spring.chazazo.member.model.dto.MemberInfoRespDto;
 
 @Repository
 public class MemberDao {
@@ -39,4 +40,11 @@ public class MemberDao {
 	public int findPass(Map<String, String> info) {
 		return sqlSession.update("member.findPass", info);
 	}
+
+	public MemberInfoReqDto selectOne(int idx) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("member.selectOne", idx);
+	}
+	
+	
 }

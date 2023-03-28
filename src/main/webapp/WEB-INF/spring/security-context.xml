@@ -31,7 +31,7 @@
 		<security:session-management invalid-session-url="/member/login">
 			<security:concurrency-control max-sessions="1"
 										  expired-url="/member/login"
-										  error-if-maximum-exceeded="true"/>
+										  error-if-maximum-exceeded="false"/>
 		</security:session-management>
 	</security:http>
 	

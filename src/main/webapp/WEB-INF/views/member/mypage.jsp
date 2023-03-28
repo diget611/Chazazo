@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -73,14 +75,24 @@
 								<div class="inner-wrapper">
 									<div class="clear">
 										<div class="col-xs-8 col-sm-8 ">
-											<h3 class="dealer-name"><span>김땡땡</span></h3>
+											<h3 class="dealer-name">
+												<span>		
+													<input type="text" class="form-control" name="name" value="${memberinfo.name }" readonly >
+												</span>
+											</h3>
 										</div>
 									</div>
 									<div class="clear">
 										<ul class="dealer-contacts">                                       
-											<li><i class="pe-7s-call strong"> </i> +1 908 967 5906</li>
-											<li><i class="pe-7s-mail strong"> </i> email@yourcompany.com</li>
-											
+											<li>
+												<i class="pe-7s-call strong"> </i>
+												<input type="text" class="form-control" name="phoneNumber" value="${memberinfo.phoneNumber}" readonly >
+											</li>
+											<li>
+												<i class="pe-7s-mail strong"> </i> 
+												<input type="text" class="form-control" name="email" value="${memberinfo.email }" readonly >
+											</li>
+											<li><i class="pe-7s-map-marker strong"> </i> 주소주소</li>
 										</ul>
 										<div>
 										<div class="dc-flex justify-content-between px-2 mb-4 is-only-member">
@@ -89,7 +101,7 @@
 										</div>
 										
 										<div>
-										<div class="bg-color-grey-7 border-radius-6 text-14 color-grey-3 text-center w-100 py-1 click-effect-press"><div class="js-mypage-txt-coupon-cnt text-16-b">4 장</div>쿠폰</div>
+											<div class="bg-color-grey-7 border-radius-6 text-14 color-grey-3 text-center w-100 py-1 click-effect-press"></div>
 										</div>
 									</div>
 								</div>
@@ -100,9 +112,6 @@
 								<div class="panel-heading">
 									<h3 class="panel-title">
 									<button id="historyBtn" type="button" class="btn btn-outline-primary">예약내역</button><br>
-								
-									
-									
 									<button type="button" class="btn btn-outline-primary">예약 수정 / 취소</button><br>
 									<button type="button" class="btn btn-outline-primary">비회원 예약 확인</button></h3>
 								</div>
@@ -129,39 +138,17 @@
 					</div>   
 				</div>
 				<div class="blog-lst col-md-8 p0 " style="float: right;">
-					
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
 					<section id="id-100" class="post single">
 						<div id="post-content" style="visibility: visible; animation-name: fadeInLeft;">
-							<div class="container-loading-dot" id="mypage_loading_rent_list" style="display:none;">
-								
-							
-							</div>
-							<div id="mypage_none_rent_history" style="display:block; margin-top:100px;">
-								<div class="text-center">
-									<h4>진행중인 렌트내역이 없습니다</h4>
-									<button class="js-mypage-btn-go-car-list btn btn-outline-primary btn-block max-w-lg-40rem mx-auto py-1" onclick="moveRent();">렌트하러 가기</button>
-									<button class="js-mypage-btn-none-member-search btn btn-link btn-block color-grey-3 font-weight-normal max-w-lg-40rem mx-auto py-1 tmobi-dc-none" onclick="moveNoneMemberReservation();">비회원 예약조회</button>
+							<div class="container-loading-dot" id="mypage_loading_rent_list" style="display:none;"></div>
+								<div id="mypage_none_rent_history" style="display:block; margin-top:100px;">
+									<div class="text-center">
+										<h4>진행중인 렌트내역이 없습니다</h4>
+										<button class="js-mypage-btn-go-car-list btn btn-outline-primary btn-block max-w-lg-40rem mx-auto py-1" onclick="moveRent();">렌트하러 가기</button>
+										<button class="js-mypage-btn-none-member-search btn btn-link btn-block color-grey-3 font-weight-normal max-w-lg-40rem mx-auto py-1 tmobi-dc-none" onclick="moveNoneMemberReservation();">비회원 예약조회</button>
+									</div>
 								</div>
-							
-							</div>
-							
-							
 					</section>
-					
 				</div>                    
 			</div>
 		</div>
@@ -171,7 +158,7 @@
 
 	<script>
 		$('#updateinfoBtn').on('click', function() {
-			location.href='<%=request.getContextPath()%>/member/pofile';
+			location.href='<%=request.getContextPath()%>/member/pofile/update';
 		});
 		$('#historyBtn').on('click', function() {
 			location.href='<%=request.getContextPath()%>/profile/reservation';

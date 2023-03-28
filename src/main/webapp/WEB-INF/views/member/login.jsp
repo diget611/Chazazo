@@ -58,7 +58,9 @@
 										<button type="submit" class="btn btn-default" value="login"> 회원가입 </button>
 									</div>
 									<div class="text-center">
-										<input type="checkbox" name="remember-me">로그인 유지<br>									</div>
+										<input type="checkbox" id="rememberCheck" name="remember-me">
+										<label for="rememberBtn">로그인 유지</label>
+									</div>
 									<div class="text-center">
 									 	<a href="<%=request.getContextPath()%>/member/find">아이디 찾기</a>
 										<span> | </span>
@@ -73,5 +75,19 @@
 	</section>
 	
 	<jsp:include page="../footer.jsp"/>
+	
+	<script>
+		$('#rememberCheck').on('ifClicked', rememberMe);
+		
+		function rememberMe() {
+			if(confirm('활성화 시 로그인이 유지됩니다. 안전한 환경에서만 활성화하세요.')) {
+				$('#rememberCheck').iCheck('check');
+			} else {
+				setTimeout(function(){
+		            $('#rememberCheck').iCheck('uncheck');}, 0);
+			}
+		}
+		
+	</script>
 </body>
 </html>

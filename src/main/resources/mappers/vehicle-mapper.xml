@@ -23,12 +23,11 @@
 	</resultMap>
 
 
- 	<select id="getLocation" resultMap="LocationInfo">
+ 	<select id="getLocation" resultType="LocationInfo">
  		 select *
         from vehicle v
         left outer join location l
         on v.location_idx = l.idx
-        where v.idx = #{idx};
- 	
+        where v.idx = #{idx}
  	</select>
 </mapper>

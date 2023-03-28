@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import kh.spring.chazazo.location.model.dto.LocationReqDto;
+import kh.spring.chazazo.location.model.dto.LocationRespDto;
 import kh.spring.chazazo.location.model.service.LocationService;
 import kh.spring.chazazo.vehicle.model.dto.VehicleReqDto;
 import kh.spring.chazazo.vehicle.model.dto.VehicleRespDto;
@@ -25,7 +26,7 @@ public class VehicleController {
 	
 	@Autowired
 	private VehicleService vService;
-	private LocationService lService;
+
 	
 	@GetMapping("/carlist")
 	public ModelAndView searchVehicle(ModelAndView mv) {
@@ -39,21 +40,8 @@ public class VehicleController {
 	@GetMapping("/carlist/{idx}")
 	public ModelAndView viewVehicle(ModelAndView mv, @PathVariable int idx) {
 		// 차량 정보랑 리뷰랑 동시에
-	
-		VehicleRespDto vResp = vService.selectOne(idx);
-		mv.addObject("car", vResp);
-		
-		List<VehicleRespDto> carlist = vService.selectDetails(idx);
-		
-		mv.addObject("carlist", carlist);
+		mv.addObject("car", vService.getLocation(idx) );
 		mv.setViewName("reservation/details");
-		
-		
-		List<LocationReqDto> LocationList =lService.getLocation(idx);
-		mv.addObject("locationInfo", vResp);
-		
-		
-		
 		
 		return mv;
 	}

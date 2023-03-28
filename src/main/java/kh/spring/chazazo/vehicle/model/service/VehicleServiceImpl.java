@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kh.spring.chazazo.vehicle.model.dao.VehicleDao;
+import kh.spring.chazazo.vehicle.model.dto.LocationInfoDto;
 import kh.spring.chazazo.vehicle.model.dto.VehicleReqDto;
 import kh.spring.chazazo.vehicle.model.dto.VehicleRespDto;
 
@@ -28,6 +29,11 @@ public class VehicleServiceImpl implements VehicleService{
 	public VehicleRespDto selectOne(int idx) {
 		VehicleRespDto result = dao.selectOne(idx);
 		return result;
+	}
+
+	@Override
+	public LocationInfoDto getLocation(int idx) {
+		return dao.getLocation(idx);
 	}
 
 }

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import kh.spring.chazazo.location.model.dao.LocationDao;
 import kh.spring.chazazo.location.model.dto.LocationReqDto;
+import kh.spring.chazazo.location.model.dto.LocationRespDto;
 
 @Service
 public class LocationServiceImpl implements LocationService {
@@ -17,6 +18,11 @@ public class LocationServiceImpl implements LocationService {
 	@Override
 	public List<LocationReqDto> getLocation(int idx) {
 		return dao.getLocation(idx);
+	}
+
+	@Override
+	public List<LocationRespDto> selectLocation(int idx) {
+		return dao.selectLocation(idx);
 	}
 
 }

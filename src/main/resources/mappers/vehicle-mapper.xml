@@ -14,4 +14,21 @@
 		SELECT * FROM VEHICLE WHERE IDX = #{IDX}
 	</select>
 
+
+
+	<resultMap type="VehicleReqDto" id="LocationInfo">
+		<result property="idx" column="idx"/>
+		<result property="locationidx" column="location_idx"/>
+		<collection property="locationList" resultMap="locationInfo"></collection>
+	</resultMap>
+
+
+ 	<select id="getLocation" resultMap="LocationInfo">
+ 		 select *
+        from vehicle v
+        left outer join location l
+        on v.location_idx = l.idx
+        where v.idx = #{idx};
+ 	
+ 	</select>
 </mapper>

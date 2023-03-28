@@ -44,29 +44,29 @@
 					<div class="box-for overflow">                         
 						<div class="col-md-12 col-xs-12 login-blocks">
 							<h2>로그인 : </h2> 
-								<form action="login-check" method="post">
-									<div class="form-group">
-										<label>아이디</label>
-										<input type="text" class="form-control" name="username">
-									</div>
-									<div class="form-group">
-										<label>비밀번호</label>
-										<input type="password" class="form-control" name="password">
-									</div>
-									<div class="text-center">
-										<button type="submit" class="btn btn-default"> 로그인 </button>
-										<button type="submit" class="btn btn-default" value="login"> 회원가입 </button>
-									</div>
-									<div class="text-center">
-										<input type="checkbox" id="rememberCheck" name="remember-me">
-										<label for="rememberBtn">로그인 유지</label>
-									</div>
-									<div class="text-center">
-									 	<a href="<%=request.getContextPath()%>/member/find">아이디 찾기</a>
-										<span> | </span>
-										<a href="<%=request.getContextPath()%>/member/find">비밀번호 찾기</a> 
-									</div>
-								</form>
+							<form action="login-check" method="post">
+								<div class="form-group">
+									<label>아이디</label>
+									<input type="text" class="form-control" name="username">
+								</div>
+								<div class="form-group">
+									<label>비밀번호</label>
+									<input type="password" class="form-control" name="password">
+								</div>
+								<div class="text-center">
+									<button type="submit" class="btn btn-default"> 로그인 </button>
+									<button type="submit" class="btn btn-default" value="login"> 회원가입 </button>
+								</div>
+								<div class="text-center">
+									<input type="checkbox" id="rememberCheck" name="remember-me">
+									<label for="rememberBtn">로그인 유지</label>
+								</div>
+								<div class="text-center">
+								 	<a href="<%=request.getContextPath()%>/member/find">아이디 찾기</a>
+									<span> | </span>
+									<a href="<%=request.getContextPath()%>/member/find">비밀번호 찾기</a> 
+								</div>
+							</form>
 						</div>
 					</div>
 				</div>
@@ -81,7 +81,8 @@
 		
 		function rememberMe() {
 			if(confirm('활성화 시 로그인이 유지됩니다. 안전한 환경에서만 활성화하세요.')) {
-				$('#rememberCheck').iCheck('check');
+				setTimeout(function(){
+		            $('#rememberCheck').iCheck('check');}, 0);
 			} else {
 				setTimeout(function(){
 		            $('#rememberCheck').iCheck('uncheck');}, 0);

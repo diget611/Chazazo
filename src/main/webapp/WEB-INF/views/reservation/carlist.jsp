@@ -186,13 +186,13 @@
 										<div class="item-entry overflow">
 											<h5><a href="/chazazo/details">${car.model } </a></h5>
 											<div class="dot-hr"></div>
-											<span class="pull-left"><b> 대여지점 :</b> 강남점 </span>
+											<span class="pull-left"><b> 대여지점 : ${car.name }</b>  </span>
 											<span class="proerty-price pull-right"> ${car.price }원</span>
 											<p style="display: none;">Suspendisse ultricies Suspendisse ultricies Nulla quis dapibus nisl. Suspendisse ultricies commodo arcu nec pretium ...</p>
 											<div class="property-icon">
 												<img src="./resources/garoestate/assets/img/icon/bed.png">${car.year }년|
-												<img src="./resources/garoestate/assets/img/icon/shawer.png">(2)|
-												<img src="./resources/garoestate/assets/img/icon/cars.png">(1)  
+												<img src="./resources/garoestate/assets/img/icon/shawer.png">${car.fuelname }|
+												<img src="./resources/garoestate/assets/img/icon/cars.png">${car.typename }  
 											</div>
 										</div>
 									<!-- 썸네일 한 칸 끝 -->

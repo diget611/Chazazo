@@ -2,8 +2,10 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="vehicle">
 
-	<select id="selectList" resultType="vehicleReqDto">
-		SELECT * FROM VEHICLE 
+	<select id="selectList" resultType="VehicleInfo">
+		 select v.*, f.fuelname,c.typename, l.name
+	from FUELTYPE f, CARTYPE c, VEHICLE v ,location l
+	where v.cartype_idx = c.idx and v.fueltype_idx = f.idx and v.location_idx=l.idx 
 	</select>
 
 	<select id="selectDetails" resultType="vehicleRespDto">

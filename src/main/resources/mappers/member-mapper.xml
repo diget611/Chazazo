@@ -38,19 +38,18 @@
 		VALUES(MEMBER_SEQ.CURRVAL, #{name}, #{gender}, #{birth}, #{phoneNumber}, #{license}, #{email})
 	</insert>
 	
+	<select id="checkDup" resultType="_int">
+		SELECT COUNT(*) FROM MEMBER WHERE USERNAME = #{username}
+	</select>
+	
 	<update id="updateInfo" parameterType="memberInfoRespDto">
 		UPDATE MEMBER_INFO SET NAME = #{name}, GENDER = #{gender}, BIRTH = #{birth}
 									, PHONENUMBER = #{phoneNumber}, LICENSE = #{license},EMAIL = #{email}
 					       WHERE IDX = #{idx}
 	</update>
 	
-	
 	<delete id="delete">
 		
-	
 	</delete>
 	
-	<select id="checkDup" resultType="_int">
-		SELECT COUNT(*) FROM MEMBER WHERE USERNAME = #{username}
-	</select>
 </mapper>

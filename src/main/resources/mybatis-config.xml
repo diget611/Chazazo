@@ -15,6 +15,6 @@
 		<typeAlias type="kh.spring.chazazo.vehicle.model.dto.VehicleRespDto" alias="vehicleRespDto"/>
 		<typeAlias type="kh.spring.chazazo.reservation.model.dto.ReservationRespDto" alias="ReservationRespDto"/>	
 		<typeAlias type="kh.spring.chazazo.vehicle.model.dto.LocationInfoDto" alias="LocationInfo"/>	
-		
+		<typeAlias type="kh.spring.chazazo.admin.model.dto.AdminMemberRespDto" alias="adminMemberRespDto"/>
 	</typeAliases>
 </configuration>

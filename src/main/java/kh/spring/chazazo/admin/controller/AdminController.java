@@ -16,8 +16,6 @@ public class AdminController {
 	
 	@Autowired
 	private AdminService aService;
-	@Autowired
-	private VehicleService vService;
 	
 	@GetMapping("/main")
 	public ModelAndView viewStatistics(ModelAndView mv) {
@@ -34,7 +32,6 @@ public class AdminController {
 	
 	@GetMapping("/report")
 	public ModelAndView viewReport(ModelAndView mv) {
-		
 		mv.setViewName("admin/report");
 		return mv;
 	}
@@ -53,7 +50,7 @@ public class AdminController {
 	
 	@GetMapping("/vehicle")
 	public ModelAndView viewVehicle(ModelAndView mv) {
-		mv.addObject("vehicleList", vService.selectList());
+		mv.addObject("vehicleList", aService.selectVehicleList());
 		mv.setViewName("admin/vehicle");
 		return mv;
 	}

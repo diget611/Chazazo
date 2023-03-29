@@ -3,7 +3,7 @@
 <mapper namespace="vehicle">
 
 	<select id="selectList" resultType="VehicleInfo">
-		 select v.*, f.fuelname,c.typename, l.name
+		 select v.*, f.type as fuelname, c.type as typename, l.name
 	from FUELTYPE f, CARTYPE c, VEHICLE v ,location l
 	where v.cartype_idx = c.idx and v.fueltype_idx = f.idx and v.location_idx=l.idx 
 	</select>
@@ -34,7 +34,7 @@
  	</select>
  	
  	<select id="getOptionInfo" resultType="VehicleInfo">
-	 select f.fuelname,  c.typename
+	 select f.type as fuelname,  c.type as typename
 	from FUELTYPE f, CARTYPE c, VEHICLE v
 	where v.cartype_idx = c.idx and v.fueltype_idx = f.idx and v.idx=#{idx}
  	

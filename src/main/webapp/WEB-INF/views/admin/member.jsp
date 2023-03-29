@@ -9,6 +9,7 @@
 <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
 </head>
 <body>
-	<h1>관리자 메인</h1>						
+	<h1>관리자 회원 관리</h1>
+	${memberList }						
 </body>
 </html>

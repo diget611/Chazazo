@@ -32,6 +32,7 @@ public class AdminController {
 	
 	@GetMapping("/report")
 	public ModelAndView viewReport(ModelAndView mv) {
+		mv.addObject("reportList", aService.selectReportList());
 		mv.setViewName("admin/report");
 		return mv;
 	}

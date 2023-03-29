@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import kh.spring.chazazo.admin.model.dao.AdminDao;
 import kh.spring.chazazo.admin.model.dto.AdminMemberRespDto;
+import kh.spring.chazazo.admin.model.dto.AdminReportRespDto;
 import kh.spring.chazazo.vehicle.model.dto.VehicleInfoDto;
 
 @Service
@@ -23,6 +24,11 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public List<VehicleInfoDto> selectVehicleList() {
 		return dao.selectVehicleList();
+	}
+
+	@Override
+	public List<AdminReportRespDto> selectReportList() {
+		return dao.selectReportList();
 	}
 
 }

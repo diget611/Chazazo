@@ -7,16 +7,16 @@
 	from FUELTYPE f, CARTYPE c, VEHICLE v ,location l
 	where v.cartype_idx = c.idx and v.fueltype_idx = f.idx and v.location_idx=l.idx 
 	</select>
-
-	<select id="selectDetails" resultType="vehicleRespDto">
-		SELECT * FROM VEHICLE WHERE IDX = #{IDX}
-	</select>
 	
+	<select id="selectPageList" parameterType="map" resultType="VehicleInfo">
+		 select v.*, f.type as fuelname, c.type as typename, l.name
+		from FUELTYPE f, CARTYPE c, VEHICLE v ,location l
+		where v.cartype_idx = c.idx and v.fueltype_idx = f.idx and v.location_idx=l.idx and v.idx BETWEEN #{start} and #{end}
+	</select>
+
 	<select id="selectOne" resultType="vehicleRespDto">
 		SELECT * FROM VEHICLE WHERE IDX = #{IDX}
 	</select>
-
-
 
 	<resultMap type="VehicleReqDto" id="LocationInfo">
 		<result property="idx" column="idx"/>
@@ -39,7 +39,9 @@
 	where v.cartype_idx = c.idx and v.fueltype_idx = f.idx and v.idx=#{idx}
  	
  	</select>
- 	
+ 	<select id="selectOneCount" resultType="_int">
+	select count(*) cnt from vehicle
+	</select>
  	
  	
 </mapper>

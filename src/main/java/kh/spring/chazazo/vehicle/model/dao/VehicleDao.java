@@ -1,7 +1,9 @@
 package kh.spring.chazazo.vehicle.model.dao;
 
 import java.util.List;
+import java.util.Map;
 
+import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -40,5 +42,21 @@ public class VehicleDao {
 	public VehicleInfoDto getOptionInfo(int idx) {
 		return sqlSession.selectOne("vehicle.getOptionInfo",idx);
 	}
+
+
+	public int selectOneCount(String searchWord) {
+		return sqlSession.selectOne("vehicle.selectOneCount",searchWord);
+	}
+
+	
+	public List<VehicleRespDto> selectPageList(int currentPage, int limit) {
+		return sqlSession.selectList("vehicle.selectPageList" , null, new RowBounds((currentPage-1)*limit, limit));
+	}
+
+	public List<VehicleRespDto> selectPageList(Map<String, Integer> map) {
+		return sqlSession.selectList("vehicle.selectPageList", map);
+	}
+
+
 
 }

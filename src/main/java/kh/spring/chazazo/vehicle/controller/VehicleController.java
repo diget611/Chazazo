@@ -1,6 +1,9 @@
 package kh.spring.chazazo.vehicle.controller;
 
+import java.io.UnsupportedEncodingException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -27,13 +30,56 @@ public class VehicleController {
 	@Autowired
 	private VehicleService vService;
 
+	public final static int BOARD_LIMIT = 9;
+	public final static int PAGE_LIMIT = 5;
+
 	
 	@GetMapping("/carlist")
-	public ModelAndView searchVehicle(ModelAndView mv) {
+	public ModelAndView searchVehicle(ModelAndView mv,HttpServletRequest req, String page) {
 		// 메인페이지 / 예약페이지 / 결제페이지 차량 정보 검색
-		mv.addObject("carlist", vService.selectList());
+		
+	String searchWord = "검색";
+		
+		try {
+			req.setCharacterEncoding("UTF-8");
+			searchWord = req.getParameter("searchWord");
+			System.out.println("한글 확인: "+ searchWord);
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
+		
+		if(page == null) {
+			page = "1";
+		}
+		System.out.println("###########################");
+		System.out.println(page);
+		System.out.println("###########################");
+		int currentPage = Integer.parseInt(page);
+		int totalCnt = vService.selectOneCount(searchWord);
+		int totalpage =(totalCnt% BOARD_LIMIT==0)? 
+						(totalCnt / BOARD_LIMIT): 
+						(totalCnt / BOARD_LIMIT)+1;
+		int startpage =(currentPage %PAGE_LIMIT == 0 )?
+						(currentPage /PAGE_LIMIT -1)*PAGE_LIMIT +1 :
+						(currentPage /PAGE_LIMIT   )*PAGE_LIMIT +1 ;
+		int endpage = (startpage +PAGE_LIMIT > totalpage)?
+						totalpage :
+						(startpage +PAGE_LIMIT);
+		
+		
+		
+		Map<String, Integer> map = new HashMap<String,Integer>();
+		map.put("totalpage", totalpage);
+		map.put("startpage", startpage);
+		map.put("endpage", endpage);
+		map.put("currentPage", currentPage);
+		mv.addObject("pageInfo", map);
+		
+		mv.addObject("carlist", vService.selectPageList(currentPage, BOARD_LIMIT, searchWord));
 		mv.setViewName("reservation/carlist");
 		return mv;
+		
+		// BOARD_LIMIT (PAGE - 1) 시작 + 8 
 	}
 	
 	

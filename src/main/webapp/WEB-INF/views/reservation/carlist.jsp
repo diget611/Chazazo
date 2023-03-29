@@ -190,9 +190,9 @@
 											<span class="proerty-price pull-right"> ${car.price }원</span>
 											<p style="display: none;">Suspendisse ultricies Suspendisse ultricies Nulla quis dapibus nisl. Suspendisse ultricies commodo arcu nec pretium ...</p>
 											<div class="property-icon">
-												<img src="./resources/garoestate/assets/img/icon/bed.png">${car.year }년|
-												<img src="./resources/garoestate/assets/img/icon/shawer.png">${car.fuelname }|
-												<img src="./resources/garoestate/assets/img/icon/cars.png">${car.typename }  
+												<img src="./resources/garoestate/assets/img/icon/clock.png">${car.year }년|
+												<img src="./resources/garoestate/assets/img/icon/fuel.png">${car.fuelname }|
+												<img src="./resources/garoestate/assets/img/icon/car.png">${car.typename }  
 											</div>
 										</div>
 									<!-- 썸네일 한 칸 끝 -->
@@ -202,20 +202,19 @@
 						</div>
 					</div>
 					<!-- 페이징 처리 시작 -->
-					<div class="col-md-12"> 
-						<div class="pull-right">
-							<div class="pagination">
-								<ul>
-									<li><a href="#">Prev</a></li>
-									<li><a href="#">1</a></li>
-									<li><a href="#">2</a></li>
-									<li><a href="#">3</a></li>
-									<li><a href="#">4</a></li>
-									<li><a href="#">Next</a></li>
-								</ul>
-							</div>
-						</div>                
-					</div>
+			
+					<tr>
+						<td colspan="6">
+						<a href="<%=request.getContextPath() %>/carlist?page=${pageInfo.currentPage -1}">이전</a>
+						
+						<c:forEach begin="${pageInfo.startpage }" end ="${pageInfo.endpage }" var="page">
+							<a href="<%=request.getContextPath() %>/carlist?page=${page }">${page }</a>
+						</c:forEach>
+					
+						<c:if test="${pageInfo.endpage ne pageInfo.totalpage}">
+							<a href="#" id="test">다음</a>
+						</c:if>
+					</tr>
 					<!-- 페이징 처리 끝 -->
 				</div>  
 				<!-- 본문 컨텐츠 끝-->
@@ -224,5 +223,10 @@
 	</div>
     
 	<jsp:include page="../footer.jsp"/>
+	<script>
+		$('#test').on('click', function() {
+			console.log('눌렀음');
+		})
+	</script>
 </body>
 </html>

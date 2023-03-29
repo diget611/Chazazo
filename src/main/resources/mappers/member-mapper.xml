@@ -52,4 +52,9 @@
 		
 	</delete>
 	
+	<select id="selectMemberList" resultType="adminMemberRespDto">
+		SELECT USERNAME, ENABLED, NAME, GENDER, BIRTH, PHONE_NUMBER, LICENSE, EMAIL
+		  FROM MEMBER INNER JOIN MEMBER_INFO ON MEMBER.IDX = MEMBER_INFO.IDX
+	</select>
+	
 </mapper>

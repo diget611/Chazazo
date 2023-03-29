@@ -15,7 +15,7 @@ public class AdminDao {
 	private SqlSession sqlSession;
 	
 	public List<AdminMemberRespDto> selectMemberList() {
-		return sqlSession.selectList("admin.selectMemberList");
+		return sqlSession.selectList("member.selectMemberList");
 	}
 
 }

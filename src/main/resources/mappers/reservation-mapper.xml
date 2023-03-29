@@ -19,7 +19,6 @@
 	</update>
 	
 	<delete id="resDelete">
-		DELETE FROM RESERVATION WHERE IDX = #{IDX};
-	
+		DELETE FROM RESERVATION WHERE IDX = #{IDX}
 	</delete>
 </mapper>

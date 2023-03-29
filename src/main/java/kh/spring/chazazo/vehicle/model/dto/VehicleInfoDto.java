@@ -6,7 +6,7 @@ import lombok.Data;
 
 @Component
 @Data
-public class LocationInfoDto {
+public class VehicleInfoDto {
 	
 	private int idx;
 	private String model;
@@ -23,5 +23,7 @@ public class LocationInfoDto {
 	private String phoneNumber;
 	private String businessHours;
 	private String address;
+	private String fuelname;
+	private String typename;
 	
 }

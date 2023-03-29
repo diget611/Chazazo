@@ -6,7 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import kh.spring.chazazo.vehicle.model.dto.LocationInfoDto;
+import kh.spring.chazazo.vehicle.model.dto.VehicleInfoDto;
 import kh.spring.chazazo.vehicle.model.dto.VehicleReqDto;
 import kh.spring.chazazo.vehicle.model.dto.VehicleRespDto;
 
@@ -32,8 +32,13 @@ public class VehicleDao {
 	}
 	
 	
-	public LocationInfoDto getLocation(int idx) {
-		return sqlSession.selectOne("vehicle.getLocation", idx);
+	public VehicleInfoDto getVehicleInfo(int idx) {
+		return sqlSession.selectOne("vehicle.getVehicleInfo", idx);
+	}
+
+
+	public VehicleInfoDto getOptionInfo(int idx) {
+		return sqlSession.selectOne("vehicle.getOptionInfo",idx);
 	}
 
 }

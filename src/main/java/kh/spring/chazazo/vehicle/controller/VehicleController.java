@@ -40,8 +40,10 @@ public class VehicleController {
 	@GetMapping("/carlist/{idx}")
 	public ModelAndView viewVehicle(ModelAndView mv, @PathVariable int idx) {
 		// 차량 정보랑 리뷰랑 동시에
-		mv.addObject("car", vService.getLocation(idx) );
+		mv.addObject("car", vService.getVehicleInfo(idx));
+		mv.addObject("option", vService.getOptionInfo(idx));
 		mv.setViewName("reservation/details");
+
 		
 		return mv;
 	}

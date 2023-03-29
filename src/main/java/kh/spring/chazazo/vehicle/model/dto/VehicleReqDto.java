@@ -26,6 +26,5 @@ public class VehicleReqDto {
 	public int locationIdx;
 	public int fueltypeIdx;
 	public int cartypeIdx;
-	
-	public List<LocationReqDto> LocationList;
+
 }

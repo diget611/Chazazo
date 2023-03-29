@@ -23,11 +23,21 @@
 	</resultMap>
 
 
- 	<select id="getLocation" resultType="LocationInfo">
+ 	<select id="getVehicleInfo" resultType="VehicleInfo">
  		 select *
         from vehicle v
         left outer join location l
         on v.location_idx = l.idx
         where v.idx = #{idx}
  	</select>
+ 	
+ 	<select id="getOptionInfo" resultType="VehicleInfo">
+	 select f.fuelname,  c.typename
+	from FUELTYPE f, CARTYPE c, VEHICLE v
+	where v.cartype_idx = c.idx and v.fueltype_idx = f.idx and v.idx=#{idx}
+ 	
+ 	</select>
+ 	
+ 	
+ 	
 </mapper>

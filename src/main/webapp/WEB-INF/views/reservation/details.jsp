@@ -44,6 +44,8 @@
 
 </head>
 <body>
+ 		${option.fuelname }
+ 		${option.typename }
  		
 	<jsp:include page="../header.jsp"/>
 						
@@ -171,21 +173,30 @@
 								</ul>
 							</div>  
 							<!-- End additional-details area  -->
-							<div class="section property-features">      
+							<div class="section property-features">   
+							<div>   
 								<h4 class="s-property-title">대여점 정보</h4>                            
 								<ul>
-								<div>
-									<label>대여점: <h4> ${car.name } </h4></label><hr>
-									<div class="blog-lst col-md-9 padding-top-40" style="float: left;">
-										<section id="id-100" class="post single">
-											<div id="map" style="width:100%; height:400px"></div>   
-										</section>
-									</div>
-									<li><label>전화번호: <h5> ${car.phoneNumber } </h5></label></li>
-									<li><label>운영 시간:<h5> ${car.businessHours } </h5></label></li>
-									<label>주소:<h5> ${car.address } </h5></label><hr>
-								</div>
+									<li>
+										<h5><label>대여점:  ${car.name } </label></h5><br>
+									</li>		
+										<div class="blog-lst col-md-12 padding-top-40" style="float: left;">
+											<section id="id-100" class="post single">
+												<div id="map" style="width:100%; height:400px"></div>   
+											</section>
+										</div>
+									<li>
+										 <h5><label>전화번호: ${car.phoneNumber } </label></h5>
+									</li>
+									<li>
+										<h5><label>운영 시간: ${car.businessHours } </label></h5>
+									</li>
+									<li>
+										<h5><label>주소: ${car.address } </label></h5>
+									</li>
+								
 								</ul>
+							</div>
 								<!-- 리뷰 영역 시작 -->
 								<div class="section">
 									<h4 class="s-property-title">리뷰</h4>
@@ -345,7 +356,7 @@
 var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
  
 var imageSrc = 'https://cdn-icons-png.flaticon.com/512/5695/5695641.png', // 마커이미지의 주소입니다    
-imageSize = new kakao.maps.Size(64, 69), // 마커이미지의 크기입니다
+imageSize = new kakao.maps.Size(65, 72), // 마커이미지의 크기입니다
 imageOption = {offset: new kakao.maps.Point(27, 69)}; 
  
 var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption),

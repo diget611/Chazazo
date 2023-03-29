@@ -163,7 +163,7 @@
 					let list = '';
 					if(result != '') {
 						// TODO : 내용 정리 어떻게 하지
-						$('.modal_body').children().eq(0).remove();
+						$('.modal_body').children('div').remove();
 						list += '<div>입력하신 이메일 정보와 일치하는 아이디는</div>';
 						for(let i = 0; i < result.length; i++) {
 							list += '<div>' + result[i] + '</div>';
@@ -178,7 +178,6 @@
 					$('.modal').css('display', 'block');
 				},
 				error: function(){
-					
 				}
 			});
 		}

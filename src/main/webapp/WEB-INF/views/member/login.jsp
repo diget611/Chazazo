@@ -55,7 +55,7 @@
 								</div>
 								<div class="text-center">
 									<button type="submit" class="btn btn-default"> 로그인 </button>
-									<button type="submit" class="btn btn-default" value="login"> 회원가입 </button>
+									<button type="button" class="btn btn-default" id="register"> 회원가입 </button>
 								</div>
 								<div class="text-center">
 									<input type="checkbox" id="rememberCheck" name="remember-me">
@@ -87,7 +87,12 @@
 				setTimeout(function(){
 		            $('#rememberCheck').iCheck('uncheck');}, 0);
 			}
-		}
+		};
+		
+		$('#register').on('click', function() {
+			console.log('클릭');
+			location.href='<%=request.getContextPath()%>/member/register';
+		});
 		
 	</script>
 </body>

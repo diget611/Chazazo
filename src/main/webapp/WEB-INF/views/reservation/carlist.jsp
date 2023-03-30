@@ -62,7 +62,7 @@
 											<input type="hidden" name="typeChk">
 											<div class="col-xs-4">
 												<div class="checkbox">
-													<label><input type="checkbox" id="alltype"   value="all" checked> 전체</label>
+													<label><input type="checkbox" id="alltype"  value="all" checked> 전체</label>
 												</div> 
 											</div>
 											<div class="col-xs-4">
@@ -237,19 +237,6 @@
 	<Script>
 
 
-	$('[name=cartypeIdx]').on('ifChanged',function(){
-		if($('input:checkbox[name=cartypeIdx]:checked').length == 0 ) {
-			  setTimeout(function(){ 
-				  console.log('비었음');
-				$('#alltype').iCheck('check');
-			  },0);
-		}else {
-			
-			 setTimeout(function(){
-			$('#alltype').iCheck('uncheck');
-			 },0);
-		}
-	})
 	
 	$('#alltype').on('ifChecked',function(){
 		console.log('전체눌림!!!');
@@ -259,11 +246,6 @@
 	}) 
 	
 
-
-	
-	
-	
-	
 	
 	
 	
@@ -273,6 +255,17 @@
 			arr.push($(this).val());
 		})
 		console.log(arr);
+		
+		
+		if($('input:checkbox[name=cartypeIdx]:checked').length == 0 &&  ($("#alltype:checkbox" ).is( ":checked") == false )) {
+			  setTimeout(function(){ 
+				  $('#alltype').iCheck('check')
+			  },0);
+		}else {
+			 setTimeout(function(){
+			$('#alltype').iCheck('uncheck');
+			 },0);
+		}
 	
 	})
 	

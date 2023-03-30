@@ -205,7 +205,9 @@
 			
 					<tr>
 						<td colspan="6">
+						<c:if test="${pageInfo.currentPage ne 1 }">
 						<a href="<%=request.getContextPath() %>/carlist?page=${pageInfo.currentPage -1}">이전</a>
+						</c:if>
 						
 						<c:forEach begin="${pageInfo.startpage }" end ="${pageInfo.endpage }" var="page">
 							<a href="<%=request.getContextPath() %>/carlist?page=${page }">${page }</a>
@@ -215,6 +217,8 @@
 							<a href="#" id="test">다음</a>
 						</c:if>
 					</tr>
+					
+				
 					<!-- 페이징 처리 끝 -->
 				</div>  
 				<!-- 본문 컨텐츠 끝-->

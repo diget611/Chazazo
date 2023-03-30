@@ -44,8 +44,8 @@ public class VehicleDao {
 	}
 
 
-	public int selectOneCount(String searchWord) {
-		return sqlSession.selectOne("vehicle.selectOneCount",searchWord);
+	public int selectOneCount() {
+		return sqlSession.selectOne("vehicle.selectOneCount");
 	}
 
 	

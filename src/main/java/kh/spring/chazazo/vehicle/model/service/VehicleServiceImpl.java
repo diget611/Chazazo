@@ -45,17 +45,14 @@ public class VehicleServiceImpl implements VehicleService{
 	}
 
 	@Override
-	public int selectOneCount(String searchWord) {
-		return dao.selectOneCount(searchWord);
+	public int selectOneCount( ) {
+		return dao.selectOneCount();
 	}
+
+
 
 	@Override
 	public List<VehicleRespDto> selectPageList(int currentPage, int limit) {
-		return dao.selectPageList(currentPage,limit);
-	}
-
-	@Override
-	public List<VehicleRespDto> selectPageList(int currentPage, int limit, String searchWord) {
 		Map<String, Integer> map = new HashMap<>();
 		map.put("start", limit * (currentPage - 1) + 1);
 		map.put("end", limit * (currentPage - 1) + 9);

@@ -59,36 +59,37 @@
 								<fieldset class="padding-5" style="margin-bottom:50px">
 									<h5>차량등급</h5>
 										<div class="row">
+											<input type="hidden" name="typeChk">
 											<div class="col-xs-4">
 												<div class="checkbox">
-													<label><input type="checkbox" checked> 전체</label>
+													<label><input type="checkbox" id="alltype"  name="cartypeIdx" value="all" checked> 전체</label>
 												</div> 
 											</div>
 											<div class="col-xs-4">
 												<div class="checkbox">
-													<label><input type="checkbox"> 소형</label>
+													<label><input type="checkbox" name="cartypeIdx" value="1"> 경차</label>
 												</div>
 											</div>   
 											<div class="col-xs-4">
 												<div class="checkbox">
-													<label><input type="checkbox"> 중형</label>
+													<label><input type="checkbox" name="cartypeIdx" value="2"> 소형</label>
 												</div>
 											</div>   
 											<div class="col-xs-4">
 												<div class="checkbox">
-													<label><input type="checkbox"> 대형</label>
+													<label><input type="checkbox" name="cartypeIdx" value="3"> 중형</label>
 												</div>
 											</div>    
 											<div class="col-xs-4">
 												<div class="checkbox">
-													<label><input type="checkbox"> suv</label>
+													<label><input type="checkbox" name="cartypeIdx" value="4"> 대형</label>
 												</div>
 											</div>     
 											<div class="col-xs-4">
 												<div class="checkbox">
-													<label><input type="checkbox">수입</label>
+													<label><input type="checkbox" name="cartypeIdx" value="5">수입</label>
 												</div>
-											</div>                                   
+											</div>                                                    
 										</div>
 									</fieldset>
                                    <!-- 카테고리-연료 시작 -->
@@ -183,7 +184,7 @@
 										<a href="<%=request.getContextPath()%>/carlist/${car.idx }"><img src="https://placeimg.com/327/220/animals" /></a>                               			
 										</div>
 										<!-- 썸네일 한 칸 시작 -->
-										<div class="item-entry overflow">
+										<div class="item-entry overflow" id="listbody">
 											<h5><a href="/chazazo/details">${car.model } </a></h5>
 											<div class="dot-hr"></div>
 											<span class="pull-left"><b> 대여지점 : ${car.name }</b>  </span>
@@ -201,14 +202,19 @@
 						</c:forEach>
 						</div>
 					</div>
+					
+					<button id="test">
+					더보기
+					</button>
+					
 					<!-- 페이징 처리 시작 -->
 			
 					<tr>
 						<td colspan="6">
-						<c:if test="${pageInfo.currentPage ne 1 }">
+						<c:if test=" ${pageInfo.startpage ne 1}">
+						
 						<a href="<%=request.getContextPath() %>/carlist?page=${pageInfo.currentPage -1}">이전</a>
 						</c:if>
-						
 						<c:forEach begin="${pageInfo.startpage }" end ="${pageInfo.endpage }" var="page">
 							<a href="<%=request.getContextPath() %>/carlist?page=${page }">${page }</a>
 						</c:forEach>
@@ -217,9 +223,8 @@
 							<a href="#" id="test">다음</a>
 						</c:if>
 					</tr>
-					
-				
-					<!-- 페이징 처리 끝 -->
+
+				<!--  페이징 처리 끝 -->
 				</div>  
 				<!-- 본문 컨텐츠 끝-->
 			</div>              
@@ -227,10 +232,90 @@
 	</div>
     
 	<jsp:include page="../footer.jsp"/>
-	<script>
-		$('#test').on('click', function() {
-			console.log('눌렀음');
+
+
+	<Script>
+	
+	$('[name=alltype]').on('ifChecked',function(){
+		console.log('전체눌림!!!');
+		  setTimeout(function(){
+		 $('[name=cartypeIdx]').iCheck('uncheck');
+		  },0);
+	}) 
+	
+	$('[name=cartypeIdx]').on('ifChecked',function(){
+		setTimeout(function(){
+		 $('[name=alltype]').iCheck('uncheck');
+		  },0);
+	}) 
+	
+	$('[name=cartypeIdx]').on('ifChecked',function(){
+		if(console.log($('input:checkbox[name=cartypeIdx]:checked').length) == null ) {
+			  setTimeout(function(){ 
+				  console.log('비었음');
+				$('[name=alltype]').iCheck('check');
+			  },0);
+		}
+	})
+	
+	
+	if(console.log($('input:checkbox[name=cartypeIdx]:checked').length) == null ) {
+		  setTimeout(function(){ 
+			  console.log('비었음');
+			$('[name=alltype]').iCheck('check');
+		  },0);
+	}
+
+
+	
+	
+	
+	
+	
+	
+	
+	$('[name=cartypeIdx]').on('ifChanged', function() {
+		let arr = [];
+		$('input:checkbox[name=cartypeIdx]:Checked').each(function() {
+			arr.push($(this).val());
 		})
+		console.log(arr);
+	
+	})
+	
+	var currentPage =1
+		$('#test').on('click', function() {
+			currentPage +=1
+		
+			console.log('!!!!!!!!!!!!!!!!');
+			console.log(currentPage);
+		})
+		
+		
+		
+	$('[name=cartypeIdx]').on('ifChanged', function() {
+         let carType = [];
+         
+         $('input:checkbox[name=cartypeIdx]:checked').each(function() {
+            carType.push($(this).val());
+         })
+         
+         let objParams = {
+            "carTypeList" : carType
+         };
+         
+         $.ajax({
+            url: "<%=request.getContextPath()%>/test",
+            data: objParams,
+            type: 'get',
+            success: function() {},
+            error: function() {}
+         });
+
+      })	
+		
+		
+		
 	</script>
 </body>
 </html>

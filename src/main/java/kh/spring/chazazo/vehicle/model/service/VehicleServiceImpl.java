@@ -55,7 +55,7 @@ public class VehicleServiceImpl implements VehicleService{
 	public List<VehicleRespDto> selectPageList(int currentPage, int limit) {
 		Map<String, Integer> map = new HashMap<>();
 		map.put("start", limit * (currentPage - 1) + 1);
-		map.put("end", limit * (currentPage - 1) + 9);
+		map.put("end", currentPage*limit);
 		return dao.selectPageList(map);
 	}
 

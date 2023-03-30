@@ -8,6 +8,8 @@
 	where v.cartype_idx = c.idx and v.fueltype_idx = f.idx and v.location_idx=l.idx 
 	</select>
 	
+
+	
 	<select id="selectPageList" parameterType="map" resultType="VehicleInfo">
 		 select v.*, f.type as fuelname, c.type as typename, l.name
 		from FUELTYPE f, CARTYPE c, VEHICLE v ,location l

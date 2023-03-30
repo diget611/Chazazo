@@ -1,6 +1,7 @@
 package kh.spring.chazazo.vehicle.controller;
 
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -11,7 +12,9 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -31,7 +34,7 @@ public class VehicleController {
 	private VehicleService vService;
 
 	public final static int BOARD_LIMIT = 9;
-	public final static int PAGE_LIMIT = 5;
+	public final static int PAGE_LIMIT = 4;
 
 	
 	@GetMapping("/carlist")
@@ -56,9 +59,8 @@ public class VehicleController {
 		int endpage = (startpage +PAGE_LIMIT > totalpage)?
 						totalpage :
 						(startpage +PAGE_LIMIT);
-		
-		
-		
+
+	
 		Map<String, Integer> map = new HashMap<String,Integer>();
 		map.put("totalpage", totalpage);
 		map.put("startpage", startpage);
@@ -69,8 +71,7 @@ public class VehicleController {
 		mv.addObject("carlist", vService.selectPageList(currentPage, BOARD_LIMIT));
 		mv.setViewName("reservation/carlist");
 		return mv;
-		
-		// BOARD_LIMIT (PAGE - 1) 시작 + 8 
+
 	}
 	
 	
@@ -84,6 +85,13 @@ public class VehicleController {
 		
 		return mv;
 	}
+	
+	@GetMapping("/test")
+	public String cartypeTest(ModelAndView mv, @RequestParam(value="carTypeList[]") List<String> objParams) {
+		System.out.println(objParams);
+		return null;
+	}
+	
 	
 	// 관리자
 	public ModelAndView viewVehicleList(ModelAndView mv) {

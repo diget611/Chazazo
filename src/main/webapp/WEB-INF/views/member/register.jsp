@@ -42,62 +42,66 @@
 		<div class="register-area vh-100" style="background-color: rgb(249, 249, 249);">
 			<div class="container">
 				<div>
-					<div class="box-for overflow">
-						<div class="col-md-12 col-xs-12 login-blocks">
+					<div class="box-for overflow" style="width: 800px; margin: 0 auto;">
+						<div class="col-md-12 col-xs-12 login-blocks" style="padding: 20px 40px 20px 40px;">
 							<h2>회원가입 :</h2>
 							<form action="<%=request.getContextPath() %>/member/register"
 								method="post" onsubmit="return checkForm()">
 								<div class="form-group">
 									<label>아이디</label>
 									<div class="row">
-										<div class="col-xs-10" >
-											<input type="text" class="form-control" name="username" style="width:100%;">
+										<div class="col-xs-10">
+											<input type="text" class="form-control" name="username" style="width:100%;  border-radius: 2px;">
 										</div>
-										<div class="col-xs-2" >
-											<button id="checkDupBtn" type="button" class="btn btn-default" style="width: 100%;">중복 확인</button>
+										<div class="col-xs-2">
+											<button id="checkDupBtn" type="button" class="btn btn-default" style="width: 100%; border-radius: 2px;">중복확인</button>
 										</div>
 									</div>
 								</div>
 								<div class="form-group">
 									<label>비밀번호</label>
-									<input type="password" class="form-control" name="password">
+									<input type="password" class="form-control" name="password" style="border-radius: 2px;">
 								</div>
 								<div class="form-group">
 									<label>비밀번호 확인</label>
-									<input type="password" class="form-control" name="passwordCheck">
+									<input type="password" class="form-control" name="passwordCheck" style="border-radius: 2px;">
 								</div>
 								<div class="form-group">
-									<label>이름</label>
-									<input type="text" class="form-control" name="name">
-								</div>
-								<div class="form-group">
-									<label>성별</label>
-									<select class="form-control" name="gender">
-										<option selected="selected" hidden="hidden" value="2">성별</option>
-										<option value="0">남성</option>
-										<option value="1">여성</option>
-									</select>
-								</div>
-								<div class="form-group">
-									<label>생년월일</label>
-									<input type="text" class="form-control" name="birth">
+									<div class="row">
+										<div class="col-xs-5">
+											<label>이름</label>
+											<input type="text" class="form-control" name="name" style="border-radius: 2px;">
+										</div>
+										<div class="col-xs-3">
+											<label>성별</label>
+											<select class="form-control" name="gender" style="border-radius: 2px;">
+												<option selected="selected" hidden="hidden" value="2">성별</option>
+												<option value="0">남성</option>
+												<option value="1">여성</option>
+											</select>
+										</div>
+										<div class="col-xs-4">
+											<label>생년월일</label>
+											<input type="text" class="form-control" name="birth" style="border-radius: 2px;">
+										</div>
+									</div>
 								</div>
 								<div class="form-group">
 									<label>전화번호</label>
-									<input type="text" class="form-control" name="phoneNumber">
+									<input type="text" class="form-control" name="phoneNumber" style="border-radius: 2px;">
 								</div>
 								<div class="form-group">
 									<label>면허증 번호</label>
-									<input type="text" class="form-control" name="license">
+									<input type="text" class="form-control" name="license" style="border-radius: 2px;">
 								</div>
 								<div class="form-group">
 									<label>이메일</label>
 									<div class="row">
 										<div class="col-xs-10" >
-											<input type="text" class="form-control" name="email" style="width:100%;">
+											<input type="text" class="form-control" name="email" style="width:100%; border-radius: 2px;">
 										</div>
 										<div class="col-xs-2" >
-											<button id="checkEmailBtn" type="button" class="btn btn-default" style="width: 100%;">인증번호</button>
+											<button id="checkEmailBtn" type="button" class="btn btn-default" style="width: 100%; border-radius: 2px;">인증번호</button>
 										</div>
 									</div>
 								</div>
@@ -105,15 +109,16 @@
 									<div class="row">
 										<div class="col-xs-10" >
 											<input type="text" class="form-control" name="checkEmail" 
-											disabled="disabled" placeholder="인증번호를 입력하세요." style="width:100%;">
+											disabled="disabled" placeholder="인증번호를 입력하세요." style="width:100%; border-radius: 2px;">
 										</div>
 										<div class="col-xs-2" >
-											<button id="confirmEmailBtn" type="button" class="btn btn-default" style="width: 100%;">확인</button>
+											<button id="confirmEmailBtn" type="button" disabled="disabled"
+											class="btn btn-default" style="width: 100%; border-radius: 2px;">확인</button>
 										</div>
 									</div>
 								</div>
 								<div class="text-center" style="margin-top: 30px;">
-									<button type="submit" class="btn btn-default">회원가입</button>
+									<button type="submit" class="btn btn-default" style="border-radius: 2px;">회원가입</button>
 								</div>
 							</form>
 						</div>
@@ -341,6 +346,7 @@
 					let testEmail = /([!#-'*+-9=?A-Z^-~-]+(\.[!#-'*+-9=?A-Z^-~-]+)*|\"\(\[\]!#-[^-~ \t]|(\\[\t -~])+\")@([!#-'*+-9=?A-Z^-~-]+(\.[!#-'*+-9=?A-Z^-~-]+)*|\[[\t -Z^-~]*])/;
 					if(email != null && testEmail.test(email)) {
 						alert("인증번호가 발송되었습니다.")
+						$('[name=confirmEmailBtn]').attr('disabled', false);
 						$('[name=checkEmail]').attr('disabled', false);
 						certNum = result;
 					} else {

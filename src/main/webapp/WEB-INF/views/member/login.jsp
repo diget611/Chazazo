@@ -41,21 +41,21 @@
 		<div class="register-area vh-100" style="background-color: rgb(249, 249, 249) ;">     
 			<div class="container">
 				<div>
-					<div class="box-for overflow">                         
-						<div class="col-md-12 col-xs-12 login-blocks">
+					<div class="box-for overflow" style="width: 600px; margin: 0 auto;">                         
+						<div class="col-md-12 col-xs-12 login-blocks" style="padding: 20px 40px 20px 40px;">
 							<h2>로그인 : </h2> 
 							<form action="login-check" method="post">
 								<div class="form-group">
 									<label>아이디</label>
-									<input type="text" class="form-control" name="username">
+									<input type="text" class="form-control" name="username" style="border-radius: 2px;">
 								</div>
 								<div class="form-group">
 									<label>비밀번호</label>
-									<input type="password" class="form-control" name="password">
+									<input type="password" class="form-control" name="password" style="border-radius: 2px;">
 								</div>
 								<div class="text-center">
-									<button type="submit" class="btn btn-default"> 로그인 </button>
-									<button type="button" class="btn btn-default" id="register"> 회원가입 </button>
+									<button type="submit" class="btn btn-default" style="border-radius: 2px;"> 로그인 </button>
+									<button type="button" class="btn btn-default" id="register" style="border-radius: 2px;"> 회원가입 </button>
 								</div>
 								<div class="text-center">
 									<input type="checkbox" id="rememberCheck" name="remember-me">

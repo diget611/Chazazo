@@ -38,7 +38,7 @@ public class ReservationController {
 		// 유저 예약 리스트 조회
 		
 		mv.addObject("reservation", rService.selectList());
-		mv.setViewName("member/history");
+		mv.setViewName("member/favorites");
 		return mv;
 	}
 

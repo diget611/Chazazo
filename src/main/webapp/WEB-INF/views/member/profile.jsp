@@ -98,7 +98,8 @@
 							<div class="panel panel-default sidebar-menu wow fadeInRight animated animated animated" style="visibility: visible; animation-name: fadeInRight;">
 								<div class="panel-heading">
 									<h3 class="panel-title">
-									<button type="button" class="btn btn-outline-primary">회원정보 수정</button><br></h3>
+									<button type="button" class="btn btn-outline-primary">회원정보 수정</button><br>
+									<button type="button" class="btn btn-outline-primary">나의 관심 지점</button><br></h3>
 								</div>
 							</div>
 						</div>

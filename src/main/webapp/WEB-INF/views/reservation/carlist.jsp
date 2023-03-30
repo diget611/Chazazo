@@ -62,7 +62,7 @@
 											<input type="hidden" name="typeChk">
 											<div class="col-xs-4">
 												<div class="checkbox">
-													<label><input type="checkbox" id="alltype"  name="cartypeIdx" value="all" checked> 전체</label>
+													<label><input type="checkbox" id="alltype"  value="all" checked> 전체</label>
 												</div> 
 											</div>
 											<div class="col-xs-4">
@@ -235,8 +235,9 @@
 
 
 	<Script>
-	
-	$('[name=alltype]').on('ifChecked',function(){
+
+
+	$('#alltype').on('ifChecked',function(){
 		console.log('전체눌림!!!');
 		  setTimeout(function(){
 		 $('[name=cartypeIdx]').iCheck('uncheck');
@@ -245,27 +246,20 @@
 	
 	$('[name=cartypeIdx]').on('ifChecked',function(){
 		setTimeout(function(){
-		 $('[name=alltype]').iCheck('uncheck');
+			console.log('눌림');
+		 $('#alltype').iCheck('uncheck');
 		  },0);
 	}) 
 	
-	$('[name=cartypeIdx]').on('ifChecked',function(){
-		if(console.log($('input:checkbox[name=cartypeIdx]:checked').length) == null ) {
+	$('[name=cartypeIdx]').on('ifChanged',function(){
+		if($('input:checkbox[name=cartypeIdx]:checked').length == 0 ) {
 			  setTimeout(function(){ 
 				  console.log('비었음');
-				$('[name=alltype]').iCheck('check');
+				$('#alltype').iCheck('check');
 			  },0);
 		}
 	})
 	
-	
-	if(console.log($('input:checkbox[name=cartypeIdx]:checked').length) == null ) {
-		  setTimeout(function(){ 
-			  console.log('비었음');
-			$('[name=alltype]').iCheck('check');
-		  },0);
-	}
-
 
 	
 	

@@ -54,7 +54,7 @@
 											<input type="text" class="form-control" name="username" style="width:100%;">
 										</div>
 										<div class="col-xs-2" >
-											<button id="checkDupBtn" type="button" class="btn btn-default" style="width: 100px;">중복 확인</button>
+											<button id="checkDupBtn" type="button" class="btn btn-default" style="width: 100%;">중복 확인</button>
 										</div>
 									</div>
 								</div>
@@ -86,40 +86,33 @@
 									<label>전화번호</label>
 									<input type="text" class="form-control" name="phoneNumber">
 								</div>
-								<div class="form-group container">
-									<label>면허증 번호</label> 
-									<div class="row">
-										<div class="col-xs-10" >
-											<input type="text" class="form-control" name="license" style="width:100%;">
-										</div>
-										<div class="col-xs-2" >
-											<button type="submit" class="btn btn-default" style="width: 100px;">확인</button>
-										</div>
-									</div>
+								<div class="form-group">
+									<label>면허증 번호</label>
+									<input type="text" class="form-control" name="license">
 								</div>
-								<div class="form-group container">
-									<label>이메일</label> 
+								<div class="form-group">
+									<label>이메일</label>
 									<div class="row">
 										<div class="col-xs-10" >
 											<input type="text" class="form-control" name="email" style="width:100%;">
 										</div>
 										<div class="col-xs-2" >
-											<button id="checkEmailBtn" type="button" class="btn btn-default" style="width: 100px;">인증번호</button>
+											<button id="checkEmailBtn" type="button" class="btn btn-default" style="width: 100%;">인증번호</button>
 										</div>
 									</div>
 								</div>
-								<div class="form-group container">
+								<div class="form-group">
 									<div class="row">
 										<div class="col-xs-10" >
-											<input type="text" class="form-control" name="checkEmail"
+											<input type="text" class="form-control" name="checkEmail" 
 											disabled="disabled" placeholder="인증번호를 입력하세요." style="width:100%;">
 										</div>
 										<div class="col-xs-2" >
-											<button id="confirmEmailBtn" type="button" class="btn btn-default" style="width: 100px;">확인</button>
+											<button id="confirmEmailBtn" type="button" class="btn btn-default" style="width: 100%;">확인</button>
 										</div>
 									</div>
 								</div>
-								<div class="text-center">
+								<div class="text-center" style="margin-top: 30px;">
 									<button type="submit" class="btn btn-default">회원가입</button>
 								</div>
 							</form>

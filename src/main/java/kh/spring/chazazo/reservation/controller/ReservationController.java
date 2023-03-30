@@ -27,7 +27,7 @@ public class ReservationController {
 	private ReservationService rService;
 	
 //	관리자
-	public ModelAndView viewResrvationList(ModelAndView mv) {
+	public ModelAndView viewReservationList(ModelAndView mv) {
 		// 관리자 예약 리스트 조회
 		// 관리자가 조건별로 검색한 예약 정보도 필요하지 않나?(메소드 추가)
 		return mv;

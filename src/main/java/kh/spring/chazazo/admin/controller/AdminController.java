@@ -18,7 +18,7 @@ public class AdminController {
 	private AdminService aService;
 	
 	@GetMapping("/main")
-	public ModelAndView viewStatistics(ModelAndView mv) {
+	public ModelAndView viewMain(ModelAndView mv) {
 		mv.setViewName("admin/main");
 		return mv;
 	}
@@ -38,7 +38,7 @@ public class AdminController {
 	}
 	
 	@GetMapping("/reservation")
-	public ModelAndView viewResrvation(ModelAndView mv) {
+	public ModelAndView viewReservation(ModelAndView mv) {
 		mv.setViewName("admin/reservation");
 		return mv;
 	}

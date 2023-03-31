@@ -17,6 +17,7 @@ public class VehicleServiceImpl implements VehicleService{
 
 	@Autowired
 	private VehicleDao dao;
+	
 	@Override
 	public List<VehicleReqDto> selectList() {
 		return dao.selectList();
@@ -57,6 +58,12 @@ public class VehicleServiceImpl implements VehicleService{
 		map.put("start", limit * (currentPage - 1) + 1);
 		map.put("end", currentPage*limit);
 		return dao.selectPageList(map);
+	}
+
+
+	@Override
+	public List<VehicleReqDto> selectList(List<String> carTypeList) {
+		return dao.selectList(carTypeList);
 	}
 
 }

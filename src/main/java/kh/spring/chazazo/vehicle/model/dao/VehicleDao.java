@@ -21,6 +21,10 @@ public class VehicleDao {
 	public List<VehicleReqDto> selectList() {
 		return sqlSession.selectList("vehicle.selectList");
 	}
+	
+	public List<VehicleReqDto> selectList(List<String> carTypeList) {
+		return sqlSession.selectList("vehicle.selectList", carTypeList);
+	}
 
 
 	public List<VehicleRespDto> selectDetails(int idx) {

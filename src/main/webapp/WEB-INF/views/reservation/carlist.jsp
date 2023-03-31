@@ -62,7 +62,7 @@
 											<input type="hidden" name="typeChk">
 											<div class="col-xs-4">
 												<div class="checkbox">
-													<label><input type="checkbox" id="alltype"  value="all" checked> 전체</label>
+													<label><input type="checkbox" id="alltype"   value="all" checked> 전체</label>
 												</div> 
 											</div>
 											<div class="col-xs-4">
@@ -177,29 +177,7 @@
 					</div>
 					<div class="col-md-12 clear"> 
 						<div id="list-type" class="proerty-th">
-						<c:forEach items="${carlist }" var="car" >
-							<div class="col-sm-6 col-md-4 p0">
-								<div class="box-two proerty-item">
-										<div class="item-thumb">
-										<a href="<%=request.getContextPath()%>/carlist/${car.idx }"><img src="https://placeimg.com/327/220/animals" /></a>                               			
-										</div>
-										<!-- 썸네일 한 칸 시작 -->
-										<div class="item-entry overflow" id="listbody">
-											<h5><a href="/chazazo/details">${car.model } </a></h5>
-											<div class="dot-hr"></div>
-											<span class="pull-left"><b> 대여지점 : ${car.name }</b>  </span>
-											<span class="proerty-price pull-right"> ${car.price }원</span>
-											<p style="display: none;">Suspendisse ultricies Suspendisse ultricies Nulla quis dapibus nisl. Suspendisse ultricies commodo arcu nec pretium ...</p>
-											<div class="property-icon">
-												<img src="./resources/garoestate/assets/img/icon/clock.png">${car.year }년|
-												<img src="./resources/garoestate/assets/img/icon/fuel.png">${car.fuelname }|
-												<img src="./resources/garoestate/assets/img/icon/car.png">${car.typename }  
-											</div>
-										</div>
-									<!-- 썸네일 한 칸 끝 -->
-								</div>
-							</div> 
-						</c:forEach>
+						
 						</div>
 					</div>
 					
@@ -232,42 +210,50 @@
 	</div>
     
 	<jsp:include page="../footer.jsp"/>
-
-
-	<Script>
-
-
 	
-	$('#alltype').on('ifChecked',function(){
+
+	<script>
+	//전체 선택 체크박스가 변경되었을때	
+	$('#alltype').on('ifChanged',function(){
 		console.log('전체눌림!!!');
-		  setTimeout(function(){
+		
+		//전체가 체크되면 다른 체크박스 해제
+		if($('#alltype:checkbox').is(":checked")==true) {
+		setTimeout(function(){
 		 $('[name=cartypeIdx]').iCheck('uncheck');
 		  },0);
+		// 모두 선택되지 않았을경우 경고를 띄우고 자동으로 전체가 체크되게 한다
+		} else if ($('#alltype:checkbox').is(":checked")==false &&($('input:checkbox[name=cartypeIdx]:checked').length == 0 ) ) {
+					setTimeout(function(){ 
+						alert('최소 하나 이상의 타입을 선택해야 합니다')
+						$('#alltype').iCheck('check');
+				  },0);
+				}
 	}) 
-	
+		
 
-	
-	
-	
+	//전체 제외 다른 체크박스가 변경되었을때
 	$('[name=cartypeIdx]').on('ifChanged', function() {
+		//배열을 생성하고 체크된 value값을 배열에 담는다
 		let arr = [];
 		$('input:checkbox[name=cartypeIdx]:Checked').each(function() {
 			arr.push($(this).val());
 		})
 		console.log(arr);
 		
-		
+		// 모두 선택되지 않았을경우 자동으로 전체가 체크되게 한다
 		if($('input:checkbox[name=cartypeIdx]:checked').length == 0 &&  ($("#alltype:checkbox" ).is( ":checked") == false )) {
 			  setTimeout(function(){ 
 				  $('#alltype').iCheck('check')
 			  },0);
-		}else {
-			 setTimeout(function(){
-			$('#alltype').iCheck('uncheck');
-			 },0);
-		}
-	
+		//하나라도 체크를 하면 전체체크박스가 해제된다
+			}else {
+				 setTimeout(function(){
+				$('#alltype').iCheck('uncheck');
+				 },0);
+			}
 	})
+	
 	
 	var currentPage =1
 		$('#test').on('click', function() {
@@ -279,29 +265,64 @@
 		
 		
 		
-	$('[name=cartypeIdx]').on('ifChanged', function() {
-         let carType = [];
+	$('[name=cartypeIdx]').on('ifChanged',getList);
+    window.onload = getList();
+      function getList() {
+         let carType = [0];
          
          $('input:checkbox[name=cartypeIdx]:checked').each(function() {
             carType.push($(this).val());
          })
          
-         let objParams = {
+         let selectList = {
+        	"page" : "1",
             "carTypeList" : carType
          };
          
          $.ajax({
-            url: "<%=request.getContextPath()%>/test",
-            data: objParams,
+            url: "test",
+            data: selectList,
             type: 'get',
-            success: function() {},
-            error: function() {}
+            dataType:'json',
+            success: function(result) {
+            	getSearch(result);
+            	console.log(result.carlist[0].idx);
+            	
+            },
+            error: function() {
+            	alert('통신 실패')
+            }
          });
+      }
+         
+         function getSearch(result) {
+        	 var html = '';
+        	 for(var i in result.carlist) {
+        		var car = result.carlist[i];
+ 				html += '<div class="col-sm-6 col-md-4 p0">'; 
+ 				html += '<div class="box-two proerty-item">';
+ 				html += '		<div class="item-thumb">'; 
+ 				html += '		<a href="${pageContext.request.contextPath}/carlist/' + car.idx + '"><img src="https://placeimg.com/327/220/animals" /></a> ';                               			
+ 				html += '		</div>'; 
+ 				html += '		<div class="item-entry overflow" id="listbody">'; 
+ 				html += '			<h5><a href="/chazazo/details">' + car.model + ' </a></h5>'; 
+ 				html += '			<div class="dot-hr"></div>'; 
+ 				html += '				<span class="pull-left"><b> 대여지점 : ' + car.name + '</b>  </span>'; 
+ 				html += '				<span class="proerty-price pull-right"> ' + car.price + '원</span>'; 
+ 				html += '			<p style="display: none;">Suspendisse ultricies Suspendisse ultricies Nulla quis dapibus nisl. Suspendisse ultricies commodo arcu nec pretium ...</p>'; 
+ 				html += '			<div class="property-icon">'; 
+ 				html += '				<img src="./resources/garoestate/assets/img/icon/clock.png">' + car.year + '년|'; 
+ 				html += '				<img src="./resources/garoestate/assets/img/icon/fuel.png">' + car.fuelname + '|'; 
+ 				html += '				<img src="./resources/garoestate/assets/img/icon/car.png">' + car.typename + '  '; 
+ 				html += '			</div>';
+ 				html += '			</div>';
+ 				html += '</div>';
+ 				html += '</div>';  
+ 				}
 
-      })	
-		
-		
-		
+ 				$('#list-type').html(html);
+
+      }
 	</script>
 </body>
 </html>

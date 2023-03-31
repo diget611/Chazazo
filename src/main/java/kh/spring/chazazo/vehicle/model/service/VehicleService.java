@@ -10,6 +10,7 @@ import kh.spring.chazazo.vehicle.model.dto.VehicleRespDto;
 public interface VehicleService {
 
 	public List<VehicleReqDto> selectList();
+	public List<VehicleReqDto> selectList(List<String> carTypeList);
 
 
 	public List<VehicleRespDto> selectDetails(int idx);

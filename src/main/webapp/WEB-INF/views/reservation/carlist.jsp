@@ -268,14 +268,13 @@
 	$('[name=cartypeIdx]').on('ifChanged',getList);
     window.onload = getList();
       function getList() {
-         let carType = [0];
+         let carType = [];
          
          $('input:checkbox[name=cartypeIdx]:checked').each(function() {
             carType.push($(this).val());
          })
          
          let selectList = {
-        	"page" : "1",
             "carTypeList" : carType
          };
          
@@ -286,8 +285,7 @@
             dataType:'json',
             success: function(result) {
             	getSearch(result);
-            	console.log(result.carlist[0].idx);
-            	
+            	carType = [];
             },
             error: function() {
             	alert('통신 실패')

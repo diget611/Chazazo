@@ -54,13 +54,15 @@ public class VehicleController {
 	
 	@GetMapping("/test")
 	@ResponseBody
-	public String getList(ModelAndView mv, String page, @RequestParam(value="carTypeList[]") List<String> carTypeList) {
+	public String getList(ModelAndView mv, @RequestParam(required=false) String page, @RequestParam(value="carTypeList[]", required=false) List<String> carTypeList) {
 		
 		System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
 		System.out.println();
 		
 		System.out.println(carTypeList);
-			page = "1";
+		if(page == null) {
+			page = "1";			
+		}
 		
 		System.out.println("###########################");
 		System.out.println(page);

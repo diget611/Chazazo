@@ -3,12 +3,16 @@
 <mapper namespace="vehicle">
 
 	<select id="selectList" resultType="VehicleInfo" >
-		 select v.*, f.type as fuelname, c.type as typename, l.name
-	from FUELTYPE f, CARTYPE c, VEHICLE v ,location l
-	where v.cartype_idx = c.idx and v.fueltype_idx = f.idx and v.location_idx=l.idx
-	 <foreach collection="carTypeList" item="car" open="(" close=")" separator=",">
-	 c.idx in #{car}
+		select v.*, f.type as fuelname, c.type as typename, l.name
+		from FUELTYPE f, CARTYPE c, VEHICLE v ,location l
+		where v.cartype_idx = c.idx and v.fueltype_idx = f.idx and v.location_idx=l.idx
+	<if test="list !=null">
+		and  c.idx in(
+	 <foreach collection="list" item="car" separator=",">
+		#{car}
 	 </foreach>
+	 )
+	</if>
 	</select>
 	
 

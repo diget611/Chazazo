@@ -36,6 +36,12 @@
 		<servlet-name>appServlet</servlet-name>
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
+	
+	<!-- html error 처리 -->
+	<error-page>
+		<error-code>403</error-code>
+		<location>/WEB-INF/views/error/error403.jsp</location>
+	</error-page>
 
 	<!-- UTF-8 Encoding Filter -->
 	<filter>

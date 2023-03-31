@@ -5,6 +5,7 @@ import kh.spring.chazazo.member.model.dto.MemberReqDto;
 import java.util.List;
 
 import kh.spring.chazazo.member.model.dto.MemberInfoReqDto;
+import kh.spring.chazazo.member.model.dto.MemberInfoRespDto;
 
 public interface MemberService {
 	
@@ -13,6 +14,8 @@ public interface MemberService {
 	public List<String> findId(String email);
 	public String forFindPass(String username);
 	public int findPass(String username, String password);
-	public MemberInfoReqDto selectOne(int idx);
+	public MemberInfoRespDto selectOne(int idx);
+	public MemberInfoRespDto selectMypageOne(String username);
+	
 	
 }

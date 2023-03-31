@@ -45,7 +45,7 @@
 		location.href="../carlist";
 	}
 	function moveNoneMemberReservation(){
-		location.href="../carlist";
+		location.href="../noneMemberReservation";
 	}
 	
 	

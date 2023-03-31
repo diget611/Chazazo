@@ -34,11 +34,20 @@ public class ReservationController {
 	}
 	
 	@GetMapping("/profile/reservation")
-	public ModelAndView viewReservationListUser(ModelAndView mv) {
+	public ModelAndView viewReservationListUser(ModelAndView mv, HttpSession session) {
 		// 유저 예약 리스트 조회
 		
 		mv.addObject("reservation", rService.selectList());
-		mv.setViewName("member/favorites");
+		mv.setViewName("member/history");
+		return mv;
+	}
+	
+	@GetMapping("/nonereservation")
+	public ModelAndView viewNoneReservationListUser(ModelAndView mv) {
+		// 비회원 예약 조회 조회
+		
+		mv.addObject("reservation", rService.selectList());
+		mv.setViewName("member/noneMemberReservation");
 		return mv;
 	}
 

@@ -47,7 +47,14 @@ public class MemberDao {
 		return sqlSession.update("member.findPass", info);
 	}
 
-	public MemberInfoReqDto selectOne(int idx) {
+	//마이페이지 회원정보
+	public MemberInfoRespDto selectMypageOne(String username) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("member.selectMypageOne", username);
+	}
+	
+	//회원정보수정
+	public MemberInfoRespDto selectOne(int idx) {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne("member.selectOne", idx);
 	}

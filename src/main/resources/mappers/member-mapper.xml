@@ -6,8 +6,15 @@
 		SELECT * FROM MEMBER
 	</select>
 	
-	<select id="selectOne" resultType="memberInfoReqDto">
-		SELECT * FROM MEMBER_INFO WHERE IDX = #{idx}
+	<select id="selectMypageOne" resultType="memberInfoRespDto">
+		select *
+		from member_info 
+        inner join member on member_info.idx = member.idx
+        WHERE USERNAME = #{username}
+	</select>
+	
+	<select id="selectOne" resultType="memberInfoRespDto">
+		select * from member_info where idx = #{idx}
 	</select>
 	
 	<select id="findId" resultType="string">

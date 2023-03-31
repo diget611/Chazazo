@@ -60,10 +60,17 @@ public class MemberServiceImp implements MemberService {
 	}
 
 	@Override
-	public MemberInfoReqDto selectOne(int idx) {
+	public MemberInfoRespDto selectMypageOne(String username) {
+		// TODO Auto-generated method stub
+		return dao.selectMypageOne(username);
+	}
+
+	@Override
+	public MemberInfoRespDto selectOne(int idx) {
 		// TODO Auto-generated method stub
 		return dao.selectOne(idx);
 	}
+
 
 //	@Override
 //	public int updateInfo(MemberInfoRespDto dto) {

@@ -23,10 +23,16 @@ public class ReservationServiceImpl implements ReservationService {
 
 	@Override
 	public ReservationRespDto selectOne(int idx) {
-		// TODO Auto-generated method stub
+		
 		return dao.selectOne(idx);
 	}
 
+//	@Override
+//	public List<ReservationRespDto> resListOne(String username) {
+//		
+//		return dao.resListOne(username);
+//	}
+//
 
 
 

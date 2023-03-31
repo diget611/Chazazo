@@ -167,7 +167,7 @@
 							</div>
 							<div class="form-group">
 								<label>전화번호</label> 
-								<input type="tel" id="phone" name="phone" pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}" required>
+								<input type="text" id="phone" name="phone" required>
 							</div>
 							<div class="text-center">
 								<button type="submit" class="btn btn-default">예약 조회하기</button>

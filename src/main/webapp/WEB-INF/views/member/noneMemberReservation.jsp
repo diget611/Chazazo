@@ -90,23 +90,12 @@
 							<div class="dealer-content">
 								<div class="inner-wrapper">
 									<div class="clear">
-										<div class="col-xs-8 col-sm-8 ">
+										<div class="">
 											<h3 class="dealer-name">
 												<span> 로그인해주세요 </span>
 												<button type="button" id="loginBtn">가입/로그인하러가기</button>
 											</h3>
 										</div>
-									</div>
-									<div class="clear">
-										<ul class="dealer-contacts">
-											<li><i class="pe-7s-call strong"> </i> <input
-												type="text" class="form-control" name="phoneNumber"
-												value="${memberinfo.phoneNumber}" readonly></li>
-											<li><i class="pe-7s-mail strong"> </i> <input
-												type="text" class="form-control" name="email"
-												value="${memberinfo.email }" readonly></li>
-											<li><i class="pe-7s-map-marker strong"> </i> 주소주소</li>
-										</ul>
 									</div>
 								</div>
 							</div>
@@ -167,7 +156,8 @@
 						<h4>비회원 예약조회</h4>
 						<form>
 							<div class="form-group">
-								<label>운전자 이름</label> <input type="text" class="form-control" name="name" placeholder="성명을 입력해 주세요">
+								<label>운전자 이름</label> 
+								<input type="text" class="form-control" name="name" placeholder="성명을 입력해 주세요">
 								<div class="invalid-feedback" id="vsnmr_input_driver_name_invalid_msg" style="display: block;">이름을 입력해 주세요</div>
 							</div>
 							<div class="form-group">
@@ -345,8 +335,7 @@
 			location.href='<%=request.getContextPath()%>/profile/reservation';
 		});
 		$('#loginBtn').on('click', function() {
-			location.href='<%=request.getContextPath()%>
-		/member/login';
+			location.href='<%=request.getContextPath()%>/member/login';
 		});
 	</script>
 </body>

@@ -25,5 +25,7 @@ public class VehicleInfoDto {
 	private String address;
 	private String fuelname;
 	private String typename;
+	private String[] typeList;
+	private String[] fuelList;
 	
 }

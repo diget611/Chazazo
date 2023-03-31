@@ -54,12 +54,19 @@ public class VehicleController {
 	
 	@GetMapping("/test")
 	@ResponseBody
-	public String getList(ModelAndView mv, @RequestParam(required=false) String page, @RequestParam(value="carTypeList[]", required=false) List<String> carTypeList) {
+	public String getList(ModelAndView mv, @RequestParam(required=false) String page
+			, @RequestParam(value="typeList[]", required=false) List<String> typeList, @RequestParam(value="fuelList[]", required=false) List<String> fuelList) {
 		
-		System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
-		System.out.println();
+		System.out.println("*********************");
+		System.out.println("!!!!!typeList!!!!!!!"+typeList);
+		System.out.println("!!!!!fuelList!!!!!!!"+fuelList);
+		System.out.println("*********************");
+		Map<String, Object> search = new HashMap<>();
+		search.put("typeList", typeList);
+		search.put("fuelList", fuelList);
 		
-		System.out.println(carTypeList);
+	
+		
 		if(page == null) {
 			page = "1";			
 		}
@@ -86,17 +93,13 @@ public class VehicleController {
 		map.put("endpage", endpage);
 		map.put("currentPage", currentPage);
 		
+	
+
 		Map<String, Object> result = new HashMap<String,Object>();		
-		if(carTypeList == null) {
-			result.put("carlist",vService.selectList());
-		} else {
-			result.put("carlist",vService.selectList(carTypeList));
-		}
-		
+	
+		result.put("carlist",vService.selectList(search));
 		result.put("pageList",map);
 		
-		
-		System.out.println("!!!!!!!"+carTypeList+"!!!!!!!");
 		return new Gson().toJson(result);		
 	}
 	

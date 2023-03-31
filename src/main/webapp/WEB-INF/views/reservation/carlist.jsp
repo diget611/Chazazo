@@ -98,39 +98,32 @@
 										<div class="row">
 											<div class="col-xs-4">
 												<div class="checkbox">
-													<label><input type="checkbox" checked> 전체</label>
+													<label><input type="checkbox" id="allfuel" checked> 전체</label>
 												</div> 
 											</div>
 											<div class="col-xs-4">
 												<div class="checkbox">
-													<label><input type="checkbox"> 휘발유</label>
+													<label><input type="checkbox" name="fueltypeIdx" value="1"> 휘발유</label>
 												</div>
 											</div>   
 											<div class="col-xs-4">
 												<div class="checkbox">
-													<label><input type="checkbox"> 경유</label>
+													<label><input type="checkbox" name="fueltypeIdx" value="2"> 경유</label>
 												</div>
 											</div>
 											<div class="col-xs-4">
 												<div class="checkbox">
-													<label><input type="checkbox"> 전기</label>
+													<label><input type="checkbox" name="fueltypeIdx" value="3"> 전기</label>
 												</div>
 											</div>     
 											<div class="col-xs-6">
 												<div class="checkbox">
-													<label><input type="checkbox">하이브리드</label>
+													<label><input type="checkbox" name="fueltypeIdx" value="4">하이브리드</label>
 												</div>
 											</div>                                   
 										</div>
 									</fieldset>
 									<!-- 카테고리-연료 끝 -->
-									<fieldset>
-										<div class="row">
-											<div class="col-xs-12">  
-												<input class="button btn largesearch-btn" value="Search" type="submit">
-											</div>  
-										</div>
-									</fieldset>                                     
 								</form>
 							</div>
 						</div>
@@ -213,10 +206,8 @@
 	
 
 	<script>
-	//전체 선택 체크박스가 변경되었을때	
+	//cartype: 전체 선택 체크박스가 변경되었을때	
 	$('#alltype').on('ifChanged',function(){
-		console.log('전체눌림!!!');
-		
 		//전체가 체크되면 다른 체크박스 해제
 		if($('#alltype:checkbox').is(":checked")==true) {
 		setTimeout(function(){
@@ -232,7 +223,7 @@
 	}) 
 		
 
-	//전체 제외 다른 체크박스가 변경되었을때
+	//cartype: 전체 제외 다른 체크박스가 변경되었을때
 	$('[name=cartypeIdx]').on('ifChanged', function() {
 		//배열을 생성하고 체크된 value값을 배열에 담는다
 		let arr = [];
@@ -255,37 +246,101 @@
 	})
 	
 	
+	
+	//fueltype: 전체 선택 체크박스가 변경되었을때	
+	$('#allfuel').on('ifChanged',function(){
+		//전체가 체크되면 다른 체크박스 해제
+		if($('#allfuel').is(":checked")==true) {
+		setTimeout(function(){
+		 $('[name=fueltypeIdx]').iCheck('uncheck');
+		  },0);
+		// 모두 선택되지 않았을경우 경고를 띄우고 자동으로 전체가 체크되게 한다
+		} else if ($('#allfuel:checkbox').is(":checked")==false &&($('input:checkbox[name=fueltypeIdx]:checked').length == 0 ) ) {
+					setTimeout(function(){ 
+						alert('최소 하나 이상의 타입을 선택해야 합니다')
+						$('#allfuel').iCheck('check');
+				  },0);
+				}
+	}) 
+		
+
+	//fueltype: 전체 제외 다른 체크박스가 변경되었을때
+	$('[name=fueltypeIdx]').on('ifChanged', function() {
+		//배열을 생성하고 체크된 value값을 배열에 담는다
+		let arr = [];
+		$('input:checkbox[name=fueltypeIdx]:Checked').each(function() {
+			arr.push($(this).val());
+		})
+		console.log(arr);
+		
+		// 모두 선택되지 않았을경우 자동으로 전체가 체크되게 한다
+		if($('input:checkbox[name=fueltypeIdx]:checked').length == 0 &&  ($("#allfuel:checkbox" ).is( ":checked") == false )) {
+			  setTimeout(function(){ 
+				  $('#allfuel').iCheck('check')
+			  },0);
+		//하나라도 체크를 하면 전체체크박스가 해제된다
+			}else {
+				 setTimeout(function(){
+				$('#allfuel').iCheck('uncheck');
+				 },0);
+			}
+	})
+	
+	
+	
+	
+	
+	
 	var currentPage =1
 		$('#test').on('click', function() {
-			currentPage +=1
-		
-			console.log('!!!!!!!!!!!!!!!!');
-			console.log(currentPage);
+			  $.ajax({
+		            url: "test",
+		            data: selectList,
+		            type: 'get',
+		            dataType:'json',
+		            success: function(result) {
+						currentPage +=1
+		            },
+		            error: function() {
+		            	alert('더보기 실패')
+		            }
+		         });
+
 		})
 		
 		
 		
+		
+		
+		
 	$('[name=cartypeIdx]').on('ifChanged',getList);
+	$('[name=fueltypeIdx]').on('ifChanged',getList);
     window.onload = getList();
       function getList() {
          let carType = [];
+         let fuelType = [];
          
          $('input:checkbox[name=cartypeIdx]:checked').each(function() {
             carType.push($(this).val());
          })
+         $('input:checkbox[name=fueltypeIdx]:checked').each(function() {
+        	 fuelType.push($(this).val());
+         })
          
          let selectList = {
-            "carTypeList" : carType
+            "typeList" : carType,
+            "fuelList" : fuelType
          };
          
          $.ajax({
             url: "test",
-            data: selectList,
+            data: 	selectList,
             type: 'get',
             dataType:'json',
             success: function(result) {
             	getSearch(result);
             	carType = [];
+            	fuelType=[];
             },
             error: function() {
             	alert('통신 실패')
@@ -321,6 +376,10 @@
  				$('#list-type').html(html);
 
       }
+         
+         
+         
+         
 	</script>
 </body>
 </html>

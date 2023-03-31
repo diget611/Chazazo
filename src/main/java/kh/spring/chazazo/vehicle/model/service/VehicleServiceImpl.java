@@ -66,4 +66,10 @@ public class VehicleServiceImpl implements VehicleService{
 		return dao.selectList(carTypeList);
 	}
 
+
+	@Override
+	public List<VehicleReqDto> selectList(Map<String, Object> search) {
+		return dao.selectList(search);
+	}
+
 }

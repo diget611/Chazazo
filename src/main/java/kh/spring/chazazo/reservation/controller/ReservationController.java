@@ -1,5 +1,6 @@
 package kh.spring.chazazo.reservation.controller;
 
+import java.security.Principal;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -34,22 +35,28 @@ public class ReservationController {
 	}
 	
 	@GetMapping("/profile/reservation")
-	public ModelAndView viewReservationListUser(ModelAndView mv, HttpSession session) {
+	public ModelAndView viewReservationListUser(ModelAndView mv, Principal prin) {
 		// 유저 예약 리스트 조회
 		
-		mv.addObject("reservation", rService.selectList());
-		mv.setViewName("member/history");
+		String loginId = prin.getName();
+		if(loginId != null) {
+			mv.addObject("reservation", rService.selectList());
+			mv.setViewName("member/history");
+			return mv;
+		}else {
+			mv.setViewName("member/noneMemberReservation");
+		}
 		return mv;
 	}
 	
-	@GetMapping("/nonereservation")
-	public ModelAndView viewNoneReservationListUser(ModelAndView mv) {
-		// 비회원 예약 조회 조회
-		
-		mv.addObject("reservation", rService.selectList());
-		mv.setViewName("member/noneMemberReservation");
-		return mv;
-	}
+//	@GetMapping("/nonereservation")
+//	public ModelAndView viewNoneReservationListUser(ModelAndView mv) {
+//		// 비회원 예약 조회 조회
+//		
+//		mv.addObject("reservation", rService.selectList());
+//		mv.setViewName("member/noneMemberReservation");
+//		return mv;
+//	}
 
 	@GetMapping("/profile/reservation/{idx}")
 	public ModelAndView viewReservationOne(ModelAndView mv

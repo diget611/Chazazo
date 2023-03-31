@@ -6,8 +6,11 @@
 		SELECT * FROM RESERVATION
 	</select>
 	
-	<select id="reservaionList" resultType="ReservationRespDto" >
-		SELECT * FROM RESERVATION WHERE IDX = #{IDX}
+	<select id="resListOne" resultType="ReservationRespDto" >
+		select * 
+		 from reservation
+		 join member on reservation.idx = member.idx
+		 	 where username = #{username}
 	</select>
 	
 	<update id="resUpdate">

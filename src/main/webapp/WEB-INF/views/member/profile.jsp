@@ -128,7 +128,7 @@
 								</div>
 								<div class="form-group">
 									<label>성별</label>
-									<select class="form-control" name="gender" value="${memberinfo.gender }" readonly>
+									<select class="form-control" name="gender" value="${memberinfo.gender }" >
 										<option selected="selected" hidden="hidden" value="2">성별</option>
 										<option value="0">남성</option>
 										<option value="1">여성</option>
@@ -164,6 +164,30 @@
 			location.href='<%=request.getContextPath()%>/profile/reservation';
 			
 		});
+		
+		function update(username, event){
+			
+			event.preventDefault();
+			
+			let data = $("#btn-update").serialize();
+			
+			console.log(data);
+			
+			$.ajax({
+				type:"post",
+				url :"/profile/${username}/update",
+				data : data,
+				dataType : "json",
+				success : function(){
+					alert("성공");
+				}
+				
+			
+				
+			});
+			
+			
+		}
 	</script>
 </body>
 </html>

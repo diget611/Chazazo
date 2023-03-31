@@ -26,10 +26,15 @@ public class ReservationDao {
 	
 	public ReservationRespDto selectOne(int idx){
 		
-		return session.selectOne("reservation.reservaionList",idx);
+		return session.selectOne("reservation.selectOne",idx);
 		
 	}
-
+	
+//	public List<ReservationRespDto> resListOne(String username) {
+//		
+//		return session.resListOne("reservation.resListOne", username);
+//	}
+//		
 
 
 	

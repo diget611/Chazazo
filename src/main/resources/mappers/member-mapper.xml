@@ -50,8 +50,8 @@
 	</select>
 	
 	<update id="updateInfo" parameterType="memberInfoRespDto">
-		UPDATE MEMBER_INFO SET NAME = #{name}, GENDER = #{gender}, BIRTH = #{birth}
-									, PHONENUMBER = #{phoneNumber}, LICENSE = #{license},EMAIL = #{email}
+		UPDATE MEMBER_INFO SET GENDER = #{gender}, BIRTH = #{birth}
+									, PHONENUMBER = #{phoneNumber}, EMAIL = #{email}
 					       WHERE IDX = #{idx}
 	</update>
 	

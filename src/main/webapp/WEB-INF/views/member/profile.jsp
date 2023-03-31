@@ -56,7 +56,7 @@
 								<h3 class="panel-title">회원정보</h3>
 							</div>
 						</div>
-						<div class="dealer-widget  row-md-4">
+						<div class="dealer-widget row-md-4">
 							<div class="dealer-content">
 								<div class="inner-wrapper">
 									<div class="clear">
@@ -115,16 +115,20 @@
 						</div>
 					</div>   
 				</div>
+				
+				
+				
+				
 				<div class="blog-lst col-md-8 p0 " style="float: right;">
 					<section id="id-100" class="post single">
-						<form>
+						<form method="POST">
 							<div class="form-group">
 									<label>이름</label>
-									<input type="text" class="form-control" name="name" value="${memberinfo.name }" >
+									<input type="text" class="form-control" name="name" value="${memberinfo.name }" readonly >
 								</div>
 								<div class="form-group">
 									<label>성별</label>
-									<select class="form-control" name="gender" value="${memberinfo.gender }" >
+									<select class="form-control" name="gender" value="${memberinfo.gender }" readonly>
 										<option selected="selected" hidden="hidden" value="2">성별</option>
 										<option value="0">남성</option>
 										<option value="1">여성</option>
@@ -158,6 +162,7 @@
 	
 		$('#historyBtn').on('click', function() {
 			location.href='<%=request.getContextPath()%>/profile/reservation';
+			
 		});
 	</script>
 </body>

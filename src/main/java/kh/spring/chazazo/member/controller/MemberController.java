@@ -1,5 +1,6 @@
 package kh.spring.chazazo.member.controller;
 
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,6 +8,9 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,8 +18,10 @@ import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import kh.spring.chazazo.member.model.dto.MemberReqDto;
 import kh.spring.chazazo.common.email.MailSendService;
@@ -30,6 +36,8 @@ public class MemberController {
 	private MemberService mService;
 	@Autowired
 	private MailSendService mailService;
+    @Autowired @Qualifier("BCryptPasswordEncoder")
+    private PasswordEncoder encoder;
 
 	@GetMapping
 	public ModelAndView viewMemberList(ModelAndView mv) {
@@ -44,9 +52,13 @@ public class MemberController {
 	}
 
 	@GetMapping("/profile")
-	public ModelAndView viewMemberOne(ModelAndView mv, String username) {
+	public ModelAndView viewMemberOne(ModelAndView mv, Principal prin) {
 		// 마이페이지에 들어가는 url
+		
+		String loginId = prin.getName();
+		mv.addObject("memberinfo", mService.selectMypageOne(loginId) );
 		mv.setViewName("member/mypage");
+		
 		return mv;
 	}
 
@@ -120,20 +132,24 @@ public class MemberController {
 	}
 
 	@GetMapping("/profile/{username}/update")
-	public ModelAndView viewUpdateMember(ModelAndView mv, @PathVariable("username") int idx) {
+	public ModelAndView viewUpdateMember(ModelAndView mv, @PathVariable("username") int idx,
+			                              Principal prin) {
 		// 회원정보 수정 페이지 조회
 		
-		mv.addObject("memberinfo", mService.selectOne(idx));
+
+		String loginId = prin.getName();
+//		idx = Integer.parseInt(loginId);
+		System.out.println(loginId);
+		mv.addObject("memberinfo", mService.selectMypageOne(loginId));
 		mv.setViewName("member/profile");
 		return mv;
 	}
 
-	@PatchMapping("/profile/{username}/update")
-	public ModelAndView updateMember(ModelAndView mv, String password, MemberInfoReqDto dto) {
-		// 회원정보 수정 / Put, Patch
-		return mv;
-	}
 
+	
+	
+	
+	
 	@DeleteMapping("/profile/{username}")
 	public ModelAndView deleteMember(ModelAndView mv) {
 		// 회원탈퇴 / DeleteMapping
@@ -150,4 +166,6 @@ public class MemberController {
 	 * 
 	 * return mv; }
 	 */
+	
 }
+

@@ -142,22 +142,23 @@ public class MemberController {
 		return result;
 	}
 
+	
+	
+	// 회원정보 수정 페이지 조회
 	@GetMapping("/profile/{username}/update")
 	public ModelAndView viewUpdateMember(ModelAndView mv,
-										@PathVariable("username") int idx,
-			                              @RequestParam String checkPassword,  Principal prin) {
-		// 회원정보 수정 페이지 조회
+										@PathVariable("username") String username,
+										Principal prin) {
 		
-
+		//수정 페이지로 안가고 계속 마이페이지로 들어가짐,,
 		String loginId = prin.getName();
-//		idx = Integer.parseInt(loginId);
 		System.out.println(loginId);
 		mv.addObject("memberinfo", mService.selectMypageOne(loginId));
 		mv.setViewName("member/profile");
 		return mv;
 	}
 	
-	//비밀번호 체크해야하는디..
+	//비밀번호 체크
 	@GetMapping("/checkPwd")
 	  public boolean checkPassword(Principal prin, 
               @RequestParam String checkPassword ){

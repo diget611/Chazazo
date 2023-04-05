@@ -155,22 +155,7 @@
 									</div>
 								</div>
 					</section>
-					
-					<!-- 회원정보 수정 버튼 클릭시 비밀번호 확인 창 뜨게 하기  -->
-					<div class="card-body">
-					<div class="text-start">
-						<input type="hidden" th:name="_csrf" th:value="${_csrf.token}"/>
-							<div class="input-group input-group-outline my-3">
-								<label class="form-label">비밀번호 확인</label>
-								<input type="password" id="password" name="password" class="form-control">
-							</div>
-						</div>
-					<div class="text-center">
-					<button class="btn bg-gradient-primary w-100 my-4 mb-2" id="checkPwd"> 비밀번호 확인</button>
-					</div>
-				</div> 
-				
-				                   
+			                 
 			</div>
 		</div>
 	</section>
@@ -179,37 +164,13 @@
 
 	<script>
 		$('#updateinfoBtn').on('click', function() {
-			location.href='<%=request.getContextPath()%>/member/pofile/update';
+			location.href='<%=request.getContextPath()%>/member/profile';
+			
 		});
 		$('#historyBtn').on('click', function() {
 			location.href='<%=request.getContextPath()%>/profile/reservation';
 		});
-		
-		$('#checkPwd').click(function(){
-			const checkPassword = $('#password').val();
-			if(!checkPassword || checkPassword.trim() === ""){
-				alert("비밀번호를 입력하세요");
-			}else{
-				$.ajax({
-					type :"GET",
-					 url: "<%=request.getContextPath()%>/member/checkPwd",
-		             data: {'checkPassword': checkPassword},
-		             datatype: "text",
-		             success: function(result) {
-		            	 if(result == true) {
-		            		 console.log('일치');
-		            	 } else {
-		            		 console.log('불일치');
-		            	 }
-		             },
-		             error: function() {
-		            	 console.log('error');
-		             } 
-		            	 
-				});
-			}
-		});
-		
+	
 	</script>
 </body>
 </html>

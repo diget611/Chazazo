@@ -118,7 +118,24 @@
 			
 				
 				
+				
 				<div class="blog-lst col-md-8 p0 " style="float: right;">
+				
+					<!-- 회원정보 수정 버튼 클릭시 비밀번호 확인 창 뜨게 하기  -->
+					<div class="card-body">
+						<div class="text-start">
+							<div class="input-group input-group-outline my-3">
+								<label class="form-label">비밀번호 확인</label>
+								<input type="password" id="password" name="password" class="form-control">
+							</div>
+						</div>
+						<div class="text-center">
+							<button class="btn bg-gradient-primary w-100 my-4 mb-2" id="checkPwd"> 비밀번호 확인</button>
+						</div>
+					</div> 
+				
+					
+				
 					<section id="id-100" class="post single">
 						<form method="POST">
 							<div class="form-group">
@@ -164,6 +181,32 @@
 			
 		});
 		
+		$('#checkPwd').click(function(){
+			const checkPassword = $('#password').val();
+			if(!checkPassword || checkPassword.trim() === ""){
+				alert("비밀번호를 입력하세요");
+			}else{
+				$.ajax({
+					type :"GET",
+					 url: "<%=request.getContextPath()%>/member/checkPwd",
+		             data: {'checkPassword': checkPassword},
+		             datatype: "text",
+		             success: function(result) {
+		            	 if(result) {
+		            		 console.log('일치');
+		            		 // 정보 수정 페이지로 이동
+		            	 } else {
+		            		 console.log('불일치');
+		            		 // alert창으로
+		            	 }
+		             },
+		             error: function() {
+		            	 console.log('error');
+		             } 
+		            	 
+				});
+			}
+		});
 		
 		
 		

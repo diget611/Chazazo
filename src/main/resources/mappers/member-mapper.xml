@@ -59,8 +59,8 @@
 		DELETE FROM MEMBER WHERE USERNAME = #{username}
 	</delete>
 
-	<select id="userPass">
-		SELECT PASSWORD FROM MEMBER WEHRE USERNAME = #{username}
+	<select id="userPass" resultType="string">
+		SELECT PASSWORD FROM MEMBER WHERE USERNAME = #{username}
 	</select>
 	<select id="selectMemberList" resultType="adminMemberRespDto">
 		SELECT USERNAME, ENABLED, NAME, GENDER, BIRTH, PHONE_NUMBER, LICENSE, EMAIL

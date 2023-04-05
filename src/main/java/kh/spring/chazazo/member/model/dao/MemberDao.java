@@ -60,7 +60,7 @@ public class MemberDao {
 	}
 	
 	public String userPass(String username) {
-		return sqlSession.selectOne(username);
+		return sqlSession.selectOne("member.userPass", username);
 	}
 	
 }

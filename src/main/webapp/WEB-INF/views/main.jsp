@@ -39,7 +39,11 @@
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/garoestate/assets/css/owl.carousel.css">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/garoestate/assets/css/owl.theme.css">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/garoestate/assets/css/owl.transitions.css">
-
+<style>
+	body::-webkit-scrollbar {
+		display: none;
+	}
+</style>
 </head>
 <body>
 	<jsp:include page="header.jsp" />

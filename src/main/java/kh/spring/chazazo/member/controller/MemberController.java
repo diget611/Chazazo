@@ -39,7 +39,7 @@ public class MemberController {
 	private MailSendService mailService;
 	@Autowired
 	private PasswordEncoder passwordEncoder;
-	private Principal prin;
+	
 
     
 
@@ -56,14 +56,15 @@ public class MemberController {
 	}
 
 	@GetMapping("/profile")
-	public ModelAndView viewMemberOne(ModelAndView mv) {
+	public ModelAndView viewMemberOne(ModelAndView mv, Principal prin) {
 		// 마이페이지에 들어가는 url
 		
-		String loginId = prin.getName();
 		
-		if(loginId == null) {
+		
+		if(prin == null) {
 			mv.setViewName("member/mypage");
 		}else{
+			String loginId = prin.getName();
 			mv.addObject("memberinfo", mService.selectMypageOne(loginId) );
 			mv.setViewName("member/mypage");
 		}
@@ -163,10 +164,14 @@ public class MemberController {
 		System.out.println("진입");
 		String username = prin.getName();
 		String currPass = mService.userPass(username);
+		System.out.println(checkPassword);
+		System.out.println(currPass);
 		
 		if(passwordEncoder.matches(checkPassword, currPass)) {
+			System.out.println("hhhhh");
 			return true;
 		} else {
+			System.out.println("iiiiiiiiiii");
 			return false;
 		}
 		

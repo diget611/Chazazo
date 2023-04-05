@@ -38,13 +38,13 @@ public class ReservationController {
 	public ModelAndView viewReservationListUser(ModelAndView mv, Principal prin) {
 		// 유저 예약 리스트 조회
 		
-		String loginId = prin.getName();
-		if(loginId != null) {
+		
+		if(prin != null) {
+			mv.setViewName("member/noneMemberReservation");
+		}else {
+			String loginId = prin.getName();
 			mv.addObject("reservation", rService.selectList());
 			mv.setViewName("member/history");
-			return mv;
-		}else {
-			mv.setViewName("member/noneMemberReservation");
 		}
 		return mv;
 	}

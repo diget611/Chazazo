@@ -188,31 +188,25 @@
 		$('#checkPwd').click(function(){
 			const checkPassword = $('#password').val();
 			if(!checkPassword || checkPassword.trim() === ""){
-				alert("비밀번호를 입려하세요");
+				alert("비밀번호를 입력하세요");
 			}else{
 				$.ajax({
 					type :"GET",
-					 url: 'checkPwd',
+					 url: "<%=request.getContextPath()%>/member/checkPwd",
 		             data: {'checkPassword': checkPassword},
-		             datatype: "text"
-				}).done(function(result){
-					console.log(result);
-					if(result){
-						if(result) {
-							console.log("비밀번호 일치");							
-						} else {
-							console.log('ㄴㄴㄴ');
-						}
-						
-						window.location.href='/profile/{username}/update';
-					}else if(!result){
-						console.log("틀림");
-						alert("비밀번호 불일치");
-						window.location.reload();
-					}
-				}).fail(function(error){
-	                alert(JSON.stringify(error));
-			})
+		             datatype: "text",
+		             success: function(result) {
+		            	 if(result == true) {
+		            		 console.log('일치');
+		            	 } else {
+		            		 console.log('불일치');
+		            	 }
+		             },
+		             error: function() {
+		            	 console.log('error');
+		             } 
+		            	 
+				});
 			}
 		});
 		

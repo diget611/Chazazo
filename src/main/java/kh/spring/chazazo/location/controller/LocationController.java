@@ -19,6 +19,12 @@ public class LocationController {
 		return mv;
 	}
 	
+	@GetMapping("/profile/favorites")
+	public ModelAndView likeLocationOne(ModelAndView mv) {
+		// 관심 지점
+		return mv;
+	}
+	
 	// 관리자
 	public ModelAndView viewInsertLocation(ModelAndView mv) {
 		// 지점 등록 페이지 조회

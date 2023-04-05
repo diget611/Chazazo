@@ -136,8 +136,9 @@
 								<div class="panel-heading">
 									<h3 class="panel-title">
 										<button id="updateinfoBtn" type="button" class="btn btn-outline-primary">회원정보 수정</button>
-											<button type="button" class="btn btn-outline-primary">나의 관심 지점</button><br>
 										<br>
+										<button type="button" class="btn btn-outline-primary">나의 관심 지점</button><br>
+										
 									</h3>
 								</div>
 							</div>

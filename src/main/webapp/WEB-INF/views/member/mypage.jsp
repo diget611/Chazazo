@@ -155,7 +155,22 @@
 									</div>
 								</div>
 					</section>
-				</div>                    
+					
+					<!-- 회원정보 수정 버튼 클릭시 비밀번호 확인 창 뜨게 하기  -->
+					<div class="card-body">
+					<div class="text-start">
+						<input type="hidden" th:name="_csrf" th:value="${_csrf.token}"/>
+							<div class="input-group input-group-outline my-3">
+								<label class="form-label">비밀번호 확인</label>
+								<input type="password" id="password" name="password" class="form-control">
+							</div>
+						</div>
+					<div class="text-center">
+					<button class="btn bg-gradient-primary w-100 my-4 mb-2" id="checkPwd"> 비밀번호 확인</button>
+					</div>
+				</div> 
+				
+				                   
 			</div>
 		</div>
 	</section>
@@ -169,6 +184,38 @@
 		$('#historyBtn').on('click', function() {
 			location.href='<%=request.getContextPath()%>/profile/reservation';
 		});
+		
+		$('#checkPwd').click(function(){
+			const checkPassword = $('#password').val();
+			if(!checkPassword || checkPassword.trim() === ""){
+				alert("비밀번호를 입려하세요");
+			}else{
+				$.ajax({
+					type :"GET",
+					 url: 'checkPwd',
+		             data: {'checkPassword': checkPassword},
+		             datatype: "text"
+				}).done(function(result){
+					console.log(result);
+					if(result){
+						if(result) {
+							console.log("비밀번호 일치");							
+						} else {
+							console.log('ㄴㄴㄴ');
+						}
+						
+						window.location.href='/profile/{username}/update';
+					}else if(!result){
+						console.log("틀림");
+						alert("비밀번호 불일치");
+						window.location.reload();
+					}
+				}).fail(function(error){
+	                alert(JSON.stringify(error));
+			})
+			}
+		});
+		
 	</script>
 </body>
 </html>

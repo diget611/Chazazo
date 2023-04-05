@@ -71,6 +71,11 @@ public class MemberServiceImp implements MemberService {
 		return dao.selectOne(idx);
 	}
 
+	@Override
+	public String userPass(String username) {
+		return dao.userPass(username);
+	}
+
 
 //	@Override
 //	public int updateInfo(MemberInfoRespDto dto) {

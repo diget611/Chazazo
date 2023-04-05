@@ -10,6 +10,7 @@ import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -36,8 +37,11 @@ public class MemberController {
 	private MemberService mService;
 	@Autowired
 	private MailSendService mailService;
-    @Autowired @Qualifier("BCryptPasswordEncoder")
-    private PasswordEncoder encoder;
+	@Autowired
+	private PasswordEncoder passwordEncoder;
+	private Principal prin;
+
+    
 
 	@GetMapping
 	public ModelAndView viewMemberList(ModelAndView mv) {
@@ -52,12 +56,18 @@ public class MemberController {
 	}
 
 	@GetMapping("/profile")
-	public ModelAndView viewMemberOne(ModelAndView mv, Principal prin) {
+	public ModelAndView viewMemberOne(ModelAndView mv) {
 		// 마이페이지에 들어가는 url
 		
 		String loginId = prin.getName();
-		mv.addObject("memberinfo", mService.selectMypageOne(loginId) );
-		mv.setViewName("member/mypage");
+		
+		if(loginId == null) {
+			mv.setViewName("member/mypage");
+		}else{
+			mv.addObject("memberinfo", mService.selectMypageOne(loginId) );
+			mv.setViewName("member/mypage");
+		}
+		
 		
 		return mv;
 	}
@@ -132,8 +142,9 @@ public class MemberController {
 	}
 
 	@GetMapping("/profile/{username}/update")
-	public ModelAndView viewUpdateMember(ModelAndView mv, @PathVariable("username") int idx,
-			                              Principal prin) {
+	public ModelAndView viewUpdateMember(ModelAndView mv,
+										@PathVariable("username") int idx,
+			                              @RequestParam String checkPassword,  Principal prin) {
 		// 회원정보 수정 페이지 조회
 		
 
@@ -144,7 +155,29 @@ public class MemberController {
 		mv.setViewName("member/profile");
 		return mv;
 	}
-
+	
+	//비밀번호 체크해야하는디..
+	@GetMapping("/checkPwd")
+	  public boolean checkPassword(Principal prin, 
+              @RequestParam String checkPassword ){
+		System.out.println("진입");
+		String username = prin.getName();
+		String currPass = mService.userPass(username);
+		
+		if(passwordEncoder.matches(checkPassword, currPass)) {
+			return true;
+		} else {
+			return false;
+		}
+		
+		}
+	
+	
+	@PatchMapping("/profile/{username}/update")
+	public ModelAndView updateMember(ModelAndView mv, String password, MemberInfoReqDto dto) {
+		// 회원정보 수정 / Put, Patch
+		return mv;
+	}
 
 	
 	

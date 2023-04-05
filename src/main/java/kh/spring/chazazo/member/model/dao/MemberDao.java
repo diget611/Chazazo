@@ -59,4 +59,8 @@ public class MemberDao {
 		return sqlSession.selectOne("member.selectOne", idx);
 	}
 	
+	public String userPass(String username) {
+		return sqlSession.selectOne(username);
+	}
+	
 }

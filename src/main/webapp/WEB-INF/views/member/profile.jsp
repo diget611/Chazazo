@@ -115,8 +115,7 @@
 						</div>
 					</div>   
 				</div>
-				
-				
+			
 				
 				
 				<div class="blog-lst col-md-8 p0 " style="float: right;">
@@ -165,29 +164,9 @@
 			
 		});
 		
-		function update(username, event){
-			
-			event.preventDefault();
-			
-			let data = $("#btn-update").serialize();
-			
-			console.log(data);
-			
-			$.ajax({
-				type:"post",
-				url :"/profile/${username}/update",
-				data : data,
-				dataType : "json",
-				success : function(){
-					alert("성공");
-				}
-				
-			
-				
-			});
-			
-			
-		}
+		
+		
+		
 	</script>
 </body>
 </html>

@@ -23,6 +23,9 @@
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/garoestate/assets/css/price-range.css">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/garoestate/assets/css/style.css">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/garoestate/assets/css/responsive.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/garoestate/assets/css/owl.carousel.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/garoestate/assets/css/owl.theme.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/garoestate/assets/css/owl.transitions.css">
 
 <script src="<%=request.getContextPath()%>/resources/garoestate/assets/js/modernizr-2.6.2.min.js"></script>
 <script src="<%=request.getContextPath()%>/resources/garoestate/assets/js/jquery-1.10.2.min.js"></script>
@@ -36,11 +39,6 @@
 <script src="<%=request.getContextPath()%>/resources/garoestate/assets/js/owl.carousel.min.js"></script>
 <script src="<%=request.getContextPath()%>/resources/garoestate/assets/js/price-range.js"></script>
 <script src="<%=request.getContextPath()%>/resources/garoestate/assets/js/main.js"></script>
-
-<!-- 메인 페이지 화면 -->
-<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/garoestate/assets/css/owl.carousel.css">
-<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/garoestate/assets/css/owl.theme.css">
-<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/garoestate/assets/css/owl.transitions.css">
 
 </head>
 <body>

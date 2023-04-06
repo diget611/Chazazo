@@ -190,10 +190,9 @@
 											<hr>
 									<div class="col-md-12" style="padding-bottom:100px">                                   
                                         <div class="btn-group bootstrap-select">
-                                 
+                                 		  <label>보험 선택</label>
 	                                   	  <select id="select" name="select" class="selectpicker" >
-	                                            <option selected disabled>보험 선택</option>
-	                                            <option value="0.1">일반자차(기본)</option>
+	                                            <option value="0.1" selected>일반자차(기본)</option>
 	                                            <option value="0.2">완전자차</option>
 	                                            <option value="0.5">슈퍼자차</option>
 	                                        </select>
@@ -223,7 +222,7 @@
 										</tbody>
 									</table>
 								</section>
-								<button class="btn btn-default" type="button" onclick=" window.open('payment')" >결제하기</button>
+									<button class="btn btn-default" id="payment" type="button">결제하기</button>
 								</section>
 							</aside>
 						</div>
@@ -238,7 +237,12 @@
 	
 </body>
 
+
 <script>
+
+
+
+
 	 document.getElementById('startDate').valueAsDate = new Date();
 	 document.getElementById('endDate').valueAsDate = new Date(); 
      var today = new Date();   
@@ -259,7 +263,15 @@
 </script>
 
 <script>
-     
+
+	window.onload = function() {
+	let price = ${car.price}
+	$('#day-count').text(1);
+	$('#rentPrice').text(price.toLocaleString());
+	$("#addIns").text((price * 0.1).toLocaleString());
+	$("#expIns").text((price+price * 0.1).toLocaleString());
+}
+ 
   
 	$('#startDate').on('change', mincalc);
  //    $('#startDate').on('change', calc);
@@ -307,6 +319,12 @@
    	     
    	  
     }
+     
+     
+ 	$('#payment').on('click',function(){
+		location.href="<%=request.getContextPath()%>/payment";
+	})
+
       
       
       

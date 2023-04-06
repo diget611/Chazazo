@@ -18,7 +18,7 @@
 		#{fuel}
 	 </foreach>
 	</if>
-	
+	and rownum between 1 and #{page}
 	</select>
 	
 
@@ -26,7 +26,7 @@
 	<select id="selectPageList" parameterType="map" resultType="VehicleInfo">
 		 select v.*, f.type as fuelname, c.type as typename, l.name
 		from FUELTYPE f, CARTYPE c, VEHICLE v ,location l
-		where v.cartype_idx = c.idx and v.fueltype_idx = f.idx and v.location_idx=l.idx and v.idx BETWEEN #{start} and #{end}
+		where v.cartype_idx = c.idx and v.fueltype_idx = f.idx and v.location_idx=l.idx and rownum BETWEEN #{start} and #{end}
 	</select>
 
 	<select id="selectOne" resultType="vehicleRespDto">

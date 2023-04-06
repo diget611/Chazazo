@@ -89,7 +89,7 @@
 											</div>     
 											<div class="col-xs-4">
 												<div class="checkbox">
-													<label><input type="checkbox" name="cartypeIdx" value="5">수입</label>
+													<label><input type="checkbox" name="cartypeIdx" value="5"> 수입</label>
 												</div>
 											</div>                                                    
 										</div>
@@ -98,31 +98,36 @@
 									<fieldset class="padding-5" style="margin-bottom:20px">
 										<h5>연료</h5>
 										<div class="row">
-											<div class="col-xs-4">
+											<div class="col-xs-6">
 												<div class="checkbox">
 													<label><input type="checkbox" id="allfuel" checked> 전체</label>
 												</div> 
 											</div>
-											<div class="col-xs-4">
+											<div class="col-xs-6">
 												<div class="checkbox">
 													<label><input type="checkbox" name="fueltypeIdx" value="1"> 휘발유</label>
 												</div>
 											</div>   
-											<div class="col-xs-4">
+											<div class="col-xs-6">
 												<div class="checkbox">
 													<label><input type="checkbox" name="fueltypeIdx" value="2"> 경유</label>
 												</div>
 											</div>
-											<div class="col-xs-4">
+											<div class="col-xs-6">
 												<div class="checkbox">
 													<label><input type="checkbox" name="fueltypeIdx" value="3"> 전기</label>
 												</div>
 											</div>     
 											<div class="col-xs-6">
 												<div class="checkbox">
-													<label><input type="checkbox" name="fueltypeIdx" value="4">하이브리드</label>
+													<label><input type="checkbox" name="fueltypeIdx" value="4"> 하이브리드</label>
 												</div>
-											</div>                                   
+											</div>      
+											<div class="col-xs-6">
+												<div class="checkbox">
+													<label><input type="checkbox" name="fueltypeIdx" value="5"> LPG</label>
+												</div>
+											</div>                              
 										</div>
 									</fieldset>
 									<!-- 카테고리-연료 끝 -->
@@ -160,29 +165,6 @@
 						
 						</div>
 					</div>
-					
-					<button id="test">
-					더보기
-					</button>
-					
-					<!-- 페이징 처리 시작 -->
-			
-					<tr>
-						<td colspan="6">
-						<c:if test=" ${pageInfo.startpage ne 1}">
-						
-						<a href="<%=request.getContextPath() %>/carlist?page=${pageInfo.currentPage -1}">이전</a>
-						</c:if>
-						<c:forEach begin="${pageInfo.startpage }" end ="${pageInfo.endpage }" var="page">
-							<a href="<%=request.getContextPath() %>/carlist?page=${page }">${page }</a>
-						</c:forEach>
-					
-						<c:if test="${pageInfo.endpage ne pageInfo.totalpage}">
-							<a href="#" id="test">다음</a>
-						</c:if>
-					</tr>
-
-				<!--  페이징 처리 끝 -->
 				</div>  
 				<!-- 본문 컨텐츠 끝-->
 			</div>              
@@ -274,26 +256,50 @@
 	})
 	
 	
-	
-	
-	
-	
-	var currentPage =1
-		$('#test').on('click', function() {
-			  $.ajax({
-		            url: "test",
-		            data: selectList,
-		            type: 'get',
-		            dataType:'json',
-		            success: function(result) {
-						currentPage +=1
-		            },
-		            error: function() {
-		            	alert('더보기 실패')
-		            }
-		         });
 
-		})
+	$(window).on('scroll', function() {
+		let scrTest = $(window).scrollTop();
+		if(scrTest == $(document).height() - $(window).height()) {
+			paging();
+		}
+	});
+	
+	function paging() {
+		page++;
+		let carType = [];
+        let fuelType = [];
+       console.log(page);
+        
+        $('input:checkbox[name=cartypeIdx]:checked').each(function() {
+           carType.push($(this).val());
+        })
+        $('input:checkbox[name=fueltypeIdx]:checked').each(function() {
+       	 fuelType.push($(this).val());
+        })
+        
+        let selectList = {
+           "typeList" : carType,
+           "fuelList" : fuelType,
+           "page" : page
+        };
+        
+		
+		  $.ajax({
+	            url: "test",
+	            data: selectList,
+	            type: 'get',
+	            dataType:'json',
+	            success: function(result) {
+					getSearch(result);
+	            	carType = [];
+	            	fuelType=[];
+	            },
+	            error: function() {
+	            	alert('로딩 실패')
+	            }
+	         });
+
+	}
 		
 		
 		
@@ -306,7 +312,7 @@
       function getList() {
          let carType = [];
          let fuelType = [];
-         
+         page = 1;
          $('input:checkbox[name=cartypeIdx]:checked').each(function() {
             carType.push($(this).val());
          })

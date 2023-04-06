@@ -599,7 +599,7 @@
         padding-right: 6px;
     }
     .main-nav {
-        padding-top: 4px;
+        padding-top: 8px;
     }
     .navbar-default .navbar-nav > li > a.active::after {
         bottom: -15px;

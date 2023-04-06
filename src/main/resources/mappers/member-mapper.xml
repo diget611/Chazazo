@@ -67,4 +67,9 @@
 		  FROM MEMBER INNER JOIN MEMBER_INFO ON MEMBER.IDX = MEMBER_INFO.IDX
 	</select>
 	
+	<select id="getMemberInfo" resultType="memberInfoRespDto">
+		select * from member_info where username = #{username}
+	</select>
+	
+	
 </mapper>

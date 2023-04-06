@@ -57,6 +57,7 @@ public class VehicleController {
 	public String getList(ModelAndView mv, @RequestParam(required=false) String page
 			, @RequestParam(value="typeList[]", required=false) List<String> typeList, @RequestParam(value="fuelList[]", required=false) List<String> fuelList) {
 		
+		
 		System.out.println("*********************");
 		System.out.println("!!!!!typeList!!!!!!!"+typeList);
 		System.out.println("!!!!!fuelList!!!!!!!"+fuelList);
@@ -65,40 +66,15 @@ public class VehicleController {
 		search.put("typeList", typeList);
 		search.put("fuelList", fuelList);
 		
-	
-		
 		if(page == null) {
-			page = "1";			
+			page = "1";
 		}
 		
-		System.out.println("###########################");
-		System.out.println(page);
-		System.out.println("###########################");
-		int currentPage = Integer.parseInt(page);
-		int totalCnt = vService.selectOneCount();
-		int totalpage =(totalCnt% BOARD_LIMIT==0)? 
-						(totalCnt / BOARD_LIMIT): 
-						(totalCnt / BOARD_LIMIT)+1;
-		int startpage =(currentPage %PAGE_LIMIT == 0 )?
-						(currentPage /PAGE_LIMIT -1)*PAGE_LIMIT +1 :
-						(currentPage /PAGE_LIMIT   )*PAGE_LIMIT +1 ;
-		int endpage = (startpage +PAGE_LIMIT > totalpage)?
-						totalpage :
-						(startpage +PAGE_LIMIT);
-
-	
-		Map<String, Integer> map = new HashMap<String,Integer>();
-		map.put("totalpage", totalpage);
-		map.put("startpage", startpage);
-		map.put("endpage", endpage);
-		map.put("currentPage", currentPage);
+		search.put("page", Integer.parseInt(page) * BOARD_LIMIT);
 		
-	
-
 		Map<String, Object> result = new HashMap<String,Object>();		
 	
 		result.put("carlist",vService.selectList(search));
-		result.put("pageList",map);
 		
 		return new Gson().toJson(result);		
 	}

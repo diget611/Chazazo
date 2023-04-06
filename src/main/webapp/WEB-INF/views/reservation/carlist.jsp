@@ -278,22 +278,45 @@
 	
 	
 	
-	var currentPage =1
-		$('#test').on('click', function() {
-			  $.ajax({
-		            url: "test",
-		            data: selectList,
-		            type: 'get',
-		            dataType:'json',
-		            success: function(result) {
-						currentPage +=1
-		            },
-		            error: function() {
-		            	alert('더보기 실패')
-		            }
-		         });
+	var page = 1;
+	$('#test').on('click', paging);
+	
+	function paging() {
+		page++;
+		let carType = [];
+        let fuelType = [];
+       console.log(page);
+        
+        $('input:checkbox[name=cartypeIdx]:checked').each(function() {
+           carType.push($(this).val());
+        })
+        $('input:checkbox[name=fueltypeIdx]:checked').each(function() {
+       	 fuelType.push($(this).val());
+        })
+        
+        let selectList = {
+           "typeList" : carType,
+           "fuelList" : fuelType,
+           "page" : page
+        };
+        
+		
+		  $.ajax({
+	            url: "test",
+	            data: selectList,
+	            type: 'get',
+	            dataType:'json',
+	            success: function(result) {
+					getSearch(result);
+	            	carType = [];
+	            	fuelType=[];
+	            },
+	            error: function() {
+	            	alert('더보기 실패')
+	            }
+	         });
 
-		})
+	}
 		
 		
 		
@@ -306,7 +329,7 @@
       function getList() {
          let carType = [];
          let fuelType = [];
-         
+         page = 1;
          $('input:checkbox[name=cartypeIdx]:checked').each(function() {
             carType.push($(this).val());
          })

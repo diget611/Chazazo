@@ -172,12 +172,21 @@
 	<jsp:include page="../footer.jsp"/>
 
 	<script>
-		$('#updateinfoBtn').on('click', function() {
-			location.href='<%=request.getContextPath()%>/member/pofile';
-		});
-		$('#historyBtn').on('click', function() {
-			location.href='<%=request.getContextPath()%>/profile/reservation';
-		});
+	$('#updateinfoBtn').on('click', function() {
+		location.href='<%=request.getContextPath()%>/member/profile';
+		
+	});
+	$('#historyBtn').on('click', function() {
+		location.href='<%=request.getContextPath()%>/profile/reservation';
+	});
+	
+	$('#moveNoneMemberReservation').on('click', function() {
+		location.href='<%=request.getContextPath()%>/profile/reservation';
+	});
+	
+	$('#bookmark').on('click', function() {
+		location.href='<%=request.getContextPath()%>/profile/favorites';
+	});
 	</script>
 </body>
 </html>

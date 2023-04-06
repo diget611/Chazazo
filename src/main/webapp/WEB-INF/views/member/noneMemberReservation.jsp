@@ -86,20 +86,33 @@
 								<h3 class="panel-title">회원정보</h3>
 							</div>
 						</div>
-						<div class="dealer-widget  row-md-4">
-							<div class="dealer-content">
-								<div class="inner-wrapper">
-									<div class="clear">
-										<div class="">
-											<h3 class="dealer-name">
-												<span> 로그인해주세요 </span>
-												<button type="button" id="loginBtn">가입/로그인하러가기</button>
-											</h3>
+						<section
+							class="carmore-section p-0 bg-white cm-rounded bg-shadow mb-3">
+							<div>
+								<div class="pt-4 position-relative" id="js_mypage_top_info">
+									<div
+										class="dc-flex justify-content-between align-items-center pb-3 pt-lg-0 pt-2">
+										<div class="dc-flex align-items-start pr-2">
+											<div>
+												<div
+													class="js-mypage-btn-login is-only-none-member click-effect-press">
+													<div class="color-grey-3 text-20 wordbreak-breakword">3초
+														가입/로그인 해주세요</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div>
+										<div class="mb-3" id="js_mypage_btn_pc_login"
+											style="display: block;">
+											<button
+												class="js-mypage-btn-login btn btn-primary btn-block max-w-lg-40rem mx-auto click-effect-press">가입
+												/ 로그인 하기</button>
 										</div>
 									</div>
 								</div>
 							</div>
-						</div>
+						</section>
 						<div class="blog-asside-right">
 							<div
 								class="panel panel-default sidebar-menu wow fadeInRight animated animated animated"
@@ -124,27 +137,9 @@
 								style="visibility: visible; animation-name: fadeInRight;">
 								<div class="panel-heading">
 									<h3 class="panel-title">
-										<button type="button" class="btn btn-outline-primary">회원정보
-											수정</button>
-										<br>
-										<button type="button" class="btn btn-outline-primary">나의 관심 지점</button><br>
-									</h3>
-								</div>
-							</div>
-						</div>
-						<div class="blog-asside-right">
-							<div
-								class="panel panel-default sidebar-menu wow fadeInRight animated animated animated"
-								style="visibility: visible; animation-name: fadeInRight;">
-								<div class="panel-heading">
-									<h3 class="panel-title">
 										<button type="button" class="btn btn-outline-primary">1:1
 											문의</button>
 										<br>
-										<button type="button" class="btn btn-outline-primary">쿠폰
-											관리</button>
-										<br>
-										<button type="button" class="btn btn-outline-primary">회원탈퇴</button>
 									</h3>
 								</div>
 							</div>
@@ -156,18 +151,23 @@
 						<h4>비회원 예약조회</h4>
 						<form>
 							<div class="form-group">
-								<label>운전자 이름</label> 
-								<input type="text" class="form-control" name="name" placeholder="성명을 입력해 주세요">
-								<div class="invalid-feedback" id="vsnmr_input_driver_name_invalid_msg" style="display: block;">이름을 입력해 주세요</div>
+								<label>운전자 이름</label> <input type="text" class="form-control"
+									name="name" placeholder="성명을 입력해 주세요">
+								<div class="invalid-feedback"
+									id="vsnmr_input_driver_name_invalid_msg"
+									style="display: block;">이름을 입력해 주세요</div>
 							</div>
 							<div class="form-group">
-								<label>예약번호</label> <input type="text" class="form-control" name="reservationNumber">
-									<div class="invalid-feedback" id="vsnmr_input_reserv_num_invalid_msg">예약번호를 입력해 주세요</div>
-									<small class="color-blue">예약번호는 문자와 메일로 보내드린 예약내용에 재되어 있습니다.</small>
+								<label>예약번호</label> <input type="text" class="form-control"
+									name="reservationNumber">
+								<div class="invalid-feedback"
+									id="vsnmr_input_reserv_num_invalid_msg">예약번호를 입력해 주세요</div>
+								<small class="color-blue">예약번호는 문자와 메일로 보내드린 예약내용에 재되어
+									있습니다.</small>
 							</div>
 							<div class="form-group">
-								<label>전화번호</label> 
-								<input type="text" id="phone" name="phone" required>
+								<label>전화번호</label> <input type="text" id="phone" name="phone"
+									required>
 							</div>
 							<div class="text-center">
 								<button type="submit" class="btn btn-default">예약 조회하기</button>
@@ -176,12 +176,12 @@
 					</section>
 					<div class="mypage-section pt-4"
 						id="mypage_section_none_member_search" style="">
-						
+
 						<section class="carmore-section dc-none"
 							id="vsnmr_section_search_result">
 							<div class="wrapper-md">
 								<div class="container">
-									
+
 									<div class="dc-none" id="vsnmr_container_search_result">
 										<div
 											class="js-vrsi-container bg-white bg-shadow p-3 rounded-sm mb-3">
@@ -190,7 +190,7 @@
 												<div class="dc-flex align-items-center">
 													<div
 														class="square-30 bg-color-grey-7 dc-flex justify-content-center align-items-center rounded-circle">
-														</div>
+													</div>
 													<div
 														class="js-vrsi-txt-rent-type text-12 color-grey-2 ml-1"></div>
 												</div>
@@ -227,7 +227,7 @@
 													class="dc-flex justify-content-between pay-type-container">
 													<div class="color-grey-2 font-weight-bold">결제수단</div>
 													<div class="dc-flex">
-													<div
+														<div
 															class="js-vrsi-txt-pay-type-name text-14 color-grey-2 ml-2"></div>
 													</div>
 												</div>

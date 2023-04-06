@@ -80,7 +80,7 @@
 												<i class="pe-7s-mail strong"> </i> 
 												<input type="text" class="form-control" name="email" value="${memberinfo.email }" readonly >
 											</li>
-											<li><i class="pe-7s-map-marker strong"> </i> 주소주소</li>
+											
 										</ul>
 									</div>
 								</div>
@@ -92,7 +92,6 @@
 									<h3 class="panel-title">
 									<button id="historyBtn" type="button" class="btn btn-outline-primary">예약내역</button><br>
 									<button type="button" class="btn btn-outline-primary">예약 수정 / 취소</button><br>
-									<button type="button" class="btn btn-outline-primary">비회원 예약 확인</button></h3>
 								</div>
 							</div>
 						</div>  
@@ -144,6 +143,9 @@
 									<label>이름</label>
 									<input type="text" class="form-control" name="name" value="${memberinfo.name }" readonly >
 								</div>
+								
+								<!-- 정보 수정 시 정규식 확인?  -->
+								
 								<div class="form-group">
 									<label>성별</label>
 									<select class="form-control" name="gender" value="${memberinfo.gender }" >
@@ -178,11 +180,21 @@
 	
 	<script>
 	
-		$('#historyBtn').on('click', function() {
-			location.href='<%=request.getContextPath()%>/profile/reservation';
-			
-		});
+	$('#updateinfoBtn').on('click', function() {
+		location.href='<%=request.getContextPath()%>/member/profile';
 		
+	});
+	$('#historyBtn').on('click', function() {
+		location.href='<%=request.getContextPath()%>/profile/reservation';
+	});
+	
+	$('#moveNoneMemberReservation').on('click', function() {
+		location.href='<%=request.getContextPath()%>/profile/reservation';
+	});
+	
+	$('#bookmark').on('click', function() {
+		location.href='<%=request.getContextPath()%>/profile/favorites';
+	});
 		$('#checkPwd').click(function(){
 			const checkPassword = $('#password').val();
 			if(!checkPassword || checkPassword.trim() === ""){
@@ -199,7 +211,7 @@
 		            		 // 정보 수정 페이지로 이동
 		            	 } else {
 		            		 console.log('불일치');
-		            		 // alert창으로
+		            		 alert("비밀번호가 일치하지 않습니다.");
 		            	 }
 		             },
 		             error: function() {

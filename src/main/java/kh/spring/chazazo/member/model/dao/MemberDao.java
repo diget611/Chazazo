@@ -63,4 +63,9 @@ public class MemberDao {
 		return sqlSession.selectOne("member.userPass", username);
 	}
 	
+	//결제창에서 정보 받아오기
+	public MemberInfoRespDto getMemberInfo(String username) {
+		return sqlSession.selectOne("member.getMemberInfo", username);
+	}
+	
 }

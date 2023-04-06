@@ -76,6 +76,12 @@ public class MemberServiceImp implements MemberService {
 		return dao.userPass(username);
 	}
 
+	@Override
+	public MemberInfoRespDto getMemberInfo(String username) {
+		// TODO Auto-generated method stub
+		return dao.getMemberInfo(username);
+	}
+
 
 //	@Override
 //	public int updateInfo(MemberInfoRespDto dto) {

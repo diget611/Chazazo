@@ -222,7 +222,7 @@
 										</tbody>
 									</table>
 								</section>
-								<button class="btn btn-default" type="button" onclick=" window.open('payment')" >결제하기</button>
+									<button class="btn btn-default" id="payment" type="button">결제하기</button>
 								</section>
 							</aside>
 						</div>
@@ -237,7 +237,12 @@
 	
 </body>
 
+
 <script>
+
+
+
+
 	 document.getElementById('startDate').valueAsDate = new Date();
 	 document.getElementById('endDate').valueAsDate = new Date(); 
      var today = new Date();   
@@ -258,7 +263,15 @@
 </script>
 
 <script>
-     
+
+	window.onload = function() {
+	let price = ${car.price}
+	$('#day-count').text(1);
+	$('#rentPrice').text(price.toLocaleString());
+	$("#addIns").text((price * 0.1).toLocaleString());
+	$("#expIns").text((price+price * 0.1).toLocaleString());
+}
+ 
   
 	$('#startDate').on('change', mincalc);
  //    $('#startDate').on('change', calc);
@@ -306,6 +319,12 @@
    	     
    	  
     }
+     
+     
+ 	$('#payment').on('click',function(){
+		location.href="<%=request.getContextPath()%>/payment";
+	})
+
       
       
       

@@ -28,6 +28,5 @@ public interface VehicleService {
 
 
 	public int selectOneCount(); 
-	public List<VehicleRespDto> selectPageList(int currentPage, int limit); //paging처리하여 읽기
 	
 }

@@ -57,13 +57,8 @@ public class VehicleDao {
 	}
 
 	
-	public List<VehicleRespDto> selectPageList(int currentPage, int limit) {
-		return sqlSession.selectList("vehicle.selectPageList" , null, new RowBounds((currentPage-1)*limit, limit));
-	}
 
-	public List<VehicleRespDto> selectPageList(Map<String, Integer> map) {
-		return sqlSession.selectList("vehicle.selectPageList", map);
-	}
+
 
 
 

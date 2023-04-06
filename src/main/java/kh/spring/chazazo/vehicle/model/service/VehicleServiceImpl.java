@@ -53,15 +53,6 @@ public class VehicleServiceImpl implements VehicleService{
 
 
 	@Override
-	public List<VehicleRespDto> selectPageList(int currentPage, int limit) {
-		Map<String, Integer> map = new HashMap<>();
-		map.put("start", limit * (currentPage - 1) + 1);
-		map.put("end", currentPage*limit);
-		return dao.selectPageList(map);
-	}
-
-
-	@Override
 	public List<VehicleReqDto> selectList(List<String> carTypeList) {
 		return dao.selectList(carTypeList);
 	}

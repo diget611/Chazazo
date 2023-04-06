@@ -122,7 +122,12 @@
 												<div class="checkbox">
 													<label><input type="checkbox" name="fueltypeIdx" value="4">하이브리드</label>
 												</div>
-											</div>                                   
+											</div>      
+											<div class="col-xs-6">
+												<div class="checkbox">
+													<label><input type="checkbox" name="fueltypeIdx" value="5">LPG</label>
+												</div>
+											</div>                              
 										</div>
 									</fieldset>
 									<!-- 카테고리-연료 끝 -->
@@ -160,29 +165,6 @@
 						
 						</div>
 					</div>
-					
-					<button id="test">
-					더보기
-					</button>
-					
-					<!-- 페이징 처리 시작 -->
-			
-					<tr>
-						<td colspan="6">
-						<c:if test=" ${pageInfo.startpage ne 1}">
-						
-						<a href="<%=request.getContextPath() %>/carlist?page=${pageInfo.currentPage -1}">이전</a>
-						</c:if>
-						<c:forEach begin="${pageInfo.startpage }" end ="${pageInfo.endpage }" var="page">
-							<a href="<%=request.getContextPath() %>/carlist?page=${page }">${page }</a>
-						</c:forEach>
-					
-						<c:if test="${pageInfo.endpage ne pageInfo.totalpage}">
-							<a href="#" id="test">다음</a>
-						</c:if>
-					</tr>
-
-				<!--  페이징 처리 끝 -->
 				</div>  
 				<!-- 본문 컨텐츠 끝-->
 			</div>              
@@ -274,12 +256,13 @@
 	})
 	
 	
-	
-	
-	
-	
-	var page = 1;
-	$('#test').on('click', paging);
+
+	$(window).on('scroll', function() {
+		let scrTest = $(window).scrollTop();
+		if(scrTest == $(document).height() - $(window).height()) {
+			paging();
+		}
+	});
 	
 	function paging() {
 		page++;
@@ -312,7 +295,7 @@
 	            	fuelType=[];
 	            },
 	            error: function() {
-	            	alert('더보기 실패')
+	            	alert('로딩 실패')
 	            }
 	         });
 

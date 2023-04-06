@@ -89,7 +89,7 @@
 											</div>     
 											<div class="col-xs-4">
 												<div class="checkbox">
-													<label><input type="checkbox" name="cartypeIdx" value="5">수입</label>
+													<label><input type="checkbox" name="cartypeIdx" value="5"> 수입</label>
 												</div>
 											</div>                                                    
 										</div>
@@ -98,34 +98,34 @@
 									<fieldset class="padding-5" style="margin-bottom:20px">
 										<h5>연료</h5>
 										<div class="row">
-											<div class="col-xs-4">
+											<div class="col-xs-6">
 												<div class="checkbox">
 													<label><input type="checkbox" id="allfuel" checked> 전체</label>
 												</div> 
 											</div>
-											<div class="col-xs-4">
+											<div class="col-xs-6">
 												<div class="checkbox">
 													<label><input type="checkbox" name="fueltypeIdx" value="1"> 휘발유</label>
 												</div>
 											</div>   
-											<div class="col-xs-4">
+											<div class="col-xs-6">
 												<div class="checkbox">
 													<label><input type="checkbox" name="fueltypeIdx" value="2"> 경유</label>
 												</div>
 											</div>
-											<div class="col-xs-4">
+											<div class="col-xs-6">
 												<div class="checkbox">
 													<label><input type="checkbox" name="fueltypeIdx" value="3"> 전기</label>
 												</div>
 											</div>     
 											<div class="col-xs-6">
 												<div class="checkbox">
-													<label><input type="checkbox" name="fueltypeIdx" value="4">하이브리드</label>
+													<label><input type="checkbox" name="fueltypeIdx" value="4"> 하이브리드</label>
 												</div>
 											</div>      
 											<div class="col-xs-6">
 												<div class="checkbox">
-													<label><input type="checkbox" name="fueltypeIdx" value="5">LPG</label>
+													<label><input type="checkbox" name="fueltypeIdx" value="5"> LPG</label>
 												</div>
 											</div>                              
 										</div>

@@ -190,10 +190,9 @@
 											<hr>
 									<div class="col-md-12" style="padding-bottom:100px">                                   
                                         <div class="btn-group bootstrap-select">
-                                 
+                                 		  <label>보험 선택</label>
 	                                   	  <select id="select" name="select" class="selectpicker" >
-	                                            <option selected disabled>보험 선택</option>
-	                                            <option value="0.1">일반자차(기본)</option>
+	                                            <option value="0.1" selected>일반자차(기본)</option>
 	                                            <option value="0.2">완전자차</option>
 	                                            <option value="0.5">슈퍼자차</option>
 	                                        </select>

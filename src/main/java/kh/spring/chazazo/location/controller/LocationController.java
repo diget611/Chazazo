@@ -10,6 +10,7 @@ public class LocationController {
 	@GetMapping("/location")
 	public ModelAndView viewLocationList(ModelAndView mv) {
 		// 지점 전체 조회
+		mv.setViewName("/temp/location");
 		return mv;
 	}
 	

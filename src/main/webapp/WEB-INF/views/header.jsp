@@ -46,7 +46,7 @@
 					href="<%=request.getContextPath() %>/location">지점 안내</a></li>
 				<li class="wow fadeInDown animated" data-wow-delay="0.5s"
 					style="visibility: visible; animation-delay: 0.5s; animation-name: fadeInDown;"><a
-					href="<%=request.getContextPath() %>/qna">문의</a></li>	
+					href="<%=request.getContextPath() %>/inquiry">문의</a></li>	
 			</ul>
 		</div>
 		<!-- /.navbar-collapse -->

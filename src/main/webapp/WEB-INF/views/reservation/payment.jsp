@@ -59,6 +59,7 @@
 	href="<%=request.getContextPath()%>/resources/garoestate/assets/css/style.css">
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/resources/garoestate/assets/css/responsive.css">
+	
 </head>
 <body>
 	<jsp:include page="../header.jsp"/>
@@ -78,6 +79,7 @@
 					<label class="small">반납 장소 선택</label>
 				</div>
 			</div>
+					
 			<div class="col-md-6" style="padding:80px">
 				<aside class="sidebar sidebar-property blog-asside-right">
 					<section class="mt-3 p-3">
@@ -85,16 +87,21 @@
 						<table class="table">
 							<tbody>
 								<tr>
-									<th>대여요금</th>
-									<td>22000원</td>
+									<th>총 대여일수</th>
+									<td>${daycount } 일</td>
 								</tr>
 								<tr>
-									<th>할인적용</th>
-									<td>5000원</td>
+									<th>대여요금(보험 포함)</th>
+									<td> ${expIns } 원</td>
 								</tr>
+								<tr>
+									<th>할인 적용</th>
+									<td> - 원</td>
+								</tr>
+
 								<tr>
 									<th>총 결제금액</th>
-									<td>17000원</td>
+									<td>원</td>
 								</tr>
 							</tbody>
 						</table>

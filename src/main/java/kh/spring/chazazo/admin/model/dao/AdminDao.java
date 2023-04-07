@@ -20,6 +20,10 @@ public class AdminDao {
 		return sqlSession.selectList("member.selectMemberList");
 	}
 	
+	public AdminMemberRespDto selectMemberOne(String username) {
+		return sqlSession.selectOne("member.selectMemberOne", username);
+	}
+	
 	public List<VehicleInfoDto> selectVehicleList() {
 		return sqlSession.selectList("vehicle.selectList");
 	}

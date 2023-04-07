@@ -20,6 +20,11 @@ public class AdminServiceImpl implements AdminService {
 	public List<AdminMemberRespDto> selectMemberList() {
 		return dao.selectMemberList();
 	}
+	
+	@Override
+	public AdminMemberRespDto selectMemberOne(String username) {
+		return dao.selectMemberOne(username);
+	}
 
 	@Override
 	public List<VehicleInfoDto> selectVehicleList() {

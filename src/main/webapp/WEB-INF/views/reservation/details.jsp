@@ -201,7 +201,7 @@
                                     
 									<section class="mt-3 p-3">
 									<h6>결제 정보</h6><hr>
-									<form action="<%=request.getContextPath() %>/payment">
+									<form id="payform" action="<%=request.getContextPath() %>/payment" method="post">
 									<table class="table">
 										<tbody>
 											<tr>
@@ -222,10 +222,9 @@
 											</tr>
 										</tbody>
 									</table>
-									<button type="submit"> fff</button>
+									<button class="btn btn-default" id="payment" type="submit"> ㄹㄹㄹㄹsubmit버튼ㄹㄹㄹㄹ</button>
 									</form>
 								</section>
-									<button class="btn btn-default" id="payment" type="button">결제하기</button>
 								</section>
 							</aside>
 						</div>
@@ -322,6 +321,8 @@
    	     
    	  
     }
+     
+   
      
   
      

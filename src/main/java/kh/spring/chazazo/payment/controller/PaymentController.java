@@ -3,6 +3,8 @@ package kh.spring.chazazo.payment.controller;
 import java.security.Principal;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import kh.spring.chazazo.member.model.service.MemberService;
+import kh.spring.chazazo.payment.model.dto.PaymentReqDto;
 
 @RestController
 public class PaymentController {
@@ -28,15 +31,15 @@ private MemberService mService;
 	
 	
 	
-	@GetMapping("/payment")
+	@RequestMapping("/payment")
 	public ModelAndView viewInsertPayment(ModelAndView mv, Principal prin,
-			String dayCount, String rentPrice, String addIns, String expIns) {
+			HttpServletRequest req) {
 		// 결제창 조회
-		
-		System.out.println(dayCount);
-		System.out.println(rentPrice);
-		System.out.println(addIns);
-		System.out.println(expIns);
+		String daycount = req.getParameter("daycount");
+		String rentPrice = req.getParameter("rentPrice");
+		String addIns = req.getParameter("addIns");
+		String expIns = req.getParameter("expIns");
+
 		if(prin == null) {	
 			mv.setViewName("reservation/payment");
 		}else {
@@ -48,18 +51,28 @@ private MemberService mService;
 			System.out.println(username);
 		}
 		
+		mv.addObject("daycount", daycount);
+		mv.addObject("rentPrice", rentPrice);
+		mv.addObject("addIns", addIns);
+		mv.addObject("expIns", expIns);
+		
+		System.out.println(daycount);
+		System.out.println(rentPrice);
+		System.out.println(addIns);
+		System.out.println(expIns);
+
 		return mv;
 	}
 	
 	
 
-	@RequestMapping("/payment")
-	public void insertPayment() {
-		// 결제대기 / 완료 -> 예약 테이블 인서트 동시에 진행
-		
-		System.out.println();
-
-	}
+//	@RequestMapping("/payment")
+//	public void insertPayment() {
+//		// 결제대기 / 완료 -> 예약 테이블 인서트 동시에 진행
+//		
+//		System.out.println();
+//
+//	}
 	
 //	@PostMapping("/payment")
 //	public ModelAndView insertPayment(ModelAndView mv) {

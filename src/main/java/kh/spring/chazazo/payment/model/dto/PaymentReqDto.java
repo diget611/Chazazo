@@ -7,9 +7,9 @@ import lombok.Data;
 @Component
 @Data
 public class PaymentReqDto {
-	private int daycount;
-	private int rentPrice;
-	private int addIns;
-	private int expIns;
+	private String daycount;
+	private String rentPrice;
+	private String addIns;
+	private String expIns;
 	
 }

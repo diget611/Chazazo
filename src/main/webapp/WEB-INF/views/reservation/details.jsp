@@ -201,26 +201,29 @@
                                     
 									<section class="mt-3 p-3">
 									<h6>결제 정보</h6><hr>
+									<form action="<%=request.getContextPath() %>/payment">
 									<table class="table">
 										<tbody>
 											<tr>
 												<th>대여 일수</th>
-												<td><label id="day-count"></label><label>일</label></td>
+												<td><textarea id="day-count" name="daycount"></textarea><label>일</label></td>
 											</tr>
 											<tr>
 												<th>기본 대여 요금</th>
-												<td><label id="rentPrice"></label><label>원</label></td>
+												<td><textarea id="rentPrice"  name="rentPrice"></textarea><label>원</label></td>
 											</tr>
 											<tr>
 												<th>보험 추가 요금</th>
-												<td><label id="addIns"></label><label>원</label></td>
+												<td><textarea id="addIns"  name="addIns"></textarea><label>원</label></td>
 											</tr>
 											<tr>
 												<th>예상결제금액</th>
-												<td><label id="expIns"></label><label>원</label></td>
+												<td><textarea id="expIns"  name="expIns"></textarea><label>원</label></td>
 											</tr>
 										</tbody>
 									</table>
+									<button type="submit"> fff</button>
+									</form>
 								</section>
 									<button class="btn btn-default" id="payment" type="button">결제하기</button>
 								</section>
@@ -320,10 +323,9 @@
    	  
     }
      
+  
      
- 	$('#payment').on('click',function(){
-		location.href="<%=request.getContextPath()%>/payment";
-	})
+  
 
       
       

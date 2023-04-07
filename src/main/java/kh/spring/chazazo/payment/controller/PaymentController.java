@@ -1,10 +1,14 @@
 package kh.spring.chazazo.payment.controller;
 
 import java.security.Principal;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -23,11 +27,16 @@ private MemberService mService;
 	
 	
 	
-
+	
 	@GetMapping("/payment")
-	public ModelAndView viewInsertPayment(ModelAndView mv, Principal prin) {
+	public ModelAndView viewInsertPayment(ModelAndView mv, Principal prin,
+			String dayCount, String rentPrice, String addIns, String expIns) {
 		// 결제창 조회
 		
+		System.out.println(dayCount);
+		System.out.println(rentPrice);
+		System.out.println(addIns);
+		System.out.println(expIns);
 		if(prin == null) {	
 			mv.setViewName("reservation/payment");
 		}else {
@@ -38,15 +47,25 @@ private MemberService mService;
 			mv.setViewName("reservation/payment");
 			System.out.println(username);
 		}
-	
-		return mv;
-	}
-
-	@PostMapping("/payment")
-	public ModelAndView insertPayment(ModelAndView mv) {
-		// 결제대기 / 완료 -> 예약 테이블 인서트 동시에 진행
 		
 		return mv;
 	}
+	
+	
+
+	@RequestMapping("/payment")
+	public void insertPayment() {
+		// 결제대기 / 완료 -> 예약 테이블 인서트 동시에 진행
+		
+		System.out.println();
+
+	}
+	
+//	@PostMapping("/payment")
+//	public ModelAndView insertPayment(ModelAndView mv) {
+//		// 결제대기 / 완료 -> 예약 테이블 인서트 동시에 진행
+//		
+//		return mv;
+//	}
 
 }

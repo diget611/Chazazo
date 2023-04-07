@@ -59,6 +59,7 @@
 	href="<%=request.getContextPath()%>/resources/garoestate/assets/css/style.css">
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/resources/garoestate/assets/css/responsive.css">
+	
 </head>
 <body>
 	<jsp:include page="../header.jsp"/>
@@ -78,6 +79,13 @@
 					<label class="small">반납 장소 선택</label>
 				</div>
 			</div>
+			
+		<div>
+			${param.daycount } / ${param.rentPrice } / ${param.addIns } / ${param.expIns } 
+		</div>
+			
+			
+			
 			<div class="col-md-6" style="padding:80px">
 				<aside class="sidebar sidebar-property blog-asside-right">
 					<section class="mt-3 p-3">

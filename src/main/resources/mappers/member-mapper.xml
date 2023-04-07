@@ -63,8 +63,10 @@
 		SELECT PASSWORD FROM MEMBER WHERE USERNAME = #{username}
 	</select>
 	<select id="selectMemberList" resultType="adminMemberRespDto">
-		SELECT USERNAME, ENABLED, NAME, GENDER, BIRTH, PHONE_NUMBER, LICENSE, EMAIL
-		  FROM MEMBER INNER JOIN MEMBER_INFO ON MEMBER.IDX = MEMBER_INFO.IDX
+		SELECT * FROM MEMBER INNER JOIN MEMBER_INFO ON MEMBER.IDX = MEMBER_INFO.IDX
+	</select>
+	<select id="selectMemberOne" resultType="adminMemberRespDto">
+		SELECT * FROM MEMBER INNER JOIN MEMBER_INFO ON MEMBER.IDX = MEMBER_INFO.IDX WHERE USERNAME = #{username}
 	</select>
 	
 	<select id="getMemberInfo" resultType="memberInfoRespDto">

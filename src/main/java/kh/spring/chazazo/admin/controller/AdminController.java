@@ -2,6 +2,7 @@ package kh.spring.chazazo.admin.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
@@ -29,6 +30,14 @@ public class AdminController {
 		mv.setViewName("admin/member");
 		return mv;
 	}
+	
+	@GetMapping("/member/{username}")
+	public ModelAndView viewMemberOne(ModelAndView mv, @PathVariable String username) {
+		mv.addObject("member", aService.selectMemberOne(username));
+		mv.setViewName("admin/memberdetails");
+		return mv;
+	}
+	
 	
 	@GetMapping("/report")
 	public ModelAndView viewReport(ModelAndView mv) {
@@ -71,6 +80,12 @@ public class AdminController {
 	@GetMapping("/inquiry")
 	public ModelAndView viewInquiry(ModelAndView mv) {
 		mv.setViewName("admin/member");
+		return mv;
+	}
+	
+	@GetMapping("/statistics")
+	public ModelAndView viewStatistics(ModelAndView mv) {
+		mv.setViewName("admin/statistics");
 		return mv;
 	}
 

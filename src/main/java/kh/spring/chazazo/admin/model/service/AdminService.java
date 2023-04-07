@@ -9,6 +9,7 @@ import kh.spring.chazazo.vehicle.model.dto.VehicleInfoDto;
 public interface AdminService {
 	
 	public List<AdminMemberRespDto> selectMemberList();
+	public AdminMemberRespDto selectMemberOne(String username);
 	public List<VehicleInfoDto> selectVehicleList();
 	public List<AdminReportRespDto> selectReportList();
 	

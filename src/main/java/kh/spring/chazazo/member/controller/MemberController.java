@@ -28,6 +28,7 @@ import kh.spring.chazazo.member.model.dto.MemberReqDto;
 import kh.spring.chazazo.common.email.MailSendService;
 import kh.spring.chazazo.member.model.dto.MemberInfoReqDto;
 import kh.spring.chazazo.member.model.service.MemberService;
+import kh.spring.chazazo.reservation.model.service.ReservationService;
 
 @RestController
 @RequestMapping("/member")
@@ -39,7 +40,9 @@ public class MemberController {
 	private MailSendService mailService;
 	@Autowired
 	private PasswordEncoder passwordEncoder;
-	
+	@Autowired
+	private ReservationService rService;
+
 
     
 
@@ -66,6 +69,7 @@ public class MemberController {
 		}else{
 			String loginId = prin.getName();
 			mv.addObject("memberinfo", mService.selectMypageOne(loginId) );
+			mv.addObject("reservation", rService.selectList(loginId));
 			mv.setViewName("member/mypage");
 		}
 		
@@ -181,12 +185,14 @@ public class MemberController {
 	
 	@PatchMapping("/profile/{username}/update")
 	public ModelAndView updateMember(ModelAndView mv, String password, MemberInfoReqDto dto) {
+		
+	
 		// 회원정보 수정 / Put, Patch
 		return mv;
 	}
 
 	
-	
+	 
 	
 	
 	@DeleteMapping("/profile/{username}")

@@ -10,6 +10,8 @@
 </head>
 <body>
 	<h1>관리자 신고 관리</h1>
-	${reportList }			
+	<c:forEach items="${reportList }" var="report">
+		${report }
+	</c:forEach>
 </body>
 </html>

@@ -129,8 +129,6 @@
 									<h3 class="panel-title">
 										<button id="historyBtn" type="button" class="btn btn-outline-primary">예약내역</button>
 										<br>
-										<button type="button" class="btn btn-outline-primary">예약 수정 / 취소</button>
-										<br>
 										
 									</h3>
 								</div>

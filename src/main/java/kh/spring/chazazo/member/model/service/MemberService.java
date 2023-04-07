@@ -18,5 +18,5 @@ public interface MemberService {
 	public MemberInfoRespDto selectMypageOne(String username);
 	public String userPass(String username);
 	public MemberInfoRespDto getMemberInfo(String username);
-	
+	public int updateInfo(MemberInfoRespDto dto);
 }

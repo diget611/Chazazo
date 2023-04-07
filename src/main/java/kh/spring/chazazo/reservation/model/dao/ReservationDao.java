@@ -30,11 +30,11 @@ public class ReservationDao {
 		
 	}
 	
-//	public List<ReservationRespDto> resListOne(String username) {
-//		
-//		return session.resListOne("reservation.resListOne", username);
-//	}
-//		
+	public List<ReservationRespDto> selectList(String username) {
+		
+		return session.selectList("reservation.resListOne", username);
+	}
+		
 
 
 	

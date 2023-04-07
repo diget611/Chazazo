@@ -27,12 +27,11 @@ public class ReservationServiceImpl implements ReservationService {
 		return dao.selectOne(idx);
 	}
 
-//	@Override
-//	public List<ReservationRespDto> resListOne(String username) {
-//		
-//		return dao.resListOne(username);
-//	}
-//
+	@Override
+	public List<ReservationRespDto> selectList(String username) {
+		return dao.selectList(username);
+	}
+
 
 
 

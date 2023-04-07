@@ -7,17 +7,17 @@
 	</select>
 	
 	<select id="resListOne" resultType="ReservationRespDto" >
-		select * 
+		select *
 		 from reservation
-		 join member on reservation.idx = member.idx
+		 left join member on reservation.idx = member.idx
 		 	 where username = #{username}
 	</select>
 	
 	<update id="resUpdate">
 		UPDATE RESERVATION SET RESERV_START=#{reserv_start}, RESERV_END=#{reserv_end},
 							RESERV_STATE=#{reserv_state},INSURANCE_IDX=#{insurance_idx},
-							VEHICLE_IDX=#{vehicle_idx},RESERV_START=#{RENT_LOCATION},
-							RESERV_START=#{RETURN_LOCATION},RESERV_START=#{COUPON_IDX},
+							VEHICLE_IDX=#{vehicle_idx},RENT_LOCATION=#{RENT_LOCATION},
+							RETURN_LOCATION=#{RETURN_LOCATION},COUPON_IDX=#{COUPON_IDX},
 				  WHERE IDX = #{IDX}
 	</update>
 	

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import kh.spring.chazazo.member.model.service.MemberService;
 import kh.spring.chazazo.reservation.model.dto.ReservationReqDto;
 import kh.spring.chazazo.reservation.model.dto.ReservationRespDto;
 import kh.spring.chazazo.reservation.model.service.ReservationService;
@@ -26,6 +27,10 @@ public class ReservationController {
 	
 	@Autowired
 	private ReservationService rService;
+	@Autowired
+	private MemberService mService;
+	
+	
 	
 //	관리자
 	public ModelAndView viewReservationList(ModelAndView mv) {
@@ -39,15 +44,17 @@ public class ReservationController {
 		// 유저 예약 리스트 조회
 		
 		
-		if(prin != null) {
+		if(prin == null) {
 			mv.setViewName("member/noneMemberReservation");
 		}else {
 			String loginId = prin.getName();
-			mv.addObject("reservation", rService.selectList());
+			mv.addObject("reservation", rService.selectList(loginId));
+			mv.addObject("memberinfo", mService.selectMypageOne(loginId));
 			mv.setViewName("member/history");
 		}
 		return mv;
 	}
+	
 	
 //	@GetMapping("/nonereservation")
 //	public ModelAndView viewNoneReservationListUser(ModelAndView mv) {
@@ -60,13 +67,13 @@ public class ReservationController {
 
 	@GetMapping("/profile/reservation/{idx}")
 	public ModelAndView viewReservationOne(ModelAndView mv
-				, @PathVariable int idx) {
+										   , @PathVariable int idx) {
 		// 예약 정보 상세 조회
 		
+		
+		
 		mv.addObject("reservation", rService.selectOne(idx) );
-		
 		mv.setViewName("member/details");
-		
 		return mv;
 	}
 

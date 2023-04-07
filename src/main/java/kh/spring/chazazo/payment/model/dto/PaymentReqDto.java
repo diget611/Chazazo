@@ -11,5 +11,6 @@ public class PaymentReqDto {
 	private String rentPrice;
 	private String addIns;
 	private String expIns;
+	private String ins;
 	
 }

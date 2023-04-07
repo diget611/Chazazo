@@ -191,7 +191,7 @@
 									<div class="col-md-12" style="padding-bottom:100px">                                   
                                         <div class="btn-group bootstrap-select">
                                  		  <label>보험 선택</label>
-	                                   	  <select id="select" name="select" class="selectpicker" >
+	                                   	  <select id="selectins" class="selectpicker" >
 	                                            <option value="0.1" selected>일반자차(기본)</option>
 	                                            <option value="0.2">완전자차</option>
 	                                            <option value="0.5">슈퍼자차</option>
@@ -201,28 +201,28 @@
                                     
 									<section class="mt-3 p-3">
 									<h6>결제 정보</h6><hr>
-									<form id="payform" action="<%=request.getContextPath() %>/payment" method="post">
+<!--  -->									<form id="payform" action="<%=request.getContextPath() %>/payment" method="post">
 									<table class="table">
 										<tbody>
 											<tr>
 												<th>대여 일수</th>
-												<td><textarea id="day-count" name="daycount"></textarea><label>일</label></td>
+												<td><textarea id="day-count" name="daycount" readonly></textarea><label>일</label></td>
 											</tr>
 											<tr>
 												<th>기본 대여 요금</th>
-												<td><textarea id="rentPrice"  name="rentPrice"></textarea><label>원</label></td>
+												<td><textarea id="rentPrice"  name="rentPrice" readonly></textarea><label>원</label></td>
 											</tr>
 											<tr>
 												<th>보험 추가 요금</th>
-												<td><textarea id="addIns"  name="addIns"></textarea><label>원</label></td>
+												<td><textarea id="addIns"  name="addIns" readonly></textarea><label>원</label></td>
 											</tr>
 											<tr>
 												<th>예상결제금액</th>
-												<td><textarea id="expIns"  name="expIns"></textarea><label>원</label></td>
+												<td><textarea id="expIns"  name="expIns" readonly></textarea><label>원</label></td>
 											</tr>
 										</tbody>
 									</table>
-									<button class="btn btn-default" id="payment" type="submit"> ㄹㄹㄹㄹsubmit버튼ㄹㄹㄹㄹ</button>
+									<button class="btn btn-default" id="payment" type="submit" readonly> 결제하기</button>
 									</form>
 								</section>
 								</section>
@@ -241,7 +241,7 @@
 
 
 <script>
-
+	
 
 
 
@@ -278,7 +278,7 @@
 	$('#startDate').on('change', mincalc);
  //    $('#startDate').on('change', calc);
      $('#endDate').on('change', calc);
-     $('#select').on('change', calc);
+     $('#selectins').on('change', calc);
 
      
      function calc () {
@@ -286,7 +286,7 @@
         var endDate = new Date($('#endDate').val());
         var compareDate = Math.round((endDate.getTime() - startDate.getTime()) / 1000 / 60 / 60 / 24) + 1;
       	var price = ${car.price};
-      	var insurance = $('#select').val(); //추가요금
+      	var insurance = $('#selectins').val(); //추가요금
      
       	
        if(compareDate <0) {
@@ -322,10 +322,9 @@
    	  
     }
      
-   
-     
   
-     
+
+
   
 
       

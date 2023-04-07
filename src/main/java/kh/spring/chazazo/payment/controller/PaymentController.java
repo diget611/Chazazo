@@ -39,6 +39,7 @@ private MemberService mService;
 		String rentPrice = req.getParameter("rentPrice");
 		String addIns = req.getParameter("addIns");
 		String expIns = req.getParameter("expIns");
+		String ins = req.getParameter("selectins");
 
 		if(prin == null) {	
 			mv.setViewName("reservation/payment");
@@ -55,11 +56,13 @@ private MemberService mService;
 		mv.addObject("rentPrice", rentPrice);
 		mv.addObject("addIns", addIns);
 		mv.addObject("expIns", expIns);
+		mv.addObject("ins", ins);
 		
 		System.out.println(daycount);
 		System.out.println(rentPrice);
 		System.out.println(addIns);
 		System.out.println(expIns);
+		System.out.println(ins);
 
 		return mv;
 	}

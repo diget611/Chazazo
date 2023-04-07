@@ -72,8 +72,6 @@
 						<div class="dealer-widget  row-md-4">
 							<div class="dealer-content">
 								<div class="inner-wrapper">
-									
-								
 											<div class="clear">
 												<div class="col-xs-8 col-sm-8 ">
 													<h3 class="dealer-name">
@@ -111,7 +109,7 @@
 								<div class="panel-heading">
 									<h3 class="panel-title">
 									<button id="historyBtn" type="button" class="btn btn-outline-primary">예약내역</button><br>
-									<button type="button" class="btn btn-outline-primary">예약 수정 / 취소</button><br>		
+									
 								</div>
 							</div>
 						</div>  
@@ -120,7 +118,7 @@
 								<div class="panel-heading">
 									<h3 class="panel-title">
 									<button id="updateinfoBtn" type="button" class="btn btn-outline-primary">회원정보 수정</button><br>
-									<button id="bookmark"type="button" class="btn btn-outline-primary">나의 관심 지점</button><br></h3>
+									<button id="bookmark" type="button" class="btn btn-outline-primary">나의 관심 지점</button><br></h3>
 								</div>
 							</div>
 						</div>
@@ -160,6 +158,10 @@
 											</tr>
 										</table>
 									</c:forEach>
+							</div>
+							<div>
+								<button>예약 변경</button>
+								<button>예약 취소</button>
 							</div>	
 						</section>
 					</div>                    

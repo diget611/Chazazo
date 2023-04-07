@@ -91,7 +91,7 @@
 								<div class="panel-heading">
 									<h3 class="panel-title">
 									<button id="historyBtn" type="button" class="btn btn-outline-primary">예약내역</button><br>
-									<button type="button" class="btn btn-outline-primary">예약 수정 / 취소</button><br>
+									
 								</div>
 							</div>
 						</div>  
@@ -123,10 +123,11 @@
 				<div class="blog-lst col-md-8 p0 " style="float: right;">
 				
 					<!-- 회원정보 수정 버튼 클릭시 비밀번호 확인 창 뜨게 하기  -->
-					<div class="card-body">
+					<section id="id-100"  >
+					<div class="card-body" id="passCheck">
 						<div class="text-start">
 							<div class="input-group input-group-outline my-3">
-								<label class="form-label">비밀번호 확인</label>
+								<label>비밀번호 확인</label>
 								<input type="password" id="password" name="password" class="form-control">
 							</div>
 						</div>
@@ -135,10 +136,7 @@
 						</div>
 					</div> 
 				
-					
-				
-					<section id="id-100" class="post single">
-						<form method="POST">
+						<form id="updateForm" action="<%=request.getContextPath() %>/member/profile" method="POST" style="display:none";>
 							<div class="form-group">
 									<label>이름</label>
 									<input type="text" class="form-control" name="name" value="${memberinfo.name }" readonly >
@@ -208,7 +206,8 @@
 		             success: function(result) {
 		            	 if(result) {
 		            		 console.log('일치');
-		            		 // 정보 수정 페이지로 이동
+		            		 $('#updateForm').show();
+		            		 $('#passCheck').hide();
 		            	 } else {
 		            		 console.log('불일치');
 		            		 alert("비밀번호가 일치하지 않습니다.");

@@ -122,9 +122,6 @@
 										<button id="historyBtn" type="button"
 											class="btn btn-outline-primary">예약내역</button>
 										<br>
-										<button type="button" class="btn btn-outline-primary">예약
-											수정 / 취소</button>
-										<br>
 										<button type="button" class="btn btn-outline-primary">비회원
 											예약 확인</button>
 									</h3>

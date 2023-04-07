@@ -113,7 +113,7 @@
 								<div class="panel-heading">
 									<h3 class="panel-title">
 									<button id="historyBtn" type="button" class="btn btn-outline-primary">예약내역</button><br>
-									<button type="button" class="btn btn-outline-primary">예약 수정 / 취소</button><br>
+									
 								</div>
 							</div>
 						</div>  
@@ -152,8 +152,38 @@
 							<div class="container-loading-dot" id="mypage_loading_rent_list" style="display:none;"></div>
 								<div id="mypage_none_rent_history" style="display:block; margin-top:100px;">
 									<div class="text-center">
-										<h4>진행중인 렌트내역이 없습니다</h4>
-										<button class="js-mypage-btn-go-car-list btn btn-outline-primary btn-block max-w-lg-40rem mx-auto py-1" onclick="moveRent();">렌트하러 가기</button>
+									<c:choose>
+										<c:when test="${empty reservation }">
+											<h4>진행중인 렌트내역이 없습니다</h4>
+											<button class="js-mypage-btn-go-car-list btn btn-outline-primary btn-block max-w-lg-40rem mx-auto py-1" onclick="moveRent();">렌트하러 가기</button>
+										</c:when>
+										<c:otherwise>
+											<div>
+												<h3>${memberinfo.name } 님의 예약내역</h3>
+											</div>
+											<c:forEach items="${reservation }" var="list">
+											<table>
+												<tr>
+													<th scope="row">예약자</th>
+													<td>${list.idx }</td>
+													<th scope="row">예약시작날짜</th>
+													<td>${list.reservStart }</td>
+													<th scope="row">예약날자</th>
+													<td>${list.reservEnd }</td>
+													<th scope="row">보험종류</th>
+													<td>${list.insuranceIdx }</td>
+													<th scope="row">차종류</th>
+													<td>${list.vehicleIdx }</td>
+													<th scope="row">대여지점</th>
+													<td>${list.rentLocation }</td>
+													<th scope="row">반납지점</th>
+													<td>${list.returnLocation }</td>
+												</tr>
+											</table>
+											</c:forEach>
+										</c:otherwise>
+									</c:choose>	
+										
 										<sec:authorize access="!isAuthenticated()">
 											<button class="js-mypage-btn-none-member-search btn btn-link btn-block color-grey-3 font-weight-normal max-w-lg-40rem mx-auto py-1 tmobi-dc-none" id="moveNoneMemberReservation">비회원 예약조회</button>
 										</sec:authorize>

@@ -59,18 +59,26 @@ public class MemberServiceImp implements MemberService {
 		return dao.findPass(info);
 	}
 
+	
+	
+	
+	
+	
+	//회원정보조회
 	@Override
 	public MemberInfoRespDto selectMypageOne(String username) {
 		// TODO Auto-generated method stub
 		return dao.selectMypageOne(username);
 	}
 
-	@Override
-	public MemberInfoRespDto selectOne(int idx) {
-		// TODO Auto-generated method stub
-		return dao.selectOne(idx);
-	}
+//	@Override
+//	public MemberInfoRespDto selectOne(int idx) {
+//		// TODO Auto-generated method stub
+//		return dao.selectOne(idx);
+//	}
 
+	
+	//비밀번호확인
 	@Override
 	public String userPass(String username) {
 		return dao.userPass(username);
@@ -81,13 +89,28 @@ public class MemberServiceImp implements MemberService {
 		// TODO Auto-generated method stub
 		return dao.getMemberInfo(username);
 	}
+	
+	//회원정보수정
+	@Override
+	public int updateInfo(MemberInfoRespDto dto) {
+		return dao.updateInfo(dto);
+	}
 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	@Override
+	public MemberInfoRespDto selectOne(int idx) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
-//	@Override
-//	public int updateInfo(MemberInfoRespDto dto) {
-//		// TODO Auto-generated method stub
-//		return 0;
-//	}
 
 	
 }

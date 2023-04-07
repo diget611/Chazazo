@@ -54,11 +54,11 @@ public class MemberDao {
 	}
 	
 	//회원정보수정
-	public MemberInfoRespDto selectOne(int idx) {
-		// TODO Auto-generated method stub
-		return sqlSession.selectOne("member.selectOne", idx);
+	public int updateInfo(MemberInfoRespDto dto) {
+		return sqlSession.update("member.updateInfo", dto);
 	}
 	
+	//비밀번호확인
 	public String userPass(String username) {
 		return sqlSession.selectOne("member.userPass", username);
 	}

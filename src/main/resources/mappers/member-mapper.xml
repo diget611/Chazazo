@@ -50,7 +50,7 @@
 	</select>
 	
 	<update id="updateInfo" parameterType="memberInfoRespDto">
-		UPDATE MEMBER_INFO SET GENDER = #{gender}, BIRTH = #{birth}
+		UPDATE MEMBER_INFO SET NAME=#{name}, GENDER = #{gender}, BIRTH = #{birth}
 									, PHONENUMBER = #{phoneNumber}, EMAIL = #{email}
 					       WHERE IDX = #{idx}
 	</update>
@@ -62,6 +62,7 @@
 	<select id="userPass" resultType="string">
 		SELECT PASSWORD FROM MEMBER WHERE USERNAME = #{username}
 	</select>
+	
 	<select id="selectMemberList" resultType="adminMemberRespDto">
 		SELECT USERNAME, ENABLED, NAME, GENDER, BIRTH, PHONE_NUMBER, LICENSE, EMAIL
 		  FROM MEMBER INNER JOIN MEMBER_INFO ON MEMBER.IDX = MEMBER_INFO.IDX

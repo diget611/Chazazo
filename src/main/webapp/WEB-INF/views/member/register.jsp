@@ -348,7 +348,7 @@
 					let testEmail = /([!#-'*+-9=?A-Z^-~-]+(\.[!#-'*+-9=?A-Z^-~-]+)*|\"\(\[\]!#-[^-~ \t]|(\\[\t -~])+\")@([!#-'*+-9=?A-Z^-~-]+(\.[!#-'*+-9=?A-Z^-~-]+)*|\[[\t -Z^-~]*])/;
 					if(email != null && testEmail.test(email)) {
 						alert("인증번호가 발송되었습니다.")
-						$('[name=confirmEmailBtn]').attr('disabled', false);
+						$('#confirmEmailBtn').attr('disabled', false);
 						$('[name=checkEmail]').attr('disabled', false);
 						certNum = result;
 					} else {

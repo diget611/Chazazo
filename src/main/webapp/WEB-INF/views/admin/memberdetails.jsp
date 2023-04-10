@@ -48,6 +48,9 @@
 						<div class="col-4" style="padding: 0 6px 0 0">
 							<label for="gender" class="form-label">성별</label>
 							<c:choose>
+								<c:when test="${member.enabled eq 0}">
+									<c:set var="gender" value="0"/>
+								</c:when>
 								<c:when test="${member.gender eq 0}">
 									<c:set var="gender" value="남"/>
 								</c:when>

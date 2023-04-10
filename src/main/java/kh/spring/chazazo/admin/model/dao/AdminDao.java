@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import kh.spring.chazazo.admin.model.dto.AdminCouponManageRespDto;
 import kh.spring.chazazo.admin.model.dto.AdminMemberRespDto;
 import kh.spring.chazazo.admin.model.dto.AdminReportRespDto;
 import kh.spring.chazazo.vehicle.model.dto.VehicleInfoDto;
@@ -47,5 +48,13 @@ public class AdminDao {
 	public String selectReviewContent(String idx) {
 		return sqlSession.selectOne("review.selectReviewContent", idx);
 	}
-
+	
+	public List<AdminCouponManageRespDto> selectCouponList() {
+		return sqlSession.selectList("couponmanage.selectList");
+	}
+	
+	public AdminCouponManageRespDto selectCouponOne(String idx) {
+		return sqlSession.selectOne("couponmanage.selectOne", idx);
+	}
+ 
 }

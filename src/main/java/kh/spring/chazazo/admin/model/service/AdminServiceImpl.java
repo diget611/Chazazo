@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kh.spring.chazazo.admin.model.dao.AdminDao;
+import kh.spring.chazazo.admin.model.dto.AdminCouponManageRespDto;
 import kh.spring.chazazo.admin.model.dto.AdminMemberRespDto;
 import kh.spring.chazazo.admin.model.dto.AdminReportRespDto;
 import kh.spring.chazazo.vehicle.model.dto.VehicleInfoDto;
@@ -55,5 +56,14 @@ public class AdminServiceImpl implements AdminService {
 		return dao.selectReviewContent(idx);
 	}
 
+	@Override
+	public List<AdminCouponManageRespDto> selectCouponList() {
+		return dao.selectCouponList();
+	}
+
+	@Override
+	public AdminCouponManageRespDto selectCouponOne(String idx) {
+		return dao.selectCouponOne(idx);
+	}
 
 }

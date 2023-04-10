@@ -172,7 +172,14 @@
 									<td>${report.reviewIdx }</td>
 									<td>${report.username }</td>
 									<td>${report.reason }</td>
-									<td>${report.status }</td>
+									<c:choose>
+										<c:when test="${report.status eq 0 }">
+											<td>미처리</td>
+										</c:when>
+										<c:otherwise>
+											<td>처리 완료</td>
+										</c:otherwise>
+									</c:choose>
 									<td>${report.startDate }</td>
 									<c:choose>
 										<c:when test="${report.endDate eq null }">

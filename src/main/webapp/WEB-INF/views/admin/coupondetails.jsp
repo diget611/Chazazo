@@ -5,7 +5,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>신고 상세 정보</title>
+    <title>쿠폰 상세 정보</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -34,15 +34,23 @@
 	<div class="container-fluid pt-4 px-4">
 		<div class="col-sm-12 col-xl-6">
 			<div class="bg-light rounded h-100 p-4">
-				<h6 class="mb-4">신고 상세 정보</h6>
+				<h6 class="mb-4">쿠폰 상세 정보</h6>
 				<form>
 					<div class="mb-3 row">
-						<label for="content" class="form-label">리뷰 내용</label>
-						<input type="text" class="form-control" id="content" name="content" value="${review}" readonly>
+						<label for="name" class="form-label">쿠폰명</label>
+						<input type="text" class="form-control" id="name" name="name" value="${coupon.name}" readonly>
+					</div>
+					<div class="mb-3 row">
+						<label for="period" class="form-label">쿠폰 사용 기간</label>
+						<input type="text" class="form-control" id="period" name="period" value="${coupon.period}" readonly>
+					</div>
+					<div class="mb-3 row">
+						<label for="rate" class="form-label">할인율</label>
+						<input type="text" class="form-control" id="rate" name="rate" value="${coupon.rate}" readonly>
 					</div>
 					<div style="text-align: center;">
-						<button type="button" class="btn btn-primary" style="display: inline-block">Sign in</button>
-						<button type="button" class="btn btn-primary" style="display: inline-block">Sign in</button>
+						<button type="button" class="btn btn-primary" style="display: inline-block">정보 수정</button>
+						<button type="button" class="btn btn-primary" style="display: inline-block">삭제</button>
 					</div>
 				</form>
 			</div>

@@ -82,7 +82,15 @@ public class AdminController {
 	
 	@GetMapping("/coupon")
 	public ModelAndView viewCoupon(ModelAndView mv) {
+		mv.addObject("couponList", aService.selectCouponList());
 		mv.setViewName("admin/coupon");
+		return mv;
+	}
+	
+	@GetMapping("/coupon/{idx}")
+	public ModelAndView viewCoupon(ModelAndView mv, @PathVariable String idx) {
+		mv.addObject("coupon", aService.selectCouponOne(idx));
+		mv.setViewName("admin/coupondetails");
 		return mv;
 	}
 	

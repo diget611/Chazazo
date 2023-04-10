@@ -1,6 +1,7 @@
 package kh.spring.chazazo.admin.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -8,8 +9,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import kh.spring.chazazo.admin.model.service.AdminService;
-import kh.spring.chazazo.member.model.service.MemberService;
-import kh.spring.chazazo.vehicle.model.service.VehicleService;
 
 @RestController
 @RequestMapping("/admin")
@@ -38,11 +37,27 @@ public class AdminController {
 		return mv;
 	}
 	
+	@DeleteMapping("/member/{username}")
+	public int deleteMember(@PathVariable String username) {
+		System.out.println(username);
+		int result = aService.deleteMember(username);
+		System.out.println(result);
+		return result;
+	}
+	
 	
 	@GetMapping("/report")
 	public ModelAndView viewReport(ModelAndView mv) {
 		mv.addObject("reportList", aService.selectReportList());
 		mv.setViewName("admin/report");
+		return mv;
+	}
+	
+	@GetMapping("/report/{idx}")
+	public ModelAndView viewReportOne(ModelAndView mv, @PathVariable String idx) {
+		mv.addObject("report", aService.selectReportOne(idx));
+		mv.addObject("review", aService.selectReviewContent(idx));
+		mv.setViewName("admin/reportdetails");
 		return mv;
 	}
 	

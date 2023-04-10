@@ -25,6 +25,15 @@ public class AdminServiceImpl implements AdminService {
 	public AdminMemberRespDto selectMemberOne(String username) {
 		return dao.selectMemberOne(username);
 	}
+	
+	@Override
+	public int deleteMember(String username) {
+		int result = 0;
+		if(dao.deleteMember(username) == 1) {
+			result = dao.deleteMemberInfo(username);
+		}
+		return result;
+	}
 
 	@Override
 	public List<VehicleInfoDto> selectVehicleList() {
@@ -35,5 +44,16 @@ public class AdminServiceImpl implements AdminService {
 	public List<AdminReportRespDto> selectReportList() {
 		return dao.selectReportList();
 	}
+
+	@Override
+	public AdminReportRespDto selectReportOne(String idx) {
+		return dao.selectReportOne(idx);
+	}
+
+	@Override
+	public String selectReviewContent(String idx) {
+		return dao.selectReviewContent(idx);
+	}
+
 
 }

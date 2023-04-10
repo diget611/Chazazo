@@ -16,4 +16,7 @@
 	<delete id="delete">
 		DELETE FROM REVIEW WHERE IDX = #{idx}	
 	</delete>
+	<select id="selectReviewContent" resultType="string">
+		SELECT REVIEW.*, REVIEW_IDX FROM REVIEW INNER JOIN REPORT ON REVIEW.IDX = REPORT.REVIEW_IDX WHERE REPORT.IDX = #{idx}
+	</select>
 </mapper>

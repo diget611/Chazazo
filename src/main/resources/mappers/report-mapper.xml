@@ -3,7 +3,11 @@
 <mapper namespace="report">
 
 	<select id="selectList" resultType="adminReportRespDto">
-		SELECT * FROM REPORT
+		SELECT REPORT.*, USERNAME FROM REPORT INNER JOIN MEMBER ON REPORT.MEMBER_IDX = MEMBER.IDX
+	</select>
+	
+	<select id="selectOne" resultType="adminReportRespDto">
+		SELECT REPORT.*, USERNAME FROM REPORT INNER JOIN MEMBER ON REPORT.MEMBER_IDX = MEMBER.IDX WHERE REPORT.IDX = #{idx}
 	</select>
 	
 </mapper>

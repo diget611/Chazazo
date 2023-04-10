@@ -17,5 +17,6 @@ public class AdminReportRespDto {
 	private int status;
 	private Date startDate;
 	private Date endDate;
+	private String username;
 
 }

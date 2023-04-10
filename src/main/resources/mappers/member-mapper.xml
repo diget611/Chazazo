@@ -55,9 +55,15 @@
 					       WHERE IDX = #{idx}
 	</update>
 	
-	<delete id="delete">
-		DELETE FROM MEMBER WHERE USERNAME = #{username}
-	</delete>
+	<update id="deleteMember">
+		UPDATE MEMBER SET ENABLED = 0 WHERE USERNAME = #{username}
+	</update>
+	
+	<update id="deleteMemberInfo">
+		UPDATE (SELECT * FROM MEMBER, MEMBER_INFO WHERE MEMBER.IDX = MEMBER_INFO.IDX)
+           SET NAME = 0, GENDER = 0, BIRTH = 0, PHONE_NUMBER = 0, LICENSE = 0, EMAIL = 0
+         WHERE USERNAME = #{username}
+	</update>
 
 	<select id="userPass" resultType="string">
 		SELECT PASSWORD FROM MEMBER WHERE USERNAME = #{username}

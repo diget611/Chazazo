@@ -24,12 +24,28 @@ public class AdminDao {
 		return sqlSession.selectOne("member.selectMemberOne", username);
 	}
 	
+	public int deleteMember(String username) {
+		return sqlSession.update("member.deleteMember", username);
+	}
+	
+	public int deleteMemberInfo(String username) {
+		return sqlSession.update("member.deleteMemberInfo", username);
+	}
+	
 	public List<VehicleInfoDto> selectVehicleList() {
 		return sqlSession.selectList("vehicle.selectList");
 	}
 	
 	public List<AdminReportRespDto> selectReportList() {
 		return sqlSession.selectList("report.selectList");
+	}
+	
+	public AdminReportRespDto selectReportOne(String idx) {
+		return sqlSession.selectOne("report.selectOne", idx);
+	}
+	
+	public String selectReviewContent(String idx) {
+		return sqlSession.selectOne("review.selectReviewContent", idx);
 	}
 
 }

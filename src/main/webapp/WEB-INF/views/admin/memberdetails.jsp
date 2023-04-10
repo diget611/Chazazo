@@ -75,8 +75,8 @@
 						<input type="text" class="form-control" id="email" name="email" value="${member.email}" readonly>
 					</div>
 					<div style="text-align: center;">
-						<button type="button" class="btn btn-primary" style="display: inline-block">Sign in</button>
-						<button type="button" class="btn btn-primary" style="display: inline-block">Sign in</button>
+						<button type="button" class="btn btn-primary" style="display: inline-block" name="updateBtn">회원 정보 수정</button>
+						<button type="button" class="btn btn-primary" style="display: inline-block" name="deleteBtn">삭제</button>
 					</div>
 				</form>
 			</div>
@@ -85,6 +85,45 @@
 	<!-- Form End -->
 
 <script src="<%=request.getContextPath()%>/resources/dashmin/js/main.js"></script>
+
+<script>
+	$('[name=updateBtn]').on('click', changeStatus);
+	
+	function changeStatus() {
+		if($('[name=updateBtn]').text() == '회원 정보 수정') {
+			$('#phoneNumber').attr('readonly', false);
+			$('#license').attr('readonly', false);
+			$('#email').attr('readonly', false);
+			$('[name=updateBtn]').text('수정 완료');
+		} else {
+			console.log('ddddd');
+		}	
+	}
+	
+	$('[name=deleteBtn]').on('click', deleteMember);
+	
+	function deleteMember() {
+		let username = $('#username').val();
+		console.log(username);
+		$.ajax({
+			url: "<%=request.getContextPath()%>/admin/member/${member.username}",
+			data: {username: username},
+			type: 'delete',
+			success: function(result) {
+				if(result == 1) {
+					alert('삭제 성공');
+				} else {
+					alert('오류 발생');
+				}
+			},
+			error: function() {
+				console.log('통신 실패');
+			}
+		}
+		); 
+	}
+	
+</script>
 
 </body>
 

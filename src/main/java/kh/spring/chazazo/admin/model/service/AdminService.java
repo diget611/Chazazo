@@ -10,7 +10,9 @@ public interface AdminService {
 	
 	public List<AdminMemberRespDto> selectMemberList();
 	public AdminMemberRespDto selectMemberOne(String username);
+	public int deleteMember(String username);
 	public List<VehicleInfoDto> selectVehicleList();
 	public List<AdminReportRespDto> selectReportList();
-	
+	public AdminReportRespDto selectReportOne(String idx);
+	public String selectReviewContent(String idx);
 }

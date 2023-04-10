@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -201,28 +202,34 @@
                                     
 									<section class="mt-3 p-3">
 									<h6>결제 정보</h6><hr>
-<!--  -->									<form id="payform" action="<%=request.getContextPath() %>/payment" method="post">
+									<form id="payform" action="<%=request.getContextPath() %>/payment" method="post">
 									<table class="table">
 										<tbody>
 											<tr>
 												<th>대여 일수</th>
-												<td><textarea id="day-count" name="daycount" readonly></textarea><label>일</label></td>
+												<td><input type="text" id="day-count" name="daycount" value="" readonly /><label>일</label></td>
 											</tr>
 											<tr>
 												<th>기본 대여 요금</th>
-												<td><textarea id="rentPrice"  name="rentPrice" readonly></textarea><label>원</label></td>
+												<td><input type="text" id="rentPrice"  name="rentPrice" readonly><label>원</label></td>
 											</tr>
 											<tr>
 												<th>보험 추가 요금</th>
-												<td><textarea id="addIns"  name="addIns" readonly></textarea><label>원</label></td>
+												<td><input type="text"id="addIns"  name="addIns" readonly><label>원</label></td>
 											</tr>
 											<tr>
 												<th>예상결제금액</th>
-												<td><textarea id="expIns"  name="expIns" readonly></textarea><label>원</label></td>
+												<td><input type="text" id="expIns"  name="expIns" readonly><label>원</label></td>
 											</tr>
 										</tbody>
 									</table>
-									<button class="btn btn-default" id="payment" type="submit" readonly> 결제하기</button>
+											<sec:authorize access="!isAuthenticated()">
+												<button class="btn btn-default" id="register" type="button" >회원가입하고 혜택받기</button>
+												<button class="btn btn-default" id="payment" type="submit" >비회원 결제하기</button>
+											</sec:authorize>
+											<sec:authorize access="isAuthenticated()">
+												<button class="btn btn-default" id="payment" type="submit" >결제하기</button>
+											</sec:authorize>
 									</form>
 								</section>
 								</section>
@@ -268,10 +275,10 @@
 
 	window.onload = function() {
 	let price = ${car.price}
-	$('#day-count').text(1);
-	$('#rentPrice').text(price.toLocaleString());
-	$("#addIns").text((price * 0.1).toLocaleString());
-	$("#expIns").text((price+price * 0.1).toLocaleString());
+	$('input[name=daycount]').attr('value','1');
+	$('#rentPrice').attr('value',price.toLocaleString());
+	$("#addIns").attr('value',(price * 0.1).toLocaleString());
+	$("#expIns").attr('value',(price+price * 0.1).toLocaleString());
 }
  
   
@@ -294,9 +301,10 @@
 			return false;
        }else {
      	  $('#day-count').text(compareDate);
-     	  $('#rentPrice').text((price * compareDate).toLocaleString());
-     	  $("#addIns").text((price * insurance).toLocaleString());
-     	  $("#expIns").text((compareDate*price+price * insurance).toLocaleString());
+     	 $('input[name=daycount]').attr('value',compareDate);
+     	  $('#rentPrice').attr('value',(price * compareDate).toLocaleString());
+     	  $("#addIns").attr('value',(price * insurance).toLocaleString());
+     	  $("#expIns").attr('value',(compareDate*price+price * insurance).toLocaleString());
      	
        }
        
@@ -322,15 +330,22 @@
    	  
     }
      
-  
+ 	$('#register').on('click', function() {
+		location.href='<%=request.getContextPath()%>/member/register';
+	});
 
-
-  
-
-      
-      
-      
  </script>
+
+     
+  
+
+
+  
+
+      
+      
+      
+
  <script type="text/javascript">
 		// <맵 생성>
 		var mapContainer = document.getElementById('map'), // 지도를 표시할 div  

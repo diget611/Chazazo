@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -30,16 +31,11 @@ private MemberService mService;
 	
 	
 	
-	
+
 	@RequestMapping("/payment")
 	public ModelAndView viewInsertPayment(ModelAndView mv, Principal prin,
-			HttpServletRequest req) {
+			String daycount, String rentPrice, String addIns, String expIns, String selectins) {
 		// 결제창 조회
-		String daycount = req.getParameter("daycount");
-		String rentPrice = req.getParameter("rentPrice");
-		String addIns = req.getParameter("addIns");
-		String expIns = req.getParameter("expIns");
-		String ins = req.getParameter("selectins");
 
 		if(prin == null) {	
 			mv.setViewName("reservation/payment");
@@ -56,13 +52,13 @@ private MemberService mService;
 		mv.addObject("rentPrice", rentPrice);
 		mv.addObject("addIns", addIns);
 		mv.addObject("expIns", expIns);
-		mv.addObject("ins", ins);
+		mv.addObject("selectins", selectins);
 		
 		System.out.println(daycount);
 		System.out.println(rentPrice);
 		System.out.println(addIns);
 		System.out.println(expIns);
-		System.out.println(ins);
+		System.out.println(selectins);
 
 		return mv;
 	}

@@ -192,7 +192,7 @@
 									<div class="col-md-12" style="padding-bottom:100px">                                   
                                         <div class="btn-group bootstrap-select">
                                  		  <label>보험 선택</label>
-	                                   	  <select id="selectins" class="selectpicker" >
+	                                   	  <select id="selectins" name="selectins" class="selectpicker" >
 	                                            <option value="0.1" selected>일반자차(기본)</option>
 	                                            <option value="0.2">완전자차</option>
 	                                            <option value="0.5">슈퍼자차</option>
@@ -223,13 +223,17 @@
 											</tr>
 										</tbody>
 									</table>
+									<div>
 											<sec:authorize access="!isAuthenticated()">
 												<button class="btn btn-default" id="register" type="button" >회원가입하고 혜택받기</button>
 												<button class="btn btn-default" id="payment" type="submit" >비회원 결제하기</button>
 											</sec:authorize>
+									</div>
+									<div>
 											<sec:authorize access="isAuthenticated()">
 												<button class="btn btn-default" id="payment" type="submit" >결제하기</button>
 											</sec:authorize>
+									</div>
 									</form>
 								</section>
 								</section>
@@ -282,7 +286,7 @@
 }
  
   
-	$('#startDate').on('change', mincalc);
+	$('#startDate').on('change', calc);
  //    $('#startDate').on('change', calc);
      $('#endDate').on('change', calc);
      $('#selectins').on('change', calc);
@@ -294,26 +298,35 @@
         var compareDate = Math.round((endDate.getTime() - startDate.getTime()) / 1000 / 60 / 60 / 24) + 1;
       	var price = ${car.price};
       	var insurance = $('#selectins').val(); //추가요금
-     
+		console.log(startDate);
+		console.log(endDate);
+		console.log(price);
+		console.log(insurance);
+    	 console.log(compareDate);
       	
        if(compareDate <0) {
     	   alert("반납일이 대여일보다 먼저 올 수 없습니다.다시 선택해 주세요.");
+    	   $('#day-count').attr('value', '');
+      	  $('#rentPrice').attr('value', '');
+      	  $("#addIns").attr('value', '');
+      	  $("#expIns").attr('value', '');
+    	     console.log('sadasdasda');
 			return false;
        }else {
-     	  $('#day-count').text(compareDate);
-     	 $('input[name=daycount]').attr('value',compareDate);
+     	  $('#day-count').attr('value',compareDate);
      	  $('#rentPrice').attr('value',(price * compareDate).toLocaleString());
      	  $("#addIns").attr('value',(price * insurance).toLocaleString());
      	  $("#expIns").attr('value',(compareDate*price+price * insurance).toLocaleString());
+     	 console.log('xxxxx');
      	
        }
        
       }
      function mincalc() {
-     $("#day-count").empty();
-     $("#rentPrice").empty();
-     $("#addIns").empty();
-     $("#expIns").empty();
+     $("#day-count").val('');
+     $("#rentPrice").val('');
+     $("#addIns").val('');
+     $("#expIns").val('');
    	  var startDate = new Date($('#startDate').val()); 
    	  var endDate = new Date($('#endDate').val());
    	  
@@ -326,13 +339,12 @@
    	     	} 
    	    sDate = syyyy+ '-' + smm + '-' +sdd;
    	    document.getElementById("endDate").setAttribute("min", sDate);
-   	     
-   	  
     }
      
  	$('#register').on('click', function() {
 		location.href='<%=request.getContextPath()%>/member/register';
 	});
+ 	
 
  </script>
 

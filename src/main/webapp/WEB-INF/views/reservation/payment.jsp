@@ -87,7 +87,7 @@
 						<table class="table">
 							<tbody>
 								<tr>
-									<th>총 대여일수</th>
+									<th>총 대여일수 </th>
 									<td>${daycount } 일</td>
 								</tr>
 								<tr>

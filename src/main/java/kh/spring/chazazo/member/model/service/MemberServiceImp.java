@@ -84,6 +84,7 @@ public class MemberServiceImp implements MemberService {
 		return dao.userPass(username);
 	}
 
+	
 	@Override
 	public MemberInfoRespDto getMemberInfo(String username) {
 		// TODO Auto-generated method stub
@@ -97,20 +98,26 @@ public class MemberServiceImp implements MemberService {
 	}
 
 	
-	
-	
-	
-	
-	
-	
-	
-	
 	@Override
 	public MemberInfoRespDto selectOne(int idx) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
+	@Override
+	public int deleteMember(String username) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int deleteMemberInfo(String username) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	
+	//탈퇴
 
 	
 }

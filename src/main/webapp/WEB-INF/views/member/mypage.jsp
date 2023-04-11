@@ -199,7 +199,7 @@
 
 	<script>
 		$('#updateinfoBtn').on('click', function() {
-			location.href='<%=request.getContextPath()%>/member/profile';
+			location.href='<%=request.getContextPath()%>/member/profile/${member.username}/update';
 			
 		});
 		$('#historyBtn').on('click', function() {

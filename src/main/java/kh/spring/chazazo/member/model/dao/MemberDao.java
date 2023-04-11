@@ -68,4 +68,13 @@ public class MemberDao {
 		return sqlSession.selectOne("member.getMemberInfo", username);
 	}
 	
+	//회원 탈퇴
+	public int deleteMember(String username) {
+		return sqlSession.delete("member.deleteMember", username);
+	}
+	
+	//회원탈퇴 저장
+	public int deleteMemberInfo(String username) {
+		return sqlSession.update("member.deleteMemberInfo", username);
+	}
 }

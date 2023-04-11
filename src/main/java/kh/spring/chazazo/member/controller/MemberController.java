@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -27,6 +28,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import kh.spring.chazazo.member.model.dto.MemberReqDto;
 import kh.spring.chazazo.common.email.MailSendService;
 import kh.spring.chazazo.member.model.dto.MemberInfoReqDto;
+import kh.spring.chazazo.member.model.dto.MemberInfoRespDto;
 import kh.spring.chazazo.member.model.service.MemberService;
 import kh.spring.chazazo.reservation.model.service.ReservationService;
 
@@ -183,12 +185,18 @@ public class MemberController {
 		}
 	
 	
+	// 회원정보 수정 / Put, Patch
 	@PatchMapping("/profile/{username}/update")
-	public ModelAndView updateMember(ModelAndView mv, String password, MemberInfoReqDto dto) {
+	public String updateMember(ModelAndView mv, @PathVariable("username") String username,
+									@RequestBody MemberInfoRespDto dto,Principal prin) {
 		
-	
-		// 회원정보 수정 / Put, Patch
-		return mv;
+		
+		mv.addObject("update", mService.updateInfo(dto));
+		System.out.println("수정성공");
+		
+		
+		
+		return "profile";
 	}
 
 	
@@ -196,10 +204,13 @@ public class MemberController {
 	
 	
 	@DeleteMapping("/profile/{username}")
-	public ModelAndView deleteMember(ModelAndView mv) {
+	public int deleteMember(@PathVariable String username) {
 		// 회원탈퇴 / DeleteMapping
-		return mv;
+		int result = mService.deleteMember(username);
+		return result;
 	}
+	
+
 	
 	/*
 	 * @ExceptionHandler(Exception.class) public ModelAndView

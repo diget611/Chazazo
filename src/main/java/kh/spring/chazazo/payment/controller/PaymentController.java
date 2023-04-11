@@ -8,6 +8,8 @@ import java.util.Locale;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -15,12 +17,16 @@ import org.springframework.web.servlet.ModelAndView;
 
 import kh.spring.chazazo.member.model.service.MemberService;
 import kh.spring.chazazo.payment.model.dto.PaymentReqDto;
+import kh.spring.chazazo.vehicle.model.dto.VehicleInfoDto;
+import kh.spring.chazazo.vehicle.model.service.VehicleService;
 
 @RestController
 public class PaymentController {
 	
 @Autowired
 private MemberService mService;
+@Autowired
+private VehicleService vService;
 //	@GetMapping 
 //	public ModelAndView viewPaymentOne(ModelAndView mv) {
 //		// 결제 상세 조회 -> 결제창이랑 비슷한 모양
@@ -30,25 +36,31 @@ private MemberService mService;
 	
 	
 
-	@RequestMapping("/payment")
+	@GetMapping("/payment")
 	public ModelAndView viewInsertPayment(ModelAndView mv, Principal prin,
-			PaymentReqDto dto) {
+			PaymentReqDto paydto, String carIdx) {
 		// 결제창 조회
-		
+		System.out.println("############");
+		System.out.println(carIdx);
+		int idx = Integer.parseInt(carIdx);
+		System.out.println(idx);
+		System.out.println("#############");
 		if(prin == null) {	
 			mv.setViewName("reservation/payment");
 		}else {
 			String username = prin.getName();
 			
-			
 			mv.addObject("info", mService.selectMypageOne(username));
+			mv.addObject("car", vService.getVehicleInfo(idx));
 			mv.setViewName("reservation/payment");
+			
+			System.out.println(vService.getVehicleInfo(idx));
 		}
-		
-		mv.addObject("daycount", dto.getDaycount());
-		mv.addObject("rentPrice", dto.getRentPrice());
-		mv.addObject("addIns", dto.getAddIns());
-		mv.addObject("expIns", dto.getExpIns());
+		mv.addObject("daycount", paydto.getDaycount());
+		mv.addObject("rentPrice", paydto.getRentPrice());
+		mv.addObject("addIns", paydto.getAddIns());
+		mv.addObject("expIns", paydto.getExpIns());
+
 
 		return mv;
 	}

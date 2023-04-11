@@ -204,6 +204,7 @@
 									<section class="mt-3 p-3">
 									<h6>결제 정보</h6><hr>
 									<form id="payform" action="<%=request.getContextPath() %>/payment" method="post">
+									<input type="text" id="carIdx" value="${car.idx }">
 									<table class="table">
 										<tbody>
 											<tr>
@@ -292,7 +293,7 @@
     function calc () {
         var startDate = new Date($('#startDate').val());
         var endDate = new Date($('#endDate').val());
-        var compareDate = Math.round((endDate.getTime() - startDate.getTime()) / 1000 / 60 / 60 / 24) + 1;
+        var compareDate = Math.round((endDate.getTime() - startDate.getTime()) / (1000 * 60 * 60 * 24)) + 1;
       	var price = ${car.price};
       	var insurance = $('#selectins').val(); //추가요금
 		console.log(startDate);
@@ -325,7 +326,7 @@
 	     	  $('#day-count').attr('value',compareDate);
 	     	  $('#rentPrice').attr('value',(price * compareDate).toLocaleString());
 	     	  $("#addIns").attr('value',(price * insurance *compareDate).toLocaleString());
-	     	  $("#expIns").attr('value',(compareDate*price+price * insurance).toLocaleString());
+	     	  $("#expIns").attr('value',(compareDate*price+ compareDate * price * insurance).toLocaleString());
 	       }
       }
     

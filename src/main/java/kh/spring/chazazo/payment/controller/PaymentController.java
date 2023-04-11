@@ -1,22 +1,19 @@
 package kh.spring.chazazo.payment.controller;
 
 import java.security.Principal;
-import java.util.Map;
-
-import javax.servlet.http.HttpServletRequest;
+import java.sql.Date;
+import java.text.DateFormat;
+import java.time.LocalDate;
+import java.util.Locale;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import kh.spring.chazazo.member.model.service.MemberService;
-import kh.spring.chazazo.payment.model.dto.PaymentReqDto;
 
 @RestController
 public class PaymentController {
@@ -34,9 +31,9 @@ private MemberService mService;
 
 	@RequestMapping("/payment")
 	public ModelAndView viewInsertPayment(ModelAndView mv, Principal prin,
-			String daycount, String rentPrice, String addIns, String expIns, String selectins) {
+			String daycount, String rentPrice, String addIns, String expIns) {
 		// 결제창 조회
-
+		
 		if(prin == null) {	
 			mv.setViewName("reservation/payment");
 		}else {
@@ -45,20 +42,19 @@ private MemberService mService;
 			
 			mv.addObject("info", mService.selectMypageOne(username));
 			mv.setViewName("reservation/payment");
-			System.out.println(username);
 		}
+
 		
 		mv.addObject("daycount", daycount);
 		mv.addObject("rentPrice", rentPrice);
 		mv.addObject("addIns", addIns);
 		mv.addObject("expIns", expIns);
-		mv.addObject("selectins", selectins);
-		
+	
+
 		System.out.println(daycount);
 		System.out.println(rentPrice);
 		System.out.println(addIns);
 		System.out.println(expIns);
-		System.out.println(selectins);
 
 		return mv;
 	}

@@ -192,7 +192,7 @@
 									<div class="col-md-12" style="padding-bottom:100px">                                   
                                         <div class="btn-group bootstrap-select">
                                  		  <label>보험 선택</label>
-	                                   	  <select id="selectins" class="selectpicker" >
+	                                   	  <select id="selectins" name="selectins" class="selectpicker" >
 	                                            <option value="0.1" selected>일반자차(기본)</option>
 	                                            <option value="0.2">완전자차</option>
 	                                            <option value="0.5">슈퍼자차</option>
@@ -223,13 +223,17 @@
 											</tr>
 										</tbody>
 									</table>
+									<div>
 											<sec:authorize access="!isAuthenticated()">
 												<button class="btn btn-default" id="register" type="button" >회원가입하고 혜택받기</button>
 												<button class="btn btn-default" id="payment" type="submit" >비회원 결제하기</button>
 											</sec:authorize>
+									</div>
+									<div>
 											<sec:authorize access="isAuthenticated()">
 												<button class="btn btn-default" id="payment" type="submit" >결제하기</button>
 											</sec:authorize>
+									</div>
 									</form>
 								</section>
 								</section>
@@ -248,91 +252,88 @@
 
 
 <script>
-	
-
-
-
+     //대여,반납일 날짜 초기설정
 	 document.getElementById('startDate').valueAsDate = new Date();
 	 document.getElementById('endDate').valueAsDate = new Date(); 
-     var today = new Date();   
-
+	 let price = ${car.price}
+	
+	 //시스템의 오늘 날짜 변수로 받아오기
+	 var today = new Date();   
      var dd = today.getDate();
      var mm = today.getMonth() + 1; 
      var yyyy = today.getFullYear();
     
      if (mm < 10) {
-     	   mm = '0' + mm;
-     	} 
+     	  mm = '0' + mm;
+     } 
      	    
      today = yyyy + '-' + mm + '-' + dd;
+     
+     //대여 날짜 선택창에서 오늘 이전은 선택 불가
      document.getElementById("startDate").setAttribute("min", today);
      document.getElementById("endDate").setAttribute("min", today);
      
-
-</script>
-
-<script>
-
-	window.onload = function() {
-	let price = ${car.price}
-	$('input[name=daycount]').attr('value','1');
-	$('#rentPrice').attr('value',price.toLocaleString());
-	$("#addIns").attr('value',(price * 0.1).toLocaleString());
-	$("#expIns").attr('value',(price+price * 0.1).toLocaleString());
-}
+	
+	//페이지 로드 시 대여,반납일을 오늘로 설정
+	window.onload = function reset() {
+		$('input[name=daycount]').attr('value','1');
+		$('#rentPrice').attr('value',price.toLocaleString());
+		$("#addIns").attr('value',(price * 0.1 ).toLocaleString());
+		$("#expIns").attr('value',(price+price * 0.1).toLocaleString());
+	}
  
   
-	$('#startDate').on('change', mincalc);
- //    $('#startDate').on('change', calc);
-     $('#endDate').on('change', calc);
-     $('#selectins').on('change', calc);
-
-     
-     function calc () {
+	
+	//대여시작날짜, 반납날짜, 보험 선택을 바꿀때마다 요금을 계산하는 함수
+	$('#startDate').on('change', calc);
+    $('#endDate').on('change', calc);
+    $('#selectins').on('change', calc);
+    function calc () {
         var startDate = new Date($('#startDate').val());
         var endDate = new Date($('#endDate').val());
         var compareDate = Math.round((endDate.getTime() - startDate.getTime()) / 1000 / 60 / 60 / 24) + 1;
       	var price = ${car.price};
       	var insurance = $('#selectins').val(); //추가요금
-     
+		console.log(startDate);
+		console.log(endDate);
+		console.log(price);
+		console.log(insurance);
+        console.log(compareDate);
+        
+        //대여일 선택시 반납일을 대여일 이후로 제한
+        var sDate = new Date();
+        var sdd = startDate.getDate();
+        var smm = startDate.getMonth() +1;
+     	var syyyy = startDate.getFullYear();
+     	if (smm < 10) {
+     	     	   smm = '0' + smm;
+     	} 
+        sDate = syyyy+ '-' + smm + '-' +sdd;
+        document.getElementById("endDate").setAttribute("min", sDate);
       	
-       if(compareDate <0) {
-    	   alert("반납일이 대여일보다 먼저 올 수 없습니다.다시 선택해 주세요.");
-			return false;
-       }else {
-     	  $('#day-count').text(compareDate);
-     	 $('input[name=daycount]').attr('value',compareDate);
-     	  $('#rentPrice').attr('value',(price * compareDate).toLocaleString());
-     	  $("#addIns").attr('value',(price * insurance).toLocaleString());
-     	  $("#expIns").attr('value',(compareDate*price+price * insurance).toLocaleString());
-     	
-       }
-       
+           //반납일이 대여일보다 먼저 올 때 결제창 초기화
+	       if(compareDate <1) {
+	    	  alert("반납일이 대여일보다 먼저 올 수 없습니다.다시 선택해 주세요.");
+	    	  $('#day-count').attr('value', '');
+	      	  $('#rentPrice').attr('value', '');
+	      	  $("#addIns").attr('value', '');
+	      	  $("#expIns").attr('value', '');
+			  return false;
+	       }else {
+		      //대여일이 반납일보다 먼저 올 때 요금 정상계산
+	     	  $('#day-count').attr('value',compareDate);
+	     	  $('#rentPrice').attr('value',(price * compareDate).toLocaleString());
+	     	  $("#addIns").attr('value',(price * insurance *compareDate).toLocaleString());
+	     	  $("#expIns").attr('value',(compareDate*price+price * insurance).toLocaleString());
+	       }
       }
-     function mincalc() {
-     $("#day-count").empty();
-     $("#rentPrice").empty();
-     $("#addIns").empty();
-     $("#expIns").empty();
-   	  var startDate = new Date($('#startDate').val()); 
-   	  var endDate = new Date($('#endDate').val());
-   	  
-   	  var sDate = new Date();
-   	     var sdd = startDate.getDate();
-   	     var smm = startDate.getMonth() +1;
-   	     var syyyy = startDate.getFullYear();
-   	     if (smm < 10) {
-   	     	   smm = '0' + smm;
-   	     	} 
-   	    sDate = syyyy+ '-' + smm + '-' +sdd;
-   	    document.getElementById("endDate").setAttribute("min", sDate);
-   	     
-   	  
-    }
-     
- 	$('#register').on('click', function() {
+    
+	$('#register').on('click', function() {
 		location.href='<%=request.getContextPath()%>/member/register';
 	});
+    
+   
+ 	
 
  </script>
 

@@ -183,9 +183,8 @@
 		 $('[name=cartypeIdx]').iCheck('uncheck');
 		  },0);
 		// 모두 선택되지 않았을경우 경고를 띄우고 자동으로 전체가 체크되게 한다
-		} else if ($('#alltype:checkbox').is(":checked")==false &&($('input:checkbox[name=cartypeIdx]:checked').length == 0 ) ) {
+		} else if ($('input:checkbox[name=cartypeIdx]:checked').length == 0 )  {
 					setTimeout(function(){ 
-						alert('최소 하나 이상의 타입을 선택해야 합니다')
 						$('#alltype').iCheck('check');
 				  },0);
 				}
@@ -208,7 +207,7 @@
 			  },0);
 		//하나라도 체크를 하면 전체체크박스가 해제된다
 			}else {
-				 setTimeout(function(){
+				setTimeout(function(){
 				$('#alltype').iCheck('uncheck');
 				 },0);
 			}
@@ -226,7 +225,6 @@
 		// 모두 선택되지 않았을경우 경고를 띄우고 자동으로 전체가 체크되게 한다
 		} else if ($('#allfuel:checkbox').is(":checked")==false &&($('input:checkbox[name=fueltypeIdx]:checked').length == 0 ) ) {
 					setTimeout(function(){ 
-						alert('최소 하나 이상의 타입을 선택해야 합니다')
 						$('#allfuel').iCheck('check');
 				  },0);
 				}

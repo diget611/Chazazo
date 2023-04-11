@@ -37,7 +37,7 @@
 <script src="<%=request.getContextPath()%>/resources/garoestate/assets/js/price-range.js"></script>
 <script src="<%=request.getContextPath()%>/resources/garoestate/assets/js/main.js"></script>
 <body>
-	<jsp:include page="../header.jsp"/>
+	<jsp:include page="/WEB-INF/views/header.jsp"/>
 	
 	<section>
 		<div class="register-area vh-100" style="background-color: rgb(249, 249, 249) ;">     
@@ -76,7 +76,7 @@
 		</div>
 	</section>
 	
-	<jsp:include page="../footer.jsp"/>
+	<jsp:include page="/WEB-INF/views/footer.jsp"/>
 	
 	<script>
 		$('#rememberCheck').on('ifClicked', rememberMe);
@@ -93,7 +93,7 @@
 		
 		$('#register').on('click', function() {
 			console.log('클릭');
-			location.href='<%=request.getContextPath()%>/member/register';
+			location.href='${pageContext.request.contextPath}/member/register';
 		});
 		
 	</script>

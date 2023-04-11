@@ -44,6 +44,7 @@ private MemberService mService;
 			mv.addObject("info", mService.selectMypageOne(username));
 			mv.setViewName("reservation/payment");
 		}
+		
 		mv.addObject("daycount", dto.getDaycount());
 		mv.addObject("rentPrice", dto.getRentPrice());
 		mv.addObject("addIns", dto.getAddIns());

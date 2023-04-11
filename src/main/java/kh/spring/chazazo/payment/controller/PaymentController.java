@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import kh.spring.chazazo.member.model.service.MemberService;
+import kh.spring.chazazo.payment.model.dto.PaymentReqDto;
 
 @RestController
 public class PaymentController {
@@ -31,7 +32,7 @@ private MemberService mService;
 
 	@RequestMapping("/payment")
 	public ModelAndView viewInsertPayment(ModelAndView mv, Principal prin,
-			String daycount, String rentPrice, String addIns, String expIns) {
+			PaymentReqDto dto) {
 		// 결제창 조회
 		
 		if(prin == null) {	
@@ -43,18 +44,10 @@ private MemberService mService;
 			mv.addObject("info", mService.selectMypageOne(username));
 			mv.setViewName("reservation/payment");
 		}
-
-		
-		mv.addObject("daycount", daycount);
-		mv.addObject("rentPrice", rentPrice);
-		mv.addObject("addIns", addIns);
-		mv.addObject("expIns", expIns);
-	
-
-		System.out.println(daycount);
-		System.out.println(rentPrice);
-		System.out.println(addIns);
-		System.out.println(expIns);
+		mv.addObject("daycount", dto.getDaycount());
+		mv.addObject("rentPrice", dto.getRentPrice());
+		mv.addObject("addIns", dto.getAddIns());
+		mv.addObject("expIns", dto.getExpIns());
 
 		return mv;
 	}

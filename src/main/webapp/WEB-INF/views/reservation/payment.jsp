@@ -76,6 +76,7 @@
 					<label class="small">생년월일</label>  <input type="text" class="form-control" placeholder="생년월일 6자리" value="${info.birth }">
 					<label class="small">휴대폰 번호</label>  <input type="text" class="form-control" placeholder="휴대폰 번호" value="${info.phoneNumber}">
 					<label class="small">이메일</label>  <input type="text" class="form-control" placeholder="이메일" value="${info.email }">
+					<label class="small">대여점</label>  <input type="text" class="form-control"  value="${car.name }">
 					<label class="small">반납 장소 선택</label>
 				</div>
 			</div>

@@ -109,10 +109,11 @@
 								</div>
 								<div class="form-group">
 									<div class="row">
-										<div class="col-xs-10" >
+										<div class="col-xs-9" >
 											<input type="text" class="form-control" name="checkEmail" 
 											disabled="disabled" placeholder="인증번호를 입력하세요." style="width:100%; border-radius: 2px;">
 										</div>
+										<div class="col-xs-1" id="timerTest"></div>
 										<div class="col-xs-2" >
 											<button id="confirmEmailBtn" type="button" disabled="disabled"
 											class="btn btn-default" style="width: 100%; border-radius: 2px;">확인</button>
@@ -348,9 +349,34 @@
 					let testEmail = /([!#-'*+-9=?A-Z^-~-]+(\.[!#-'*+-9=?A-Z^-~-]+)*|\"\(\[\]!#-[^-~ \t]|(\\[\t -~])+\")@([!#-'*+-9=?A-Z^-~-]+(\.[!#-'*+-9=?A-Z^-~-]+)*|\[[\t -Z^-~]*])/;
 					if(email != null && testEmail.test(email)) {
 						alert("인증번호가 발송되었습니다.")
+						$('[name=email]').attr('disabled', true);
+						$('#checkEmailBtn').attr('disabled', true);
 						$('#confirmEmailBtn').attr('disabled', false);
 						$('[name=checkEmail]').attr('disabled', false);
 						certNum = result;
+						
+						let time = 300;
+						let min = '';
+						let sec = '';
+						
+						let x = setInterval(function() {
+							min = parseInt(time / 60);
+							sec = time % 60;
+							
+							$('#timerTest').html(min + ':' + sec);
+							time--;
+							
+							if(time < 0) {
+								clearInterval(x);
+								alert('인증번호가 만료되었습니다. 다시 요청하세요.');
+								$('[name=email]').attr('disabled', false);
+								$('#checkEmailBtn').attr('disabled', false);
+								$('#confirmEmailBtn').attr('disabled', true);
+								$('[name=checkEmail]').attr('disabled', true);
+								$('#timerTest').html('');
+								certNum = '';
+							}
+						}, 1000)
 					} else {
 						alert("이메일 주소를 확인하세요.");
 					}
@@ -364,7 +390,7 @@
 		$("#confirmEmailBtn").on('click', confirmEmail);
 		
 		function confirmEmail() {
-			if($('[name=checkEmail]').val() == certNum) {
+			if($('[name=checkEmail]').val() == certNum && $('[name=checkEmail]').val().length == 6 ) {
 				$('[name=checkEmail]').next().remove();
 				$('[name=checkEmail]').after('<div style="color: green;">인증번호가 일치합니다.</div>');
 				checkEmailCert = 1;
@@ -373,6 +399,8 @@
 				$('[name=checkEmail]').after('<div style="color: red;">인증번호가 일치하지 않습니다. 인증번호를 확인하세요.</div>');
 			}
 		}
+		
+		
 	</script>
 
 </body>

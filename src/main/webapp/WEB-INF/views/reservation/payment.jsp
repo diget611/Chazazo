@@ -11,12 +11,13 @@
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>GARO ESTATE | Home page</title>
+<title>결제하기</title>
 <meta name="description" content="GARO is a real-estate template">
 <meta name="author" content="Kimarotec">
 <meta name="keyword"
 	content="html5, css, bootstrap, property, real-estate theme , bootstrap template">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
 <link
 	href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700,800'
@@ -69,14 +70,21 @@
 			<h2>결제 정보</h2>
 		</div>
 		<div style="overflow: hidden;">
+		
 			<div class="blog-asside-right col-md-6" style="padding: 80px;" >
+			<div class="form-group">
+					<h6 style="text-align:center">예약 정보 </h6>
+					---
+					<h4>${car.model }  ${car.year }년 형</h4>
+					<h5>${car.name } </h5>
+					---
+				</div>
 				<div class="form-group">
 					<h6 style="text-align:center">운전자 정보 </h6>
 					<label class="small">이름</label>  <input type="text" class="form-control" placeholder="성명" value="${info.name }">
 					<label class="small">생년월일</label>  <input type="text" class="form-control" placeholder="생년월일 6자리" value="${info.birth }">
 					<label class="small">휴대폰 번호</label>  <input type="text" class="form-control" placeholder="휴대폰 번호" value="${info.phoneNumber}">
 					<label class="small">이메일</label>  <input type="text" class="form-control" placeholder="이메일" value="${info.email }">
-					<label class="small">대여점</label>  <input type="text" class="form-control"  value="${car.name }">
 					<label class="small">반납 장소 선택</label>
 				</div>
 			</div>
@@ -102,7 +110,7 @@
 
 								<tr>
 									<th>총 결제금액</th>
-									<td>원</td>
+									<td><input type="text" id="paynum"  name="paynum" readonly>원</td>
 								</tr>
 							</tbody>
 						</table>
@@ -145,5 +153,13 @@
 		src="<%=request.getContextPath()%>/resources/garoestate/assets/js/main.js"></script>
 
 </body>
+<script>
+let price = ${expIns }
+
+	window.onload = function() {
+		console.log('$$$$$$$$$$$$%%%%%%%%%%%%%%%%');
+		$('#paynum').attr('value',price.toLocaleString());
+	}
+</script>
 
 </html>

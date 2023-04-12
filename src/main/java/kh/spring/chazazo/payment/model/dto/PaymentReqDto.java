@@ -13,6 +13,7 @@ import lombok.Getter;
 @Component
 @Data
 public class PaymentReqDto {
+	private int idx;
 	private String daycount;
 	private String rentPrice;
 	private String addIns;

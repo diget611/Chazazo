@@ -34,24 +34,22 @@ private VehicleService vService;
 //	}
 	
 	
-	
+	// get 조회 post 입력 putpatch update delet e
 
-	@GetMapping("/payment")
+	@PostMapping("/payment")
 	public ModelAndView viewInsertPayment(ModelAndView mv, Principal prin,
 			PaymentReqDto paydto, String carIdx) {
 		// 결제창 조회
-		System.out.println("############");
-		System.out.println(carIdx);
+		
 		int idx = Integer.parseInt(carIdx);
-		System.out.println(idx);
-		System.out.println("#############");
+		mv.addObject("car", vService.getVehicleInfo(idx));
+
 		if(prin == null) {	
 			mv.setViewName("reservation/payment");
 		}else {
 			String username = prin.getName();
 			
 			mv.addObject("info", mService.selectMypageOne(username));
-			mv.addObject("car", vService.getVehicleInfo(idx));
 			mv.setViewName("reservation/payment");
 			
 			System.out.println(vService.getVehicleInfo(idx));

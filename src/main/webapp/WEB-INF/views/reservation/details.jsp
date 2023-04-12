@@ -60,9 +60,8 @@
 								<div class="clearfix">
 									<div class="favorite-and-print">
 										<a class="add-to-fav" href="#login-modal" data-toggle="modal"><i class="fa fa-star-o"></i></a>
-										<a class="printer-icon " href="javascript:window.print()"><i class="fa fa-print"></i></a>
 									</div> 
-									<img src="${car.image }" />
+									${car.image }
 								</div>
 							</div>
 						</div>
@@ -204,7 +203,7 @@
 									<section class="mt-3 p-3">
 									<h6>결제 정보</h6><hr>
 									<form id="payform" action="<%=request.getContextPath() %>/payment" method="post">
-									<input type="text" id="carIdx" value="${car.idx }">
+									<input type="hidden" name="carIdx" value="${car.idx }" >
 									<table class="table">
 										<tbody>
 											<tr>
@@ -426,7 +425,7 @@ function makeOutListener(infowindow) {
 	
 		
 		
-	</script>
+</script>
 
 
 </html>

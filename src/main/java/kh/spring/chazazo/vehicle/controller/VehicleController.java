@@ -42,10 +42,14 @@ public class VehicleController {
 	
 	
 	@GetMapping("/carlist/{idx}")
-	public ModelAndView viewVehicle(ModelAndView mv, @PathVariable int idx) {
+	public ModelAndView viewVehicle(ModelAndView mv, @PathVariable String idx) {
+		System.out.println("vehCon#########");
+		System.out.println(idx);
+		int index = Integer.parseInt(idx);
+		
 		// 차량 정보랑 리뷰랑 동시에
-		mv.addObject("car", vService.getVehicleInfo(idx));
-		mv.addObject("option", vService.getOptionInfo(idx));
+		mv.addObject("car", vService.getVehicleInfo(index));
+		mv.addObject("option", vService.getOptionInfo(index));
 		mv.setViewName("reservation/details");
 
 		

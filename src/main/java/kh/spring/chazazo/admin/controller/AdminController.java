@@ -96,13 +96,13 @@ public class AdminController {
 	
 	@GetMapping("/notice")
 	public ModelAndView viewNotice(ModelAndView mv) {
-		mv.setViewName("admin/member");
+		mv.setViewName("admin/notice");
 		return mv;
 	}
 	
 	@GetMapping("/inquiry")
 	public ModelAndView viewInquiry(ModelAndView mv) {
-		mv.setViewName("admin/member");
+		mv.setViewName("admin/inquiry");
 		return mv;
 	}
 	

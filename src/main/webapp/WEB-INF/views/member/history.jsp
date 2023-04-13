@@ -23,6 +23,7 @@
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/garoestate/assets/css/style.css">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/garoestate/assets/css/responsive.css">
 
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script src="<%=request.getContextPath()%>/resources/garoestate/assets/js/modernizr-2.6.2.min.js"></script>
 <script src="<%=request.getContextPath()%>/resources/garoestate/assets/js/jquery-1.10.2.min.js"></script>
 <script src="<%=request.getContextPath()%>/resources/garoestate/bootstrap/js/bootstrap.min.js"></script>
@@ -161,8 +162,17 @@
 							</div>
 							<div>
 								<button>예약 변경</button>
-								<button>예약 취소</button>
-							</div>	
+								
+							</div>
+							<div class="col-lg-4" style="padding:0 0 0 30px;">
+						<div class="tab-pane active pt-30" id="order-complete"
+						 	th:if="${reservation != null}">
+							 <a class="button extra-small mb-20" id="requestModifyBtn"
+								 onclick="rsvtModify()" style="cursor: pointer;"><span>예약변경신청</span>
+							</a> <a class="button extra-small mb-20" id="rsvtDelete"> <span>예약취소</span>
+							</a>
+						</div>
+						</div>	
 						</section>
 					</div>                    
 				</div>
@@ -187,7 +197,45 @@
 	$('#bookmark').on('click', function() {
 		location.href='<%=request.getContextPath()%>/profile/favorites';
 	});
+	
+	//예약취소하기
+	var Rsvtidx = 0;
+	
+	console.log(Rsvtidx);
+	$('#rsvtDelete').attr("onclick","rsvtDelete(Rsvtidx)");
+	function rsvtDelete(Rsvtidx){
+		if(Rsvtidx == 0 || Rsvtidx == null){
+			swal('앗!', "취소할 예약을 먼저 선택해주세요", 'warning');
+		}else{
+			
+			swal({
+				title: "정말로요?",
+				text: "정말로 예약을 취소하시겠습니까?",
+				icon: "warning",
+				buttons: true,
+				dangerMode: true,
+			}).then((willDelete) => {
+				$.ajax({
+					url:"<%=request.getContextPath()%>/member/profile/reservation/${member.idx}",
+					success: function(){
+						if (willDelete) {
+							swal("예약 취소 완료","예약이 정상적으로 취소되었습니다.", {icon: "success"});
+							history.go(0);
+						} else {
+							return;
+						}
+					},error: function(error){
+						console.log(error);
+						swal("예약 취소 실패","예약 취소가 실패되었습니다.", {icon: "error"});
+					}
+				});
+			})
+		}
+	};
+	
 	</script>
+	
+	
 </body>
 </html>
 

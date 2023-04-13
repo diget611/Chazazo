@@ -71,7 +71,39 @@
 								<h3 class="panel-title">회원정보</h3>
 							</div>
 						</div>
-						<div class="dealer-widget  row-md-4">
+							<sec:authorize access="!isAuthenticated()">
+							
+							<section
+							class="carmore-section p-0 bg-white cm-rounded bg-shadow mb-3">
+							<div>
+								<div class="pt-4 position-relative" id="js_mypage_top_info">
+									<div
+										class="dc-flex justify-content-between align-items-center pb-3 pt-lg-0 pt-2">
+										<div class="dc-flex align-items-start pr-2">
+											<div>
+												<div
+													class="js-mypage-btn-login is-only-none-member click-effect-press">
+													<div class="color-grey-3 text-20 wordbreak-breakword">3초
+														가입/로그인 해주세요</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div>
+										<div class="mb-3" id="js_mypage_btn_pc_login"
+											style="display: block;">
+											<button
+												class="js-mypage-btn-login btn btn-primary btn-block max-w-lg-40rem mx-auto click-effect-press">가입
+												/ 로그인 하기</button>
+										</div>
+									</div>
+								</div>
+							</div>
+						</section>
+							
+							</sec:authorize >
+							
+							<sec:authorize access="isAuthenticated()">
 							<div class="dealer-content">
 								<div class="inner-wrapper">
 									
@@ -107,16 +139,18 @@
 										</div>	
 								</div>
 							</div>
-						</div>
+							</sec:authorize>
+						
 						<div class="blog-asside-right" >
 							<div class="panel panel-default sidebar-menu wow fadeInRight animated animated animated" style="visibility: visible; animation-name: fadeInRight;">
 								<div class="panel-heading">
 									<h3 class="panel-title">
-									<button id="historyBtn" type="button" class="btn btn-outline-primary">예약내역</button><br>
+									<button id="historyBtn" type="submit" class="btn btn-outline-primary">예약내역</button><br>
 									
 								</div>
 							</div>
 						</div>  
+						
 						<sec:authorize access="isAuthenticated()">
 						<div class="blog-asside-right" >
 							<div class="panel panel-default sidebar-menu wow fadeInRight animated animated animated" style="visibility: visible; animation-name: fadeInRight;">
@@ -203,7 +237,7 @@
 			
 		});
 		$('#historyBtn').on('click', function() {
-			location.href='<%=request.getContextPath()%>/profile/reservation';
+			location.href='<%=request.getContextPath()%>/profile/reservation/${memberinfo.idx}';
 		});
 		
 		$('#moveNoneMemberReservation').on('click', function() {

@@ -32,6 +32,13 @@ public class ReservationServiceImpl implements ReservationService {
 		return dao.selectList(username);
 	}
 
+	
+	//예약내역 삭제
+	@Override
+	public int deleteResv(int idx) {
+		return dao.deleteResv(idx);
+	}
+
 
 
 

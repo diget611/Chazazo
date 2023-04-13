@@ -91,7 +91,7 @@
 								<div class="panel-heading">
 									<h3 class="panel-title">
 									<button id="historyBtn" type="button" class="btn btn-outline-primary">예약내역</button><br>
-									
+								
 								</div>
 							</div>
 						</div>  
@@ -123,11 +123,11 @@
 				<div class="blog-lst col-md-8 p0 " style="float: right;">
 				
 					<!-- 회원정보 수정 버튼 클릭시 비밀번호 확인 창 뜨게 하기  -->
-					<section id="id-100"  >
-					<div class="card-body" id="passCheck">
+					
+					<div class="card-body">
 						<div class="text-start">
 							<div class="input-group input-group-outline my-3">
-								<label>비밀번호 확인</label>
+								<label class="form-label">비밀번호 확인</label>
 								<input type="password" id="password" name="password" class="form-control">
 							</div>
 						</div>
@@ -136,8 +136,10 @@
 						</div>
 					</div> 
 				
-						<form id="updateForm" action="<%=request.getContextPath() %>/member/profile" method="POST" 
-								style="display:none"; onsubmit="return checkForm()">
+					
+				
+					<section id="id-100" class="post single">
+						<form method="POST" >
 							<div class="form-group">
 									<label>이름</label>
 									<input type="text" class="form-control" name="name" value="${memberinfo.name }" readonly >
@@ -166,7 +168,7 @@
 									<input type="email" class="form-control" name="email" value="${memberinfo.email }" >
 								</div>						
 								<div class="text-center">
-									<button id="btn-update" type="submit" class="btn btn-default" >회원 정보 수정</button>
+									<button id="btn-update" type="submit" class="btn btn-default">회원 정보 수정</button>
 								</div>
 							</form>
 					</section>
@@ -194,8 +196,6 @@
 	$('#bookmark').on('click', function() {
 		location.href='<%=request.getContextPath()%>/profile/favorites';
 	});
-	
-	
 		$('#checkPwd').click(function(){
 			const checkPassword = $('#password').val();
 			if(!checkPassword || checkPassword.trim() === ""){
@@ -209,8 +209,7 @@
 		             success: function(result) {
 		            	 if(result) {
 		            		 console.log('일치');
-		            		 $('#updateForm').show();
-		            		 $('#passCheck').hide();
+		            		 // 정보 수정 페이지로 이동
 		            	 } else {
 		            		 console.log('불일치');
 		            		 alert("비밀번호가 일치하지 않습니다.");
@@ -222,123 +221,6 @@
 		            	 
 				});
 			}
-		});
-		
-		
-		
-		// 값이 1이면 회원가입 가능 상태
-		var allowRegister = 0;
-		var checkDupId = 0;
-		var checkEmailCert = 0;
-		var checkPass = 0;
-		// 이메일 인증 번호
-		var certNum = 0;
-		
-		function checkForm(){
-			let testId = /^[a-z]{1}[a-z0-9_-]{4,19}$/;
-			let testPass = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&\*])[\da-zA-Z!@#$%^&\*]{8,30}$/;
-			let testName = /^[가-힣]{2,10}$/;
-			let testBirth = /^(19[0-9]{2}|20[0-1]{1}[0-9]{1}|202[0-3]{1})(0[1-9]|1[0-2])(0[1-9]|[1-2][0-9]|3[0-1])$/;
-			let testPhone = /^01[0|1|6|7|8|9][0-9]{7,8}$/;
-			let testLicense = /^(1[1-9]|2[0-68-8])([0-9]{2}[0-9]{6}[0-9]{2})$/;
-			let testEmail = /([!#-'*+-9=?A-Z^-~-]+(\.[!#-'*+-9=?A-Z^-~-]+)*|\"\(\[\]!#-[^-~ \t]|(\\[\t -~])+\")@([!#-'*+-9=?A-Z^-~-]+(\.[!#-'*+-9=?A-Z^-~-]+)*|\[[\t -Z^-~]*])/;
-			
-			if(allowRegister == 0 || checkDupId == 0 || checkEmailCert == 0 || checkPass == 0){
-				return false;
-			} else if($('[name=username]').val() == '' | $('[name=password]').val() == '' | $('[name=name]').val() == ''
-			| $('[name=birth]').val() == '' | $('[name=gender]').val() == '' | $('[name=phonNumber]').val() == ''
-			| $('[name=license]').val() == '' | $('[name=email]').val() == '' | $('[name=checkEmail]'.val() == '')) {
-				return false;
-			} else if(!testId.test($('[name=username]').val()) | !testPass.test($('[name=password]').val())
-			| !testName.test($('[name=name]').val()) | !testBirth.test($('[name=birth]').val())
-			| !testPhone.test($('[name=phoneNumber]').val()) | !testLicense.test($('[name=license]').val())
-			| !testEmail.test($('[name=email]').val())) {
-				return false;	
-			} else {
-				return true;
-			}
-		}
-		
-		
-		
-		// ID 유효성 체크 (영어 소문자로 시작, 영어 소문자, 숫자, 특수문자(-, _) 가능)
-		$('[name=username]').on('blur', function(){
-			let testId = /^[a-z]{1}[a-z0-9_-]{4,19}$/;
-			if($('[name=username]').val() == '') {
-				$('[name=username]').next().remove();
-				$('[name=username]').after('<div style="color: red;">아이디를 입력하세요.</div>');
-				$('[name=username]').attr();
-			} else if(!testId.test($('[name=username]').val())){
-				$('[name=username]').next().remove();
-				$('[name=username]').after('<div style="color: red;">5 ~ 20자 사이의 알파벳 소문자, 숫자, -, _로 이루어진 아이디를 작성하세요.</div>');
-			} else {
-				$('[name=username]').next().remove();
-			}
-		});
-	
-		// 생년월일 유효성 체크
-		$('[name=birth]').on('blur', function(){
-			let testBirth = /^(19[0-9]{2}|20[0-1]{1}[0-9]{1}|202[0-3]{1})(0[1-9]|1[0-2])(0[1-9]|[1-2][0-9]|3[0-1])$/;
-			if($('[name=birth]').val() == ''){
-				$('[name=birth]').next().remove();
-				$('[name=birth]').after('<div style="color: red;">생년월일을 입력하세요.</div>');
-			} else if(!testBirth.test($('[name=birth]').val())){
-				$('[name=birth]').next().remove();
-				$('[name=birth]').after('<div style="color: red;">생년월일을 확인하세요.</div>');
-			} else {
-				$('[name=birth]').next().remove();
-			}
-		});
-		
-		// 성별 유효성 체크
-		$('[name=gender]').on('blur', function(){
-			if($('[name=gender]').val() == '2'){
-				$('[name=gender]').next().remove();
-				$('[name=gender]').after('<div style="color: red;">성별을 선택하세요.</div>');
-			} else {
-				$('[name=gender]').next().remove();
-			}
-		});
-		
-		// 전화번호 유효성 체크
-		$('[name=phoneNumber]').on('blur', function(){
-			let testPhone = /^01[0|1|6|7|8|9][0-9]{7,8}$/;
-			if($('[name=phoneNumber]').val() == ''){
-				$('[name=phoneNumber]').next().remove();
-				$('[name=phoneNumber]').after('<div style="color: red;">전화번호를 입력하세요.</div>');
-			} else if(!testPhone.test($('[name=phoneNumber]').val())){
-				$('[name=phoneNumber]').next().remove();
-				$('[name=phoneNumber]').after('<div style="color: red;">전화번호를 확인하세요.</div>');
-			} else {
-				$('[name=phoneNumber]').next().remove();
-			}
-		});
-	
-		// 이메일 유효성 체크
-		$('[name=email]').on('blur', function(){
-			let testEmail = /([!#-'*+-9=?A-Z^-~-]+(\.[!#-'*+-9=?A-Z^-~-]+)*|\"\(\[\]!#-[^-~ \t]|(\\[\t -~])+\")@([!#-'*+-9=?A-Z^-~-]+(\.[!#-'*+-9=?A-Z^-~-]+)*|\[[\t -Z^-~]*])/;
-			if($('[name=email]').val() == '') {
-				$('[name=email]').next().remove();
-				$('[name=email]').after('<div style="color: red;">이메일 주소를 입력하세요.</div>');
-			} else if(!testEmail.test($('[name=email]').val())){
-				$('[name=email]').next().remove();
-				$('[name=email]').after('<div style="color: red;">이메일 주소를 확인하세요.</div>');
-			} else { 
-				$('[name=email]').next().remove();
-			}
-		});
-			
-			
-		$('#btn-update').click(function(){
-			var login_pnum = $('[name=phoneNumber]').val();
-			var login_birth = $('[name=birth]').val();
-			var login_email = $('[name=email]').val();
-			var login_gender = $('[name=gender]').val();
-			
-			$.ajax({
-				anyne:true,
-				type:'POST',
-				data:JSON.stringify()
 		});
 		
 		

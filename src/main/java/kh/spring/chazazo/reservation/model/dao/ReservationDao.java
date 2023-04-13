@@ -32,9 +32,13 @@ public class ReservationDao {
 	
 	public List<ReservationRespDto> selectList(String username) {
 		
-		return session.selectList("reservation.resListOne", username);
+		return session.selectList("reservation.resList", username);
 	}
 		
+	public int deleteResv(int idx) {
+		return session.delete("reservation.resDelete", idx);
+	}
+
 
 
 	

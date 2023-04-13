@@ -75,7 +75,6 @@ public class MemberController {
 			mv.setViewName("member/mypage");
 		}
 		
-		
 		return mv;
 	}
 
@@ -187,7 +186,7 @@ public class MemberController {
 	
 	// 회원정보 수정 / Put, Patch
 	@PatchMapping("/profile/{username}/update")
-	public String updateMember(ModelAndView mv, @PathVariable("username") String username,
+	public ModelAndView updateMember(ModelAndView mv, @PathVariable("username") String username,
 									@RequestBody MemberInfoRespDto dto,Principal prin) {
 		
 		
@@ -196,7 +195,7 @@ public class MemberController {
 		
 		
 		
-		return "profile";
+		return mv;
 	}
 
 	

@@ -195,6 +195,18 @@ input[type="search"]::-webkit-search-decoration {
     color: #777777;
     border-color: #999999
 } 
+
+.btn-kakao{
+    border-width: 2px;
+    background-color: #f9e000;
+    font-weight: 400;
+    opacity: 0.8;
+    padding: 8px 16px;
+    color: #000000;
+    border-color: #f9e000
+  
+}
+
 .btn-info{
     color: #2CA8FF;
     border-color: #2CA8FF;

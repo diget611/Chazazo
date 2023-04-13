@@ -16,9 +16,10 @@
 <meta name="author" content="Kimarotec">
 <meta name="keyword"
 	content="html5, css, bootstrap, property, real-estate theme , bootstrap template">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
+<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
+
+
 <link
 	href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700,800'
 	rel='stylesheet' type='text/css'>
@@ -115,7 +116,8 @@
 							</tbody>
 						</table>
 					</section>
-					<button class="btn btn-default" type="button" onclick=" window.open('payment')" >결제하기</button>
+					<button class="btn btn-default" type="button" onclick=" pay()" >카드결제</button>
+					<button class="btn btn-kakao" type="button" onclick=" kakaopay()" >카카오페이 결제</button>
 				</aside>
 			</div>
 		</div>
@@ -154,12 +156,73 @@
 
 </body>
 <script>
-let price = ${expIns }
+function pay() {
+    var IMP = window.IMP;
+    IMP.init("imp01440251");
+    // 원포트 관리자 페이지 -> 내정보 -> 가맹점식별코드
+    // ''안에 띄어쓰기 없이 가맹점 식별코드를 붙여넣어주세요. 안그러면 결제창이 안뜹니다.
+    IMP.request_pay({
+        pg: 'html5_inicis',  // 실제 계약 후에는 실제 상점아이디로 변경
+        pay_method: 'card', // 'card'만 지원됩니다.
+        merchant_uid: 'merchant_' + new Date().getTime(), // 상점에서 관리하는 주문 번호
+        name: '테스트 결제', // 상품 이름
+        amount: 100, // 결제창에 표시될 금액. 실제 승인이 이뤄지지는 않습니다.
+        buyer_email: 'iamport@siot.do',
+        buyer_name: '구매자이름',
+        buyer_tel: '010-1234-5678',
+        buyer_addr: '서울특별시 강남구 삼성동',
+        buyer_postcode: '123-456',
+        m_redirect_url: '/'
+    }, function (rsp) {
+        if (rsp.success) {  // 결제가 성공했을 떄
+            // 결제가 완료되었을 떄 결제 정보를 뜨게 만듬
+            var msg = '결제가 완료되었습니다.';
+            msg += '고유ID : ' + rsp.imp_uid;
+            msg += '상점 거래ID : ' + rsp.merchant_uid;
+            msg += '결제 금액 : ' + rsp.paid_amount;
+            msg += '카드 승인번호 : ' + rsp.apply_num;
+        } else {    // 결제가 실패했을 때
+            // 결제에 실패했을떄 실패메세지와 실패사유를 출력
+            var msg = '결제에 실패하였습니다.';
+            msg += '실패 사유 : ' + rsp.error_msg;
+        }
+        alert(msg);
+    });
+}
+function kakaopay() {
+    var IMP = window.IMP;
+    IMP.init("imp01440251");
+    // 원포트 관리자 페이지 -> 내정보 -> 가맹점식별코드
+    // ''안에 띄어쓰기 없이 가맹점 식별코드를 붙여넣어주세요. 안그러면 결제창이 안뜹니다.
+    IMP.request_pay({
+        pg: 'kakaopay',  // 실제 계약 후에는 실제 상점아이디로 변경
+        pay_method: 'card', // 'card'만 지원됩니다.
+        merchant_uid: 'merchant_' + new Date().getTime(), // 상점에서 관리하는 주문 번호
+        name: '테스트 결제', // 상품 이름
+        amount: 100, // 결제창에 표시될 금액. 실제 승인이 이뤄지지는 않습니다.
+        buyer_email: 'iamport@siot.do',
+        buyer_name: '구매자이름',
+        buyer_tel: '010-1234-5678',
+        buyer_addr: '서울특별시 강남구 삼성동',
+        buyer_postcode: '123-456',
+        m_redirect_url: '/'
+    }, function (rsp) {
+        if (rsp.success) {  // 결제가 성공했을 떄
+            // 결제가 완료되었을 떄 결제 정보를 뜨게 만듬
+            var msg = '결제가 완료되었습니다.';
+            msg += '고유ID : ' + rsp.imp_uid;
+            msg += '상점 거래ID : ' + rsp.merchant_uid;
+            msg += '결제 금액 : ' + rsp.paid_amount;
+            msg += '카드 승인번호 : ' + rsp.apply_num;
+        } else {    // 결제가 실패했을 때
+            // 결제에 실패했을떄 실패메세지와 실패사유를 출력
+            var msg = '결제에 실패하였습니다.';
+            msg += '실패 사유 : ' + rsp.error_msg;
+        }
+        alert(msg);
+    });
+}
 
-	window.onload = function() {
-		console.log('$$$$$$$$$$$$%%%%%%%%%%%%%%%%');
-		$('#paynum').attr('value',price.toLocaleString());
-	}
 </script>
 
 </html>

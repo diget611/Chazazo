@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -70,11 +71,8 @@ public class ReservationController {
 										   , @PathVariable String idx) {
 		// 예약 정보 상세 조회
 		
-		
-		System.out.println("******************");
-		System.out.println(idx);
 		int index = Integer.parseInt(idx);
-		System.out.println(index);
+		System.out.println("ddddddddd");
 		mv.addObject("reservation", rService.selectOne(index) );
 		mv.setViewName("member/history");
 		return mv;
@@ -87,8 +85,15 @@ public class ReservationController {
 	}
 	
 	@DeleteMapping("/profile/reservation/{idx}")
-	public ModelAndView deleteReservation(ModelAndView mv) {
+	@ResponseBody
+	public ModelAndView deleteReservation(ModelAndView mv, @PathVariable String idx) {
+		
 		// 예약 정보 삭제
+		int ridx = Integer.parseInt(idx);
+		rService.deleteResv(ridx);
+		System.out.println(idx);
+		System.out.println(ridx);
+		
 		return mv;
 	}
 }

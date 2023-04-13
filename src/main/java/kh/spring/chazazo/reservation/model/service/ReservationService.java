@@ -17,5 +17,6 @@ public interface ReservationService {
 
 	public ReservationRespDto selectOne(int idx);
 	public List<ReservationRespDto> selectList(String username);
+	public int deleteResv(int idx);
 
 }

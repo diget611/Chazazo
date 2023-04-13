@@ -6,14 +6,14 @@
 		SELECT * FROM RESERVATION
 	</select>
 	
-	<select id="resListOne" resultType="ReservationRespDto" >
+	<select id="resList" resultType="ReservationRespDto" >
 		select *
 		 from reservation
 		 left join member on reservation.idx = member.idx
 		 	 where username = #{username}
 	</select>
 	
-	<update id="resUpdate">
+	<update id="resUpdate" >
 		UPDATE RESERVATION SET RESERV_START=#{reserv_start}, RESERV_END=#{reserv_end},
 							RESERV_STATE=#{reserv_state},INSURANCE_IDX=#{insurance_idx},
 							VEHICLE_IDX=#{vehicle_idx},RENT_LOCATION=#{RENT_LOCATION},
@@ -21,7 +21,16 @@
 				  WHERE IDX = #{IDX}
 	</update>
 	
-	<delete id="resDelete">
+	<delete id="resDelete" parameterType="int">
 		DELETE FROM RESERVATION WHERE IDX = #{IDX}
 	</delete>
+	
+	<select id="selectOne" resultType="ReservationRespDto" >
+		select *
+		 from reservation
+		 left join member on reservation.idx = member.idx
+		 	 where username = #{username}
+	</select>
+	
+	
 </mapper>

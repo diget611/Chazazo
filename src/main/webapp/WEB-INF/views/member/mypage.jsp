@@ -42,7 +42,7 @@
 
 </head>
 <body>
-	<jsp:include page="../header.jsp"/>
+	<jsp:include page="/WEB-INF/views/base/header.jsp"/>
 	
 	<script type="text/javascript">
 	function moveRent(){
@@ -195,7 +195,7 @@
 		</div>
 	</section>
     
-	<jsp:include page="../footer.jsp"/>
+	<jsp:include page="/WEB-INF/views/base/footer.jsp"/>
 
 	<script>
 		$('#updateinfoBtn').on('click', function() {
@@ -203,7 +203,7 @@
 			
 		});
 		$('#historyBtn').on('click', function() {
-			location.href='<%=request.getContextPath()%>/profile/reservation';
+			location.href='<%=request.getContextPath()%>/profile/reservation/${memberinfo.idx}';
 		});
 		
 		$('#moveNoneMemberReservation').on('click', function() {

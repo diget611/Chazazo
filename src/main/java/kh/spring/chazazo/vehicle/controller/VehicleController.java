@@ -43,7 +43,6 @@ public class VehicleController {
 	
 	@GetMapping("/carlist/{idx}")
 	public ModelAndView viewVehicle(ModelAndView mv, @PathVariable String idx) {
-		System.out.println("vehCon#########");
 		System.out.println(idx);
 		int index = Integer.parseInt(idx);
 		

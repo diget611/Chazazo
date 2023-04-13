@@ -36,8 +36,7 @@
 <script src="<%=request.getContextPath()%>/resources/garoestate/assets/js/main.js"></script>
 </head>
 <body>
-	<jsp:include page="../header.jsp" />
-
+	<jsp:include page="/WEB-INF/views/base/header.jsp"/>
 	<div class="register-area vh-100"
 		style="background-color: rgb(249, 249, 249);">
 
@@ -129,6 +128,7 @@
 
 		</div>
 	</div>
-	<jsp:include page="../footer.jsp" />
+		<jsp:include page="/WEB-INF/views/base/footer.jsp"/>
+
 </body>
 </html>

@@ -38,7 +38,7 @@
 <script src="<%=request.getContextPath()%>/resources/garoestate/assets/js/main.js"></script>
 </head>
 <body>
-	<jsp:include page="../header.jsp" />
+	<jsp:include page="/WEB-INF/views/base/header.jsp"/>
 	
 	<section>
 		<div class="register-area vh-100" style="background-color: rgb(249, 249, 249);">
@@ -131,7 +131,7 @@
 		</div>
 	</section>
 	
-	<jsp:include page="../footer.jsp" />
+	<jsp:include page="/WEB-INF/views/base/footer.jsp"/>
 	
 	<script>
 		// 값이 1이면 회원가입 가능 상태

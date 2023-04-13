@@ -36,7 +36,7 @@
 <script src="<%=request.getContextPath()%>/resources/garoestate/assets/js/main.js"></script>
 </head>
 <body>
-	<jsp:include page="../header.jsp"/>
+	<jsp:include page="/WEB-INF/views/base/header.jsp"/>
 
 		<div class="properties-area recent-property" style="background-color: #FFF;">
             <div class="container">  
@@ -407,10 +407,7 @@
                 </div>              
             </div>
         </div>
-        
 
-        
-        
-	<jsp:include page="../footer.jsp"/>
+	<jsp:include page="/WEB-INF/views/base/footer.jsp"/>
 </body>
 </html>

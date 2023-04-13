@@ -197,6 +197,7 @@ input[type="search"]::-webkit-search-decoration {
 } 
 
 .btn-kakao{
+	text-transform: none;
     border-width: 2px;
     background-color: #f9e000;
     font-weight: 400;

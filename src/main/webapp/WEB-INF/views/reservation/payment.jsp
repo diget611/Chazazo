@@ -64,7 +64,7 @@
 	
 </head>
 <body>
-	<jsp:include page="../header.jsp"/>
+	<jsp:include page="/WEB-INF/views/base/header.jsp"/>
 	
 	<section>
 		<div style="text-align:center">
@@ -82,10 +82,10 @@
 				</div>
 				<div class="form-group">
 					<h6 style="text-align:center">운전자 정보 </h6>
-					<label class="small">이름</label>  <input type="text" class="form-control" placeholder="성명" value="${info.name }">
-					<label class="small">생년월일</label>  <input type="text" class="form-control" placeholder="생년월일 6자리" value="${info.birth }">
-					<label class="small">휴대폰 번호</label>  <input type="text" class="form-control" placeholder="휴대폰 번호" value="${info.phoneNumber}">
-					<label class="small">이메일</label>  <input type="text" class="form-control" placeholder="이메일" value="${info.email }">
+					<label class="small">이름</label>  <input type="text" id="name" class="form-control" placeholder="성명" value="${info.name }" >
+					<label class="small">생년월일</label>  <input type="text" id="birth" class="form-control" placeholder="생년월일 6자리" value="${info.birth }" required>
+					<label class="small">휴대폰 번호</label>  <input type="text"  id="phone" class="form-control" placeholder="휴대폰 번호" value="${info.phoneNumber}" required>
+					<label class="small">이메일</label>  <input type="text"  id="mail"class="form-control" placeholder="이메일" value="${info.email }" required>
 					<label class="small">반납 장소 선택</label>
 				</div>
 			</div>
@@ -111,18 +111,18 @@
 
 								<tr>
 									<th>총 결제금액</th>
-									<td><input type="text" id="paynum"  name="paynum" readonly>원</td>
+									<td><input type="text" id="paynum"  name="paynum" value="${expIns }" readonly>원</td>
 								</tr>
 							</tbody>
 						</table>
 					</section>
-					<button class="btn btn-default" type="button" onclick=" pay()" >카드결제</button>
-					<button class="btn btn-kakao" type="button" onclick=" kakaopay()" >카카오페이 결제</button>
+					<button class="btn btn-default" id="paybtn" type="button" onclick=" pay()" disabled>카드결제</button>
+					<button class="btn btn-kakao" id="kakaobtn" type="button" onclick=" kakaopay()" disabled>카카오페이</button>
 				</aside>
 			</div>
 		</div>
 	</section>
-	<jsp:include page="../footer.jsp"/>
+	<jsp:include page="/WEB-INF/views/base/footer.jsp"/>
 	
 	<script
 		src="<%=request.getContextPath()%>/resources/garoestate/assets/js/modernizr-2.6.2.min.js"></script>
@@ -156,6 +156,31 @@
 
 </body>
 <script>
+const paybtn = document.getElementById("paybtn");
+const kakaobtn = document.getElementById("kakaobtn");
+const name = document.getElementById("name");
+const birth = document.getElementById("birth");
+const phone = document.getElementById("phone");
+const mail = document.getElementById("mail");
+
+name.addEventListener("keyup", validate);
+birth.addEventListener("keyup", validate);
+phone.addEventListener("keyup", validate);
+mail.addEventListener("keyup", validate);
+
+//운전자 정보중 하나라도 공백이면 결제 버튼 비활성화
+function validate() {
+	if(!(name.value && birth.value && phone.value && mail.value)) {
+		paybtn.disabled = true;
+		kakaobtn.disabled = true;
+			 
+	} else {
+		paybtn.disabled = false;
+		kakaobtn.disabled = false;
+	}
+}
+
+
 function pay() {
     var IMP = window.IMP;
     IMP.init("imp01440251");
@@ -165,7 +190,7 @@ function pay() {
         pg: 'html5_inicis',  // 실제 계약 후에는 실제 상점아이디로 변경
         pay_method: 'card', // 'card'만 지원됩니다.
         merchant_uid: 'merchant_' + new Date().getTime(), // 상점에서 관리하는 주문 번호
-        name: '테스트 결제', // 상품 이름
+        name: '차자조 테스트 결제', // 상품 이름
         amount: 100, // 결제창에 표시될 금액. 실제 승인이 이뤄지지는 않습니다.
         buyer_email: '${info.email }',
         buyer_name: '${info.name }',
@@ -184,7 +209,7 @@ function pay() {
         } else {    // 결제가 실패했을 때
             // 결제에 실패했을떄 실패메세지와 실패사유를 출력
             var msg = '결제에 실패하였습니다.';
-            msg += '실패 사유 : ' + rsp.error_msg;
+            msg +=  rsp.error_msg;
         }
         alert(msg);
     });
@@ -217,7 +242,7 @@ function kakaopay() {
         } else {    // 결제가 실패했을 때
             // 결제에 실패했을떄 실패메세지와 실패사유를 출력
             var msg = '결제에 실패하였습니다.';
-            msg += '실패 사유 : ' + rsp.error_msg;
+            msg +=  rsp.error_msg;
         }
         alert(msg);
     });

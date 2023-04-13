@@ -77,7 +77,7 @@
     
 </head>
 <body>
-	<jsp:include page="../header.jsp"/>
+	<jsp:include page="/WEB-INF/views/base/header.jsp"/>
 	
 	<section>
 		<div class="register-area" style="background-color: rgb(249, 249, 249);">
@@ -129,7 +129,7 @@
 		</div>		
 	</div>
 	
-	<jsp:include page="../footer.jsp"/>
+	<jsp:include page="/WEB-INF/views/base/footer.jsp"/>
 	
 	<script>
 		// 입력창에서 엔터 누를 시 작동할 버튼 할당

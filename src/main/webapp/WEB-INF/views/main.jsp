@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>회원가입</title>
+<title>Chazazo</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
 <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700,800' rel='stylesheet' type='text/css'>
@@ -47,7 +47,7 @@
 
 </head>
 <body>
-	<jsp:include page="header.jsp" />
+	<jsp:include page="/WEB-INF/views/base/header.jsp"/>
 	
 	<section>
 		<div class="slider-area">
@@ -193,7 +193,7 @@
 		</div>
 	</section>
 	
-	<jsp:include page="footer.jsp" />
+	<jsp:include page="/WEB-INF/views/base/footer.jsp"/>
 	
 	<script>
 		$('input[name="dates"]').daterangepicker();

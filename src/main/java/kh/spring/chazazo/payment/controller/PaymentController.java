@@ -36,11 +36,12 @@ private VehicleService vService;
 	
 	// get 조회 post 입력 putpatch update delet e
 
-	@PostMapping("/payment")
-	public ModelAndView viewInsertPayment(ModelAndView mv, Principal prin,
+	@GetMapping("/payment")
+	public String viewInsertPayment(ModelAndView mv, Principal prin,
 			PaymentReqDto paydto, String carIdx) {
 		// 결제창 조회
 		
+		/*
 		int idx = Integer.parseInt(carIdx);
 		mv.addObject("car", vService.getVehicleInfo(idx));
 
@@ -58,9 +59,9 @@ private VehicleService vService;
 		mv.addObject("rentPrice", paydto.getRentPrice());
 		mv.addObject("addIns", paydto.getAddIns());
 		mv.addObject("expIns", paydto.getExpIns());
-
-
-		return mv;
+	*/
+		
+		return "1";
 	}
 	
 	

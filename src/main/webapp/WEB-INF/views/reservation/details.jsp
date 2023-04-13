@@ -45,9 +45,9 @@
 
 
 </head>
-<body> ${car.fuelname }
+<body>
 		
-	<jsp:include page="../header.jsp"/>
+	<jsp:include page="/WEB-INF/views/base/header.jsp"/>
 						
 	
 	<section>
@@ -73,7 +73,7 @@
 							<div class="property-meta entry-meta clearfix ">   
 								<div class="col-xs-3 col-sm-3 col-md-3 p-b-15">
 									<div class="property-icon">
-										<img src="./resources/garoestate/assets/img/icon/clock.png">
+										<img src="<%=request.getContextPath()%>/resources/garoestate/assets/img/icon/clock.png">
 										<span class="property-info-value">연식 ${car.year }년</span>
 									</div>
 								</div>
@@ -81,7 +81,7 @@
 							<div class="property-meta entry-meta clearfix ">   
 								<div class="col-xs-3 col-sm-3 col-md-3 p-b-15">
 									<div class="property-icon">
-										<img src="./resources/garoestate/assets/img/icon/clock.png">
+										<img src="<%=request.getContextPath()%>/resources/garoestate/assets/img/icon/fuel.png">
 										<span class="property-info-label">연료</span>
 										<span class="property-info-value">${option.fuelname }</span>
 									</div>
@@ -90,7 +90,7 @@
 								<div class="property-meta entry-meta clearfix ">   
 								<div class="col-xs-3 col-sm-3 col-md-3 p-b-15">
 									<div class="property-icon">
-										<img src="./resources/garoestate/assets/img/icon/clock.png">
+										<img src="<%=request.getContextPath()%>/resources/garoestate/assets/img/icon/car.png">
 										<span class="property-info-value">${option.typename }</span>
 									</div>
 								</div>
@@ -202,7 +202,7 @@
                                     
 									<section class="mt-3 p-3">
 									<h6>결제 정보</h6><hr>
-									<form id="payform" action="<%=request.getContextPath() %>/payment" method="post">
+									<form id="payform" action="<%=request.getContextPath() %>/payment" method="get" onsubmit="false">
 									<input type="hidden" name="carIdx" value="${car.idx }" >
 									<table class="table">
 										<tbody>
@@ -232,7 +232,7 @@
 									</div>
 									<div>
 											<sec:authorize access="isAuthenticated()">
-												<button class="btn btn-default" id="payment" type="submit" >결제하기</button>
+												<button class="btn btn-default" id="payment" type="button" >결제하기</button>
 											</sec:authorize>
 									</div>
 									</form>
@@ -247,7 +247,7 @@
 		</div>
 	</section>
 	
-	<jsp:include page="../footer.jsp"/>
+	<jsp:include page="/WEB-INF/views/base/footer.jsp"/>
 	
 </body>
 
@@ -333,6 +333,22 @@
 		location.href='<%=request.getContextPath()%>/member/register';
 	});
     
+	$('#payment').on('click', userInfo);
+	
+	function userInfo() {
+		$.ajax({
+			url: '<%=request.getContextPath()%>/payment',
+			type: 'get',
+			success: function(result) {
+				if(result == 1) {
+					console.log('${car.name}');
+				}
+			},
+			error: function() {
+				alert('dddd');
+			}
+		}) 
+	}
    
  	
 

@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>회원가입</title>
+<title>차량 예약</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
 <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700,800' rel='stylesheet' type='text/css'>
@@ -38,7 +38,7 @@
 <script src="<%=request.getContextPath()%>/resources/garoestate/assets/js/main.js"></script>
 </head>
 <body>
-	<jsp:include page="../header.jsp"/>
+	<jsp:include page="/WEB-INF/views/base/header.jsp"/>
 	<div class="properties-area recent-property" style="background-color: #FFF;">
 		<div class="container">  
 			<div class="row">
@@ -171,7 +171,7 @@
 		</div>
 	</div>
     
-	<jsp:include page="../footer.jsp"/>
+	<jsp:include page="/WEB-INF/views/base/footer.jsp"/>
 	
 
 	<script>

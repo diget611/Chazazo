@@ -36,7 +36,7 @@
 <script src="<%=request.getContextPath()%>/resources/garoestate/assets/js/main.js"></script>
 </head>
 <body>
-	<jsp:include page="../header.jsp"/>
+	<jsp:include page="/WEB-INF/views/base/header.jsp"/>
 	
 	<div class="content-area blog-page padding-top-40" style="background-color: #FCFCFC; padding-bottom: 55px;">
 		<div class="container">
@@ -149,7 +149,7 @@
 		</div>
 	</div>
     
-	<jsp:include page="../footer.jsp"/>
+	<jsp:include page="/WEB-INF/views/base/footer.jsp"/>
 	
 	<script>
 		$('#updateinfoBtn').on('click', function() {

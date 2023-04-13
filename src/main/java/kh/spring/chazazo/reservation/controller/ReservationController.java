@@ -67,13 +67,16 @@ public class ReservationController {
 
 	@GetMapping("/profile/reservation/{idx}")
 	public ModelAndView viewReservationOne(ModelAndView mv
-										   , @PathVariable int idx) {
+										   , @PathVariable String idx) {
 		// 예약 정보 상세 조회
 		
 		
-		
-		mv.addObject("reservation", rService.selectOne(idx) );
-		mv.setViewName("member/details");
+		System.out.println("******************");
+		System.out.println(idx);
+		int index = Integer.parseInt(idx);
+		System.out.println(index);
+		mv.addObject("reservation", rService.selectOne(index) );
+		mv.setViewName("member/history");
 		return mv;
 	}
 

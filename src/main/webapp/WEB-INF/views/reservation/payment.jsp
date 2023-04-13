@@ -167,9 +167,9 @@ function pay() {
         merchant_uid: 'merchant_' + new Date().getTime(), // 상점에서 관리하는 주문 번호
         name: '테스트 결제', // 상품 이름
         amount: 100, // 결제창에 표시될 금액. 실제 승인이 이뤄지지는 않습니다.
-        buyer_email: 'iamport@siot.do',
-        buyer_name: '구매자이름',
-        buyer_tel: '010-1234-5678',
+        buyer_email: '${info.email }',
+        buyer_name: '${info.name }',
+        buyer_tel: '${info.phoneNumber}',
         buyer_addr: '서울특별시 강남구 삼성동',
         buyer_postcode: '123-456',
         m_redirect_url: '/'
@@ -198,11 +198,11 @@ function kakaopay() {
         pg: 'kakaopay',  // 실제 계약 후에는 실제 상점아이디로 변경
         pay_method: 'card', // 'card'만 지원됩니다.
         merchant_uid: 'merchant_' + new Date().getTime(), // 상점에서 관리하는 주문 번호
-        name: '테스트 결제', // 상품 이름
+        name: '차자조 테스트 결제', // 상품 이름
         amount: 100, // 결제창에 표시될 금액. 실제 승인이 이뤄지지는 않습니다.
-        buyer_email: 'iamport@siot.do',
-        buyer_name: '구매자이름',
-        buyer_tel: '010-1234-5678',
+        buyer_email: '${info.email }',
+        buyer_name: '${info.name }',
+        buyer_tel: '${info.phoneNumber}',
         buyer_addr: '서울특별시 강남구 삼성동',
         buyer_postcode: '123-456',
         m_redirect_url: '/'
@@ -222,6 +222,8 @@ function kakaopay() {
         alert(msg);
     });
 }
+
+
 
 </script>
 

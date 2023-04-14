@@ -44,7 +44,7 @@ private VehicleService vService;
 	@GetMapping("/payment")
 	@ResponseBody
 	public String viewInsertPayment(ModelAndView mv, Principal prin,
-			PaymentReqDto paydto) {
+			PaymentReqDto paydto, String name) {
 		// 결제창 조회
 		
 		/*
@@ -66,17 +66,15 @@ private VehicleService vService;
 		mv.addObject("addIns", paydto.getAddIns());
 		mv.addObject("expIns", paydto.getExpIns());
 	*/
-		
 		Map<String, Object> result = new HashMap<String,Object>();		
 
 		if(prin == null) {	
 			mv.setViewName("reservation/payment");
+			
 		}else {
 			String username = prin.getName();
-			System.out.println("##############"+username+"##############");
 			mv.addObject("info", mService.selectMypageOne(username));
 			result.put("info",mService.selectMypageOne(username));
-			System.out.println("&&&&&&&&&&&&"+result+"&&&&&&&&&&&&");
 		}
 		return new Gson().toJson(result);
 	}

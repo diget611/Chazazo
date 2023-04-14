@@ -348,6 +348,7 @@
 	          success: function(result) {
 	        	console.log("#################");
 	        	console.log("#################"+'${car.model}');
+//	        	console.log(result.info[0].name);
 				getPayinfo(result);
 	        	  
 	          },
@@ -363,7 +364,6 @@
 		html += '<section>'
 		html += '	<div style="text-align:center">';
 		html += '		<h2>결제 정보</h2>';
-		html += '		<h2>^^^^^^${info.name }</h2>';
 		html += '	</div>';
 		html += '	<div style="overflow: hidden;">';
 		
@@ -377,10 +377,10 @@
 		html += '		</div>';
 		html += '		<div class="form-group">';
 		html += '					<h6 style="text-align:center">운전자 정보 </h6>';
-		html += '						<label class="small">이름</label>  <input type="text" id="name" class="form-control" placeholder="성명" value="${info.name }" >';
-		html += '						<label class="small">생년월일</label>  <input type="text" id="birth" class="form-control" placeholder="생년월일 6자리" value="${info.birth }" >';
-		html += '						<label class="small">휴대폰 번호</label>  <input type="text"  id="phone" class="form-control" placeholder="휴대폰 번호" value="${info.phoneNumber}" >';
-		html += '						<label class="small">이메일</label>  <input type="text"  id="mail" class="form-control" placeholder="이메일" value="${info.email }" >';
+		html += '						<label class="small">이름</label>  <input type="text" id="name" class="form-control" placeholder="성명" value="'+ result.info.name+'" >';
+		html += '						<label class="small">생년월일</label>  <input type="text" id="birth" class="form-control" placeholder="생년월일 6자리" value="'+ result.info.birth+'" >';
+		html += '						<label class="small">휴대폰 번호</label>  <input type="text"  id="phone" class="form-control" placeholder="휴대폰 번호" value="'+ result.info.phoneNumber+'" >';
+		html += '						<label class="small">이메일</label>  <input type="text"  id="mail" class="form-control" placeholder="이메일" value="'+ result.info.email+'" >';
 		html += '						<label class="small">반납 장소 선택</label>';
 		html += '		</div>';
 		html += '	</div>';
@@ -392,8 +392,8 @@
 	function payajax() {
 		var html ='';
 		html += '				</section>';
-		html += '						<button class="btn btn-default" id="paybtn" type="button" onclick=" pay()" disabled>카드결제</button>';
-		html += '						<button class="btn btn-kakao" id="kakaobtn" type="button" onclick=" kakaopay()" disabled>카카오페이</button>';
+		html += '						<button class="btn btn-default" id="paybtn" type="button" onclick=" pay()" >카드결제</button>';
+		html += '						<button class="btn btn-kakao" id="kakaobtn" type="button" onclick=" kakaopay()" >카카오페이</button>';
 		html += '					</aside>';
 
 		html += '	</div>';
@@ -402,97 +402,6 @@
 	}
    
 	
-	const paybtn = document.getElementById("paybtn");
-	const kakaobtn = document.getElementById("kakaobtn");
-	const name = document.getElementById("name");
-	const birth = document.getElementById("birth");
-	const phone = document.getElementById("phone");
-	const mail = document.getElementById("mail");
-
-	name.addEventListener("keyup", validate);
-	birth.addEventListener("keyup", validate);
-	phone.addEventListener("keyup", validate);
-	mail.addEventListener("keyup", validate);
-
-	//운전자 정보중 하나라도 공백이면 결제 버튼 비활성화
-	function validate() {
-		if(!(name.value && birth.value && phone.value && mail.value)) {
-			paybtn.disabled = true;
-			kakaobtn.disabled = true;
-				 
-		} else {
-			paybtn.disabled = false;
-			kakaobtn.disabled = false;
-		}
-	}
-
-
-	function pay() {
-	    var IMP = window.IMP;
-	    IMP.init("imp01440251");
-	    // 원포트 관리자 페이지 -> 내정보 -> 가맹점식별코드
-	    // ''안에 띄어쓰기 없이 가맹점 식별코드를 붙여넣어주세요. 안그러면 결제창이 안뜹니다.
-	    IMP.request_pay({
-	        pg: 'html5_inicis',  // 실제 계약 후에는 실제 상점아이디로 변경
-	        pay_method: 'card', // 'card'만 지원됩니다.
-	        merchant_uid: 'merchant_' + new Date().getTime(), // 상점에서 관리하는 주문 번호
-	        name: '차자조 테스트 결제', // 상품 이름
-	        amount: 100, // 결제창에 표시될 금액. 실제 승인이 이뤄지지는 않습니다.
-	        buyer_email: '${info.email }',
-	        buyer_name: '${info.name }',
-	        buyer_tel: '${info.phoneNumber}',
-	        buyer_addr: '서울특별시 강남구 삼성동',
-	        buyer_postcode: '123-456',
-	        m_redirect_url: '/'
-	    }, function (rsp) {
-	        if (rsp.success) {  // 결제가 성공했을 떄
-	            // 결제가 완료되었을 떄 결제 정보를 뜨게 만듬
-	            var msg = '결제가 완료되었습니다.';
-	            msg += '고유ID : ' + rsp.imp_uid;
-	            msg += '상점 거래ID : ' + rsp.merchant_uid;
-	            msg += '결제 금액 : ' + rsp.paid_amount;
-	            msg += '카드 승인번호 : ' + rsp.apply_num;
-	        } else {    // 결제가 실패했을 때
-	            // 결제에 실패했을떄 실패메세지와 실패사유를 출력
-	            var msg = '결제에 실패하였습니다.';
-	            msg +=  rsp.error_msg;
-	        }
-	        alert(msg);
-	    });
-	}
-	function kakaopay() {
-	    var IMP = window.IMP;
-	    IMP.init("imp01440251");
-	    // 원포트 관리자 페이지 -> 내정보 -> 가맹점식별코드
-	    // ''안에 띄어쓰기 없이 가맹점 식별코드를 붙여넣어주세요. 안그러면 결제창이 안뜹니다.
-	    IMP.request_pay({
-	        pg: 'kakaopay',  // 실제 계약 후에는 실제 상점아이디로 변경
-	        pay_method: 'card', // 'card'만 지원됩니다.
-	        merchant_uid: 'merchant_' + new Date().getTime(), // 상점에서 관리하는 주문 번호
-	        name: '차자조 테스트 결제', // 상품 이름
-	        amount: 100, // 결제창에 표시될 금액. 실제 승인이 이뤄지지는 않습니다.
-	        buyer_email: '${info.email }',
-	        buyer_name: '${info.name }',
-	        buyer_tel: '${info.phoneNumber}',
-	        buyer_addr: '서울특별시 강남구 삼성동',
-	        buyer_postcode: '123-456',
-	        m_redirect_url: '/'
-	    }, function (rsp) {
-	        if (rsp.success) {  // 결제가 성공했을 떄
-	            // 결제가 완료되었을 떄 결제 정보를 뜨게 만듬
-	            var msg = '결제가 완료되었습니다.';
-	            msg += '고유ID : ' + rsp.imp_uid;
-	            msg += '상점 거래ID : ' + rsp.merchant_uid;
-	            msg += '결제 금액 : ' + rsp.paid_amount;
-	            msg += '카드 승인번호 : ' + rsp.apply_num;
-	        } else {    // 결제가 실패했을 때
-	            // 결제에 실패했을떄 실패메세지와 실패사유를 출력
-	            var msg = '결제에 실패하였습니다.';
-	            msg +=  rsp.error_msg;
-	        }
-	        alert(msg);
-	    });
-	}
 			
 			
 
@@ -582,10 +491,106 @@ function makeOutListener(infowindow) {
         infowindow.close();
     };
 }
-	
-	
+
+$('#payment').on('click', validate);
+
+function validate() {
+window.onload() =function (){
 	
 
+const paybtn = document.getElementById("paybtn");
+const kakaobtn = document.getElementById("kakaobtn");
+const name = document.getElementById("name");
+const birth = document.getElementById("birth");
+const phone = document.getElementById("phone");
+const mail = document.getElementById("mail");
+
+name.addEventListener("keyup", validate);
+birth.addEventListener("keyup", validate);
+phone.addEventListener("keyup", validate);
+mail.addEventListener("keyup", validate);
+
+
+//운전자 정보중 하나라도 공백이면 결제 버튼 비활성화
+	if(!(name.value && birth.value && phone.value && mail.value)) {
+		paybtn.disabled = true;
+		kakaobtn.disabled = true;
+			 
+	} else {
+		paybtn.disabled = false;
+		kakaobtn.disabled = false;
+	}
+}
+	
+
+
+function pay() {
+    var IMP = window.IMP;
+    IMP.init("imp01440251");
+    // 원포트 관리자 페이지 -> 내정보 -> 가맹점식별코드
+    // ''안에 띄어쓰기 없이 가맹점 식별코드를 붙여넣어주세요. 안그러면 결제창이 안뜹니다.
+    IMP.request_pay({
+        pg: 'html5_inicis',  // 실제 계약 후에는 실제 상점아이디로 변경
+        pay_method: 'card', // 'card'만 지원됩니다.
+        merchant_uid: 'merchant_' + new Date().getTime(), // 상점에서 관리하는 주문 번호
+        name: '차자조 테스트 결제', // 상품 이름
+        amount: 100, // 결제창에 표시될 금액. 실제 승인이 이뤄지지는 않습니다.
+        buyer_email: '${info.email }',
+        buyer_name: '${info.name }',
+        buyer_tel: '${info.phoneNumber}',
+        buyer_addr: '서울특별시 강남구 KH',
+        buyer_postcode: '123-456',
+        m_redirect_url: '/'
+    }, function (rsp) {
+        if (rsp.success) {  // 결제가 성공했을 떄
+            // 결제가 완료되었을 떄 결제 정보를 뜨게 만듬
+            var msg = '결제가 완료되었습니다.';
+            msg += '고유ID : ' + rsp.imp_uid;
+            msg += '상점 거래ID : ' + rsp.merchant_uid;
+            msg += '결제 금액 : ' + rsp.paid_amount;
+            msg += '카드 승인번호 : ' + rsp.apply_num;
+        } else {    // 결제가 실패했을 때
+            // 결제에 실패했을떄 실패메세지와 실패사유를 출력
+            var msg = '결제에 실패하였습니다.';
+            msg +=  rsp.error_msg;
+        }
+        alert(msg);
+    });
+}
+function kakaopay() {
+    var IMP = window.IMP;
+    IMP.init("imp01440251");
+    // 원포트 관리자 페이지 -> 내정보 -> 가맹점식별코드
+    // ''안에 띄어쓰기 없이 가맹점 식별코드를 붙여넣어주세요. 안그러면 결제창이 안뜹니다.
+    IMP.request_pay({
+        pg: 'kakaopay',  // 실제 계약 후에는 실제 상점아이디로 변경
+        pay_method: 'card', // 'card'만 지원됩니다.
+        merchant_uid: 'merchant_' + new Date().getTime(), // 상점에서 관리하는 주문 번호
+        name: '차자조 테스트 결제', // 상품 이름
+        amount: 100, // 결제창에 표시될 금액. 실제 승인이 이뤄지지는 않습니다.
+        buyer_email: '${info.email }',
+        buyer_name: '${info.name }',
+        buyer_tel: '${info.phoneNumber}',
+        buyer_addr: '서울특별시 강남구 KH',
+        buyer_postcode: '123-456',
+        m_redirect_url: '/'
+    }, function (rsp) {
+        if (rsp.success) {  // 결제가 성공했을 떄
+            // 결제가 완료되었을 떄 결제 정보를 뜨게 만듬
+            var msg = '결제가 완료되었습니다.';
+            msg += '고유ID : ' + rsp.imp_uid;
+            msg += '상점 거래ID : ' + rsp.merchant_uid;
+            msg += '결제 금액 : ' + rsp.paid_amount;
+            msg += '카드 승인번호 : ' + rsp.apply_num;
+        } else {    // 결제가 실패했을 때
+            // 결제에 실패했을떄 실패메세지와 실패사유를 출력
+            var msg = '결제에 실패하였습니다.';
+            msg +=  rsp.error_msg;
+        }
+        alert(msg);
+    });
+}
+	
 </script>
 
 

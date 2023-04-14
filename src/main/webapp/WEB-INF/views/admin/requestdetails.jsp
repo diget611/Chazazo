@@ -5,7 +5,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>1:1 문의 관리</title>
+    <title>1:1 문의 상세 정보</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -28,57 +28,41 @@
     <script src="<%=request.getContextPath()%>/resources/dashmin/lib/tempusdominus/js/moment-timezone.min.js"></script>
     <script src="<%=request.getContextPath()%>/resources/dashmin/lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
     <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/main.css">
-    <style>
-    	tr:hover {
-    		cursor: pointer;
-    	}
-    </style>
-    
 </head>
 <body>
-	<div class="container-xxl position-relative bg-white d-flex p-0">
-		<jsp:include page="/WEB-INF/views/admin/base/sidebar.jsp"/>
-		<div class="content">
-			<jsp:include page="/WEB-INF/views/admin/base/navbar.jsp"/>	
-			<!-- Table Start -->
-			<div class="container-fluid pt-4 px-4">
-				<div class="bg-light rounded p-4">
-					<h6 class="mb-4">1:1 문의 관리</h6>
-					<table class="table table-hover">
-						<thead>
-							<tr>
-								<th scope="col">#</th>
-								<th scope="col">제목</th>
-								<th scope="col">상태</th>
-								<th scope="col">문의 날짜</th>
-								<th scope="col">답변 날짜</th>
-								<th scope="col">아이디</th>
-							</tr>
-						</thead>
-						<tbody>
-							<c:forEach items="${requestList }" var="request">	
-							<tr onclick='window.open("<%=request.getContextPath()%>/admin/request/${request.idx}", "문의 상세 정보", "width=500, height=600")'>
-								<th scope="row">${request.idx }</th>
-								<td>${request.title }</td>
-								<td>${request.status }</td>
-								<td>${request.reqDate }</td>
-								<td>${request.ansDate }</td>
-								<td>${request.username }</td>
-							</tr>
-							</c:forEach>
-						</tbody>
-					</table>
+	<!-- Form Start -->
+	<div class="container-fluid pt-4 px-4">
+		<div class="col-sm-12 col-xl-6">
+			<div class="bg-light rounded h-100 p-4">
+				<h6 class="mb-4">1:1 문의 상세 정보</h6>
+				<input type="hidden" value="${request.idx }">
+				<div class="mb-3 row">
+					<label for="title" class="form-label">제목</label>
+					<input type="text" class="form-control" id="title" name="title" value="${request.title}" readonly>
 				</div>
+				<div class="mb-3 row">
+					<label for="content" class="form-label">내용</label>
+					<input type="text" class="form-control" id="content" name="content" value="${request.content}" readonly>
+				</div>
+				<form>
+					<div class="mb-3 row">
+						<input type="text" class="form-control" id="answer" name="answer">
+						<button type="button" id="ansBtn">답변하기</button>
+					</div>
+				</form>
 			</div>
-			<!-- Table End -->
-			<jsp:include page="/WEB-INF/views/admin/base/footer.jsp"/>
 		</div>
-		<!-- Back to Top -->
-		<a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
 	</div>
+	<!-- Form End -->
 
 <script src="<%=request.getContextPath()%>/resources/dashmin/js/main.js"></script>
-
+<script>
+	$('ansBtn').on('click', insertAns);
+	
+	function insertAns() {
+		
+	}
+</script>
 </body>
 
 </html>

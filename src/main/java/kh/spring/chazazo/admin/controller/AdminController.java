@@ -45,7 +45,6 @@ public class AdminController {
 		return result;
 	}
 	
-	
 	@GetMapping("/report")
 	public ModelAndView viewReport(ModelAndView mv) {
 		mv.addObject("reportList", aService.selectReportList());
@@ -104,6 +103,13 @@ public class AdminController {
 	public ModelAndView viewInquiry(ModelAndView mv) {
 		mv.addObject("requestList", aService.selectRequestList());
 		mv.setViewName("admin/request");
+		return mv;
+	}
+	
+	@GetMapping("/request/{idx}")
+	public ModelAndView viewInquiryOne(ModelAndView mv, @PathVariable String idx) {
+		mv.addObject("request", aService.selectRequestOne(idx));
+		mv.setViewName("admin/requestdetails");
 		return mv;
 	}
 	

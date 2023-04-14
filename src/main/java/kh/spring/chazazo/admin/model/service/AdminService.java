@@ -5,6 +5,7 @@ import java.util.List;
 import kh.spring.chazazo.admin.model.dto.AdminCouponManageRespDto;
 import kh.spring.chazazo.admin.model.dto.AdminMemberRespDto;
 import kh.spring.chazazo.admin.model.dto.AdminReportRespDto;
+import kh.spring.chazazo.admin.model.dto.AdminRequestOneRespDto;
 import kh.spring.chazazo.admin.model.dto.AdminRequestRespDto;
 import kh.spring.chazazo.vehicle.model.dto.VehicleInfoDto;
 
@@ -20,4 +21,5 @@ public interface AdminService {
 	public List<AdminCouponManageRespDto> selectCouponList();
 	public AdminCouponManageRespDto selectCouponOne(String idx);
 	public List<AdminRequestRespDto> selectRequestList();
+	public AdminRequestOneRespDto selectRequestOne(String idx);
 }

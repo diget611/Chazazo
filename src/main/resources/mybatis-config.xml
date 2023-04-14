@@ -20,5 +20,7 @@
 		<typeAlias type="kh.spring.chazazo.admin.model.dto.AdminCouponManageRespDto" alias="adminCouponManageRespDto"/>
 		<typeAlias type="kh.spring.chazazo.request.model.dto.RequestRespDto" alias="requestRespDto"/>
 		<typeAlias type="kh.spring.chazazo.admin.model.dto.AdminRequestRespDto" alias="adminRequestRespDto"/>
+		<typeAlias type="kh.spring.chazazo.admin.model.dto.AdminRequestOneRespDto" alias="adminRequestOneRespDto"/>
+		
 	</typeAliases>
 </configuration>

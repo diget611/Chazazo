@@ -70,7 +70,6 @@ private VehicleService vService;
 
 		if(prin == null) {	
 			mv.setViewName("reservation/payment");
-			System.out.println("@##@#@#@#@#@#");
 			return "1";
 		}else {
 			String username = prin.getName();

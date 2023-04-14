@@ -133,14 +133,20 @@
 			</div>
 		</div>
 	</section>
-	
+	<button type="button" id="testBtn">test</button>
 	<jsp:include page="/WEB-INF/views/base/footer.jsp"/>
 	
 </body>
 
 
 <script type="text/javascript">
-
+	$('#testBtn').on('click', function() {
+		console.log($('#name').val());
+		console.log($('#birth').val());
+		console.log($('#mail').val());
+		console.log($('#phone').val());
+		
+	})	
      //대여,반납일 날짜 초기설정
 	 document.getElementById('startDate').valueAsDate = new Date();
 	 document.getElementById('endDate').valueAsDate = new Date(); 
@@ -234,13 +240,7 @@
 	          type: 'get',
 	          dataType:'json',
 	          success: function(result) {
-	        	if (result ==1){
-	        		console.log("1111111111111111");
-	        		nonmember();
-	        	} else {
-				getPayinfo(result);
-	        	}
-	        	  
+				getPayinfo(result);  
 	          },
 	          error: function() {
 	          	alert('로딩 실패');
@@ -381,13 +381,35 @@
 	//결제하기 눌렀을때 출력될 회원용 화면
 	function getPayinfo(result) {
 		var html ='';
-		
+		if(result == 1) {
+			html += '<section>'
+				html += '	<div style="text-align:center">';
+				html += '		<h2>결제 정보</h2>';
+				html += '	</div>';
+				html += '	<div style="overflow: hidden;">';
+				html += '		<div class="blog-asside-right col-md-12" style="padding: 80px;" >';
+				html += '				<div class="form-group">';
+				html += '					<h6 style="text-align:center">예약 정보 </h6>';
+				html += '---';
+				html += '					<h4>${car.model }  ${car.year }년 형</h4>';
+				html += '					<h5>${car.name } </h5>';
+				html += '---';
+				html += '		</div>';
+				html += '		<div class="form-group">';
+				html += '					<h6 style="text-align:center">운전자 정보 </h6>';
+				html += '						<label class="small">이름</label>  <input type="text" id="name" class="form-control" placeholder="성명" value="" >';
+				html += '						<label class="small">생년월일</label>  <input type="text" id="birth" class="form-control" placeholder="생년월일 6자리" value="" >';
+				html += '						<label class="small">휴대폰 번호</label>  <input type="text"  id="phone" class="form-control" placeholder="휴대폰 번호" value="" >';
+				html += '						<label class="small">이메일</label>  <input type="text"  id="mail" class="form-control" placeholder="이메일" value="" >';
+				html += '						<label class="small">반납 장소 선택</label>';
+				html += '		</div>';
+				html += '	</div>';
+		} else {
 		html += '<section>'
 		html += '	<div style="text-align:center">';
 		html += '		<h2>결제 정보</h2>';
 		html += '	</div>';
 		html += '	<div style="overflow: hidden;">';
-		
 		html += '		<div class="blog-asside-right col-md-12" style="padding: 80px;" >';
 		html += '				<div class="form-group">';
 		html += '					<h6 style="text-align:center">예약 정보 </h6>';
@@ -404,38 +426,8 @@
 		html += '						<label class="small">이메일</label>  <input type="text"  id="mail" class="form-control" placeholder="이메일" value="'+ result.info.email+'" >';
 		html += '						<label class="small">반납 장소 선택</label>';
 		html += '		</div>';
-		html += '	</div>';
-
-		$('#content').html(html);
-	}
-	
-	//결제하기 눌렀을때 출력될 비회원용 화면
-	function nonmember() {
-		var html ='';
-		
-		html += '<section>'
-		html += '	<div style="text-align:center">';
-		html += '		<h2>결제 정보</h2>';
-		html += '	</div>';
-		html += '	<div style="overflow: hidden;">';
-		
-		html += '		<div class="blog-asside-right col-md-12" style="padding: 80px;" >';
-		html += '				<div class="form-group">';
-		html += '					<h6 style="text-align:center">예약 정보 </h6>';
-		html += '---';
-		html += '					<h4>${car.model }  ${car.year }년 형</h4>';
-		html += '					<h5>${car.name } </h5>';
-		html += '---';
-		html += '		</div>';
-		html += '		<div class="form-group">';
-		html += '					<h6 style="text-align:center">운전자 정보 </h6>';
-		html += '						<label class="small">이름</label>  <input type="text" id="name" class="form-control" placeholder="성명" value="" >';
-		html += '						<label class="small">생년월일</label>  <input type="text" id="birth" class="form-control" placeholder="생년월일 6자리" value="" >';
-		html += '						<label class="small">휴대폰 번호</label>  <input type="text"  id="phone" class="form-control" placeholder="휴대폰 번호" value="" >';
-		html += '						<label class="small">이메일</label>  <input type="text"  id="mail" class="form-control" placeholder="이메일" value="" >';
-		html += '						<label class="small">반납 장소 선택</label>';
-		html += '		</div>';
-		html += '	</div>';
+		html += '	</div>';			
+		}
 
 		$('#content').html(html);
 	}

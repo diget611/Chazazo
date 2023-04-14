@@ -154,7 +154,7 @@
 									<li>나의 관심 지점은 최대 5개까지 등록할 수 있습니다.</li>
 									<li>렌터카 예약 시, ‘나의 지점’ 선택을 통해 빠른 지점 선택이 가능합니다.</li>
 								</ul>
-								<a href="/hp/kor/info/allBranchArea.do?mnCd=T2FN050301"
+								<a href="#" id="totalLocation"
 									class="btn-normal black">전국지점안내 전체보기</a>
 							</div>
 						</div>
@@ -234,6 +234,10 @@
 	$('#bookmark').on('click', function() {
 		location.href='<%=request.getContextPath()%>/profile/favorites';
 	});
+	$('#totalLocation').on('click', function() {
+		location.href='<%=request.getContextPath()%>/location';
+	});
+	
 	</script>
 </body>
 </html>

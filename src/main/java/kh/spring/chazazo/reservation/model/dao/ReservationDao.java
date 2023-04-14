@@ -18,15 +18,15 @@ public class ReservationDao {
 	
 	
 	
-	public List<ReservationRespDto> selectList(){
-		
-		return session.selectList("reservation.selectList");
-		
-	}
+//	public List<ReservationRespDto> selectList(){
+//		
+//		return session.selectList("reservation.selectList");
+//		
+//	}
 	
-	public ReservationRespDto selectOne(int idx){
+	public List<ReservationRespDto> ReservationOne(int idx){
 		
-		return session.selectOne("reservation.selectOne",idx);
+		return session.selectList("reservation.ReservationOne",idx);
 		
 	}
 	

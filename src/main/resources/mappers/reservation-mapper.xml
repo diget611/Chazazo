@@ -1,17 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="reservation">
-
-	<select id="selectList" resultType="ReservationRespDto">
-		SELECT * FROM RESERVATION
-	</select>
+		
+		<select id="resList" resultType="ReservationRespDto">
+			select *
+			 from reservation
+			 join member on reservation.idx = member.idx
+			   where username = #{username}
+			   			
+		</select>
 	
-	<select id="resList" resultType="ReservationRespDto" >
-		select *
-		 from reservation
-		 left join member on reservation.idx = member.idx
-		 	 where username = #{username}
-	</select>
+		<select id="ReservationOne" resultType="ReservationRespDto" >
+			 SELECT * FROM RESERVATION WHERE idx=#{idx}
+		</select>
+	
 	
 	<update id="resUpdate" >
 		UPDATE RESERVATION SET RESERV_START=#{reserv_start}, RESERV_END=#{reserv_end},
@@ -25,12 +27,7 @@
 		DELETE FROM RESERVATION WHERE IDX = #{IDX}
 	</delete>
 	
-	<select id="selectOne" resultType="ReservationRespDto" >
-		select *
-		 from reservation
-		 left join member on reservation.idx = member.idx
-		 	 where username = #{username}
-	</select>
+	
 	
 	
 </mapper>

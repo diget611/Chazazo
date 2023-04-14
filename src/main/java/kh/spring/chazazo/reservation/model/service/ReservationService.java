@@ -12,10 +12,10 @@ public interface ReservationService {
 	
 
 
-	public List<ReservationRespDto> selectList();
+//	public List<ReservationRespDto> selectList();
 	
 
-	public ReservationRespDto selectOne(int idx);
+	public List<ReservationRespDto> ReservationOne(int idx);
 	public List<ReservationRespDto> selectList(String username);
 	public int deleteResv(int idx);
 

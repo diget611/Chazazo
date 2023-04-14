@@ -9,7 +9,7 @@
 	<select id="selectMypageOne" resultType="memberInfoRespDto">
 		select *
 		from member_info 
-        inner join member on member_info.idx = member.idx
+        join member on member_info.idx = member.idx
         WHERE USERNAME = #{username}
 	</select>
 	

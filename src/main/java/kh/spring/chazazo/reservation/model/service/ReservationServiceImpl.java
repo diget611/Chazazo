@@ -17,14 +17,14 @@ public class ReservationServiceImpl implements ReservationService {
 	
 	
 	
-	public List<ReservationRespDto> selectList() {
-		return dao.selectList();
-	}
+//	public List<ReservationRespDto> selectList() {
+//		return dao.selectList();
+//	}
 
 	@Override
-	public ReservationRespDto selectOne(int idx) {
+	public List<ReservationRespDto> ReservationOne(int idx) {
 		
-		return dao.selectOne(idx);
+		return dao.ReservationOne(idx);
 	}
 
 	@Override

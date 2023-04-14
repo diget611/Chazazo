@@ -46,7 +46,7 @@ public class ReservationController {
 		
 		
 		if(prin == null) {
-			mv.setViewName("member/noneMemberReservation");
+			mv.setViewName("member/history");
 		}else {
 			String loginId = prin.getName();
 			mv.addObject("reservation", rService.selectList(loginId));
@@ -68,20 +68,31 @@ public class ReservationController {
 
 	@GetMapping("/profile/reservation/{idx}")
 	public ModelAndView viewReservationOne(ModelAndView mv
-										   , @PathVariable String idx) {
+										   , @PathVariable String idx, Principal prin) {
 		// 예약 정보 상세 조회
-		
 		int index = Integer.parseInt(idx);
-		System.out.println("ddddddddd");
-		mv.addObject("reservation", rService.selectOne(index) );
-		mv.setViewName("member/history");
+		if(prin == null) {
+			mv.setViewName("member/history");
+		}else{
+			System.out.println("ddddddddd");
+			String loginId = prin.getName();
+			mv.addObject("memberinfo", mService.selectMypageOne(loginId) );
+			mv.addObject("reservation", rService.ReservationOne(index) );
+			mv.setViewName("member/history");
+		}
+		
+		
+		
+		
 		return mv;
 	}
 
 	@PatchMapping("/profile/reservation/{idx}")
-	public ModelAndView updateReservation(ModelAndView mv) {
+	public int updateReservation(ModelAndView mv) {
 		// 예약 정보 수정
-		return mv;
+		int result=0;
+		
+		return result;
 	}
 	
 	@DeleteMapping("/profile/reservation/{idx}")

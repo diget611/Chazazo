@@ -152,11 +152,11 @@ public class MemberController {
 	// 회원정보 수정 페이지 조회
 	@GetMapping("/profile/{username}/update")
 	public ModelAndView viewUpdateMember(ModelAndView mv,
-										@PathVariable("username") String username,
+										@PathVariable("username") int idx,
 										Principal prin) {
 		
-		//수정 페이지로 안가고 계속 마이페이지로 들어가짐,,
 		String loginId = prin.getName();
+		System.out.println("eeeeeeeeeeeeeeeeeeee");
 		System.out.println(loginId);
 		mv.addObject("memberinfo", mService.selectMypageOne(loginId));
 		mv.setViewName("member/profile");
@@ -188,6 +188,7 @@ public class MemberController {
 	@PatchMapping("/profile/{username}/update")
 	public ModelAndView updateMember(ModelAndView mv, @PathVariable("username") String username,
 									@RequestBody MemberInfoRespDto dto,Principal prin) {
+		
 		
 		
 		mv.addObject("update", mService.updateInfo(dto));

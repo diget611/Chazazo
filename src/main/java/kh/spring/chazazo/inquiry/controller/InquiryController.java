@@ -5,9 +5,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+
 @RestController
 @RequestMapping("/inquiry")
 public class InquiryController {
+	
 	
 	@GetMapping("")
 	public ModelAndView viewInquiry(ModelAndView mv) {
@@ -27,6 +29,8 @@ public class InquiryController {
 		// 문의 상세 조회
 		return mv;
 	}
+	
+
 
 	// 관리자
 	public ModelAndView viewInsertInquiry(ModelAndView mv) {

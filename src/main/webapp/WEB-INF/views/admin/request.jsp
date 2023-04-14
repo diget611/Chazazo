@@ -5,7 +5,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>문의 관리</title>
+    <title>1:1 문의 관리</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -37,35 +37,41 @@
 </head>
 <body>
 	<div class="container-xxl position-relative bg-white d-flex p-0">
-		<jsp:include page="/WEB-INF/views/admin/basic/sidebar.jsp"/>
+		<jsp:include page="/WEB-INF/views/admin/base/sidebar.jsp"/>
 		<div class="content">
-			<jsp:include page="/WEB-INF/views/admin/basic/navbar.jsp"/>	
+			<jsp:include page="/WEB-INF/views/admin/base/navbar.jsp"/>	
 			<!-- Table Start -->
 			<div class="container-fluid pt-4 px-4">
 				<div class="bg-light rounded p-4">
-					<h6 class="mb-4">문의 관리</h6>
+					<h6 class="mb-4">1:1 문의 관리</h6>
 					<table class="table table-hover">
 						<thead>
 							<tr>
-								<th scope="col"></th>
-								<th scope="col"></th>
-								<th scope="col"></th>
-								<th scope="col"></th>
+								<th scope="col">#</th>
+								<th scope="col">제목</th>
+								<th scope="col">상태</th>
+								<th scope="col">문의 날짜</th>
+								<th scope="col">답변 날짜</th>
+								<th scope="col">아이디</th>
 							</tr>
 						</thead>
-						<tbody>						
+						<tbody>
+							<c:forEach items="${requestList }" var="request">	
 							<tr>
-								<th scope="row"></th>
-								<td></td>
-								<td></td>
-								<td></td>
+								<th scope="row">${request.idx }</th>
+								<td>${request.title }</td>
+								<td>${request.status }</td>
+								<td>${request.reqDate }</td>
+								<td>${request.ansDate }</td>
+								<td>${request.username }</td>
 							</tr>
+							</c:forEach>
 						</tbody>
 					</table>
 				</div>
 			</div>
 			<!-- Table End -->
-			<jsp:include page="/WEB-INF/views/admin/basic/footer.jsp"/>
+			<jsp:include page="/WEB-INF/views/admin/base/footer.jsp"/>
 		</div>
 		<!-- Back to Top -->
 		<a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>

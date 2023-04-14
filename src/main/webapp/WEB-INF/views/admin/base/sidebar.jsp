@@ -16,7 +16,7 @@
 					<a href="<%=request.getContextPath() %>/admin/vehicle" class="dropdown-item">차량</a>
 					<a href="<%=request.getContextPath() %>/admin/coupon" class="dropdown-item">쿠폰</a>
 					<a href="<%=request.getContextPath() %>/admin/notice" class="dropdown-item">공지</a>
-					<a href="<%=request.getContextPath() %>/admin/inquiry" class="dropdown-item">문의</a>
+					<a href="<%=request.getContextPath() %>/admin/request" class="dropdown-item">1:1 문의</a>
 				</div>
 			</div>
 			<div class="nav-item dropdown">

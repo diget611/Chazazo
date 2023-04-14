@@ -9,6 +9,7 @@ import kh.spring.chazazo.admin.model.dao.AdminDao;
 import kh.spring.chazazo.admin.model.dto.AdminCouponManageRespDto;
 import kh.spring.chazazo.admin.model.dto.AdminMemberRespDto;
 import kh.spring.chazazo.admin.model.dto.AdminReportRespDto;
+import kh.spring.chazazo.admin.model.dto.AdminRequestRespDto;
 import kh.spring.chazazo.vehicle.model.dto.VehicleInfoDto;
 
 @Service
@@ -64,6 +65,11 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public AdminCouponManageRespDto selectCouponOne(String idx) {
 		return dao.selectCouponOne(idx);
+	}
+
+	@Override
+	public List<AdminRequestRespDto> selectRequestList() {
+		return dao.selectRequestList();
 	}
 
 }

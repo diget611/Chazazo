@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="request">
+	<select id="selectList" resultType="adminRequestRespDto">
+		SELECT REQUEST.IDX, REQUEST.TITLE, REQUEST.STATUS, REQUEST.REQ_DATE, REQUEST.ANS_DATE, USERNAME
+		  FROM REQUEST INNER JOIN MEMBER ON MEMBER_IDX = MEMBER.IDX ORDER BY IDX DESC
+	</select>
+	<select id="selectListByMember" resultType="requestRespDto">
+		SELECT * FROM REQUEST WHERE MEMBER_IDX=(SELECT IDX FROM MEMBER WHERE USERNAME=#{username})
+	</select>
+	<insert id="insert" parameterType="map">
+		INSERT INTO REQUEST VALUES(REQUEST_SEQ.NEXTVAL, #{title}, #{content}, DEFAULT, DEFAULT, DEFAULT, (SELECT IDX FROM MEMBER WHERE USERNAME=#{username}))
+	</insert>
+</mapper>

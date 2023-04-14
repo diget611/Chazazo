@@ -100,9 +100,10 @@ public class AdminController {
 		return mv;
 	}
 	
-	@GetMapping("/inquiry")
+	@GetMapping("/request")
 	public ModelAndView viewInquiry(ModelAndView mv) {
-		mv.setViewName("admin/inquiry");
+		mv.addObject("requestList", aService.selectRequestList());
+		mv.setViewName("admin/request");
 		return mv;
 	}
 	

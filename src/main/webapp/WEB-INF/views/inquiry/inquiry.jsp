@@ -46,14 +46,12 @@
 					<div class="blog-asside-right col-md-3">
 						<div class="panel panel-default sidebar-menu wow fadeInRight animated animated" style="visibility: visible; animation-name: fadeInRight;">
 							<div class="panel-heading">
-								<h3 class="panel-title">자주 묻는 질문</h3>
+								<h3 class="panel-title"> </h3>
 							</div>
 						</div>
 						<div class="btn-group btn-group-lg btn-group-vertical" role="group" aria-label="Basic outlined example">
-							<button type="button" class="btn btn-outline-primary">예약/취소</button>
-							<button type="button" class="btn btn-outline-primary">이용방법</button>
-							<button type="button" class="btn btn-outline-primary">보험/사고</button>
-							<button type="button" class="btn btn-outline-primary">전기차</button>
+							<button type="button" class="btn btn-outline-primary" id="mainBtn">자주 묻는 질문</button>
+							<button type="button" class="btn btn-outline-primary" id="requestBtn">1:1 문의</button>
 						</div>
 					</div>   
 					<div class="blog-lst col-md-9 p0">
@@ -212,5 +210,15 @@
 	</section>
 
 	<jsp:include page="/WEB-INF/views/base/footer.jsp"/>
+	
+	<script>
+		$('#mainBtn').on('click', function() {
+			location.href="${pageContext.request.contextPath}/inquiry"
+		})
+
+		$('#requestBtn').on('click', function() {
+			location.href="${pageContext.request.contextPath}/request";
+		})
+	</script>
 </body>
 </html>

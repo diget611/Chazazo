@@ -37,9 +37,9 @@
 </head>
 <body>
 	<div class="container-xxl position-relative bg-white d-flex p-0">
-		<jsp:include page="/WEB-INF/views/admin/basic/sidebar.jsp"/>
+		<jsp:include page="/WEB-INF/views/admin/base/sidebar.jsp"/>
 		<div class="content">
-			<jsp:include page="/WEB-INF/views/admin/basic/navbar.jsp"/>	
+			<jsp:include page="/WEB-INF/views/admin/base/navbar.jsp"/>	
 			<!-- Table Start -->
 			<div class="container-fluid pt-4 px-4">
 				<div class="bg-light rounded p-4">
@@ -78,7 +78,7 @@
 				</div>
 			</div>
 			<!-- Table End -->
-			<jsp:include page="/WEB-INF/views/admin/basic/footer.jsp"/>
+			<jsp:include page="/WEB-INF/views/admin/base/footer.jsp"/>
 		</div>
 		<!-- Back to Top -->
 		<a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>

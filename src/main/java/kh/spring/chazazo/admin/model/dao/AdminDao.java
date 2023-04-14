@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import kh.spring.chazazo.admin.model.dto.AdminCouponManageRespDto;
 import kh.spring.chazazo.admin.model.dto.AdminMemberRespDto;
 import kh.spring.chazazo.admin.model.dto.AdminReportRespDto;
+import kh.spring.chazazo.admin.model.dto.AdminRequestRespDto;
 import kh.spring.chazazo.vehicle.model.dto.VehicleInfoDto;
 
 @Repository
@@ -55,6 +56,10 @@ public class AdminDao {
 	
 	public AdminCouponManageRespDto selectCouponOne(String idx) {
 		return sqlSession.selectOne("couponmanage.selectOne", idx);
+	}
+	
+	public List<AdminRequestRespDto> selectRequestList() {
+		return sqlSession.selectList("request.selectList");
 	}
  
 }

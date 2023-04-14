@@ -1,6 +1,7 @@
 package kh.spring.chazazo.admin.model.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -65,6 +66,14 @@ public class AdminDao {
 	
 	public AdminRequestOneRespDto selectRequestOne(String idx) {
 		return sqlSession.selectOne("request.selectOne", idx);
+	}
+	
+	public int insertAnswer(Map<String, String> data) {
+		return sqlSession.insert("answer.insert", data);
+	}
+	
+	public int updateRequest(String idx) {
+		return sqlSession.update("request.update", idx);
 	}
  
 }

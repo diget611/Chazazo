@@ -1,10 +1,15 @@
 package kh.spring.chazazo.admin.controller;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -100,17 +105,28 @@ public class AdminController {
 	}
 	
 	@GetMapping("/request")
-	public ModelAndView viewInquiry(ModelAndView mv) {
+	public ModelAndView viewRequest(ModelAndView mv) {
 		mv.addObject("requestList", aService.selectRequestList());
 		mv.setViewName("admin/request");
 		return mv;
 	}
 	
 	@GetMapping("/request/{idx}")
-	public ModelAndView viewInquiryOne(ModelAndView mv, @PathVariable String idx) {
+	public ModelAndView viewRequestOne(ModelAndView mv, @PathVariable String idx) {
 		mv.addObject("request", aService.selectRequestOne(idx));
 		mv.setViewName("admin/requestdetails");
 		return mv;
+	}
+	
+	@PostMapping("/request")
+	public int insertRequest(@RequestParam String idx, @RequestParam String answer) {
+		Map<String, String> data = new HashMap<String, String>();
+		data.put("idx", idx);
+		data.put("answer", answer);
+		
+		int result = aService.insertAnswer(data, idx);
+		
+		return result;
 	}
 	
 	@GetMapping("/statistics")

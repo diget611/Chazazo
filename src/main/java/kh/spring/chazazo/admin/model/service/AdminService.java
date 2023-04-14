@@ -1,6 +1,7 @@
 package kh.spring.chazazo.admin.model.service;
 
 import java.util.List;
+import java.util.Map;
 
 import kh.spring.chazazo.admin.model.dto.AdminCouponManageRespDto;
 import kh.spring.chazazo.admin.model.dto.AdminMemberRespDto;
@@ -22,4 +23,5 @@ public interface AdminService {
 	public AdminCouponManageRespDto selectCouponOne(String idx);
 	public List<AdminRequestRespDto> selectRequestList();
 	public AdminRequestOneRespDto selectRequestOne(String idx);
+	public int insertAnswer(Map<String, String> data, String idx);
 }

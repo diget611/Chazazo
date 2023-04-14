@@ -33,6 +33,14 @@ public class RequestController {
 		return mv;
 	}
 	
+	@GetMapping("/{idx}")
+	public ModelAndView viewRequestOne(ModelAndView mv, Principal prin) {
+		// jsp에서 문의 아이디랑 로그인한 아이디가 같은지 확인한 후
+		// 일치하면 상세 내용 띄우고 일치하지 않으면 페이지 이동
+		mv.setViewName("inquiry/requestdetails");
+		return mv;
+	}
+	
 	@GetMapping("/insert")
 	public ModelAndView viewInsertRequest(ModelAndView mv) {
 		mv.setViewName("inquiry/reqinsert");

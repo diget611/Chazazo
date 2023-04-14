@@ -35,7 +35,7 @@
 		<div class="col-sm-12 col-xl-6">
 			<div class="bg-light rounded h-100 p-4">
 				<h6 class="mb-4">1:1 문의 상세 정보</h6>
-				<input type="hidden" value="${request.idx }">
+				<input type="hidden" name="idx" value="${request.idx }">
 				<div class="mb-3 row">
 					<label for="title" class="form-label">제목</label>
 					<input type="text" class="form-control" id="title" name="title" value="${request.title}" readonly>
@@ -57,10 +57,27 @@
 
 <script src="<%=request.getContextPath()%>/resources/dashmin/js/main.js"></script>
 <script>
-	$('ansBtn').on('click', insertAns);
+	$('#ansBtn').on('click', insertAns);
 	
 	function insertAns() {
-		
+		let idx = $('[name=idx]').val();
+		let answer = $('[name=answer]').val();
+		$.ajax({
+			url: '${pageContext.request.contextPath}/admin/request',
+			type: 'post',
+			data: {idx: idx, answer: answer},
+			success: function(result) {
+				if(result == 1) {
+					alert('성공');
+					window.close();
+				} else {
+					alert('실패');
+				}
+			},
+			error: function() {
+				alert('에러')
+			}
+		});
 	}
 </script>
 </body>

@@ -100,6 +100,7 @@
 				success: function(result) {
 					if(result == 1) {
 						alert('성공');
+						window.open='${pageContext.request.contextPath}/request';
 					} else {
 						alert('실패');
 					}

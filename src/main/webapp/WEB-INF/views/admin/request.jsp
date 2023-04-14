@@ -60,7 +60,14 @@
 							<tr onclick='window.open("<%=request.getContextPath()%>/admin/request/${request.idx}", "문의 상세 정보", "width=500, height=600")'>
 								<th scope="row">${request.idx }</th>
 								<td>${request.title }</td>
-								<td>${request.status }</td>
+								<c:choose>
+									<c:when test="${request.status eq 0 }">
+										<td>대기 중</td>		
+									</c:when>
+									<c:otherwise>
+										<td>처리 완료</td>
+									</c:otherwise>
+								</c:choose>
 								<td>${request.reqDate }</td>
 								<td>${request.ansDate }</td>
 								<td>${request.username }</td>

@@ -17,4 +17,7 @@
 	<select id="selectOne" resultType="adminRequestOneRespDto">
 		SELECT IDX, TITLE, CONTENT FROM REQUEST WHERE IDX=#{idx}
 	</select>
+	<update id="update">
+		UPDATE REQUEST SET STATUS = 1, ANS_DATE = SYSTIMESTAMP WHERE IDX=#{idx}
+	</update>
 </mapper>

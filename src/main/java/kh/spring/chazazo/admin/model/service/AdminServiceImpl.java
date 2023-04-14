@@ -1,6 +1,7 @@
 package kh.spring.chazazo.admin.model.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -76,6 +77,15 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public AdminRequestOneRespDto selectRequestOne(String idx) {
 		return dao.selectRequestOne(idx);
+	}
+
+	@Override
+	public int insertAnswer(Map<String, String> data, String idx) {
+		int result = dao.insertAnswer(data);
+		if(result == 1) {
+			dao.updateRequest(idx);
+		}
+		return result;
 	}
 
 }

@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -36,19 +37,16 @@
 <script src="<%=request.getContextPath()%>/resources/garoestate/assets/js/owl.carousel.min.js"></script>
 <script src="<%=request.getContextPath()%>/resources/garoestate/assets/js/price-range.js"></script>
 <script src="<%=request.getContextPath()%>/resources/garoestate/assets/js/main.js"></script>
-
+<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/main.css">
 </head>
 <body>
+	<html lang="en" xmlns:th="http://www.thymeleaf.org">
 	<jsp:include page="/WEB-INF/views/base/header.jsp"/>
 	
 	<script type="text/javascript">
 	function moveRent(){
 		location.href="../carlist";
 	}
-	function moveNoneMemberReservation(){
-		location.href="../noneMemberReservation";
-	}
-	
 	
 	</script>
 	
@@ -114,15 +112,20 @@
 								</div>
 							</div>
 						</div>  
+						<sec:authorize access="isAuthenticated()">
 						<div class="blog-asside-right" >
 							<div class="panel panel-default sidebar-menu wow fadeInRight animated animated animated" style="visibility: visible; animation-name: fadeInRight;">
 								<div class="panel-heading">
+								
 									<h3 class="panel-title">
 									<button id="updateinfoBtn" type="button" class="btn btn-outline-primary">회원정보 수정</button><br>
 									<button id="bookmark" type="button" class="btn btn-outline-primary">나의 관심 지점</button><br></h3>
+								
+											
 								</div>
 							</div>
 						</div>
+						</sec:authorize>
 						<div class="blog-asside-right" >
 							<div class="panel panel-default sidebar-menu wow fadeInRight animated animated animated" style="visibility: visible; animation-name: fadeInRight;">
 								<div class="panel-heading">
@@ -164,6 +167,10 @@
 								<button>예약 변경</button>
 								
 							</div>
+							
+							
+							
+							
 							<div class="col-lg-4" style="padding:0 0 0 30px;">
 						<div class="tab-pane active pt-30" id="order-complete"
 						 	th:if="${reservation != null}">
@@ -178,16 +185,19 @@
 				</div>
 			</div>
 	</section>
+	
+	
+	
     
 	<jsp:include page="/WEB-INF/views/base/footer.jsp"/>
 
 	<script>
 	$('#updateinfoBtn').on('click', function() {
-		location.href='<%=request.getContextPath()%>/member/profile';
+		location.href='<%=request.getContextPath()%>/member/profile/${memberinfo.idx}/update';
 		
 	});
 	$('#historyBtn').on('click', function() {
-		location.href='<%=request.getContextPath()%>/profile/reservation';
+		location.href='<%=request.getContextPath()%>/profile/reservation/${memberinfo.idx}';
 	});
 	
 	$('#moveNoneMemberReservation').on('click', function() {
@@ -216,7 +226,7 @@
 				dangerMode: true,
 			}).then((willDelete) => {
 				$.ajax({
-					url:"<%=request.getContextPath()%>/member/profile/reservation/${member.idx}",
+					url:"<%=request.getContextPath()%>/member/profile/reservation/${memberinfo.idx}",
 					success: function(){
 						if (willDelete) {
 							swal("예약 취소 완료","예약이 정상적으로 취소되었습니다.", {icon: "success"});

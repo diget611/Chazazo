@@ -61,7 +61,7 @@
 	href="<%=request.getContextPath()%>/resources/garoestate/assets/css/style.css">
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/resources/garoestate/assets/css/responsive.css">
-	
+	<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/main.css">
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/base/header.jsp"/>

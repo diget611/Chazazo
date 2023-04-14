@@ -57,132 +57,15 @@
 			<div class="container">
 				<div class="clearfix padding-top-40">
 						<div class="col-md-8 single-property-content">
+					
+					<!-- 좌측 컨텐츠 -->
 					<div id="content">
 					</div>
-							<div class="row">
-								<div class="light-slide-item">            
-									<div class="clearfix">
-										<div class="favorite-and-print">
-											<a class="add-to-fav" href="#login-modal" data-toggle="modal"><i class="fa fa-star-o"></i></a>
-										</div> 
-										${car.image }
-									</div>
-								</div>
-							</div>
-							<div class="single-property-wrapper">
-								<div class="single-property-header">                                          
-									<h1 class="property-title pull-left">${car.model } </h1>
-									<span class="property-price pull-right">${car.price }원</span>
-								</div>
-								<div class="property-meta entry-meta clearfix ">   
-									<div class="col-xs-3 col-sm-3 col-md-3 p-b-15">
-										<div class="property-icon">
-											<img src="<%=request.getContextPath()%>/resources/garoestate/assets/img/icon/clock.png">
-											<span class="property-info-value">연식 ${car.year }년</span>
-										</div>
-									</div>
-								</div>
-								<div class="property-meta entry-meta clearfix ">   
-									<div class="col-xs-3 col-sm-3 col-md-3 p-b-15">
-										<div class="property-icon">
-											<img src="<%=request.getContextPath()%>/resources/garoestate/assets/img/icon/fuel.png">
-											<span class="property-info-label">연료</span>
-											<span class="property-info-value">${option.fuelname }</span>
-										</div>
-									</div>
-								</div>
-									<div class="property-meta entry-meta clearfix ">   
-									<div class="col-xs-3 col-sm-3 col-md-3 p-b-15">
-										<div class="property-icon">
-											<img src="<%=request.getContextPath()%>/resources/garoestate/assets/img/icon/car.png">
-											<span class="property-info-value">${option.typename }</span>
-										</div>
-									</div>
-								</div>
-								<!-- .property-meta -->
-								<div class="section">
-									<h4 class="s-property-title">운전자 대여조건</h4>
-									<div class="s-property-content">
-									<p>
-											운전자 나이 만 21세 이상<br>
-											
-											면허취득일 1년 이상<br>
-											
-											차량 대여 시 실물면허증 소지 (2종 보통 면허 이상 필요)<br>
-											
-											업체별 대여규정 준수 (외국인 대여, 낚시용품/애견 동반, 주행거리제한 규정 등)
-									</div>
-								</div>
-								<!-- End description area  -->
-								<div class="section additional-details">
-									<h4 class="s-property-title">차량 정보</h4>
-									<ul class="additional-details-list clearfix">
-										<li>
-											<span class="col-xs-6 col-sm-4 col-md-4 add-d-title">Waterfront</span>
-											<span class="col-xs-6 col-sm-8 col-md-8 add-d-entry">${car.year }</span>
-										</li>
-										<li>
-											<span class="col-xs-6 col-sm-4 col-md-4 add-d-title">Built In</span>
-											<span class="col-xs-6 col-sm-8 col-md-8 add-d-entry">${car.typename }</span>
-										</li>
-										<li>
-											<span class="col-xs-6 col-sm-4 col-md-4 add-d-title">Parking</span>
-											<span class="col-xs-6 col-sm-8 col-md-8 add-d-entry">2 Or More Spaces,Covered Parking,Valet Parking</span>
-										</li>
-										<li>
-											<span class="col-xs-6 col-sm-4 col-md-4 add-d-title">Waterfront</span>
-											<span class="col-xs-6 col-sm-8 col-md-8 add-d-entry">Yes</span>
-										</li>
-										<li>
-											<span class="col-xs-6 col-sm-4 col-md-4 add-d-title">View</span>
-											<span class="col-xs-6 col-sm-8 col-md-8 add-d-entry">Intracoastal View,Direct ew</span>
-										</li>
-										<li>
-											<span class="col-xs-6 col-sm-4 col-md-4 add-d-title">Waterfront Description:</span>
-											<span class="col-xs-6 col-sm-8 col-md-8 add-d-entry">Intracoastal Front,Ocean Access</span>
-										</li> 
-									</ul>
-								</div>  
-								<!-- End additional-details area  -->
-								<div class="section property-features">   
-								<div>   
-									<h4 class="s-property-title">대여점 정보</h4>                            
-									<ul>
-										<li>
-											<h5><label>대여점:  ${car.name } </label></h5><br>
-										</li>		
-											<div class="blog-lst col-md-12 padding-top-40" style="float: left;">
-												<section id="id-100" class="post single">
-													<div id="map" style="width:100%; height:400px"></div>   
-												</section>
-											</div>
-										<li>
-											 <h5><label>전화번호: ${car.phoneNumber } </label></h5>
-										</li>
-										<li>
-											<h5><label>운영 시간: ${car.businessHours } </label></h5>
-										</li>
-										<li>
-											<h5><label>주소: ${car.address } </label></h5>
-										</li>
-									
-									</ul>
-								</div>
-									<!-- 리뷰 영역 시작 -->
-									<div class="section">
-										<h4 class="s-property-title">리뷰</h4>
-										<div class="s-property-content">
-											<p>Nulla quis dapibus nisl. Suspendisse ultricies Nulla quis dapibus nisl. Suspendisse ultricies commodo arcu nec pretium. Nullam sed arcu ultricies commodo arcu nec pretium. Nullam sed arcu ultricies Nulla quis dapibus nisl. Suspendisse ultricies commodo arcu nec pretium. Nullam sed arcu ultricies Nulla quis dapibus nisl. Suspendisse ultricies commodo arcu nec pretium. Nullam sed arcu ultricies                                </p>
-										</div>
-									</div>
-									<!-- 리뷰 영역 끝 -->
-									<!-- End features area  -->
-								</div>
-							</div>
+
 					</div>
 					
 					
-					<!-- 우측 카테고리 시작 -->
+						<!-- 우측 카테고리 시작 -->
 						<!-- 날짜 선택 시작 -->
 	
 						<div class="col-md-4 p0" style="padding-left:30px  float:rigth">
@@ -256,7 +139,8 @@
 </body>
 
 
-<script>
+<script type="text/javascript">
+
      //대여,반납일 날짜 초기설정
 	 document.getElementById('startDate').valueAsDate = new Date();
 	 document.getElementById('endDate').valueAsDate = new Date(); 
@@ -281,6 +165,7 @@
 	
 	//페이지 로드 시 대여,반납일을 오늘로 설정
 	window.onload = function reset() {
+		getcarInfo();
 		$('input[name=daycount]').attr('value','1');
 		$('#rentPrice').attr('value',price.toLocaleString());
 		$("#addIns").attr('value',(price * 0.1 ).toLocaleString());
@@ -340,9 +225,10 @@
 	$('#payment').on('click', content);
 	$('#payment').on('click', payajax);
 
+
 	
+	//결제하기 버튼 눌렀을때 바뀔 ajax 불러오기
 	function content() {
-		
 		  $.ajax({
 	          url:'<%=request.getContextPath()%>/payment',
 	          type: 'get',
@@ -362,6 +248,137 @@
 	       });
 	}
 	
+	
+	
+	
+	
+
+	function getcarInfo() {
+		var html = '';
+		
+				html += '		<div class="row">'
+				html += '		<div class="light-slide-item">     '       
+				html +=	'		<div class="clearfix">'
+				html +=	'			<div class="favorite-and-print">'
+				html +=	'				<a class="add-to-fav" href="#login-modal" data-toggle="modal"><i class="fa fa-star-o"></i></a>'
+				html +=	'			</div> '
+				html +=	'			${car.image }'
+				html +=	'		</div>'
+				html +=	'	</div>'
+				html += '	</div>'
+				html +=	'<div class="single-property-wrapper">'
+				html +=	'	<div class="single-property-header">      '                                    
+				html +=	'		<h1 class="property-title pull-left">${car.model } </h1>'
+				html +=	'		<span class="property-price pull-right">${car.price }원</span>'
+				html +=	'	</div>'
+				html +=	'	<div class="property-meta entry-meta clearfix ">   '
+				html +=	'		<div class="col-xs-3 col-sm-3 col-md-3 p-b-15">'
+				html +=	'			<div class="property-icon">'
+				html +=	'				<img src="<%=request.getContextPath()%>/resources/garoestate/assets/img/icon/clock.png">'
+				html +=	'				<span class="property-info-value">연식 ${car.year }년</span>'
+				html +=	'			</div>'
+				html +=	'			</div>'
+				html +=	'		</div>'
+				html +=	'	<div class="property-meta entry-meta clearfix ">   '
+				html +=	'		<div class="col-xs-3 col-sm-3 col-md-3 p-b-15">'
+				html +=	'			<div class="property-icon">'
+				html +=	'				<img src="<%=request.getContextPath()%>/resources/garoestate/assets/img/icon/fuel.png">'
+				html +=	'				<span class="property-info-label">연료</span>'
+				html +=	'				<span class="property-info-value">${option.fuelname }</span>'
+				html +=	'			</div>'
+				html +=	'		</div>'
+				html +=	'	</div>'
+				html +=	'		<div class="property-meta entry-meta clearfix ">   '
+				html +=	'		<div class="col-xs-3 col-sm-3 col-md-3 p-b-15">'
+				html +=	'			<div class="property-icon">		'
+				html +=	'				<img src="<%=request.getContextPath()%>/resources/garoestate/assets/img/icon/car.png">'
+				html +=	'				<span class="property-info-value">${option.typename }</span>'
+				html +=	'			</div>'
+				html +=	'		</div>'
+				html +=	'	</div>'
+				html +=	'	<!-- .property-meta -->'
+				html +=	'	<div class="section">'
+				html +=	'		<h4 class="s-property-title">운전자 대여조건</h4>'
+				html +=	'		<div class="s-property-content">'
+				html +=	'		<p>'
+				html +=	'				면허취득일 1년 이상<br>'
+					
+				html +=	'				차량 대여 시 실물면허증 소지 (2종 보통 면허 이상 필요)<br>'
+					
+				html +=	'				업체별 대여규정 준수 (외국인 대여, 낚시용품/애견 동반, 주행거리제한 규정 등)'
+				html +=	'		</div>'
+				html +=	'	</div>'
+				html +=	'	<!-- End description area  -->'
+				html +=	'	<div class="section additional-details">'
+				html +=	'		<h4 class="s-property-title">차량 정보</h4>'
+				html +=	'		<ul class="additional-details-list clearfix">'
+				html +=	'			<li>'
+				html +=	'				<span class="col-xs-6 col-sm-4 col-md-4 add-d-title">Waterfront</span>'
+				html +=	'				<span class="col-xs-6 col-sm-8 col-md-8 add-d-entry">${car.year }</span>'
+				html +=	'			</li>'
+				html +=	'			<li>'
+				html +=	'				<span class="col-xs-6 col-sm-4 col-md-4 add-d-title">Built In</span>'
+				html +=	'				<span class="col-xs-6 col-sm-8 col-md-8 add-d-entry">${car.typename }</span>'
+				html +=	'			</li>'
+				html +=	'			<li>					'
+				html +=	'				<span class="col-xs-6 col-sm-4 col-md-4 add-d-title">Parking</span>'
+				html +=	'			<span class="col-xs-6 col-sm-8 col-md-8 add-d-entry">2 Or More Spaces,Covered Parking,Valet Parking</span>'
+				html +=	'			</li>'
+				html +=	'			<li>'
+				html +=	'				<span class="col-xs-6 col-sm-4 col-md-4 add-d-title">Waterfront</span>'
+				html +=	'				<span class="col-xs-6 col-sm-8 col-md-8 add-d-entry">Yes</span>'
+				html +=	'			</li>'
+				html +=	'			<li>'
+				html +=	'				<span class="col-xs-6 col-sm-4 col-md-4 add-d-title">View</span>'
+				html +=	'				<span class="col-xs-6 col-sm-8 col-md-8 add-d-entry">Intracoastal View,Direct ew</span>'
+				html +=	'			</li>'
+				html +=	'			<li>'
+				html +=	'				<span class="col-xs-6 col-sm-4 col-md-4 add-d-title">Waterfront Description:</span>'
+				html +=	'				<span class="col-xs-6 col-sm-8 col-md-8 add-d-entry">Intracoastal Front,Ocean Access</span>'
+				html +=	'			</li> '
+				html +=	'		</ul>'
+				html +=	'	</div>  '
+				html +=	'	<!-- End additional-details area  -->'
+				html +=	'	<div class="section property-features">   '
+				html +=	'	<div>   '
+				html +=	'	<h4 class="s-property-title">대여점 정보</h4>      '                      
+				html +=	'	<ul>'
+				html +=	'		<li>'
+				html +=	'			<h5><label>대여점:  ${car.name } </label></h5><br>'
+				html +=	'			</li>		'
+				html +=	'				<div class="blog-lst col-md-12 padding-top-40" style="float: left;">'
+				html +=	'					<section id="id-100" class="post single">'
+				html +=	'						<div id="map" style="width:100%; height:400px"></div>   '
+				html +=	'					</section>'
+				html +=	'			</div>'
+				html +=	'		<li>'
+				html +=	'			 <h5><label>전화번호: ${car.phoneNumber } </label></h5>'
+				html +=	'		</li>'
+				html +=	'		<li>'
+				html +=	'			<h5><label>운영 시간: ${car.businessHours } </label></h5>'
+				html +=	'			</li>'
+				html +=	'			<li>'
+				html +=	'				<h5><label>주소: ${car.address } </label></h5>'
+				html +=	'			</li>'
+			
+				html +=	'		</ul>'
+				html +=	'	</div>'
+				html +=	'		<!-- 리뷰 영역 시작 -->'
+				html +=	'		<div class="section">'
+				html +=	'			<h4 class="s-property-title">리뷰</h4>'
+				html +=	'		<div class="s-property-content">'
+				html +=	'			<p>Nulla quis dapibus nisl. Suspendisse ultricies Nulla quis dapibus nisl. Suspendisse ultricies commodo arcu nec pretium. Nullam sed arcu ultricies commodo arcu nec pretium. Nullam sed arcu ultricies Nulla quis dapibus nisl. Suspendisse ultricies commodo arcu nec pretium. Nullam sed arcu ultricies Nulla quis dapibus nisl. Suspendisse ultricies commodo arcu nec pretium. Nullam sed arcu ultricies </p>'
+				html +=	'		</div>'
+				html +=	'	</div>'
+				html +=	'	<!-- 리뷰 영역 끝 -->'
+				html +=	'	<!-- End features area  -->'
+				html +=	'</div>'
+				html +=' </div>'
+					$('#content').html(html);
+	
+				}
+	
+	//결제하기 눌렀을때 출력될 회원용 화면
 	function getPayinfo(result) {
 		var html ='';
 		
@@ -392,7 +409,7 @@
 		$('#content').html(html);
 	}
 	
-	
+	//결제하기 눌렀을때 출력될 비회원용 화면
 	function nonmember() {
 		var html ='';
 		
@@ -423,7 +440,7 @@
 		$('#content').html(html);
 	}
 	
-		
+	//결제하기 눌렀을때 결제수단 출력	
 	function payajax() {
 		var html ='';
 		html += '				</section>';
@@ -437,95 +454,149 @@
 	}
    
 	
-			
+	//카드결제 
+	function pay() {
+	    var IMP = window.IMP;
+	    IMP.init("imp01440251");
+	    // 원포트 관리자 페이지 -> 내정보 -> 가맹점식별코드
+	    // ''안에 띄어쓰기 없이 가맹점 식별코드를 붙여넣어주세요. 안그러면 결제창이 안뜹니다.
+	    IMP.request_pay({
+	        pg: 'html5_inicis',  // 실제 계약 후에는 실제 상점아이디로 변경
+	        pay_method: 'card', // 'card'만 지원됩니다.
+	        merchant_uid: 'merchant_' + new Date().getTime(), // 상점에서 관리하는 주문 번호
+	        name: '차자조 테스트 결제', // 상품 이름
+	        amount: 100, // 결제창에 표시될 금액. 실제 승인이 이뤄지지는 않습니다.
+	        buyer_email: '${info.email }',
+	        buyer_name: '${info.name }',
+	        buyer_tel: '${info.phoneNumber}',
+	        buyer_addr: '서울특별시 강남구 삼성동',
+	        buyer_postcode: '123-456',
+	        m_redirect_url: '/'
+	    }, function (rsp) {
+	        if (rsp.success) {  // 결제가 성공했을 떄
+	            // 결제가 완료되었을 떄 결제 정보를 뜨게 만듬
+	            var msg = '결제가 완료되었습니다.';
+	            msg += '고유ID : ' + rsp.imp_uid;
+	            msg += '상점 거래ID : ' + rsp.merchant_uid;
+	            msg += '결제 금액 : ' + rsp.paid_amount;
+	            msg += '카드 승인번호 : ' + rsp.apply_num;
+	        } else {    // 결제가 실패했을 때
+	            // 결제에 실패했을떄 실패메세지와 실패사유를 출력
+	            var msg = '결제에 실패하였습니다.';
+	            msg +=  rsp.error_msg;
+	        }
+	        alert(msg);
+	    });
+	}
+	
+	//카카오페이 결제
+	function kakaopay() {
+	    var IMP = window.IMP;
+	    IMP.init("imp01440251");
+	    // 원포트 관리자 페이지 -> 내정보 -> 가맹점식별코드
+	    // ''안에 띄어쓰기 없이 가맹점 식별코드를 붙여넣어주세요. 안그러면 결제창이 안뜹니다.
+	    IMP.request_pay({
+	        pg: 'kakaopay',  // 실제 계약 후에는 실제 상점아이디로 변경
+	        pay_method: 'card', // 'card'만 지원됩니다.
+	        merchant_uid: 'merchant_' + new Date().getTime(), // 상점에서 관리하는 주문 번호
+	        name: '차자조 테스트 결제', // 상품 이름
+	        amount: 100, // 결제창에 표시될 금액. 실제 승인이 이뤄지지는 않습니다.
+	        buyer_email: '${info.email }',
+	        buyer_name: '${info.name }',
+	        buyer_tel: '${info.phoneNumber}',
+	        buyer_addr: '서울특별시 강남구 삼성동',
+	        buyer_postcode: '123-456',
+	        m_redirect_url: '/'
+	    }, function (rsp) {
+	        if (rsp.success) {  // 결제가 성공했을 떄
+	            // 결제가 완료되었을 떄 결제 정보를 뜨게 만듬
+	            var msg = '결제가 완료되었습니다.';
+	            msg += '고유ID : ' + rsp.imp_uid;
+	            msg += '상점 거래ID : ' + rsp.merchant_uid;
+	            msg += '결제 금액 : ' + rsp.paid_amount;
+	            msg += '카드 승인번호 : ' + rsp.apply_num;
+	        } else {    // 결제가 실패했을 때
+	            // 결제에 실패했을떄 실패메세지와 실패사유를 출력
+	            var msg = '결제에 실패하였습니다.';
+	            msg +=  rsp.error_msg;
+	        }
+	        alert(msg);
+	    });
+	}
 
-
- </script>
-
-     
-  
-
-
-  
-
-      
-      
-      
-
- <script type="text/javascript">
 		// <맵 생성>
-		var mapContainer = document.getElementById('map'), // 지도를 표시할 div  
+	var mapContainer = document.getElementById('map'), // 지도를 표시할 div  
     mapOption = { 
         center: new kakao.maps.LatLng(${car.latitude}, ${car.longitude}), // 지도의 중심좌표
         level: 5 // 지도의 확대 레벨
     };
 
-var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
- 
-var imageSrc = 'https://cdn-icons-png.flaticon.com/512/5695/5695641.png', // 마커이미지의 주소입니다    
-imageSize = new kakao.maps.Size(65, 72), // 마커이미지의 크기입니다
-imageOption = {offset: new kakao.maps.Point(27, 69)}; 
- 
-var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption),
-markerPosition = new kakao.maps.LatLng(37.49640072828634, 127.02725329040501)
- 
-// 마커를 표시할 위치와 내용을 가지고 있는 객체 배열입니다 
-var positions = [
-    {
-        content: '<div>차자조 강남점</div>', 
-        latlng: new kakao.maps.LatLng(37.49640072828634, 127.02725329040501)
-    },
-    {
-        content: '<div>차자조 용산점</div>', 
-        latlng: new kakao.maps.LatLng(37.529538323634696, 126.96746826066268)
-    },
-    {
-        content: '<div>차자조 수원점</div>', 
-        latlng: new kakao.maps.LatLng(37.264552267986566, 126.99859642936599)
-    },
-    {
-        content: '<div>차자조 일산점</div>',
-        latlng: new kakao.maps.LatLng(37.66835722957077, 126.75113514893188)
-    },
-    {
-        content: '<div>차자조 송도점</div>',
-        latlng: new kakao.maps.LatLng(37.395677541772194, 126.63883623016922)
-    }
-];
-
-for (var i = 0; i < positions.length; i ++) {
-    // 마커를 생성합니다
-    var marker = new kakao.maps.Marker({
-        map: map, // 마커를 표시할 지도
-        position: positions[i].latlng ,// 마커의 위치
-        image: markerImage
-    });
-
-    // 마커에 표시할 인포윈도우를 생성합니다 
-    var infowindow = new kakao.maps.InfoWindow({
-        content: positions[i].content // 인포윈도우에 표시할 내용
-    });
-
-    // 마커에 mouseover 이벤트와 mouseout 이벤트를 등록합니다
-    // 이벤트 리스너로는 클로저를 만들어 등록합니다 
-    // for문에서 클로저를 만들어 주지 않으면 마지막 마커에만 이벤트가 등록됩니다
-    kakao.maps.event.addListener(marker, 'mouseover', makeOverListener(map, marker, infowindow));
-    kakao.maps.event.addListener(marker, 'mouseout', makeOutListener(infowindow));
-}
-
-// 인포윈도우를 표시하는 클로저를 만드는 함수입니다 
-function makeOverListener(map, marker, infowindow) {
-    return function() {
-        infowindow.open(map, marker);
-    };
-}
-
-// 인포윈도우를 닫는 클로저를 만드는 함수입니다 
-function makeOutListener(infowindow) {
-    return function() {
-        infowindow.close();
-    };
-}
+		var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+		 
+		var imageSrc = 'https://cdn-icons-png.flaticon.com/512/5695/5695641.png', // 마커이미지의 주소입니다    
+		imageSize = new kakao.maps.Size(65, 72), // 마커이미지의 크기입니다
+		imageOption = {offset: new kakao.maps.Point(27, 69)}; 
+		 
+		var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption),
+		markerPosition = new kakao.maps.LatLng(37.49640072828634, 127.02725329040501)
+		 
+		// 마커를 표시할 위치와 내용을 가지고 있는 객체 배열입니다 
+		var positions = [
+		    {
+		        content: '<div>차자조 강남점</div>', 
+		        latlng: new kakao.maps.LatLng(37.49640072828634, 127.02725329040501)
+		    },
+		    {
+		        content: '<div>차자조 용산점</div>', 
+		        latlng: new kakao.maps.LatLng(37.529538323634696, 126.96746826066268)
+		    },
+		    {
+		        content: '<div>차자조 수원점</div>', 
+		        latlng: new kakao.maps.LatLng(37.264552267986566, 126.99859642936599)
+		    },
+		    {
+		        content: '<div>차자조 일산점</div>',
+		        latlng: new kakao.maps.LatLng(37.66835722957077, 126.75113514893188)
+		    },
+		    {
+		        content: '<div>차자조 송도점</div>',
+		        latlng: new kakao.maps.LatLng(37.395677541772194, 126.63883623016922)
+		    }
+		];
+		
+		for (var i = 0; i < positions.length; i ++) {
+		    // 마커를 생성합니다
+		    var marker = new kakao.maps.Marker({
+		        map: map, // 마커를 표시할 지도
+		        position: positions[i].latlng ,// 마커의 위치
+		        image: markerImage
+		    });
+		
+		    // 마커에 표시할 인포윈도우를 생성합니다 
+		    var infowindow = new kakao.maps.InfoWindow({
+		        content: positions[i].content // 인포윈도우에 표시할 내용
+		    });
+		
+		    // 마커에 mouseover 이벤트와 mouseout 이벤트를 등록합니다
+		    // 이벤트 리스너로는 클로저를 만들어 등록합니다 
+		    // for문에서 클로저를 만들어 주지 않으면 마지막 마커에만 이벤트가 등록됩니다
+		    kakao.maps.event.addListener(marker, 'mouseover', makeOverListener(map, marker, infowindow));
+		    kakao.maps.event.addListener(marker, 'mouseout', makeOutListener(infowindow));
+		}
+		
+		// 인포윈도우를 표시하는 클로저를 만드는 함수입니다 
+		function makeOverListener(map, marker, infowindow) {
+		    return function() {
+		        infowindow.open(map, marker);
+		    };
+		}
+		
+		// 인포윈도우를 닫는 클로저를 만드는 함수입니다 
+		function makeOutListener(infowindow) {
+		    return function() {
+		        infowindow.close();
+		    };
+		}
 
 
 	

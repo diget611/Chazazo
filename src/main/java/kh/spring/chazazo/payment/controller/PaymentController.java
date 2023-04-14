@@ -70,13 +70,14 @@ private VehicleService vService;
 
 		if(prin == null) {	
 			mv.setViewName("reservation/payment");
-			
+			System.out.println("@##@#@#@#@#@#");
+			return "1";
 		}else {
 			String username = prin.getName();
 			mv.addObject("info", mService.selectMypageOne(username));
 			result.put("info",mService.selectMypageOne(username));
+			return new Gson().toJson(result);
 		}
-		return new Gson().toJson(result);
 	}
 	
 	

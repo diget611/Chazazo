@@ -4,7 +4,9 @@ import java.security.Principal;
 import java.sql.Date;
 import java.text.DateFormat;
 import java.time.LocalDate;
+import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -12,8 +14,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.google.gson.Gson;
 
 import kh.spring.chazazo.member.model.service.MemberService;
 import kh.spring.chazazo.payment.model.dto.PaymentReqDto;
@@ -37,8 +42,9 @@ private VehicleService vService;
 	// get 조회 post 입력 putpatch update delet e
 
 	@GetMapping("/payment")
+	@ResponseBody
 	public String viewInsertPayment(ModelAndView mv, Principal prin,
-			PaymentReqDto paydto, String carIdx) {
+			PaymentReqDto paydto) {
 		// 결제창 조회
 		
 		/*
@@ -61,7 +67,18 @@ private VehicleService vService;
 		mv.addObject("expIns", paydto.getExpIns());
 	*/
 		
-		return "1";
+		Map<String, Object> result = new HashMap<String,Object>();		
+
+		if(prin == null) {	
+			mv.setViewName("reservation/payment");
+		}else {
+			String username = prin.getName();
+			System.out.println("##############"+username+"##############");
+			mv.addObject("info", mService.selectMypageOne(username));
+			result.put("info",mService.selectMypageOne(username));
+			System.out.println("&&&&&&&&&&&&"+result+"&&&&&&&&&&&&");
+		}
+		return new Gson().toJson(result);
 	}
 	
 	

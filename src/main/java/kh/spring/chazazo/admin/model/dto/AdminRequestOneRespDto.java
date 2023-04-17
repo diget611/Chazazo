@@ -16,6 +16,8 @@ public class AdminRequestOneRespDto {
 	
 	private int idx;
 	private String title;
+	private int status;
 	private String content;
+	private String answer;
 	
 }

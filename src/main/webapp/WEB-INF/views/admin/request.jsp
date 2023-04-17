@@ -49,12 +49,12 @@
 					<table class="table table-hover">
 						<thead>
 							<tr class="text-dark">
-								<th scope="col">#</th>
-								<th scope="col">제목</th>
-								<th scope="col">상태</th>
-								<th scope="col">문의 날짜</th>
-								<th scope="col">답변 날짜</th>
-								<th scope="col">아이디</th>
+								<th scope="col" style="width: 5%;">#</th>
+								<th scope="col" style="width: 30%;">제목</th>
+								<th scope="col" style="width: 15%;">상태</th>
+								<th scope="col" style="width: 20%;">문의 날짜</th>
+								<th scope="col" style="width: 20%;">답변 날짜</th>
+								<th scope="col" style="width: 10%;">아이디</th>
 							</tr>
 						</thead>
 						<tbody>

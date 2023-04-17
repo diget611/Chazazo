@@ -44,12 +44,29 @@
 					<label for="content" class="form-label">내용</label>
 					<input type="text" class="form-control" id="content" name="content" value="${request.content}" readonly>
 				</div>
-				<form>
-					<div class="mb-3 row">
-						<input type="text" class="form-control" id="answer" name="answer">
-						<button type="button" id="ansBtn">답변하기</button>
-					</div>
-				</form>
+				<c:choose>
+					<c:when test="${request.status eq 0 }">
+						<form>
+							<div class="mb-3 row">
+								<input type="text" class="form-control mb-3" id="answer" name="answer">
+								<div style="text-align: center;">
+									<button type="button" class="btn btn-primary" style="display: inline-block" id="ansBtn">답변하기</button>
+								</div>
+							</div>
+						</form>
+					</c:when>
+					<c:otherwise>
+						<form>
+							<div class="mb-3 row">
+								<input type="text" class="form-control mb-3" id="answer" name="answer" value="${request.answer }">
+								<div style="text-align: center;">
+									<button type="button" class="btn btn-primary" style="display: inline-block" id="ansBtn">답변하기</button>
+									<button type="button" class="btn btn-primary" style="display: inline-block" id="deleteBtn">삭제하기</button>
+								</div>
+							</div>
+						</form>
+					</c:otherwise>
+				</c:choose>
 			</div>
 		</div>
 	</div>

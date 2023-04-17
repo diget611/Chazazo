@@ -18,18 +18,29 @@
 		<div class="collapse navbar-collapse yamm" id="navigation">
 			<div class="button navbar-right">
 				<sec:authorize access="!isAuthenticated()">
-				<button id="loginBtn"
-					class="navbar-btn nav-button wow bounceInRight login animated" type="button" data-wow-delay="0.45s"
-					style="visibility: visible; animation-delay: 0.45s; animation-name: bounceInRight;">로그인</button>
+					<button id="loginBtn"
+						class="navbar-btn nav-button wow bounceInRight login animated" type="button" data-wow-delay="0.45s"
+						style="visibility: visible; animation-delay: 0.45s; animation-name: bounceInRight; width: 110px;">로그인</button>
+					<button id="registerBtn"
+						class="navbar-btn nav-button wow fadeInRight animated" type="button" data-wow-delay="0.48s"
+						style="visibility: visible; animation-delay: 0.48s; animation-name: fadeInRight; width: 110px;">회원가입</button>
 				</sec:authorize>
-				<sec:authorize access="isAuthenticated()">
+				<sec:authorize access="hasRole('ROLE_USER')">
+				<button id="profileBtn"
+					class="navbar-btn nav-button wow bounceInRight login animated" type="button" data-wow-delay="0.45s"
+					style="visibility: visible; animation-delay: 0.45s; animation-name: bounceInRight; width: 110px; letter-spacing: -1px;">마이페이지</button>
 				<button id="logoutBtn"
-					class="navbar-btn nav-button wow bounceInRight login animated" type="button" data-wow-delay="0.45s"
-					style="visibility: visible; animation-delay: 0.45s; animation-name: bounceInRight;">로그아웃</button>
+					class="navbar-btn nav-button wow fadeInRight animated" type="button" data-wow-delay="0.45s"
+					style="visibility: visible; animation-delay: 0.48s; animation-name: fadeInRight; width: 110px;">로그아웃</button>
 				</sec:authorize>
-				<button id="registerBtn"
-					class="navbar-btn nav-button wow fadeInRight animated" type="button" data-wow-delay="0.48s"
-					style="visibility: visible; animation-delay: 0.48s; animation-name: fadeInRight;">회원가입</button>
+				<sec:authorize access="hasRole('ROLE_ADMIN')">
+				<button id="adminBtn"
+					class="navbar-btn nav-button wow bounceInRight login animated" type="button" data-wow-delay="0.45s"
+					style="visibility: visible; animation-delay: 0.45s; animation-name: bounceInRight; width: 110px;">관리자</button>
+				<button id="logoutBtn"
+					class="navbar-btn nav-button wow fadeInRight animated" type="button" data-wow-delay="0.45s"
+					style="visibility: visible; animation-delay: 0.48s; animation-name: fadeInRight; width: 110px;">로그아웃</button>
+				</sec:authorize>
 			</div>
 			<ul class="main-nav nav navbar-nav navbar-right">
 				<li class="wow fadeInDown animated" data-wow-delay="0.2s"
@@ -54,13 +65,24 @@
 	<!-- /.container-fluid -->
 	<script>
 		$('#loginBtn').on('click', function() {
-			location.href='<%=request.getContextPath()%>/member/login';
+			location.href='${pageContext.request.contextPath}/member/login';
 		});
+		
 		$('#logoutBtn').on('click', function() {
-			location.href='<%=request.getContextPath()%>/logout';
+			location.href='${pageContext.request.contextPath}/logout';
 		});
+		
 		$('#registerBtn').on('click', function() {
-			location.href='<%=request.getContextPath()%>/member/register';
+			location.href='${pageContext.request.contextPath}/member/register';
 		});
+		
+		$('#adminBtn').on('click', function() {
+			location.href='${pageContext.request.contextPath}/admin/main';
+		});
+		
+		$('#profileBtn').on('click', function() {
+			location.href='${pageContext.request.contextPath}/경로지정해야함';
+		});
+		
 	</script>
 </nav>

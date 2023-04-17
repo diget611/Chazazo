@@ -34,6 +34,8 @@
 <script src="<%=request.getContextPath()%>/resources/garoestate/assets/js/owl.carousel.min.js"></script>
 <script src="<%=request.getContextPath()%>/resources/garoestate/assets/js/price-range.js"></script>
 <script src="<%=request.getContextPath()%>/resources/garoestate/assets/js/main.js"></script>
+<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/main.css">
+
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/base/header.jsp"/>

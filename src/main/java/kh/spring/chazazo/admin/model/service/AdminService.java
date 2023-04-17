@@ -25,4 +25,7 @@ public interface AdminService {
 	public List<AdminRequestRespDto> selectRequestList(Map<String, Integer> map);
 	public AdminRequestOneRespDto selectRequestOne(String idx);
 	public int insertAnswer(Map<String, String> data, String idx);
+	public int updateAnswer(Map<String, String> data, String idx);
+	public int deleteRequest(String idx);
+	
 }

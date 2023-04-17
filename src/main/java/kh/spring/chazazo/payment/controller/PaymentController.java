@@ -4,7 +4,9 @@ import java.security.Principal;
 import java.sql.Date;
 import java.text.DateFormat;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
@@ -22,6 +24,7 @@ import com.google.gson.Gson;
 
 import kh.spring.chazazo.member.model.service.MemberService;
 import kh.spring.chazazo.payment.model.dto.PaymentReqDto;
+import kh.spring.chazazo.reservation.model.service.ReservationService;
 import kh.spring.chazazo.vehicle.model.dto.VehicleInfoDto;
 import kh.spring.chazazo.vehicle.model.service.VehicleService;
 
@@ -32,6 +35,9 @@ public class PaymentController {
 private MemberService mService;
 @Autowired
 private VehicleService vService;
+@Autowired
+private ReservationService rvService;
+
 //	@GetMapping 
 //	public ModelAndView viewPaymentOne(ModelAndView mv) {
 //		// 결제 상세 조회 -> 결제창이랑 비슷한 모양
@@ -90,14 +96,26 @@ private VehicleService vService;
 //	}
 	
 	@PostMapping("/payment/paid")
-	public String insertPayment(ModelAndView mv, String name, String birth, String phone, String mail) {
+	public String insertPayInfo(ModelAndView mv, @RequestParam Map<String, String> data) {
 		// 결제대기 / 완료 -> 예약 테이블 인서트 동시에 진행
+		/*
 		System.out.println("##########컨트롤러");
 		System.out.println(name);
 		System.out.println(birth);
 		System.out.println(phone);
 		System.out.println(mail);
 		System.out.println("##########컨트롤러");
+		
+		Map<String,String > payMap = new HashMap<String,String>();
+		payMap.put("name", name);
+		payMap.put("birth", birth);
+		payMap.put("phone", phone);
+		payMap.put("mail", mail);
+		*/
+		
+		int result = rvService.insertPayInfo(data);
+		System.out.println(data);
+
 		return "2";
 	}
 

@@ -27,6 +27,10 @@
 		DELETE FROM RESERVATION WHERE IDX = #{IDX}
 	</delete>
 	
+	<insert id="insertPayInfo" parameterType="java.util.List" >
+		insert into test values (#{name}, #{phone}, #{birth}, #{mail})
+	</insert>
+	
 	
 	
 	

@@ -35,6 +35,8 @@
 <script src="<%=request.getContextPath()%>/resources/garoestate/assets/js/owl.carousel.min.js"></script>
 <script src="<%=request.getContextPath()%>/resources/garoestate/assets/js/price-range.js"></script>
 <script src="<%=request.getContextPath()%>/resources/garoestate/assets/js/main.js"></script>
+<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/main.css">
+
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/base/header.jsp"/>
@@ -64,9 +66,9 @@
 						</section>
 						<section>
 							<form id="reqForm">
-								<input type="text" name="title">
-								<input type="text" name="content">
-								<input type="hidden" name="username" value="${username }">
+								<input type="text" name="title" id="title">
+								<input type="text" name="content" id="content">
+								<input type="hidden" name="username" id="username" value="${username }">
 								<button type="button" class="btn btn-outline-primary" id="insertBtn">작성하기</button>
 							</form>
 						</section>
@@ -93,10 +95,15 @@
 			var title = $('[name=title]').val();
 			var content = $('[name=content]').val();
 			var username = '${username}';
+			
+			var test = {"title": title, "content": content, "username": username};
+			
+			console.log(test);
 			$.ajax({
 				url: '${pageContext.request.contextPath}/request/insert',
 				type: 'post',
-				data: {title: title, content: content, username: username},
+				contentType: 'application/json; charset=utf-8',
+				data: JSON.stringify(test),
 				success: function(result) {
 					if(result == 1) {
 						alert('성공');

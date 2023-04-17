@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kh.spring.chazazo.request.model.dao.RequestDao;
+import kh.spring.chazazo.request.model.dto.RequestReqDto;
 import kh.spring.chazazo.request.model.dto.RequestRespDto;
 
 @Service
@@ -21,7 +22,7 @@ public class RequestServiceImpl implements RequestService {
 	}
 
 	@Override
-	public int insert(Map<String, String> data) {
+	public int insert(RequestReqDto data) {
 		return dao.insert(data);
 	} 
 

@@ -7,6 +7,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import kh.spring.chazazo.request.model.dto.RequestReqDto;
 import kh.spring.chazazo.request.model.dto.RequestRespDto;
 
 @Repository
@@ -19,7 +20,7 @@ public class RequestDao {
 		return sqlSession.selectList("request.selectListByMember", username);
 	}
 	
-	public int insert(Map<String, String> data) {
+	public int insert(RequestReqDto data) {
 		return sqlSession.insert("request.insert", data);
 	}
 }

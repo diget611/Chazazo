@@ -28,4 +28,7 @@
 	<update id="update">
 		UPDATE REQUEST SET STATUS = 1, ANS_DATE = SYSTIMESTAMP WHERE IDX=#{idx}
 	</update>
+	<delete id="delete">
+		DELETE FROM REQUEST WHERE IDX = #{idx}
+	</delete>
 </mapper>

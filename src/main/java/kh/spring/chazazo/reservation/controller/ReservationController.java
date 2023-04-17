@@ -1,7 +1,9 @@
 package kh.spring.chazazo.reservation.controller;
 
 import java.security.Principal;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -14,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.google.gson.Gson;
 
 import kh.spring.chazazo.member.model.service.MemberService;
 import kh.spring.chazazo.reservation.model.dto.ReservationReqDto;
@@ -41,20 +45,38 @@ public class ReservationController {
 	}
 	
 	@GetMapping("/profile/reservation")
-	public ModelAndView viewReservationListUser(ModelAndView mv, Principal prin) {
+	public String viewReservationListUser(ModelAndView mv, Principal prin, ReservationReqDto resdto, 
+												String username) {
 		// 유저 예약 리스트 조회
 		
-		
+		Map<String, Object> result = new HashMap<String,Object>();
 		if(prin == null) {
-			mv.setViewName("member/history");
+			mv.setViewName("member/mypage");
+			return "1";
 		}else {
 			String loginId = prin.getName();
 			mv.addObject("reservation", rService.selectList(loginId));
 			mv.addObject("memberinfo", mService.selectMypageOne(loginId));
-			mv.setViewName("member/history");
+			result.put("info",mService.selectMypageOne(username));
+			return new Gson().toJson(result);
 		}
-		return mv;
 	}
+	
+	
+//	Map<String, Object> result = new HashMap<String,Object>();	
+//	
+//	if(prin == null) {	
+//		mv.setViewName("member/history");
+//		return "1";
+//	}else {
+//		String username = prin.getName();
+//		mv.addObject("info", mService.selectMypageOne(username));
+//		result.put("info",mService.selectMypageOne(username));
+//		mv.addObject("reservation", rService.ReservationOne(index));
+//		return new Gson().toJson(result);
+//	}
+//	
+	
 	
 	
 //	@GetMapping("/nonereservation")
@@ -70,6 +92,7 @@ public class ReservationController {
 	public ModelAndView viewReservationOne(ModelAndView mv
 										   , @PathVariable String idx, Principal prin) {
 		// 예약 정보 상세 조회
+		
 		int index = Integer.parseInt(idx);
 		if(prin == null) {
 			mv.setViewName("member/history");
@@ -83,8 +106,9 @@ public class ReservationController {
 		
 		
 		
-		
-		return mv;
+	return mv;	
+
+	
 	}
 
 	@PatchMapping("/profile/reservation/{idx}")

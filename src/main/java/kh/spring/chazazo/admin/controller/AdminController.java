@@ -6,6 +6,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -165,12 +166,31 @@ public class AdminController {
 	
 	@PostMapping("/request")
 	public int insertRequest(@RequestParam String idx, @RequestParam String answer) {
+		System.out.println(idx + " | " + answer);
 		Map<String, String> data = new HashMap<String, String>();
 		data.put("idx", idx);
 		data.put("answer", answer);
 		
 		int result = aService.insertAnswer(data, idx);
 		
+		return result;
+	}
+	
+	@PatchMapping("/request")
+	public int updateRequest(@RequestParam String idx, @RequestParam String answer) {
+		System.out.println(idx + "|" + answer);
+		Map<String, String> data = new HashMap<String, String>();
+		data.put("idx", idx);
+		data.put("answer", answer);
+		
+		int result = aService.updateAnswer(data, idx);
+		
+		return result;
+	}
+	
+	@DeleteMapping("/request")
+	public int deleteRequest(@RequestParam String idx) {
+		int result = aService.deleteRequest(idx);
 		return result;
 	}
 	

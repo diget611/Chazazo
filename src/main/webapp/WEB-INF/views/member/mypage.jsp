@@ -113,6 +113,7 @@
 													<h3 class="dealer-name">
 														<span>		
 															<input type="text" class="form-control" name="name" value="${memberinfo.name }" readonly >
+															<input type="text" class="form-control" name="usernname" id="username" value="${memberinfo.username }" hidden="hidden" >
 														</span>
 													</h3>
 												</div>
@@ -138,7 +139,7 @@
 											</div>
 										</div>	
 								</div>
-							</div>
+							
 							</sec:authorize>
 						
 						<div class="blog-asside-right" >
@@ -167,65 +168,31 @@
 						</sec:authorize>
 						<div class="blog-asside-right" >
 							<div class="panel panel-default sidebar-menu wow fadeInRight animated animated animated" style="visibility: visible; animation-name: fadeInRight;">
-								<div class="panel-heading">
 									<h3 class="panel-title">
 									<button type="button" class="btn btn-outline-primary">1:1 문의</button><br>
 									<sec:authorize access="isAuthenticated()">
 										<button type="button" class="btn btn-outline-primary">쿠폰 관리</button><br>
-										<button type="button" class="btn btn-outline-primary">회원탈퇴</button></h3>
+										<button type="button" class="btn btn-outline-primary" name="deleteBtn">회원탈퇴</button></h3>
 									</sec:authorize>
 								
 								</div>
 							</div>
 						</div>
 					</div>   
-				</div>
+				
 				<div class="blog-lst col-md-8 p0 " style="float: right;">
 					<section id="id-100" class="post single">
-						<div id="post-content" style="visibility: visible; animation-name: fadeInLeft;">
-							<div class="container-loading-dot" id="mypage_loading_rent_list" style="display:none;"></div>
-								<div id="mypage_none_rent_history" style="display:block; margin-top:100px;">
-									<div class="text-center">
-									<c:choose>
-										<c:when test="${empty reservation }">
-											<h4>진행중인 렌트내역이 없습니다</h4>
-											<button class="js-mypage-btn-go-car-list btn btn-outline-primary btn-block max-w-lg-40rem mx-auto py-1" onclick="moveRent();">렌트하러 가기</button>
-										</c:when>
-										<c:otherwise>
-											<div>
-												<h3>${memberinfo.name } 님의 예약내역</h3>
-											</div>
-											<c:forEach items="${reservation }" var="list">
-											<table>
-												<tr>
-													<th scope="row">예약자</th>
-													<td>${list.idx }</td>
-													<th scope="row">예약시작날짜</th>
-													<td>${list.reservStart }</td>
-													<th scope="row">예약날자</th>
-													<td>${list.reservEnd }</td>
-													<th scope="row">보험종류</th>
-													<td>${list.insuranceIdx }</td>
-													<th scope="row">차종류</th>
-													<td>${list.vehicleIdx }</td>
-													<th scope="row">대여지점</th>
-													<td>${list.rentLocation }</td>
-													<th scope="row">반납지점</th>
-													<td>${list.returnLocation }</td>
-												</tr>
-											</table>
-											</c:forEach>
-										</c:otherwise>
-									</c:choose>	
-										
-										<sec:authorize access="!isAuthenticated()">
-											<button class="js-mypage-btn-none-member-search btn btn-link btn-block color-grey-3 font-weight-normal max-w-lg-40rem mx-auto py-1 tmobi-dc-none" id="moveNoneMemberReservation">비회원 예약조회</button>
-										</sec:authorize>
-									</div>
-								</div>
+						
+							
+								<div id="content">
+								 
+								</div> 	
+							
 					</section>
 			                 
+				</div>
 			</div>
+		
 		</div>
 	</section>
     
@@ -236,9 +203,86 @@
 			location.href='<%=request.getContextPath()%>/member/profile/${memberinfo.idx}/update';
 			
 		});
-		$('#historyBtn').on('click', function() {
-			location.href='<%=request.getContextPath()%>/profile/reservation/${memberinfo.idx}';
-		});
+		
+		
+		$('#historyBtn').on('click',content);
+				
+				
+		function content(){
+			$.ajax({
+				url:'<%=request.getContextPath()%>/profile/reservation',
+				type: 'get',
+				dataType:'json',
+				success: function(result){
+					memberResv(result);
+				},
+				error: function(){
+					alert("fail!!!!!!!");
+				}
+				
+			});
+		}
+		
+		function memberResv(result){
+			var html = '';
+			if(result == 1){
+				
+				html += '			<h4>비회원 예약조회</h4>'
+				html += '			<form>'
+				html += '			<div class="form-group">'
+				html += '				<label>운전자 이름</label> <input type="text" class="form-control" name="name" placeholder="성명을 입력해 주세요">'
+				html += '				<div class="invalid-feedback" id="vsnmr_input_driver_name_invalid_msg" style="display: block;">이름을 입력해 주세요</div>'
+				html += '				</div>'
+				html += '				<div class="form-group">'
+				html += '					<label>예약번호</label> <input type="text" class="form-control"'
+				html += '						name="reservationNumber">'
+				html += '					<div class="invalid-feedback"'
+				html += '						id="vsnmr_input_reserv_num_invalid_msg">예약번호를 입력해 주세요</div>'
+				html += '					<small class="color-blue">예약번호는 문자와 메일로 보내드린 예약내용에 재되어있습니다.</small>'
+				html += '				</div>'
+				html += '				<div class="form-group">'
+				html += '					<label>전화번호</label> <input type="text" id="phone" name="phone" required>'
+				html += '				</div>'
+				html += '				<div class="text-center">'
+				html += '					<button type="submit" class="btn btn-default">예약 조회하기</button>'
+				html += '				</div>'
+				html += '			</form>'
+				
+			}else{
+			
+			html += '				<div class="text-center">'
+		
+			html += '					<div>'
+			html += '						<h3>${memberinfo.name } 님의 예약내역</h3>'
+			html += '					</div>'
+			html += '					<c:forEach items="${reservation }" var="list">'
+			html += '						<table>'
+			html += '								<tr>'
+			html += '									<th scope="row">예약자</th>'
+			html += '									<td>${list.idx }</td>'
+			html += '									<th scope="row">예약시작날짜</th>'
+			html += '									<td>${list.reservStart }</td>'
+			html += '									<th scope="row">예약날자</th>'
+			html += '									<td>${list.reservEnd }</td>'
+			html += '							 		<th scope="row">보험종류</th>'
+			html += '							 		<td>${list.insuranceIdx }</td>'
+			html += '									<th scope="row">차종류</th>'
+			html += '									<td>${list.vehicleIdx }</td>'
+			html += '									<th scope="row">대여지점</th>'
+			html += '									<td>${list.rentLocation }</td>'
+			html += '									<th scope="row">반납지점</th>'
+			html += '									<td>${list.returnLocation }</td>'
+			html += '									</tr>'
+			html += '						</table>'
+			html += '					</c:forEach>'
+			html += '				</div>'
+			}
+				$('#content').html(html);
+		}
+
+
+		
+		
 		
 		$('#moveNoneMemberReservation').on('click', function() {
 			location.href='<%=request.getContextPath()%>/profile/reservation';
@@ -247,6 +291,46 @@
 		$('#bookmark').on('click', function() {
 			location.href='<%=request.getContextPath()%>/profile/favorites';
 		});
+		
+		$('[name=deleteBtn]').on('click', deleteMember);
+		
+		
+		function deleteMember() {
+			let username = $('#username').val();
+			console.log(username);
+			swal({
+				title:"주의",
+				text: "정말로 탈퇴 하시겠습니까?",
+				icon:"warning",
+				
+				showCancelButton: true, // cancel버튼 보이기. 기본은 원래 없음
+				confirmButtonColor: '#3085d6', // confrim 버튼 색깔 지정
+				cancelButtonColor: '#d33', // cancel 버튼 색깔 지정
+				confirmButtonText: '승인', // confirm 버튼 텍스트 지정
+				cancelButtonText: '취소', // cancel 버튼 텍스트 지정
+				   
+				
+			}).then(result => {
+				   // 만약 Promise리턴을 받으면,
+				   if (result.isConfirmed) { // 만약 모달창에서 confirm 버튼을 눌렀다면
+					$.ajax({
+						url: "<%=request.getContextPath()%>/member/profile/${memberinfo.username }",
+						data: {username: username},
+						type: 'delete',
+						success: function(result) {
+							if(result == 1) {
+								alert('삭제 성공');
+							} else {
+								alert('오류 발생');
+							}
+						},
+						error: function() {
+							console.log('통신 실패');
+						}
+					}); 
+				}
+			});
+		};
 	
 	</script>
 </body>

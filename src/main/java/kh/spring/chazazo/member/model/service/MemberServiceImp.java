@@ -106,15 +106,18 @@ public class MemberServiceImp implements MemberService {
 
 	@Override
 	public int deleteMember(String username) {
-		// TODO Auto-generated method stub
-		return 0;
+		int result = 0;
+		if(dao.deleteMember(username) == 1) {
+			result = dao.deleteMemberInfo(username);
+		}
+		return result;
 	}
 
-	@Override
-	public int deleteMemberInfo(String username) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+//	@Override
+//	public int deleteMemberInfo(String username) {
+//		// TODO Auto-generated method stub
+//		return 0;
+//	}
 
 	
 	//탈퇴

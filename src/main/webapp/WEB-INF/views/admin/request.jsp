@@ -33,7 +33,6 @@
     		cursor: pointer;
     	}
     </style>
-    1 -> 29 20 2-> 19 10
 </head>
 <body>
 	<div class="container-xxl position-relative bg-white d-flex p-0">

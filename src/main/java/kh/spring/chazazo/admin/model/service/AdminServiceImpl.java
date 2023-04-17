@@ -93,4 +93,23 @@ public class AdminServiceImpl implements AdminService {
 		return result;
 	}
 
+	@Override
+	public int updateAnswer(Map<String, String> data, String idx) {
+		int result = dao.updateAnswer(data);
+		if(result == 1) {
+			dao.updateRequest(idx);
+		}
+		return result;
+	}
+
+	@Override
+	public int deleteRequest(String idx) {
+		int result = dao.deleteAnswer(idx);
+		System.out.println(result);
+		if(result == 1) {
+			dao.deleteRequest(idx);
+		}
+		return result;
+	}
+
 }

@@ -35,7 +35,7 @@
 		<div class="col-sm-12 col-xl-6">
 			<div class="bg-light rounded h-100 p-4">
 				<h6 class="mb-4">1:1 문의 상세 정보</h6>
-				<input type="hidden" name="idx" value="${request.idx }">
+				<input type="hidden" name="idx" id="idx" value="${request.idx }">
 				<div class="mb-3 row">
 					<label for="title" class="form-label">제목</label>
 					<input type="text" class="form-control" id="title" name="title" value="${request.title}" readonly>
@@ -51,6 +51,7 @@
 								<input type="text" class="form-control mb-3" id="answer" name="answer">
 								<div style="text-align: center;">
 									<button type="button" class="btn btn-primary" style="display: inline-block" id="ansBtn">답변하기</button>
+									<button type="button" class="btn btn-primary" style="display: inline-block" id="deleteBtn">삭제하기</button>
 								</div>
 							</div>
 						</form>
@@ -60,7 +61,7 @@
 							<div class="mb-3 row">
 								<input type="text" class="form-control mb-3" id="answer" name="answer" value="${request.answer }">
 								<div style="text-align: center;">
-									<button type="button" class="btn btn-primary" style="display: inline-block" id="ansBtn">수정하기</button>
+									<button type="button" class="btn btn-primary" style="display: inline-block" id="updateBtn">수정하기</button>
 									<button type="button" class="btn btn-primary" style="display: inline-block" id="deleteBtn">삭제하기</button>
 								</div>
 							</div>
@@ -83,6 +84,51 @@
 			url: '${pageContext.request.contextPath}/admin/request',
 			type: 'post',
 			data: {idx: idx, answer: answer},
+			success: function(result) {
+				if(result == 1) {
+					alert('성공');
+					window.close();
+				} else {
+					alert('실패');
+				}
+			},
+			error: function() {
+				alert('에러')
+			}
+		});
+	}
+	
+	$('#updateBtn').on('click', updateAns);
+	
+	function updateAns() {
+		let idxup = $('[name=idx]').val();
+		let answerup = $('[name=answer]').val();
+		$.ajax({
+			url: '${pageContext.request.contextPath}/admin/request',
+			type: 'patch',
+			data: {idx: idxup, answer: answerup},
+			success: function(result) {
+				if(result == 1) {
+					alert('성공');
+					window.close();
+				} else {
+					alert('실패');
+				}
+			},
+			error: function() {
+				alert('에러')
+			}
+		});
+	}
+	
+	$('#deleteBtn').on('click', deleteAns);
+	
+	function deleteAns() {
+		let idxdel = $('[name=idx]').val();
+		$.ajax({
+			url: '${pageContext.request.contextPath}/admin/request',
+			type: 'delete',
+			data: {idx: idxdel},
 			success: function(result) {
 				if(result == 1) {
 					alert('성공');

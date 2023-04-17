@@ -79,5 +79,17 @@ public class AdminDao {
 	public int updateRequest(String idx) {
 		return sqlSession.update("request.update", idx);
 	}
+	
+	public int updateAnswer(Map<String, String> data) {
+		return sqlSession.update("answer.update", data);
+	}
+	
+	public int deleteRequest(String idx) {
+		return sqlSession.delete("request.delete", idx);
+	}
+	
+	public int deleteAnswer(String idx) {
+		return sqlSession.delete("answer.delete", idx);
+	}
  
 }

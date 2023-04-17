@@ -1,6 +1,7 @@
 package kh.spring.chazazo.reservation.model.service;
 
 import java.util.List;
+import java.util.Map;
 
 import kh.spring.chazazo.reservation.model.dto.ReservationReqDto;
 import kh.spring.chazazo.reservation.model.dto.ReservationRespDto;
@@ -18,5 +19,8 @@ public interface ReservationService {
 	public List<ReservationRespDto> ReservationOne(int idx);
 	public List<ReservationRespDto> selectList(String username);
 	public int deleteResv(int idx);
+	public int insertPayInfo(Map<String, String> data);
+
+
 
 }

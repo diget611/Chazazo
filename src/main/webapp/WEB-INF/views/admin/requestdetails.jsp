@@ -60,7 +60,7 @@
 							<div class="mb-3 row">
 								<input type="text" class="form-control mb-3" id="answer" name="answer" value="${request.answer }">
 								<div style="text-align: center;">
-									<button type="button" class="btn btn-primary" style="display: inline-block" id="ansBtn">답변하기</button>
+									<button type="button" class="btn btn-primary" style="display: inline-block" id="ansBtn">수정하기</button>
 									<button type="button" class="btn btn-primary" style="display: inline-block" id="deleteBtn">삭제하기</button>
 								</div>
 							</div>

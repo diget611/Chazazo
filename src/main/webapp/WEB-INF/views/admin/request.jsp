@@ -33,7 +33,7 @@
     		cursor: pointer;
     	}
     </style>
-    
+    1 -> 29 20 2-> 19 10
 </head>
 <body>
 	<div class="container-xxl position-relative bg-white d-flex p-0">
@@ -58,9 +58,9 @@
 							</tr>
 						</thead>
 						<tbody>
-							<c:forEach items="${data.requestList }" var="request">	
+							<c:forEach items="${data.requestList }" var="request" varStatus="status">	
 							<tr onclick='window.open("<%=request.getContextPath()%>/admin/request/${request.idx}", "문의 상세 정보", "width=500, height=600")'>
-								<th scope="row">${request.idx }</th>
+								<th scope="row">${data.count - (data.current - 1) * 10 - status.index}</th>
 								<td>${request.title }</td>
 								<c:choose>
 									<c:when test="${request.status eq 0 }">
@@ -77,7 +77,7 @@
 							</c:forEach>
 						</tbody>
 					</table>
-					<div class="btn-group me-2 " role="group">
+					<div class="btn-group me-2 mt-3" role="group">
 						<c:choose>
 							<c:when test="${data.current eq 1 }">
 								<button type="button" class="btn btn-secondary disabled" id="preBtn">&lt&lt</button>
@@ -88,7 +88,7 @@
 						</c:choose>
 						<c:forEach begin="${data.start }" end="${data.end}" step="1" var="page">
 							<c:choose>
-								<c:when test="${param.page eq page }">
+								<c:when test="${data.current eq page }">
 									<button type="button" name="pageBtn" class="btn btn-secondary active" value="${page }">${page }</button>
 								</c:when>
 								<c:otherwise>

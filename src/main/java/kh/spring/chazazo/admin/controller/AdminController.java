@@ -148,6 +148,7 @@ public class AdminController {
 		data.put("start", start);
 		data.put("end", end);
 		data.put("paging", paging);
+		data.put("count", count);
 		data.put("current", currentPage);
 		
 		mv.addObject("data", data);

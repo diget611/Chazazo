@@ -10,12 +10,20 @@
 	</insert>
 	
 	<!-- 관리자용 -->
-	<select id="selectList" resultType="adminRequestRespDto">
-		SELECT REQUEST.IDX, REQUEST.TITLE, REQUEST.STATUS, REQUEST.REQ_DATE, REQUEST.ANS_DATE, USERNAME
-		  FROM REQUEST INNER JOIN MEMBER ON MEMBER_IDX = MEMBER.IDX ORDER BY IDX DESC
+	<select id="selectList" parameterType="map" resultType="adminRequestRespDto">
+		SELECT *
+		  FROM (SELECT ROWNUM AS RNUM, IDX, TITLE, STATUS, REQ_DATE, ANS_DATE, USERNAME 
+		          FROM (SELECT REQUEST.IDX AS IDX, REQUEST.TITLE AS TITLE
+		                     , REQUEST.STATUS AS STATUS , TO_CHAR(REQUEST.REQ_DATE, 'YYYY-MM-DD HH24:MI:SS') AS REQ_DATE
+		                     , TO_CHAR(REQUEST.ANS_DATE, 'YYYY-MM-DD HH24:MI:SS') AS ANS_DATE, USERNAME
+		                  FROM REQUEST INNER JOIN MEMBER ON REQUEST.MEMBER_IDX = MEMBER.IDX ORDER BY REQUEST.REQ_DATE DESC))
+		 WHERE RNUM BETWEEN #{start} AND #{end}
 	</select>
 	<select id="selectOne" resultType="adminRequestOneRespDto">
 		SELECT IDX, TITLE, CONTENT FROM REQUEST WHERE IDX=#{idx}
+	</select>
+	<select id="count" resultType="_int">
+		SELECT COUNT(*) FROM REQUEST
 	</select>
 	<update id="update">
 		UPDATE REQUEST SET STATUS = 1, ANS_DATE = SYSTIMESTAMP WHERE IDX=#{idx}

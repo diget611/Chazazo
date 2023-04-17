@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -42,11 +42,13 @@
 			<jsp:include page="/WEB-INF/views/admin/base/navbar.jsp"/>	
 			<!-- Table Start -->
 			<div class="container-fluid pt-4 px-4">
-				<div class="bg-light rounded p-4">
-					<h6 class="mb-4">1:1 문의 관리</h6>
+				<div class="bg-light rounded p-4 text-center">
+					<div>
+					<h4 class="mb-4 text-start">1:1 문의 관리</h4>
+					</div>
 					<table class="table table-hover">
 						<thead>
-							<tr>
+							<tr class="text-dark">
 								<th scope="col">#</th>
 								<th scope="col">제목</th>
 								<th scope="col">상태</th>
@@ -56,7 +58,7 @@
 							</tr>
 						</thead>
 						<tbody>
-							<c:forEach items="${requestList }" var="request">	
+							<c:forEach items="${data.requestList }" var="request">	
 							<tr onclick='window.open("<%=request.getContextPath()%>/admin/request/${request.idx}", "문의 상세 정보", "width=500, height=600")'>
 								<th scope="row">${request.idx }</th>
 								<td>${request.title }</td>
@@ -75,6 +77,34 @@
 							</c:forEach>
 						</tbody>
 					</table>
+					<div class="btn-group me-2 " role="group">
+						<c:choose>
+							<c:when test="${data.current eq 1 }">
+								<button type="button" class="btn btn-secondary disabled" id="preBtn">&lt&lt</button>
+							</c:when>
+							<c:otherwise>
+								<button type="button" class="btn btn-secondary" id="preBtn">&lt&lt</button>	
+							</c:otherwise>
+						</c:choose>
+						<c:forEach begin="${data.start }" end="${data.end}" step="1" var="page">
+							<c:choose>
+								<c:when test="${param.page eq page }">
+									<button type="button" name="pageBtn" class="btn btn-secondary active" value="${page }">${page }</button>
+								</c:when>
+								<c:otherwise>
+									<button type="button" name="pageBtn" class="btn btn-secondary" value="${page }">${page }</button>
+								</c:otherwise>
+							</c:choose>
+						</c:forEach>
+						<c:choose>
+							<c:when test="${data.current eq data.paging }">
+								<button type="button" class="btn btn-secondary disabled" id="nextBtn">&gt&gt</button>
+							</c:when>
+							<c:otherwise>
+								<button type="button" class="btn btn-secondary" id="nextBtn">&gt&gt</button>	
+							</c:otherwise>
+						</c:choose>
+					</div>
 				</div>
 			</div>
 			<!-- Table End -->
@@ -85,7 +115,31 @@
 	</div>
 
 <script src="<%=request.getContextPath()%>/resources/dashmin/js/main.js"></script>
-
+	
+<script>
+	$('[name=pageBtn]').on('click', function() {
+		let page = $(this).val();
+		location.href="${pageContext.request.contextPath}/admin/request?page=" + page;
+	})
+	
+	$('#preBtn').on('click', function() {
+		let page = ${data.current};
+		
+		if(page - 1 == 0) page = 1;
+		else page--;
+		
+		location.href="${pageContext.request.contextPath}/admin/request?page=" + page;
+ 	})
+	
+	$("#nextBtn").on('click', function() {
+		let page = ${data.current};
+		
+		if(page + 1 > ${data.paging}) page = ${data.paging};
+		else page++;
+		
+		location.href="${pageContext.request.contextPath}/admin/request?page=" + page;
+	})
+</script>
 </body>
 
 </html>

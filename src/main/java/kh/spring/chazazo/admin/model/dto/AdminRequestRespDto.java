@@ -17,8 +17,8 @@ public class AdminRequestRespDto {
 	private int idx;
 	private String title;
 	private int status;
-	private Date reqDate;
-	private Date ansDate;
+	private String reqDate;
+	private String ansDate;
 	private String username;
 	
 }

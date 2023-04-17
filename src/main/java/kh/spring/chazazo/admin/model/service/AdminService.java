@@ -21,7 +21,8 @@ public interface AdminService {
 	public String selectReviewContent(String idx);
 	public List<AdminCouponManageRespDto> selectCouponList();
 	public AdminCouponManageRespDto selectCouponOne(String idx);
-	public List<AdminRequestRespDto> selectRequestList();
+	public int requestCount();
+	public List<AdminRequestRespDto> selectRequestList(Map<String, Integer> map);
 	public AdminRequestOneRespDto selectRequestOne(String idx);
 	public int insertAnswer(Map<String, String> data, String idx);
 }

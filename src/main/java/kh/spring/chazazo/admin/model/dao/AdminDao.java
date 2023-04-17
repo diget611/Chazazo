@@ -60,8 +60,12 @@ public class AdminDao {
 		return sqlSession.selectOne("couponmanage.selectOne", idx);
 	}
 	
-	public List<AdminRequestRespDto> selectRequestList() {
-		return sqlSession.selectList("request.selectList");
+	public int requestCount() {
+		return sqlSession.selectOne("request.count");
+	}
+	
+	public List<AdminRequestRespDto> selectRequestList(Map<String, Integer> map) {
+		return sqlSession.selectList("request.selectList", map);
 	}
 	
 	public AdminRequestOneRespDto selectRequestOne(String idx) {

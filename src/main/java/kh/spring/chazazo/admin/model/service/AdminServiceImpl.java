@@ -68,10 +68,15 @@ public class AdminServiceImpl implements AdminService {
 	public AdminCouponManageRespDto selectCouponOne(String idx) {
 		return dao.selectCouponOne(idx);
 	}
-
+	
 	@Override
-	public List<AdminRequestRespDto> selectRequestList() {
-		return dao.selectRequestList();
+	public int requestCount() {
+		return dao.requestCount();
+	}
+		
+	@Override
+	public List<AdminRequestRespDto> selectRequestList(Map<String, Integer> map) {
+		return dao.selectRequestList(map);
 	}
 
 	@Override

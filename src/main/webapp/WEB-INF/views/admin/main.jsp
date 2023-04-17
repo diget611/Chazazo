@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -103,68 +104,39 @@
 			<div class="container-fluid pt-4 px-4">
 				<div class="bg-light text-center rounded p-4">
 					<div class="d-flex align-items-center justify-content-between mb-4">
-						<h6 class="mb-0">Recent Salse</h6>
-						<a href="">Show All</a>
+						<h6 class="mb-0">최근 문의</h6>
+						<a href="">더보기</a>
 					</div>
 					<div class="table-responsive">
 						<table class="table text-start align-middle table-bordered table-hover mb-0">
 							<thead>
 								<tr class="text-dark">
-									<th scope="col"><input class="form-check-input" type="checkbox"></th>
-									<th scope="col">Date</th>
-									<th scope="col">Invoice</th>
-									<th scope="col">Customer</th>
-									<th scope="col">Amount</th>
-									<th scope="col">Status</th>
-									<th scope="col">Action</th>
+									<th scope="col">#</th>
+									<th scope="col">제목</th>
+									<th scope="col">상태</th>
+									<th scope="col">문의 날짜</th>
+									<th scope="col">답변 날짜</th>
+									<th scope="col">아이디</th>
 								</tr>
 							</thead>
 							<tbody>
-								<tr>
-									<td><input class="form-check-input" type="checkbox"></td>
-									<td>01 Jan 2045</td>
-									<td>INV-0123</td>
-									<td>Jhon Doe</td>
-									<td>$123</td>
-									<td>Paid</td>
-									<td><a class="btn btn-sm btn-primary" href="">Detail</a></td>
-								</tr>
-                                <tr>
-									<td><input class="form-check-input" type="checkbox"></td>
-									<td>01 Jan 2045</td>
-									<td>INV-0123</td>
-									<td>Jhon Doe</td>
-									<td>$123</td>
-									<td>Paid</td>
-									<td><a class="btn btn-sm btn-primary" href="">Detail</a></td>
-								</tr>
-                                <tr>
-									<td><input class="form-check-input" type="checkbox"></td>
-									<td>01 Jan 2045</td>
-									<td>INV-0123</td>
-									<td>Jhon Doe</td>
-									<td>$123</td>
-									<td>Paid</td>
-									<td><a class="btn btn-sm btn-primary" href="">Detail</a></td>
-								</tr>
-                                <tr>
-									<td><input class="form-check-input" type="checkbox"></td>
-									<td>01 Jan 2045</td>
-									<td>INV-0123</td>
-									<td>Jhon Doe</td>
-									<td>$123</td>
-									<td>Paid</td>
-									<td><a class="btn btn-sm btn-primary" href="">Detail</a></td>
-								</tr>
-                                <tr>
-									<td><input class="form-check-input" type="checkbox"></td>
-									<td>01 Jan 2045</td>
-									<td>INV-0123</td>
-									<td>Jhon Doe</td>
-									<td>$123</td>
-									<td>Paid</td>
-									<td><a class="btn btn-sm btn-primary" href="">Detail</a></td>
-								</tr>
+								<c:forEach items="${requestList }" var="request" varStatus="status">	
+									<tr onclick='window.open("<%=request.getContextPath()%>/admin/request/${request.idx}", "문의 상세 정보", "width=500, height=600")'>
+								<th scope="row">${fn:length(requestList) - status.index}</th>
+								<td>${request.title }</td>
+								<c:choose>
+									<c:when test="${request.status eq 0 }">
+										<td>대기 중</td>		
+									</c:when>
+									<c:otherwise>
+										<td>처리 완료</td>
+									</c:otherwise>
+								</c:choose>
+								<td>${request.reqDate }</td>
+								<td>${request.ansDate }</td>
+								<td>${request.username }</td>
+							</tr>
+							</c:forEach>
 							</tbody>
 						</table>
 					</div>

@@ -131,8 +131,10 @@
 								<div class="panel-heading">
 									<h3 class="panel-title">
 									<button type="button" class="btn btn-outline-primary">1:1 문의</button><br>
-									<button type="button" class="btn btn-outline-primary">쿠폰 관리</button><br>
-									<button type="button" class="btn btn-outline-primary">회원탈퇴</button></h3>
+									<sec:authorize access="isAuthenticated()">
+										<button type="button" class="btn btn-outline-primary">쿠폰 관리</button><br>
+										<button type="button" class="btn btn-outline-primary" name="deleteBtn">회원탈퇴</button></h3>
+									</sec:authorize>
 								</div>
 							</div>
 						</div>
@@ -142,7 +144,7 @@
 					<section id="id-100" class="post single">
 						<div>
 							<div>예약 상세 조회</div>
-									<c:forEach items="${reservation }" var="list">
+							<c:forEach items="${reservation }" var="list">
 										<table>
 											<tr>
 												<th scope="row">예약자</th>
@@ -161,7 +163,7 @@
 												<td>${list.returnLocation }</td>
 											</tr>
 										</table>
-									</c:forEach>
+							</c:forEach>
 							</div>
 							<div>
 								<button>예약 변경</button>

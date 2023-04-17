@@ -9,7 +9,7 @@ import lombok.Data;
 public class MemberInfoRespDto {
 	// 회원의 모든 정보를 담을 수 있는 DTO
 	
-	
+	private String username;
 	private int idx;
 	private String name;
 	private int gender;

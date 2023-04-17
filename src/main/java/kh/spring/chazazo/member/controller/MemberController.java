@@ -206,7 +206,9 @@ public class MemberController {
 	@DeleteMapping("/profile/{username}")
 	public int deleteMember(@PathVariable String username) {
 		// 회원탈퇴 / DeleteMapping
+		System.out.println(username);
 		int result = mService.deleteMember(username);
+		System.out.println(result);
 		return result;
 	}
 	

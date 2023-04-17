@@ -23,9 +23,5 @@ public class ReservationRespDto {
 	private int rentLocation;
 	private int returnLocation;
 	private int couponIdx;
-	private String name;
-	private int birth;
-	private int phone;
-	private String mail;
 
 }

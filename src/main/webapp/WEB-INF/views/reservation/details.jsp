@@ -141,10 +141,8 @@
 
 <script type="text/javascript">
 	$('#testBtn').on('click', function() {
-		console.log($('#name').val());
-		console.log($('#birth').val());
-		console.log($('#mail').val());
-		console.log($('#phone').val());
+		var date = new Date($('#startDate').val());
+		var ddd = date.getFullYear() + "/" + (date.getMonth() + 1) + "/" + date.getDate();
 		
 	})	
      //대여,반납일 날짜 초기설정
@@ -184,9 +182,11 @@
 	$('#startDate').on('change', calc);
     $('#endDate').on('change', calc);
     $('#selectins').on('change', calc);
+    
+    
     function calc () {
-        var startDate = new Date($('#startDate').val());
-        var endDate = new Date($('#endDate').val());
+	    var startDate = new Date($('#startDate').val());
+	    var endDate = new Date($('#endDate').val());
         var compareDate = Math.round((endDate.getTime() - startDate.getTime()) / (1000 * 60 * 60 * 24)) + 1;
       	var price = ${car.price};
       	var insurance = $('#selectins').val(); //추가요금
@@ -517,28 +517,41 @@
 	    });
 	}
 	
-	
+	//결제 성공시 정보 저장
 	function paid(){
 		var nameval = $('#name').val();
 		var birthval = $('#birth').val();
 		var phoneval = $('#phone').val();
 		var mailval = $('#mail').val();
+
+		var sdate = new Date($('#startDate').val());
+		var edate = new Date($('#endDate').val());
+		var startDate = sdate.getFullYear() + "/" + (sdate.getMonth() + 1) + "/" + sdate.getDate();
+		var endDate = edate.getFullYear() + "/" + (edate.getMonth() + 1) + "/" + edate.getDate();
+	    
 		console.log("paid!!!!!!!!!!");
 		console.log("${car.idx}");
-		console.log(nameval + birthval + phoneval + mailval);
+		console.log(nameval + birthval + phoneval + mailval + startDate + endDate );
 		
 		  $.ajax({
 	          url:'<%=request.getContextPath()%>/payment/paid',
+	          contentType: 'application/json',
 	          type: 'post',
 	          dataType:'json',
 	          data: {
 	        	  "name" :nameval,
 	        	  "birth" : birthval,
 	        	  "phone" : phoneval,
-	        	  "mail" : mailval
-	        	 
+	        	  "mail" : mailval,
+	        	  "startDate" :startDate,
+	        	  "endDate" :endDate
 	          },
-	          success: function() {
+	          success: function(result) {
+	        	  if(result >0) {
+	        	  alert("결제 완료 되었습니다");
+	        	  } else {
+	        		  alert("결제가 완료되지 않았습니다")
+	        	  }
 	          },
 	          error: function() {
 	          	alert('로딩 실패');

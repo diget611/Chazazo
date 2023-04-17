@@ -51,7 +51,7 @@ public class ReservationServiceImpl implements ReservationService {
 
 
 	@Override
-	public int insertPayInfo(Map<String, String> data) {
+	public int insertPayInfo(ReservationReqDto data) {
 		return dao.insertPayInfo(data);
 	}
 

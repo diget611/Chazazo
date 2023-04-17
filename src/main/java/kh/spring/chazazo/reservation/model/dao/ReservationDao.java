@@ -40,7 +40,7 @@ public class ReservationDao {
 		return session.delete("reservation.resDelete", idx);
 	}
 
-	public int insertPayInfo(Map<String, String> data) {
+	public int insertPayInfo(ReservationReqDto data) {
 		return session.insert("reservation.insertPayInfo", data);
 	}
 	

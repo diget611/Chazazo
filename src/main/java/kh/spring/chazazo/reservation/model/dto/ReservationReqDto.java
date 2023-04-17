@@ -41,6 +41,13 @@ public class ReservationReqDto {
 	private int member_idx;
 	private int return_location;
 	private int coupon_idx;
+	private String name;
+	private int birth;
+	private int phone;
+	private String mail;
+	private String startDate;
+	private String endDate;
+
 	
 	
 	

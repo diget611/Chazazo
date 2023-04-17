@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -24,6 +25,7 @@ import com.google.gson.Gson;
 
 import kh.spring.chazazo.member.model.service.MemberService;
 import kh.spring.chazazo.payment.model.dto.PaymentReqDto;
+import kh.spring.chazazo.reservation.model.dto.ReservationReqDto;
 import kh.spring.chazazo.reservation.model.service.ReservationService;
 import kh.spring.chazazo.vehicle.model.dto.VehicleInfoDto;
 import kh.spring.chazazo.vehicle.model.service.VehicleService;
@@ -96,7 +98,7 @@ private ReservationService rvService;
 //	}
 	
 	@PostMapping("/payment/paid")
-	public String insertPayInfo(ModelAndView mv, @RequestParam Map<String, String> data) {
+	public int insertPayInfo(@RequestBody ReservationReqDto data) {
 		// 결제대기 / 완료 -> 예약 테이블 인서트 동시에 진행
 		/*
 		System.out.println("##########컨트롤러");
@@ -114,9 +116,11 @@ private ReservationService rvService;
 		*/
 		
 		int result = rvService.insertPayInfo(data);
-		System.out.println(data);
+		System.out.println("##########컨트롤러");
+		System.out.println("##########data");
 
-		return "2";
+
+		return result;
 	}
 
 }

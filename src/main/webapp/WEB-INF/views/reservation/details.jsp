@@ -511,9 +511,40 @@
 	            // 결제에 실패했을떄 실패메세지와 실패사유를 출력
 	            var msg = '결제에 실패하였습니다.';
 	            msg +=  rsp.error_msg;
+	            paid();
 	        }
 	        alert(msg);
 	    });
+	}
+	
+	
+	function paid(){
+		var nameval = $('#name').val();
+		var birthval = $('#birth').val();
+		var phoneval = $('#phone').val();
+		var mailval = $('#mail').val();
+		console.log("paid!!!!!!!!!!");
+		console.log("${car.idx}");
+		console.log(nameval + birthval + phoneval + mailval);
+		
+		  $.ajax({
+	          url:'<%=request.getContextPath()%>/payment/paid',
+	          type: 'post',
+	          dataType:'json',
+	          data: {
+	        	  "name" :nameval,
+	        	  "birth" : birthval,
+	        	  "phone" : phoneval,
+	        	  "mail" : mailval
+	        	 
+	          },
+	          success: function() {
+	          },
+	          error: function() {
+	          	alert('로딩 실패');
+	          }
+	       });
+		
 	}
 
 		// <맵 생성>

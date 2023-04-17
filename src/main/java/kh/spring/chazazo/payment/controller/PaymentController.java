@@ -89,11 +89,16 @@ private VehicleService vService;
 //
 //	}
 	
-//	@PostMapping("/payment")
-//	public ModelAndView insertPayment(ModelAndView mv) {
-//		// 결제대기 / 완료 -> 예약 테이블 인서트 동시에 진행
-//		
-//		return mv;
-//	}
+	@PostMapping("/payment/paid")
+	public String insertPayment(ModelAndView mv, String name, String birth, String phone, String mail) {
+		// 결제대기 / 완료 -> 예약 테이블 인서트 동시에 진행
+		System.out.println("##########컨트롤러");
+		System.out.println(name);
+		System.out.println(birth);
+		System.out.println(phone);
+		System.out.println(mail);
+		System.out.println("##########컨트롤러");
+		return "2";
+	}
 
 }

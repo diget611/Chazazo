@@ -529,23 +529,24 @@
 		var startDate = sdate.getFullYear() + "/" + (sdate.getMonth() + 1) + "/" + sdate.getDate();
 		var endDate = edate.getFullYear() + "/" + (edate.getMonth() + 1) + "/" + edate.getDate();
 	    
-		console.log("paid!!!!!!!!!!");
-		console.log("${car.idx}");
-		console.log(nameval + birthval + phoneval + mailval + startDate + endDate );
-		
-		  $.ajax({
-	          url:'<%=request.getContextPath()%>/payment/paid',
-	          contentType: 'application/json',
-	          type: 'post',
-	          dataType:'json',
-	          data: {
+		var data = {
 	        	  "name" :nameval,
 	        	  "birth" : birthval,
 	        	  "phone" : phoneval,
 	        	  "mail" : mailval,
 	        	  "startDate" :startDate,
 	        	  "endDate" :endDate
-	          },
+	          };
+		console.log("paid!!!!!!!!!!");
+		console.log("${car.idx}");
+		console.log(nameval + birthval + phoneval + mailval + startDate + endDate );
+		
+		  $.ajax({
+	          url:'<%=request.getContextPath()%>/payment/paid',
+	          contentType: 'application/json; charset=utf-8',
+	          type: 'post',
+	          dataType:'json',
+	          data: JSON.stringify(data),
 	          success: function(result) {
 	        	  if(result >0) {
 	        	  alert("결제 완료 되었습니다");

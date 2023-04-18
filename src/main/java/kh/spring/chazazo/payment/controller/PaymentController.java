@@ -97,6 +97,7 @@ private ReservationService rvService;
 //
 //	}
 	
+	//결제정보 저장
 	@PostMapping("/payment/paid")
 	public int insertPayInfo(@RequestBody ReservationReqDto data) {
 		// 결제대기 / 완료 -> 예약 테이블 인서트 동시에 진행

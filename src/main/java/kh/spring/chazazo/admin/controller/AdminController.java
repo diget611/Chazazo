@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import kh.spring.chazazo.admin.model.service.AdminService;
+import kh.spring.chazazo.common.Pagination;
 
 @RestController
 @RequestMapping("/admin")
@@ -22,7 +23,6 @@ public class AdminController {
 	
 	@Autowired
 	private AdminService aService;
-	private final static int LIMIT = 10;
 	
 	@GetMapping("/main")
 	public ModelAndView viewMain(ModelAndView mv) {
@@ -110,49 +110,14 @@ public class AdminController {
 	}
 	
 	@GetMapping("/request")
-	public ModelAndView viewRequest(ModelAndView mv, String page) {
-		int currentPage = 0;
-		int paging = 0;
+	public ModelAndView viewRequest(ModelAndView mv, @RequestParam(required = false, defaultValue = "1") int page) {
 		int count = aService.requestCount();
+		Pagination pagination = new Pagination();
+		pagination.pageInfo(page, count);
 		
-		if(page == null) currentPage = 1;
-		else currentPage = Integer.parseInt(page);
-		Map<String, Integer> param = new HashMap<String, Integer>();
-		param.put("start", ((currentPage - 1) * LIMIT) + 1);
-		param.put("end", ((currentPage - 1) * LIMIT) + 10);
+		mv.addObject("pagination", pagination);
+		mv.addObject("requestList", aService.selectRequestList(pagination));
 		
-		if(count % LIMIT == 0) {
-			paging = count / LIMIT;
-		} else {
-			paging = count / LIMIT + 1; 
-		}
-		
-		int start;
-		int end;
-		
-		if(currentPage % 10 == 0) {
-			start = ((currentPage / 10 - 1) * LIMIT) + 1;
-		} else {
-			start = ((currentPage / 10) * LIMIT) + 1;
-		}
-		
-		if(start + 9 < paging) {
-			end = start + 9;
-		} else {
-			end = paging;
-		}
-		
-		System.out.println(start + " | " + end);
-		
-		Map<String, Object> data = new HashMap<String, Object>();
-		data.put("requestList", aService.selectRequestList(param));
-		data.put("start", start);
-		data.put("end", end);
-		data.put("paging", paging);
-		data.put("count", count);
-		data.put("current", currentPage);
-		
-		mv.addObject("data", data);
 		mv.setViewName("admin/request");
 		return mv;
 	}

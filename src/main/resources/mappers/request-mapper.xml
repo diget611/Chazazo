@@ -10,7 +10,16 @@
 	</insert>
 	
 	<!-- 관리자용 -->
-	<select id="selectList" parameterType="map" resultType="adminRequestRespDto">
+	<select id="selectList" parameterType="kh.spring.chazazo.common.Pagination" resultType="adminRequestRespDto">
+		SELECT *
+		  FROM (SELECT ROWNUM AS RNUM, IDX, TITLE, STATUS, REQ_DATE, ANS_DATE, USERNAME 
+		          FROM (SELECT REQUEST.IDX AS IDX, REQUEST.TITLE AS TITLE
+		                     , REQUEST.STATUS AS STATUS , TO_CHAR(REQUEST.REQ_DATE, 'YYYY-MM-DD HH24:MI:SS') AS REQ_DATE
+		                     , TO_CHAR(REQUEST.ANS_DATE, 'YYYY-MM-DD HH24:MI:SS') AS ANS_DATE, USERNAME
+		                  FROM REQUEST INNER JOIN MEMBER ON REQUEST.MEMBER_IDX = MEMBER.IDX ORDER BY REQUEST.REQ_DATE DESC))
+		 WHERE RNUM BETWEEN #{start} AND #{end}
+	</select>
+	<select id="selectListMain" parameterType="map" resultType="adminRequestRespDto">
 		SELECT *
 		  FROM (SELECT ROWNUM AS RNUM, IDX, TITLE, STATUS, REQ_DATE, ANS_DATE, USERNAME 
 		          FROM (SELECT REQUEST.IDX AS IDX, REQUEST.TITLE AS TITLE

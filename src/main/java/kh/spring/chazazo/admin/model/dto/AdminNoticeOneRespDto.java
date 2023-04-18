@@ -10,13 +10,9 @@ import lombok.NoArgsConstructor;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-public class AdminRequestRespDto {
-	
-	private int idx;
+public class AdminNoticeOneRespDto {
+
 	private String title;
-	private int status;
-	private String reqDate;
-	private String ansDate;
-	private String username;
+	private String content;
 	
 }

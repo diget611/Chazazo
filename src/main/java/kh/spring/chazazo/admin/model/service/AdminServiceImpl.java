@@ -9,9 +9,12 @@ import org.springframework.stereotype.Service;
 import kh.spring.chazazo.admin.model.dao.AdminDao;
 import kh.spring.chazazo.admin.model.dto.AdminCouponManageRespDto;
 import kh.spring.chazazo.admin.model.dto.AdminMemberRespDto;
+import kh.spring.chazazo.admin.model.dto.AdminNoticeOneRespDto;
+import kh.spring.chazazo.admin.model.dto.AdminNoticeRespDto;
 import kh.spring.chazazo.admin.model.dto.AdminReportRespDto;
 import kh.spring.chazazo.admin.model.dto.AdminRequestOneRespDto;
 import kh.spring.chazazo.admin.model.dto.AdminRequestRespDto;
+import kh.spring.chazazo.common.Pagination;
 import kh.spring.chazazo.vehicle.model.dto.VehicleInfoDto;
 
 @Service
@@ -75,8 +78,13 @@ public class AdminServiceImpl implements AdminService {
 	}
 		
 	@Override
-	public List<AdminRequestRespDto> selectRequestList(Map<String, Integer> map) {
-		return dao.selectRequestList(map);
+	public List<AdminRequestRespDto> selectRequestList(Pagination pagination) {
+		return dao.selectRequestList(pagination);
+	}
+
+	@Override
+	public List<AdminRequestRespDto> selectRequestList(Map<String, Integer> data) {
+		return dao.selectRequestList(data);
 	}
 
 	@Override
@@ -111,5 +119,16 @@ public class AdminServiceImpl implements AdminService {
 		}
 		return result;
 	}
+
+	@Override
+	public List<AdminNoticeRespDto> selectNoticeList() {
+		return dao.selectNoticeList();
+	}
+
+	@Override
+	public AdminNoticeOneRespDto selectNoticeOne(String idx) {
+		return dao.selectNoticeOne(idx);
+	}
+
 
 }

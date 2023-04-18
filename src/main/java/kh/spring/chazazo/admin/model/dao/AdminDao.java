@@ -9,9 +9,12 @@ import org.springframework.stereotype.Repository;
 
 import kh.spring.chazazo.admin.model.dto.AdminCouponManageRespDto;
 import kh.spring.chazazo.admin.model.dto.AdminMemberRespDto;
+import kh.spring.chazazo.admin.model.dto.AdminNoticeOneRespDto;
+import kh.spring.chazazo.admin.model.dto.AdminNoticeRespDto;
 import kh.spring.chazazo.admin.model.dto.AdminReportRespDto;
 import kh.spring.chazazo.admin.model.dto.AdminRequestOneRespDto;
 import kh.spring.chazazo.admin.model.dto.AdminRequestRespDto;
+import kh.spring.chazazo.common.Pagination;
 import kh.spring.chazazo.vehicle.model.dto.VehicleInfoDto;
 
 @Repository
@@ -64,8 +67,12 @@ public class AdminDao {
 		return sqlSession.selectOne("request.count");
 	}
 	
-	public List<AdminRequestRespDto> selectRequestList(Map<String, Integer> map) {
-		return sqlSession.selectList("request.selectList", map);
+	public List<AdminRequestRespDto> selectRequestList(Pagination pagination) {
+		return sqlSession.selectList("request.selectList", pagination);
+	}
+	
+	public List<AdminRequestRespDto> selectRequestList(Map<String, Integer> data) {
+		return sqlSession.selectList("request.selectListMain", data);
 	}
 	
 	public AdminRequestOneRespDto selectRequestOne(String idx) {
@@ -90,6 +97,14 @@ public class AdminDao {
 	
 	public int deleteAnswer(String idx) {
 		return sqlSession.delete("answer.delete", idx);
+	}
+	
+	public List<AdminNoticeRespDto> selectNoticeList() {
+		return sqlSession.selectList("notice.selectList");
+	}
+	
+	public AdminNoticeOneRespDto selectNoticeOne(String idx) {
+		return sqlSession.selectOne("notice.selectOne", idx);
 	}
  
 }

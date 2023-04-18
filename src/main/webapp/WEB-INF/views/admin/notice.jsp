@@ -50,16 +50,16 @@
 						<thead>
 							<tr class="text-dark">
 								<th scope="col" style="width: 5%;">#</th>
-								<th scope="col" style="width: 40%;">제목</th>
-								<th scope="col" style="width: 15%;">작성일</th>
-								<th scope="col" style="width: 10%;">조회수</th>
-								<th scope="col" style="width: 15%;">수정일</th>
-								<th scope="col" style="width: 15%;">삭제일</th>
+								<th scope="col" style="width: 28%;">제목</th>
+								<th scope="col" style="width: 20%;">작성일</th>
+								<th scope="col" style="width: 7%;">조회수</th>
+								<th scope="col" style="width: 20%;">수정일</th>
+								<th scope="col" style="width: 20%;">삭제일</th>
 							</tr>
 						</thead>
 						<tbody>
 							<c:forEach items="${noticeList }" var="notice" varStatus="status">	
-							<tr onclick='window.open("<%=request.getContextPath()%>/admin/notice/${notice.idx }", "문의 상세 정보", "width=500, height=600")'>
+							<tr onclick='window.open("<%=request.getContextPath()%>/admin/notice/${notice.idx }", "공지사항 상세 정보", "width=500, height=600")'>
 								<th scope="row">${pagination.count - (pagination.currentPage - 1) * 10 - status.index}</th>
 								<td>${notice.title }</td>
 								<td>${notice.createDate }

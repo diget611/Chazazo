@@ -10,7 +10,7 @@
 	</insert>
 	
 	<!-- 관리자용 -->
-	<select id="selectList" parameterType="kh.spring.chazazo.common.Pagination" resultType="adminRequestRespDto">
+	<select id="selectList" parameterType="pagination" resultType="adminRequestRespDto">
 		SELECT *
 		  FROM (SELECT ROWNUM AS RNUM, IDX, TITLE, STATUS, REQ_DATE, ANS_DATE, USERNAME 
 		          FROM (SELECT REQUEST.IDX AS IDX, REQUEST.TITLE AS TITLE

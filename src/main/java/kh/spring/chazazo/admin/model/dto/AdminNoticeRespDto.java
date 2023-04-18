@@ -1,24 +1,24 @@
 package kh.spring.chazazo.admin.model.dto;
 
-import java.sql.Date;
-
 import org.springframework.stereotype.Component;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Component
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
+@ToString
 public class AdminNoticeRespDto {
 	
 	private int idx;
 	private String title;
-	private Date createDate;
+	private String createDate;
 	private int readCount;
-	private Date updateDate;
-	private Date deleteDate;
+	private String updateDate;
+	private String deleteDate;
 	
 }

@@ -23,8 +23,12 @@ public class AdminDao {
 	@Autowired
 	private SqlSession sqlSession;
 	
-	public List<AdminMemberRespDto> selectMemberList() {
-		return sqlSession.selectList("member.selectMemberList");
+	public int memberCount() {
+		return sqlSession.selectOne("member.count");
+	}
+	
+	public List<AdminMemberRespDto> selectMemberList(Pagination pagination) {
+		return sqlSession.selectList("member.selectMemberList", pagination);
 	}
 	
 	public AdminMemberRespDto selectMemberOne(String username) {
@@ -43,8 +47,12 @@ public class AdminDao {
 		return sqlSession.selectList("vehicle.selectList");
 	}
 	
-	public List<AdminReportRespDto> selectReportList() {
-		return sqlSession.selectList("report.selectList");
+	public int reportCount() {
+		return sqlSession.selectOne("report.count");
+	}
+	
+	public List<AdminReportRespDto> selectReportList(Pagination pagination) {
+		return sqlSession.selectList("report.selectList", pagination);
 	}
 	
 	public AdminReportRespDto selectReportOne(String idx) {
@@ -55,8 +63,12 @@ public class AdminDao {
 		return sqlSession.selectOne("review.selectReviewContent", idx);
 	}
 	
-	public List<AdminCouponManageRespDto> selectCouponList() {
-		return sqlSession.selectList("couponmanage.selectList");
+	public int couponCount() {
+		return sqlSession.selectOne("couponmanage.count");
+	}
+	
+	public List<AdminCouponManageRespDto> selectCouponList(Pagination pagination) {
+		return sqlSession.selectList("couponmanage.selectList", pagination);
 	}
 	
 	public AdminCouponManageRespDto selectCouponOne(String idx) {
@@ -98,17 +110,18 @@ public class AdminDao {
 	public int deleteAnswer(String idx) {
 		return sqlSession.delete("answer.delete", idx);
 	}
+
+	public int noticeCount() {
+		return sqlSession.selectOne("notice.count");
+	}
 	
-	public List<AdminNoticeRespDto> selectNoticeList() {
-		return sqlSession.selectList("notice.selectList");
+	public List<AdminNoticeRespDto> selectNoticeList(Pagination pagination) {
+		return sqlSession.selectList("notice.selectList", pagination);
 	}
 	
 	public AdminNoticeOneRespDto selectNoticeOne(String idx) {
 		return sqlSession.selectOne("notice.selectOne", idx);
 	}
 	
-	public int noticeCount() {
-		return sqlSession.selectOne("notice.count");
-	}
  
 }

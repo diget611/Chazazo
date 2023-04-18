@@ -69,15 +69,24 @@
 		SELECT PASSWORD FROM MEMBER WHERE USERNAME = #{username}
 	</select>
 	
-	<select id="selectMemberList" resultType="adminMemberRespDto">
-		SELECT * FROM MEMBER INNER JOIN MEMBER_INFO ON MEMBER.IDX = MEMBER_INFO.IDX
+	<select id="selectMemberList" parameterType="pagination" resultType="adminMemberRespDto">
+		SELECT *
+          FROM (SELECT ROWNUM AS RNUM, M.*
+                  FROM (SELECT *
+                          FROM MEMBER 
+                         INNER JOIN MEMBER_INFO
+                            ON MEMBER.IDX = MEMBER_INFO.IDX
+                         ORDER BY MEMBER.IDX DESC) M)
+         WHERE RNUM BETWEEN #{start} AND #{end}
 	</select>
 	<select id="selectMemberOne" resultType="adminMemberRespDto">
 		SELECT * FROM MEMBER INNER JOIN MEMBER_INFO ON MEMBER.IDX = MEMBER_INFO.IDX WHERE USERNAME = #{username}
 	</select>
-	
 	<select id="getMemberInfo" resultType="memberInfoRespDto">
 		select * from member_info where username = #{username}
+	</select>
+	<select id="count" resultType="_int">
+		SELECT COUNT(*) FROM MEMBER WHERE AUTH='ROLE_USER'
 	</select>
 	
 	

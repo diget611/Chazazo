@@ -1,10 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="couponmanage">
-	<select id="selectList" resultType="adminCouponManageRespDto">
-		SELECT IDX, RATE * 100 AS RATE, PERIOD, NAME FROM COUPON_MANAGE WHERE IDX >= 1
+	<select id="selectList" parameterType="pagination" resultType="adminCouponManageRespDto">
+		SELECT *
+		  FROM (SELECT ROWNUM AS RNUM, IDX, RATE * 100 AS RATE, PERIOD, NAME FROM COUPON_MANAGE
+		         WHERE IDX >= 1 ORDER BY IDX DESC)
+         WHERE RNUM BETWEEN #{start} AND #{end}
 	</select>
 	<select id="selectOne" resultType="adminCouponManageRespDto">
 		SELECT IDX, RATE * 100 AS RATE, PERIOD, NAME FROM COUPON_MANAGE WHERE IDX = #{idx}
+	</select>
+	<select id="count" resultType="_int">
+		SELECT COUNT(*) FROM COUPON_MANAGE
 	</select>
 </mapper>

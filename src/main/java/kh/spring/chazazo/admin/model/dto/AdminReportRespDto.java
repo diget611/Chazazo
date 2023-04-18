@@ -4,10 +4,16 @@ import java.sql.Date;
 
 import org.springframework.stereotype.Component;
 
-import lombok.Data;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Component
-@Data
+@Getter
+@AllArgsConstructor
+@NoArgsConstructor
+@ToString
 public class AdminReportRespDto {
 	
 	private int idx;

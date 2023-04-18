@@ -35,7 +35,12 @@ public class AdminController {
 	
 	@GetMapping("/member")
 	public ModelAndView viewMember(ModelAndView mv, @RequestParam(required = false, defaultValue = "1") int page) {
-		mv.addObject("memberList", aService.selectMemberList());
+		int count = aService.memberCount();
+		Pagination pagination = new Pagination();
+		pagination.pageInfo(page, count);
+		
+		mv.addObject("memberList", aService.selectMemberList(pagination));
+		mv.addObject("pagination", pagination);
 		mv.setViewName("admin/member");
 		return mv;
 	}
@@ -57,7 +62,12 @@ public class AdminController {
 	
 	@GetMapping("/report")
 	public ModelAndView viewReport(ModelAndView mv, @RequestParam(required = false, defaultValue = "1") int page) {
-		mv.addObject("reportList", aService.selectReportList());
+		int count = aService.reportCount();
+		Pagination pagination = new Pagination();
+		pagination.pageInfo(page, count);
+		
+		mv.addObject("reportList", aService.selectReportList(pagination));
+		mv.addObject("pagination", pagination);
 		mv.setViewName("admin/report");
 		return mv;
 	}
@@ -91,7 +101,12 @@ public class AdminController {
 	
 	@GetMapping("/coupon")
 	public ModelAndView viewCoupon(ModelAndView mv, @RequestParam(required = false, defaultValue = "1") int page) {
-		mv.addObject("couponList", aService.selectCouponList());
+		int count = aService.couponCount() - 1;
+		Pagination pagination = new Pagination();
+		pagination.pageInfo(page, count);
+		
+		mv.addObject("couponList", aService.selectCouponList(pagination));
+		mv.addObject("pagination", pagination);
 		mv.setViewName("admin/coupon");
 		return mv;
 	}
@@ -110,7 +125,7 @@ public class AdminController {
 		pagination.pageInfo(page, count);
 		
 		mv.addObject("pagination", pagination);
-		mv.addObject("noticeList", aService.selectNoticeList());
+		mv.addObject("noticeList", aService.selectNoticeList(pagination));
 		mv.setViewName("admin/notice");
 		return mv;
 	}

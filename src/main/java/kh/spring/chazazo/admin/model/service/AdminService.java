@@ -15,14 +15,17 @@ import kh.spring.chazazo.vehicle.model.dto.VehicleInfoDto;
 
 public interface AdminService {
 	
-	public List<AdminMemberRespDto> selectMemberList();
+	public int memberCount();
+	public List<AdminMemberRespDto> selectMemberList(Pagination pagination);
 	public AdminMemberRespDto selectMemberOne(String username);
 	public int deleteMember(String username);
 	public List<VehicleInfoDto> selectVehicleList();
-	public List<AdminReportRespDto> selectReportList();
+	public int reportCount();
+	public List<AdminReportRespDto> selectReportList(Pagination pagination);
 	public AdminReportRespDto selectReportOne(String idx);
 	public String selectReviewContent(String idx);
-	public List<AdminCouponManageRespDto> selectCouponList();
+	public int couponCount();
+	public List<AdminCouponManageRespDto> selectCouponList(Pagination pagination);
 	public AdminCouponManageRespDto selectCouponOne(String idx);
 	public int requestCount();
 	public List<AdminRequestRespDto> selectRequestList(Pagination pagination);
@@ -31,8 +34,8 @@ public interface AdminService {
 	public int insertAnswer(Map<String, String> data, String idx);
 	public int updateAnswer(Map<String, String> data, String idx);
 	public int deleteRequest(String idx);
-	public List<AdminNoticeRespDto> selectNoticeList();
-	public AdminNoticeOneRespDto selectNoticeOne(String idx);
 	public int noticeCount();
+	public List<AdminNoticeRespDto> selectNoticeList(Pagination pagination);
+	public AdminNoticeOneRespDto selectNoticeOne(String idx);
 	
 }

@@ -24,8 +24,13 @@ public class AdminServiceImpl implements AdminService {
 	private AdminDao dao;
 	
 	@Override
-	public List<AdminMemberRespDto> selectMemberList() {
-		return dao.selectMemberList();
+	public int memberCount() {
+		return dao.memberCount();
+	}
+	
+	@Override
+	public List<AdminMemberRespDto> selectMemberList(Pagination pagination) {
+		return dao.selectMemberList(pagination);
 	}
 	
 	@Override
@@ -48,8 +53,13 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override
-	public List<AdminReportRespDto> selectReportList() {
-		return dao.selectReportList();
+	public int reportCount() {
+		return dao.reportCount();
+	}
+	
+	@Override
+	public List<AdminReportRespDto> selectReportList(Pagination pagination) {
+		return dao.selectReportList(pagination);
 	}
 
 	@Override
@@ -63,8 +73,13 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override
-	public List<AdminCouponManageRespDto> selectCouponList() {
-		return dao.selectCouponList();
+	public int couponCount() {
+		return dao.couponCount();
+	}
+	
+	@Override
+	public List<AdminCouponManageRespDto> selectCouponList(Pagination pagination) {
+		return dao.selectCouponList(pagination);
 	}
 
 	@Override
@@ -121,8 +136,8 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override
-	public List<AdminNoticeRespDto> selectNoticeList() {
-		return dao.selectNoticeList();
+	public List<AdminNoticeRespDto> selectNoticeList(Pagination pagination) {
+		return dao.selectNoticeList(pagination);
 	}
 
 	@Override

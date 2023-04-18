@@ -42,52 +42,46 @@
 			<!-- Table Start -->
 			<div class="container-fluid pt-4 px-4">
 				<div class="bg-light rounded p-4 text-center">
-					<div>
-					<h4 class="mb-4 text-start">공지사항 관리</h4>
+					<div class="d-flex justify-content-between">
+					<h4 style="display:inline-block">공지사항 관리</h4>
+					<button type="button" class="btn btn-secondary" style="display:inline-block" id="insertBtn">작성하기</button>
 					</div>
 					<table class="table table-hover">
 						<thead>
 							<tr class="text-dark">
 								<th scope="col" style="width: 5%;">#</th>
-								<th scope="col" style="width: 30%;">제목</th>
-								<th scope="col" style="width: 20%;">작성 날짜</th>
+								<th scope="col" style="width: 40%;">제목</th>
+								<th scope="col" style="width: 15%;">작성일</th>
 								<th scope="col" style="width: 10%;">조회수</th>
-								<th scope="col" style="width: 20%;">수정 날짜</th>
-								<th scope="col" style="width: 20%;">삭제 날짜</th>
+								<th scope="col" style="width: 15%;">수정일</th>
+								<th scope="col" style="width: 15%;">삭제일</th>
 							</tr>
 						</thead>
 						<tbody>
 							<c:forEach items="${noticeList }" var="notice" varStatus="status">	
-							<tr onclick='window.open("<%=request.getContextPath()%>/admin/request/${request.idx}", "문의 상세 정보", "width=500, height=600")'>
-								<th scope="row">${data.count - (data.current - 1) * 10 - status.index}</th>
-								<td>${request.title }</td>
-								<c:choose>
-									<c:when test="${request.status eq 0 }">
-										<td>대기 중</td>		
-									</c:when>
-									<c:otherwise>
-										<td>처리 완료</td>
-									</c:otherwise>
-								</c:choose>
-								<td>${request.reqDate }</td>
-								<td>${request.ansDate }</td>
-								<td>${request.username }</td>
+							<tr onclick='window.open("<%=request.getContextPath()%>/admin/notice/${notice.idx }", "문의 상세 정보", "width=500, height=600")'>
+								<th scope="row">${pagination.count - (pagination.currentPage - 1) * 10 - status.index}</th>
+								<td>${notice.title }</td>
+								<td>${notice.createDate }
+								<td>${notice.readCount }</td>
+								<td>${notice.updateDate }</td>
+								<td>${notice.deleteDate }</td>
 							</tr>
 							</c:forEach>
 						</tbody>
 					</table>
 					<div class="btn-group me-2 mt-3" role="group">
 						<c:choose>
-							<c:when test="${data.current eq 1 }">
+							<c:when test="${pagination.currentPage eq 1 }">
 								<button type="button" class="btn btn-secondary disabled" id="preBtn">&lt&lt</button>
 							</c:when>
 							<c:otherwise>
 								<button type="button" class="btn btn-secondary" id="preBtn">&lt&lt</button>	
 							</c:otherwise>
 						</c:choose>
-						<c:forEach begin="${data.start }" end="${data.end}" step="1" var="page">
+						<c:forEach begin="${pagination.startPage }" end="${pagination.endPage }" step="1" var="page">
 							<c:choose>
-								<c:when test="${data.current eq page }">
+								<c:when test="${pagination.currentPage eq page }">
 									<button type="button" name="pageBtn" class="btn btn-secondary active" value="${page }">${page }</button>
 								</c:when>
 								<c:otherwise>
@@ -96,7 +90,7 @@
 							</c:choose>
 						</c:forEach>
 						<c:choose>
-							<c:when test="${data.current eq data.paging }">
+							<c:when test="${pagination.currentPage eq pagination.paging }">
 								<button type="button" class="btn btn-secondary disabled" id="nextBtn">&gt&gt</button>
 							</c:when>
 							<c:otherwise>
@@ -116,27 +110,31 @@
 <script src="<%=request.getContextPath()%>/resources/dashmin/js/main.js"></script>
 	
 <script>
+	$('#insertBtn').on('click', function() {
+		location.href="${pageContext.request.contextPath}/admin/notice/insert"
+	})
+
 	$('[name=pageBtn]').on('click', function() {
 		let page = $(this).val();
-		location.href="${pageContext.request.contextPath}/admin/request?page=" + page;
+		location.href="${pageContext.request.contextPath}/admin/notice?page=" + page;
 	})
 	
 	$('#preBtn').on('click', function() {
-		let page = ${data.current};
+		let page = ${pagination.currentPage};
 		
 		if(page - 1 == 0) page = 1;
 		else page--;
 		
-		location.href="${pageContext.request.contextPath}/admin/request?page=" + page;
+		location.href="${pageContext.request.contextPath}/admin/notice?page=" + page;
  	})
 	
 	$("#nextBtn").on('click', function() {
-		let page = ${data.current};
+		let page = ${pagination.currentPage};
 		
-		if(page + 1 > ${data.paging}) page = ${data.paging};
+		if(page + 1 > ${pagination.paging}) page = ${pagination.paging};
 		else page++;
 		
-		location.href="${pageContext.request.contextPath}/admin/request?page=" + page;
+		location.href="${pageContext.request.contextPath}/admin/notice?page=" + page;
 	})
 </script>
 </body>

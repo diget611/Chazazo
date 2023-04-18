@@ -130,5 +130,9 @@ public class AdminServiceImpl implements AdminService {
 		return dao.selectNoticeOne(idx);
 	}
 
+	@Override
+	public int noticeCount() {
+		return dao.noticeCount();
+	}
 
 }

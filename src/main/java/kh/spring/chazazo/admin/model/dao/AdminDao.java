@@ -106,5 +106,9 @@ public class AdminDao {
 	public AdminNoticeOneRespDto selectNoticeOne(String idx) {
 		return sqlSession.selectOne("notice.selectOne", idx);
 	}
+	
+	public int noticeCount() {
+		return sqlSession.selectOne("notice.count");
+	}
  
 }

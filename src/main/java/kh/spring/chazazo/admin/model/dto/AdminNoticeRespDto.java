@@ -14,6 +14,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class AdminNoticeRespDto {
 	
+	private int idx;
 	private String title;
 	private Date createDate;
 	private int readCount;

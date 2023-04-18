@@ -33,5 +33,6 @@ public interface AdminService {
 	public int deleteRequest(String idx);
 	public List<AdminNoticeRespDto> selectNoticeList();
 	public AdminNoticeOneRespDto selectNoticeOne(String idx);
+	public int noticeCount();
 	
 }

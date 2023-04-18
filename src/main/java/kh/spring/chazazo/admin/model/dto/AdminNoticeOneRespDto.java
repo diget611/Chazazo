@@ -12,6 +12,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class AdminNoticeOneRespDto {
 
+	private int idx;
 	private String title;
 	private String content;
 	

@@ -34,7 +34,7 @@ public class AdminController {
 	}
 	
 	@GetMapping("/member")
-	public ModelAndView viewMember(ModelAndView mv) {
+	public ModelAndView viewMember(ModelAndView mv, @RequestParam(required = false, defaultValue = "1") int page) {
 		mv.addObject("memberList", aService.selectMemberList());
 		mv.setViewName("admin/member");
 		return mv;
@@ -56,7 +56,7 @@ public class AdminController {
 	}
 	
 	@GetMapping("/report")
-	public ModelAndView viewReport(ModelAndView mv) {
+	public ModelAndView viewReport(ModelAndView mv, @RequestParam(required = false, defaultValue = "1") int page) {
 		mv.addObject("reportList", aService.selectReportList());
 		mv.setViewName("admin/report");
 		return mv;
@@ -71,26 +71,26 @@ public class AdminController {
 	}
 	
 	@GetMapping("/reservation")
-	public ModelAndView viewReservation(ModelAndView mv) {
+	public ModelAndView viewReservation(ModelAndView mv, @RequestParam(required = false, defaultValue = "1") int page) {
 		mv.setViewName("admin/reservation");
 		return mv;
 	}
 	
 	@GetMapping("/location")
-	public ModelAndView viewLocation(ModelAndView mv) {
+	public ModelAndView viewLocation(ModelAndView mv, @RequestParam(required = false, defaultValue = "1") int page) {
 		mv.setViewName("admin/location");
 		return mv;
 	}
 	
 	@GetMapping("/vehicle")
-	public ModelAndView viewVehicle(ModelAndView mv) {
+	public ModelAndView viewVehicle(ModelAndView mv, @RequestParam(required = false, defaultValue = "1") int page) {
 		mv.addObject("vehicleList", aService.selectVehicleList());
 		mv.setViewName("admin/vehicle");
 		return mv;
 	}
 	
 	@GetMapping("/coupon")
-	public ModelAndView viewCoupon(ModelAndView mv) {
+	public ModelAndView viewCoupon(ModelAndView mv, @RequestParam(required = false, defaultValue = "1") int page) {
 		mv.addObject("couponList", aService.selectCouponList());
 		mv.setViewName("admin/coupon");
 		return mv;
@@ -104,8 +104,27 @@ public class AdminController {
 	}
 	
 	@GetMapping("/notice")
-	public ModelAndView viewNotice(ModelAndView mv) {
+	public ModelAndView viewNotice(ModelAndView mv, @RequestParam(required = false, defaultValue = "1") int page) {
+		int count = aService.noticeCount();
+		Pagination pagination = new Pagination();
+		pagination.pageInfo(page, count);
+		
+		mv.addObject("pagination", pagination);
+		mv.addObject("noticeList", aService.selectNoticeList());
 		mv.setViewName("admin/notice");
+		return mv;
+	}
+	
+	@GetMapping("/notice/{idx}")
+	public ModelAndView viewNoticeOne(ModelAndView mv, @PathVariable String idx) {
+		mv.addObject("notice", aService.selectNoticeOne(idx));
+		mv.setViewName("admin/noticedetails");
+		return mv;
+	}
+	
+	@GetMapping("/notice/insert")
+	public ModelAndView viewInsertNotice(ModelAndView mv) {
+		mv.setViewName("admin/noticeinsert");
 		return mv;
 	}
 	
@@ -117,7 +136,6 @@ public class AdminController {
 		
 		mv.addObject("pagination", pagination);
 		mv.addObject("requestList", aService.selectRequestList(pagination));
-		
 		mv.setViewName("admin/request");
 		return mv;
 	}

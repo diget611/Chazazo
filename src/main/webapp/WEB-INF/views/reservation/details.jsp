@@ -106,6 +106,10 @@
 												<td><input type="text"id="addIns"  name="addIns" readonly><label>원</label></td>
 											</tr>
 											<tr>
+												<th>반납지점 변경 요금</th>
+												<td><input type="text"id="addreturn"  name="addreturn" readonly><label>원</label></td>
+											</tr>
+											<tr>
 												<th>예상결제금액</th>
 												<td><input type="text" id="expIns"  name="expIns" readonly><label>원</label></td>
 											</tr>
@@ -174,6 +178,7 @@
 		$('#rentPrice').attr('value',price.toLocaleString());
 		$("#addIns").attr('value',(price * 0.1 ).toLocaleString());
 		$("#expIns").attr('value',(price+price * 0.1).toLocaleString());
+		$("#addreturn").attr('value', '0') ;
 	}
  
   
@@ -182,25 +187,41 @@
 	$('#startDate').on('change', calc);
     $('#endDate').on('change', calc);
     $('#selectins').on('change', calc);
+
+	
+    function testf(){
+
+		
+    	
+    };
+
     
-    
+    //결제요금 계산
     function calc () {
 	    var startDate = new Date($('#startDate').val());
 	    var endDate = new Date($('#endDate').val());
         var compareDate = Math.round((endDate.getTime() - startDate.getTime()) / (1000 * 60 * 60 * 24)) + 1;
       	var price = ${car.price};
       	var insurance = $('#selectins').val(); //추가요금
-		console.log(startDate);
-		console.log(endDate);
-		console.log(price);
-		console.log(insurance);
-        console.log(compareDate);
+ 		
+		//반납지점이 대여지점과 다르면 추가 요금 부과
+		if ($("#returnSelect").val() == "${car.name}" ) {
+			$("#addreturn").attr('value', '0') ;
+		} else{
+			$("#addreturn").attr('value', '10,000');
+		}
+		
+    	var returnfee = $('#addreturn').val();
+      	var returnfee2 = parseInt(returnfee);
+		
         
         //대여일 선택시 반납일을 대여일 이후로 제한
         var sDate = new Date();
         var sdd = startDate.getDate();
         var smm = startDate.getMonth() +1;
      	var syyyy = startDate.getFullYear();
+     	
+     	//대여, 반납 날짜 제한
      	if (smm < 10) {
      	     	   smm = '0' + smm;
      	} 
@@ -209,7 +230,6 @@
       	
            //반납일이 대여일보다 먼저 올 때 결제창 초기화
 	       if(compareDate <1) {
-	    	  alert("반납일이 대여일보다 먼저 올 수 없습니다.다시 선택해 주세요.");
 	    	  $('#day-count').attr('value', '');
 	      	  $('#rentPrice').attr('value', '');
 	      	  $("#addIns").attr('value', '');
@@ -220,7 +240,7 @@
 	     	  $('#day-count').attr('value',compareDate);
 	     	  $('#rentPrice').attr('value',(price * compareDate).toLocaleString());
 	     	  $("#addIns").attr('value',(price * insurance *compareDate).toLocaleString());
-	     	  $("#expIns").attr('value',(compareDate*price+ compareDate * price * insurance).toLocaleString());
+	     	  $("#expIns").attr('value',((compareDate*price)+(compareDate * price * insurance)+returnfee2).toLocaleString());
 	       }
       }
     
@@ -378,11 +398,12 @@
 	
 				}
 	
-	//결제하기 눌렀을때 출력될 회원용 화면
+	//결제하기 눌렀을때 정보 입력창
 	function getPayinfo(result) {
 		var html ='';
+		//결제하기 눌렀을때 출력될 비회원용 화면
 		if(result == 1) {
-			html += '<section>'
+				html += '<section>'
 				html += '	<div style="text-align:center">';
 				html += '		<h2>결제 정보</h2>';
 				html += '	</div>';
@@ -400,11 +421,20 @@
 				html += '						<label class="small">이름</label>  <input type="text" id="name" class="form-control" placeholder="성명" value="" >';
 				html += '						<label class="small">생년월일</label>  <input type="text" id="birth" class="form-control" placeholder="생년월일 6자리" value="" >';
 				html += '						<label class="small">휴대폰 번호</label>  <input type="text"  id="phone" class="form-control" placeholder="휴대폰 번호" value="" >';
+				html += '						<label class="small">운전 면허 번호</label>  <input type="text"  id="mail" class="form-control" placeholder="운전 면허 번호" value="" >';
 				html += '						<label class="small">이메일</label>  <input type="text"  id="mail" class="form-control" placeholder="이메일" value="" >';
-				html += '						<label class="small">반납 장소 선택</label>';
+				html += '						<label class="small">반납지점 선택</label> <select class="form-select" name="returnSelect"  id="returnSelect" onchange="calc()" >';
+				html += '	 					  	  <option value="강남점">강남점</option>';
+				html += '	 						  <option value="용산점">용산점</option>';
+				html += '							  <option value="수원점">수원점</option>';
+				html += '							  <option value="송도점">송도점</option>';
+				html += '							  <option value="일산점">일산점</option>';
+				html += '						</select>';
 				html += '		</div>';
 				html += '	</div>';
-		} else {
+		} 
+		//결제하기 눌렀을때 출력될 회원용 화면
+		else {
 		html += '<section>'
 		html += '	<div style="text-align:center">';
 		html += '		<h2>결제 정보</h2>';
@@ -423,14 +453,23 @@
 		html += '						<label class="small">이름</label>  <input type="text" id="name" class="form-control" placeholder="성명" value="'+ result.info.name+'" >';
 		html += '						<label class="small">생년월일</label>  <input type="text" id="birth" class="form-control" placeholder="생년월일 6자리" value="'+ result.info.birth+'" >';
 		html += '						<label class="small">휴대폰 번호</label>  <input type="text"  id="phone" class="form-control" placeholder="휴대폰 번호" value="'+ result.info.phoneNumber+'" >';
+		html += '						<label class="small">운전 면허 번호</label>  <input type="text"  id="mail" class="form-control" placeholder="운전 면허 번호" value="'+ result.info.license+'" >';
 		html += '						<label class="small">이메일</label>  <input type="text"  id="mail" class="form-control" placeholder="이메일" value="'+ result.info.email+'" >';
-		html += '						<label class="small">반납 장소 선택</label>';
+		html += '						<label class="small">반납지점 선택</label> <select class="form-select" name="returnSelect" id="returnSelect" onchange="calc()">';
+		html += '	 					  	  <option value="강남점">강남점</option>';
+		html += '	 						  <option value="용산점">용산점</option>';
+		html += '							  <option value="수원점">수원점</option>';
+		html += '							  <option value="송도점">송도점</option>';
+		html += '							  <option value="일산점">일산점</option>';
 		html += '		</div>';
 		html += '	</div>';			
 		}
 
 		$('#content').html(html);
+		$("#returnSelect").val("${car.name}").prop("selected", true);
+
 	}
+
 	
 	//결제하기 눌렀을때 결제수단 출력	
 	function payajax() {
@@ -523,6 +562,7 @@
 		var birthval = $('#birth').val();
 		var phoneval = $('#phone').val();
 		var mailval = $('#mail').val();
+		var returnval = $('#returnSelect option:selected').val();
 
 		var sdate = new Date($('#startDate').val());
 		var edate = new Date($('#endDate').val());
@@ -539,7 +579,7 @@
 	          };
 		console.log("paid!!!!!!!!!!");
 		console.log("${car.idx}");
-		console.log(nameval + birthval + phoneval + mailval + startDate + endDate );
+		console.log(nameval + birthval + phoneval + mailval + startDate + endDate +returnval );
 		
 		  $.ajax({
 	          url:'<%=request.getContextPath()%>/payment/paid',

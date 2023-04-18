@@ -350,7 +350,7 @@
 					let testEmail = /([!#-'*+-9=?A-Z^-~-]+(\.[!#-'*+-9=?A-Z^-~-]+)*|\"\(\[\]!#-[^-~ \t]|(\\[\t -~])+\")@([!#-'*+-9=?A-Z^-~-]+(\.[!#-'*+-9=?A-Z^-~-]+)*|\[[\t -Z^-~]*])/;
 					if(email != null && testEmail.test(email)) {
 						alert("인증번호가 발송되었습니다.")
-						$('[name=email]').attr('disabled', true);
+						$('[name=email]').attr('readonly', true);
 						$('#checkEmailBtn').attr('disabled', true);
 						$('#confirmEmailBtn').attr('disabled', false);
 						$('[name=checkEmail]').attr('disabled', false);
@@ -370,7 +370,7 @@
 							if(time < 0) {
 								clearInterval(x);
 								alert('인증번호가 만료되었습니다. 다시 요청하세요.');
-								$('[name=email]').attr('disabled', false);
+								$('[name=email]').attr('readonly', false);
 								$('#checkEmailBtn').attr('disabled', false);
 								$('#confirmEmailBtn').attr('disabled', true);
 								$('[name=checkEmail]').attr('disabled', true);

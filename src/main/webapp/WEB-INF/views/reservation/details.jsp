@@ -188,12 +188,6 @@
     $('#endDate').on('change', calc);
     $('#selectins').on('change', calc);
 
-	
-    function testf(){
-
-		
-    	
-    };
 
     
     //결제요금 계산
@@ -205,14 +199,14 @@
       	var insurance = $('#selectins').val(); //추가요금
  		
 		//반납지점이 대여지점과 다르면 추가 요금 부과
+    	var returnfee = $('#addreturn').val();
+      	var returnfee2 = parseInt(returnfee);
 		if ($("#returnSelect").val() == "${car.name}" ) {
 			$("#addreturn").attr('value', '0') ;
 		} else{
-			$("#addreturn").attr('value', '10,000');
+			$("#addreturn").attr('value', '10000');
 		}
 		
-    	var returnfee = $('#addreturn').val();
-      	var returnfee2 = parseInt(returnfee);
 		
         
         //대여일 선택시 반납일을 대여일 이후로 제한

@@ -59,6 +59,7 @@
 				<div class="pc-mobile-header-container">
 					<div class="pc-header space-2 text-center dc-none dc-lg-block">
 						<div class="container">
+						
 							<h2 class="text-grey-3 underline-bg dc-inline-block">마이페이지</h2>
 							<p class="text-grey-5 mb-0">내 정보</p>
 						</div>
@@ -146,7 +147,7 @@
 							<div class="panel panel-default sidebar-menu wow fadeInRight animated animated animated" style="visibility: visible; animation-name: fadeInRight;">
 								<div class="panel-heading">
 									<h3 class="panel-title">
-									<button id="historyBtn" type="submit" class="btn btn-outline-primary">예약내역</button><br>
+									<button id="historyBtn" type="button" class="btn btn-outline-primary">예약내역</button><br>
 									
 								</div>
 							</div>
@@ -182,11 +183,18 @@
 				
 				<div class="blog-lst col-md-8 p0 " style="float: right;">
 					<section id="id-100" class="post single">
-						
-							
-								<div id="content">
+										
+										<div class="text-center">
+
+										</div>
+										
+										
+										<div id="content">
 								 
-								</div> 	
+											</div> 
+										
+										
+										
 							
 					</section>
 			                 
@@ -206,15 +214,15 @@
 		
 		
 		$('#historyBtn').on('click',content);
-				
-				
 		function content(){
 			$.ajax({
 				url:'<%=request.getContextPath()%>/profile/reservation',
 				type: 'get',
 				dataType:'json',
 				success: function(result){
+					
 					memberResv(result);
+					console.log("dddddddddddffff")
 				},
 				error: function(){
 					alert("fail!!!!!!!");
@@ -224,66 +232,69 @@
 		}
 		
 		function memberResv(result){
+			console.log("gggdddddddddsssssssssss")
 			var html = '';
 			if(result == 1){
 				
-				html += '			<h4>비회원 예약조회</h4>'
-				html += '			<form>'
-				html += '			<div class="form-group">'
-				html += '				<label>운전자 이름</label> <input type="text" class="form-control" name="name" placeholder="성명을 입력해 주세요">'
-				html += '				<div class="invalid-feedback" id="vsnmr_input_driver_name_invalid_msg" style="display: block;">이름을 입력해 주세요</div>'
-				html += '				</div>'
-				html += '				<div class="form-group">'
-				html += '					<label>예약번호</label> <input type="text" class="form-control"'
-				html += '						name="reservationNumber">'
-				html += '					<div class="invalid-feedback"'
-				html += '						id="vsnmr_input_reserv_num_invalid_msg">예약번호를 입력해 주세요</div>'
-				html += '					<small class="color-blue">예약번호는 문자와 메일로 보내드린 예약내용에 재되어있습니다.</small>'
-				html += '				</div>'
-				html += '				<div class="form-group">'
-				html += '					<label>전화번호</label> <input type="text" id="phone" name="phone" required>'
-				html += '				</div>'
-				html += '				<div class="text-center">'
-				html += '					<button type="submit" class="btn btn-default">예약 조회하기</button>'
-				html += '				</div>'
-				html += '			</form>'
-				
-			}else{
-			
-			html += '				<div class="text-center">'
+				html += '			<h4>비회원 예약조회</h4>';
+				html += '			<form>';
+				html += '			<div class="form-group">';
+				html += '				<label>운전자 이름</label> <input type="text" class="form-control" name="name" placeholder="성명을 입력해 주세요">';
+				html += '				<div class="invalid-feedback" id="vsnmr_input_driver_name_invalid_msg" style="display: block;">이름을 입력해 주세요</div>';
+				html += '				</div>';
+				html += '				<div class="form-group">';
+				html += '					<label>예약번호</label> <input type="text" class="form-control"';
+				html += '						name="reservationNumber">';
+				html += '					<div class="invalid-feedback"';
+				html += '						id="vsnmr_input_reserv_num_invalid_msg">예약번호를 입력해 주세요</div>';
+				html += '					<small class="color-blue">예약번호는 문자와 메일로 보내드린 예약내용에 재되어있습니다.</small>';
+				html += '				</div>';
+				html += '				<div class="form-group">';
+				html += '					<label>전화번호</label> <input type="text" id="phone" name="phone" required>';
+				html += '				</div>';
+				html += '				<div class="text-center">';
+				html += '					<button type="submit" class="btn btn-default">예약 조회하기</button>';
+				html += '				</div>';
+				html += '			</form>';
 		
-			html += '					<div>'
-			html += '						<h3>${memberinfo.name } 님의 예약내역</h3>'
-			html += '					</div>'
+			}else{
+				
+				
+			html += '		<c:choose>'
+			html += '       	<c:when test="${empty reservation }">'
+			html += '				<h4>진행중인 렌트내역이 없습니다</h4>'
+			html += '			</c:when>'
+			html += '			<c:otherwise>'
+			html += '				<div>'
+			html += '					<h3>${memberinfo.name } 님의 예약내역</h3>'
+			html += '				</div>'
 			html += '					<c:forEach items="${reservation }" var="list">'
 			html += '						<table>'
-			html += '								<tr>'
-			html += '									<th scope="row">예약자</th>'
+			html += '							<tr>'
+			html += '								<th scope="row">예약자</th>'
 			html += '									<td>${list.idx }</td>'
-			html += '									<th scope="row">예약시작날짜</th>'
+			html += '								<th scope="row">예약시작날짜</th>'
 			html += '									<td>${list.reservStart }</td>'
-			html += '									<th scope="row">예약날자</th>'
+			html += '								<th scope="row">예약날자</th>'
 			html += '									<td>${list.reservEnd }</td>'
-			html += '							 		<th scope="row">보험종류</th>'
-			html += '							 		<td>${list.insuranceIdx }</td>'
-			html += '									<th scope="row">차종류</th>'
+			html += '								<th scope="row">보험종류</th>'
+			html += '									<td>${list.insuranceIdx }</td>'
+			html += '								<th scope="row">차종류</th>'
 			html += '									<td>${list.vehicleIdx }</td>'
-			html += '									<th scope="row">대여지점</th>'
+			html += '								<th scope="row">대여지점</th>'
 			html += '									<td>${list.rentLocation }</td>'
-			html += '									<th scope="row">반납지점</th>'
+			html += '								<th scope="row">반납지점</th>'
 			html += '									<td>${list.returnLocation }</td>'
-			html += '									</tr>'
-			html += '						</table>'
-			html += '					</c:forEach>'
-			html += '				</div>'
+			html += '								</tr>'
+			html += '							</table>'
+			html += '						</c:forEach>'
+			html += '				</c:otherwise>	'
+			html += '		</c:choose>'
 			}
-				$('#content').html(html);
+			$('#content').html(html);
 		}
 
-
-		
-		
-		
+	
 		$('#moveNoneMemberReservation').on('click', function() {
 			location.href='<%=request.getContextPath()%>/profile/reservation';
 		});

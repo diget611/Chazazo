@@ -45,10 +45,6 @@ public class AdminDao {
 		return sqlSession.update("member.deleteMemberInfo", username);
 	}
 	
-	public List<VehicleInfoDto> selectVehicleList() {
-		return sqlSession.selectList("vehicle.selectList");
-	}
-	
 	public int reportCount() {
 		return sqlSession.selectOne("report.count");
 	}
@@ -136,5 +132,12 @@ public class AdminDao {
 	public AdminLocationOneRespDto selectLocationOne(String idx) {
 		return sqlSession.selectOne("location.selectOne", idx);
 	}
- 
+	
+	public List<VehicleInfoDto> selectVehicleList(Pagination pagination) {
+		return sqlSession.selectList("vehicle.selectListAdmin", pagination);
+	}
+	
+	public int vehicleCount() {
+		return sqlSession.selectOne("vehicle.selectOneCount");
+	}
 }

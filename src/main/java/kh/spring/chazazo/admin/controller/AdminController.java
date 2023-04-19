@@ -108,8 +108,18 @@ public class AdminController {
 	
 	@GetMapping("/vehicle")
 	public ModelAndView viewVehicle(ModelAndView mv, @RequestParam(required = false, defaultValue = "1") int page) {
-		mv.addObject("vehicleList", aService.selectVehicleList());
+		int count = aService.vehicleCount();
+		Pagination pagination = new Pagination();
+		pagination.pageInfo(10, page, count);
+		
+		mv.addObject("vehicleList", aService.selectVehicleList(pagination));
+		mv.addObject("pagination", pagination);
 		mv.setViewName("admin/vehicle");
+		return mv;
+	}
+	
+	@GetMapping("/vehicle/{idx}")
+	public ModelAndView viewVehicleOne(ModelAndView mv, @PathVariable String idx) {
 		return mv;
 	}
 	
@@ -126,7 +136,7 @@ public class AdminController {
 	}
 	
 	@GetMapping("/coupon/{idx}")
-	public ModelAndView viewCoupon(ModelAndView mv, @PathVariable String idx) {
+	public ModelAndView viewCouponOne(ModelAndView mv, @PathVariable String idx) {
 		mv.addObject("coupon", aService.selectCouponOne(idx));
 		mv.setViewName("admin/coupondetails");
 		return mv;

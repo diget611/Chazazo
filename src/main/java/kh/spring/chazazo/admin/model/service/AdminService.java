@@ -21,7 +21,6 @@ public interface AdminService {
 	public List<AdminMemberRespDto> selectMemberList(Pagination pagination);
 	public AdminMemberRespDto selectMemberOne(String username);
 	public int deleteMember(String username);
-	public List<VehicleInfoDto> selectVehicleList();
 	public int reportCount();
 	public List<AdminReportRespDto> selectReportList(Pagination pagination);
 	public AdminReportRespDto selectReportOne(String idx);
@@ -42,5 +41,7 @@ public interface AdminService {
 	public int locationCount();
 	public List<AdminLocationRespDto> selectLocationList(Pagination pagination);
 	public AdminLocationOneRespDto selectLocationOne(String idx);
+	public List<VehicleInfoDto> selectVehicleList(Pagination pagination);
+	public int vehicleCount();
 	
 }

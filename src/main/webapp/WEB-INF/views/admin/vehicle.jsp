@@ -43,26 +43,69 @@
 			<jsp:include page="/WEB-INF/views/admin/base/navbar.jsp"/>	
 			<!-- Table Start -->
 			<div class="container-fluid pt-4 px-4">
-				<div class="bg-light rounded p-4">
-					<h6 class="mb-4">차량 관리</h6>
+				<div class="bg-light rounded p-4 text-center">
+					<div>
+					<h4 class="mb-4 text-start">차량 관리</h4>
+					</div>
 					<table class="table table-hover">
 						<thead>
-							<tr>
-								<th scope="col"></th>
-								<th scope="col"></th>
-								<th scope="col"></th>
-								<th scope="col"></th>
+							<tr class="text-dark">
+								<th scope="col" style="width: 5%;">#</th>
+								<th scope="col" style="width: 30%;">모델명</th>
+								<th scope="col" style="width: 15%;">연식</th>
+								<th scope="col" style="width: 20%;">가격</th>
+								<th scope="col" style="width: 20%;">제조사</th>
+								<th scope="col" style="width: 10%;">아이디</th>
 							</tr>
 						</thead>
-						<tbody>						
-							<tr>
-								<th scope="row"></th>
-								<td></td>
-								<td></td>
-								<td></td>
+						<tbody>
+							<c:forEach items="${requestList }" var="request" varStatus="status">	
+							<tr onclick='window.open("<%=request.getContextPath()%>/admin/request/${request.idx}", "문의 상세 정보", "width=500, height=600")'>
+								<th scope="row">${pagination.count - (pagination.currentPage - 1) * 10 - status.index}</th>
+								<td>${request.title }</td>
+								<c:choose>
+									<c:when test="${request.status eq 0 }">
+										<td>대기 중</td>		
+									</c:when>
+									<c:otherwise>
+										<td>처리 완료</td>
+									</c:otherwise>
+								</c:choose>
+								<td>${request.reqDate }</td>
+								<td>${request.ansDate }</td>
+								<td>${request.username }</td>
 							</tr>
+							</c:forEach>
 						</tbody>
 					</table>
+					<div class="btn-group me-2 mt-3" role="group">
+						<c:choose>
+							<c:when test="${pagination.currentPage eq 1 }">
+								<button type="button" class="btn btn-secondary disabled" id="preBtn">&lt&lt</button>
+							</c:when>
+							<c:otherwise>
+								<button type="button" class="btn btn-secondary" id="preBtn">&lt&lt</button>	
+							</c:otherwise>
+						</c:choose>
+						<c:forEach begin="${pagination.startPage }" end="${pagination.endPage }" step="1" var="page">
+							<c:choose>
+								<c:when test="${pagination.currentPage eq page }">
+									<button type="button" name="pageBtn" class="btn btn-secondary active" value="${page }">${page }</button>
+								</c:when>
+								<c:otherwise>
+									<button type="button" name="pageBtn" class="btn btn-secondary" value="${page }">${page }</button>
+								</c:otherwise>
+							</c:choose>
+						</c:forEach>
+						<c:choose>
+							<c:when test="${pagination.currentPage eq pagination.paging }">
+								<button type="button" class="btn btn-secondary disabled" id="nextBtn">&gt&gt</button>
+							</c:when>
+							<c:otherwise>
+								<button type="button" class="btn btn-secondary" id="nextBtn">&gt&gt</button>	
+							</c:otherwise>
+						</c:choose>
+					</div>
 				</div>
 			</div>
 			<!-- Table End -->
@@ -76,6 +119,29 @@
 
 <script>
 	$('.dropdown-item').eq(4).addClass('active');
+	
+	$('[name=pageBtn]').on('click', function() {
+		let page = $(this).val();
+		location.href="${pageContext.request.contextPath}/admin/vehicle?page=" + page;
+	})
+	
+	$('#preBtn').on('click', function() {
+		let page = ${pagination.currentPage};
+		
+		if(page - 1 == 0) page = 1;
+		else page--;
+		
+		location.href="${pageContext.request.contextPath}/admin/vehicle?page=" + page;
+ 	})
+	
+	$("#nextBtn").on('click', function() {
+		let page = ${pagination.currentPage};
+		
+		if(page + 1 > ${pagination.paging}) page = ${pagination.paging};
+		else page++;
+		
+		location.href="${pageContext.request.contextPath}/admin/vehicle?page=" + page;
+	})
 </script>
 </body>
 

@@ -50,11 +50,6 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override
-	public List<VehicleInfoDto> selectVehicleList() {
-		return dao.selectVehicleList();
-	}
-
-	@Override
 	public int reportCount() {
 		return dao.reportCount();
 	}
@@ -165,6 +160,16 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public AdminLocationOneRespDto selectLocationOne(String idx) {
 		return dao.selectLocationOne(idx);
+	}
+
+	@Override
+	public List<VehicleInfoDto> selectVehicleList(Pagination pagination) {
+		return dao.selectVehicleList(pagination);
+	}
+
+	@Override
+	public int vehicleCount() {
+		return dao.vehicleCount();
 	}
 
 }

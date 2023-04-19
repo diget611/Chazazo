@@ -24,9 +24,9 @@
 
 	
 	<select id="selectPageList" parameterType="map" resultType="VehicleInfo">
-		 select v.*, f.type as fuelname, c.type as typename, l.name
-		from FUELTYPE f, CARTYPE c, VEHICLE v ,location l
-		where v.cartype_idx = c.idx and v.fueltype_idx = f.idx and v.location_idx=l.idx and rownum BETWEEN #{start} and #{end}
+			 select v.*, f.type as fuelname, c.type as typename, l.name
+			from FUELTYPE f, CARTYPE c, VEHICLE v ,location l
+			where v.cartype_idx = c.idx and v.fueltype_idx = f.idx and v.location_idx=l.idx and rownum BETWEEN #{start} and #{end}
 	</select>
 
 	<select id="selectOne" resultType="vehicleRespDto">
@@ -56,6 +56,14 @@
  	</select>
  	<select id="selectOneCount" resultType="_int">
 	select count(*) cnt from vehicle
+	</select>
+	
+	<select id="selectListAdmin" parameterType="pagination" resultType="VehicleInfo">
+		SELECT * 
+		  FROM (SELECT ROWNUM AS RNUM, T.*
+		          FROM (SELECT V.*, F.TYPE AS FUEL, C.TYPE AS TYPE, L.NAME AS LOCATION FROM VEHICLE V, FUELTYPE F, CARTYPE C, LOCATION L
+                         WHERE V.CARTYPE_IDX = C.IDX AND V.FUELTYPE_IDX = F.IDX AND V.LOCATION_IDX = L.IDX ORDER BY V.IDX DESC) T)
+         WHERE RNUM BETWEEN #{start} AND #{end}
 	</select>
  	
  	

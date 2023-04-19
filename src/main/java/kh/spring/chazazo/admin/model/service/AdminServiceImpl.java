@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 
 import kh.spring.chazazo.admin.model.dao.AdminDao;
 import kh.spring.chazazo.admin.model.dto.AdminCouponManageRespDto;
+import kh.spring.chazazo.admin.model.dto.AdminLocationOneRespDto;
+import kh.spring.chazazo.admin.model.dto.AdminLocationRespDto;
 import kh.spring.chazazo.admin.model.dto.AdminMemberRespDto;
 import kh.spring.chazazo.admin.model.dto.AdminNoticeOneRespDto;
 import kh.spring.chazazo.admin.model.dto.AdminNoticeRespDto;
@@ -136,6 +138,11 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override
+	public int noticeCount() {
+		return dao.noticeCount();
+	}
+
+	@Override
 	public List<AdminNoticeRespDto> selectNoticeList(Pagination pagination) {
 		return dao.selectNoticeList(pagination);
 	}
@@ -146,8 +153,18 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override
-	public int noticeCount() {
-		return dao.noticeCount();
+	public int locationCount() {
+		return dao.locationCount();
+	}
+
+	@Override
+	public List<AdminLocationRespDto> selectLocationList(Pagination pagination) {
+		return dao.selectLocationList(pagination);
+	}
+
+	@Override
+	public AdminLocationOneRespDto selectLocationOne(String idx) {
+		return dao.selectLocationOne(idx);
 	}
 
 }

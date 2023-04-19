@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -33,7 +33,6 @@
     		cursor: pointer;
     	}
     </style>
-    
 </head>
 <body>
 	<div class="container-xxl position-relative bg-white d-flex p-0">
@@ -42,26 +41,60 @@
 			<jsp:include page="/WEB-INF/views/admin/base/navbar.jsp"/>	
 			<!-- Table Start -->
 			<div class="container-fluid pt-4 px-4">
-				<div class="bg-light rounded p-4">
-					<h6 class="mb-4">지점 관리</h6>
+				<div class="bg-light rounded p-4 text-center">
+					<div>
+					<h4 class="mb-4 text-start">지점 관리</h4>
+					</div>
 					<table class="table table-hover">
 						<thead>
-							<tr>
-								<th scope="col"></th>
-								<th scope="col"></th>
-								<th scope="col"></th>
-								<th scope="col"></th>
+							<tr class="text-dark">
+								<th scope="col" style="width: 5%;">#</th>
+								<th scope="col" style="width: 10%;">지점명</th>
+								<th scope="col" style="width: 20%%;">전화번호</th>
+								<th scope="col" style="width: 15%;">운영시간</th>
+								<th scope="col" style="width: 50%;">주소</th>
 							</tr>
 						</thead>
-						<tbody>						
-							<tr>
-								<th scope="row"></th>
-								<td></td>
-								<td></td>
-								<td></td>
+						<tbody>
+							<c:forEach items="${locationList }" var="location" varStatus="status">	
+							<tr onclick='window.open("<%=request.getContextPath()%>/admin/location/${location.idx}", "지점 상세 정보", "width=500, height=800")'>
+								<th scope="row">${pagination.count - (pagination.currentPage - 1) * 10 - status.index}</th>
+								<td>${location.name }</td>
+								<td>${location.phoneNumber }</td>
+								<td>${location.businessHours }</td>
+								<td>${location.address }</td>
 							</tr>
+							</c:forEach>
 						</tbody>
 					</table>
+					<div class="btn-group me-2 mt-3" role="group">
+						<c:choose>
+							<c:when test="${pagination.currentPage eq 1 }">
+								<button type="button" class="btn btn-secondary disabled" id="preBtn">&lt&lt</button>
+							</c:when>
+							<c:otherwise>
+								<button type="button" class="btn btn-secondary" id="preBtn">&lt&lt</button>	
+							</c:otherwise>
+						</c:choose>
+						<c:forEach begin="${pagination.startPage }" end="${pagination.endPage }" step="1" var="page">
+							<c:choose>
+								<c:when test="${pagination.currentPage eq page }">
+									<button type="button" name="pageBtn" class="btn btn-secondary active" value="${page }">${page }</button>
+								</c:when>
+								<c:otherwise>
+									<button type="button" name="pageBtn" class="btn btn-secondary" value="${page }">${page }</button>
+								</c:otherwise>
+							</c:choose>
+						</c:forEach>
+						<c:choose>
+							<c:when test="${pagination.currentPage eq pagination.paging }">
+								<button type="button" class="btn btn-secondary disabled" id="nextBtn">&gt&gt</button>
+							</c:when>
+							<c:otherwise>
+								<button type="button" class="btn btn-secondary" id="nextBtn">&gt&gt</button>	
+							</c:otherwise>
+						</c:choose>
+					</div>
 				</div>
 			</div>
 			<!-- Table End -->
@@ -72,7 +105,33 @@
 	</div>
 
 <script src="<%=request.getContextPath()%>/resources/dashmin/js/main.js"></script>
-
+	
+<script>
+	$('.dropdown-item').eq(3).addClass('active');
+	
+	$('[name=pageBtn]').on('click', function() {
+		let page = $(this).val();
+		location.href="${pageContext.request.contextPath}/admin/location?page=" + page;
+	})
+	
+	$('#preBtn').on('click', function() {
+		let page = ${pagination.currentPage};
+		
+		if(page - 1 == 0) page = 1;
+		else page--;
+		
+		location.href="${pageContext.request.contextPath}/admin/location?page=" + page;
+ 	})
+	
+	$("#nextBtn").on('click', function() {
+		let page = ${pagination.currentPage};
+		
+		if(page + 1 > ${pagination.paging}) page = ${pagination.paging};
+		else page++;
+		
+		location.href="${pageContext.request.contextPath}/admin/location?page=" + page;
+	})
+</script>
 </body>
 
 </html>

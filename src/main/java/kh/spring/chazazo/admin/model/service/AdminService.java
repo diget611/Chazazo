@@ -12,8 +12,9 @@ import kh.spring.chazazo.admin.model.dto.AdminNoticeRespDto;
 import kh.spring.chazazo.admin.model.dto.AdminReportRespDto;
 import kh.spring.chazazo.admin.model.dto.AdminRequestOneRespDto;
 import kh.spring.chazazo.admin.model.dto.AdminRequestRespDto;
+import kh.spring.chazazo.admin.model.dto.AdminVehicleOneRespDto;
+import kh.spring.chazazo.admin.model.dto.AdminVehicleRespDto;
 import kh.spring.chazazo.common.Pagination;
-import kh.spring.chazazo.vehicle.model.dto.VehicleInfoDto;
 
 public interface AdminService {
 	
@@ -41,7 +42,8 @@ public interface AdminService {
 	public int locationCount();
 	public List<AdminLocationRespDto> selectLocationList(Pagination pagination);
 	public AdminLocationOneRespDto selectLocationOne(String idx);
-	public List<VehicleInfoDto> selectVehicleList(Pagination pagination);
+	public List<AdminVehicleRespDto> selectVehicleList(Pagination pagination);
+	public AdminVehicleOneRespDto selectVehicleOne(String idx);
 	public int vehicleCount();
 	
 }

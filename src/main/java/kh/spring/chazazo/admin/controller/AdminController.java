@@ -120,6 +120,8 @@ public class AdminController {
 	
 	@GetMapping("/vehicle/{idx}")
 	public ModelAndView viewVehicleOne(ModelAndView mv, @PathVariable String idx) {
+		mv.addObject("vehicle", aService.selectVehicleOne(idx));
+		mv.setViewName("admin/vehicledetails");
 		return mv;
 	}
 	

@@ -65,9 +65,17 @@ select rownum as rnum, t.* from
 	<select id="selectListAdmin" parameterType="pagination" resultType="adminVehicleRespDto">
 		SELECT * 
 		  FROM (SELECT ROWNUM AS RNUM, T.*
-		          FROM (SELECT V.*, F.TYPE AS FUEL, C.TYPE AS TYPE, L.NAME AS LOCATION FROM VEHICLE V, FUELTYPE F, CARTYPE C, LOCATION L
+		          FROM (SELECT V.IDX, V.MODEL, V.YEAR, V.PRICE, V.MAKER, F.TYPE AS FUEL
+		                     , C.TYPE AS TYPE, L.NAME AS LOCATION FROM VEHICLE V, FUELTYPE F, CARTYPE C, LOCATION L
                          WHERE V.CARTYPE_IDX = C.IDX AND V.FUELTYPE_IDX = F.IDX AND V.LOCATION_IDX = L.IDX ORDER BY V.IDX DESC) T)
-         WHERE RNUM BETWEEN #{start} AND #{end}
+         WHERE RNUM BETWEEN #{start} and #{end}
+	</select>
+	
+	<select id="selectOneAdmin" resultType="adminVehicleOneRespDto">
+		SELECT V.IDX, V.MODEL, V.YEAR, V.PRICE, V.MAKER, V.IMAGE
+		     , F.TYPE AS FUEL, C.TYPE AS TYPE, L.NAME AS LOCATION
+		  FROM VEHICLE V, FUELTYPE F, CARTYPE C, LOCATION L
+         WHERE V.CARTYPE_IDX = C.IDX AND V.FUELTYPE_IDX = F.IDX AND V.LOCATION_IDX = L.IDX AND V.IDX = #{idx}
 	</select>
  	
  	

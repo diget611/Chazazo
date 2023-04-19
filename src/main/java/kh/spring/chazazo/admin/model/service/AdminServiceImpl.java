@@ -16,6 +16,8 @@ import kh.spring.chazazo.admin.model.dto.AdminNoticeRespDto;
 import kh.spring.chazazo.admin.model.dto.AdminReportRespDto;
 import kh.spring.chazazo.admin.model.dto.AdminRequestOneRespDto;
 import kh.spring.chazazo.admin.model.dto.AdminRequestRespDto;
+import kh.spring.chazazo.admin.model.dto.AdminVehicleOneRespDto;
+import kh.spring.chazazo.admin.model.dto.AdminVehicleRespDto;
 import kh.spring.chazazo.common.Pagination;
 import kh.spring.chazazo.vehicle.model.dto.VehicleInfoDto;
 
@@ -163,10 +165,15 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override
-	public List<VehicleInfoDto> selectVehicleList(Pagination pagination) {
+	public List<AdminVehicleRespDto> selectVehicleList(Pagination pagination) {
 		return dao.selectVehicleList(pagination);
 	}
 
+	@Override
+	public AdminVehicleOneRespDto selectVehicleOne(String idx) {
+		return dao.selectVehicleOne(idx);
+	}
+	
 	@Override
 	public int vehicleCount() {
 		return dao.vehicleCount();

@@ -47,6 +47,9 @@ public class ReservationReqDto {
 	private String mail;
 	private String startDate;
 	private String endDate;
+	private int caridx;
+	private int finalprice;
+	private String useridx;
 
 	
 	

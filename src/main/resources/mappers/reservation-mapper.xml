@@ -28,7 +28,7 @@
 	</delete>
 	
 	<insert id="insertPayInfo" parameterType="java.util.List" >
-		insert into test values ( TEST_SEQ.nextval, #{name}, #{phone}, #{birth}, #{mail})
+		insert into test values ( #{name}, #{caridx}, #{finalprice}, #{useridx})
 	</insert>
 	
 	

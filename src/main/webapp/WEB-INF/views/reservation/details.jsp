@@ -90,7 +90,7 @@
 									<section class="mt-3 p-3">
 									<h6>결제 정보</h6><hr>
 									<form id="payform" action="<%=request.getContextPath() %>/payment" method="get" onsubmit="false">
-									<input type="hidden" name="carIdx" value="${car.idx }" >
+									<input type="hidden" name="caridx" value="${car.idx }" >
 									<table class="table">
 										<tbody>
 											<tr>
@@ -111,7 +111,7 @@
 											</tr>
 											<tr>
 												<th>예상결제금액</th>
-												<td><input type="text" id="expIns"  name="expIns" readonly><label>원</label></td>
+												<td><input type="text" id="finalprice"  name="finalprice" readonly><label>원</label></td>
 											</tr>
 										</tbody>
 									</table>
@@ -175,9 +175,9 @@
 	window.onload = function reset() {
 		getcarInfo();
 		$('input[name=daycount]').attr('value','1');
-		$('#rentPrice').attr('value',price.toLocaleString());
-		$("#addIns").attr('value',(price * 0.1 ).toLocaleString());
-		$("#expIns").attr('value',(price+price * 0.1).toLocaleString());
+		$('#rentPrice').attr('value',price);
+		$("#addIns").attr('value',(price * 0.1 ));
+		$("#finalprice").attr('value',(price+price * 0.1));
 		$("#addreturn").attr('value', '0') ;
 	}
  
@@ -199,15 +199,13 @@
       	var insurance = $('#selectins').val(); //추가요금
  		
 		//반납지점이 대여지점과 다르면 추가 요금 부과
-    	var returnfee = $('#addreturn').val();
-      	var returnfee2 = parseInt(returnfee);
 		if ($("#returnSelect").val() == "${car.name}" ) {
 			$("#addreturn").attr('value', '0') ;
 		} else{
-			$("#addreturn").attr('value', '10000');
+			$("#addreturn").attr('value','10000');
 		}
-		
-		
+    	var returnfee = parseInt($('#addreturn').val());
+		console.log(returnfee);
         
         //대여일 선택시 반납일을 대여일 이후로 제한
         var sDate = new Date();
@@ -227,14 +225,14 @@
 	    	  $('#day-count').attr('value', '');
 	      	  $('#rentPrice').attr('value', '');
 	      	  $("#addIns").attr('value', '');
-	      	  $("#expIns").attr('value', '');
+	      	  $("#finalprice").attr('value', '');
 			  return false;
 	       }else {
 		      //대여일이 반납일보다 먼저 올 때 요금 정상계산
 	     	  $('#day-count').attr('value',compareDate);
-	     	  $('#rentPrice').attr('value',(price * compareDate).toLocaleString());
-	     	  $("#addIns").attr('value',(price * insurance *compareDate).toLocaleString());
-	     	  $("#expIns").attr('value',((compareDate*price)+(compareDate * price * insurance)+returnfee2).toLocaleString());
+	     	  $('#rentPrice').attr('value',(price * compareDate));
+	     	  $("#addIns").attr('value',(price * insurance *compareDate));
+	     	  $("#finalprice").attr('value',((compareDate*price)+(compareDate * price * insurance)+returnfee));
 	       }
       }
     
@@ -412,6 +410,7 @@
 				html += '		</div>';
 				html += '		<div class="form-group">';
 				html += '					<h6 style="text-align:center">운전자 정보 </h6>';
+				html += '						<input type="number" id="useridx" value="0" >';
 				html += '						<label class="small">이름</label>  <input type="text" id="name" class="form-control" placeholder="성명" value="" >';
 				html += '						<label class="small">생년월일</label>  <input type="text" id="birth" class="form-control" placeholder="생년월일 6자리" value="" >';
 				html += '						<label class="small">휴대폰 번호</label>  <input type="text"  id="phone" class="form-control" placeholder="휴대폰 번호" value="" >';
@@ -444,6 +443,7 @@
 		html += '		</div>';
 		html += '		<div class="form-group">';
 		html += '					<h6 style="text-align:center">운전자 정보 </h6>';
+		html += '						<input type="text" id="useridx"  value="'+ result.info.idx+'" >'
 		html += '						<label class="small">이름</label>  <input type="text" id="name" class="form-control" placeholder="성명" value="'+ result.info.name+'" >';
 		html += '						<label class="small">생년월일</label>  <input type="text" id="birth" class="form-control" placeholder="생년월일 6자리" value="'+ result.info.birth+'" >';
 		html += '						<label class="small">휴대폰 번호</label>  <input type="text"  id="phone" class="form-control" placeholder="휴대폰 번호" value="'+ result.info.phoneNumber+'" >';
@@ -557,7 +557,11 @@
 		var phoneval = $('#phone').val();
 		var mailval = $('#mail').val();
 		var returnval = $('#returnSelect option:selected').val();
+		var finalprice = parseInt($('#finalprice').val());
+		var caridx = $('#caridx').val();
+		var useridx = $('#useridx').val();
 
+		if ($(''))
 		var sdate = new Date($('#startDate').val());
 		var edate = new Date($('#endDate').val());
 		var startDate = sdate.getFullYear() + "/" + (sdate.getMonth() + 1) + "/" + sdate.getDate();
@@ -569,11 +573,14 @@
 	        	  "phone" : phoneval,
 	        	  "mail" : mailval,
 	        	  "startDate" :startDate,
-	        	  "endDate" :endDate
+	        	  "endDate" :endDate,
+	        	  "caridx" : "${car.idx}",
+	        	  "finalprice" : finalprice,
+	        	  "useridx" : useridx
 	          };
-		console.log("paid!!!!!!!!!!");
-		console.log("${car.idx}");
-		console.log(nameval + birthval + phoneval + mailval + startDate + endDate +returnval );
+		console.log(data+"!!!!!!!!!!");
+		console.log(typeof useridx + useridx);
+		console.log("#########회원정보"+nameval + birthval + phoneval + mailval +"#########예약선택"+ startDate + endDate +returnval +"#########가격"+ finalprice +"#########차량정보"+"${car.idx}");
 		
 		  $.ajax({
 	          url:'<%=request.getContextPath()%>/payment/paid',

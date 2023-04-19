@@ -74,6 +74,9 @@
 
 <script src="<%=request.getContextPath()%>/resources/dashmin/js/main.js"></script>
 
+<script>
+	$('.dropdown-item').eq(4).addClass('active');
+</script>
 </body>
 
 </html>

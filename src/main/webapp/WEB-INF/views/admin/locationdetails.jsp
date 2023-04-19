@@ -1,12 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>1:1 문의 상세 정보</title>
+    <title>지점 상세 정보</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    
+    <spring:eval expression="@keyProperty['kakao-admin-key']" var="key"/>
+	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=${key }"></script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -34,40 +38,28 @@
 	<div class="container-fluid pt-4 px-4">
 		<div class="col-sm-12 col-xl-6">
 			<div class="bg-light rounded h-100 p-4">
-				<h6 class="mb-4">1:1 문의 상세 정보</h6>
-				<input type="hidden" name="idx" id="idx" value="${request.idx }">
-				<div class="mb-3 row">
-					<label for="title" class="form-label">제목</label>
-					<input type="text" class="form-control" id="title" name="title" value="${request.title}" readonly>
+				<h6 class="mb-4">지점 상세 정보</h6>
+				<div class="form-floating mb-3">
+					<input type="text" class="form-control" id="name" name="name" value="${location.name }">
+					<label for="name">지점명</label>
 				</div>
-				<div class="mb-3 row">
-					<label for="content" class="form-label">내용</label>
-					<input type="text" class="form-control" id="content" name="content" value="${request.content}" readonly>
+				<div class="form-floating mb-3">
+					<input type="text" class="form-control" id="phoneNumber" name="phoneNumber" value="${location.phoneNumber }">
+					<label for="phoneNumber">전화번호</label>
 				</div>
-				<c:choose>
-					<c:when test="${request.status eq 0 }">
-						<form>
-							<div class="mb-3 row">
-								<input type="text" class="form-control mb-3" id="answer" name="answer">
-								<div style="text-align: center;">
-									<button type="button" class="btn btn-primary" style="display: inline-block" id="ansBtn">답변하기</button>
-									<button type="button" class="btn btn-primary" style="display: inline-block" id="deleteBtn">삭제하기</button>
-								</div>
-							</div>
-						</form>
-					</c:when>
-					<c:otherwise>
-						<form>
-							<div class="mb-3 row">
-								<input type="text" class="form-control mb-3" id="answer" name="answer" value="${request.answer }">
-								<div style="text-align: center;">
-									<button type="button" class="btn btn-primary" style="display: inline-block" id="updateBtn">수정하기</button>
-									<button type="button" class="btn btn-primary" style="display: inline-block" id="deleteBtn">삭제하기</button>
-								</div>
-							</div>
-						</form>
-					</c:otherwise>
-				</c:choose>
+				<div class="form-floating mb-3">
+					<input type="text" class="form-control" id="address" name="address" value="${location.address }">
+					<label for="address">주소</label>
+				</div>
+				<input type="hidden" value="${location.latitude }">
+				<input type="hidden" value="${location.longitude }">
+				<div class="mb-3" id="map" style="width: 100%; height: 400px;"></div>
+				<div class="mb-3 row">
+					<div style="text-align: center;">
+						<button type="button" class="btn btn-primary" style="display: inline-block" id="updateBtn">수정하기</button>
+						<button type="button" class="btn btn-primary" style="display: inline-block" id="deleteBtn">삭제하기</button>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -86,7 +78,7 @@
 			data: {idx: idx, answer: answer},
 			success: function(result) {
 				if(result == 1) {
-					opener.parent.location.reload();
+					alert('성공');
 					window.close();
 				} else {
 					alert('실패');
@@ -109,7 +101,7 @@
 			data: {idx: idxup, answer: answerup},
 			success: function(result) {
 				if(result == 1) {
-					opener.parent.location.reload();
+					alert('성공');
 					window.close();
 				} else {
 					alert('실패');
@@ -131,7 +123,7 @@
 			data: {idx: idxdel},
 			success: function(result) {
 				if(result == 1) {
-					opener.parent.location.reload();
+					alert('성공');
 					window.close();
 				} else {
 					alert('실패');
@@ -142,6 +134,36 @@
 			}
 		});
 	}
+	
+	var latitude = ${location.latitude};
+	var longitude = ${location.longitude};
+	
+	var container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
+	var options = { //지도를 생성할 때 필요한 기본 옵션
+		center: new kakao.maps.LatLng(latitude, longitude), //지도의 중심좌표.
+		level: 3 //지도의 레벨(확대, 축소 정도)
+	};
+	
+	var map = new kakao.maps.Map(container, options); //지도 생성 및 객체 리턴
+	
+	var imageSrc = 'https://cdn-icons-png.flaticon.com/512/5695/5695641.png', // 마커이미지의 주소입니다    
+		imageSize = new kakao.maps.Size(64, 69), // 마커이미지의 크기입니다
+		imageOption = {offset: new kakao.maps.Point(27, 69)}; 
+	 
+	
+	// 마커가 표시될 위치입니다 
+	var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption),
+		markerPosition  = new kakao.maps.LatLng(latitude, longitude);
+	
+	// 마커를 생성합니다
+	var marker = new kakao.maps.Marker({
+	    position: markerPosition,
+	    image: markerImage
+	});
+
+	// 마커가 지도 위에 표시되도록 설정합니다
+	marker.setMap(map);
+
 </script>
 </body>
 

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="location">
+	<select id="selectList" parameterType="pagination" resultType="adminLocationRespDto">
+		SELECT *
+		  FROM (SELECT ROWNUM AS RNUM, LOCATION.*
+                  FROM LOCATION ORDER BY IDX DESC)
+         WHERE RNUM BETWEEN #{start} AND #{end}
+	</select>
+	<select id="selectOne" resultType="adminLocationOneRespDto">
+		SELECT * FROM LOCATION WHERE IDX = #{idx}
+	</select>
+	<select id="count" resultType="_int">
+		SELECT COUNT(*) FROM LOCATION
+	</select>
+</mapper>

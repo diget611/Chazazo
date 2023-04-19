@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import kh.spring.chazazo.admin.model.dto.AdminCouponManageRespDto;
+import kh.spring.chazazo.admin.model.dto.AdminLocationOneRespDto;
+import kh.spring.chazazo.admin.model.dto.AdminLocationRespDto;
 import kh.spring.chazazo.admin.model.dto.AdminMemberRespDto;
 import kh.spring.chazazo.admin.model.dto.AdminNoticeOneRespDto;
 import kh.spring.chazazo.admin.model.dto.AdminNoticeRespDto;
@@ -123,5 +125,16 @@ public class AdminDao {
 		return sqlSession.selectOne("notice.selectOne", idx);
 	}
 	
+	public int locationCount() {
+		return sqlSession.selectOne("location.count");
+	}
+	
+	public List<AdminLocationRespDto> selectLocationList(Pagination pagination) {
+		return sqlSession.selectList("location.selectList", pagination);
+	}
+	
+	public AdminLocationOneRespDto selectLocationOne(String idx) {
+		return sqlSession.selectOne("location.selectOne", idx);
+	}
  
 }

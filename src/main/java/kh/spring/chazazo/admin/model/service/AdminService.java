@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Map;
 
 import kh.spring.chazazo.admin.model.dto.AdminCouponManageRespDto;
+import kh.spring.chazazo.admin.model.dto.AdminLocationOneRespDto;
+import kh.spring.chazazo.admin.model.dto.AdminLocationRespDto;
 import kh.spring.chazazo.admin.model.dto.AdminMemberRespDto;
 import kh.spring.chazazo.admin.model.dto.AdminNoticeOneRespDto;
 import kh.spring.chazazo.admin.model.dto.AdminNoticeRespDto;
@@ -37,5 +39,8 @@ public interface AdminService {
 	public int noticeCount();
 	public List<AdminNoticeRespDto> selectNoticeList(Pagination pagination);
 	public AdminNoticeOneRespDto selectNoticeOne(String idx);
+	public int locationCount();
+	public List<AdminLocationRespDto> selectLocationList(Pagination pagination);
+	public AdminLocationOneRespDto selectLocationOne(String idx);
 	
 }

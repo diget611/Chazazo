@@ -88,7 +88,21 @@ public class AdminController {
 	
 	@GetMapping("/location")
 	public ModelAndView viewLocation(ModelAndView mv, @RequestParam(required = false, defaultValue = "1") int page) {
+		int count = aService.locationCount();
+		Pagination pagination = new Pagination();
+		pagination.pageInfo(10, page, count);
+		
+		mv.addObject("locationList", aService.selectLocationList(pagination));
+		mv.addObject("pagination", pagination);
 		mv.setViewName("admin/location");
+		
+		return mv;
+	}
+	
+	@GetMapping("/location/{idx}")
+	public ModelAndView viewLocation(ModelAndView mv, @PathVariable String idx) {
+		mv.addObject("location", aService.selectLocationOne(idx));
+		mv.setViewName("admin/locationdetails");
 		return mv;
 	}
 	
@@ -164,7 +178,6 @@ public class AdminController {
 	
 	@PostMapping("/request")
 	public int insertRequest(@RequestParam String idx, @RequestParam String answer) {
-		System.out.println(idx + " | " + answer);
 		Map<String, String> data = new HashMap<String, String>();
 		data.put("idx", idx);
 		data.put("answer", answer);
@@ -176,7 +189,6 @@ public class AdminController {
 	
 	@PatchMapping("/request")
 	public int updateRequest(@RequestParam String idx, @RequestParam String answer) {
-		System.out.println(idx + "|" + answer);
 		Map<String, String> data = new HashMap<String, String>();
 		data.put("idx", idx);
 		data.put("answer", answer);

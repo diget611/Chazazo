@@ -62,7 +62,7 @@ select rownum as rnum, t.* from
 	select count(*) cnt from vehicle
 	</select>
 	
-	<select id="selectListAdmin" parameterType="pagination" resultType="VehicleInfo">
+	<select id="selectListAdmin" parameterType="pagination" resultType="adminVehicleRespDto">
 		SELECT * 
 		  FROM (SELECT ROWNUM AS RNUM, T.*
 		          FROM (SELECT V.*, F.TYPE AS FUEL, C.TYPE AS TYPE, L.NAME AS LOCATION FROM VEHICLE V, FUELTYPE F, CARTYPE C, LOCATION L

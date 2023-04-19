@@ -51,29 +51,26 @@
 						<thead>
 							<tr class="text-dark">
 								<th scope="col" style="width: 5%;">#</th>
-								<th scope="col" style="width: 30%;">모델명</th>
-								<th scope="col" style="width: 15%;">연식</th>
-								<th scope="col" style="width: 20%;">가격</th>
-								<th scope="col" style="width: 20%;">제조사</th>
-								<th scope="col" style="width: 10%;">아이디</th>
+								<th scope="col" style="width: 25%;">모델명</th>
+								<th scope="col" style="width: 10%;">연식</th>
+								<th scope="col" style="width: 10%;">가격</th>
+								<th scope="col" style="width: 15%;">제조사</th>
+								<th scope="col" style="width: 10%;">연료</th>
+								<th scope="col" style="width: 10%;">유형</th>
+								<th scope="col" style="width: 15%;">지점</th>
 							</tr>
 						</thead>
 						<tbody>
-							<c:forEach items="${requestList }" var="request" varStatus="status">	
-							<tr onclick='window.open("<%=request.getContextPath()%>/admin/request/${request.idx}", "문의 상세 정보", "width=500, height=600")'>
+							<c:forEach items="${vehicleList }" var="vehicle" varStatus="status">	
+							<tr onclick='window.open("<%=request.getContextPath()%>/admin/vehicle/${vehicle.idx}", "차량 상세 정보", "width=500, height=600")'>
 								<th scope="row">${pagination.count - (pagination.currentPage - 1) * 10 - status.index}</th>
-								<td>${request.title }</td>
-								<c:choose>
-									<c:when test="${request.status eq 0 }">
-										<td>대기 중</td>		
-									</c:when>
-									<c:otherwise>
-										<td>처리 완료</td>
-									</c:otherwise>
-								</c:choose>
-								<td>${request.reqDate }</td>
-								<td>${request.ansDate }</td>
-								<td>${request.username }</td>
+								<td>${vehicle.model }</td>
+								<td>${vehicle.year }</td>
+								<td>${vehicle.price }</td>
+								<td>${vehicle.maker }</td>
+								<td>${vehicle.fuel }</td>
+								<td>${vehicle.type }</td>
+								<td>${vehicle.location }</td>
 							</tr>
 							</c:forEach>
 						</tbody>

@@ -12,13 +12,13 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class AdminRequestRespDto {
+public class AdminNoticeRespDto {
 	
 	private int idx;
 	private String title;
-	private int status;
-	private String reqDate;
-	private String ansDate;
-	private String username;
+	private String createDate;
+	private int readCount;
+	private String updateDate;
+	private String deleteDate;
 	
 }

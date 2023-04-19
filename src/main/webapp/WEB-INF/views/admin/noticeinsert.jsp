@@ -5,7 +5,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>쿠폰 관리</title>
+    <title>공지사항 작성</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -39,63 +39,24 @@
 		<jsp:include page="/WEB-INF/views/admin/base/sidebar.jsp"/>
 		<div class="content">
 			<jsp:include page="/WEB-INF/views/admin/base/navbar.jsp"/>	
-			<!-- Table Start -->
 			<div class="container-fluid pt-4 px-4">
-				<div class="bg-light rounded p-4 text-center">
-					<div>
-					<h4 class="mb-4 text-start">쿠폰 관리</h4>
-					</div>
-					<table class="table table-hover">
-						<thead>
-							<tr class="text-dark">
-								<th scope="col" style="width: 5%;">#</th>
-								<th scope="col" style="width: 30%;">쿠폰명</th>
-								<th scope="col" style="width: 15%;">기간</th>
-								<th scope="col" style="width: 20%;">할인율</th>
-							</tr>
-						</thead>
-						<tbody>
-							<c:forEach items="${couponList }" var="coupon" varStatus="status">	
-							<tr onclick='window.open("<%=request.getContextPath()%>/admin/coupon/${coupon.idx}", "쿠폰 상세 정보", "width=500, height=600")'>
-								<th scope="row">${pagination.count - (pagination.currentPage - 1) * 10 - status.index}</th>
-								<td>${coupon.name }</td>
-								<td>${coupon.period }</td>
-								<td>${coupon.rate }</td>
-							</tr>
-							</c:forEach>
-						</tbody>
-					</table>
-					<div class="btn-group me-2 mt-3" role="group">
-						<c:choose>
-							<c:when test="${pagination.currentPage eq 1 }">
-								<button type="button" class="btn btn-secondary disabled" id="preBtn">&lt&lt</button>
-							</c:when>
-							<c:otherwise>
-								<button type="button" class="btn btn-secondary" id="preBtn">&lt&lt</button>	
-							</c:otherwise>
-						</c:choose>
-						<c:forEach begin="${pagination.startPage }" end="${pagination.endPage }" step="1" var="page">
-							<c:choose>
-								<c:when test="${pagination.currentPage eq page }">
-									<button type="button" name="pageBtn" class="btn btn-secondary active" value="${page }">${page }</button>
-								</c:when>
-								<c:otherwise>
-									<button type="button" name="pageBtn" class="btn btn-secondary" value="${page }">${page }</button>
-								</c:otherwise>
-							</c:choose>
-						</c:forEach>
-						<c:choose>
-							<c:when test="${pagination.currentPage eq pagination.paging }">
-								<button type="button" class="btn btn-secondary disabled" id="nextBtn">&gt&gt</button>
-							</c:when>
-							<c:otherwise>
-								<button type="button" class="btn btn-secondary" id="nextBtn">&gt&gt</button>	
-							</c:otherwise>
-						</c:choose>
+				<div class="bg-light rounded p-4">
+					<h4 class="mb-4">공지사항 작성</h4>
+					<div class="bg-light rounded h-100 p-4">
+						<div class="form-floating mb-3">
+							<input type="email" class="form-control" id="title" name="title" placeholder="제목을 입력하세요">
+							<label for="title">제목</label>
+						</div>
+						<div class="form-floating">
+							<textarea class="form-control" placeholder="내용을 작성하세요" id="content" name="content" style="height: 375px;"></textarea>
+							<label for="content">내용</label>
+						</div>
+						<div class="form-floating text-end mt-3">
+							<button type="button" class="btn btn-secondary" id="insertBtn">작성하기</button>
+						</div>
 					</div>
 				</div>
 			</div>
-			<!-- Table End -->
 			<jsp:include page="/WEB-INF/views/admin/base/footer.jsp"/>
 		</div>
 		<!-- Back to Top -->
@@ -105,28 +66,7 @@
 <script src="<%=request.getContextPath()%>/resources/dashmin/js/main.js"></script>
 	
 <script>
-	$('[name=pageBtn]').on('click', function() {
-		let page = $(this).val();
-		location.href="${pageContext.request.contextPath}/admin/coupon?page=" + page;
-	})
 	
-	$('#preBtn').on('click', function() {
-		let page = ${pagination.currentPage};
-		
-		if(page - 1 == 0) page = 1;
-		else page--;
-		
-		location.href="${pageContext.request.contextPath}/admin/coupon?page=" + page;
- 	})
-	
-	$("#nextBtn").on('click', function() {
-		let page = ${pagination.currentPage};
-		
-		if(page + 1 > ${pagination.paging}) page = ${pagination.paging};
-		else page++;
-		
-		location.href="${pageContext.request.contextPath}/admin/coupon?page=" + page;
-	})
 </script>
 </body>
 

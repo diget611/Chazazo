@@ -9,9 +9,12 @@ import org.springframework.stereotype.Service;
 import kh.spring.chazazo.admin.model.dao.AdminDao;
 import kh.spring.chazazo.admin.model.dto.AdminCouponManageRespDto;
 import kh.spring.chazazo.admin.model.dto.AdminMemberRespDto;
+import kh.spring.chazazo.admin.model.dto.AdminNoticeOneRespDto;
+import kh.spring.chazazo.admin.model.dto.AdminNoticeRespDto;
 import kh.spring.chazazo.admin.model.dto.AdminReportRespDto;
 import kh.spring.chazazo.admin.model.dto.AdminRequestOneRespDto;
 import kh.spring.chazazo.admin.model.dto.AdminRequestRespDto;
+import kh.spring.chazazo.common.Pagination;
 import kh.spring.chazazo.vehicle.model.dto.VehicleInfoDto;
 
 @Service
@@ -21,8 +24,13 @@ public class AdminServiceImpl implements AdminService {
 	private AdminDao dao;
 	
 	@Override
-	public List<AdminMemberRespDto> selectMemberList() {
-		return dao.selectMemberList();
+	public int memberCount() {
+		return dao.memberCount();
+	}
+	
+	@Override
+	public List<AdminMemberRespDto> selectMemberList(Pagination pagination) {
+		return dao.selectMemberList(pagination);
 	}
 	
 	@Override
@@ -45,8 +53,13 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override
-	public List<AdminReportRespDto> selectReportList() {
-		return dao.selectReportList();
+	public int reportCount() {
+		return dao.reportCount();
+	}
+	
+	@Override
+	public List<AdminReportRespDto> selectReportList(Pagination pagination) {
+		return dao.selectReportList(pagination);
 	}
 
 	@Override
@@ -60,8 +73,13 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override
-	public List<AdminCouponManageRespDto> selectCouponList() {
-		return dao.selectCouponList();
+	public int couponCount() {
+		return dao.couponCount();
+	}
+	
+	@Override
+	public List<AdminCouponManageRespDto> selectCouponList(Pagination pagination) {
+		return dao.selectCouponList(pagination);
 	}
 
 	@Override
@@ -75,8 +93,13 @@ public class AdminServiceImpl implements AdminService {
 	}
 		
 	@Override
-	public List<AdminRequestRespDto> selectRequestList(Map<String, Integer> map) {
-		return dao.selectRequestList(map);
+	public List<AdminRequestRespDto> selectRequestList(Pagination pagination) {
+		return dao.selectRequestList(pagination);
+	}
+
+	@Override
+	public List<AdminRequestRespDto> selectRequestList(Map<String, Integer> data) {
+		return dao.selectRequestList(data);
 	}
 
 	@Override
@@ -110,6 +133,21 @@ public class AdminServiceImpl implements AdminService {
 			dao.deleteRequest(idx);
 		}
 		return result;
+	}
+
+	@Override
+	public List<AdminNoticeRespDto> selectNoticeList(Pagination pagination) {
+		return dao.selectNoticeList(pagination);
+	}
+
+	@Override
+	public AdminNoticeOneRespDto selectNoticeOne(String idx) {
+		return dao.selectNoticeOne(idx);
+	}
+
+	@Override
+	public int noticeCount() {
+		return dao.noticeCount();
 	}
 
 }

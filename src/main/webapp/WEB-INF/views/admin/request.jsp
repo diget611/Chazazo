@@ -57,9 +57,9 @@
 							</tr>
 						</thead>
 						<tbody>
-							<c:forEach items="${data.requestList }" var="request" varStatus="status">	
+							<c:forEach items="${requestList }" var="request" varStatus="status">	
 							<tr onclick='window.open("<%=request.getContextPath()%>/admin/request/${request.idx}", "문의 상세 정보", "width=500, height=600")'>
-								<th scope="row">${data.count - (data.current - 1) * 10 - status.index}</th>
+								<th scope="row">${pagination.count - (pagination.currentPage - 1) * 10 - status.index}</th>
 								<td>${request.title }</td>
 								<c:choose>
 									<c:when test="${request.status eq 0 }">
@@ -78,16 +78,16 @@
 					</table>
 					<div class="btn-group me-2 mt-3" role="group">
 						<c:choose>
-							<c:when test="${data.current eq 1 }">
+							<c:when test="${pagination.currentPage eq 1 }">
 								<button type="button" class="btn btn-secondary disabled" id="preBtn">&lt&lt</button>
 							</c:when>
 							<c:otherwise>
 								<button type="button" class="btn btn-secondary" id="preBtn">&lt&lt</button>	
 							</c:otherwise>
 						</c:choose>
-						<c:forEach begin="${data.start }" end="${data.end}" step="1" var="page">
+						<c:forEach begin="${pagination.startPage }" end="${pagination.endPage }" step="1" var="page">
 							<c:choose>
-								<c:when test="${data.current eq page }">
+								<c:when test="${pagination.currentPage eq page }">
 									<button type="button" name="pageBtn" class="btn btn-secondary active" value="${page }">${page }</button>
 								</c:when>
 								<c:otherwise>
@@ -96,7 +96,7 @@
 							</c:choose>
 						</c:forEach>
 						<c:choose>
-							<c:when test="${data.current eq data.paging }">
+							<c:when test="${pagination.currentPage eq pagination.paging }">
 								<button type="button" class="btn btn-secondary disabled" id="nextBtn">&gt&gt</button>
 							</c:when>
 							<c:otherwise>
@@ -122,7 +122,7 @@
 	})
 	
 	$('#preBtn').on('click', function() {
-		let page = ${data.current};
+		let page = ${pagination.currentPage};
 		
 		if(page - 1 == 0) page = 1;
 		else page--;
@@ -131,9 +131,9 @@
  	})
 	
 	$("#nextBtn").on('click', function() {
-		let page = ${data.current};
+		let page = ${pagination.currentPage};
 		
-		if(page + 1 > ${data.paging}) page = ${data.paging};
+		if(page + 1 > ${pagination.paging}) page = ${pagination.paging};
 		else page++;
 		
 		location.href="${pageContext.request.contextPath}/admin/request?page=" + page;

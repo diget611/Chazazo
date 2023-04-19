@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import kh.spring.chazazo.admin.model.service.AdminService;
+import kh.spring.chazazo.common.Pagination;
 
 @RestController
 @RequestMapping("/admin")
@@ -22,7 +23,6 @@ public class AdminController {
 	
 	@Autowired
 	private AdminService aService;
-	private final static int LIMIT = 10;
 	
 	@GetMapping("/main")
 	public ModelAndView viewMain(ModelAndView mv) {
@@ -34,8 +34,13 @@ public class AdminController {
 	}
 	
 	@GetMapping("/member")
-	public ModelAndView viewMember(ModelAndView mv) {
-		mv.addObject("memberList", aService.selectMemberList());
+	public ModelAndView viewMember(ModelAndView mv, @RequestParam(required = false, defaultValue = "1") int page) {
+		int count = aService.memberCount();
+		Pagination pagination = new Pagination();
+		pagination.pageInfo(10, page, count);
+		
+		mv.addObject("memberList", aService.selectMemberList(pagination));
+		mv.addObject("pagination", pagination);
 		mv.setViewName("admin/member");
 		return mv;
 	}
@@ -56,8 +61,13 @@ public class AdminController {
 	}
 	
 	@GetMapping("/report")
-	public ModelAndView viewReport(ModelAndView mv) {
-		mv.addObject("reportList", aService.selectReportList());
+	public ModelAndView viewReport(ModelAndView mv, @RequestParam(required = false, defaultValue = "1") int page) {
+		int count = aService.reportCount();
+		Pagination pagination = new Pagination();
+		pagination.pageInfo(10, page, count);
+		
+		mv.addObject("reportList", aService.selectReportList(pagination));
+		mv.addObject("pagination", pagination);
 		mv.setViewName("admin/report");
 		return mv;
 	}
@@ -71,27 +81,32 @@ public class AdminController {
 	}
 	
 	@GetMapping("/reservation")
-	public ModelAndView viewReservation(ModelAndView mv) {
+	public ModelAndView viewReservation(ModelAndView mv, @RequestParam(required = false, defaultValue = "1") int page) {
 		mv.setViewName("admin/reservation");
 		return mv;
 	}
 	
 	@GetMapping("/location")
-	public ModelAndView viewLocation(ModelAndView mv) {
+	public ModelAndView viewLocation(ModelAndView mv, @RequestParam(required = false, defaultValue = "1") int page) {
 		mv.setViewName("admin/location");
 		return mv;
 	}
 	
 	@GetMapping("/vehicle")
-	public ModelAndView viewVehicle(ModelAndView mv) {
+	public ModelAndView viewVehicle(ModelAndView mv, @RequestParam(required = false, defaultValue = "1") int page) {
 		mv.addObject("vehicleList", aService.selectVehicleList());
 		mv.setViewName("admin/vehicle");
 		return mv;
 	}
 	
 	@GetMapping("/coupon")
-	public ModelAndView viewCoupon(ModelAndView mv) {
-		mv.addObject("couponList", aService.selectCouponList());
+	public ModelAndView viewCoupon(ModelAndView mv, @RequestParam(required = false, defaultValue = "1") int page) {
+		int count = aService.couponCount() - 1;
+		Pagination pagination = new Pagination();
+		pagination.pageInfo(10, page, count);
+		
+		mv.addObject("couponList", aService.selectCouponList(pagination));
+		mv.addObject("pagination", pagination);
 		mv.setViewName("admin/coupon");
 		return mv;
 	}
@@ -104,55 +119,38 @@ public class AdminController {
 	}
 	
 	@GetMapping("/notice")
-	public ModelAndView viewNotice(ModelAndView mv) {
+	public ModelAndView viewNotice(ModelAndView mv, @RequestParam(required = false, defaultValue = "1") int page) {
+		int count = aService.noticeCount();
+		Pagination pagination = new Pagination();
+		pagination.pageInfo(10, page, count);
+		
+		mv.addObject("pagination", pagination);
+		mv.addObject("noticeList", aService.selectNoticeList(pagination));
 		mv.setViewName("admin/notice");
 		return mv;
 	}
 	
+	@GetMapping("/notice/{idx}")
+	public ModelAndView viewNoticeOne(ModelAndView mv, @PathVariable String idx) {
+		mv.addObject("notice", aService.selectNoticeOne(idx));
+		mv.setViewName("admin/noticedetails");
+		return mv;
+	}
+	
+	@GetMapping("/notice/insert")
+	public ModelAndView viewInsertNotice(ModelAndView mv) {
+		mv.setViewName("admin/noticeinsert");
+		return mv;
+	}
+	
 	@GetMapping("/request")
-	public ModelAndView viewRequest(ModelAndView mv, String page) {
-		int currentPage = 0;
-		int paging = 0;
+	public ModelAndView viewRequest(ModelAndView mv, @RequestParam(required = false, defaultValue = "1") int page) {
 		int count = aService.requestCount();
+		Pagination pagination = new Pagination();
+		pagination.pageInfo(10, page, count);
 		
-		if(page == null) currentPage = 1;
-		else currentPage = Integer.parseInt(page);
-		Map<String, Integer> param = new HashMap<String, Integer>();
-		param.put("start", ((currentPage - 1) * LIMIT) + 1);
-		param.put("end", ((currentPage - 1) * LIMIT) + 10);
-		
-		if(count % LIMIT == 0) {
-			paging = count / LIMIT;
-		} else {
-			paging = count / LIMIT + 1; 
-		}
-		
-		int start;
-		int end;
-		
-		if(currentPage % 10 == 0) {
-			start = ((currentPage / 10 - 1) * LIMIT) + 1;
-		} else {
-			start = ((currentPage / 10) * LIMIT) + 1;
-		}
-		
-		if(start + 9 < paging) {
-			end = start + 9;
-		} else {
-			end = paging;
-		}
-		
-		System.out.println(start + " | " + end);
-		
-		Map<String, Object> data = new HashMap<String, Object>();
-		data.put("requestList", aService.selectRequestList(param));
-		data.put("start", start);
-		data.put("end", end);
-		data.put("paging", paging);
-		data.put("count", count);
-		data.put("current", currentPage);
-		
-		mv.addObject("data", data);
+		mv.addObject("pagination", pagination);
+		mv.addObject("requestList", aService.selectRequestList(pagination));
 		mv.setViewName("admin/request");
 		return mv;
 	}

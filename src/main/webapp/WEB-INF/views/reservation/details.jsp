@@ -205,7 +205,6 @@
 			$("#addreturn").attr('value','10000');
 		}
     	var returnfee = parseInt($('#addreturn').val());
-		console.log(returnfee);
         
         //대여일 선택시 반납일을 대여일 이후로 제한
         var sDate = new Date();
@@ -386,9 +385,10 @@
 				html +=	'	<!-- End features area  -->'
 				html +=	'</div>'
 				html +=' </div>'
-					$('#content').html(html);
-	
+				$('#content').html(html);
+				getMap();
 				}
+
 	
 	//결제하기 눌렀을때 정보 입력창
 	function getPayinfo(result) {
@@ -410,7 +410,7 @@
 				html += '		</div>';
 				html += '		<div class="form-group">';
 				html += '					<h6 style="text-align:center">운전자 정보 </h6>';
-				html += '						<input type="text" id="useridx"  value="0" >'
+				html += '						<input type="hidden" id="useridx"  value="0" >'
 				html += '						<label class="small">이름</label>  <input type="text" id="name" class="form-control" placeholder="성명" value="" >';
 				html += '						<label class="small">생년월일</label>  <input type="text" id="birth" class="form-control" placeholder="생년월일 6자리" value="" >';
 				html += '						<label class="small">휴대폰 번호</label>  <input type="text"  id="phone" class="form-control" placeholder="휴대폰 번호" value="" >';
@@ -443,7 +443,7 @@
 		html += '		</div>';
 		html += '		<div class="form-group">';
 		html += '					<h6 style="text-align:center">운전자 정보 </h6>';
-		html += '						<input type="text" id="useridx"  value="'+ result.info.idx+'" >'
+		html += '						<input type="hidden" id="useridx"  value="'+ result.info.idx+'" >'
 		html += '						<label class="small">이름</label>  <input type="text" id="name" class="form-control" placeholder="성명" value="'+ result.info.name+'" >';
 		html += '						<label class="small">생년월일</label>  <input type="text" id="birth" class="form-control" placeholder="생년월일 6자리" value="'+ result.info.birth+'" >';
 		html += '						<label class="small">휴대폰 번호</label>  <input type="text"  id="phone" class="form-control" placeholder="휴대폰 번호" value="'+ result.info.phoneNumber+'" >';
@@ -617,10 +617,12 @@
 		
 	}
 
-		// <맵 생성>
+	function getMap() {
+		
+	
 	var mapContainer = document.getElementById('map'), // 지도를 표시할 div  
     mapOption = { 
-        center: new kakao.maps.LatLng(${car.latitude}, ${car.longitude}), // 지도의 중심좌표
+        center: new kakao.maps.LatLng(${car.latitude} , ${car.longitude}), // 지도의 중심좌표
         level: 5 // 지도의 확대 레벨
     };
 
@@ -690,7 +692,7 @@
 		        infowindow.close();
 		    };
 		}
-
+	}
 
 	
 </script>

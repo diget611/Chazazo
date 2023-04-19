@@ -86,7 +86,7 @@
 			data: {idx: idx, answer: answer},
 			success: function(result) {
 				if(result == 1) {
-					alert('성공');
+					opener.parent.location.reload();
 					window.close();
 				} else {
 					alert('실패');
@@ -109,7 +109,7 @@
 			data: {idx: idxup, answer: answerup},
 			success: function(result) {
 				if(result == 1) {
-					alert('성공');
+					opener.parent.location.reload();
 					window.close();
 				} else {
 					alert('실패');
@@ -131,7 +131,7 @@
 			data: {idx: idxdel},
 			success: function(result) {
 				if(result == 1) {
-					alert('성공');
+					opener.parent.location.reload();
 					window.close();
 				} else {
 					alert('실패');

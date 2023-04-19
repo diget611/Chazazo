@@ -57,73 +57,7 @@
 
 <script src="<%=request.getContextPath()%>/resources/dashmin/js/main.js"></script>
 <script>
-	$('#ansBtn').on('click', insertAns);
-	
-	function insertAns() {
-		let idx = $('[name=idx]').val();
-		let answer = $('[name=answer]').val();
-		$.ajax({
-			url: '${pageContext.request.contextPath}/admin/request',
-			type: 'post',
-			data: {idx: idx, answer: answer},
-			success: function(result) {
-				if(result == 1) {
-					alert('성공');
-					window.close();
-				} else {
-					alert('실패');
-				}
-			},
-			error: function() {
-				alert('에러')
-			}
-		});
-	}
-	
-	$('#updateBtn').on('click', updateAns);
-	
-	function updateAns() {
-		let idxup = $('[name=idx]').val();
-		let answerup = $('[name=answer]').val();
-		$.ajax({
-			url: '${pageContext.request.contextPath}/admin/request',
-			type: 'patch',
-			data: {idx: idxup, answer: answerup},
-			success: function(result) {
-				if(result == 1) {
-					alert('성공');
-					window.close();
-				} else {
-					alert('실패');
-				}
-			},
-			error: function() {
-				alert('에러')
-			}
-		});
-	}
-	
-	$('#deleteBtn').on('click', deleteAns);
-	
-	function deleteAns() {
-		let idxdel = $('[name=idx]').val();
-		$.ajax({
-			url: '${pageContext.request.contextPath}/admin/request',
-			type: 'delete',
-			data: {idx: idxdel},
-			success: function(result) {
-				if(result == 1) {
-					alert('성공');
-					window.close();
-				} else {
-					alert('실패');
-				}
-			},
-			error: function() {
-				alert('에러')
-			}
-		});
-	}
+
 </script>
 </body>
 

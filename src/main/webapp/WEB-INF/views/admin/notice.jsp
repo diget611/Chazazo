@@ -110,6 +110,8 @@
 <script src="<%=request.getContextPath()%>/resources/dashmin/js/main.js"></script>
 	
 <script>
+	$('.dropdown-item').eq(6).addClass('active');
+
 	$('#insertBtn').on('click', function() {
 		location.href="${pageContext.request.contextPath}/admin/notice/insert"
 	})

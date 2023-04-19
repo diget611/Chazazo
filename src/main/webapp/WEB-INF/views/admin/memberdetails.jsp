@@ -115,6 +115,8 @@
 			success: function(result) {
 				if(result == 1) {
 					alert('삭제 성공');
+					opener.parent.location.reload();
+					window.close();
 				} else {
 					alert('오류 발생');
 				}

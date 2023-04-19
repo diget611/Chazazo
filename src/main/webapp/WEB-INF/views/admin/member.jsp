@@ -117,6 +117,8 @@
 <script src="<%=request.getContextPath()%>/resources/dashmin/js/main.js"></script>
 
 <script>
+	$('.dropdown-item').eq(0).addClass('active');
+
 	$('[name=pageBtn]').on('click', function() {
 		let page = $(this).val();
 		location.href="${pageContext.request.contextPath}/admin/member?page=" + page;

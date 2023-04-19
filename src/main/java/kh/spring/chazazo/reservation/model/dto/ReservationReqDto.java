@@ -31,16 +31,11 @@ public class ReservationReqDto {
 	
 	
 	private int idx;
-	private Date reservStart;
-	private Date reservEnd;
 	private int reservState;
-	private int isMember;
-	private int insuranceIdx;
-	private int vehicleIdx;
-	private int rentLocation;
-	private int memberIdx;
-	private int returnLocation;
-	private int couponIdx;
+	private String insurance;
+	private String returnLocation;
+	private String license;
+	
 	private String name;
 	private int birth;
 	private int phone;
@@ -50,6 +45,7 @@ public class ReservationReqDto {
 	private int caridx;
 	private int finalprice;
 	private String useridx;
+	private String paidtime;
 
 	
 	

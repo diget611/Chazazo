@@ -118,7 +118,7 @@ private ReservationService rvService;
 		
 		int result = rvService.insertPayInfo(data);
 		System.out.println("##########컨트롤러");
-		System.out.println("##########data");
+		System.out.println(data);
 
 
 		return result;

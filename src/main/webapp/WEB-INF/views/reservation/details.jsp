@@ -410,11 +410,11 @@
 				html += '		</div>';
 				html += '		<div class="form-group">';
 				html += '					<h6 style="text-align:center">운전자 정보 </h6>';
-				html += '						<input type="number" id="useridx" value="0" >';
+				html += '						<input type="text" id="useridx"  value="0" >'
 				html += '						<label class="small">이름</label>  <input type="text" id="name" class="form-control" placeholder="성명" value="" >';
 				html += '						<label class="small">생년월일</label>  <input type="text" id="birth" class="form-control" placeholder="생년월일 6자리" value="" >';
 				html += '						<label class="small">휴대폰 번호</label>  <input type="text"  id="phone" class="form-control" placeholder="휴대폰 번호" value="" >';
-				html += '						<label class="small">운전 면허 번호</label>  <input type="text"  id="mail" class="form-control" placeholder="운전 면허 번호" value="" >';
+				html += '						<label class="small">운전 면허 번호</label>  <input type="text"  id="license" class="form-control" placeholder="운전 면허 번호" value="" >';
 				html += '						<label class="small">이메일</label>  <input type="text"  id="mail" class="form-control" placeholder="이메일" value="" >';
 				html += '						<label class="small">반납지점 선택</label> <select class="form-select" name="returnSelect"  id="returnSelect" onchange="calc()" >';
 				html += '	 					  	  <option value="강남점">강남점</option>';
@@ -447,7 +447,7 @@
 		html += '						<label class="small">이름</label>  <input type="text" id="name" class="form-control" placeholder="성명" value="'+ result.info.name+'" >';
 		html += '						<label class="small">생년월일</label>  <input type="text" id="birth" class="form-control" placeholder="생년월일 6자리" value="'+ result.info.birth+'" >';
 		html += '						<label class="small">휴대폰 번호</label>  <input type="text"  id="phone" class="form-control" placeholder="휴대폰 번호" value="'+ result.info.phoneNumber+'" >';
-		html += '						<label class="small">운전 면허 번호</label>  <input type="text"  id="mail" class="form-control" placeholder="운전 면허 번호" value="'+ result.info.license+'" >';
+		html += '						<label class="small">운전 면허 번호</label>  <input type="text"  id="license" class="form-control" placeholder="운전 면허 번호" value="'+ result.info.license+'" >';
 		html += '						<label class="small">이메일</label>  <input type="text"  id="mail" class="form-control" placeholder="이메일" value="'+ result.info.email+'" >';
 		html += '						<label class="small">반납지점 선택</label> <select class="form-select" name="returnSelect" id="returnSelect" onchange="calc()">';
 		html += '	 					  	  <option value="강남점">강남점</option>';
@@ -560,6 +560,9 @@
 		var finalprice = parseInt($('#finalprice').val());
 		var caridx = $('#caridx').val();
 		var useridx = $('#useridx').val();
+		var paidtime = new Date().toLocaleString();
+		var license = $('#license').val();
+		var returnLocation =$("#returnSelect").val();
 
 		if ($(''))
 		var sdate = new Date($('#startDate').val());
@@ -567,19 +570,31 @@
 		var startDate = sdate.getFullYear() + "/" + (sdate.getMonth() + 1) + "/" + sdate.getDate();
 		var endDate = edate.getFullYear() + "/" + (edate.getMonth() + 1) + "/" + edate.getDate();
 	    
+		if ( $('#selectins').val()=='0.1')
+			{ var ins = "일반자차"
+			} else if ( $('#selectins').val()=='0.2') {
+				var ins = "완전자차"
+			} else {
+				var ins = "슈퍼자차"
+			}
+		
 		var data = {
-	        	  "name" :nameval,
-	        	  "birth" : birthval,
-	        	  "phone" : phoneval,
-	        	  "mail" : mailval,
-	        	  "startDate" :startDate,
-	        	  "endDate" :endDate,
-	        	  "caridx" : "${car.idx}",
-	        	  "finalprice" : finalprice,
-	        	  "useridx" : useridx
+	        	  "useridx" : useridx, // 회원idx, 비회원은 0
+	        	  "name" :nameval, //회원 이름
+	        	  "birth" : birthval, //회원 생년월일
+	        	  "phone" : phoneval, // 전화번호
+	        	  "mail" : mailval, //메일
+	        	  "startDate" :startDate, //대여일
+	        	  "endDate" :endDate, //반납일
+	        	  "caridx" : "${car.idx}", //차량idx
+	        	  "finalprice" : finalprice, //결제금액
+	        	  "insurance": ins, //선택한 보험종류
+	        	  "paidtime": paidtime, //결제시간
+	        	  "license": license, //면허번호
+	        	  "returnLocation": returnLocation //반납지점
 	          };
-		console.log(data+"!!!!!!!!!!");
-		console.log(typeof useridx + useridx);
+		console.log(paidtime);
+		console.log(typeof startDate);
 		console.log("#########회원정보"+nameval + birthval + phoneval + mailval +"#########예약선택"+ startDate + endDate +returnval +"#########가격"+ finalprice +"#########차량정보"+"${car.idx}");
 		
 		  $.ajax({

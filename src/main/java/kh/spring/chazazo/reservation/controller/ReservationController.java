@@ -48,20 +48,28 @@ public class ReservationController {
 	public String viewReservationListUser(ModelAndView mv, Principal prin, ReservationReqDto resdto, 
 												String username) {
 		// 유저 예약 리스트 조회
+		System.out.println("ddddddddsssssssssdddddddd");
 		
 		Map<String, Object> result = new HashMap<String,Object>();
+		System.out.println(result);
 		if(prin == null) {
 			mv.setViewName("member/mypage");
 			return "1";
+			
 		}else {
 			String loginId = prin.getName();
 			mv.addObject("reservation", rService.selectList(loginId));
+			result.put("reservation", rService.selectList(loginId));
+			
 			mv.addObject("memberinfo", mService.selectMypageOne(loginId));
-			result.put("info",mService.selectMypageOne(username));
+			result.put("memberinfo", mService.selectMypageOne(loginId));
+			System.out.println(result);
+			System.out.println("ddddddd송공d");
 			return new Gson().toJson(result);
 		}
-	}
-	
+		
+	}	
+
 	
 //	Map<String, Object> result = new HashMap<String,Object>();	
 //	
@@ -79,14 +87,23 @@ public class ReservationController {
 	
 	
 	
-//	@GetMapping("/nonereservation")
-//	public ModelAndView viewNoneReservationListUser(ModelAndView mv) {
-//		// 비회원 예약 조회 조회
-//		
-//		mv.addObject("reservation", rService.selectList());
-//		mv.setViewName("member/noneMemberReservation");
-//		return mv;
-//	}
+	@GetMapping("/nonereservation")
+	public String viewNoneReservationListUser(ModelAndView mv, int idx) {
+		// 비회원 예약 조회 조회
+		
+		
+		
+		Map<String, Object> result = new HashMap<String,Object>();
+		System.out.println(result);
+	
+			
+			mv.addObject("reservation", rService.ReservationOne(idx));
+			result.put("reservation", rService.ReservationOne(idx));
+			System.out.println(result);
+			System.out.println("ddddddd송공d");
+			return new Gson().toJson(result);
+		}
+	
 
 	@GetMapping("/profile/reservation/{idx}")
 	public ModelAndView viewReservationOne(ModelAndView mv

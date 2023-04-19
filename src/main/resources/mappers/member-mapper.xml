@@ -49,8 +49,8 @@
 		SELECT COUNT(*) FROM MEMBER WHERE USERNAME = #{username}
 	</select>
 	
-	<update id="updateInfo" parameterType="memberInfoRespDto">
-		UPDATE MEMBER_INFO SET NAME=#{name}, GENDER = #{gender}, BIRTH = #{birth}
+	<update id="updateInfo" parameterType="MemberUpdateInfoRespDto">
+		UPDATE MEMBER_INFO SET GENDER = #{gender}, BIRTH = #{birth}, PASSWORD = #{password}
 									, PHONENUMBER = #{phoneNumber}, EMAIL = #{email}
 					       WHERE IDX = #{idx}
 	</update>

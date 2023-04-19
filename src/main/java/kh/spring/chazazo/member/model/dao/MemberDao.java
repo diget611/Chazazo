@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import kh.spring.chazazo.member.model.dto.MemberReqDto;
+import kh.spring.chazazo.member.model.dto.MemberUpdateInfoRespDto;
 import kh.spring.chazazo.member.model.dto.MemberInfoReqDto;
 import kh.spring.chazazo.member.model.dto.MemberInfoRespDto;
 
@@ -54,7 +55,7 @@ public class MemberDao {
 	}
 	
 	//회원정보수정
-	public int updateInfo(MemberInfoRespDto dto) {
+	public int updateInfo(MemberUpdateInfoRespDto dto) {
 		return sqlSession.update("member.updateInfo", dto);
 	}
 	

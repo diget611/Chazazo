@@ -3,8 +3,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
+
 <!DOCTYPE html>
-<html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="utf-8">
 <title>예약 내역 조회</title>
@@ -40,7 +41,7 @@
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/main.css">
 </head>
 <body>
-	<html lang="en" xmlns:th="http://www.thymeleaf.org">
+	
 	<jsp:include page="/WEB-INF/views/base/header.jsp"/>
 	
 	<script type="text/javascript">
@@ -219,7 +220,6 @@
 		if(Rsvtidx == 0 || Rsvtidx == null){
 			swal('앗!', "취소할 예약을 먼저 선택해주세요", 'warning');
 		}else{
-			
 			swal({
 				title: "정말로요?",
 				text: "정말로 예약을 취소하시겠습니까?",

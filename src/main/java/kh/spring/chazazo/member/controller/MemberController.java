@@ -2,7 +2,9 @@ package kh.spring.chazazo.member.controller;
 
 import java.security.Principal;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -25,7 +27,10 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.google.gson.Gson;
+
 import kh.spring.chazazo.member.model.dto.MemberReqDto;
+import kh.spring.chazazo.member.model.dto.MemberUpdateInfoRespDto;
 import kh.spring.chazazo.common.email.MailSendService;
 import kh.spring.chazazo.member.model.dto.MemberInfoReqDto;
 import kh.spring.chazazo.member.model.dto.MemberInfoRespDto;
@@ -185,25 +190,21 @@ public class MemberController {
 	
 	
 	// 회원정보 수정 / Put, Patch
-	@PatchMapping("/profile/{username}/update")
-	public ModelAndView updateMember(ModelAndView mv, @PathVariable("username") String username,
-									@RequestBody MemberInfoRespDto dto,Principal prin) {
+	@PatchMapping("/update")
+	public int updateMember(@RequestBody MemberUpdateInfoRespDto data) {
 		
 		
+		int result = mService.updateInfo(data);
+		System.out.println("ggggggggggggggggggggg컨트롤러 ");
 		
-		mv.addObject("update", mService.updateInfo(dto));
-		System.out.println("수정성공");
-		
-		
-		
-		return mv;
+		return result;
 	}
 
 	
 	 
 	
 	
-	@DeleteMapping("/profile/{username}")
+	@DeleteMapping("/profile")
 	public int deleteMember(@PathVariable String username) {
 		// 회원탈퇴 / DeleteMapping
 		System.out.println(username);

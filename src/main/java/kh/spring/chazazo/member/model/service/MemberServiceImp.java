@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import kh.spring.chazazo.member.model.dao.MemberDao;
 import kh.spring.chazazo.member.model.dto.MemberReqDto;
+import kh.spring.chazazo.member.model.dto.MemberUpdateInfoRespDto;
 import kh.spring.chazazo.member.model.dto.MemberInfoReqDto;
 import kh.spring.chazazo.member.model.dto.MemberInfoRespDto;
 
@@ -93,7 +94,7 @@ public class MemberServiceImp implements MemberService {
 	
 	//회원정보수정
 	@Override
-	public int updateInfo(MemberInfoRespDto dto) {
+	public int updateInfo(MemberUpdateInfoRespDto dto) {
 		return dao.updateInfo(dto);
 	}
 

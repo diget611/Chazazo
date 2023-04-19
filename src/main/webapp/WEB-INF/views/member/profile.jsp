@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
-<html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="utf-8">
 <title>회원 정보 수정</title>
@@ -24,6 +24,7 @@
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/garoestate/assets/css/style.css">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/garoestate/assets/css/responsive.css">
 
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script src="<%=request.getContextPath()%>/resources/garoestate/assets/js/modernizr-2.6.2.min.js"></script>
 <script src="<%=request.getContextPath()%>/resources/garoestate/assets/js/jquery-1.10.2.min.js"></script>
 <script src="<%=request.getContextPath()%>/resources/garoestate/bootstrap/js/bootstrap.min.js"></script>
@@ -41,7 +42,7 @@
 
 <body>
 	<jsp:include page="/WEB-INF/views/base/header.jsp"/>
-	
+	${memberinfo.idx }
 	<section>
 		<div class="content-area blog-page padding-top-40" style="background-color: #FCFCFC; padding-bottom: 55px;">
 			<div class="container">
@@ -130,7 +131,7 @@
 						<div class="text-start">
 							<div class="input-group input-group-outline my-3">
 								<label>비밀번호 확인</label>
-								<input type="password" id="password" name="password" class="form-control">
+								<input type="password" id="password" class="form-control">
 							</div>
 						</div>
 						<div class="text-center">
@@ -138,12 +139,27 @@
 						</div>
 					</div> 
 				
-						<form id="updateForm" action="<%=request.getContextPath() %>/member/profile" method="POST" 
+						<form id="updateForm" action="<%=request.getContextPath() %>/member/profile"
 								style="display:none"; onsubmit="return checkForm()">
 							<div class="form-group">
 									<label>이름</label>
 									<input type="text" class="form-control" id="name" name="name" value="${memberinfo.name }" readonly >
 								</div>
+									<div class="form-group">
+									<label>이메일</label>
+									<input type="email" class="form-control" name="email" value="${memberinfo.email }" readonly >
+								</div>
+								
+								<div class="form-group">
+									<label>비밀번호</label>
+									<input type="password" class="form-control" id ="updatePassword" name="updatePassword" placeholder="변경할 비밀번호를 입력하세요">
+									
+								</div>
+								
+								<div class="form-group">
+									<label>비밀번호 확인</label>
+									<input type="password" class="form-control" name="passwordCheck" style="border-radius: 2px;">
+								</div>								
 								
 								<!-- 정보 수정 시 정규식 확인?  -->
 								
@@ -163,14 +179,15 @@
 									<label>전화번호</label>
 									<input type="text" class="form-control" name="phoneNumber" value="${memberinfo.phoneNumber }" >
 								</div>
-								<div class="form-group">
-									<label>이메일</label>
-									<input type="email" class="form-control" name="email" value="${memberinfo.email }" >
-								</div>						
+													
 								<div class="text-center">
-									<button id="btn-update" type="submit" class="btn btn-default" >회원 정보 수정</button>
+									<button id="btn-update" type="submit" class="btn btn-default" 
+									 th:onclick="memberUpdate()">회원 정보 수정</button>
 								</div>
 							</form>
+							
+							
+							
 					</section>
 				</div>                    
 			</div>
@@ -181,10 +198,7 @@
 	
 	<script>
 	
-	$('#updateinfoBtn').on('click', function() {
-		location.href='<%=request.getContextPath()%>/member/profile/${memberinfo.idx}/update';
-		
-	});
+	
 	$('#historyBtn').on('click', function() {
 		location.href='<%=request.getContextPath()%>/profile/reservation/${memberinfo.idx}';
 	});
@@ -201,7 +215,7 @@
 		$('#checkPwd').click(function(){
 			const checkPassword = $('#password').val();
 			if(!checkPassword || checkPassword.trim() === ""){
-				alert("비밀번호를 입력하세요");
+				 swal("앗","비밀번호 입력해주세요.", {icon: "warning"});
 			}else{
 				$.ajax({
 					type :"GET",
@@ -211,11 +225,12 @@
 		             success: function(result) {
 		            	 if(result) {
 		            		 console.log('일치');
+		            		 
 		            		 $('#updateForm').show();
 		            		 $('#passCheck').hide();
 		            	 } else {
 		            		 console.log('불일치');
-		            		 alert("비밀번호가 일치하지 않습니다.");
+		            		 swal("비밀번호 오류","비밀번호가 일치하지 않습니다.", {icon: "error"});
 		            	 }
 		             },
 		             error: function() {
@@ -229,19 +244,132 @@
 		
 			
 
+		function memberUpdate(){
+		const data = {
+				name :$('#name').val(),
+				password :$('#updatePassword').val(),
+				gender :$('#gender').val(),
+				birth :$('#birth').val(),
+				email :$('#email').val(),
+				phoneNumber :$('#phoneNumber').val()
+		};
+		
+		let testPass = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&\*])[\da-zA-Z!@#$%^&\*]{8,30}$/;
+		let testName = /^[가-힣]{2,10}$/;
+		let testBirth = /^(19[0-9]{2}|20[0-1]{1}[0-9]{1}|202[0-3]{1})(0[1-9]|1[0-2])(0[1-9]|[1-2][0-9]|3[0-1])$/;
+		let testPhone = /^01[0|1|6|7|8|9][0-9]{7,8}$/;
+	 
+		if($('[name=updatePassword]').val() == '' | $('[name=birth]').val() == '' | $('[name=gender]').val() == '' | $('[name=phonNumber]').val() == ''
+			| $('[name=email]').val() == '' ) {
+			swal("앗","비밀번호 입력해주세요.", {icon: "warning"});
+			}else if( !testPass.test($('[name=updatePassword]').val()) | !testBirth.test($('[name=birth]').val())
+				| !testPhone.test($('[name=phoneNumber]').val()) | !testEmail.test($('[name=email]').val())) {
+					return false;	
+			} else {
+					return true;
+			}
+			
+		$('[name=updatePassword]').on('change', isPassEq);
+		$('[name=passwordCheck]').on('change', isPassEq);
+			
+		function isPassEq() {
+			let pass = $('[name=updatePassword]').val();
+			let passChk = $('[name=passwordCheck]').val();
+				
+			if(pass != passChk) {
+				$('[name=passwordCheck]').next().remove();
+					$('[name=passwordCheck]').after('<div style="color: red;">비밀번호가 일치하지 않습니다.</div>');
+				checkPass = 0;
+			} else {
+				$('[name=passwordCheck]').next().remove();
+				$('[name=passwordCheck]').after('<div style="color: green;">비밀번호가 일치합니다.</div>');
+				checkPass = 1;
+			}
+		}
+		
+		// 패스워드 유효성 체크
+		$('[name=updatePassword]').on('blur', function(){
+			let testPass = /^(?=.*\d)(?=.*[a-z])(?=.*[!@#$%^&\*])[\da-zA-Z!@#$%^&\*]{8,30}$/;
+			if($('[name=updatePassword]').val() == ''){
+				$('[name=updatePassword]').next().remove();
+				$('[name=updatePassword]').after('<div style="color: red;">비밀번호를 입력하세요.</div>');
+			} else if(!testPass.test($('[name=updatePassword]').val())){
+				$('[name=updatePassword]').next().remove();
+				$('[name=updatePassword]').after('<div style="color: red;">8 ~ 30자 사이의 하나 이상의 알파벳 소문자, 숫자, 특수문자로 이루어진 비밀번호를 작성하세요.</div>');
+			} else {
+				$('[name=updatePassword]').next().remove();
+			}
+		});	
+			
+		// 생년월일 유효성 체크
+		$('[name=birth]').on('blur', function(){
+			let testBirth = /^(19[0-9]{2}|20[0-1]{1}[0-9]{1}|202[0-3]{1})(0[1-9]|1[0-2])(0[1-9]|[1-2][0-9]|3[0-1])$/;
+			if($('[name=birth]').val() == ''){
+				$('[name=birth]').next().remove();
+				$('[name=birth]').after('<div style="color: red;">생년월일을 입력하세요.</div>');
+			} else if(!testBirth.test($('[name=birth]').val())){
+				$('[name=birth]').next().remove();
+				$('[name=birth]').after('<div style="color: red;">생년월일을 확인하세요.</div>');
+			} else {
+				$('[name=birth]').next().remove();
+			}
+		});
+		
+		// 성별 유효성 체크
+		$('[name=gender]').on('blur', function(){
+			if($('[name=gender]').val() == '2'){
+				$('[name=gender]').next().remove();
+				$('[name=gender]').after('<div style="color: red;">성별을 선택하세요.</div>');
+			} else {
+				$('[name=gender]').next().remove();
+			}
+		});
+		
+		// 전화번호 유효성 체크
+		$('[name=phoneNumber]').on('blur', function(){
+			let testPhone = /^01[0|1|6|7|8|9][0-9]{7,8}$/;
+			if($('[name=phoneNumber]').val() == ''){
+				$('[name=phoneNumber]').next().remove();
+				$('[name=phoneNumber]').after('<div style="color: red;">전화번호를 입력하세요.</div>');
+			} else if(!testPhone.test($('[name=phoneNumber]').val())){
+				$('[name=phoneNumber]').next().remove();
+				$('[name=phoneNumber]').after('<div style="color: red;">전화번호를 확인하세요.</div>');
+			} else {
+				$('[name=phoneNumber]').next().remove();
+			}
+		});
+		
+
+		
+		
+			
+	
 		
 		$('#btn-update').click(function(){
-			var login_pnum = $('[name=phoneNumber]').val();
-			var login_birth = $('[name=birth]').val();
-			var login_email = $('[name=email]').val();
-			var login_gender = $('[name=gender]').val();
-			
-		 
-				console.log($('#name'));
-				
-				
-				
+			 $.ajax({
+	                type: 'POST',
+	                url: '<%=request.getContextPath()%>/member/profile',
+	                contentType: 'application/json; charset=utf-8',
+	                data: JSON.stringify(data),
+	                success: function(result){
+	                if(result){ 
+	                    alert("회원 수정이 완료되었습니다.");
+	                    cosole.log("update !!!!!!");
+	                	}else{
+	                		alert("수정실패")
+	                	}
+	                },
+	                	error: function(){
+	                alert('실패');
+	            }
+	        });
 		});
+		}
+		
+		
+			
+				
+				
 		
 		
 		

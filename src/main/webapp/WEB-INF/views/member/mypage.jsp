@@ -2,8 +2,6 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
-
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,6 +25,7 @@
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/garoestate/assets/css/style.css">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/garoestate/assets/css/responsive.css">
 
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script src="<%=request.getContextPath()%>/resources/garoestate/assets/js/modernizr-2.6.2.min.js"></script>
 <script src="<%=request.getContextPath()%>/resources/garoestate/assets/js/jquery-1.10.2.min.js"></script>
 <script src="<%=request.getContextPath()%>/resources/garoestate/bootstrap/js/bootstrap.min.js"></script>
@@ -62,7 +61,7 @@
 						
 							<h2 class="text-grey-3 underline-bg dc-inline-block">마이페이지</h2>
 							<p class="text-grey-5 mb-0">내 정보</p>
-						</div>
+						
 					</div>
 				</div>
 				<div class="col-md-4" style="float: left;">    
@@ -183,24 +182,20 @@
 				
 				<div class="blog-lst col-md-8 p0 " style="float: right;">
 					<section id="id-100" class="post single">
-										
-										<div class="text-center">
-
-										</div>
-										
-										
-										<div id="content">
-								 
-											</div> 
-										
-										
-										
-							
+						<div id="post-content" style="visibility: visible; animation-name: fadeInLeft;">
+								<div id="mypage_none_rent_history" style="display:block; margin-top:100px;">
+									<div id="content">
+									<div class="text-center">
+									</div>
+									</div>
+								</div>
+						</div>
 					</section>
 			                 
+				
 				</div>
-			</div>
-		
+				
+				
 		</div>
 	</section>
     
@@ -253,18 +248,11 @@
 				html += '					<label>전화번호</label> <input type="text" id="phone" name="phone" required>';
 				html += '				</div>';
 				html += '				<div class="text-center">';
-				html += '					<button type="submit" class="btn btn-default">예약 조회하기</button>';
+				html += '					<button type="submit" class="btn btn-default" id="noneMember">예약 조회하기</button>';
 				html += '				</div>';
 				html += '			</form>';
-		
-			}else{
-				
-				
-			html += '		<c:choose>'
-			html += '       	<c:when test="${empty reservation }">'
-			html += '				<h4>진행중인 렌트내역이 없습니다</h4>'
-			html += '			</c:when>'
-			html += '			<c:otherwise>'
+			
+			} else{
 			html += '				<div>'
 			html += '					<h3>${memberinfo.name } 님의 예약내역</h3>'
 			html += '				</div>'
@@ -288,8 +276,7 @@
 			html += '								</tr>'
 			html += '							</table>'
 			html += '						</c:forEach>'
-			html += '				</c:otherwise>	'
-			html += '		</c:choose>'
+	
 			}
 			$('#content').html(html);
 		}
@@ -313,19 +300,18 @@
 				title:"주의",
 				text: "정말로 탈퇴 하시겠습니까?",
 				icon:"warning",
-				
 				showCancelButton: true, // cancel버튼 보이기. 기본은 원래 없음
 				confirmButtonColor: '#3085d6', // confrim 버튼 색깔 지정
 				cancelButtonColor: '#d33', // cancel 버튼 색깔 지정
 				confirmButtonText: '승인', // confirm 버튼 텍스트 지정
 				cancelButtonText: '취소', // cancel 버튼 텍스트 지정
-				   
-				
+				closeOnConfirm: false,
+		        closeOnCancel: false
 			}).then(result => {
 				   // 만약 Promise리턴을 받으면,
 				   if (result.isConfirmed) { // 만약 모달창에서 confirm 버튼을 눌렀다면
 					$.ajax({
-						url: "<%=request.getContextPath()%>/member/profile/${memberinfo.username }",
+						url: "<%=request.getContextPath()%>/member/profile",
 						data: {username: username},
 						type: 'delete',
 						success: function(result) {
@@ -342,6 +328,32 @@
 				}
 			});
 		};
+		
+		
+		$("#noneMember").on('click', noneMemberRes);
+		
+		function noneMemberRes(){
+		
+				$.ajax({
+					url:'<%=request.getContextPath()%>/nonereservation',
+					type: 'get',
+					dataType:'json',
+					success: function(result){
+						
+						memberResv(result);
+						console.log("dddddddddddffff")
+					},
+					error: function(){
+						alert("fail!!!!!!!");
+					}
+					
+				});
+			}
+			
+			
+			
+			
+		}
 	
 	</script>
 </body>

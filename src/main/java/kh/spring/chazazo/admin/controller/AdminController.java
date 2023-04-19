@@ -37,7 +37,7 @@ public class AdminController {
 	public ModelAndView viewMember(ModelAndView mv, @RequestParam(required = false, defaultValue = "1") int page) {
 		int count = aService.memberCount();
 		Pagination pagination = new Pagination();
-		pagination.pageInfo(page, count);
+		pagination.pageInfo(10, page, count);
 		
 		mv.addObject("memberList", aService.selectMemberList(pagination));
 		mv.addObject("pagination", pagination);
@@ -64,7 +64,7 @@ public class AdminController {
 	public ModelAndView viewReport(ModelAndView mv, @RequestParam(required = false, defaultValue = "1") int page) {
 		int count = aService.reportCount();
 		Pagination pagination = new Pagination();
-		pagination.pageInfo(page, count);
+		pagination.pageInfo(10, page, count);
 		
 		mv.addObject("reportList", aService.selectReportList(pagination));
 		mv.addObject("pagination", pagination);
@@ -103,7 +103,7 @@ public class AdminController {
 	public ModelAndView viewCoupon(ModelAndView mv, @RequestParam(required = false, defaultValue = "1") int page) {
 		int count = aService.couponCount() - 1;
 		Pagination pagination = new Pagination();
-		pagination.pageInfo(page, count);
+		pagination.pageInfo(10, page, count);
 		
 		mv.addObject("couponList", aService.selectCouponList(pagination));
 		mv.addObject("pagination", pagination);
@@ -122,7 +122,7 @@ public class AdminController {
 	public ModelAndView viewNotice(ModelAndView mv, @RequestParam(required = false, defaultValue = "1") int page) {
 		int count = aService.noticeCount();
 		Pagination pagination = new Pagination();
-		pagination.pageInfo(page, count);
+		pagination.pageInfo(10, page, count);
 		
 		mv.addObject("pagination", pagination);
 		mv.addObject("noticeList", aService.selectNoticeList(pagination));
@@ -147,7 +147,7 @@ public class AdminController {
 	public ModelAndView viewRequest(ModelAndView mv, @RequestParam(required = false, defaultValue = "1") int page) {
 		int count = aService.requestCount();
 		Pagination pagination = new Pagination();
-		pagination.pageInfo(page, count);
+		pagination.pageInfo(10, page, count);
 		
 		mv.addObject("pagination", pagination);
 		mv.addObject("requestList", aService.selectRequestList(pagination));

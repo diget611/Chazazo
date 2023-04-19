@@ -15,9 +15,10 @@ public class Pagination {
 	private int count;
 	private int paging;
 	
-	public void pageInfo(int page, int count) {
+	public void pageInfo(int size, int page, int count) {
 		int paging = 0;
 		
+		this.listSize = size;
 		if(count % listSize == 0) {
 			paging = count / listSize;
 		} else {

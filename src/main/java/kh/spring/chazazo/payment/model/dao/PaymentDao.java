@@ -7,8 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import kh.spring.chazazo.payment.model.dto.PaymentReqDto;
-import kh.spring.chazazo.reservation.model.dto.ReservationReqDto;
-import kh.spring.chazazo.reservation.model.dto.ReservationRespDto;
 
 @Repository
 public class PaymentDao {

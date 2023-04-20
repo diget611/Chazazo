@@ -36,7 +36,6 @@ import kh.spring.chazazo.member.model.dto.MemberInfoReqDto;
 import kh.spring.chazazo.member.model.dto.MemberInfoRespDto;
 import kh.spring.chazazo.member.model.service.MemberService;
 import kh.spring.chazazo.payment.model.service.PaymentService;
-import kh.spring.chazazo.reservation.model.service.ReservationService;
 
 @RestController
 @RequestMapping("/member")

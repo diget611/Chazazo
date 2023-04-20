@@ -29,8 +29,6 @@ import com.google.gson.Gson;
 import kh.spring.chazazo.member.model.service.MemberService;
 import kh.spring.chazazo.payment.model.dto.PaymentReqDto;
 import kh.spring.chazazo.payment.model.service.PaymentService;
-import kh.spring.chazazo.reservation.model.dto.ReservationReqDto;
-import kh.spring.chazazo.reservation.model.service.ReservationService;
 import kh.spring.chazazo.vehicle.model.dto.VehicleInfoDto;
 import kh.spring.chazazo.vehicle.model.service.VehicleService;
 

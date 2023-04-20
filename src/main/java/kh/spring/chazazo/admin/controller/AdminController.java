@@ -16,7 +16,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
-import kh.spring.chazazo.admin.model.dto.AdminReservByModelRespDto;
+import com.google.gson.Gson;
+
 import kh.spring.chazazo.admin.model.service.AdminService;
 import kh.spring.chazazo.common.Pagination;
 
@@ -35,20 +36,8 @@ public class AdminController {
 		mv.addObject("requestList", aService.selectRequestList(data));
 		
 		// 메인페이지 그래프
-		List<AdminReservByModelRespDto> dto = aService.selectByModel();
-		List<String> model = new ArrayList<>();
-		List<Integer> count = new ArrayList<>();
-		List<Integer> sum = new ArrayList<>();
+		mv.addObject("modelList", new Gson().toJson(aService.selectByModel()));
 		
-		for(int i = 0; i < dto.size(); i++) {
-			model.add("'" + dto.get(i).getModel() + "'");
-			count.add(dto.get(i).getCnt());
-			sum.add(dto.get(i).getSum());
-		}
-		
-		mv.addObject("model", model);
-		mv.addObject("count", count);
-		mv.addObject("sum", sum);
 		mv.setViewName("admin/main");
 		
 		return mv;

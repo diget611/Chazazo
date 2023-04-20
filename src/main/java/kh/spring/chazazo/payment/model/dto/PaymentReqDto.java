@@ -21,9 +21,10 @@ public class PaymentReqDto {
 	private String rentPrice;
 	private String addIns;
 	private String expIns;
-	private int caridx;
-	private String insurance;
+	private int vehicleIdx;
+	private int insurance;
 	
+	private int ismember;
 	private int memberIdx;
 	private String name;
 	private int birth;
@@ -31,7 +32,8 @@ public class PaymentReqDto {
 	private String mail;
 	private String license;
 	private int finalprice;
-	private String paidtime;
+	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
+	private Date paidtime;
 	
 	private int rentLocation;
 	private int returnLocation;

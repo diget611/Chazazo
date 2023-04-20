@@ -601,9 +601,17 @@
 		var finalprice = parseInt($('#finalprice').val());
 		var caridx = $('#caridx').val();
 		var useridx = $('#useridx').val();
-		var paidtime = new Date().toLocaleString();
 		var returnLocation =$("#returnSelect").val();
 
+		//현재 시간 포맷
+		const TIME_ZONE = 9 * 60 * 60 * 1000; // 9시간
+		const d = new Date();
+
+		const date = new Date(d.getTime() + TIME_ZONE).toISOString().split('T')[0];
+		const time = d.toTimeString().split(' ')[0];
+		var paidtime= date + ' ' + time
+		
+		console.log(paidtime);
 		if ($(''))
 		var sdate = new Date($('#startDate').val());
 		var edate = new Date($('#endDate').val());
@@ -612,17 +620,17 @@
 		console.log(typeof startDate + startDate);
 		
 		if ( $('#selectins').val()=='0.1')
-			{ var ins = "일반자차"
+			{ var ins = "2"
 			} else if ( $('#selectins').val()=='0.2') {
-				var ins = "완전자차"
+				var ins = "3"
 			} else {
-				var ins = "슈퍼자차"
+				var ins = "4"
 			}
 		
 		var data = {
 	        	  "ismember" : "1",
-	        	  "useridx" : useridx, // 회원idx, 비회원은 0
-	        	  "caridx" : "${car.idx}", //차량idx
+	        	  "memberIdx" : useridx, // 회원idx, 비회원은 0
+	        	  "vehicleIdx" : "${car.idx}", //차량idx
 	        	  "insurance": ins, //선택한 보험종류
 	        	  "finalprice" : finalprice, //결제금액
 	        	  "paidtime": paidtime, //결제시간

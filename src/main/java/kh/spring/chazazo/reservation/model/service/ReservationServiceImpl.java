@@ -55,6 +55,12 @@ public class ReservationServiceImpl implements ReservationService {
 		return dao.insertPayInfo(data);
 	}
 
+	@Override
+	public int insertNmemInfo(ReservationReqDto data) {
+		// TODO Auto-generated method stub
+		return dao.insertNmemInfo(data);
+	}
+
 
 
 

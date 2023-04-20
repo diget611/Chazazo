@@ -43,6 +43,10 @@ public class ReservationDao {
 	public int insertPayInfo(ReservationReqDto data) {
 		return session.insert("reservation.insertPayInfo", data);
 	}
+
+	public int insertNmemInfo(ReservationReqDto data) {
+		return session.insert("reservation.insertNmemInfo", data);
+	}
 	
 
 

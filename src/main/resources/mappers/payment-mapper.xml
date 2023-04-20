@@ -22,9 +22,13 @@
 	</delete>
 	
 	<insert id="insertPayInfo" parameterType="java.util.List" >
-		insert into payment values (payseq.nextval,0, #{useridx},#{name},#{birth},#{phone},#{mail}, #{license},#{caridx}, #{insurance}, #{finalprice}, #{paidtime}, #{startDate}, #{endDate}, #{returnLocation})
-	</insert>
+		insert into payment values (payment_seq.nextval,0, #{useridx},#{caridx}, #{insurance},0, #{finalprice}, #{paidtime}, #{startDate}, #{endDate}, '',#{returnLocation}, #{ismember})
 	
+	</insert>
+		
+	<insert id ="insertNmemInfo" parameterType="java.util.List" >
+	
+	</insert>
 	
 	
 	

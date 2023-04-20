@@ -33,7 +33,7 @@ public class ReservationReqDto {
 	private int idx;
 	private int reservState;
 	private String insurance;
-	private String returnLocation;
+	private int returnLocation;
 	private String license;
 	
 	private String name;

@@ -20,6 +20,7 @@ public interface ReservationService {
 	public List<ReservationRespDto> selectList(String username);
 	public int deleteResv(int idx);
 	public int insertPayInfo(ReservationReqDto data);
+	public int insertNmemInfo(ReservationReqDto data);
 
 
 

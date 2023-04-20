@@ -15,6 +15,7 @@ public interface PaymentService {
 	public List<PaymentReqDto> selectList(String username);
 	public int deleteResv(int idx);
 	public int insertPayInfo(PaymentReqDto data);
+	public int insertNmemInfo(PaymentReqDto data);
 
 
 

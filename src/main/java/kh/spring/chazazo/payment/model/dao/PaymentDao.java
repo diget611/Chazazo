@@ -42,4 +42,7 @@ public class PaymentDao {
 	public int insertPayInfo(PaymentReqDto data) {
 		return session.insert("payment.insertPayInfo", data);
 	}
+	public int insertNmemInfo(PaymentReqDto data) {
+		return session.insert("payment.insertNmemInfo", data);
+	}
 }

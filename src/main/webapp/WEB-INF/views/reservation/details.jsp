@@ -417,11 +417,11 @@
 				html += '						<label class="small">운전 면허 번호</label>  <input type="text"  id="license" class="form-control" placeholder="운전 면허 번호" value="" >';
 				html += '						<label class="small">이메일</label>  <input type="text"  id="mail" class="form-control" placeholder="이메일" value="" >';
 				html += '						<label class="small">반납지점 선택</label> <select class="form-select" name="returnSelect"  id="returnSelect" onchange="calc()" >';
-				html += '	 					  	  <option value="강남점">강남점</option>';
-				html += '	 						  <option value="용산점">용산점</option>';
-				html += '							  <option value="수원점">수원점</option>';
-				html += '							  <option value="송도점">송도점</option>';
-				html += '							  <option value="일산점">일산점</option>';
+				html += '	 					  	  <option value="1">강남점</option>';
+				html += '	 						  <option value="2">용산점</option>';
+				html += '							  <option value="3">수원점</option>';
+				html += '							  <option value="4">송도점</option>';
+				html += '							  <option value="5">일산점</option>';
 				html += '						</select>';
 				html += '		</div>';
 				html += '	</div>';
@@ -450,17 +450,17 @@
 		html += '						<label class="small">운전 면허 번호</label>  <input type="text"  id="license" class="form-control" placeholder="운전 면허 번호" value="'+ result.info.license+'" >';
 		html += '						<label class="small">이메일</label>  <input type="text"  id="mail" class="form-control" placeholder="이메일" value="'+ result.info.email+'" >';
 		html += '						<label class="small">반납지점 선택</label> <select class="form-select" name="returnSelect" id="returnSelect" onchange="calc()">';
-		html += '	 					  	  <option value="강남점">강남점</option>';
-		html += '	 						  <option value="용산점">용산점</option>';
-		html += '							  <option value="수원점">수원점</option>';
-		html += '							  <option value="송도점">송도점</option>';
-		html += '							  <option value="일산점">일산점</option>';
+		html += '	 					  	  <option value="1">강남점</option>';
+		html += '	 						  <option value="2">용산점</option>';
+		html += '							  <option value="3">수원점</option>';
+		html += '							  <option value="4">송도점</option>';
+		html += '							  <option value="5">일산점</option>';
 		html += '		</div>';
 		html += '	</div>';			
 		}
 
 		$('#content').html(html);
-		$("#returnSelect").val("${car.name}").prop("selected", true);
+		$("#returnSelect").val("${car.locationIdx}").prop("selected", true);
 
 	}
 
@@ -544,24 +544,64 @@
 	            // 결제에 실패했을떄 실패메세지와 실패사유를 출력
 	            var msg = '결제에 실패하였습니다.';
 	            msg +=  rsp.error_msg;
-	            paid();
-	        }
+	            paid(); //결제 정보 저장
+	            }
 	        alert(msg);
 	    });
 	}
 	
-	//결제 성공시 정보 저장
-	function paid(){
+	
+	
+	
+	function insertNmemInfo() {
+		console.log(useridx);
+		
+		var useridx = $('#useridx').val();
+		if (useridx == '0') {
+			
 		var nameval = $('#name').val();
 		var birthval = $('#birth').val();
 		var phoneval = $('#phone').val();
 		var mailval = $('#mail').val();
+		var license = $('#license').val();
+		
+		var data = {
+				"ismember" : "0",
+				"name" : nameval,
+				"birth" :birthval,
+				"phone" :phoneval,
+				"license" :license,
+				"email": mailval
+		}
+		  $.ajax({
+	          url:'<%=request.getContextPath()%>/payment/nMempaid',
+	          contentType: 'application/json; charset=utf-8',
+	          type: 'post',
+	          dataType:'json',
+	          data: JSON.stringify(data),
+	          success: function(result) {
+	        	  if(result >0) {
+	        	  alert("결제 완료 되었습니다");
+	        	  } else {
+	        		  alert("결제가 완료되지 않았습니다")
+	        	  }
+	          },
+	          error: function() {
+	          	alert('로딩 실패');
+	          }
+	       });
+		}
+	
+	}
+	
+	
+	//결제 성공시 결제 정보 저장
+	function paid(){
 		var returnval = $('#returnSelect option:selected').val();
 		var finalprice = parseInt($('#finalprice').val());
 		var caridx = $('#caridx').val();
 		var useridx = $('#useridx').val();
 		var paidtime = new Date().toLocaleString();
-		var license = $('#license').val();
 		var returnLocation =$("#returnSelect").val();
 
 		if ($(''))
@@ -569,7 +609,8 @@
 		var edate = new Date($('#endDate').val());
 		var startDate = sdate.getFullYear() + "/" + (sdate.getMonth() + 1) + "/" + sdate.getDate();
 		var endDate = edate.getFullYear() + "/" + (edate.getMonth() + 1) + "/" + edate.getDate();
-	    
+		console.log(typeof startDate + startDate);
+		
 		if ( $('#selectins').val()=='0.1')
 			{ var ins = "일반자차"
 			} else if ( $('#selectins').val()=='0.2') {
@@ -579,23 +620,18 @@
 			}
 		
 		var data = {
+	        	  "ismember" : "1",
 	        	  "useridx" : useridx, // 회원idx, 비회원은 0
-	        	  "name" :nameval, //회원 이름
-	        	  "birth" : birthval, //회원 생년월일
-	        	  "phone" : phoneval, // 전화번호
-	        	  "mail" : mailval, //메일
-	        	  "startDate" :startDate, //대여일
-	        	  "endDate" :endDate, //반납일
 	        	  "caridx" : "${car.idx}", //차량idx
-	        	  "finalprice" : finalprice, //결제금액
 	        	  "insurance": ins, //선택한 보험종류
+	        	  "finalprice" : finalprice, //결제금액
 	        	  "paidtime": paidtime, //결제시간
-	        	  "license": license, //면허번호
-	        	  "returnLocation": returnLocation //반납지점
+				  "startDate":startDate, //대여일
+				  "endDate":endDate, //반납일
+				  "rentLocation": "${car.locationIdx}", //대여지점idx
+	        	  "returnLocation": returnLocation, //반납지점idx
 	          };
-		console.log(paidtime);
-		console.log(typeof startDate);
-		console.log("#########회원정보"+nameval + birthval + phoneval + mailval +"#########예약선택"+ startDate + endDate +returnval +"#########가격"+ finalprice +"#########차량정보"+"${car.idx}");
+		console.log("#########회원정보"+useridx +"#########예약선택"+ startDate + endDate +returnLocation +"#########가격"+ finalprice +"#########차량정보"+"${car.idx}");
 		
 		  $.ajax({
 	          url:'<%=request.getContextPath()%>/payment/paid',

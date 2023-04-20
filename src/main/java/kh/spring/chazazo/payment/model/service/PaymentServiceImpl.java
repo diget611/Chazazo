@@ -35,4 +35,10 @@ public class PaymentServiceImpl implements PaymentService {
 		return dao.insertPayInfo(data);
 	}
 
+	@Override
+	public int insertNmemInfo(PaymentReqDto data) {
+		// TODO Auto-generated method stub
+		return dao.insertNmemInfo(data);
+	}
+
 }

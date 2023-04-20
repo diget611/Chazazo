@@ -128,7 +128,12 @@ private PaymentService pService;
 		return result;
 	}
 	
-	
+	//비회원 정보 저장
+	@PostMapping("/payment/nMempaid")
+	public int InsertNmemInfo(@RequestBody PaymentReqDto data) {
+		int result = pService.insertNmemInfo(data);
+		return result;
+	}
 	
 	
 	

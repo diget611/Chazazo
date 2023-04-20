@@ -5,7 +5,7 @@
 		<select id="resList" resultType="PaymentReqDto">
 			select *
 			 from payment
-			 join member on reservation.idx = member.idx
+			 join member on payment.idx = member.idx
 			   where username = #{username}
 			   			
 		</select>

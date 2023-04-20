@@ -20,28 +20,6 @@
 	</if>
 	and rownum between 1 and #{page}
 	</select>
-	
-
-	
-	<select id="selectPageList" parameterType="map" resultType="VehicleInfo">
-
-select * from(
-select rownum as rnum, t.* from
-(select v.*, f.type as fuelname, c.type as typename, l.name
-		from FUELTYPE f, CARTYPE c, VEHICLE v ,location l
-		where v.cartype_idx = c.idx and v.fueltype_idx = f.idx and v.location_idx=l.idx order by v.idx desc) t 
-    )    where rnum BETWEEN {START} and {END};
-	</select>
-
-	<select id="selectOne" resultType="vehicleRespDto">
-		SELECT * FROM VEHICLE WHERE IDX = #{IDX}
-	</select>
-
-	<resultMap type="VehicleReqDto" id="LocationInfo">
-		<result property="idx" column="idx"/>
-		<result property="locationidx" column="location_idx"/>
-		<collection property="locationList" resultMap="locationInfo"></collection>
-	</resultMap>
 
 
  	<select id="getVehicleInfo" resultType="VehicleInfo">

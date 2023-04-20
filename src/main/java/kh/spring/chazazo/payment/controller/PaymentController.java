@@ -140,7 +140,7 @@ private PaymentService pService;
 	}
 	
 	@GetMapping("/profile/reservation")
-	public String viewReservationListUser(ModelAndView mv, Principal prin, ReservationReqDto resdto, 
+	public String viewReservationListUser(ModelAndView mv, Principal prin, PaymentReqDto dto, 
 												String username) {
 		// 유저 예약 리스트 조회
 		System.out.println("ddddddddsssssssssdddddddd");

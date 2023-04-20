@@ -36,19 +36,20 @@
 			<div class="bg-light rounded h-100 p-4">
 				<h6 class="mb-4">1:1 문의 상세 정보</h6>
 				<input type="hidden" name="idx" id="idx" value="${request.idx }">
-				<div class="mb-3 row">
-					<label for="title" class="form-label">제목</label>
+				<div class="form-floating mb-3">
 					<input type="text" class="form-control" id="title" name="title" value="${request.title}" readonly>
+					<label for="title">제목</label>
 				</div>
-				<div class="mb-3 row">
-					<label for="content" class="form-label">내용</label>
+				<div class="form-floating mb-3">
 					<input type="text" class="form-control" id="content" name="content" value="${request.content}" readonly>
+					<label for="content">내용</label>
 				</div>
 				<c:choose>
 					<c:when test="${request.status eq 0 }">
 						<form>
-							<div class="mb-3 row">
-								<input type="text" class="form-control mb-3" id="answer" name="answer">
+							<div class="form-floating mb-3">
+								<textarea class="form-control mb-3" id="answer" name="answer" style="height: 300px;"></textarea>
+								<label for="answer">답변</label>
 								<div style="text-align: center;">
 									<button type="button" class="btn btn-primary" style="display: inline-block" id="ansBtn">답변하기</button>
 									<button type="button" class="btn btn-primary" style="display: inline-block" id="deleteBtn">삭제하기</button>
@@ -58,8 +59,9 @@
 					</c:when>
 					<c:otherwise>
 						<form>
-							<div class="mb-3 row">
-								<input type="text" class="form-control mb-3" id="answer" name="answer" value="${request.answer }">
+							<div class="form-floating mb-3">
+								<textarea class="form-control mb-3" id="answer" name="answer" style="height: 300px;">${request.answer }</textarea>
+								<label for="answer">답변</label>
 								<div style="text-align: center;">
 									<button type="button" class="btn btn-primary" style="display: inline-block" id="updateBtn">수정하기</button>
 									<button type="button" class="btn btn-primary" style="display: inline-block" id="deleteBtn">삭제하기</button>

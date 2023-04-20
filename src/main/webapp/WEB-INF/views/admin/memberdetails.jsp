@@ -36,17 +36,16 @@
 			<div class="bg-light rounded h-100 p-4">
 				<h6 class="mb-4">회원 상세 정보</h6>
 				<form>
-					<div class="mb-3 row">
-						<label for="username" class="form-label">아이디</label>
+					<div class="form-floating mb-3">
 						<input type="text" class="form-control" id="username" name="username" value="${member.username}" readonly>
+						<label for="username">아이디</label>
 					</div>
-					<div class="mb-3 row">
-						<div class="col-4" style="padding: 0 6px 0 0">
-							<label for="name" class="form-label">이름</label>
+					<div class="form-floating mb-3 row">
+						<div class="form-floating col-4">
 							<input type="text" class="form-control" id="name" name="name" value="${member.name}" readonly>
+							<label for="name" class="ps-4">이름</label>
 						</div>
-						<div class="col-4" style="padding: 0 6px 0 0">
-							<label for="gender" class="form-label">성별</label>
+						<div class="form-floating col-4">
 							<c:choose>
 								<c:when test="${member.enabled eq 0}">
 									<c:set var="gender" value="0"/>
@@ -59,23 +58,24 @@
 								</c:otherwise>
 							</c:choose>
 							<input type="text" class="form-control" id="gender" name="gender" value="${gender }" readonly>
+							<label for="gender" class="ps-4">성별</label>
 						</div>
-						<div class="col-4" style="padding: 0px">
-							<label for="birth" class="form-label">생년월일</label>
+						<div class="form-floating col-4">
 							<input type="text" class="form-control" id="birth" name="birth" value="${member.birth}" readonly>
+							<label for="birth" class="ps-4">생년월일</label>
 						</div>
 					</div>
-					<div class="mb-3 row">
-						<label for="phoneNumber" class="form-label">전화번호</label>
+					<div class="form-floating mb-3">
 						<input type="text" class="form-control" id="phoneNumber" name="phoneNumber" value="${member.phoneNumber}" readonly>
+						<label for="phoneNumber">전화번호</label>
 					</div>
-					<div class="mb-3 row">
-						<label for="license" class="form-label">면허증 번호</label>
+					<div class="form-floating mb-3">
 						<input type="text" class="form-control" id="license" name="license" value="${member.license}" readonly>
+						<label for="license">면허증 번호</label>
 					</div>
-					<div class="mb-3 row">
-						<label for="email" class="form-label">이메일</label>
+					<div class="form-floating mb-3">
 						<input type="text" class="form-control" id="email" name="email" value="${member.email}" readonly>
+						<label for="email">이메일</label>
 					</div>
 					<div style="text-align: center;">
 						<button type="button" class="btn btn-primary" style="display: inline-block" name="updateBtn">회원 정보 수정</button>

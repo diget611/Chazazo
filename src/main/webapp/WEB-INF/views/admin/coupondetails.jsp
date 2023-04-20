@@ -36,17 +36,17 @@
 			<div class="bg-light rounded h-100 p-4">
 				<h6 class="mb-4">쿠폰 상세 정보</h6>
 				<form>
-					<div class="mb-3 row">
-						<label for="name" class="form-label">쿠폰명</label>
+					<div class="form-floating mb-3">
 						<input type="text" class="form-control" id="name" name="name" value="${coupon.name}" readonly>
+						<label for="name">쿠폰명</label>
 					</div>
-					<div class="mb-3 row">
-						<label for="period" class="form-label">쿠폰 사용 기간</label>
+					<div class="form-floating mb-3">
 						<input type="text" class="form-control" id="period" name="period" value="${coupon.period}" readonly>
+						<label for="period">쿠폰 사용 기간</label>
 					</div>
-					<div class="mb-3 row">
-						<label for="rate" class="form-label">할인율</label>
+					<div class="form-floating mb-3">
 						<input type="text" class="form-control" id="rate" name="rate" value="${coupon.rate}" readonly>
+						<label for="rate">할인율</label>
 					</div>
 					<div style="text-align: center;">
 						<button type="button" class="btn btn-primary" style="display: inline-block">정보 수정</button>

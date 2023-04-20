@@ -36,15 +36,15 @@
 			<div class="bg-light rounded h-100 p-4">
 				<h6 class="mb-4">공지사항 상세 정보</h6>
 				<input type="hidden" name="idx" id="idx" value="${notice.idx }">
-				<div class="mb-3 row">
-					<label for="title" class="form-label">제목</label>
+				<div class="form-floating mb-3">
 					<input type="text" class="form-control" id="title" name="title" value="${notice.title}" readonly>
+					<label for="title">제목</label>
 				</div>
-				<div class="mb-3 row">
-					<label for="content" class="form-label">내용</label>
-					<input type="text" class="form-control" id="content" name="content" value="${notice.content}" readonly>
+				<div class="form-floating mb-3">
+					<textarea class="form-control" id="content" name="content" style="height: 300px;" readonly>${notice.content}</textarea>
+					<label for="content">내용</label>
 				</div>
-				<div class="mb-3 row">
+				<div class="form-floating mb-3">
 					<div style="text-align: center;">
 						<button type="button" class="btn btn-primary" style="display: inline-block" id="updateBtn">수정하기</button>
 						<button type="button" class="btn btn-primary" style="display: inline-block" id="deleteBtn">삭제하기</button>

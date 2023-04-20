@@ -36,9 +36,9 @@
 			<div class="bg-light rounded h-100 p-4">
 				<h6 class="mb-4">신고 상세 정보</h6>
 				<form>
-					<div class="mb-3 row">
-						<label for="content" class="form-label">리뷰 내용</label>
-						<input type="text" class="form-control" id="content" name="content" value="${review}" readonly>
+					<div class="form-floating mb-3">
+						<textarea class="form-control" id="content" name="content" readonly style="height: 400px;">${review }</textarea>
+						<label for="content">리뷰 내용</label>
 					</div>
 					<div style="text-align: center;">
 						<button type="button" class="btn btn-primary" style="display: inline-block">Sign in</button>

@@ -29,7 +29,9 @@
 	</insert>
 		
 	<insert id ="insertNmemInfo" parameterType="PaymentReqDto" >
-	
+		INSERT INTO NMEMPAYMENT
+		(PAYMENT_IDX, NAME, BIRTH, PHONE_NUMBER, LICENSE, EMAIL) 
+		VALUES ( PAYMENT_SEQ.CURRVAL, #{name}, #{birth}, #{phone}, #{license}, #{email})
 	</insert>
 
 	<select id="reservByModel" resultType="adminReservByModelRespDto">

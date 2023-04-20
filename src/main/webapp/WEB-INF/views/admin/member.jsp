@@ -54,6 +54,7 @@
 								<th scope="col">이름</th>
 								<th scope="col">Email</th>
 								<th scope="col">상태</th>
+								<th scope="col">가입(탈퇴)날짜</th>
 							</tr>
 						</thead>
 						<tbody>						
@@ -64,14 +65,14 @@
 										<td>${member.username }</td>
 										<td>${member.name }</td>
 										<td>${member.email }</td>
-										<td>
-											<c:if test="${member.enabled eq 0 }">
-												탈퇴
-											</c:if>
-											<c:if test="${member.enabled eq 1 }">
-												활동
-											</c:if>	
-										</td>
+										<c:if test="${member.enabled eq 0 }">
+											<td>탈퇴</td>
+											<td>${member.outDate }</td>
+										</c:if>
+										<c:if test="${member.enabled eq 1 }">
+											<td>활동</td>
+											<td>${member.regiDate }</td>
+										</c:if>
 									</tr>
 								</c:if>
 							</c:forEach>

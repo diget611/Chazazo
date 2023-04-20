@@ -16,14 +16,15 @@ import lombok.Getter;
 @Data
 public class PaymentReqDto {
 	private int idx;
-	private int ismember;
+
 	private String daycount;
 	private String rentPrice;
 	private String addIns;
 	private String expIns;
 	private int caridx;
+	private String insurance;
 	
-	private int useridx;
+	private int memberIdx;
 	private String name;
 	private int birth;
 	private int phone;

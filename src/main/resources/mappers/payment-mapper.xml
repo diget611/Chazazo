@@ -1,30 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="reservation">
+<mapper namespace="payment">
 		
-		<select id="resList" resultType="ReservationRespDto">
+		<select id="resList" resultType="PaymentReqDto">
 			select *
-			 from reservation
+			 from payment
 			 join member on reservation.idx = member.idx
 			   where username = #{username}
 			   			
 		</select>
 	
-		<select id="ReservationOne" resultType="ReservationRespDto" >
-			 SELECT * FROM RESERVATION WHERE idx=#{idx}
+		<select id="ReservationOne" resultType="PaymentReqDto" >
+			 SELECT * FROM payment WHERE idx=#{idx}
 		</select>
 	
 	
-	<update id="resUpdate" >
-		UPDATE RESERVATION SET RESERV_START=#{reserv_start}, RESERV_END=#{reserv_end},
-							RESERV_STATE=#{reserv_state},INSURANCE_IDX=#{insurance_idx},
-							VEHICLE_IDX=#{vehicle_idx},RENT_LOCATION=#{RENT_LOCATION},
-							RETURN_LOCATION=#{RETURN_LOCATION},COUPON_IDX=#{COUPON_IDX},
-				  WHERE IDX = #{IDX}
-	</update>
+
 	
 	<delete id="resDelete" parameterType="int">
-		DELETE FROM RESERVATION WHERE IDX = #{IDX}
+		DELETE FROM payment WHERE IDX = #{IDX}
 	</delete>
 	
 	<insert id="insertPayInfo" parameterType="java.util.List" >

@@ -13,7 +13,7 @@
 		<typeAlias type="kh.spring.chazazo.review.model.dto.ReviewDto" alias="reviewDto"/>	
 		<typeAlias type="kh.spring.chazazo.vehicle.model.dto.VehicleReqDto" alias="vehicleReqDto"/>	
 		<typeAlias type="kh.spring.chazazo.vehicle.model.dto.VehicleRespDto" alias="vehicleRespDto"/>
-		<typeAlias type="kh.spring.chazazo.reservation.model.dto.ReservationRespDto" alias="ReservationRespDto"/>	
+		<typeAlias type="kh.spring.chazazo.reservation.model.dto.PaymentReqDto" alias="PaymentReqDto"/>	
 		<typeAlias type="kh.spring.chazazo.vehicle.model.dto.VehicleInfoDto" alias="VehicleInfo"/>	
 		<typeAlias type="kh.spring.chazazo.admin.model.dto.AdminMemberRespDto" alias="adminMemberRespDto"/>
 		<typeAlias type="kh.spring.chazazo.admin.model.dto.AdminReportRespDto" alias="adminReportRespDto"/>
@@ -23,7 +23,6 @@
 		<typeAlias type="kh.spring.chazazo.admin.model.dto.AdminRequestOneRespDto" alias="adminRequestOneRespDto"/>
 		<typeAlias type="kh.spring.chazazo.admin.model.dto.AdminNoticeRespDto" alias="adminNoticeRespDto"/>
 		<typeAlias type="kh.spring.chazazo.admin.model.dto.AdminNoticeOneRespDto" alias="adminNoticeOneRespDto"/>
-		<typeAlias type="kh.spring.chazazo.reservation.model.dto.ReservationRespDto" alias="ReservationRespDto"/>
 		<typeAlias type="kh.spring.chazazo.admin.model.dto.AdminLocationRespDto" alias="adminLocationRespDto"/>
 		<typeAlias type="kh.spring.chazazo.admin.model.dto.AdminLocationOneRespDto" alias="adminLocationOneRespDto"/>
 		<typeAlias type="kh.spring.chazazo.admin.model.dto.AdminVehicleRespDto" alias="adminVehicleRespDto"/>

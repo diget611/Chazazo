@@ -24,8 +24,10 @@
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/garoestate/assets/css/price-range.css">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/garoestate/assets/css/style.css">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/garoestate/assets/css/responsive.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.min.css">
 
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.min.js"></script>
+
 <script src="<%=request.getContextPath()%>/resources/garoestate/assets/js/modernizr-2.6.2.min.js"></script>
 <script src="<%=request.getContextPath()%>/resources/garoestate/assets/js/jquery-1.10.2.min.js"></script>
 <script src="<%=request.getContextPath()%>/resources/garoestate/bootstrap/js/bootstrap.min.js"></script>
@@ -113,7 +115,7 @@
 													<h3 class="dealer-name">
 														<span>		
 															<input type="text" class="form-control" name="name" value="${memberinfo.name }" readonly >
-															<input type="text" class="form-control" name="usernname" id="username" value="${memberinfo.username }" hidden="hidden" >
+															<input type="hidden" class="form-control" name="usernname" id="username" value="${memberinfo.username }" >
 														</span>
 													</h3>
 												</div>
@@ -140,14 +142,14 @@
 										</div>	
 								</div>
 							
+							</div>
 							</sec:authorize>
-						
 						<div class="blog-asside-right" >
 							<div class="panel panel-default sidebar-menu wow fadeInRight animated animated animated" style="visibility: visible; animation-name: fadeInRight;">
 								<div class="panel-heading">
 									<h3 class="panel-title">
 									<button id="historyBtn" type="button" class="btn btn-outline-primary">예약내역</button><br>
-									
+									</h3>
 								</div>
 							</div>
 						</div>  
@@ -184,10 +186,10 @@
 					<section id="id-100" class="post single">
 						<div id="post-content" style="visibility: visible; animation-name: fadeInLeft;">
 								<div id="mypage_none_rent_history" style="display:block; margin-top:100px;">
-									<div id="content">
-									<div class="text-center">
+								
+									<div class="text-center" id="content">
 									</div>
-									</div>
+									
 								</div>
 						</div>
 					</section>
@@ -196,6 +198,9 @@
 				</div>
 				
 				
+		</div>
+		</div>
+		
 		</div>
 	</section>
     
@@ -211,7 +216,7 @@
 		$('#historyBtn').on('click',content);
 		function content(){
 			$.ajax({
-				url:'<%=request.getContextPath()%>/profile/reservation',
+				url:'<%=request.getContextPath()%>/profile/reservation/${memberinfo.idx}',
 				type: 'get',
 				dataType:'json',
 				success: function(result){
@@ -224,7 +229,7 @@
 				}
 				
 			});
-		}
+		};
 		
 		function memberResv(result){
 			console.log("gggdddddddddsssssssssss")
@@ -252,19 +257,27 @@
 				html += '				</div>';
 				html += '			</form>';
 			
-			} else{
+			}
+			
+			else{
+			
+		
 			html += '				<div>'
 			html += '					<h3>${memberinfo.name } 님의 예약내역</h3>'
 			html += '				</div>'
+			html += '				<c:if test="${empty reservation}">'
+			html += '					<p style="text-align: center; font-size: large;"><strong>예약 정보가 없습니다.</strong></p><br>'
+			html += '				</c:if>'	
+			html += '				<c:if test="${!empty reservation}">'
 			html += '					<c:forEach items="${reservation }" var="list">'
 			html += '						<table>'
 			html += '							<tr>'
 			html += '								<th scope="row">예약자</th>'
 			html += '									<td>${list.idx }</td>'
 			html += '								<th scope="row">예약시작날짜</th>'
-			html += '									<td>${list.reservStart }</td>'
-			html += '								<th scope="row">예약날자</th>'
-			html += '									<td>${list.reservEnd }</td>'
+			html += '									<td>${list.startDate }</td>'
+			html += '								<th scope="row">예약상태</th>'
+			html += '									<td>${list.state }</td>'
 			html += '								<th scope="row">보험종류</th>'
 			html += '									<td>${list.insuranceIdx }</td>'
 			html += '								<th scope="row">차종류</th>'
@@ -276,19 +289,38 @@
 			html += '								</tr>'
 			html += '							</table>'
 			html += '						</c:forEach>'
+			html += '				</c:if>'
+			html += '			<div class="col-lg-4" style="padding:0 0 0 30px;">'
+			html += '				<div class="tab-pane active pt-30" id="order-complete"'
+			html += '				 th:if="${reservation != null}">'
+			html += '		 			<a class="button extra-small mb-20" id="requestModifyBtn"'
+			html += '					 	onclick="rsvtModify()" style="cursor: pointer;"> <span>예약변경신청</span></a>'
+			html += '					<a class="button extra-small mb-20"  style="cursor: pointer;" '
+			html += '						id="rsvtDelete"> <span>예약취소</span></a>'			
+			html += '				</div>'
+			html += '			</div>	'
+			
 	
 			}
 			$('#content').html(html);
 		}
 
 	
-		$('#moveNoneMemberReservation').on('click', function() {
-			location.href='<%=request.getContextPath()%>/profile/reservation';
+		$('#noneMember').on('click', function() {
+			
+			
+			
+			location.href='<%=request.getContextPath()%>/profile/nonereservation';
 		});
+		
+		
+		
 		
 		$('#bookmark').on('click', function() {
 			location.href='<%=request.getContextPath()%>/profile/favorites';
 		});
+		
+		
 		
 		$('[name=deleteBtn]').on('click', deleteMember);
 		
@@ -353,7 +385,7 @@
 			
 			
 			
-		}
+		
 	
 	</script>
 </body>

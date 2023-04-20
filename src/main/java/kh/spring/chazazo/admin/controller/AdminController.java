@@ -26,10 +26,15 @@ public class AdminController {
 	
 	@GetMapping("/main")
 	public ModelAndView viewMain(ModelAndView mv) {
+		// 메인페이지 1:1문의 테이블
 		Map<String, Integer> data = new HashMap<String, Integer>();
 		data.put("start", 1); data.put("end", 5);
 		mv.addObject("requestList", aService.selectRequestList(data));
+		
+		// 메인페이지 그래프
+		mv.addObject("graph", aService.selectByModel());
 		mv.setViewName("admin/main");
+		
 		return mv;
 	}
 	

@@ -167,6 +167,9 @@
 
 <script src="<%=request.getContextPath()%>/resources/dashmin/js/main.js"></script>
 
+<script>
+	let dd = Object.values(${modelGraph});
+</script>
 </body>
 
 </html>

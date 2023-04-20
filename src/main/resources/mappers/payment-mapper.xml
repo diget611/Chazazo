@@ -29,7 +29,11 @@
 	<insert id ="insertNmemInfo" parameterType="java.util.List" >
 	
 	</insert>
-	
-	
+
+	<select id="reservByModel" resultType="adminReservByModelRespDto">
+		SELECT V.MODEL AS MODEL, COUNT(*) AS CNT, SUM(FINAL_PRICE) AS SUM
+          FROM PAYMENT P
+         INNER JOIN VEHICLE V ON P.VEHICLE_IDX = V.IDX GROUP BY V.MODEL
+	</select>
 	
 </mapper>

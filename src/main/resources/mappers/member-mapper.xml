@@ -42,7 +42,7 @@
 	
 	<insert id="insertInfo" parameterType="memberInfoReqDto">
 		INSERT INTO MEMBER_INFO
-		VALUES(MEMBER_SEQ.CURRVAL, #{name}, #{gender}, #{birth}, #{phoneNumber}, #{license}, #{email})
+		VALUES(MEMBER_SEQ.CURRVAL, #{name}, #{gender}, #{birth}, #{phoneNumber}, #{license}, #{email}, SYSTIMESTAMP, DEFAULT)
 	</insert>
 	
 	<select id="checkDup" resultType="_int">
@@ -61,7 +61,7 @@
 	
 	<update id="deleteMemberInfo">
 		UPDATE (SELECT * FROM MEMBER, MEMBER_INFO WHERE MEMBER.IDX = MEMBER_INFO.IDX)
-           SET NAME = 0, GENDER = 0, BIRTH = 0, PHONE_NUMBER = 0, LICENSE = 0, EMAIL = 0
+           SET NAME = 0, GENDER = 0, BIRTH = 0, PHONE_NUMBER = 0, LICENSE = 0, EMAIL = 0, OUT_DATE = SYSTIMESTAMP
          WHERE USERNAME = #{username}
 	</update>
 

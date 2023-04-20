@@ -1,5 +1,7 @@
 package kh.spring.chazazo.admin.model.dto;
 
+import java.sql.Date;
+
 import org.springframework.stereotype.Component;
 
 import lombok.AllArgsConstructor;
@@ -23,5 +25,7 @@ public class AdminMemberRespDto {
 	private String license;
 	private String email;
 	private String auth;
+	private Date regiDate;
+	private Date outDate;
 	
 }

@@ -257,8 +257,13 @@
 	       });
 	}
 	
+
 	
 	
+	
+	
+	
+
 	
 	
 
@@ -410,9 +415,9 @@
 				html += '					<h6 style="text-align:center">운전자 정보 </h6>';
 				html += '						<input type="hidden" id="useridx"  value="0" >'
 				html += '						<label class="small">이름</label>  <input type="text" id="name" name="name" class="form-control" placeholder="성명" value="" >';
-				html += '						<label class="small">생년월일</label>  <input type="text" id="birth" name="birth" class="form-control" placeholder="생년월일 6자리" value="" >';
+				html += '						<label class="small">생년월일</label>  <input type="text" id="birth" name="birth" class="form-control" placeholder="생년월일 8자리" value="" >';
 				html += '						<label class="small">휴대폰 번호</label>  <input type="text"  id="phone" name="phoneNumber" class="form-control" placeholder="휴대폰 번호" value="" >';
-				html += '						<label class="small">운전 면허 번호</label>  <input type="text"  id="license" name="license" class="form-control" placeholder="운전 면허 번호" value="" >';
+				html += '						<label class="small">운전 면허 번호</label>  <input type="text"  id="license" name="license" class="form-control" placeholder="운전 면허 번호 12자리" value="" >';
 				html += '						<label class="small">이메일</label>  <input type="text"  id="mail" class="form-control" name="email" placeholder="이메일" value="" >';
 				html += '						<label class="small">반납지점 선택</label> <select class="form-select" name="returnSelect"  id="returnSelect" onchange="calc()" >';
 				html += '	 					  	  <option value="1">강남점</option>';
@@ -442,11 +447,11 @@
 		html += '		<div class="form-group">';
 		html += '					<h6 style="text-align:center">운전자 정보 </h6>';
 		html += '						<input type="hidden" id="useridx"  value="'+ result.info.idx+'" >'
-		html += '						<label class="small">이름</label>  <input type="text" id="name" name="name" class="form-control" placeholder="성명" value="'+ result.info.name+'" >';
-		html += '						<label class="small">생년월일</label>  <input type="text" id="birth" name="birth" class="form-control" placeholder="생년월일 6자리" value="'+ result.info.birth+'" >';
-		html += '						<label class="small">휴대폰 번호</label>  <input type="text"  id="phone" name="phoneNumber" class="form-control" placeholder="휴대폰 번호" value="'+ result.info.phoneNumber+'" >';
-		html += '						<label class="small">운전 면허 번호</label>  <input type="text"  id="license" name="license" class="form-control" placeholder="운전 면허 번호" value="'+ result.info.license+'" >';
-		html += '						<label class="small">이메일</label>  <input type="text"  id="mail" name="email" class="form-control" placeholder="이메일" value="'+ result.info.email+'" >';
+		html += '						<label class="small">이름</label>  <input type="text" id="name" name="name" class="form-control" placeholder="성명" value="'+ result.info.name+'"  readonly>';
+		html += '						<label class="small">생년월일</label>  <input type="text" id="birth" name="birth" class="form-control" placeholder="생년월일 6자리" value="'+ result.info.birth+'" readonly>';
+		html += '						<label class="small">휴대폰 번호</label>  <input type="text"  id="phone" name="phoneNumber" class="form-control" placeholder="휴대폰 번호" value="'+ result.info.phoneNumber+'" readonly>';
+		html += '						<label class="small">운전 면허 번호</label>  <input type="text"  id="license" name="license" class="form-control" placeholder="운전 면허 번호" value="'+ result.info.license+'" readonly>';
+		html += '						<label class="small">이메일</label>  <input type="text"  id="mail" name="email" class="form-control" placeholder="이메일" value="'+ result.info.email+'" readonly>';
 		html += '						<label class="small">반납지점 선택</label> <select class="form-select" name="returnSelect" id="returnSelect" onchange="calc()">';
 		html += '	 					  	  <option value="1">강남점</option>';
 		html += '	 						  <option value="2">용산점</option>';
@@ -470,12 +475,13 @@
 		html += '						<button class="btn btn-default" id="paybtn" type="button" onclick=" pay()" >카드결제</button>';
 		html += '						<button class="btn btn-kakao" id="kakaobtn" type="button" onclick=" kakaopay()" >카카오페이</button>';
 		html += '					</aside>';
-
 		html += '	</div>';
 		html += '</section>';
 		$('#paysection').html(html);
 	}
    
+
+	
 	
 	//카드결제 
 	function pay() {
@@ -507,6 +513,7 @@
 	            // 결제에 실패했을떄 실패메세지와 실패사유를 출력
 	            var msg = '결제에 실패하였습니다.';
 	            msg +=  rsp.error_msg;
+	            paid(); //결제 정보 저장
 	        }
 	        alert(msg);
 	    });
@@ -543,16 +550,113 @@
 	            var msg = '결제에 실패하였습니다.';
 	            msg +=  rsp.error_msg;
 	            paid(); //결제 정보 저장
-	            insertNmemInfo();
 	            }
 	        alert(msg);
 	    });
 	}
 	
+
 	
 	
+	//결제 성공시 결제 정보 저장
+	function paid(){
+		var returnval = $('#returnSelect option:selected').val();
+		var finalprice = parseInt($('#finalprice').val());
+		var caridx = $('#caridx').val();
+		var useridx = $('#useridx').val();
+		var returnLocation =$("#returnSelect").val();
+
+		//결제 시간 저장을 위한 현재 시간 포맷
+		const TIME_ZONE = 9 * 60 * 60 * 1000; // 9시간
+		const d = new Date();
+
+		const date = new Date(d.getTime() + TIME_ZONE).toISOString().split('T')[0];
+		const time = d.toTimeString().split(' ')[0];
+		var paidtime= date + " " + time;
+		console.log(paidtime);
+		if ($(''))
+		var sdate = new Date($('#startDate').val());
+		var edate = new Date($('#endDate').val());
+		var startDate = sdate.getFullYear() + "/" + (sdate.getMonth() + 1) + "/" + sdate.getDate();
+		var endDate = edate.getFullYear() + "/" + (edate.getMonth() + 1) + "/" + edate.getDate();
+
+		//주문번호 생성을 위한 현재 시간, 랜덤 문자열 생성
+		var today = new Date();
+		var year = today.getFullYear();
+		var year = String(year);
+		var yy = year.substring(2,4);
+		var month = new String(today.getMonth()+1);
+		var day = new String(today.getDate());
+		
+		var hour = new String(today.getHours());
+		var minute = new String(today.getMinutes());
+		if(month.length == 1) {
+			month = "0" + month;
+		} if(day.length ==1) {
+			day = "0" + day;
+		}
+		var daynum = yy+month+day+hour+minute;
+
+		const randomNumber = Math.floor(Math.random()*(999-100)+100);
+		var random = String(randomNumber);
+		
+		var payidx = (daynum + random)*1;
+		
+		
+		//보험 선택값주기
+		if ( $('#selectins').val()=='0.1')
+			{ var ins = "2"
+			} else if ( $('#selectins').val()=='0.2') {
+				var ins = "3"
+			} else {
+				var ins = "4"
+			}
+		
+		//비회원,회원 식별값 주기
+		if(useridx =='0') {
+			var ismember ='0';
+		} else {
+			var ismember ='1';
+		}
+		
+		
+		var data = {
+				  "idx" : payidx,
+	        	  "ismember" : ismember,
+	        	  "memberIdx" : useridx, // 회원idx, 비회원은 0
+	        	  "vehicleIdx" : "${car.idx}", //차량idx
+	        	  "insurance": ins, //선택한 보험종류
+	        	  "finalprice" : finalprice, //결제금액
+	        	  "paidtime": paidtime, //결제시간
+				  "startDate":startDate, //대여일
+				  "endDate":endDate, //반납일
+				  "rentLocation": "${car.locationIdx}", //대여지점idx
+	        	  "returnLocation": returnLocation, //반납지점idx
+	          };
+		
+		  $.ajax({
+	          url:'<%=request.getContextPath()%>/payment/paid',
+	          contentType: 'application/json; charset=utf-8',
+	          type: 'post',
+	          dataType:'json',
+	          data: JSON.stringify(data),
+	          success: function(result) {
+	        	  if(result >0) {
+		  		  insertNmemInfo(payidx);
+	        	  } else {
+	        		  alert("결제가 완료되지 않았습니다")
+	        	  }
+	          },
+	          error: function() {
+	          	alert('로딩 실패');
+	          }
+	       });
+		
+	}
+	
+
 	//비회원 결제 정보 저장
-	function insertNmemInfo() {
+	function insertNmemInfo(payidx) {
 		
 		var useridx = $('#useridx').val();
 		if (useridx == '0') {
@@ -565,6 +669,7 @@
 		var license = $('#license').val();
 		
 		var data = {
+				"idx" : payidx,
 				"name" : nameval,
 				"birth" :birthval,
 				"phone" :phoneval,
@@ -593,71 +698,7 @@
 	
 	}
 	
-	
-	//결제 성공시 결제 정보 저장
-	function paid(){
-		var returnval = $('#returnSelect option:selected').val();
-		var finalprice = parseInt($('#finalprice').val());
-		var caridx = $('#caridx').val();
-		var useridx = $('#useridx').val();
-		var returnLocation =$("#returnSelect").val();
 
-		//현재 시간 포맷
-		const TIME_ZONE = 9 * 60 * 60 * 1000; // 9시간
-		const d = new Date();
-
-		const date = new Date(d.getTime() + TIME_ZONE).toISOString().split('T')[0];
-		const time = d.toTimeString().split(' ')[0];
-		var paidtime= date + " " + time;
-		
-		console.log(paidtime);
-		if ($(''))
-		var sdate = new Date($('#startDate').val());
-		var edate = new Date($('#endDate').val());
-		var startDate = sdate.getFullYear() + "/" + (sdate.getMonth() + 1) + "/" + sdate.getDate();
-		var endDate = edate.getFullYear() + "/" + (edate.getMonth() + 1) + "/" + edate.getDate();
-		console.log(typeof startDate + startDate);
-		
-		if ( $('#selectins').val()=='0.1')
-			{ var ins = "2"
-			} else if ( $('#selectins').val()=='0.2') {
-				var ins = "3"
-			} else {
-				var ins = "4"
-			}
-		
-		var data = {
-	        	  "ismember" : "1",
-	        	  "memberIdx" : useridx, // 회원idx, 비회원은 0
-	        	  "vehicleIdx" : "${car.idx}", //차량idx
-	        	  "insurance": ins, //선택한 보험종류
-	        	  "finalprice" : finalprice, //결제금액
-	        	  "paidtime": paidtime, //결제시간
-				  "startDate":startDate, //대여일
-				  "endDate":endDate, //반납일
-				  "rentLocation": "${car.locationIdx}", //대여지점idx
-	        	  "returnLocation": returnLocation, //반납지점idx
-	          };
-		
-		  $.ajax({
-	          url:'<%=request.getContextPath()%>/payment/paid',
-	          contentType: 'application/json; charset=utf-8',
-	          type: 'post',
-	          dataType:'json',
-	          data: JSON.stringify(data),
-	          success: function(result) {
-	        	  if(result >0) {
-	        	  alert("결제 완료 되었습니다");
-	        	  } else {
-	        		  alert("결제가 완료되지 않았습니다")
-	        	  }
-	          },
-	          error: function() {
-	          	alert('로딩 실패');
-	          }
-	       });
-		
-	}
 
 	function getMap() {
 		

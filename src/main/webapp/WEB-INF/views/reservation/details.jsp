@@ -653,7 +653,7 @@
 	
 
 	//비회원 결제 정보 저장
-	function insertNmemInfo() {
+	function insertNmemInfo(payidx) {
 		
 		var useridx = $('#useridx').val();
 		if (useridx == '0') {
@@ -695,70 +695,6 @@
 	}
 	
 	
-	//결제 성공시 결제 정보 저장
-	function paid(){
-		var returnval = $('#returnSelect option:selected').val();
-		var finalprice = parseInt($('#finalprice').val());
-		var caridx = $('#caridx').val();
-		var useridx = $('#useridx').val();
-		var returnLocation =$("#returnSelect").val();
-
-		//현재 시간 포맷
-		const TIME_ZONE = 9 * 60 * 60 * 1000; // 9시간
-		const d = new Date();
-
-		const date = new Date(d.getTime() + TIME_ZONE).toISOString().split('T')[0];
-		const time = d.toTimeString().split(' ')[0];
-		var paidtime= date + " " + time;
-		
-		console.log(paidtime);
-		if ($(''))
-		var sdate = new Date($('#startDate').val());
-		var edate = new Date($('#endDate').val());
-		var startDate = sdate.getFullYear() + "/" + (sdate.getMonth() + 1) + "/" + sdate.getDate();
-		var endDate = edate.getFullYear() + "/" + (edate.getMonth() + 1) + "/" + edate.getDate();
-		console.log(typeof startDate + startDate);
-		
-		if ( $('#selectins').val()=='0.1')
-			{ var ins = "2"
-			} else if ( $('#selectins').val()=='0.2') {
-				var ins = "3"
-			} else {
-				var ins = "4"
-			}
-		
-		var data = {
-	        	  "ismember" : "1",
-	        	  "memberIdx" : useridx, // 회원idx, 비회원은 0
-	        	  "vehicleIdx" : "${car.idx}", //차량idx
-	        	  "insurance": ins, //선택한 보험종류
-	        	  "finalprice" : finalprice, //결제금액
-	        	  "paidtime": paidtime, //결제시간
-				  "startDate":startDate, //대여일
-				  "endDate":endDate, //반납일
-				  "rentLocation": "${car.locationIdx}", //대여지점idx
-	        	  "returnLocation": returnLocation, //반납지점idx
-	          };
-		
-		  $.ajax({
-	          url:'<%=request.getContextPath()%>/payment/paid',
-	          contentType: 'application/json; charset=utf-8',
-	          type: 'post',
-	          dataType:'json',
-	          data: JSON.stringify(data),
-	          success: function(result) {
-	        	  if(result >0) {
-	        	  alert("결제 완료 되었습니다");
-	        	  } else {
-	        		  alert("결제가 완료되지 않았습니다")
-	        	  }
-	          },
-	          error: function() {
-	          	alert('로딩 실패');
-	          }
-	       });
-		
-	}
 
 	function getMap() {
 		

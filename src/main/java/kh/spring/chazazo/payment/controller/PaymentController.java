@@ -143,8 +143,8 @@ private PaymentService pService;
 		return mv;
 	}
 	
-	@GetMapping("/profile/reservation/{idx}")
-	public String viewReservationListUser(ModelAndView mv, Principal prin, PaymentReqDto dto, String username) {
+	@GetMapping("/profile/reservation")
+	public String viewReservationListUser(ModelAndView mv, Principal prin) {
 		// 유저 예약 리스트 조회
 		System.out.println("ddddddddsssssssssdddddddd");
 		
@@ -153,16 +153,19 @@ private PaymentService pService;
 		System.out.println(result);
 		
 		if(prin == null) {
-			mv.setViewName("member/history");
+			mv.setViewName("member/mypage");
 			return "1";
 			
 		}else {
 			String loginId = prin.getName();
+			
 			mv.addObject("reservation", pService.selectList(loginId));
 			result.put("reservation", pService.selectList(loginId));
 			
 			mv.addObject("memberinfo", mService.selectMypageOne(loginId));
 			result.put("memberinfo", mService.selectMypageOne(loginId));
+			
+			
 			System.out.println(result);
 			System.out.println("ddddddd송공d");
 			return new Gson().toJson(result);
@@ -205,7 +208,7 @@ private PaymentService pService;
 		}
 	
 
-	@GetMapping("/profile/reservation")
+	@GetMapping("/profile/reservation/{idx}")
 	public ModelAndView viewReservationOne(ModelAndView mv
 										   , @PathVariable String idx, Principal prin) {
 		// 예약 정보 상세 조회
@@ -217,7 +220,7 @@ private PaymentService pService;
 			System.out.println("ddddddddd");
 			String loginId = prin.getName();
 			mv.addObject("memberinfo", mService.selectMypageOne(loginId) );
-			mv.addObject("reservation", pService.ReservationOne(index) );
+			mv.addObject("reservation", pService.selectList(loginId));
 			mv.setViewName("member/history");
 		}
 		

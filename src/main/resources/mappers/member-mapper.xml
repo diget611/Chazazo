@@ -7,10 +7,9 @@
 	</select>
 	
 	<select id="selectMypageOne" resultType="memberInfoRespDto">
-		select *
-		from member_info 
-        join member on member_info.idx = member.idx
-        WHERE USERNAME = #{username}
+		select * 
+            from member_info
+            where idx in (select idx from member where username=#{username})
 	</select>
 	
 	<select id="selectOne" resultType="memberInfoRespDto">
@@ -52,7 +51,7 @@
 	<update id="updateInfo">
 		UPDATE MEMBER_INFO SET GENDER = #{gender}, BIRTH = #{birth}, PASSWORD = #{password}
 									, PHONENUMBER = #{phoneNumber}, EMAIL = #{email}
-					       WHERE IDX = #{idx}
+					 where idx in (select idx from member where username=#{username})
 	</update>
 	
 	<update id="deleteMember">

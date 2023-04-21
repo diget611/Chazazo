@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import kh.spring.chazazo.payment.model.dto.PaymentInfoDto;
 import kh.spring.chazazo.payment.model.dto.PaymentReqDto;
 
 @Repository
@@ -32,7 +33,13 @@ public class PaymentDao {
 		
 		return session.selectList("payment.resList", username);
 	}
-		
+	
+//		
+//	public PaymentInfoDto selectList(int idx) {
+//		return session.selectOne("payment.resList", idx);
+//	}
+	
+	
 	public int deleteResv(int idx) {
 		return session.delete("payment.resDelete", idx);
 	}

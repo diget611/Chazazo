@@ -116,6 +116,7 @@
 														<span>		
 															<input type="text" class="form-control" name="name" value="${memberinfo.name }" readonly >
 															<input type="hidden" class="form-control" name="usernname" id="username" value="${memberinfo.username }" >
+															<input type="hidden" class="form-control"  value="${memberinfo.idx }" >
 														</span>
 													</h3>
 												</div>
@@ -148,7 +149,12 @@
 							<div class="panel panel-default sidebar-menu wow fadeInRight animated animated animated" style="visibility: visible; animation-name: fadeInRight;">
 								<div class="panel-heading">
 									<h3 class="panel-title">
+									<sec:authorize access="isAuthenticated()">
 									<button id="historyBtn" type="button" class="btn btn-outline-primary">예약내역</button><br>
+									</sec:authorize>
+									<sec:authorize access="!isAuthenticated()">
+									<button id="none-Member-history" type="button" class="btn btn-outline-primary">비회원 예약 조회</button><br>
+									</sec:authorize>
 									</h3>
 								</div>
 							</div>
@@ -187,35 +193,43 @@
 						<div id="post-content" style="visibility: visible; animation-name: fadeInLeft;">
 								<div id="mypage_none_rent_history" style="display:block; margin-top:100px;">
 									
-							<div>
-							<div>예약 상세 조회</div>
-							<c:forEach items="${reservation }" var="list">
+						 	<div id="hideRent">
+							<c:if test="${empty reservation }">
+								<p style="text-align: center; font-size: large;"><strong> 진행 중인 렌트 내역이 없습니다 !!</strong></p><br>
+								<button class="js-mypage-btn-go-car-list btn btn-outline-primary btn-block max-w-lg-40rem mx-auto py-1" onclick="moveRent();">렌트하러 가기</button>
+							</c:if>
 										<table>
 											<tr>
-												<th scope="row">예약자</th>
-												<td>${list.idx }</td>
+												<th scope="row">예약</th><br>
 												<th scope="row">예약시작날짜</th>
-												<td>${list.startDate }</td>
-												<th scope="row">예약날자</th>
-												<td>${list.state }</td>
-												<th scope="row">보험종류</th>
-												<td>${list.insuranceIdx }</td>
+												<th scope="row">예약상태</th>
 												<th scope="row">차종류</th>
-												<td>${list.vehicleIdx }</td>
 												<th scope="row">대여지점</th>
-												<td>${list.rentLocation }</td>
 												<th scope="row">반납지점</th>
-												<td>${list.returnLocation }</td>
 											</tr>
-										</table>
-							</c:forEach>
-							</div>
-									
+							<c:forEach items="${reservation }" var="list">
+											
+											<tr>
+												<td>${list.idx }</td>
+												<td>${list.startDate }</td>
+												<td>${list.state }</td>
+												<td>${list.vehicleModel }</td>
+												<td>${list.rentLocationName }</td>
+												<td>${list.returnLocationName }</td>
+											</tr>	
+										</c:forEach>
+								</table>
 								
+								</div>
+									
+								<div id="content">
+								
+								</div>
+					
 									
 								</div>
 								
-					
+					 
 								
 								
 						</div>
@@ -234,26 +248,67 @@
 	<jsp:include page="/WEB-INF/views/base/footer.jsp"/>
 
 	<script>
+	
 		$('#updateinfoBtn').on('click', function() {
-			location.href='<%=request.getContextPath()%>/member/profile/${memberinfo.idx}/update';
+			location.href='<%=request.getContextPath()%>/member/profile/update';
 			
 		});
-		
-		
-		$('#historyBtn').on('click',function() {
-			location.href='<%=request.getContextPath()%>/profile/reservation';
 
+		$('#historyBtn').on('click', function() {
+			location.href='<%=request.getContextPath()%>/member/profile';
+			
 		});
+
+		$('#none-Member-history').on('click',content);
+		function content(){
+			$.ajax({
+				url:'<%=request.getContextPath()%>/profile/reservation',
+				type: 'get',
+				dataType:'json',
+				success: function(result){
+					
+					memberResv(result);
+					console.log("dddddddddddffff")
+					$('#hideRent').hide();
+				},
+				error: function(){
+					alert("fail!!!!!!!");
+				}
+				
+			});
+		};
 		
-		$('#noneMember').on('click', function() {
+		function memberResv(result){
+			console.log("gggdddddddddsssssssssss")
+			var html = '';
+			if(result == 1){
+				
+				html += '			<h4>비회원 예약조회</h4>';
+				html += '			<form>';
+				html += '			<div class="form-group">';
+				html += '				<label>운전자 이름</label> <input type="text" class="form-control" name="name" placeholder="성명을 입력해 주세요">';
+				html += '				<div class="invalid-feedback" id="vsnmr_input_driver_name_invalid_msg" style="display: block;">이름을 입력해 주세요</div>';
+				html += '				</div>';
+				html += '				<div class="form-group">';
+				html += '					<label>예약번호</label> <input type="text" class="form-control"';
+				html += '						name="reservationNumber">';
+				html += '					<div class="invalid-feedback"';
+				html += '						id="vsnmr_input_reserv_num_invalid_msg">예약번호를 입력해 주세요</div>';
+				html += '					<small class="color-blue">예약번호는 문자와 메일로 보내드린 예약내용에 재되어있습니다.</small>';
+				html += '				</div>';
+				html += '				<div class="form-group">';
+				html += '					<label>전화번호</label> <input type="text" id="phone" name="phone" required>';
+				html += '				</div>';
+				html += '				<div class="text-center">';
+				html += '					<button type="submit" class="btn btn-default" id="noneMember">예약 조회하기</button>';
+				html += '				</div>';
+				html += '			</form>';
 			
-			
-			
-			location.href='<%=request.getContextPath()%>/profile/nonereservation';
-		});
+			}	
+			$('#content').html(html);
+		}
 		
-		
-		
+
 		
 		$('#bookmark').on('click', function() {
 			location.href='<%=request.getContextPath()%>/profile/favorites';
@@ -299,29 +354,10 @@
 				}
 			});
 		};
-		
-		
-		$("#noneMember").on('click', noneMemberRes);
-		
-		function noneMemberRes(){
-		
-				$.ajax({
-					url:'<%=request.getContextPath()%>/nonereservation',
-					type: 'get',
-					dataType:'json',
-					success: function(result){
-						
-						memberResv(result);
-						console.log("dddddddddddffff")
-					},
-					error: function(){
-						alert("fail!!!!!!!");
-					}
-					
-				});
-			}
 			
 			
+	
+
 			
 			
 		

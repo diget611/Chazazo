@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kh.spring.chazazo.payment.model.dao.PaymentDao;
+import kh.spring.chazazo.payment.model.dto.PaymentInfoDto;
 import kh.spring.chazazo.payment.model.dto.PaymentReqDto;
 
 
@@ -40,5 +41,6 @@ public class PaymentServiceImpl implements PaymentService {
 		// TODO Auto-generated method stub
 		return dao.insertNmemInfo(data);
 	}
+
 
 }

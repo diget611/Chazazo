@@ -14,9 +14,10 @@ import lombok.Getter;
 
 @Component
 @Data
-public class PaymentReqDto {
+public class PaymentInfoDto {
 	
 	
+
 	
 	private int idx;
 	private int memberIdx;
@@ -41,11 +42,24 @@ public class PaymentReqDto {
 	private Date cancelDate;
 	
 	private String model;
+	private int price;
+	private String image;
+	private String maker;
+	private int locationIdx;
+	private int fueltypeIdx;
+	private int cartypeIdx;
 	private String name;
+	private double latitude;
+	private double longitude;
+	private String phoneNumber;
+	private String businessHours;
+	private String address;
+	private String fuelname;
+	private String typename;
+	private String[] typeList;
+	private String[] fuelList;
 	
-	private String rentLocationName;
-	private String returnLocationName;
-	private String vehicleModel;
+
 	
 	
 }

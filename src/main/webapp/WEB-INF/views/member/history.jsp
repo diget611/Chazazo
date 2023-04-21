@@ -144,7 +144,7 @@
 				<div class="blog-lst col-md-8 p0 " style="float: right;">
 					<section id="id-100" class="post single">
 						
-							<div class="content">
+							<div id="content">
 								<button>예약 변경</button>
 								
 							</div>
@@ -228,7 +228,7 @@
 	$('#historyBtn').on('click',content);
 	function content(){
 		$.ajax({
-			url:'<%=request.getContextPath()%>/profile/reservation/{memberinfo.idx}',
+			url:'<%=request.getContextPath()%>/profile/reservation',
 			type: 'get',
 			dataType:'json',
 			success: function(result){

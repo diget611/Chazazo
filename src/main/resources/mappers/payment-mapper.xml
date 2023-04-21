@@ -3,23 +3,26 @@
 <mapper namespace="payment">
 		
 		<select id="resList" resultType="PaymentReqDto">
-			select *
-			 from payment
-			 join member on payment.idx = member.idx
+						
+				select 
+				 (select model from vehicle where idx=tb_p.VEHICLE_IDX ) AS vehicle_model
+			    ,(select name from LOCATION where idx=tb_p.RETURN_LOCATION) AS return_location_name
+			    ,(select name from LOCATION where idx=tb_p.RENT_LOCATION) AS rent_location_name
+			    ,tb_p.* 
+			    from payment tb_p
+			    where MEMBER_IDX in (select idx from member where username=#{username})
+    
+		
  		</select>
 	
 		<select id="ReservationOne" resultType="PaymentReqDto" >
-			 SELECT * FROM payment WHERE memberidx=#{memberidx}
+			 SELECT * FROM payment WHERE idx = #{idx}
 		</select>
 	
 		<update id="deleteRes">
 			update payment set state = 1 where idx = #{idx}
 		</update>
 	
-
-	
-	<insert id="insertPayInfo" parameterType="java.util.List" >
-		insert into payment values (payment_seq.nextval,0, #{useridx},#{caridx}, #{insurance},0, #{finalprice}, #{paidtime}, #{startDate}, #{endDate}, '',#{returnLocation}, #{ismember})
 	<delete id="resDelete" parameterType="int">
 		DELETE FROM payment WHERE IDX = #{IDX}
 	</delete>

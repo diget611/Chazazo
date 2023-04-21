@@ -37,6 +37,7 @@
 <script src="<%=request.getContextPath()%>/resources/garoestate/assets/js/owl.carousel.min.js"></script>
 <script src="<%=request.getContextPath()%>/resources/garoestate/assets/js/price-range.js"></script>
 <script src="<%=request.getContextPath()%>/resources/garoestate/assets/js/main.js"></script>
+<script src="<%=request.getContextPath()%>/resources/js/validation.js"></script>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/main.css">
 </head>
 
@@ -49,9 +50,10 @@
 				<div class="pc-mobile-header-container">
 					<div class="pc-header space-2 text-center dc-none dc-lg-block">
 						<div class="container">
+						
 							<h2 class="text-grey-3 underline-bg dc-inline-block">마이페이지</h2>
 							<p class="text-grey-5 mb-0">내 정보</p>
-						</div>
+						
 					</div>
 				</div>
 				<div class="col-md-4" style="float: left;">    
@@ -61,66 +63,85 @@
 								<h3 class="panel-title">회원정보</h3>
 							</div>
 						</div>
-						<div class="dealer-widget row-md-4">
+							
+							<sec:authorize access="isAuthenticated()">
 							<div class="dealer-content">
 								<div class="inner-wrapper">
-									<div class="clear">
-										<div class="col-xs-8 col-sm-8 ">
-											<h3 class="dealer-name">
-												<span>
-													<input type="text" class="form-control" name="name" value="${memberinfo.name }" readonly >
-												</span>
-											</h3>
-										</div>
-									</div>
-									<div class="clear">
-										<ul class="dealer-contacts">                                       
-											<li>
-												<i class="pe-7s-call strong"> </i>
-												<input type="text" class="form-control" name="phoneNumber" value="${memberinfo.phoneNumber}" readonly >
-											</li>
-											<li>
-												<i class="pe-7s-mail strong"> </i> 
-												<input type="text" class="form-control" name="email" value="${memberinfo.email }" readonly >
-											</li>
-											
-										</ul>
-									</div>
+									
+								
+											<div class="clear">
+												<div class="col-xs-8 col-sm-8 ">
+													<h3 class="dealer-name">
+														<span>		
+															<input type="text" class="form-control" name="name" value="${memberinfo.name }" readonly >
+															<input type="hidden" class="form-control" name="usernname" id="username" value="${memberinfo.username }" >
+															<input type="hidden" class="form-control"  value="${memberinfo.idx }" >
+														</span>
+													</h3>
+												</div>
+											</div>
+											<div class="clear">
+												<ul class="dealer-contacts">                                       
+													<li>
+														<i class="pe-7s-call strong"> </i>
+														<input type="text" class="form-control" name="phoneNumber" value="${memberinfo.phoneNumber}" readonly >
+													</li>
+													<li>
+														<i class="pe-7s-mail strong"> </i> 
+														<input type="text" class="form-control" name="email" value="${memberinfo.email }" readonly >
+													</li>
+												</ul>
+											<div>
+												<div class="dc-flex justify-content-between px-2 mb-4 is-only-member">
+													<div class="dc-flex flex-column flex-grow-1 text-center click-effect-press">
+														<img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjciIGhlaWdodD0iMjYiIHZpZXdCb3g9IjAgMCAyNyAyNiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxnIGNsaXAtcGF0aD0idXJsKCN4anBrYjR1NTlhKSI+CiAgICAgICAgPHJlY3QgeD0iMi4zMzMiIHk9IjQuNTEiIHdpZHRoPSIxOS4wMTIiIGhlaWdodD0iMTkuNDkiIHJ4PSIyIiBmaWxsPSIjQzdFMEZGIi8+CiAgICAgICAgPHBhdGggZD0iTTE5Ljc3MyA2LjgzM2MtLjk3NS0uOTU4LTEuMDU3LTIuNTA2LS4xODMtMy40NGwxLjU5Ni0xLjcwNWMuODczLS45MzQgMi4zODUtLjkxNCAzLjM2LjA0My45NzQuOTU4IDEuMDU2IDIuNTA2LjE4MiAzLjQ0bC0xLjU5NiAxLjcwNmMtLjg3My45MzMtMi4zODUuOTE0LTMuMzYtLjA0NHoiIGZpbGw9IiM5NkM2RkYiLz4KICAgICAgICA8cGF0aCBkPSJtMTAuNDM4IDEzLjEyMS0yLjI0OCA1LjU4Yy0uMTMxLjMyNS4xODMuNjM2LjQ5Ni40ODhsNS4zNDgtMi41MzUtMy41OTctMy41MzZ2LjAwM3oiIGZpbGw9IiNGQkZDRkYiLz4KICAgICAgICA8cGF0aCBkPSJtOC42NDYgMTcuNTcyIDEuMTI1IDEuMTA1LTEuMjE1LjU3N2MtLjI2My4xMjUtLjUyOS0uMTM3LS40MTgtLjQxMWwuNTExLTEuMjY4LS4wMDMtLjAwM3oiIGZpbGw9IiM5NkM2RkYiLz4KICAgICAgICA8cGF0aCBkPSJtMjEuODY0IDMuMzY0LTEuMTk4LTEuMTc4LTEwLjIyOCAxMC45MzUgMS4xOTcgMS4xNzZMMjEuODY0IDMuMzY0eiIgZmlsbD0iI0I5RDVGRiIvPgogICAgICAgIDxwYXRoIGQ9Ik0yMy4wNjQgNC41MzkgMjEuODY3IDMuMzZsLTEwLjIzIDEwLjkzNCAxLjE5OCAxLjE3OCA1LjExNC01LjQ2NyA1LjExNS01LjQ2N3pNMjQuMjYgNS43MmwtMS4xOTctMS4xNzgtNS4xMTUgNS40NjctNS4xMTQgNS40NjcgMS4xOTcgMS4xNzdMMjQuMjYxIDUuNzJ6IiBmaWxsPSIjOUFDMkZGIi8+CiAgICA8L2c+CiAgICA8ZGVmcz4KICAgICAgICA8Y2xpcFBhdGggaWQ9InhqcGtiNHU1OWEiPgogICAgICAgICAgICA8cGF0aCBmaWxsPSIjZmZmIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSguMzMzKSIgZD0iTTAgMGgyNnYyNkgweiIvPgogICAgICAgIDwvY2xpcFBhdGg+CiAgICA8L2RlZnM+Cjwvc3ZnPgo=" height="26px">
+														<span class="color-grey-3 text-14">나의리뷰</span>
+													</div>
+												</div>
+											</div>
+										</div>	
 								</div>
+							
 							</div>
-						</div>
+							</sec:authorize>
 						<div class="blog-asside-right" >
 							<div class="panel panel-default sidebar-menu wow fadeInRight animated animated animated" style="visibility: visible; animation-name: fadeInRight;">
 								<div class="panel-heading">
 									<h3 class="panel-title">
 									<button id="historyBtn" type="button" class="btn btn-outline-primary">예약내역</button><br>
-									
+									</h3>
 								</div>
 							</div>
 						</div>  
+						
+						
 						<div class="blog-asside-right" >
 							<div class="panel panel-default sidebar-menu wow fadeInRight animated animated animated" style="visibility: visible; animation-name: fadeInRight;">
 								<div class="panel-heading">
+								
 									<h3 class="panel-title">
-									<button type="button" class="btn btn-outline-primary">회원정보 수정</button><br>
-									<button type="button" class="btn btn-outline-primary">나의 관심 지점</button><br></h3>
+									<button id="updateinfoBtn" type="button" class="btn btn-outline-primary">회원정보 수정</button><br>
+									<button id="bookmark" type="button" class="btn btn-outline-primary">나의 관심 지점</button><br></h3>
+								
+											
 								</div>
 							</div>
 						</div>
+						
 						<div class="blog-asside-right" >
 							<div class="panel panel-default sidebar-menu wow fadeInRight animated animated animated" style="visibility: visible; animation-name: fadeInRight;">
-								<div class="panel-heading">
 									<h3 class="panel-title">
 									<button type="button" class="btn btn-outline-primary">1:1 문의</button><br>
-									<button type="button" class="btn btn-outline-primary">쿠폰 관리</button><br>
-									<button type="button" class="btn btn-outline-primary">회원탈퇴</button></h3>
+										<button type="button" class="btn btn-outline-primary">쿠폰 관리</button><br>
+										<button type="button" class="btn btn-outline-primary" name="deleteBtn">회원탈퇴</button></h3>
+								
 								</div>
 							</div>
 						</div>
 					</div>   
-				</div>
-			
-				
+	
+		</div>
+	
 				
 				
 				<div class="blog-lst col-md-8 p0 " style="float: right;">
@@ -131,15 +152,17 @@
 						<div class="text-start">
 							<div class="input-group input-group-outline my-3">
 								<label>비밀번호 확인</label>
-								<input type="password" id="password" class="form-control">
+								<input type="password" id="passwordCheck" class="form-control">
 							</div>
 						</div>
 						<div class="text-center">
 							<button class="btn bg-gradient-primary w-100 my-4 mb-2" id="checkPwd"> 비밀번호 확인</button>
 						</div>
 					</div> 
+					
+					
 				
-						<form id="updateForm" action="<%=request.getContextPath() %>/member/profile"
+						<form id="updateForm" action="<%=request.getContextPath() %>/member/profile/update"
 								style="display:none"; onsubmit="return checkForm()">
 							<div class="form-group">
 									<label>이름</label>
@@ -152,7 +175,7 @@
 								
 								<div class="form-group">
 									<label>비밀번호</label>
-									<input type="password" class="form-control" id ="updatePassword" name="updatePassword" placeholder="변경할 비밀번호를 입력하세요">
+									<input type="password" class="form-control" id ="password" name="password" placeholder="변경할 비밀번호를 입력하세요">
 									
 								</div>
 								
@@ -182,25 +205,27 @@
 													
 								<div class="text-center">
 									<button id="btn-update" type="submit" class="btn btn-default" 
-									 th:onclick="memberUpdate()">회원 정보 수정</button>
+									 >회원 정보 수정</button>
 								</div>
 							</form>
 							
 							
 							
-					</section>
-				</div>                    
-			</div>
+					</div>
+		</div>
+		
 		</div>
 	</section>
     
 <jsp:include page="/WEB-INF/views/base/footer.jsp"/>
+
 	
 	<script>
 	
 	
 	$('#historyBtn').on('click', function() {
-		location.href='<%=request.getContextPath()%>/profile/reservation/${memberinfo.idx}';
+		location.href='<%=request.getContextPath()%>/member/profile';
+		
 	});
 	
 	$('#moveNoneMemberReservation').on('click', function() {
@@ -213,7 +238,7 @@
 	
 	
 		$('#checkPwd').click(function(){
-			const checkPassword = $('#password').val();
+			const checkPassword = $('#passwordCheck').val();
 			if(!checkPassword || checkPassword.trim() === ""){
 				 swal("앗","비밀번호 입력해주세요.", {icon: "warning"});
 			}else{
@@ -244,117 +269,19 @@
 		
 			
 
-		function memberUpdate(){
-		const data = {
-				name :$('#name').val(),
-				password :$('#updatePassword').val(),
-				gender :$('#gender').val(),
-				birth :$('#birth').val(),
-				email :$('#email').val(),
-				phoneNumber :$('#phoneNumber').val()
-		};
 		
-		let testPass = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&\*])[\da-zA-Z!@#$%^&\*]{8,30}$/;
-		let testName = /^[가-힣]{2,10}$/;
-		let testBirth = /^(19[0-9]{2}|20[0-1]{1}[0-9]{1}|202[0-3]{1})(0[1-9]|1[0-2])(0[1-9]|[1-2][0-9]|3[0-1])$/;
-		let testPhone = /^01[0|1|6|7|8|9][0-9]{7,8}$/;
-	 
-		if($('[name=updatePassword]').val() == '' | $('[name=birth]').val() == '' | $('[name=gender]').val() == '' | $('[name=phonNumber]').val() == ''
-			| $('[name=email]').val() == '' ) {
-			swal("앗","비밀번호 입력해주세요.", {icon: "warning"});
-			}else if( !testPass.test($('[name=updatePassword]').val()) | !testBirth.test($('[name=birth]').val())
-				| !testPhone.test($('[name=phoneNumber]').val()) | !testEmail.test($('[name=email]').val())) {
-					return false;	
-			} else {
-					return true;
-			}
-			
-		$('[name=updatePassword]').on('change', isPassEq);
-		$('[name=passwordCheck]').on('change', isPassEq);
-			
-		function isPassEq() {
-			let pass = $('[name=updatePassword]').val();
-			let passChk = $('[name=passwordCheck]').val();
-				
-			if(pass != passChk) {
-				$('[name=passwordCheck]').next().remove();
-					$('[name=passwordCheck]').after('<div style="color: red;">비밀번호가 일치하지 않습니다.</div>');
-				checkPass = 0;
-			} else {
-				$('[name=passwordCheck]').next().remove();
-				$('[name=passwordCheck]').after('<div style="color: green;">비밀번호가 일치합니다.</div>');
-				checkPass = 1;
-			}
-		}
-		
-		// 패스워드 유효성 체크
-		$('[name=updatePassword]').on('blur', function(){
-			let testPass = /^(?=.*\d)(?=.*[a-z])(?=.*[!@#$%^&\*])[\da-zA-Z!@#$%^&\*]{8,30}$/;
-			if($('[name=updatePassword]').val() == ''){
-				$('[name=updatePassword]').next().remove();
-				$('[name=updatePassword]').after('<div style="color: red;">비밀번호를 입력하세요.</div>');
-			} else if(!testPass.test($('[name=updatePassword]').val())){
-				$('[name=updatePassword]').next().remove();
-				$('[name=updatePassword]').after('<div style="color: red;">8 ~ 30자 사이의 하나 이상의 알파벳 소문자, 숫자, 특수문자로 이루어진 비밀번호를 작성하세요.</div>');
-			} else {
-				$('[name=updatePassword]').next().remove();
-			}
-		});	
-			
-		// 생년월일 유효성 체크
-		$('[name=birth]').on('blur', function(){
-			let testBirth = /^(19[0-9]{2}|20[0-1]{1}[0-9]{1}|202[0-3]{1})(0[1-9]|1[0-2])(0[1-9]|[1-2][0-9]|3[0-1])$/;
-			if($('[name=birth]').val() == ''){
-				$('[name=birth]').next().remove();
-				$('[name=birth]').after('<div style="color: red;">생년월일을 입력하세요.</div>');
-			} else if(!testBirth.test($('[name=birth]').val())){
-				$('[name=birth]').next().remove();
-				$('[name=birth]').after('<div style="color: red;">생년월일을 확인하세요.</div>');
-			} else {
-				$('[name=birth]').next().remove();
-			}
-		});
-		
-		// 성별 유효성 체크
-		$('[name=gender]').on('blur', function(){
-			if($('[name=gender]').val() == '2'){
-				$('[name=gender]').next().remove();
-				$('[name=gender]').after('<div style="color: red;">성별을 선택하세요.</div>');
-			} else {
-				$('[name=gender]').next().remove();
-			}
-		});
-		
-		// 전화번호 유효성 체크
-		$('[name=phoneNumber]').on('blur', function(){
-			let testPhone = /^01[0|1|6|7|8|9][0-9]{7,8}$/;
-			if($('[name=phoneNumber]').val() == ''){
-				$('[name=phoneNumber]').next().remove();
-				$('[name=phoneNumber]').after('<div style="color: red;">전화번호를 입력하세요.</div>');
-			} else if(!testPhone.test($('[name=phoneNumber]').val())){
-				$('[name=phoneNumber]').next().remove();
-				$('[name=phoneNumber]').after('<div style="color: red;">전화번호를 확인하세요.</div>');
-			} else {
-				$('[name=phoneNumber]').next().remove();
-			}
-		});
-		
-
-		
-		
-			
-	
 		
 		$('#btn-update').click(function(){
 			 $.ajax({
 	                type: 'POST',
-	                url: '<%=request.getContextPath()%>/member/profile',
+	                url: '<%=request.getContextPath()%>/member/profile/update',
 	                contentType: 'application/json; charset=utf-8',
 	                data: JSON.stringify(data),
 	                success: function(result){
 	                if(result){ 
-	                    alert("회원 수정이 완료되었습니다.");
+	                    var script = '<%=request.getContextPath()%>/resources/js/validation.js';
 	                    cosole.log("update !!!!!!");
+	                    swal("회원 정보 수정","수정 성공.", {icon: "success"});
 	                	}else{
 	                		alert("수정실패")
 	                	}
@@ -364,10 +291,10 @@
 	            }
 	        });
 		});
-		}
 		
 		
-			
+		
+		
 				
 				
 		

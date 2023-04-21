@@ -220,11 +220,13 @@
 
 	<script>
 	$('#updateinfoBtn').on('click', function() {
-		location.href='<%=request.getContextPath()%>/member/profile';
+		location.href='<%=request.getContextPath()%>/member/profile/update';
 		
 	});
+
 	$('#historyBtn').on('click', function() {
-		location.href='<%=request.getContextPath()%>/profile/reservation';
+		location.href='<%=request.getContextPath()%>/member/profile';
+		
 	});
 	
 	$('#moveNoneMemberReservation').on('click', function() {

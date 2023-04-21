@@ -66,18 +66,20 @@ public class MemberController {
 	}
 
 	@GetMapping("/profile")
-	public ModelAndView viewMemberOne(ModelAndView mv, Principal prin, String idx) {
+	public ModelAndView viewMemberOne(ModelAndView mv, Principal prin) {
 		// 마이페이지에 들어가는 url
 		
 		if(prin == null) {
 			mv.setViewName("member/mypage");
 		}else{
+			
 			String loginId = prin.getName();
 			mv.addObject("memberinfo", mService.selectMypageOne(loginId));
-			mv.addObject("reservation", pService.selectList(idx));
+			mv.addObject("reservation", pService.selectList(loginId));
+			
 			mv.setViewName("member/mypage");
-		}
 		
+		}
 		return mv;
 	}
 
@@ -153,10 +155,9 @@ public class MemberController {
 	
 	
 	// 회원정보 수정 페이지 조회
-	@GetMapping("/profile/{username}/update")
+	@GetMapping("/profile/update")
 	public ModelAndView viewUpdateMember(ModelAndView mv,
-										@PathVariable("username") int idx,
-										Principal prin) {
+										  Principal prin) {
 		
 		String loginId = prin.getName();
 		System.out.println("eeeeeeeeeeeeeeeeeeee");
@@ -188,14 +189,22 @@ public class MemberController {
 	
 	
 	// 회원정보 수정 / Put, Patch
-	@PatchMapping("/update")
-	public int updateMember(@RequestBody MemberUpdateInfoRespDto data) {
+	@PostMapping("/update")
+	public String updateMember(ModelAndView mv, @RequestBody MemberUpdateInfoRespDto data, Principal prin) {
 		
+		Map<String, Object> result = new HashMap<String,Object>();
 		
-		int result = mService.updateInfo(data);
 		System.out.println("ggggggggggggggggggggg컨트롤러 ");
+		String loginId = prin.getName();
 		
-		return result;
+		
+		mv.addObject("memberinfo", mService.updateInfo(data));
+		result.put("memberinfo", mService.updateInfo(data));
+		
+		
+		System.out.println(result);
+		
+		return new Gson().toJson(result);
 	}
 
 	

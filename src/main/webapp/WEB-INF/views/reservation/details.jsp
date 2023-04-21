@@ -81,7 +81,8 @@
                                         <div class="btn-group bootstrap-select">
                                  		  <label>보험 선택</label>
 	                                   	  <select id="selectins" name="selectins" class="selectpicker" >
-	                                            <option value="0.1" selected>일반자차(기본)</option>
+	                                   	  		<option value="0" selected>보험 미선택</option>
+	                                            <option value="0.1">일반자차</option>
 	                                            <option value="0.2">완전자차</option>
 	                                            <option value="0.5">슈퍼자차</option>
 	                                        </select>
@@ -604,11 +605,13 @@
 		
 		
 		//보험 선택값주기
-		if ( $('#selectins').val()=='0.1')
-			{ var ins = "2"
-			} else if ( $('#selectins').val()=='0.2') {
+		if ( $('#selectins').val()=='0')
+			{ var ins = "1"
+			} else if ( $('#selectins').val()=='0.1') {
+				var ins = "2"
+			} else if( $('#selectins').val()=='0.2')
 				var ins = "3"
-			} else {
+			{
 				var ins = "4"
 			}
 		

@@ -79,7 +79,7 @@
 									<div class="col-md-12" style="padding-bottom:100px">                                   
                                         <div class="btn-group bootstrap-select">
                                  		  <label>보험 선택</label>
-	                                   	  <select id="selectins" name="selectins" class="selectpicker" >
+	                                   	  <select id="selectins" name="selectins"  >
 	                                   	  		<option value="0" selected>보험 미선택</option>
 	                                            <option value="0.1">일반자차</option>
 	                                            <option value="0.2">완전자차</option>
@@ -470,15 +470,17 @@
 	function payajax() {
 		var html ='';
 		html += '				</section>';
-		html += '						<button class="btn btn-default" id="paybtn" type="button" onclick=" pay()" >카드결제</button>';
-		html += '						<button class="btn btn-kakao" id="kakaobtn" type="button" onclick=" kakaopay()" >카카오페이</button>';
+		html += '						<button class="btn btn-default" id="paybtn" type="button" onclick=" pay()" disabled="disabled" >카드결제</button>';
+		html += '						<button class="btn btn-kakao" id="kakaobtn" type="button" onclick=" kakaopay()" disabled="disabled">카카오페이</button>';
 		html += '					</aside>';
 
 		html += '	</div>';
 		html += '</section>';
 		$('#paysection').html(html);
-	}
-   
+		}
+	
+
+
 	
 	//카드결제 
 	function pay() {

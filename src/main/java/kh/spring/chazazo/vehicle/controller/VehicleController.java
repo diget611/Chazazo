@@ -55,11 +55,10 @@ public class VehicleController {
 		return mv;
 	}
 	
-	@GetMapping("/test")
+	@GetMapping("/seachlist")
 	@ResponseBody
 	public String getList(ModelAndView mv, @RequestParam(required=false) String page
 			, @RequestParam(value="typeList[]", required=false) List<String> typeList, @RequestParam(value="fuelList[]", required=false) List<String> fuelList) {
-		
 		
 		System.out.println("*********************");
 		System.out.println("!!!!!typeList!!!!!!!"+typeList);

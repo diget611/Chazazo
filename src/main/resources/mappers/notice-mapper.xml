@@ -16,4 +16,12 @@
 	<select id="count" resultType="_int">
 		SELECT COUNT(*) FROM NOTICE
 	</select>
+	<select id="testSelect" resultType="kh.spring.chazazo.admin.model.dto.TestDto">
+		SELECT *
+  FROM (SELECT (SELECT NAME FROM LOCATION WHERE LOCATION.IDX = PAYMENT.RENT_LOCATION) AS NAME
+             , EXTRACT(MONTH FROM PAID_TIME) || '월' AS PAID, FINAL_PRICE FROM PAYMENT)
+ PIVOT (
+    SUM(FINAL_PRICE) FOR NAME IN ('용산점' loc1, '수원점' loc2, '일산점' loc3, '송도점' loc4, '강남점' loc5)
+ )
+	</select>
 </mapper>

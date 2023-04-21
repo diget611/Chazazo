@@ -17,8 +17,11 @@ import kh.spring.chazazo.admin.model.dto.AdminReportRespDto;
 import kh.spring.chazazo.admin.model.dto.AdminRequestOneRespDto;
 import kh.spring.chazazo.admin.model.dto.AdminRequestRespDto;
 import kh.spring.chazazo.admin.model.dto.AdminReservByModelRespDto;
+import kh.spring.chazazo.admin.model.dto.AdminReservRespDto;
+import kh.spring.chazazo.admin.model.dto.AdminStatisticsRecentMonthDto;
 import kh.spring.chazazo.admin.model.dto.AdminVehicleOneRespDto;
 import kh.spring.chazazo.admin.model.dto.AdminVehicleRespDto;
+import kh.spring.chazazo.admin.model.dto.TestDto;
 import kh.spring.chazazo.common.Pagination;
 import kh.spring.chazazo.vehicle.model.dto.VehicleInfoDto;
 
@@ -148,8 +151,24 @@ public class AdminDao {
 		return sqlSession.selectOne("vehicle.selectOneCount");
 	}
 	
+	public List<AdminReservRespDto> selectReservList(Pagination pagination) {
+		return sqlSession.selectList("payment.selectList", pagination);
+	}
+	
+	public int reservCount() {
+		return sqlSession.selectOne("payment.count");
+	}
+	
 	// 통계용
 	public List<AdminReservByModelRespDto> selectByModel() {
 		return sqlSession.selectList("payment.reservByModel");
+	}
+	
+	public List<AdminStatisticsRecentMonthDto> recentMonth() {
+		return sqlSession.selectList("payment.recentMonth");
+	}
+	
+	public List<TestDto> testQuery() {
+		return sqlSession.selectList("notice.testSelect");
 	}
 }

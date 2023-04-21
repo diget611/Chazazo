@@ -17,8 +17,11 @@ import kh.spring.chazazo.admin.model.dto.AdminReportRespDto;
 import kh.spring.chazazo.admin.model.dto.AdminRequestOneRespDto;
 import kh.spring.chazazo.admin.model.dto.AdminRequestRespDto;
 import kh.spring.chazazo.admin.model.dto.AdminReservByModelRespDto;
+import kh.spring.chazazo.admin.model.dto.AdminReservRespDto;
+import kh.spring.chazazo.admin.model.dto.AdminStatisticsRecentMonthDto;
 import kh.spring.chazazo.admin.model.dto.AdminVehicleOneRespDto;
 import kh.spring.chazazo.admin.model.dto.AdminVehicleRespDto;
+import kh.spring.chazazo.admin.model.dto.TestDto;
 import kh.spring.chazazo.common.Pagination;
 import kh.spring.chazazo.vehicle.model.dto.VehicleInfoDto;
 
@@ -183,6 +186,28 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public List<AdminReservByModelRespDto> selectByModel() {
 		return dao.selectByModel();
+	}
+
+	@Override
+	public List<AdminReservRespDto> selectReservList(Pagination pagination) {
+		return dao.selectReservList(pagination);
+	}
+	
+	@Override
+	public List<AdminStatisticsRecentMonthDto> recentMonth() {
+		return dao.recentMonth();
+	}
+
+	@Override
+	public int reservCount() {
+		return dao.reservCount();
+	}
+
+	
+	// 테스트용
+	@Override
+	public List<TestDto> testQuery() {
+		return dao.testQuery();
 	}
 
 }

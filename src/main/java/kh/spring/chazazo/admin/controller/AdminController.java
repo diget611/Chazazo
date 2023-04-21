@@ -1,8 +1,6 @@
 package kh.spring.chazazo.admin.controller;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,9 +33,11 @@ public class AdminController {
 		data.put("start", 1); data.put("end", 5);
 		mv.addObject("requestList", aService.selectRequestList(data));
 		
-		// 메인페이지 그래프
-		mv.addObject("modelList", new Gson().toJson(aService.selectByModel()));
+		// 메인페이지 차트
+		mv.addObject("recentMonth", new Gson().toJson(aService.recentMonth()));
 		
+		// 테스트
+		mv.addObject("testList", aService.testQuery());
 		mv.setViewName("admin/main");
 		
 		return mv;
@@ -92,6 +92,12 @@ public class AdminController {
 	
 	@GetMapping("/reservation")
 	public ModelAndView viewReservation(ModelAndView mv, @RequestParam(required = false, defaultValue = "1") int page) {
+		int count = aService.reservCount();
+		Pagination pagination = new Pagination();
+		pagination.pageInfo(10, page, count);
+		
+		mv.addObject("reservList", aService.selectReservList(pagination));
+		mv.addObject("pagination", pagination);
 		mv.setViewName("admin/reservation");
 		return mv;
 	}

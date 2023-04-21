@@ -42,26 +42,84 @@
 			<jsp:include page="/WEB-INF/views/admin/base/navbar.jsp"/>	
 			<!-- Table Start -->
 			<div class="container-fluid pt-4 px-4">
-				<div class="bg-light rounded p-4">
-					<h6 class="mb-4">예약 관리</h6>
+				<div class="bg-light rounded p-4 text-center">
+					<div>
+					<h4 class="mb-4 text-start">예약 관리</h4>
+					</div>
 					<table class="table table-hover">
 						<thead>
-							<tr>
-								<th scope="col"></th>
-								<th scope="col"></th>
-								<th scope="col"></th>
-								<th scope="col"></th>
+							<tr class="text-dark">
+								<th scope="col" style="width: 5%;">#</th>
+								<th scope="col" style="width: 10%;">회원</th>
+								<th scope="col" style="width: 15%;">현황</th>
+								<th scope="col" style="width: 15%;">결제금액</th>
+								<th scope="col" style="width: 20%;">예약(취소)날짜</th>
+								<th scope="col" style="width: 35%;">예약기간</th>
 							</tr>
 						</thead>
-						<tbody>						
-							<tr>
-								<th scope="row"></th>
-								<td></td>
-								<td></td>
-								<td></td>
+						<tbody>
+							<c:forEach items="${reservList }" var="reserv" varStatus="status">	
+							<tr onclick='window.open("<%=request.getContextPath()%>/admin/reservation/${reserv.idx}", "예약 상세 정보", "width=500, height=600")'>
+								<th scope="row">${pagination.count - (pagination.currentPage - 1) * 10 - status.index}</th>
+								<c:choose>
+									<c:when test="${reserv.isMember eq 0 }">
+										<td>비회원</td>
+									</c:when>
+									<c:otherwise>
+										<td>회원</td>
+									</c:otherwise>
+								</c:choose>
+								<c:choose>
+									<c:when test="${reserv.state eq 0 }">
+										<td>예약완료</td>
+									</c:when>
+									<c:otherwise>
+										<td>결제취소</td>
+									</c:otherwise>
+								</c:choose>
+								<td>${reserv.finalPrice }</td>
+								<c:choose>
+									<c:when test="${reserv.state eq 0 }">
+										<td>${reserv.paidTime }</td>
+										<td>${reserv.startDate }&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;${reserv.endDate }</td>
+									</c:when>
+									<c:otherwise>
+										<td>${reserv.cancelDate }</td>
+										<td>-</td>
+									</c:otherwise>
+								</c:choose>
 							</tr>
+							</c:forEach>
 						</tbody>
 					</table>
+					<div class="btn-group me-2 mt-3" role="group">
+						<c:choose>
+							<c:when test="${pagination.currentPage eq 1 }">
+								<button type="button" class="btn btn-secondary disabled" id="preBtn">&lt&lt</button>
+							</c:when>
+							<c:otherwise>
+								<button type="button" class="btn btn-secondary" id="preBtn">&lt&lt</button>	
+							</c:otherwise>
+						</c:choose>
+						<c:forEach begin="${pagination.startPage }" end="${pagination.endPage }" step="1" var="page">
+							<c:choose>
+								<c:when test="${pagination.currentPage eq page }">
+									<button type="button" name="pageBtn" class="btn btn-secondary active" value="${page }">${page }</button>
+								</c:when>
+								<c:otherwise>
+									<button type="button" name="pageBtn" class="btn btn-secondary" value="${page }">${page }</button>
+								</c:otherwise>
+							</c:choose>
+						</c:forEach>
+						<c:choose>
+							<c:when test="${pagination.currentPage eq pagination.paging }">
+								<button type="button" class="btn btn-secondary disabled" id="nextBtn">&gt&gt</button>
+							</c:when>
+							<c:otherwise>
+								<button type="button" class="btn btn-secondary" id="nextBtn">&gt&gt</button>	
+							</c:otherwise>
+						</c:choose>
+					</div>
 				</div>
 			</div>
 			<!-- Table End -->
@@ -75,6 +133,29 @@
 
 <script>
 	$('.dropdown-item').eq(2).addClass('active');
+	
+	$('[name=pageBtn]').on('click', function() {
+		let page = $(this).val();
+		location.href="${pageContext.request.contextPath}/admin/reservation?page=" + page;
+	})
+	
+	$('#preBtn').on('click', function() {
+		let page = ${pagination.currentPage};
+		
+		if(page - 1 == 0) page = 1;
+		else page--;
+		
+		location.href="${pageContext.request.contextPath}/admin/reservation?page=" + page;
+ 	})
+	
+	$("#nextBtn").on('click', function() {
+		let page = ${pagination.currentPage};
+		
+		if(page + 1 > ${pagination.paging}) page = ${pagination.paging};
+		else page++;
+		
+		location.href="${pageContext.request.contextPath}/admin/reservation?page=" + page;
+	})
 </script>
 
 </body>

@@ -52,8 +52,8 @@
 							</div>
 							<div class="form-group" style="margin-bottom:50px">
 								<h5>차량 모델</h5>
-								<input type="text" class="form-control" placeholder="차량 모델명을 입력하세요">
-								<button class="btn search-btn" type="submit">
+								<input type="text" id="inputword" class="form-control" placeholder="차량 모델명을 입력하세요" value="">
+								<button class="btn search-btn" id="searchbtn" type="submit">
 									<i class="fa fa-search"></i>
 								</button>
 							</div>
@@ -176,6 +176,24 @@
 	
 
 	<script>
+	
+	
+	$('#searchbtn').on('click', function(){
+		console.log("서치#####");
+		var keyworda = $("#inputword").val();
+		console.log(typeof keyworda + keyworda);
+		 $.ajax({
+	            url: "seachword",
+	            data: {"keyword" :keyworda},
+	            type: 'get',
+	            dataType:'string',
+	            success: function(result) {
+	            },
+	            error: function() {
+	            	alert('로딩 실패')
+	            }
+	         });
+	});
 	//cartype: 전체 선택 체크박스가 변경되었을때	
 	$('#alltype').on('ifChanged',function(){
 		//전체가 체크되면 다른 체크박스 해제
@@ -284,7 +302,7 @@
         
 		
 		  $.ajax({
-	            url: "test",
+	            url: "seachlist",
 	            data: selectList,
 	            type: 'get',
 	            dataType:'json',
@@ -325,7 +343,7 @@
          };
          
          $.ajax({
-            url: "test",
+            url: "seachlist",
             data: 	selectList,
             type: 'get',
             dataType:'json',

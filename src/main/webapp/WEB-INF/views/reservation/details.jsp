@@ -3,7 +3,6 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
-<%@ page import="java.util.*" %> 
 
 <!DOCTYPE html>
 <html>
@@ -80,8 +79,9 @@
 									<div class="col-md-12" style="padding-bottom:100px">                                   
                                         <div class="btn-group bootstrap-select">
                                  		  <label>보험 선택</label>
-	                                   	  <select id="selectins" name="selectins" class="selectpicker" >
-	                                            <option value="0.1" selected>일반자차(기본)</option>
+	                                   	  <select id="selectins" name="selectins"  >
+	                                   	  		<option value="0" selected>보험 미선택</option>
+	                                            <option value="0.1">일반자차</option>
 	                                            <option value="0.2">완전자차</option>
 	                                            <option value="0.5">슈퍼자차</option>
 	                                        </select>
@@ -131,7 +131,6 @@
 								</section>
 								</section>
 							</aside>
-
 						</div>
 						<!-- 날짜 선택 끝 -->
 						
@@ -140,6 +139,7 @@
 		</div>
 	</section>
 	<jsp:include page="/WEB-INF/views/base/footer.jsp"/>
+	
 	
 </body>
 
@@ -247,9 +247,9 @@
 	          type: 'get',
 	          dataType:'json',
 	          success: function(result) {
-				getPayinfo(result); 
-				var script = '<%=request.getContextPath()%>/resources/js/validation.js';
-				$('.footer-copy').after('<script src="' + script + '"/>');
+				getPayinfo(result);
+				var test = '<%=request.getContextPath()%>/resources/js/validation.js';
+				$('.footer-copy').after('<script src="' + test + '"/>');
 	          },
 	          error: function() {
 	          	alert('로딩 실패');
@@ -409,20 +409,22 @@
 				html += '		<div class="form-group">';
 				html += '					<h6 style="text-align:center">운전자 정보 </h6>';
 				html += '						<input type="hidden" id="useridx"  value="0" >'
-				html += '						<label class="small">이름</label>  <input type="text" id="name" name="name" class="form-control" placeholder="성명" value="" >';
-				html += '						<label class="small">생년월일</label>  <input type="text" id="birth" name="birth" class="form-control" placeholder="생년월일 6자리" value="" >';
-				html += '						<label class="small">휴대폰 번호</label>  <input type="text"  id="phone" name="phoneNumber" class="form-control" placeholder="휴대폰 번호" value="" >';
-				html += '						<label class="small">운전 면허 번호</label>  <input type="text"  id="license" name="license" class="form-control" placeholder="운전 면허 번호" value="" >';
-				html += '						<label class="small">이메일</label>  <input type="text"  id="mail" class="form-control" name="email" placeholder="이메일" value="" >';
-				html += '						<label class="small">반납지점 선택</label> <select class="form-select" name="returnSelect"  id="returnSelect" onchange="calc()" >';
+				html += '						 <label class="small">이름</label> <div> <input type="text" id="name" name="name" class="form-control" placeholder="성명" value="" > </div>';
+				html += '						 <label class="small">생년월일</label>    <div>	<input type="text" id="birth" name="birth" class="form-control" placeholder="생년월일 6자리" value="" > </div>';
+				html += '						<label class="small">휴대폰 번호</label>   <div>   <input type="text"  id="phone" name="phoneNumber" class="form-control" placeholder="휴대폰 번호" value="" > </div>';
+				html += '						<label class="small">운전 면허 번호</label> <div>   <input type="text"  id="license" name="license" class="form-control" placeholder="운전 면허 번호" value="" > </div>';
+				html += '						<label class="small">이메일</label>       <div>   <input type="text"  id="mail" name="email" class="form-control" placeholder="이메일" value="" > </div>';
+				html += '						<label class="small">반납지점 선택</label>  <div>  <select class="form-select" name="returnSelect"  id="returnSelect" onchange="calc()" >';
 				html += '	 					  	  <option value="1">강남점</option>';
 				html += '	 						  <option value="2">용산점</option>';
 				html += '							  <option value="3">수원점</option>';
 				html += '							  <option value="4">일산점</option>';
 				html += '							  <option value="5">송도점</option>';
+				html += '							 </div>';
 				html += '						</select>';
 				html += '		</div>';
 				html += '	</div>';
+				html += '</section>';
 		} 
 		//결제하기 눌렀을때 출력될 회원용 화면
 		else {
@@ -442,11 +444,11 @@
 		html += '		<div class="form-group">';
 		html += '					<h6 style="text-align:center">운전자 정보 </h6>';
 		html += '						<input type="hidden" id="useridx"  value="'+ result.info.idx+'" >'
-		html += '						<label class="small">이름</label>  <input type="text" id="name" name="name" class="form-control" placeholder="성명" value="'+ result.info.name+'" >';
+		html += '						<label class="small">이름</label>  <input type="text" id="name" name ="name" class="form-control" placeholder="성명" value="'+ result.info.name+'" >';
 		html += '						<label class="small">생년월일</label>  <input type="text" id="birth" name="birth" class="form-control" placeholder="생년월일 6자리" value="'+ result.info.birth+'" >';
 		html += '						<label class="small">휴대폰 번호</label>  <input type="text"  id="phone" name="phoneNumber" class="form-control" placeholder="휴대폰 번호" value="'+ result.info.phoneNumber+'" >';
 		html += '						<label class="small">운전 면허 번호</label>  <input type="text"  id="license" name="license" class="form-control" placeholder="운전 면허 번호" value="'+ result.info.license+'" >';
-		html += '						<label class="small">이메일</label>  <input type="text"  id="mail" name="email" class="form-control" placeholder="이메일" value="'+ result.info.email+'" >';
+		html += '						<label class="small">이메일</label>  <input type="text"  id="mail" name="email"class="form-control" placeholder="이메일" value="'+ result.info.email+'" >';
 		html += '						<label class="small">반납지점 선택</label> <select class="form-select" name="returnSelect" id="returnSelect" onchange="calc()">';
 		html += '	 					  	  <option value="1">강남점</option>';
 		html += '	 						  <option value="2">용산점</option>';
@@ -455,6 +457,7 @@
 		html += '							  <option value="5">송도점</option>';
 		html += '		</div>';
 		html += '	</div>';			
+		html += '</section>';
 		}
 
 		$('#content').html(html);
@@ -467,15 +470,17 @@
 	function payajax() {
 		var html ='';
 		html += '				</section>';
-		html += '						<button class="btn btn-default" id="paybtn" type="button" onclick=" pay()" >카드결제</button>';
-		html += '						<button class="btn btn-kakao" id="kakaobtn" type="button" onclick=" kakaopay()" >카카오페이</button>';
+		html += '						<button class="btn btn-default" id="paybtn" type="button" onclick=" pay()" disabled="disabled" >카드결제</button>';
+		html += '						<button class="btn btn-kakao" id="kakaobtn" type="button" onclick=" kakaopay()" disabled="disabled">카카오페이</button>';
 		html += '					</aside>';
 
 		html += '	</div>';
 		html += '</section>';
 		$('#paysection').html(html);
-	}
-   
+		}
+	
+
+
 	
 	//카드결제 
 	function pay() {
@@ -507,6 +512,7 @@
 	            // 결제에 실패했을떄 실패메세지와 실패사유를 출력
 	            var msg = '결제에 실패하였습니다.';
 	            msg +=  rsp.error_msg;
+	            paid(); //결제 정보 저장
 	        }
 	        alert(msg);
 	    });
@@ -543,55 +549,11 @@
 	            var msg = '결제에 실패하였습니다.';
 	            msg +=  rsp.error_msg;
 	            paid(); //결제 정보 저장
-	            insertNmemInfo();
 	            }
 	        alert(msg);
 	    });
 	}
 	
-	
-	
-	//비회원 결제 정보 저장
-	function insertNmemInfo() {
-		
-		var useridx = $('#useridx').val();
-		if (useridx == '0') {
-			
-		console.log("##########"+useridx);
-		var nameval = $('#name').val();
-		var birthval = $('#birth').val();
-		var phoneval = $('#phone').val();
-		var mailval = $('#mail').val();
-		var license = $('#license').val();
-		
-		var data = {
-				"name" : nameval,
-				"birth" :birthval,
-				"phone" :phoneval,
-				"license" :license,
-				"email": mailval
-		}
-				console.log(phoneval);
-		  $.ajax({
-	          url:'<%=request.getContextPath()%>/payment/nMempaid',
-	          contentType: 'application/json; charset=utf-8',
-	          type: 'post',
-	          dataType:'json',
-	          data: JSON.stringify(data),
-	          success: function(result) {
-	        	  if(result >0) {
-	        	  alert("비회원 정보 저장 성공");
-	        	  } else {
-	        		  alert("비회원 정보 저장 실패")
-	        	  }
-	          },
-	          error: function() {
-	          	alert('로딩 실패');
-	          }
-	       });
-		}
-	
-	}
 	
 	
 	//결제 성공시 결제 정보 저장
@@ -602,32 +564,65 @@
 		var useridx = $('#useridx').val();
 		var returnLocation =$("#returnSelect").val();
 
-		//현재 시간 포맷
+		//결제 시간 저장을 위한 현재 시간 포맷
 		const TIME_ZONE = 9 * 60 * 60 * 1000; // 9시간
 		const d = new Date();
 
 		const date = new Date(d.getTime() + TIME_ZONE).toISOString().split('T')[0];
 		const time = d.toTimeString().split(' ')[0];
 		var paidtime= date + " " + time;
-		
 		console.log(paidtime);
 		if ($(''))
 		var sdate = new Date($('#startDate').val());
 		var edate = new Date($('#endDate').val());
 		var startDate = sdate.getFullYear() + "/" + (sdate.getMonth() + 1) + "/" + sdate.getDate();
 		var endDate = edate.getFullYear() + "/" + (edate.getMonth() + 1) + "/" + edate.getDate();
-		console.log(typeof startDate + startDate);
+
+		//주문번호 생성을 위한 현재 시간, 랜덤 문자열 생성
+		var today = new Date();
+		var year = today.getFullYear();
+		var year = String(year);
+		var yy = year.substring(2,4);
+		var month = new String(today.getMonth()+1);
+		var day = new String(today.getDate());
 		
-		if ( $('#selectins').val()=='0.1')
-			{ var ins = "2"
+		var hour = new String(today.getHours());
+		var minute = new String(today.getMinutes());
+		if(month.length == 1) {
+			month = "0" + month;
+		} if(day.length ==1) {
+			day = "0" + day;
+		}
+		var daynum = yy+month+day+hour+minute;
+
+		const randomNumber = Math.floor(Math.random()*(999-100)+100);
+		var random = String(randomNumber);
+		
+		var payidx = (daynum + random)*1;
+		
+		
+		//보험 선택값주기
+		if ( $('#selectins').val()=='0.1'){
+				var ins = "2"
 			} else if ( $('#selectins').val()=='0.2') {
 				var ins = "3"
+			} else if( $('#selectins').val()=='0.5'){
+				var ins = "4"				
 			} else {
-				var ins = "4"
+				var ins = "1"
 			}
 		
+		//비회원,회원 식별값 주기
+		if(useridx =='0') {
+			var ismember ='0';
+		} else {
+			var ismember ='1';
+		}
+		
+		
 		var data = {
-	        	  "ismember" : "1",
+				  "idx" : payidx,
+	        	  "ismember" : ismember,
 	        	  "memberIdx" : useridx, // 회원idx, 비회원은 0
 	        	  "vehicleIdx" : "${car.idx}", //차량idx
 	        	  "insurance": ins, //선택한 보험종류
@@ -647,7 +642,7 @@
 	          data: JSON.stringify(data),
 	          success: function(result) {
 	        	  if(result >0) {
-	        	  alert("결제 완료 되었습니다");
+		  		  insertNmemInfo(payidx);
 	        	  } else {
 	        		  alert("결제가 완료되지 않았습니다")
 	        	  }
@@ -658,6 +653,52 @@
 	       });
 		
 	}
+	
+
+	//비회원 결제 정보 저장
+	function insertNmemInfo(payidx) {
+		
+		var useridx = $('#useridx').val();
+		if (useridx == '0') {
+			
+		console.log("##########"+useridx);
+		var nameval = $('#name').val();
+		var birthval = $('#birth').val();
+		var phoneval = $('#phone').val();
+		var mailval = $('#mail').val();
+		var license = $('#license').val();
+		
+		var data = {
+				"idx":payidx,
+				"name" : nameval,
+				"birth" :birthval,
+				"phone" :phoneval,
+				"license" :license,
+				"email": mailval
+		}
+				console.log(phoneval);
+		  $.ajax({
+	          url:'<%=request.getContextPath()%>/payment/nMempaid',
+	          contentType: 'application/json; charset=utf-8',
+	          type: 'post',
+	          dataType:'json',
+	          data: JSON.stringify(data),
+	          success: function(result) {
+	        	  if(result >0) {
+	        		  console.log("비회원 저장 성공");
+	        	  } else {
+	        		  alert("비회원 정보 저장 실패")
+	        	  }
+	          },
+	          error: function() {
+	          	alert('로딩 실패');
+	          }
+	       });
+		}
+	
+	}
+	
+	
 
 	function getMap() {
 		
@@ -738,6 +779,7 @@
 
 	
 </script>
+
 
 
 </html>

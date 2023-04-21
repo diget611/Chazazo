@@ -18,7 +18,11 @@ public class PaymentReqDto {
 	
 	
 	
-	private int idx;
+	private long idx;
+
+	
+	
+	private int ismember;
 	private int memberIdx;
 	private int finalprice;
 	
@@ -36,7 +40,7 @@ public class PaymentReqDto {
 	private int state;
 	private int isMember;
 	private int vehicleIdx;
-	private int insuranceIdx;
+	private int insurance;
 	private int couponIdx;
 	private Date cancelDate;
 	

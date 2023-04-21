@@ -119,7 +119,6 @@ private PaymentService pService;
 		*/
 		
 		int result = pService.insertPayInfo(data);
-		System.out.println("##########컨트롤러");
 		System.out.println(data);
 
 
@@ -129,7 +128,6 @@ private PaymentService pService;
 	//비회원 정보 저장
 	@PostMapping("/payment/nMempaid")
 	public int InsertNmemInfo(@RequestBody PaymentReqDto data) {
-		System.out.println("@@@@@@@@nonmember");
 		int result = pService.insertNmemInfo(data);
 		return result;
 	}

@@ -1,6 +1,8 @@
 package kh.spring.chazazo.admin.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.google.gson.Gson;
+
 import kh.spring.chazazo.admin.model.service.AdminService;
 import kh.spring.chazazo.common.Pagination;
 
@@ -26,10 +30,16 @@ public class AdminController {
 	
 	@GetMapping("/main")
 	public ModelAndView viewMain(ModelAndView mv) {
+		// 메인페이지 1:1문의 테이블
 		Map<String, Integer> data = new HashMap<String, Integer>();
 		data.put("start", 1); data.put("end", 5);
 		mv.addObject("requestList", aService.selectRequestList(data));
+		
+		// 메인페이지 그래프
+		mv.addObject("modelList", new Gson().toJson(aService.selectByModel()));
+		
 		mv.setViewName("admin/main");
+		
 		return mv;
 	}
 	

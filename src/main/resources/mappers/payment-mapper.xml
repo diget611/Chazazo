@@ -20,13 +20,27 @@
 	
 	<insert id="insertPayInfo" parameterType="java.util.List" >
 		insert into payment values (payment_seq.nextval,0, #{useridx},#{caridx}, #{insurance},0, #{finalprice}, #{paidtime}, #{startDate}, #{endDate}, '',#{returnLocation}, #{ismember})
+	<delete id="resDelete" parameterType="int">
+		DELETE FROM payment WHERE IDX = #{IDX}
+	</delete>
+	
+	<insert id="insertPayInfo" parameterType="PaymentReqDto" >
+		insert into payment 
+		(IDX, STATE, MEMBER_IDX, VEHICLE_IDX, INSURANCE_IDX, COUPON_IDX, FINAL_PRICE, PAID_TIME, START_DATE, END_DATE, CANCEL_DATE, RENT_LOCATION,RETURN_LOCATION, IS_MEMBER )
+		values (payment_seq.nextval,0,#{memberIdx},#{vehicleIdx}, #{insurance},0, #{finalprice}, #{paidtime}, #{startDate}, #{endDate},'',#{rentLocation},#{returnLocation}, #{ismember})
 	
 	</insert>
 		
-	<insert id ="insertNmemInfo" parameterType="java.util.List" >
-	
+	<insert id ="insertNmemInfo" parameterType="PaymentReqDto" >
+		INSERT INTO NMEMPAYMENT
+		(PAYMENT_IDX, NAME, BIRTH, PHONE_NUMBER, LICENSE, EMAIL) 
+		VALUES ( PAYMENT_SEQ.CURRVAL, #{name}, #{birth}, #{phone}, #{license}, #{email})
 	</insert>
-	
-	
+
+	<select id="reservByModel" resultType="adminReservByModelRespDto">
+		SELECT V.MODEL AS MODEL, COUNT(*) AS CNT, SUM(FINAL_PRICE) AS SUM
+          FROM PAYMENT P
+         INNER JOIN VEHICLE V ON P.VEHICLE_IDX = V.IDX GROUP BY V.MODEL
+	</select>
 	
 </mapper>

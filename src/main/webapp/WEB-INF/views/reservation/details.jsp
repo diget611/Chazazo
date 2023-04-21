@@ -145,8 +145,14 @@
 
 <script type="text/javascript">
 	$('#testBtn').on('click', function() {
-		var date = new Date($('#startDate').val());
-		var ddd = date.getFullYear() + "/" + (date.getMonth() + 1) + "/" + date.getDate();
+		const TIME_ZONE = 9 * 60 * 60 * 1000; // 9시간
+		const d = new Date();
+
+		const date = new Date(d.getTime() + TIME_ZONE).toISOString().split('T')[0];
+		const time = d.toTimeString().split(' ')[0];
+		var paidtime= date + ' ' + time
+		
+		console.log(paidtime);
 		
 	})	
      //대여,반납일 날짜 초기설정
@@ -420,8 +426,8 @@
 				html += '	 					  	  <option value="1">강남점</option>';
 				html += '	 						  <option value="2">용산점</option>';
 				html += '							  <option value="3">수원점</option>';
-				html += '							  <option value="4">송도점</option>';
-				html += '							  <option value="5">일산점</option>';
+				html += '							  <option value="4">일산점</option>';
+				html += '							  <option value="5">송도점</option>';
 				html += '						</select>';
 				html += '		</div>';
 				html += '	</div>';
@@ -453,8 +459,8 @@
 		html += '	 					  	  <option value="1">강남점</option>';
 		html += '	 						  <option value="2">용산점</option>';
 		html += '							  <option value="3">수원점</option>';
-		html += '							  <option value="4">송도점</option>';
-		html += '							  <option value="5">일산점</option>';
+		html += '							  <option value="4">일산점</option>';
+		html += '							  <option value="5">송도점</option>';
 		html += '		</div>';
 		html += '	</div>';			
 		}
@@ -545,6 +551,7 @@
 	            var msg = '결제에 실패하였습니다.';
 	            msg +=  rsp.error_msg;
 	            paid(); //결제 정보 저장
+	            insertNmemInfo();
 	            }
 	        alert(msg);
 	    });
@@ -552,13 +559,13 @@
 	
 	
 	
-	
+	//비회원 결제 정보 저장
 	function insertNmemInfo() {
-		console.log(useridx);
 		
 		var useridx = $('#useridx').val();
 		if (useridx == '0') {
 			
+		console.log("##########"+useridx);
 		var nameval = $('#name').val();
 		var birthval = $('#birth').val();
 		var phoneval = $('#phone').val();
@@ -566,13 +573,13 @@
 		var license = $('#license').val();
 		
 		var data = {
-				"ismember" : "0",
 				"name" : nameval,
 				"birth" :birthval,
 				"phone" :phoneval,
 				"license" :license,
 				"email": mailval
 		}
+				console.log(phoneval);
 		  $.ajax({
 	          url:'<%=request.getContextPath()%>/payment/nMempaid',
 	          contentType: 'application/json; charset=utf-8',
@@ -581,9 +588,9 @@
 	          data: JSON.stringify(data),
 	          success: function(result) {
 	        	  if(result >0) {
-	        	  alert("결제 완료 되었습니다");
+	        	  alert("비회원 정보 저장 성공");
 	        	  } else {
-	        		  alert("결제가 완료되지 않았습니다")
+	        		  alert("비회원 정보 저장 실패")
 	        	  }
 	          },
 	          error: function() {
@@ -601,9 +608,17 @@
 		var finalprice = parseInt($('#finalprice').val());
 		var caridx = $('#caridx').val();
 		var useridx = $('#useridx').val();
-		var paidtime = new Date().toLocaleString();
 		var returnLocation =$("#returnSelect").val();
 
+		//현재 시간 포맷
+		const TIME_ZONE = 9 * 60 * 60 * 1000; // 9시간
+		const d = new Date();
+
+		const date = new Date(d.getTime() + TIME_ZONE).toISOString().split('T')[0];
+		const time = d.toTimeString().split(' ')[0];
+		var paidtime= date + " " + time;
+		
+		console.log(paidtime);
 		if ($(''))
 		var sdate = new Date($('#startDate').val());
 		var edate = new Date($('#endDate').val());
@@ -612,17 +627,17 @@
 		console.log(typeof startDate + startDate);
 		
 		if ( $('#selectins').val()=='0.1')
-			{ var ins = "일반자차"
+			{ var ins = "2"
 			} else if ( $('#selectins').val()=='0.2') {
-				var ins = "완전자차"
+				var ins = "3"
 			} else {
-				var ins = "슈퍼자차"
+				var ins = "4"
 			}
 		
 		var data = {
 	        	  "ismember" : "1",
-	        	  "useridx" : useridx, // 회원idx, 비회원은 0
-	        	  "caridx" : "${car.idx}", //차량idx
+	        	  "memberIdx" : useridx, // 회원idx, 비회원은 0
+	        	  "vehicleIdx" : "${car.idx}", //차량idx
 	        	  "insurance": ins, //선택한 보험종류
 	        	  "finalprice" : finalprice, //결제금액
 	        	  "paidtime": paidtime, //결제시간
@@ -631,7 +646,6 @@
 				  "rentLocation": "${car.locationIdx}", //대여지점idx
 	        	  "returnLocation": returnLocation, //반납지점idx
 	          };
-		console.log("#########회원정보"+useridx +"#########예약선택"+ startDate + endDate +returnLocation +"#########가격"+ finalprice +"#########차량정보"+"${car.idx}");
 		
 		  $.ajax({
 	          url:'<%=request.getContextPath()%>/payment/paid',

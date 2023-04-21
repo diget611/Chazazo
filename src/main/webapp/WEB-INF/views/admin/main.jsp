@@ -85,7 +85,7 @@
 								<h6 class="mb-0">Worldwide Sales</h6>
 								<a href="">Show All</a>
 							</div>
-							<canvas id="worldwide-sales"></canvas>
+							<canvas id="testGraph"></canvas>
 						</div>
 					</div>
 					<div class="col-sm-12 col-xl-6">
@@ -157,6 +157,9 @@
 					</div>
 				</div>
 			</div>
+			<div>
+				<button type="button" id="testBtn">ttttt</button>
+			</div>
 			<!-- Widgets End -->
 			<jsp:include page="/WEB-INF/views/admin/base/footer.jsp"/>
 		</div>
@@ -167,6 +170,36 @@
 
 <script src="<%=request.getContextPath()%>/resources/dashmin/js/main.js"></script>
 
+<script>
+	
+	var list = JSON.parse('${modelList}');
+		var modelList = [];
+		var cntList = [];
+		var color = [];
+	
+	$.each(list, function (index, value) {
+		
+		modelList.push(value.model);
+		cntList.push(value.cnt);
+		color.push("rgba(0, 156, 111, ." + index + ")");
+	})
+
+	var ctx5 = $("#testGraph").get(0).getContext("2d");
+    var myChart5 = new Chart(ctx5, {
+        type: "pie",
+        data: {
+            labels: modelList,
+            datasets: [{
+                backgroundColor: color,
+                data: cntList
+            }]
+        },
+        options: {
+            responsive: true
+        }
+    });
+	
+</script>
 </body>
 
 </html>

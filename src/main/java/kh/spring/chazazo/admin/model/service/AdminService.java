@@ -12,6 +12,7 @@ import kh.spring.chazazo.admin.model.dto.AdminNoticeRespDto;
 import kh.spring.chazazo.admin.model.dto.AdminReportRespDto;
 import kh.spring.chazazo.admin.model.dto.AdminRequestOneRespDto;
 import kh.spring.chazazo.admin.model.dto.AdminRequestRespDto;
+import kh.spring.chazazo.admin.model.dto.AdminReservByModelRespDto;
 import kh.spring.chazazo.admin.model.dto.AdminVehicleOneRespDto;
 import kh.spring.chazazo.admin.model.dto.AdminVehicleRespDto;
 import kh.spring.chazazo.common.Pagination;
@@ -45,5 +46,8 @@ public interface AdminService {
 	public List<AdminVehicleRespDto> selectVehicleList(Pagination pagination);
 	public AdminVehicleOneRespDto selectVehicleOne(String idx);
 	public int vehicleCount();
+	
+	// 통계용
+	public List<AdminReservByModelRespDto> selectByModel();
 	
 }

@@ -19,15 +19,20 @@ public class PaymentReqDto {
 	
 	
 	private int idx;
+
 	
+	
+	private int ismember;
 	private int memberIdx;
 	private String name;
 	private int birth;
-	private int phone;
-	private String mail;
+	private String phone;
+	private String email;
 	private String license;
 	private int finalprice;
-	private String paidtime;
+	
+	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
+	private Date paidtime;
 	
 	private int rentLocation;
 	private int returnLocation;

@@ -599,14 +599,14 @@
 		
 		
 		//보험 선택값주기
-		if ( $('#selectins').val()=='0')
-			{ var ins = "1"
-			} else if ( $('#selectins').val()=='0.1') {
+		if ( $('#selectins').val()=='0.1'){
 				var ins = "2"
-			} else if( $('#selectins').val()=='0.2')
+			} else if ( $('#selectins').val()=='0.2') {
 				var ins = "3"
-			{
-				var ins = "4"
+			} else if( $('#selectins').val()=='0.5'){
+				var ins = "4"				
+			} else {
+				var ins = "1"
 			}
 		
 		//비회원,회원 식별값 주기

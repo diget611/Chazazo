@@ -410,10 +410,10 @@
 				html += '					<h6 style="text-align:center">운전자 정보 </h6>';
 				html += '						<input type="hidden" id="useridx"  value="0" >'
 				html += '						<label class="small">이름</label>  <input type="text" id="name" name="name" class="form-control" placeholder="성명" value="" >';
-				html += '						<label class="small">생년월일</label>  <input type="text" id="birth" class="form-control" placeholder="생년월일 6자리" value="" >';
-				html += '						<label class="small">휴대폰 번호</label>  <input type="text"  id="phone" class="form-control" placeholder="휴대폰 번호" value="" >';
-				html += '						<label class="small">운전 면허 번호</label>  <input type="text"  id="license" class="form-control" placeholder="운전 면허 번호" value="" >';
-				html += '						<label class="small">이메일</label>  <input type="text"  id="mail" class="form-control" placeholder="이메일" value="" >';
+				html += '						<label class="small">생년월일</label>  <input type="text" id="birth" name="birth" class="form-control" placeholder="생년월일 6자리" value="" >';
+				html += '						<label class="small">휴대폰 번호</label>  <input type="text"  id="phone" name="phoneNumber" class="form-control" placeholder="휴대폰 번호" value="" >';
+				html += '						<label class="small">운전 면허 번호</label>  <input type="text"  id="license" name="license" class="form-control" placeholder="운전 면허 번호" value="" >';
+				html += '						<label class="small">이메일</label>  <input type="text"  id="mail" name="email" class="form-control" placeholder="이메일" value="" >';
 				html += '						<label class="small">반납지점 선택</label> <select class="form-select" name="returnSelect"  id="returnSelect" onchange="calc()" >';
 				html += '	 					  	  <option value="1">강남점</option>';
 				html += '	 						  <option value="2">용산점</option>';
@@ -443,11 +443,11 @@
 		html += '		<div class="form-group">';
 		html += '					<h6 style="text-align:center">운전자 정보 </h6>';
 		html += '						<input type="hidden" id="useridx"  value="'+ result.info.idx+'" >'
-		html += '						<label class="small">이름</label>  <input type="text" id="name" class="form-control" placeholder="성명" value="'+ result.info.name+'" >';
-		html += '						<label class="small">생년월일</label>  <input type="text" id="birth" class="form-control" placeholder="생년월일 6자리" value="'+ result.info.birth+'" >';
-		html += '						<label class="small">휴대폰 번호</label>  <input type="text"  id="phone" class="form-control" placeholder="휴대폰 번호" value="'+ result.info.phoneNumber+'" >';
-		html += '						<label class="small">운전 면허 번호</label>  <input type="text"  id="license" class="form-control" placeholder="운전 면허 번호" value="'+ result.info.license+'" >';
-		html += '						<label class="small">이메일</label>  <input type="text"  id="mail" class="form-control" placeholder="이메일" value="'+ result.info.email+'" >';
+		html += '						<label class="small">이름</label>  <input type="text" id="name" name ="name" class="form-control" placeholder="성명" value="'+ result.info.name+'" >';
+		html += '						<label class="small">생년월일</label>  <input type="text" id="birth" name="birth" class="form-control" placeholder="생년월일 6자리" value="'+ result.info.birth+'" >';
+		html += '						<label class="small">휴대폰 번호</label>  <input type="text"  id="phone" name="phoneNumber" class="form-control" placeholder="휴대폰 번호" value="'+ result.info.phoneNumber+'" >';
+		html += '						<label class="small">운전 면허 번호</label>  <input type="text"  id="license" name="license" class="form-control" placeholder="운전 면허 번호" value="'+ result.info.license+'" >';
+		html += '						<label class="small">이메일</label>  <input type="text"  id="mail" name="email"class="form-control" placeholder="이메일" value="'+ result.info.email+'" >';
 		html += '						<label class="small">반납지점 선택</label> <select class="form-select" name="returnSelect" id="returnSelect" onchange="calc()">';
 		html += '	 					  	  <option value="1">강남점</option>';
 		html += '	 						  <option value="2">용산점</option>';
@@ -509,6 +509,7 @@
 	            // 결제에 실패했을떄 실패메세지와 실패사유를 출력
 	            var msg = '결제에 실패하였습니다.';
 	            msg +=  rsp.error_msg;
+	            paid(); //결제 정보 저장
 	        }
 	        alert(msg);
 	    });
@@ -545,7 +546,6 @@
 	            var msg = '결제에 실패하였습니다.';
 	            msg +=  rsp.error_msg;
 	            paid(); //결제 정보 저장
-	            insertNmemInfo();
 	            }
 	        alert(msg);
 	    });
@@ -666,6 +666,7 @@
 		var license = $('#license').val();
 		
 		var data = {
+				"idx":payidx,
 				"name" : nameval,
 				"birth" :birthval,
 				"phone" :phoneval,
@@ -681,7 +682,7 @@
 	          data: JSON.stringify(data),
 	          success: function(result) {
 	        	  if(result >0) {
-	        	  alert("비회원 정보 저장 성공");
+	        		  console.log("비회원 저장 성공");
 	        	  } else {
 	        		  alert("비회원 정보 저장 실패")
 	        	  }

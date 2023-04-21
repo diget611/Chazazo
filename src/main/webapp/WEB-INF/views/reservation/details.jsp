@@ -470,8 +470,8 @@
 	function payajax() {
 		var html ='';
 		html += '				</section>';
-		html += '						<button class="btn btn-default" id="paybtn" type="button" onclick=" pay()" disabled="disabled" >카드결제</button>';
-		html += '						<button class="btn btn-kakao" id="kakaobtn" type="button" onclick=" kakaopay()" disabled="disabled">카카오페이</button>';
+		html += '						<button class="btn btn-default" id="paybtn" type="button" onclick=" checkForm()"  >카드결제</button>';
+		html += '						<button class="btn btn-kakao" id="kakaobtn" type="button" onclick=" checkForm2()" >카카오페이</button>';
 		html += '					</aside>';
 
 		html += '	</div>';
@@ -480,7 +480,52 @@
 		}
 	
 
+	//카드결제 전 입력정보 유효성 검사
+	function checkForm(){
 
+		let testName = /^[가-힣]{2,10}$/;
+		let testBirth = /^(19[0-9]{2}|20[0-1]{1}[0-9]{1}|202[0-3]{1})(0[1-9]|1[0-2])(0[1-9]|[1-2][0-9]|3[0-1])$/;
+		let testPhone = /^01[0|1|6|7|8|9][0-9]{7,8}$/;
+		let testLicense = /^(1[1-9]|2[0-68-8])([0-9]{2}[0-9]{6}[0-9]{2})$/;
+		let testEmail = /([!#-'*+-9=?A-Z^-~-]+(\.[!#-'*+-9=?A-Z^-~-]+)*|\"\(\[\]!#-[^-~ \t]|(\\[\t -~])+\")@([!#-'*+-9=?A-Z^-~-]+(\.[!#-'*+-9=?A-Z^-~-]+)*|\[[\t -Z^-~]*])/;
+		
+		 if( $('[name=name]').val() == ''
+		| $('[name=birth]').val() == ''  | $('[name=phonNumber]').val() == ''
+		| $('[name=license]').val() == '' | $('[name=email]').val() == '' ) {
+			alert("예약 정보를 다시 확인해주세요");
+			return false;
+		} else if(!testName.test($('[name=name]').val()) | !testBirth.test($('[name=birth]').val())
+		| !testPhone.test($('[name=phoneNumber]').val()) | !testLicense.test($('[name=license]').val())
+		| !testEmail.test($('[name=email]').val())) {
+			alert("예약 정보를 다시 확인해주세요");
+			return false;	
+		} else {
+			pay();
+		}
+	}
+	//카카오페이결제 전 입력정보 유효성 검사
+	function checkForm2(){
+
+		let testName = /^[가-힣]{2,10}$/;
+		let testBirth = /^(19[0-9]{2}|20[0-1]{1}[0-9]{1}|202[0-3]{1})(0[1-9]|1[0-2])(0[1-9]|[1-2][0-9]|3[0-1])$/;
+		let testPhone = /^01[0|1|6|7|8|9][0-9]{7,8}$/;
+		let testLicense = /^(1[1-9]|2[0-68-8])([0-9]{2}[0-9]{6}[0-9]{2})$/;
+		let testEmail = /([!#-'*+-9=?A-Z^-~-]+(\.[!#-'*+-9=?A-Z^-~-]+)*|\"\(\[\]!#-[^-~ \t]|(\\[\t -~])+\")@([!#-'*+-9=?A-Z^-~-]+(\.[!#-'*+-9=?A-Z^-~-]+)*|\[[\t -Z^-~]*])/;
+		
+		 if( $('[name=name]').val() == ''
+		| $('[name=birth]').val() == ''  | $('[name=phonNumber]').val() == ''
+		| $('[name=license]').val() == '' | $('[name=email]').val() == '' ) {
+			alert("예약 정보를 다시 확인해주세요");
+			return false;
+		} else if(!testName.test($('[name=name]').val()) | !testBirth.test($('[name=birth]').val())
+		| !testPhone.test($('[name=phoneNumber]').val()) | !testLicense.test($('[name=license]').val())
+		| !testEmail.test($('[name=email]').val())) {
+			alert("예약 정보를 다시 확인해주세요");
+			return false;	
+		} else {
+			kakaopay();
+		}
+	}
 	
 	//카드결제 
 	function pay() {
@@ -592,7 +637,11 @@
 			month = "0" + month;
 		} if(day.length ==1) {
 			day = "0" + day;
-		}
+		} if(hour.length == 1) {
+			hour = "0" + hour;
+		} if(minute.length == 1) {
+			minute = "0" + minute;
+		} 
 		var daynum = yy+month+day+hour+minute;
 
 		const randomNumber = Math.floor(Math.random()*(999-100)+100);
@@ -699,7 +748,7 @@
 	}
 	
 	
-
+	//대여점 지도 정보 불러오기
 	function getMap() {
 		
 	

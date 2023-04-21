@@ -19,13 +19,13 @@ public class PaymentReqDto {
 	
 	
 	private long idx;
-
-	
-	
 	private int ismember;
 	private int memberIdx;
 	private int finalprice;
-	
+	private String phone;
+	private String email;
+	private String license;
+	private int birth;
 	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
 	private Date paidtime;
 	
@@ -35,8 +35,6 @@ public class PaymentReqDto {
 	private Date startDate;
 	@JsonFormat(pattern="yyyy/MM/dd")
 	private Date endDate;
-	
-	
 	private int state;
 	private int isMember;
 	private int vehicleIdx;

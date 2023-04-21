@@ -17,6 +17,7 @@ import kh.spring.chazazo.admin.model.dto.AdminReservRespDto;
 import kh.spring.chazazo.admin.model.dto.AdminStatisticsRecentMonthDto;
 import kh.spring.chazazo.admin.model.dto.AdminVehicleOneRespDto;
 import kh.spring.chazazo.admin.model.dto.AdminVehicleRespDto;
+import kh.spring.chazazo.admin.model.dto.TestDto;
 import kh.spring.chazazo.common.Pagination;
 
 public interface AdminService {
@@ -54,5 +55,8 @@ public interface AdminService {
 	// 통계용
 	public List<AdminReservByModelRespDto> selectByModel();
 	public List<AdminStatisticsRecentMonthDto> recentMonth();
+	
+	// 테스트용
+	public List<TestDto> testQuery();
 	
 }

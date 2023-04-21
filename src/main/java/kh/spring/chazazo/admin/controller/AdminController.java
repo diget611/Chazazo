@@ -36,6 +36,8 @@ public class AdminController {
 		// 메인페이지 차트
 		mv.addObject("recentMonth", new Gson().toJson(aService.recentMonth()));
 		
+		// 테스트
+		mv.addObject("testList", aService.testQuery());
 		mv.setViewName("admin/main");
 		
 		return mv;

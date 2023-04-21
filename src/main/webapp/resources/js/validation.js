@@ -8,7 +8,6 @@ $('input').on('blur', function() {
 	if(ckName == 1 && ckBirth == 1 && ckPhone ==1 && ckLicense == 1 && ckEmail == 1) {
 		$('#kakaobtn').attr('disabled', false);
 		$('#paybtn').attr('disabled', false);
-		console.log('sssss');
 	}
 })
 
@@ -53,7 +52,6 @@ $('[name=name]').on('blur', function(){
 	} else {
 		$('[name=name]').next().remove();
 		ckName = 1;
-		console.log(ckName);
 	}
 });
 
@@ -69,7 +67,6 @@ $('[name=birth]').on('blur', function(){
 	} else {
 		$('[name=birth]').next().remove();
 		ckBirth = 1;
-		console.log(ckBirth);
 	}
 });
 
@@ -95,7 +92,6 @@ $('[name=phoneNumber]').on('blur', function(){
 	} else {
 		$('[name=phoneNumber]').next().remove();
 		ckPhone = 1;
-		console.log(ckPhone);
 	}
 });
 
@@ -111,7 +107,6 @@ $('[name=license]').on('blur', function(){
 	} else {
 		$('[name=license]').next().remove();
 		ckLicense = 1;
-		console.log(ckLicense);
 	}
 });
 	
@@ -127,6 +122,5 @@ $('[name=email]').on('blur', function(){
 	} else {
 		$('[name=email]').next().remove();
 		ckEmail = 1;
-		console.log(ckEmail);
 	}
 });

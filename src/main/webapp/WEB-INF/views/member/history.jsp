@@ -143,30 +143,8 @@
 				</div>
 				<div class="blog-lst col-md-8 p0 " style="float: right;">
 					<section id="id-100" class="post single">
-						<div>
-							<div>예약 상세 조회</div>
-							<c:forEach items="${reservation }" var="list">
-										<table>
-											<tr>
-												<th scope="row">예약자</th>
-												<td>${list.idx }</td>
-												<th scope="row">예약시작날짜</th>
-												<td>${list.reservStart }</td>
-												<th scope="row">예약날자</th>
-												<td>${list.reservEnd }</td>
-												<th scope="row">보험종류</th>
-												<td>${list.insuranceIdx }</td>
-												<th scope="row">차종류</th>
-												<td>${list.vehicleIdx }</td>
-												<th scope="row">대여지점</th>
-												<td>${list.rentLocation }</td>
-												<th scope="row">반납지점</th>
-												<td>${list.returnLocation }</td>
-											</tr>
-										</table>
-							</c:forEach>
-							</div>
-							<div>
+						
+							<div class="content">
 								<button>예약 변경</button>
 								
 							</div>
@@ -244,6 +222,99 @@
 			})
 		}
 	};
+	
+	
+
+	$('#historyBtn').on('click',content);
+	function content(){
+		$.ajax({
+			url:'<%=request.getContextPath()%>/profile/reservation/{memberinfo.idx}',
+			type: 'get',
+			dataType:'json',
+			success: function(result){
+				
+				memberResv(result);
+				console.log("dddddddddddffff")
+			},
+			error: function(){
+				alert("fail!!!!!!!");
+			}
+			
+		});
+	};
+	
+	function memberResv(result){
+		console.log("gggdddddddddsssssssssss")
+		var html = '';
+		if(result == 1){
+			
+			html += '			<h4>비회원 예약조회</h4>';
+			html += '			<form>';
+			html += '			<div class="form-group">';
+			html += '				<label>운전자 이름</label> <input type="text" class="form-control" name="name" placeholder="성명을 입력해 주세요">';
+			html += '				<div class="invalid-feedback" id="vsnmr_input_driver_name_invalid_msg" style="display: block;">이름을 입력해 주세요</div>';
+			html += '				</div>';
+			html += '				<div class="form-group">';
+			html += '					<label>예약번호</label> <input type="text" class="form-control"';
+			html += '						name="reservationNumber">';
+			html += '					<div class="invalid-feedback"';
+			html += '						id="vsnmr_input_reserv_num_invalid_msg">예약번호를 입력해 주세요</div>';
+			html += '					<small class="color-blue">예약번호는 문자와 메일로 보내드린 예약내용에 재되어있습니다.</small>';
+			html += '				</div>';
+			html += '				<div class="form-group">';
+			html += '					<label>전화번호</label> <input type="text" id="phone" name="phone" required>';
+			html += '				</div>';
+			html += '				<div class="text-center">';
+			html += '					<button type="submit" class="btn btn-default" id="noneMember">예약 조회하기</button>';
+			html += '				</div>';
+			html += '			</form>';
+		
+		}
+		
+		else{
+		
+	
+		html += '				<div>'
+		html += '					<h3>${memberinfo.name } 님의 예약내역</h3>'
+		html += '				</div>'
+		html += '				<c:if test="${empty reservation}">'
+		html += '					<p style="text-align: center; font-size: large;"><strong>예약 정보가 없습니다.</strong></p><br>'
+		html += '				</c:if>'	
+		html += '				<c:if test="${!empty reservation}">'
+		html += '					<c:forEach items="${reservation }" var="list">'
+		html += '						<table>'
+		html += '							<tr>'
+		html += '								<th scope="row">예약번호</th>'
+		html += '									<td>${list.Idx }</td>'
+		html += '								<th scope="row">예약시작날짜</th>'
+		html += '									<td>${list.startDate }</td>'
+		html += '								<th scope="row">예약상태</th>'
+		html += '									<td>${list.state }</td>'
+		html += '								<th scope="row">보험종류</th>'
+		html += '									<td>${list.insuranceIdx }</td>'
+		html += '								<th scope="row">차종류</th>'
+		html += '									<td>${list.vehicleIdx }</td>'
+		html += '								<th scope="row">대여지점</th>'
+		html += '									<td>${list.rentLocation }</td>'
+		html += '								<th scope="row">반납지점</th>'
+		html += '									<td>${list.returnLocation }</td>'
+		html += '								</tr>'
+		html += '			<div class="col-lg-4" style="padding:0 0 0 30px;">'
+		html += '				<div class="tab-pane active pt-30" id="order-complete"'
+		html += '				 th:if="${reservation != null}">'
+		html += '					<a class="button extra-small mb-20"  style="cursor: pointer;" '
+		html += '						id="rsvtDelete"> <span>예약취소</span></a>'			
+		html += '				</div>'
+		html += '			</div>	'
+		html += '							</table>'
+
+		html += '						</c:forEach>'
+		html += '				</c:if>'
+		
+
+		}
+		$('#content').html(html);
+	}
 	
 	</script>
 	

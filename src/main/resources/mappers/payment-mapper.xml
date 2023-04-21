@@ -6,20 +6,17 @@
 			select *
 			 from payment
 			 join member on payment.idx = member.idx
-			   where username = #{username}
-			   			
-		</select>
+ 		</select>
 	
 		<select id="ReservationOne" resultType="PaymentReqDto" >
-			 SELECT * FROM payment WHERE idx=#{idx}
+			 SELECT * FROM payment WHERE memberidx=#{memberidx}
 		</select>
 	
+		<update id="deleteRes">
+			update payment set state = 1 where idx = #{idx}
+		</update>
 	
 
-	
-	<delete id="resDelete" parameterType="int">
-		DELETE FROM payment WHERE IDX = #{IDX}
-	</delete>
 	
 	<insert id="insertPayInfo" parameterType="java.util.List" >
 		insert into payment values (payment_seq.nextval,0, #{useridx},#{caridx}, #{insurance},0, #{finalprice}, #{paidtime}, #{startDate}, #{endDate}, '',#{returnLocation}, #{ismember})

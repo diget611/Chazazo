@@ -66,17 +66,15 @@ public class MemberController {
 	}
 
 	@GetMapping("/profile")
-	public ModelAndView viewMemberOne(ModelAndView mv, Principal prin) {
+	public ModelAndView viewMemberOne(ModelAndView mv, Principal prin, String idx) {
 		// 마이페이지에 들어가는 url
-		
-		
 		
 		if(prin == null) {
 			mv.setViewName("member/mypage");
 		}else{
 			String loginId = prin.getName();
-			mv.addObject("memberinfo", mService.selectMypageOne(loginId) );
-			mv.addObject("reservation", pService.selectList(loginId));
+			mv.addObject("memberinfo", mService.selectMypageOne(loginId));
+			mv.addObject("reservation", pService.selectList(idx));
 			mv.setViewName("member/mypage");
 		}
 		

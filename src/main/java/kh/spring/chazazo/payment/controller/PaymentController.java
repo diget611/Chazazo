@@ -142,16 +142,17 @@ private PaymentService pService;
 		return mv;
 	}
 	
-	@GetMapping("/profile/reservation")
-	public String viewReservationListUser(ModelAndView mv, Principal prin, PaymentReqDto dto, 
-												String username) {
+	@GetMapping("/profile/reservation/{idx}")
+	public String viewReservationListUser(ModelAndView mv, Principal prin, PaymentReqDto dto, String username) {
 		// 유저 예약 리스트 조회
 		System.out.println("ddddddddsssssssssdddddddd");
 		
+		
 		Map<String, Object> result = new HashMap<String,Object>();
 		System.out.println(result);
+		
 		if(prin == null) {
-			mv.setViewName("member/mypage");
+			mv.setViewName("member/history");
 			return "1";
 			
 		}else {
@@ -203,7 +204,7 @@ private PaymentService pService;
 		}
 	
 
-	@GetMapping("/profile/reservation/{idx}")
+	@GetMapping("/profile/reservation")
 	public ModelAndView viewReservationOne(ModelAndView mv
 										   , @PathVariable String idx, Principal prin) {
 		// 예약 정보 상세 조회
@@ -234,7 +235,7 @@ private PaymentService pService;
 		return result;
 	}
 	
-	@DeleteMapping("/profile/reservation/{idx}")
+	@PostMapping("/profile/reservation/{idx}")
 	@ResponseBody
 	public ModelAndView deleteReservation(ModelAndView mv, @PathVariable String idx) {
 		

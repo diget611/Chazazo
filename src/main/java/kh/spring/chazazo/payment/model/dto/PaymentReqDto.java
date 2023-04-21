@@ -15,14 +15,10 @@ import lombok.Getter;
 @Component
 @Data
 public class PaymentReqDto {
+	
+	
+	
 	private int idx;
-
-	private String daycount;
-	private String rentPrice;
-	private String addIns;
-	private String expIns;
-	private int caridx;
-	private String insurance;
 	
 	private int memberIdx;
 	private String name;
@@ -39,4 +35,15 @@ public class PaymentReqDto {
 	private Date startDate;
 	@JsonFormat(pattern="yyyy/MM/dd")
 	private Date endDate;
+	
+	
+	private int state;
+	private int isMember;
+	private int vehicleIdx;
+	private int insuranceIdx;
+	private int couponIdx;
+	private Date cancelDate;
+	
+	
+	
 }

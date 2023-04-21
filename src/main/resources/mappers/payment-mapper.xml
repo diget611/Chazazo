@@ -16,10 +16,6 @@
 			update payment set state = 1 where idx = #{idx}
 		</update>
 	
-
-	
-	<insert id="insertPayInfo" parameterType="java.util.List" >
-		insert into payment values (payment_seq.nextval,0, #{useridx},#{caridx}, #{insurance},0, #{finalprice}, #{paidtime}, #{startDate}, #{endDate}, '',#{returnLocation}, #{ismember})
 	<delete id="resDelete" parameterType="int">
 		DELETE FROM payment WHERE IDX = #{IDX}
 	</delete>
@@ -41,6 +37,25 @@
 		SELECT V.MODEL AS MODEL, COUNT(*) AS CNT, SUM(FINAL_PRICE) AS SUM
           FROM PAYMENT P
          INNER JOIN VEHICLE V ON P.VEHICLE_IDX = V.IDX GROUP BY V.MODEL
+	</select>
+	
+	<select id="selectList" resultType="adminReservRespDto">
+		SELECT *
+		  FROM (SELECT ROWNUM AS RNUM, IDX, IS_MEMBER, STATE, FINAL_PRICE, PAID_TIME, CANCEL_DATE, START_DATE, END_DATE
+		          FROM PAYMENT ORDER BY IDX DESC)
+         WHERE RNUM BETWEEN #{start} AND #{end}
+	</select>
+	<select id="count" resultType="_int">
+		SELECT COUNT(*) FROM PAYMENT
+	</select>
+	<select id="recentMonth" resultType="adminStatisticsRecentMonthDto">
+		SELECT *
+		  FROM (SELECT * 
+		          FROM (SELECT TO_CHAR(PAID_TIME, 'YYYY/MM') AS TIME, COUNT(*) AS COUNT, SUM(FINAL_PRICE) AS SUM
+                          FROM PAYMENT GROUP BY TO_CHAR(PAID_TIME, 'YYYY/MM')
+                         ORDER BY TIME DESC)
+                 WHERE ROWNUM BETWEEN 1 AND 3)
+         ORDER BY TIME
 	</select>
 	
 </mapper>

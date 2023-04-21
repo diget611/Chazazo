@@ -137,24 +137,13 @@
 			</div>
 		</div>
 	</section>
-	<button type="button" id="testBtn">test</button>
 	<jsp:include page="/WEB-INF/views/base/footer.jsp"/>
+	
 	
 </body>
 
 
 <script type="text/javascript">
-	$('#testBtn').on('click', function() {
-		const TIME_ZONE = 9 * 60 * 60 * 1000; // 9시간
-		const d = new Date();
-
-		const date = new Date(d.getTime() + TIME_ZONE).toISOString().split('T')[0];
-		const time = d.toTimeString().split(' ')[0];
-		var paidtime= date + ' ' + time
-		
-		console.log(paidtime);
-		
-	})	
      //대여,반납일 날짜 초기설정
 	 document.getElementById('startDate').valueAsDate = new Date();
 	 document.getElementById('endDate').valueAsDate = new Date(); 
@@ -257,7 +246,9 @@
 	          type: 'get',
 	          dataType:'json',
 	          success: function(result) {
-				getPayinfo(result);  
+				getPayinfo(result);
+				var test = '<%=request.getContextPath()%>/resources/js/validation.js';
+				$('.footer-copy').after('<script src="' + test + '"/>');
 	          },
 	          error: function() {
 	          	alert('로딩 실패');
@@ -417,7 +408,7 @@
 				html += '		<div class="form-group">';
 				html += '					<h6 style="text-align:center">운전자 정보 </h6>';
 				html += '						<input type="hidden" id="useridx"  value="0" >'
-				html += '						<label class="small">이름</label>  <input type="text" id="name" class="form-control" placeholder="성명" value="" >';
+				html += '						<label class="small">이름</label>  <input type="text" id="name" name="name" class="form-control" placeholder="성명" value="" >';
 				html += '						<label class="small">생년월일</label>  <input type="text" id="birth" class="form-control" placeholder="생년월일 6자리" value="" >';
 				html += '						<label class="small">휴대폰 번호</label>  <input type="text"  id="phone" class="form-control" placeholder="휴대폰 번호" value="" >';
 				html += '						<label class="small">운전 면허 번호</label>  <input type="text"  id="license" class="form-control" placeholder="운전 면허 번호" value="" >';
@@ -431,6 +422,7 @@
 				html += '						</select>';
 				html += '		</div>';
 				html += '	</div>';
+				html += '</section>';
 		} 
 		//결제하기 눌렀을때 출력될 회원용 화면
 		else {
@@ -463,6 +455,7 @@
 		html += '							  <option value="5">송도점</option>';
 		html += '		</div>';
 		html += '	</div>';			
+		html += '</section>';
 		}
 
 		$('#content').html(html);
@@ -746,6 +739,7 @@
 
 	
 </script>
+
 
 
 </html>

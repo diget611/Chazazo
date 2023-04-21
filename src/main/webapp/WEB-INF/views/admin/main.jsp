@@ -34,73 +34,10 @@
 	<div class="container-xxl position-relative bg-white d-flex p-0">
 		<jsp:include page="/WEB-INF/views/admin/base/sidebar.jsp"/>
 		<div class="content">
-			<jsp:include page="/WEB-INF/views/admin/base/navbar.jsp"/>	
-			<!-- Sale & Revenue Start -->
-			<div class="container-fluid pt-4 px-4">
-				<div class="row g-4">
-					<div class="col-sm-6 col-xl-3">
-						<div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
-							<i class="fa fa-chart-line fa-3x text-primary"></i>
-							<div class="ms-3">
-								<p class="mb-2">Today Sale</p>
-								<h6 class="mb-0">$1234</h6>
-							</div>
-						</div>
-					</div>
-                    <div class="col-sm-6 col-xl-3">
-						<div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
-							<i class="fa fa-chart-line fa-3x text-primary"></i>
-							<div class="ms-3">
-								<p class="mb-2">Today Sale</p>
-								<h6 class="mb-0">$1234</h6>
-							</div>
-						</div>
-					</div>
-                    <div class="col-sm-6 col-xl-3">
-						<div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
-							<i class="fa fa-chart-line fa-3x text-primary"></i>
-							<div class="ms-3">
-								<p class="mb-2">Today Sale</p>
-								<h6 class="mb-0">$1234</h6>
-							</div>
-						</div>
-					</div>
-                    <div class="col-sm-6 col-xl-3">
-						<div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
-							<i class="fa fa-chart-line fa-3x text-primary"></i>
-							<div class="ms-3">
-								<p class="mb-2">Today Sale</p>
-								<h6 class="mb-0">$1234</h6>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-            <!-- Sale & Revenue End --><!-- Sales Chart Start -->
-			<div class="container-fluid pt-4 px-4">
-				<div class="row g-4">
-					<div class="col-sm-12 col-xl-6">
-						<div class="bg-light text-center rounded p-4">
-							<div class="d-flex align-items-center justify-content-between mb-4">
-								<h6 class="mb-0">Worldwide Sales</h6>
-								<a href="">Show All</a>
-							</div>
-							<canvas id="testGraph"></canvas>
-						</div>
-					</div>
-					<div class="col-sm-12 col-xl-6">
-						<div class="bg-light text-center rounded p-4">
-							<div class="d-flex align-items-center justify-content-between mb-4">
-								<h6 class="mb-0">Salse & Revenue</h6>
-								<a href="">Show All</a>
-							</div>
-							<canvas id="salse-revenue"></canvas>
-						</div>
-					</div>
-				</div>
-			</div>
-            <!-- Sales Chart End -->
-            <!-- Recent Sales Start -->
+			<jsp:include page="/WEB-INF/views/admin/base/navbar.jsp"/>
+			<div>
+				<button type="button" class="button" id="testBtn">ddddd</button>
+			</div>	
 			<div class="container-fluid pt-4 px-4">
 				<div class="bg-light text-center rounded p-4">
 					<div class="d-flex align-items-center justify-content-between mb-4">
@@ -142,62 +79,114 @@
 					</div>
 				</div>
 			</div>
-            <!-- Recent Sales End -->
-			<!-- Widgets Start -->
 			<div class="container-fluid pt-4 px-4">
 				<div class="row g-4">
-					<div class="col-sm-12 col-md-6 col-xl-4">
-						<div class="h-100 bg-light rounded p-4">
+					<div class="col-sm-12 col-xl-6">
+						<div class="bg-light text-center rounded p-4">
 							<div class="d-flex align-items-center justify-content-between mb-4">
-								<h6 class="mb-0">Calender</h6>
+								<h6 class="mb-0">최근 월별 매출</h6>
+								<a href="">더보기</a>
+							</div>
+							<canvas id="recentMonthChart"></canvas>
+						</div>
+					</div>
+					<div class="col-sm-12 col-xl-6">
+						<div class="bg-light text-center rounded p-4">
+							<div class="d-flex align-items-center justify-content-between mb-4">
+								<h6 class="mb-0">Salse & Revenue</h6>
 								<a href="">Show All</a>
 							</div>
-							<div id="calender"></div>
+							<canvas id="salse-revenue"></canvas>
 						</div>
 					</div>
 				</div>
 			</div>
-			<div>
-				<button type="button" id="testBtn">ttttt</button>
+			<div class="container-fluid pt-4 px-4">
+				<div class="h-100 bg-light rounded p-4">
+					<div class="d-flex align-items-center justify-content-between mb-4">
+						<h6 class="mb-0">Calender</h6>
+					</div>
+					<div id="calender"></div>
+				</div>
 			</div>
-			<!-- Widgets End -->
+			<div class="container-fluid pt-4 px-4">
+				<div class="row g-4">
+					<div class="col-sm-6 col-xl-3">
+						<div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
+							<i class="fa fa-chart-line fa-3x text-primary"></i>
+							<div class="ms-3">
+								<p class="mb-2">Today Sale</p>
+								<h6 class="mb-0">$1234</h6>
+							</div>
+						</div>
+					</div>
+                    <div class="col-sm-6 col-xl-3">
+						<div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
+							<i class="fa fa-chart-line fa-3x text-primary"></i>
+							<div class="ms-3">
+								<p class="mb-2">Today Sale</p>
+								<h6 class="mb-0">$1234</h6>
+							</div>
+						</div>
+					</div>
+                    <div class="col-sm-6 col-xl-3">
+						<div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
+							<i class="fa fa-chart-line fa-3x text-primary"></i>
+							<div class="ms-3">
+								<p class="mb-2">Today Sale</p>
+								<h6 class="mb-0">$1234</h6>
+							</div>
+						</div>
+					</div>
+                    <div class="col-sm-6 col-xl-3">
+						<div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
+							<i class="fa fa-chart-line fa-3x text-primary"></i>
+							<div class="ms-3">
+								<p class="mb-2">Today Sale</p>
+								<h6 class="mb-0">$1234</h6>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
 			<jsp:include page="/WEB-INF/views/admin/base/footer.jsp"/>
 		</div>
-		<!-- Content End -->
-		<!-- Back to Top -->
 		<a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
 	</div>
 
 <script src="<%=request.getContextPath()%>/resources/dashmin/js/main.js"></script>
 
 <script>
-	
-	var list = JSON.parse('${modelList}');
-		var modelList = [];
-		var cntList = [];
-		var color = [];
-	
-	$.each(list, function (index, value) {
-		
-		modelList.push(value.model);
-		cntList.push(value.cnt);
-		color.push("rgba(0, 156, 111, ." + index + ")");
+	$('.day').on('click', function(){
+		console.log(this);
 	})
 
-	var ctx5 = $("#testGraph").get(0).getContext("2d");
-    var myChart5 = new Chart(ctx5, {
-        type: "pie",
+	var recentMonthList = JSON.parse('${recentMonth}');
+	var recentMonthTime = [];
+	var recentMonthSum = [];
+	var color = [];
+	$.each(recentMonthList, function (index, value) {
+		recentMonthTime.push(value.time);
+		recentMonthSum.push(value.sum);
+		color.push("rgba(0, 156, 111, ." + (index * 2 + 1) + ")");
+	})
+	
+	var ctx4 = $("#recentMonthChart").get(0).getContext("2d");
+    var myChart4 = new Chart(ctx4, {
+        type: "bar",
         data: {
-            labels: modelList,
+	    	labels: recentMonthTime,
             datasets: [{
+	            label: '매출 현황',
                 backgroundColor: color,
-                data: cntList
+                data: recentMonthSum
             }]
         },
         options: {
             responsive: true
         }
     });
+	
 	
 </script>
 </body>

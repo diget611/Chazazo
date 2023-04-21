@@ -409,17 +409,18 @@
 				html += '		<div class="form-group">';
 				html += '					<h6 style="text-align:center">운전자 정보 </h6>';
 				html += '						<input type="hidden" id="useridx"  value="0" >'
-				html += '						<label class="small">이름</label>  <input type="text" id="name" name="name" class="form-control" placeholder="성명" value="" >';
-				html += '						<label class="small">생년월일</label>  <input type="text" id="birth" name="birth" class="form-control" placeholder="생년월일 6자리" value="" >';
-				html += '						<label class="small">휴대폰 번호</label>  <input type="text"  id="phone" name="phoneNumber" class="form-control" placeholder="휴대폰 번호" value="" >';
-				html += '						<label class="small">운전 면허 번호</label>  <input type="text"  id="license" name="license" class="form-control" placeholder="운전 면허 번호" value="" >';
-				html += '						<label class="small">이메일</label>  <input type="text"  id="mail" name="email" class="form-control" placeholder="이메일" value="" >';
-				html += '						<label class="small">반납지점 선택</label> <select class="form-select" name="returnSelect"  id="returnSelect" onchange="calc()" >';
+				html += '						 <label class="small">이름</label> <div> <input type="text" id="name" name="name" class="form-control" placeholder="성명" value="" > </div>';
+				html += '						 <label class="small">생년월일</label>    <div>	<input type="text" id="birth" name="birth" class="form-control" placeholder="생년월일 6자리" value="" > </div>';
+				html += '						<label class="small">휴대폰 번호</label>   <div>   <input type="text"  id="phone" name="phoneNumber" class="form-control" placeholder="휴대폰 번호" value="" > </div>';
+				html += '						<label class="small">운전 면허 번호</label> <div>   <input type="text"  id="license" name="license" class="form-control" placeholder="운전 면허 번호" value="" > </div>';
+				html += '						<label class="small">이메일</label>       <div>   <input type="text"  id="mail" name="email" class="form-control" placeholder="이메일" value="" > </div>';
+				html += '						<label class="small">반납지점 선택</label>  <div>  <select class="form-select" name="returnSelect"  id="returnSelect" onchange="calc()" >';
 				html += '	 					  	  <option value="1">강남점</option>';
 				html += '	 						  <option value="2">용산점</option>';
 				html += '							  <option value="3">수원점</option>';
 				html += '							  <option value="4">일산점</option>';
 				html += '							  <option value="5">송도점</option>';
+				html += '							 </div>';
 				html += '						</select>';
 				html += '		</div>';
 				html += '	</div>';

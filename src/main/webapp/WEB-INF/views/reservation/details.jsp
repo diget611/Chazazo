@@ -111,8 +111,8 @@
 												<td><input type="text"id="addreturn"  name="addreturn" readonly><label>원</label></td>
 											</tr>
 											<tr>
-												<th>예상결제금액</th>
-												<td><input type="text" id="finalprice"  name="finalprice" readonly><label>원</label></td>
+												<th>결제금액</th>
+												<td><input type="text" id="finalprice"  name="finalprice" style="color:red" readonly><label>원</label></td>
 											</tr>
 										</tbody>
 									</table>

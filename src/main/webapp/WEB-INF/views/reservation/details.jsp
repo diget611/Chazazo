@@ -247,6 +247,7 @@
 	        	sDate = syyyy+ '-' + smm + '-' +sdd;
 	  		 const dateControl = document.querySelector('input[id="endDate"]');
 			 dateControl.value = sDate;
+			 calc();
 	       }else {
 		      //대여일이 반납일보다 정상적으로 선택 되었을떄 요금계산
 	     	  $('#day-count').attr('value',compareDate);

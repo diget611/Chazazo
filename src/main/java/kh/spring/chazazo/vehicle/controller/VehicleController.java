@@ -43,7 +43,6 @@ public class VehicleController {
 	
 	@GetMapping("/carlist/{idx}")
 	public ModelAndView viewVehicle(ModelAndView mv, @PathVariable String idx) {
-		System.out.println(idx);
 		int index = Integer.parseInt(idx);
 		
 		// 차량 정보랑 리뷰랑 동시에
@@ -59,10 +58,8 @@ public class VehicleController {
 	@GetMapping("/seachlist")
 	@ResponseBody
 	public String getList(ModelAndView mv, @RequestParam(required=false) String page
-			, @RequestParam(value="typeList[]", required=false) List<String> typeList, @RequestParam(value="fuelList[]", required=false) List<String> fuelList, String keyword) {
-		
-		
-		
+			, @RequestParam(value="typeList[]", required=false) List<String> typeList
+			, @RequestParam(value="fuelList[]", required=false) List<String> fuelList, String keyword) {
 		System.out.println("*********************");
 		System.out.println("!!!!!typeList!!!!!!!"+typeList);
 		System.out.println("!!!!!fuelList!!!!!!!"+fuelList);
@@ -74,7 +71,10 @@ public class VehicleController {
 		if(page == null) {
 			page = "1";
 		}
-		search.put("page", Integer.parseInt(page) * BOARD_LIMIT);
+		int pagenum = Integer.parseInt(page)*BOARD_LIMIT;
+		System.out.println(pagenum);
+		
+		search.put("page", pagenum);
 		search.put("keyword", keyword);
 		
 		Map<String, Object> result = new HashMap<String,Object>();		

@@ -12,7 +12,7 @@
 		#{type}
 	 </foreach>
 	</if>
-		<if test="fuelList !=null">
+	<if test="fuelList !=null">
 		and f.idx in
 	 <foreach collection="fuelList" item="fuel" separator=","  open="(" close=")">
 		#{fuel}

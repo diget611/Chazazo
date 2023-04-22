@@ -263,14 +263,17 @@
 
 	$(window).on('scroll', function() {
 		let scrTest = $(window).scrollTop();
-		if(scrTest == $(document).height() - $(window).height()) {
+		console.log("ㅇㅇㅇㅇㅇㅇㅇ"+$(document).height()+"###"+$(window).height());
+		if(Math.round(scrTest) == $(document).height() - $(window).height()) {
+			page++;
+			console.log("page"+page);
 			paging();
 		}
 	});
 	
 	
 	function paging() {
-		page++;
+		console.log(page);
 		let carType = [];
         let fuelType = [];
         var keyword = "%"+$('#inputword').val() +"%";
@@ -283,7 +286,7 @@
         })
         
         let selectList = {
-        	"keyword" : keyword,
+           "keyword" : keyword,
            "typeList" : carType,
            "fuelList" : fuelType,
            "page" : page

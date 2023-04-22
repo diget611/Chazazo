@@ -116,6 +116,20 @@ button {
 button,
 select {
     text-transform: none;
+
+}
+
+.selectbox .select{
+	 width: 200px;
+    height: 40px;
+    border-radius: 4px;
+    border: 2px solid rgb(119,212,252);
+}
+.selectbox .select option {
+  background: rgb(119,212,252);
+  color: #fff;
+  padding: 3px 0;
+  font-size: 16px;
 }
 button,
 html input[type="button"],

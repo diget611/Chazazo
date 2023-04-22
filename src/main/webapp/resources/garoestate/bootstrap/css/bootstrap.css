@@ -2764,6 +2764,7 @@ select[multiple].input-lg {
 .form-group-lg select.form-control {
   height: 46px;
   line-height: 46px;
+  width: 200px;
 }
 .form-group-lg textarea.form-control,
 .form-group-lg select[multiple].form-control {

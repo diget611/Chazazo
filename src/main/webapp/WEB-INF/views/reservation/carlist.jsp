@@ -264,9 +264,13 @@
 	$(window).on('scroll', function() {
 		let scrTest = $(window).scrollTop();
 		console.log("ㅇㅇㅇㅇㅇㅇㅇ"+$(document).height()+"###"+$(window).height());
-		if(Math.round(scrTest) == $(document).height() - $(window).height()) {
+		if(Math.round(scrTest) == Math.round($(document).height() - $(window).height())) {
 			page++;
 			console.log("page"+page);
+			console.log("scroll"+$(window).scrollTop());
+			console.log("document height"+$(document).height());
+			console.log("window height"+$(window).height());
+			console.log(Math.round(scrTest) == $(document).height() - $(window).height());
 			paging();
 		}
 	});

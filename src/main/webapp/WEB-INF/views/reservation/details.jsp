@@ -77,9 +77,9 @@
 										</form>
 											<hr>
 									<div class="col-md-12" style="padding-bottom:100px">                                   
-                                        <div class="btn-group ">
+                                        <div class="selectbox ">
                                  		  <label>보험 선택</label>
-	                                   	  <select id="selectins" name="selectins"  >
+	                                   	  <select id="selectins" name="selectins"  class="select " >
 	                                   	  		<option value="0" selected>보험 미선택</option>
 	                                            <option value="0.1">일반자차</option>
 	                                            <option value="0.2">완전자차</option>
@@ -416,7 +416,7 @@
 				html += '						<label class="small">휴대폰 번호</label>   <div>   <input type="text"  id="phone" name="phoneNumber" class="form-control" placeholder="예시) 01012345678" value="" > </div>';
 				html += '						<label class="small">운전 면허 번호</label> <div>   <input type="text"  id="license" name="license" class="form-control" placeholder="운전 면허 번호 12자리" value="" > </div>';
 				html += '						<label class="small">이메일</label>       <div>   <input type="text"  id="mail" name="email" class="form-control" placeholder="example@mail.com" value="" > </div>';
-				html += '						<label class="small">반납지점 선택</label>  <div>  <select class="form-select" name="returnSelect"  id="returnSelect" onchange="calc()" >';
+				html += '						<div class="selectbox"><label class="small">반납지점 선택</label>  <div>  <select class="select" name="returnSelect"  id="returnSelect" onchange="calc()" >';
 				html += '	 					  	  <option value="1">강남점</option>';
 				html += '	 						  <option value="2">용산점</option>';
 				html += '							  <option value="3">수원점</option>';
@@ -424,6 +424,7 @@
 				html += '							  <option value="5">송도점</option>';
 				html += '							 </div>';
 				html += '						</select>';
+				html += '					</div>';
 				html += '		</div>';
 				html += '	</div>';
 				html += '</section>';
@@ -451,12 +452,13 @@
 		html += '						<label class="small">휴대폰 번호</label>  <input type="text"  id="phone" name="phoneNumber" class="form-control"  value="'+ result.info.phoneNumber+'" readolny>';
 		html += '						<label class="small">운전 면허 번호</label>  <input type="text"  id="license" name="license" class="form-control"  value="'+ result.info.license+'"readolny >';
 		html += '						<label class="small">이메일</label>  <input type="text"  id="mail" name="email"class="form-control"  value="'+ result.info.email+'" readolny>';
-		html += '						<label class="small">반납지점 선택</label> <select class="form-select" name="returnSelect" id="returnSelect" onchange="calc()">';
+		html += '						<div calss="selectbox"><label class="small">반납지점 선택</label> <select class="select" name="returnSelect" id="returnSelect" onchange="calc()">';
 		html += '	 					  	  <option value="1">강남점</option>';
 		html += '	 						  <option value="2">용산점</option>';
 		html += '							  <option value="3">수원점</option>';
 		html += '							  <option value="4">일산점</option>';
 		html += '							  <option value="5">송도점</option>';
+		html += '						</div>';
 		html += '		</div>';
 		html += '	</div>';			
 		html += '</section>';

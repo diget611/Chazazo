@@ -55,10 +55,13 @@ public class VehicleController {
 		return mv;
 	}
 	
+
 	@GetMapping("/seachlist")
 	@ResponseBody
 	public String getList(ModelAndView mv, @RequestParam(required=false) String page
-			, @RequestParam(value="typeList[]", required=false) List<String> typeList, @RequestParam(value="fuelList[]", required=false) List<String> fuelList) {
+			, @RequestParam(value="typeList[]", required=false) List<String> typeList, @RequestParam(value="fuelList[]", required=false) List<String> fuelList, String keyword) {
+		
+		
 		
 		System.out.println("*********************");
 		System.out.println("!!!!!typeList!!!!!!!"+typeList);
@@ -71,13 +74,14 @@ public class VehicleController {
 		if(page == null) {
 			page = "1";
 		}
-		
 		search.put("page", Integer.parseInt(page) * BOARD_LIMIT);
+		search.put("keyword", keyword);
 		
 		Map<String, Object> result = new HashMap<String,Object>();		
 	
 		result.put("carlist",vService.selectList(search));
 		
+		System.out.println(keyword);
 		return new Gson().toJson(result);		
 	}
 	

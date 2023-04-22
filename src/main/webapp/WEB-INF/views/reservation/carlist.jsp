@@ -178,22 +178,7 @@
 	<script>
 	
 	
-	$('#searchbtn').on('click', function(){
-		console.log("서치#####");
-		var keyworda = $("#inputword").val();
-		console.log(typeof keyworda + keyworda);
-		 $.ajax({
-	            url: "seachword",
-	            data: {"keyword" :keyworda},
-	            type: 'get',
-	            dataType:'string',
-	            success: function(result) {
-	            },
-	            error: function() {
-	            	alert('로딩 실패')
-	            }
-	         });
-	});
+
 	//cartype: 전체 선택 체크박스가 변경되었을때	
 	$('#alltype').on('ifChanged',function(){
 		//전체가 체크되면 다른 체크박스 해제
@@ -233,7 +218,9 @@
 	})
 	
 	
-	
+	$('#searchbtn').on('click',function(){
+		paging();
+	});
 	//fueltype: 전체 선택 체크박스가 변경되었을때	
 	$('#allfuel').on('ifChanged',function(){
 		//전체가 체크되면 다른 체크박스 해제
@@ -281,11 +268,12 @@
 		}
 	});
 	
+	
 	function paging() {
 		page++;
 		let carType = [];
         let fuelType = [];
-       console.log(page);
+        var keyword = "%"+$('#inputword').val() +"%";
         
         $('input:checkbox[name=cartypeIdx]:checked').each(function() {
            carType.push($(this).val());
@@ -295,6 +283,7 @@
         })
         
         let selectList = {
+        	"keyword" : keyword,
            "typeList" : carType,
            "fuelList" : fuelType,
            "page" : page

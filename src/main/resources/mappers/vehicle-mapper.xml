@@ -18,6 +18,9 @@
 		#{fuel}
 	 </foreach>
 	</if>
+	<if test = "keyword != null">
+	 and v.model like #{keyword}
+	</if>
 	and rownum between 1 and #{page}
 	</select>
 

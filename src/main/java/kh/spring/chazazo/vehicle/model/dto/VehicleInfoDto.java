@@ -27,5 +27,6 @@ public class VehicleInfoDto {
 	private String typename;
 	private String[] typeList;
 	private String[] fuelList;
+	private String keyword;
 	
 }

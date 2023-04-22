@@ -77,7 +77,7 @@
 										</form>
 											<hr>
 									<div class="col-md-12" style="padding-bottom:100px">                                   
-                                        <div class="btn-group bootstrap-select">
+                                        <div class="btn-group ">
                                  		  <label>보험 선택</label>
 	                                   	  <select id="selectins" name="selectins"  >
 	                                   	  		<option value="0" selected>보험 미선택</option>
@@ -102,7 +102,7 @@
 												<th>기본 대여 요금</th>
 												<td><input type="text" id="rentPrice"  name="rentPrice" readonly><label>원</label></td>
 											</tr>
-											<tr>
+											<tr >
 												<th>보험 추가 요금</th>
 												<td><input type="text"id="addIns"  name="addIns" readonly><label>원</label></td>
 											</tr>
@@ -172,7 +172,7 @@
 		getcarInfo();
 		$('input[name=daycount]').attr('value','1');
 		$('#rentPrice').attr('value',price);
-		$("#addIns").attr('value',(price * 0.1 ));
+		$("#addIns").attr('value','0' );
 		$("#finalprice").attr('value',(price+price * 0.1));
 		$("#addreturn").attr('value', '0') ;
 	}
@@ -193,15 +193,7 @@
         var compareDate = Math.round((endDate.getTime() - startDate.getTime()) / (1000 * 60 * 60 * 24)) + 1;
       	var price = ${car.price};
       	var insurance = $('#selectins').val(); //추가요금
- 		
-		//반납지점이 대여지점과 다르면 추가 요금 부과
-		if ($("#returnSelect").val() == "${car.name}" ) {
-			$("#addreturn").attr('value', '0') ;
-		} else{
-			$("#addreturn").attr('value','10000');
-		}
-    	var returnfee = parseInt($('#addreturn').val());
-        
+ 	
         //대여일 선택시 반납일을 대여일 이후로 제한
         var sDate = new Date();
         var sdd = startDate.getDate();
@@ -214,7 +206,19 @@
      	} 
         sDate = syyyy+ '-' + smm + '-' +sdd;
         document.getElementById("endDate").setAttribute("min", sDate);
-      	
+    	
+		//반납지점이 대여지점과 다르면 추가 요금 부과
+		console.log($('#returnSelect').val());
+		if ($('#returnSelect').val()== undefined ){
+			$("#addreturn").attr('value','0');
+		} 
+		else if ($('#returnSelect').val() !== "${car.locationIdx}" ) {
+			$("#addreturn").attr('value', '10000') ;
+		} else if ($('#returnSelect').val() == "${car.locationIdx}" ) {
+			$("#addreturn").attr('value', '0') ;
+		}
+    	var returnfee = parseInt($('#addreturn').val());
+        
            //반납일이 대여일보다 먼저 올 때 결제창 초기화
 	       if(compareDate <1) {
 	    	  $('#day-count').attr('value', '');

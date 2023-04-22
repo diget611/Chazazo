@@ -177,6 +177,7 @@
 		$("#addreturn").attr('value', '0') ;
 		 $('#returnSection').hide();
 		 $('#insSection').hide();
+
 	}
  
   
@@ -208,7 +209,6 @@
      	} 
         sDate = syyyy+ '-' + smm + '-' +sdd;
         document.getElementById("endDate").setAttribute("min", sDate);
-    	
        
         
 		//반납지점이 대여지점과 다르면 추가 요금 부과
@@ -222,9 +222,9 @@
     	var returnfee = parseInt($('#addreturn').val());
         
     	//보험,반납지점 미선택시 요금영역에서 숨기기 
-    	 if (insurance !== 0) {
+    	 if (insurance !== "0") {
          	$('#insSection').show();
-         }  else if (insurance == 0) {
+         }  else if (insurance == "0") {
          	$('#insSection').hide();
          } 
          if (returnfee !== 0) {
@@ -233,15 +233,22 @@
          	$('#returnSection').hide();
          } 
     	
-          //반납일이 대여일보다 먼저 올 때 결제창 초기화
+          //반납일이 대여일보다 먼저 올 때 대여일을 반납일로 설정
 	       if(compareDate <1) {
-	    	  $('#day-count').attr('value', '');
-	      	  $('#rentPrice').attr('value', '');
-	      	  $("#addIns").attr('value', '');
-	      	  $("#finalprice").attr('value', '');
-			  return false;
+	           var sDate = new Date();
+	           var sdd = String(startDate.getDate());
+	           var smm = String(startDate.getMonth() +1);
+	           var syyyy = String(startDate.getFullYear());
+	           if(smm.length == 1) {
+	        		smm = "0" + smm;
+	    		}	if(sdd.length == 1) {
+	    			sdd = "0" + sdd;
+	    		}
+	        	sDate = syyyy+ '-' + smm + '-' +sdd;
+	  		 const dateControl = document.querySelector('input[id="endDate"]');
+			 dateControl.value = sDate;
 	       }else {
-		      //대여일이 반납일보다 먼저 올 때 요금 정상계산
+		      //대여일이 반납일보다 정상적으로 선택 되었을떄 요금계산
 	     	  $('#day-count').attr('value',compareDate);
 	     	  $('#rentPrice').attr('value',(price * compareDate));
 	     	  $("#addIns").attr('value',(price * insurance *compareDate));
@@ -284,7 +291,6 @@
 
 	function getcarInfo() {
 		var html = '';
-		
 				html += '		<div class="row">'
 				html += '		<div class="light-slide-item">     '       
 				html +=	'		<div class="clearfix">'
@@ -339,59 +345,34 @@
 				html +=	'	</div>'
 				html +=	'	<!-- End description area  -->'
 				html +=	'	<div class="section additional-details">'
-				html +=	'		<h4 class="s-property-title">차량 정보</h4>'
+				html +=	'		<h4 class="s-property-title">대여점 정보</h4>'
+
 				html +=	'		<ul class="additional-details-list clearfix">'
 				html +=	'			<li>'
-				html +=	'				<span class="col-xs-6 col-sm-4 col-md-4 add-d-title">Waterfront</span>'
-				html +=	'				<span class="col-xs-6 col-sm-8 col-md-8 add-d-entry">${car.year }</span>'
+				html +=	'				<span class="col-xs-6 col-sm-4 col-md-4 add-d-title">대여지점</span>'
+				html +=	'				<span class="col-xs-6 col-sm-8 col-md-8 add-d-entry">차자조 ${car.name }</span>'
 				html +=	'			</li>'
 				html +=	'			<li>'
-				html +=	'				<span class="col-xs-6 col-sm-4 col-md-4 add-d-title">Built In</span>'
-				html +=	'				<span class="col-xs-6 col-sm-8 col-md-8 add-d-entry">${car.typename }</span>'
+				html +=	'				<span class="col-xs-6 col-sm-4 col-md-4 add-d-title">운영시간</span>'
+				html +=	'				<span class="col-xs-6 col-sm-8 col-md-8 add-d-entry">${car.businessHours }</span>'
 				html +=	'			</li>'
 				html +=	'			<li>					'
-				html +=	'				<span class="col-xs-6 col-sm-4 col-md-4 add-d-title">Parking</span>'
-				html +=	'			<span class="col-xs-6 col-sm-8 col-md-8 add-d-entry">2 Or More Spaces,Covered Parking,Valet Parking</span>'
+				html +=	'				<span class="col-xs-6 col-sm-4 col-md-4 add-d-title">전화번호</span>'
+				html +=	'			<span class="col-xs-6 col-sm-8 col-md-8 add-d-entry">${car.phoneNumber}</span>'
 				html +=	'			</li>'
 				html +=	'			<li>'
-				html +=	'				<span class="col-xs-6 col-sm-4 col-md-4 add-d-title">Waterfront</span>'
-				html +=	'				<span class="col-xs-6 col-sm-8 col-md-8 add-d-entry">Yes</span>'
+				html +=	'				<span class="col-xs-6 col-sm-4 col-md-4 add-d-title">주소</span>'
+				html +=	'				<span class="col-xs-6 col-sm-8 col-md-8 add-d-entry">${car.address}</span>'
 				html +=	'			</li>'
-				html +=	'			<li>'
-				html +=	'				<span class="col-xs-6 col-sm-4 col-md-4 add-d-title">View</span>'
-				html +=	'				<span class="col-xs-6 col-sm-8 col-md-8 add-d-entry">Intracoastal View,Direct ew</span>'
-				html +=	'			</li>'
-				html +=	'			<li>'
-				html +=	'				<span class="col-xs-6 col-sm-4 col-md-4 add-d-title">Waterfront Description:</span>'
-				html +=	'				<span class="col-xs-6 col-sm-8 col-md-8 add-d-entry">Intracoastal Front,Ocean Access</span>'
-				html +=	'			</li> '
 				html +=	'		</ul>'
-				html +=	'	</div>  '
-				html +=	'	<!-- End additional-details area  -->'
-				html +=	'	<div class="section property-features">   '
-				html +=	'	<div>   '
-				html +=	'	<h4 class="s-property-title">대여점 정보</h4>      '                      
-				html +=	'	<ul>'
-				html +=	'		<li>'
-				html +=	'			<h5><label>대여점:  ${car.name } </label></h5><br>'
-				html +=	'			</li>		'
 				html +=	'				<div class="blog-lst col-md-12 padding-top-40" style="float: left;">'
 				html +=	'					<section id="id-100" class="post single">'
 				html +=	'						<div id="map" style="width:100%; height:400px"></div>   '
 				html +=	'					</section>'
-				html +=	'			</div>'
-				html +=	'		<li>'
-				html +=	'			 <h5><label>전화번호: ${car.phoneNumber } </label></h5>'
-				html +=	'		</li>'
-				html +=	'		<li>'
-				html +=	'			<h5><label>운영 시간: ${car.businessHours } </label></h5>'
-				html +=	'			</li>'
-				html +=	'			<li>'
-				html +=	'				<h5><label>주소: ${car.address } </label></h5>'
-				html +=	'			</li>'
-			
-				html +=	'		</ul>'
-				html +=	'	</div>'
+				html +=	'				</div>'
+				html +=	'	</div>  '
+				html +=	'	<!-- End additional-details area  -->'
+				html +=	'	<div class="section property-features">   '
 				html +=	'		<!-- 리뷰 영역 시작 -->'
 				html +=	'		<div class="section">'
 				html +=	'			<h4 class="s-property-title">리뷰</h4>'
@@ -519,7 +500,11 @@
 		| !testEmail.test($('[name=email]').val())) {
 			alert("예약 정보를 다시 확인해주세요");
 			return false;	
-		} else {
+		} else if($('#finalprice').val() == 0){
+			alert("결제할 정보가 없습니다")
+			return false;
+		}
+		else {
 			pay();
 		}
 	}

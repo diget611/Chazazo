@@ -102,11 +102,11 @@
 												<th>기본 대여 요금</th>
 												<td><input type="text" id="rentPrice"  name="rentPrice" readonly><label>원</label></td>
 											</tr>
-											<tr >
-												<th>보험 추가 요금</th>
+											<tr id ="insSection" >
+												<th >보험 추가 요금</th>
 												<td><input type="text"id="addIns"  name="addIns" readonly><label>원</label></td>
 											</tr>
-											<tr>
+											<tr id="returnSection">
 												<th>반납지점 변경 요금</th>
 												<td><input type="text"id="addreturn"  name="addreturn" readonly><label>원</label></td>
 											</tr>
@@ -175,6 +175,8 @@
 		$("#addIns").attr('value','0' );
 		$("#finalprice").attr('value',(price+price * 0.1));
 		$("#addreturn").attr('value', '0') ;
+		 $('#returnSection').hide();
+		 $('#insSection').hide();
 	}
  
   
@@ -207,19 +209,31 @@
         sDate = syyyy+ '-' + smm + '-' +sdd;
         document.getElementById("endDate").setAttribute("min", sDate);
     	
+       
+        
 		//반납지점이 대여지점과 다르면 추가 요금 부과
-		console.log($('#returnSelect').val());
 		if ($('#returnSelect').val()== undefined ){
 			$("#addreturn").attr('value','0');
-		} 
-		else if ($('#returnSelect').val() !== "${car.locationIdx}" ) {
+		} else if ($('#returnSelect').val() !== "${car.locationIdx}" ) {
 			$("#addreturn").attr('value', '10000') ;
 		} else if ($('#returnSelect').val() == "${car.locationIdx}" ) {
 			$("#addreturn").attr('value', '0') ;
 		}
     	var returnfee = parseInt($('#addreturn').val());
         
-           //반납일이 대여일보다 먼저 올 때 결제창 초기화
+    	//보험,반납지점 미선택시 요금영역에서 숨기기 
+    	 if (insurance !== 0) {
+         	$('#insSection').show();
+         }  else if (insurance == 0) {
+         	$('#insSection').hide();
+         } 
+         if (returnfee !== 0) {
+         	$('#returnSection').show();
+         }else if (returnfee == 0) {
+         	$('#returnSection').hide();
+         } 
+    	
+          //반납일이 대여일보다 먼저 올 때 결제창 초기화
 	       if(compareDate <1) {
 	    	  $('#day-count').attr('value', '');
 	      	  $('#rentPrice').attr('value', '');
@@ -235,10 +249,12 @@
 	       }
       }
     
+    //회원가입 클릭시 이동
 	$('#register').on('click', function() {
 		location.href='<%=request.getContextPath()%>/member/register';
 	});
     
+    //결제하기 누르면 ajax불러오기
 	$('#payment').on('click', content);
 	$('#payment').on('click', payajax);
 

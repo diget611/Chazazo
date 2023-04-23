@@ -33,16 +33,6 @@ public class ReviewController {
 	private ReviewService rService;
 	
 	
-	@GetMapping("/getMemberInfo")
-	@ResponseBody
-	public ModelAndView getMemberInfo(Principal prin,ModelAndView mv) {
-		String username = prin.getName();
-		mv.addObject("info", mService.selectMypageOne(username));
-		System.out.println("username::::::::::"+username);
-		
-		mv.setViewName("reservation/details");
-		return mv;
-	}
 	
 	@PostMapping("/postReview")
 	public int insertReview(@RequestBody ReviewDto data) {

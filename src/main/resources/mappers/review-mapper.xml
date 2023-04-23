@@ -8,7 +8,7 @@
 		SELECT * FROM REVIEW where VEHICLE_IDX=#{vehicleIdx} 
 	</select>
 	<insert id="insert">
-		INSERT INTO test values(#{id}, #{content})
+		INSERT INTO test values(#{name}, #{content})
 	</insert>
 	<update id="update">
 		UPDATE MEMBER SET IDX = #{idx}, vehicleIdx = #{vehicleIdx}, content = #{content} WHERE IDX = #{idx}

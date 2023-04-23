@@ -57,9 +57,6 @@
 			<div class="container">
 				<div class="clearfix padding-top-40">
 						<div class="col-md-8 single-property-content">
-					<h1>#####3::::: ${car.idx }</h1>
-					<h1>#####3::::: ${info.name }</h1>
-					<h1>#####3::::: ${info.idx }</h1>
 					<!-- 좌측 컨텐츠 -->
 					<div id="content">
 					</div>
@@ -196,7 +193,7 @@
 
 	function getMemberInfo(){
 		 $.ajax({
-	          url:'<%=request.getContextPath()%>/getMemberInfo',
+	          url:'<%=request.getContextPath()%>/viewVehicle',
 	          type: 'get',
 	          success: function() {
 	          	alert("횐정보 로딩 성공");
@@ -215,10 +212,10 @@
 		
 		function postReview() {
 			var content = $('[name=reviewcontent]').val()
-			var id = $('[name=userid]').val();
-			console.log("리뷰뷰뷰뷰"+id+content);
+			var name = $('[name=userid]').val();
+			console.log("리뷰뷰뷰뷰"+name+content);
 			var data ={
-					"name": id,
+					"name": name,
 					"content" : content
 			}
 			  $.ajax({
@@ -487,6 +484,7 @@
 		html += '<section>'
 		html += '	<div style="text-align:center">';
 		html += '		<h2>결제 정보</h2>';
+		html += '		<h2>infoooooooo: ${info.name}</h2>';
 		html += '	</div>';
 		html += '	<div style="overflow: hidden;">';
 		html += '		<div class="blog-asside-right col-md-12" style="padding: 80px;" >';

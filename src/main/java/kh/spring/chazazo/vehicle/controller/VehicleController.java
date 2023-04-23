@@ -1,5 +1,6 @@
 package kh.spring.chazazo.vehicle.controller;
 
+import java.security.Principal;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -17,12 +18,15 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
 
+import kh.spring.chazazo.member.model.service.MemberService;
 import kh.spring.chazazo.vehicle.model.service.VehicleService;
 
 
 @RestController
 @RequestMapping
 public class VehicleController {
+	@Autowired
+	private MemberService mService;
 	
 	@Autowired
 	private VehicleService vService;
@@ -42,9 +46,10 @@ public class VehicleController {
 	
 	
 	@GetMapping("/carlist/{idx}")
-	public ModelAndView viewVehicle(ModelAndView mv, @PathVariable String idx) {
+	public ModelAndView viewVehicle(ModelAndView mv, @PathVariable String idx, Principal prin) {
 		int index = Integer.parseInt(idx);
-		
+		String username = prin.getName();
+		mv.addObject("info", mService.selectMypageOne(username));
 		// 차량 정보랑 리뷰랑 동시에
 		mv.addObject("car", vService.getVehicleInfo(index));
 		mv.addObject("option", vService.getOptionInfo(index));

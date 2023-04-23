@@ -6,7 +6,7 @@ import kh.spring.chazazo.review.model.dto.ReviewDto;
 
 public interface ReviewService {
 	
-	public int insert(ReviewDto dto);
+	public int insertReview(ReviewDto data);
 	public int update(ReviewDto dto);
 	public int delete(int idx);
 

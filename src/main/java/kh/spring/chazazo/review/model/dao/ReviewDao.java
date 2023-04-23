@@ -13,7 +13,7 @@ public class ReviewDao {
 	@Autowired 
 	private SqlSession sqlSession;
 	
-	public int insert(ReviewDto dto) {
+	public int insertReview(ReviewDto dto) {
 		return sqlSession.insert("review.insert", dto);
 	}
 	public int update(ReviewDto dto) {

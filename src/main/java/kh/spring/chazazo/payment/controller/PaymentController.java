@@ -119,7 +119,7 @@ private PaymentService pService;
 		*/
 		
 		int result = pService.insertPayInfo(data);
-		System.out.println(data);
+		System.out.println("insertPayInfo:::::::::"+data);
 
 
 		return result;

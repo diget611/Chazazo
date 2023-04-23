@@ -57,9 +57,20 @@
 			<div class="container">
 				<div class="clearfix padding-top-40">
 						<div class="col-md-8 single-property-content">
-					
+					<h1>#####3::::: ${car.idx }</h1>
+					<h1>#####3::::: ${info.name }</h1>
+					<h1>#####3::::: ${info.idx }</h1>
 					<!-- 좌측 컨텐츠 -->
 					<div id="content">
+					</div>
+					<div>
+	  						<label >아이디</label>
+	  						<input type="text" name="userid"  value="${info.name }">
+	
+	  						<label >리뷰를 등록하세요</label>
+	 						 <input type="text" name="reviewcontent" ></input>
+	   						<button type="button" id="reviewbtn">등록하기</button>
+  
 					</div>
 
 					</div>
@@ -171,18 +182,61 @@
 	//페이지 로드 시 대여,반납일을 오늘로 설정
 	window.onload = function reset() {
 		getcarInfo();
+	    getMemberInfo();
 		$('input[name=daycount]').attr('value','1');
 		$('#rentPrice').attr('value',price);
 		$("#addIns").attr('value','0' );
 		$("#finalprice").attr('value',(price+price * 0.1));
 		$("#addreturn").attr('value', '0') ;
-		 $('#returnSection').hide();
-		 $('#insSection').hide();
+	    $('#returnSection').hide();
+	    $('#insSection').hide();
 
 	}
- 
-  
 	
+
+	function getMemberInfo(){
+		 $.ajax({
+	          url:'<%=request.getContextPath()%>/getMemberInfo',
+	          type: 'get',
+	          success: function() {
+	          	alert("횐정보 로딩 성공");
+	          },
+	          error: function() {
+	          	alert('횐정보로딩 실패');
+	          }
+	       });
+	}
+	
+	//리뷰 등록
+	$('#reviewbtn').on('click', function(){
+		postReview();
+		
+	});
+		
+		function postReview() {
+			var content = $('[name=reviewcontent]').val()
+			var id = $('[name=userid]').val();
+			console.log("리뷰뷰뷰뷰"+id+content);
+			var data ={
+					"name": id,
+					"content" : content
+			}
+			  $.ajax({
+		          url:'<%=request.getContextPath()%>/postReview',
+		          contentType: 'application/json; charset=utf-8',
+		          type: 'post',
+		          dataType:'json',
+		          data: JSON.stringify(data),
+		          success: function(result) {
+		          },
+		          error: function() {
+		          	alert('리뷰 등록 실패');
+		          }
+		       });
+		}
+		
+		
+		
 	//대여시작날짜, 반납날짜, 보험 선택을 바꿀때마다 요금을 계산하는 함수
 	$('#startDate').on('change', calc);
     $('#endDate').on('change', calc);

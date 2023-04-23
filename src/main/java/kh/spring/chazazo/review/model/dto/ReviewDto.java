@@ -11,6 +11,7 @@ import lombok.Data;
 public class ReviewDto {
 	
 	private int idx;
+	private String name;
 	private String content;
 	private Date createdate;
 	private int recommend;

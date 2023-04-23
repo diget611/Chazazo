@@ -26,7 +26,7 @@ public class ReviewDao {
 	public List<ReviewDto> selectList() {
 		return sqlSession.selectList("review.selectList");
 	}
-	public List<ReviewDto> selectOne(int vehicleIdx) {
-		return sqlSession.selectList("review.reviewOne", vehicleIdx);
+	public List<ReviewDto> selectOne(String vehicleIdx) {
+		return sqlSession.selectList("review.selectOne", vehicleIdx);
 	}
 }

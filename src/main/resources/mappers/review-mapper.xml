@@ -5,10 +5,10 @@
 		SELECT * FROM REVIEW 
 	</select>
 	<select id="selectOne" resultType="reviewDto">
-		SELECT * FROM REVIEW where VEHICLE_IDX=#{vehicleIdx} 
+		SELECT * FROM test where VEHICLE_IDX=#{vehicleIdx} 
 	</select>
 	<insert id="insert">
-		INSERT INTO test values(#{name}, #{content})
+		INSERT INTO test values(#{vehicleIdx},#{name}, #{content})
 	</insert>
 	<update id="update">
 		UPDATE MEMBER SET IDX = #{idx}, vehicleIdx = #{vehicleIdx}, content = #{content} WHERE IDX = #{idx}

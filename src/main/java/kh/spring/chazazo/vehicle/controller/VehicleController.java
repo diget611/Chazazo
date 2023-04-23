@@ -19,6 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.google.gson.Gson;
 
 import kh.spring.chazazo.member.model.service.MemberService;
+import kh.spring.chazazo.review.model.service.ReviewService;
 import kh.spring.chazazo.vehicle.model.service.VehicleService;
 
 
@@ -27,9 +28,10 @@ import kh.spring.chazazo.vehicle.model.service.VehicleService;
 public class VehicleController {
 	@Autowired
 	private MemberService mService;
-	
 	@Autowired
 	private VehicleService vService;
+	@Autowired
+	private ReviewService rService;
 
 	public final static int BOARD_LIMIT = 9;
 	public final static int PAGE_LIMIT = 4;
@@ -48,13 +50,18 @@ public class VehicleController {
 	@GetMapping("/carlist/{idx}")
 	public ModelAndView viewVehicle(ModelAndView mv, @PathVariable String idx, Principal prin) {
 		int index = Integer.parseInt(idx);
-		String username = prin.getName();
-		mv.addObject("info", mService.selectMypageOne(username));
 		// 차량 정보랑 리뷰랑 동시에
+		if(prin == null) {
+			mv.setViewName("reservation/details");
+		}else {
+			String username = prin.getName();
+			mv.addObject("info", mService.selectMypageOne(username));
+		}
+		Map<String, Object> result = new HashMap<String,Object>();
 		mv.addObject("car", vService.getVehicleInfo(index));
 		mv.addObject("option", vService.getOptionInfo(index));
+;
 		mv.setViewName("reservation/details");
-
 		
 		return mv;
 	}
@@ -77,7 +84,6 @@ public class VehicleController {
 			page = "1";
 		}
 		int pagenum = Integer.parseInt(page)*BOARD_LIMIT;
-		System.out.println(pagenum);
 		
 		search.put("page", pagenum);
 		search.put("keyword", keyword);

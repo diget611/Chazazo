@@ -62,15 +62,22 @@
 					</div>
 					<div>
 	  						<label >아이디</label>
-	  						<input type="text" name="userid"  value="${info.name }">
+	  					
 	
 	  						<label >리뷰를 등록하세요</label>
 	 						 <input type="text" name="reviewcontent" ></input>
 	   						<button type="button" id="reviewbtn">등록하기</button>
-  
+  </div>
 					</div>
-
-					</div>
+										<table>
+											<tr>
+												<th scope="row">아이디</th><br>
+												<th scope="row">리뷰</th>
+		
+											</tr>
+											<tr>
+											</tr>	
+										</table>
 					
 					
 						<!-- 우측 카테고리 시작 -->
@@ -179,7 +186,7 @@
 	//페이지 로드 시 대여,반납일을 오늘로 설정
 	window.onload = function reset() {
 		getcarInfo();
-	    getMemberInfo();
+		getReview();
 		$('input[name=daycount]').attr('value','1');
 		$('#rentPrice').attr('value',price);
 		$("#addIns").attr('value','0' );
@@ -191,19 +198,24 @@
 	}
 	
 
-	function getMemberInfo(){
-		 $.ajax({
-	          url:'<%=request.getContextPath()%>/viewVehicle',
-	          type: 'get',
-	          success: function() {
-	          	alert("횐정보 로딩 성공");
-	          },
-	          error: function() {
-	          	alert('횐정보로딩 실패');
-	          }
-	       });
+
+	function getReview(){
+		var vehicleIdx = $('[name=caridx]').val();
+		  $.ajax({
+	            url: '<%=request.getContextPath()%>/getReview',
+	            data: {
+	            	"vehicleIdx":vehicleIdx
+	            },
+	            type: 'get',
+	            dataType:'json',
+	            success: function(result) {
+		
+	            },
+	            error: function() {
+	            	alert('리뷰 실패')
+	            }
+	         });
 	}
-	
 	//리뷰 등록
 	$('#reviewbtn').on('click', function(){
 		postReview();
@@ -213,8 +225,10 @@
 		function postReview() {
 			var content = $('[name=reviewcontent]').val()
 			var name = $('[name=userid]').val();
+			var vehicleIdx = $('[name=caridx]').val();
 			console.log("리뷰뷰뷰뷰"+name+content);
 			var data ={
+					"vehicleIdx":vehicleIdx,
 					"name": name,
 					"content" : content
 			}
@@ -429,6 +443,7 @@
 				html +=	'		<!-- 리뷰 영역 시작 -->'
 				html +=	'		<div class="section">'
 				html +=	'			<h4 class="s-property-title">리뷰</h4>'
+				html +=	'			<h4 >${review.content}</h4>'
 				html +=	'		<div class="s-property-content">'
 				html +=	'			<p>Nulla quis dapibus nisl. Suspendisse ultricies Nulla quis dapibus nisl. Suspendisse ultricies commodo arcu nec pretium. Nullam sed arcu ultricies commodo arcu nec pretium. Nullam sed arcu ultricies Nulla quis dapibus nisl. Suspendisse ultricies commodo arcu nec pretium. Nullam sed arcu ultricies Nulla quis dapibus nisl. Suspendisse ultricies commodo arcu nec pretium. Nullam sed arcu ultricies </p>'
 				html +=	'		</div>'

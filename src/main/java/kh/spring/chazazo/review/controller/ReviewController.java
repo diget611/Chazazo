@@ -1,24 +1,16 @@
 package kh.spring.chazazo.review.controller;
 
 
-import java.security.Principal;
-import java.util.HashMap;
-import java.util.Map;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.google.gson.Gson;
 
-import kh.spring.chazazo.member.model.service.MemberService;
 import kh.spring.chazazo.review.model.dto.ReviewDto;
 import kh.spring.chazazo.review.model.service.ReviewService;
 
@@ -26,21 +18,23 @@ import kh.spring.chazazo.review.model.service.ReviewService;
 @RequestMapping
 public class ReviewController {
 	
-	@Autowired
-	private MemberService mService;
 	
 	@Autowired
 	private ReviewService rService;
 	
-	
+	@GetMapping("/getReview")
+	public ModelAndView getReview(ModelAndView mv, String vehicleIdx) {
+		mv.addObject("review",rService.selectOne(vehicleIdx));
+		mv.setViewName("reservation/details");
+		
+		return mv;
+	}
 	
 	@PostMapping("/postReview")
 	public int insertReview(@RequestBody ReviewDto data) {
 	
 		System.out.println("data######:" +data);
 		int result = rService.insertReview(data);
-		
-		
 		return result;
 	}
 	

@@ -11,6 +11,6 @@ public interface ReviewService {
 	public int delete(int idx);
 
 	public List<ReviewDto> selectList();
-	public List<ReviewDto> selectOne(int vehicleIdx);
+	public List<ReviewDto> selectOne(String vehicleIdx);
 	
 }

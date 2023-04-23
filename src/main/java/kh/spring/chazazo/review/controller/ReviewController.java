@@ -1,6 +1,9 @@
 package kh.spring.chazazo.review.controller;
 
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.google.gson.Gson;
 
 import kh.spring.chazazo.review.model.dto.ReviewDto;
 import kh.spring.chazazo.review.model.service.ReviewService;
@@ -23,11 +27,15 @@ public class ReviewController {
 	private ReviewService rService;
 	
 	@GetMapping("/getReview")
-	public ModelAndView getReview(ModelAndView mv, String vehicleIdx) {
-		mv.addObject("review",rService.selectOne(vehicleIdx));
-		mv.setViewName("reservation/details");
+	public String getReview(ModelAndView mv, String vehicleIdx) {
+//		mv.addObject("review",rService.selectOne(vehicleIdx));
+//		mv.setViewName("reservation/details");
+		Map<String, Object> result = new HashMap<String,Object>();		
 		
-		return mv;
+		result.put("review",rService.selectOne(vehicleIdx));
+		
+		return new Gson().toJson(result);
+//		return mv;
 	}
 	
 	@PostMapping("/postReview")

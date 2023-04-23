@@ -209,7 +209,7 @@
 	            type: 'get',
 	            dataType:'json',
 	            success: function(result) {
-		
+	            	getcarInfo();
 	            },
 	            error: function() {
 	            	alert('리뷰 실패')
@@ -239,6 +239,7 @@
 		          dataType:'json',
 		          data: JSON.stringify(data),
 		          success: function(result) {
+		        	  getcarInfo(result);
 		          },
 		          error: function() {
 		          	alert('리뷰 등록 실패');
@@ -356,7 +357,7 @@
 	
 	
 
-	function getcarInfo() {
+	function getcarInfo(result) {
 		var html = '';
 				html += '		<div class="row">'
 				html += '		<div class="light-slide-item">     '       
@@ -443,7 +444,7 @@
 				html +=	'		<!-- 리뷰 영역 시작 -->'
 				html +=	'		<div class="section">'
 				html +=	'			<h4 class="s-property-title">리뷰</h4>'
-				html +=	'			<h4 >${review.content}</h4>'
+				html +=	'			<h4 >############ ${review.content}</h4>'
 				html +=	'		<div class="s-property-content">'
 				html +=	'			<p>Nulla quis dapibus nisl. Suspendisse ultricies Nulla quis dapibus nisl. Suspendisse ultricies commodo arcu nec pretium. Nullam sed arcu ultricies commodo arcu nec pretium. Nullam sed arcu ultricies Nulla quis dapibus nisl. Suspendisse ultricies commodo arcu nec pretium. Nullam sed arcu ultricies Nulla quis dapibus nisl. Suspendisse ultricies commodo arcu nec pretium. Nullam sed arcu ultricies </p>'
 				html +=	'		</div>'

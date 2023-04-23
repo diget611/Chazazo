@@ -13,9 +13,6 @@ import lombok.ToString;
 
 @Component
 @Getter
-@AllArgsConstructor
-@NoArgsConstructor
-@ToString
 public class ReviewDto {
 	
 //	private int idx;

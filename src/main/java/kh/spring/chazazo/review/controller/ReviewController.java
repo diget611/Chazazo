@@ -26,17 +26,17 @@ public class ReviewController {
 	@Autowired
 	private ReviewService rService;
 	
-	@GetMapping("/getReview")
-	public String getReview(ModelAndView mv, String vehicleIdx) {
-//		mv.addObject("review",rService.selectOne(vehicleIdx));
-//		mv.setViewName("reservation/details");
-		Map<String, Object> result = new HashMap<String,Object>();		
-		
-		result.put("review",rService.selectOne(vehicleIdx));
-		
-		return new Gson().toJson(result);
-//		return mv;
-	}
+//	@GetMapping("/getReview")
+//	public String getReview(ModelAndView mv, String vehicleIdx) {
+////		mv.addObject("review",rService.selectOne(vehicleIdx));
+////		mv.setViewName("reservation/details");
+//		Map<String, Object> result = new HashMap<String,Object>();		
+//		
+//		result.put("review",rService.selectOne(vehicleIdx));
+//		
+//		return new Gson().toJson(result);
+////		return mv;
+//	}
 	
 	@PostMapping("/postReview")
 	public int insertReview(@RequestBody ReviewDto data) {

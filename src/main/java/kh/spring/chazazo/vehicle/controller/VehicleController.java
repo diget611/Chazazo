@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,6 +20,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.google.gson.Gson;
 
 import kh.spring.chazazo.member.model.service.MemberService;
+import kh.spring.chazazo.review.model.dto.ReviewDto;
 import kh.spring.chazazo.review.model.service.ReviewService;
 import kh.spring.chazazo.vehicle.model.service.VehicleService;
 
@@ -48,7 +50,7 @@ public class VehicleController {
 	
 	
 	@GetMapping("/carlist/{idx}")
-	public ModelAndView viewVehicle(ModelAndView mv, @PathVariable String idx, Principal prin) {
+	public ModelAndView viewVehicle(ModelAndView mv, @PathVariable String idx, Principal prin, HttpSession session) {
 		int index = Integer.parseInt(idx);
 		// 차량 정보랑 리뷰랑 동시에
 		if(prin == null) {
@@ -60,7 +62,10 @@ public class VehicleController {
 		Map<String, Object> result = new HashMap<String,Object>();
 		mv.addObject("car", vService.getVehicleInfo(index));
 		mv.addObject("option", vService.getOptionInfo(index));
-;
+		List<ReviewDto> rList= rService.selectOne(index);
+		
+		session.setAttribute("vehicleIdx", index);
+		mv.addObject("rList",rList);
 		mv.setViewName("reservation/details");
 		
 		return mv;

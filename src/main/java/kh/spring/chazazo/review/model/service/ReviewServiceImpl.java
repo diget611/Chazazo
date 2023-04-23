@@ -37,7 +37,7 @@ public class ReviewServiceImpl implements ReviewService{
 	}
 
 	@Override
-	public List<ReviewDto> selectOne(String vehicleIdx) {
+	public List<ReviewDto> selectOne(int vehicleIdx) {
 		return dao.selectOne(vehicleIdx);
 	}
 

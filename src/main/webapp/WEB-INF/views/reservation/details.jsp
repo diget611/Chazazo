@@ -56,29 +56,13 @@
 		<div class="content-area single-property" style="background-color: #FCFCFC;">
 			<div class="container">
 				<div class="clearfix padding-top-40">
-						<div class="col-md-8 single-property-content">
-					<!-- 좌측 컨텐츠 -->
-					<div id="content">
-					</div>
-					<div>
-	  						<label >아이디</label>
-	  					
-	
-	  						<label >리뷰를 등록하세요</label>
-	 						 <input type="text" name="reviewcontent" ></input>
-	   						<button type="button" id="reviewbtn">등록하기</button>
-  </div>
-					</div>
-										<table>
-											<tr>
-												<th scope="row">아이디</th><br>
-												<th scope="row">리뷰</th>
-		
-											</tr>
-											<tr>
-											</tr>	
-										</table>
+					<div class="col-md-8 single-property-content">
+							<!-- 좌측 컨텐츠 -->
+							<div id="content">
+							</div>
 					
+
+					</div>
 					
 						<!-- 우측 카테고리 시작 -->
 						<!-- 날짜 선택 시작 -->
@@ -186,7 +170,6 @@
 	//페이지 로드 시 대여,반납일을 오늘로 설정
 	window.onload = function reset() {
 		getcarInfo();
-		getReview();
 		$('input[name=daycount]').attr('value','1');
 		$('#rentPrice').attr('value',price);
 		$("#addIns").attr('value','0' );
@@ -196,56 +179,7 @@
 	    $('#insSection').hide();
 
 	}
-	
 
-
-	function getReview(){
-		var vehicleIdx = $('[name=caridx]').val();
-		  $.ajax({
-	            url: '<%=request.getContextPath()%>/getReview',
-	            data: {
-	            	"vehicleIdx":vehicleIdx
-	            },
-	            type: 'get',
-	            dataType:'json',
-	            success: function(result) {
-	            	getcarInfo();
-	            },
-	            error: function() {
-	            	alert('리뷰 실패')
-	            }
-	         });
-	}
-	//리뷰 등록
-	$('#reviewbtn').on('click', function(){
-		postReview();
-		
-	});
-		
-		function postReview() {
-			var content = $('[name=reviewcontent]').val()
-			var name = $('[name=userid]').val();
-			var vehicleIdx = $('[name=caridx]').val();
-			console.log("리뷰뷰뷰뷰"+name+content);
-			var data ={
-					"vehicleIdx":vehicleIdx,
-					"name": name,
-					"content" : content
-			}
-			  $.ajax({
-		          url:'<%=request.getContextPath()%>/postReview',
-		          contentType: 'application/json; charset=utf-8',
-		          type: 'post',
-		          dataType:'json',
-		          data: JSON.stringify(data),
-		          success: function(result) {
-		        	  getcarInfo(result);
-		          },
-		          error: function() {
-		          	alert('리뷰 등록 실패');
-		          }
-		       });
-		}
 		
 		
 		
@@ -444,7 +378,24 @@
 				html +=	'		<!-- 리뷰 영역 시작 -->'
 				html +=	'		<div class="section">'
 				html +=	'			<h4 class="s-property-title">리뷰</h4>'
-				html +=	'			<h4 >############ ${review.content}</h4>'
+				html +=	'			<table>'
+				html += '						<input type="hidden" id="userid"  value="'+ result.info.idx+'" >'
+				html +=	'					<tr>'
+				html +=	'						<td width="100">아이디</td>'
+				html +=	'						<td>리뷰내용</td>'
+				html +=	'					</tr>'
+				html +=	'				<c:forEach items="${rList }" var="review" varStatus="i">'
+				html +=	'					<tr>'
+				html +=	'						<td width="100">${review.name}</td>'
+				html +=	'						<td>${review.content}</td>'
+				html +=	'					</tr>'
+				html +=	'				</c:forEach>'
+				html +=	'			</table>'
+				html +=	'		<div>'
+				html +=	'			<label >리뷰를 등록하세요</label>'
+				html +=	'				 <input type="text" name="reviewcontent" style=" border:4px solid #4ea0d8;" ></input>'
+				html +=	'			<button type="button" id="reviewbtn" onclick="postReview()">등록하기</button>'
+				html +=	'		</div>'
 				html +=	'		<div class="s-property-content">'
 				html +=	'			<p>Nulla quis dapibus nisl. Suspendisse ultricies Nulla quis dapibus nisl. Suspendisse ultricies commodo arcu nec pretium. Nullam sed arcu ultricies commodo arcu nec pretium. Nullam sed arcu ultricies Nulla quis dapibus nisl. Suspendisse ultricies commodo arcu nec pretium. Nullam sed arcu ultricies Nulla quis dapibus nisl. Suspendisse ultricies commodo arcu nec pretium. Nullam sed arcu ultricies </p>'
 				html +=	'		</div>'
@@ -458,6 +409,31 @@
 				}
 
 	
+	//리뷰 등록		
+		function postReview() {
+			var content = $('[name=reviewcontent]').val()
+			var name = $('[name=useridx]').val();
+			var vehicleIdx = $('[name=caridx]').val();
+			console.log("리뷰뷰뷰뷰"+name+content);
+			var data ={
+					"vehicleIdx":vehicleIdx,
+					"name": name,
+					"content" : content
+			}
+			  $.ajax({
+		          url:'<%=request.getContextPath()%>/postReview',
+		          contentType: 'application/json; charset=utf-8',
+		          type: 'post',
+		          dataType:'json',
+		          data: JSON.stringify(data),
+		          success: function(result) {
+		        	  alert('리뷰가 등록되었습니다')
+		          },
+		          error: function() {
+		          	alert('리뷰 등록 실패');
+		          }
+		       });
+		}
 	//결제하기 눌렀을때 정보 입력창
 	function getPayinfo(result) {
 		var html ='';

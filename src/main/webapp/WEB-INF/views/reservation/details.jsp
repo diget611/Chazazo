@@ -72,13 +72,11 @@
 									</tr>
 								<c:forEach items="${rList }" var="review" varStatus="i">
 									<tr>
-										<td><input type="hidden" id="reviewIdx" value="${review.idx }" ></td>
+										<td><input type="hidden" id="reviewIdx" value="${review.idx }"></td>
 										<td width="100" id="reviewIdx">${review.idx}</td>
 										<td width="100">${review.name}</td>
 										<td width="100">${review.content}</td>
-										<td><input class="likebtn" type="button" id="like${review.idx}" name="like${review.idx}" value="좋아요"> ${review.recommend}
-										<input type="hidden" value="${review.idx}" name="reviewidx" id="reviewidx">
-										<input type="hidden" value="${review.recommend}" name="recommend" id="recommend"></td>
+										<td><input data-idx="${review.idx}" data-recommend="${review.recommend}" class="likebtn" type="button" id="like${review.idx}" name="like${review.idx}" value="좋아요">${review.recommend}</td>
 									</tr>
 								</c:forEach>
 							</table>
@@ -166,6 +164,35 @@
 
 
 <script type="text/javascript">
+
+//좋아요
+ $('.likebtn').click(function(){
+	var reviewidx = $(this).data("idx");
+	var recommend = $(this).data("recommend");
+	recommend++;
+	alert(typeof reviewidx +reviewidx);
+	
+	console.log("좋아요"+ reviewidx +"!!!"+recommend);
+	var data= {
+		idx : reviewidx,
+		recommend :recommend
+	}
+	$.ajax({
+		url:'<%=request.getContextPath()%>/insertLike',
+         type: 'post',
+	     data: data,
+//	     data: JSON.stringify(data),
+//		 contentType: 'application/json; charset=utf-8',
+	     //dataType:'json',
+         success: function(result) {
+        	  location.reload();
+          },
+          error: function() {
+          	alert('좋아요 등록 실패');
+          }
+	});		
+});
+
 	$('.main-nav').children().eq(0).children().css('color', '#18B4E9')
 	
      //대여,반납일 날짜 초기설정
@@ -464,32 +491,7 @@
 		}
 	
 	
-	//좋아요
-	 $('.likebtn').click(function(){
-		var reviewidx = $(this).next().val();
-		var recommend = $(this).next().next().val();
-		recommend++;
-		alert(typeof reviewidx +reviewidx);
-		
-		console.log("좋아요"+ reviewIdx +"!!!"+recommend);
-		var data= {
-			"idx" : reviewIdx,
-			"recommend" :recommend
-		}
-		$.ajax({
-			url:'<%=request.getContextPath()%>/insertLike',
-			 contentType: 'application/json; charset=utf-8',
-	         type: 'post',
-	         dataType:'json',
-		     data: JSON.stringify(data),
-	         success: function(result) {
-	        	  location.reload();
-	          },
-	          error: function() {
-	          	alert('좋아요 등록 실패');
-	          }
-		});		
-	});
+	
 	
 	
 	//결제하기 눌렀을때 정보 입력창

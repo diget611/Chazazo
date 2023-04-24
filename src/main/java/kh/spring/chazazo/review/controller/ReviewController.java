@@ -48,7 +48,7 @@ public class ReviewController {
 	}
 	
 	@PostMapping("/insertLike") 
-	public int insertLike(@RequestBody ReviewDto data) {
+	public int insertLike(ReviewDto data) {
 		System.out.println("dataaaaaaaaa" + data);
 		int result = rService.insertLike(data);
 		return result;

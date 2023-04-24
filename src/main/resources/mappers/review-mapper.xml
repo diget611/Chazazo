@@ -7,7 +7,7 @@
 	<select id="selectOne" resultType="reviewDto">
 		SELECT * FROM review r
 		left outer join member_info m
-		on r.member_idx = m.idx
+		using(idx)
 		 where VEHICLE_IDX=#{vehicleIdx} 
 	</select>
 	<insert id="insert">

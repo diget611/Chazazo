@@ -15,12 +15,13 @@ import lombok.ToString;
 @Getter
 public class ReviewDto {
 	
-//	private int idx;
+	private int idx;
+	private int memberIdx;
 	private String name;
 	private String content;
-//	private Date createdate;
-//	private int recommend;
-//	private int score;
+	private Date createdate;
+	private int recommend;
+	private int score;
 	private int vehicleIdx;
 	
 }

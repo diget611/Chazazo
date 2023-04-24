@@ -37,6 +37,15 @@
 <script src="<%=request.getContextPath()%>/resources/garoestate/assets/js/price-range.js"></script>
 <script src="<%=request.getContextPath()%>/resources/garoestate/assets/js/main.js"></script>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/main.css">
+
+<style>
+	@media (min-width: 992px) {
+		.col-md-3.p0.padding-top-40 {
+			position: sticky;
+			top: 100px;
+		}
+	}
+</style>
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/base/header.jsp"/>

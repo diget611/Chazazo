@@ -35,6 +35,11 @@
 <script src="<%=request.getContextPath()%>/resources/garoestate/assets/js/price-range.js"></script>
 <script src="<%=request.getContextPath()%>/resources/garoestate/assets/js/main.js"></script>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/main.css">
+<style>
+	.category {
+		cursor: pointer;
+	}
+</style>
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/base/header.jsp"/>
@@ -102,6 +107,8 @@
 	<jsp:include page="/WEB-INF/views/base/footer.jsp"/>
 	
 	<script>
+		$('.main-nav').children(0).eq(4).children().css('color', '#18B4E9');
+	
 		$('#mainBtn').on('click', function() {
 			location.href="${pageContext.request.contextPath}/inquiry"
 		})
@@ -109,6 +116,11 @@
 		$('#requestBtn').on('click', function() {
 			location.href="${pageContext.request.contextPath}/request";
 		})
+		
+		$('.category').on('click', function() {
+			$('.category').parent().removeAttr('class');
+			$(this).parent().attr('class', 'active');
+		});
 		
 		window.onload = loadPage();
 		$('#search').on('input', loadPage);

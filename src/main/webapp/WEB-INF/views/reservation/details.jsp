@@ -166,6 +166,8 @@
 
 
 <script type="text/javascript">
+	$('.main-nav').children().eq(0).children().css('color', '#18B4E9')
+	
      //대여,반납일 날짜 초기설정
 	 document.getElementById('startDate').valueAsDate = new Date();
 	 document.getElementById('endDate').valueAsDate = new Date(); 

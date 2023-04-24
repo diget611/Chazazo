@@ -34,10 +34,7 @@
 	<div class="container-xxl position-relative bg-white d-flex p-0">
 		<jsp:include page="/WEB-INF/views/admin/base/sidebar.jsp"/>
 		<div class="content">
-			<jsp:include page="/WEB-INF/views/admin/base/navbar.jsp"/>
-			<div>
-				<button type="button" class="button" id="testBtn">ddddd</button>
-			</div>	
+			<jsp:include page="/WEB-INF/views/admin/base/navbar.jsp"/>	
 			<div class="container-fluid pt-4 px-4">
 				<div class="bg-light text-center rounded p-4">
 					<div class="d-flex align-items-center justify-content-between mb-4">
@@ -78,9 +75,6 @@
 						</table>
 					</div>
 				</div>
-			</div>
-			<div>
-				${testList }
 			</div>
 			<div class="container-fluid pt-4 px-4">
 				<div class="row g-4">
@@ -160,6 +154,8 @@
 <script src="<%=request.getContextPath()%>/resources/dashmin/js/main.js"></script>
 
 <script>
+	console.log(${testList})
+	
 	$('.day').on('click', function(){
 		console.log(this);
 	})

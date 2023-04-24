@@ -1,15 +1,17 @@
 package kh.spring.chazazo.event.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 @RestController
+@RequestMapping("/event")
 public class EventController {
 	
-	@GetMapping("/event")
+	@GetMapping("")
 	public ModelAndView viewEventList(ModelAndView mv) {
-		// 이벤트 리스트 조회
+		mv.setViewName("event/event");
 		return mv;
 	}
 	

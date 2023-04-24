@@ -182,7 +182,7 @@
 	
 
 	<script>
-	
+	$('.main-nav').children().eq(0).children().css('color', '#18B4E9')
 	
 
 	//cartype: 전체 선택 체크박스가 변경되었을때	

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="inquiry">
+	<select id="selectList" parameterType="map" resultType="inquiryRespDto">
+		SELECT * FROM INQUIRY
+		<trim prefix="where">
+			<if test="categoryIdx != null">
+				CATEGORY_IDX = #{categoryIdx}
+			</if>
+			<if test="searchWord != null">
+				TITLE LIKE '%' || #{searchWord} || '%' OR CONTENT LIKE '%' || #{searchWord} || '%' 
+			</if>
+		</trim>
+	</select>
+</mapper>

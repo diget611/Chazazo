@@ -1,64 +1,43 @@
 package kh.spring.chazazo.inquiry.controller;
 
+import java.util.List;
+import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.google.gson.Gson;
+
+import kh.spring.chazazo.inquiry.model.dto.InquiryRespDto;
+import kh.spring.chazazo.inquiry.model.service.InquiryService;
 
 
 @RestController
 @RequestMapping("/inquiry")
 public class InquiryController {
-	
+
+	@Autowired
+	private InquiryService iService;
 	
 	@GetMapping("")
 	public ModelAndView viewInquiry(ModelAndView mv) {
-		// 문의 페이지 조회
 		mv.setViewName("inquiry/inquiry");
 		return mv;
+	}
+	
+	@GetMapping("/pageload")
+	public String pageLoad(ModelAndView mv, @RequestParam(required = false) Map<String, String> data){
+		List<InquiryRespDto> result = iService.selectList(data);
+		return new Gson().toJson(result);
 	}
 	
 	@GetMapping("/{searchword}")
 	public ModelAndView searchInquiry(ModelAndView mv) {
 		// 문의 검색 조회
-		return mv;
-	}
-	
-	@GetMapping("/{idx}")
-	public ModelAndView viewInquiryOne(ModelAndView mv) {
-		// 문의 상세 조회
-		return mv;
-	}
-	
-
-
-	// 관리자
-	public ModelAndView viewInsertInquiry(ModelAndView mv) {
-		// 문의 작성 페이지 조회
-		return mv;
-	}
-
-	// 관리자
-	public ModelAndView insertInquiry(ModelAndView mv) {
-		// 문의 작성
-		return mv;
-	}
-
-	// 관리자
-	public ModelAndView viewUpdateInquiry(ModelAndView mv) {
-		// 문의 수정 페이지 조회
-		return mv;
-	}
-
-	// 관리자
-	public ModelAndView updateInquiry(ModelAndView mv) {
-		// 문의 수정
-		return mv;
-	}
-
-	// 관리자
-	public ModelAndView deleteInquiry(ModelAndView mv) {
-		// 문의 삭제
 		return mv;
 	}
 

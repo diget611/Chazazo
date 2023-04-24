@@ -60,32 +60,30 @@
 						</div>
 					</div>   
 					<div class="blog-lst col-md-9 p0">
-						<section id="id-100" class="post single">
+						<section id="id-100" class="post single" style="margin-bottom: 0px;">
 							<div class="panel panel-default sidebar-menu wow  fadeInRight animated animated" style="visibility: visible; animation-name: fadeInRight;">
 								<div class="panel-heading">
 									<h3 class="panel-title">진행중인 이벤트</h3>
 								</div>
 							</div>
-							<div class="section" style="display: inline-block; margin-bottom: -10px;"> 
-								<div class="page-subheader sorting pl0 pr-10">
-									<ul class="sort-by-list pull-left">
-										<li class="active" style="width: 50px; text-align: center;">
-											<a class="category">전체</a>
-										</li>
-										<li style="width: 50px; text-align: center;">
-											<a class="category" id="1">1번</a>
-										</li>
-										<li style="width: 50px; text-align: center;">
-											<a class="category" id="2">2번</a>
-										</li>
-										<li style="width: 50px; text-align: center;">
-											<a class="category" id="3">3번</a>
-										</li>
-									</ul>
-								</div>
-							</div>
 							<div class="feat-list">
-								<div class="panel-group"></div>
+								<div class="panel-group">
+									<div class="panel panel-default">
+										<img src="https://dummyimage.com/700x150/18B4E9/fff" alt="없어">
+									</div>
+									<div class="panel panel-default">
+										<img src="https://dummyimage.com/700x150/18B4E9/fff" alt="없어">
+									</div>
+									<div class="panel panel-default">
+										<img src="https://dummyimage.com/700x150/18B4E9/fff" alt="없어">
+									</div>
+									<div class="panel panel-default">
+										<img src="https://dummyimage.com/700x150/18B4E9/fff" alt="없어">
+									</div>
+									<div class="panel panel-default">
+										<img src="https://dummyimage.com/700x150/18B4E9/fff" alt="없어">
+									</div>
+								</div>
 							</div>
 						</section>	
 					</div>                    

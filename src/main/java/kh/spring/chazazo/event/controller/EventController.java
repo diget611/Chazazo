@@ -12,6 +12,7 @@ public class EventController {
 	@GetMapping("")
 	public ModelAndView viewEventList(ModelAndView mv) {
 		mv.setViewName("event/event");
+		// TODO: 진행/종료 페이지는 AJAX 이동
 		return mv;
 	}
 	

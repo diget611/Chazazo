@@ -12,5 +12,6 @@ public interface ReviewService {
 
 	public List<ReviewDto> selectList();
 	public List<ReviewDto> selectOne(int vehicleIdx);
+	public int insertLike(ReviewDto dto);
 	
 }

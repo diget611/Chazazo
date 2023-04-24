@@ -40,12 +40,12 @@
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/base/header.jsp"/>
-	<div class="properties-area recent-property" style="background-color: #FFF;">
+	<div class="properties-area recent-property" style="background-color: #FCFCFC;">
 		<div class="container">  
 			<div class="row">
 				<!-- left 카테고리 시작 -->
 				<div class="col-md-3 p0 padding-top-40">
-					<div class="blog-asside-right pr0">
+					<div class="blog-asside-right">
 						<div class="panel panel-default sidebar-menu wow fadeInRight animated" >
 							<div class="panel-heading">
 								<h3 class="panel-title">카테고리</h3>
@@ -53,9 +53,6 @@
 							<div class="form-group" style="margin-bottom:50px">
 								<h5>차량 모델</h5>
 								<input type="text" id="inputword" class="form-control" placeholder="차량 모델명을 입력하세요" value="">
-								<button class="btn search-btn" id="searchbtn" type="submit">
-									<i class="fa fa-search"></i>
-								</button>
 							</div>
 							<div class="panel-body search-widget">
 								<form action="" class=" form-inline"> 
@@ -63,32 +60,32 @@
 									<h5>차량등급</h5>
 										<div class="row">
 											<input type="hidden" name="typeChk">
-											<div class="col-xs-4">
+											<div class="col-xs-4" style="padding-right: 5px;">
 												<div class="checkbox">
 													<label><input type="checkbox" id="alltype"   value="all" checked> 전체</label>
 												</div> 
 											</div>
-											<div class="col-xs-4">
+											<div class="col-xs-4" style="padding-right: 5px;">
 												<div class="checkbox">
 													<label><input type="checkbox" name="cartypeIdx" value="1"> 경차</label>
 												</div>
 											</div>   
-											<div class="col-xs-4">
+											<div class="col-xs-4" style="padding-right: 5px;">
 												<div class="checkbox">
 													<label><input type="checkbox" name="cartypeIdx" value="2"> 소형</label>
 												</div>
 											</div>   
-											<div class="col-xs-4">
+											<div class="col-xs-4" style="padding-right: 5px;">
 												<div class="checkbox">
 													<label><input type="checkbox" name="cartypeIdx" value="3"> 중형</label>
 												</div>
 											</div>    
-											<div class="col-xs-4">
+											<div class="col-xs-4" style="padding-right: 5px;">
 												<div class="checkbox">
 													<label><input type="checkbox" name="cartypeIdx" value="4"> 대형</label>
 												</div>
 											</div>     
-											<div class="col-xs-4">
+											<div class="col-xs-4" style="padding-right: 5px;">
 												<div class="checkbox">
 													<label><input type="checkbox" name="cartypeIdx" value="5"> 수입</label>
 												</div>
@@ -140,7 +137,7 @@
                 <!-- left 카테고리 끝 -->
 
 				<!-- 본문 컨텐츠 시작-->
-				<div class="col-md-9  pr0 padding-top-40 properties-page">
+				<div class="col-md-9 padding-top-40 properties-page">
 					<div class="col-md-12 clear"> 
 						<div class="col-xs-10 page-subheader sorting pl0">
 							<ul class="sort-by-list">
@@ -218,9 +215,7 @@
 	})
 	
 	
-	$('#searchbtn').on('click',function(){
-		paging();
-	});
+	$('#inputword').on('input', paging);
 	//fueltype: 전체 선택 체크박스가 변경되었을때	
 	$('#allfuel').on('ifChanged',function(){
 		//전체가 체크되면 다른 체크박스 해제

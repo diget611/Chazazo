@@ -11,6 +11,7 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 
+@NoArgsConstructor
 @Component
 @Getter
 public class ReviewDto {

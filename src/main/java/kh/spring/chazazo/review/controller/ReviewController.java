@@ -7,6 +7,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -46,8 +47,17 @@ public class ReviewController {
 		return result;
 	}
 	
+	@PostMapping("/insertLike") 
+	public int insertLike(@RequestBody ReviewDto data) {
+		System.out.println("dataaaaaaaaa" + data);
+		int result = rService.insertLike(data);
+		return result;
+	}
 	@DeleteMapping("/carlist/{vehicleIdx}/remove")
 	public ModelAndView deleteReview(ModelAndView mv) {
 		return mv;
 	}
+	
+	
+	
 }

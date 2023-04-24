@@ -64,15 +64,21 @@
 							<div>
 							<table>
 									<tr>
+										<td ></td>
 										<td width="100">idx</td>
 										<td width="100">닉네임</td>
-										<td>리뷰내용</td>
+										<td width="100">리뷰내용</td>
+										<td></td>
 									</tr>
 								<c:forEach items="${rList }" var="review" varStatus="i">
 									<tr>
-										<td width="100">${review.idx}</td>
+										<td><input type="hidden" id="reviewIdx" value="${review.idx }" ></td>
+										<td width="100" id="reviewIdx">${review.idx}</td>
 										<td width="100">${review.name}</td>
-										<td>${review.content}</td>
+										<td width="100">${review.content}</td>
+										<td><input class="likebtn" type="button" id="like${review.idx}" name="like${review.idx}" value="좋아요"> ${review.recommend}
+										<input type="hidden" value="${review.idx}" name="reviewidx" id="reviewidx">
+										<input type="hidden" value="${review.recommend}" name="recommend" id="recommend"></td>
 									</tr>
 								</c:forEach>
 							</table>
@@ -400,7 +406,7 @@
 				html +=	'		<!-- 리뷰 영역 시작 -->'
 				html +=	'		<div class="section">'
 				html +=	'			<h4 class="s-property-title">리뷰</h4>'
-				html +=	'			<table>'
+				html +=	'			<table class="table review">'
 				html +=	'				<tr>'
 				html +=	'					<td width="100">아이디</td>'
 				html +=	'					<td>리뷰내용</td>'
@@ -454,6 +460,36 @@
 		          }
 		       });
 		}
+	
+	
+	//좋아요
+	 $('.likebtn').click(function(){
+		var reviewidx = $(this).next().val();
+		var recommend = $(this).next().next().val();
+		recommend++;
+		alert(typeof reviewidx +reviewidx);
+		
+		console.log("좋아요"+ reviewIdx +"!!!"+recommend);
+		var data= {
+			"idx" : reviewIdx,
+			"recommend" :recommend
+		}
+		$.ajax({
+			url:'<%=request.getContextPath()%>/insertLike',
+			 contentType: 'application/json; charset=utf-8',
+	         type: 'post',
+	         dataType:'json',
+		     data: JSON.stringify(data),
+	         success: function(result) {
+	        	  location.reload();
+	          },
+	          error: function() {
+	          	alert('좋아요 등록 실패');
+	          }
+		});		
+	});
+	
+	
 	//결제하기 눌렀을때 정보 입력창
 	function getPayinfo(result) {
 		var html ='';

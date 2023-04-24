@@ -14,6 +14,9 @@
 		INSERT INTO REVIEW(IDX,MEMBER_IDX,CONTENT,CREATE_DATE,RECOMMEND,SCORE,VEHICLE_IDX) 
 					VALUES(REVIEW_SEQ.NEXTVAL, #{memberIdx},  #{content}, DEFAULT, DEFAULT, 3.5, #{vehicleIdx})
 	</insert>
+	<insert id="inserLike">
+		UPDATE REVIEW SET recommend =#{recommend} WHERE IDX ={idx}
+	</insert>
 	<update id="update">
 		UPDATE MEMBER SET IDX = #{idx}, vehicleIdx = #{vehicleIdx}, content = #{content} WHERE IDX = #{idx}
 	</update>

@@ -58,17 +58,19 @@
 				<div class="clearfix padding-top-40">
 					<div class="col-md-8 single-property-content">
 							<!-- 좌측 컨텐츠 -->
-							<input type="text" id="useridx"  value="${info.name }" >
+							<input type="text" id="useridx"  value="${info.idx }" >
 							<div id="content">
 							</div>
 							<div>
 							<table>
 									<tr>
-										<td width="100">아이디</td>
+										<td width="100">idx</td>
+										<td width="100">닉네임</td>
 										<td>리뷰내용</td>
 									</tr>
 								<c:forEach items="${rList }" var="review" varStatus="i">
 									<tr>
+										<td width="100">${review.idx}</td>
 										<td width="100">${review.name}</td>
 										<td>${review.content}</td>
 									</tr>
@@ -428,13 +430,13 @@
 	//리뷰 등록		
 		function postReview() {
 			var content = $('[name=reviewcontent]').val()
-			var name = $('[name=useridx]').val();
+			var memberIdx = $('#useridx').val();
 			var vehicleIdx = $('[name=caridx]').val();
-			console.log("리뷰뷰뷰뷰"+name+content);
+			console.log("리뷰뷰뷰뷰"+memberIdx+"$$"+vehicleIdx+content);
 
 			var data ={
 					"vehicleIdx":vehicleIdx,
-					"name": name,
+					"memberIdx": memberIdx,
 					"content" : content
 			}
 			  $.ajax({
@@ -507,12 +509,12 @@
 		html += '		<div class="form-group">';
 		html += '					<h6 style="text-align:center">운전자 정보 </h6>';
 		html += '						<input type="hidden" id="useridx"  value="'+ result.info.idx+'" >'
-		html += '						<label class="small">이름</label>  <input type="text" id="name" name ="name" class="form-control"  value="'+ result.info.name+'" readolny>';
-		html += '						<label class="small">생년월일</label>  <input type="text" id="birth" name="birth" class="form-control" value="'+ result.info.birth+'" readolny>';
-		html += '						<label class="small">휴대폰 번호</label>  <input type="text"  id="phone" name="phoneNumber" class="form-control"  value="'+ result.info.phoneNumber+'" readolny>';
-		html += '						<label class="small">운전 면허 번호</label>  <input type="text"  id="license" name="license" class="form-control"  value="'+ result.info.license+'"readolny >';
-		html += '						<label class="small">이메일</label>  <input type="text"  id="mail" name="email"class="form-control"  value="'+ result.info.email+'" readolny>';
-		html += '						<div class="selectbox "><label class="small">반납지점 선택</label><br> <select class="select " name="returnSelect" id="returnSelect" onchange="calc()">';
+		html += '						<label class="small">이름</label>  <div> <input type="text" id="name" name ="name" class="form-control"  value="'+ result.info.name+'" readonly> </div>';
+		html += '						<label class="small">생년월일</label>  <div> <input type="text" id="birth" name="birth" class="form-control" value="'+ result.info.birth+'" readonly> </div>';
+		html += '						<label class="small">휴대폰 번호</label> <div> <input type="text"  id="phone" name="phoneNumber" class="form-control"  value="'+ result.info.phoneNumber+'" readonly> </div>';
+		html += '						<label class="small">운전 면허 번호</label>  <div><input type="text"  id="license" name="license" class="form-control"  value="'+ result.info.license+'"readonly > </div>';
+		html += '						<label class="small">이메일</label>  <div> <input type="text"  id="mail" name="email"class="form-control"  value="'+ result.info.email+'" readonly> </div>';
+		html += '						<div class="selectbox "><label class="small">반납지점 선택</label><br> <select class="select " name="returnSelect" id="returnSelect" onchange="calc()"> </div>';
 		html += '	 					  	  <option value="1">강남점</option>';
 		html += '	 						  <option value="2">용산점</option>';
 		html += '							  <option value="3">수원점</option>';

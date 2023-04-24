@@ -58,6 +58,7 @@
 				<div class="clearfix padding-top-40">
 					<div class="col-md-8 single-property-content">
 							<!-- 좌측 컨텐츠 -->
+							<input type="text" id="useridx"  value="${info.name }" >
 							<div id="content">
 							</div>
 							<div>
@@ -179,7 +180,7 @@
      document.getElementById("endDate").setAttribute("min", today);
      
 	
-	//페이지 로드 시 대여,반납일을 오늘로 설정
+	//페이지 로드 시 초기 설정 설정
 	window.onload = function reset() {
 		getcarInfo();
 		$('input[name=daycount]').attr('value','1');
@@ -189,6 +190,13 @@
 		$("#addreturn").attr('value', '0') ;
 	    $('#returnSection').hide();
 	    $('#insSection').hide();
+	    //비회원일 경우 리뷰 입력 숨기기
+		var name = $('#useridx').val();
+		if(name !==''){
+			$('#insertReview').show();
+		} else {
+			$('#insertReview').hide();
+		}
 
 	}
 
@@ -390,8 +398,19 @@
 				html +=	'		<!-- 리뷰 영역 시작 -->'
 				html +=	'		<div class="section">'
 				html +=	'			<h4 class="s-property-title">리뷰</h4>'
-
-				html +=	'		<div>'
+				html +=	'			<table>'
+				html +=	'				<tr>'
+				html +=	'					<td width="100">아이디</td>'
+				html +=	'					<td>리뷰내용</td>'
+				html +=	'				</tr>'
+				html +=	'			<c:forEach items="${rList }" var="review" varStatus="i">'
+				html +=	'				<tr>'
+				html +=	'					<td width="100">${review.name}</td>'
+				html +=	'					<td>${review.content}</td>'
+				html +=	'				</tr>'
+				html +=	'			</c:forEach>'
+				html +=	'		</table>'
+				html +=	'		<div id="insertReview">'
 				html +=	'			<label >리뷰를 등록하세요</label>'
 				html +=	'				 <input type="text" name="reviewcontent" style=" border:4px solid #4ea0d8;" ></input>'
 				html +=	'			<button type="button" id="reviewbtn" onclick="postReview()">등록하기</button>'
@@ -399,7 +418,7 @@
 				html +=	'	</div>'
 				html +=	'	<!-- 리뷰 영역 끝 -->'
 				html +=	'	<!-- End features area  -->'
-				html +=	'</div>'
+				html +=	'	</div>'
 				html +=' </div>'
 				$('#content').html(html);
 				getMap();
@@ -412,6 +431,7 @@
 			var name = $('[name=useridx]').val();
 			var vehicleIdx = $('[name=caridx]').val();
 			console.log("리뷰뷰뷰뷰"+name+content);
+
 			var data ={
 					"vehicleIdx":vehicleIdx,
 					"name": name,
@@ -425,6 +445,7 @@
 		          data: JSON.stringify(data),
 		          success: function(result) {
 		        	  alert('리뷰가 등록되었습니다')
+		        	  location.reload();
 		          },
 		          error: function() {
 		          	alert('리뷰 등록 실패');
@@ -473,7 +494,6 @@
 		html += '<section>'
 		html += '	<div style="text-align:center">';
 		html += '		<h2>결제 정보</h2>';
-		html += '		<h2>infoooooooo: ${info.name}</h2>';
 		html += '	</div>';
 		html += '	<div style="overflow: hidden;">';
 		html += '		<div class="blog-asside-right col-md-12" style="padding: 80px;" >';

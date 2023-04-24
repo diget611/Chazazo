@@ -81,6 +81,8 @@
 	<jsp:include page="/WEB-INF/views/base/footer.jsp"/>
 	
 	<script>
+		$('.main-nav').children(0).eq(4).children().css('color', '#18B4E9');
+		
 		$('#mainBtn').on('click', function() {
 			location.href='${pageContext.request.contextPath}/inquiry';
 		});

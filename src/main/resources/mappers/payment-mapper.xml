@@ -55,14 +55,11 @@
 	<select id="count" resultType="_int">
 		SELECT COUNT(*) FROM PAYMENT
 	</select>
-	<select id="recentMonth" resultType="adminStatisticsRecentMonthDto">
+	<select id="recentMonth" parameterType="map" resultType="adminStatisticsRecentMonthDto">
 		SELECT *
-		  FROM (SELECT * 
-		          FROM (SELECT TO_CHAR(PAID_TIME, 'YYYY/MM') AS TIME, COUNT(*) AS COUNT, SUM(FINAL_PRICE) AS SUM
-                          FROM PAYMENT GROUP BY TO_CHAR(PAID_TIME, 'YYYY/MM')
-                         ORDER BY TIME DESC)
-                 WHERE ROWNUM BETWEEN 1 AND 3)
-         ORDER BY TIME
+          FROM (SELECT (SELECT NAME FROM LOCATION WHERE LOCATION.IDX = PAYMENT.RENT_LOCATION) AS NAME
+                     , EXTRACT(MONTH FROM PAID_TIME) AS PAID, FINAL_PRICE FROM PAYMENT)
+         PIVOT (SUM(FINAL_PRICE) FOR PAID IN (#{twomonth} AS TWO_MONTHS_AGO, #{onemonth} AS MONTH_AGO, #{now} AS NOW))
 	</select>
 	
 </mapper>

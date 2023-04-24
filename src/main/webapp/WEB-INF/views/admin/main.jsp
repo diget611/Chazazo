@@ -37,6 +37,7 @@
 			<jsp:include page="/WEB-INF/views/admin/base/navbar.jsp"/>	
 			<div class="container-fluid pt-4 px-4">
 				<div class="bg-light text-center rounded p-4">
+					<div>${locationList }</div>
 					<div class="d-flex align-items-center justify-content-between mb-4">
 						<h6 class="mb-0">최근 문의</h6>
 						<a href="<%=request.getContextPath()%>/admin/request">더보기</a>

@@ -14,8 +14,8 @@ import lombok.ToString;
 @ToString
 public class AdminStatisticsRecentMonthDto {
 	
-	private String time;
-	private int count;
-	private int sum;
+	private String now;
+	private int monthAgo;
+	private int twoMonthsAgo;
 	
 }

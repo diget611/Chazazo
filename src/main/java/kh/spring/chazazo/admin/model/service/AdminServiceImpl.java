@@ -21,9 +21,7 @@ import kh.spring.chazazo.admin.model.dto.AdminReservRespDto;
 import kh.spring.chazazo.admin.model.dto.AdminStatisticsRecentMonthDto;
 import kh.spring.chazazo.admin.model.dto.AdminVehicleOneRespDto;
 import kh.spring.chazazo.admin.model.dto.AdminVehicleRespDto;
-import kh.spring.chazazo.admin.model.dto.TestDto;
 import kh.spring.chazazo.common.Pagination;
-import kh.spring.chazazo.vehicle.model.dto.VehicleInfoDto;
 
 @Service
 public class AdminServiceImpl implements AdminService {
@@ -203,11 +201,9 @@ public class AdminServiceImpl implements AdminService {
 		return dao.reservCount();
 	}
 
-	
-	// 테스트용
 	@Override
-	public List<TestDto> testQuery() {
-		return dao.testQuery();
+	public List<String> selectLocNameList() {
+		return dao.selectLocNameList();
 	}
 
 }

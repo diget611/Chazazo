@@ -34,10 +34,40 @@ public class AdminController {
 		mv.addObject("requestList", aService.selectRequestList(data));
 		
 		// 메인페이지 차트
-		mv.addObject("recentMonth", new Gson().toJson(aService.recentMonth()));
+		// mv.addObject("recentMonth", new Gson().toJson(aService.recentMonth()));
+		Map<String, Integer> statData = new HashMap<String, Integer>();
+		data.put("twomonth", 2); data.put("onemonth", 3); data.put("now", 4);
 		
-		// 테스트
-		mv.addObject("testList", new Gson().toJson(aService.testQuery()));
+		mv.addObject("locationList", aService.selectLocNameList());
+		/*
+		 * SELECT NAME FROM LOCATION;
+		 * SELECT EXTRACT(MONTH FROM SYSDATE) FROM DUAL;
+		 * 
+		 * 지점명 뽑아서 넘기고
+		 * 오늘 기준 월 뽑아서 PIVOT IN에 사용 및 JSP 전달
+		 * PIVOT을 월 기준으로 해서 뽑으면 지점당 각 월 매출 나옴
+		 * 
+		 *  data: {
+            labels: ["2016", "2017", "2018", "2019", "2020", "2021", "2022"],
+            datasets: [{
+                    label: "USA",
+                    data: [15, 30, 55, 65, 60, 80, 95],
+                    backgroundColor: "rgba(0, 156, 255, .7)"
+                },
+                {
+                    label: "UK",
+                    data: [8, 35, 40, 60, 70, 55, 75],
+                    backgroundColor: "rgba(0, 156, 255, .5)"
+                },
+                {
+                    label: "AU",
+                    data: [12, 25, 45, 55, 65, 70, 60],
+                    backgroundColor: "rgba(0, 156, 255, .3)"
+                }
+            ]
+            }
+		 */
+		
 		mv.setViewName("admin/main");
 		
 		return mv;

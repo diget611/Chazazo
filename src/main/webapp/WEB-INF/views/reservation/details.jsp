@@ -61,25 +61,48 @@
 							<input type="text" id="useridx"  value="${info.idx }" >
 							<div id="content">
 							</div>
-							<div>
-							<table>
-									<tr>
-										<td ></td>
-										<td width="100">idx</td>
-										<td width="100">닉네임</td>
-										<td width="100">리뷰내용</td>
-										<td></td>
-									</tr>
-								<c:forEach items="${rList }" var="review" varStatus="i">
-									<tr>
-										<td><input type="hidden" id="reviewIdx" value="${review.idx }"></td>
-										<td width="100" id="reviewIdx">${review.idx}</td>
-										<td width="100">${review.name}</td>
-										<td width="100">${review.content}</td>
-										<td><input data-idx="${review.idx}" data-recommend="${review.recommend}" class="likebtn" type="button" id="like${review.idx}" name="like${review.idx}" value="좋아요">${review.recommend}</td>
-									</tr>
-								</c:forEach>
-							</table>
+							<div id="review" ">
+								<div style=" margin-top:450px;" >
+								
+									<h4 class="s-property-title" >리뷰</h4>
+									<table class="table review" width="100%">
+											<tr>
+												<td width="0"></td>
+												<td colspan='2' width="300" >닉네임</td>
+												<td width="300">리뷰내용</td>
+												<td width="50"></td>
+												<td width="30"></td>
+											</tr>
+										<c:forEach items="${rList }" var="review" varStatus="i">
+											<tr>
+												<td ><input type="hidden" id="reviewIdx" value="${review.idx }"></td>
+												<td colspan='2' >${review.name}</td>
+												<td >${review.content}</td>
+												<td ><input data-idx="${review.idx}" data-recommend="${review.recommend}" class="likebtn" type="button" id="like${review.idx}" name="like${review.idx}" value="좋아요" style="float:left;">${review.recommend}</td>
+												<td >${review.createdate}</td>
+											</tr>
+										</c:forEach>
+											<tr>
+											<td>
+											
+											</td>
+												<td colspan='2'>
+													<input type="text" >${info.name }
+												</td>
+												<td  colspan='2'>
+													<div id="insertReview" style="display: inline-block; ">	
+														 <input type="text" name="reviewcontent" style=" border:4px solid #4ea0d8; width:550px; padding-rigth:30px;" placeholder="리뷰 작성"  ></input>
+													</div>
+												</td>
+												<td>
+													<button type="button" id="reviewbtn" onclick="postReview()" style="margin-left:10px; " class="btn btn-default">등록하기</button>
+												</td>
+												<td>
+												</td>
+											</tr>
+											
+									</table>
+								</div>
 						 </div>
 					</div>
 					
@@ -169,10 +192,7 @@
  $('.likebtn').click(function(){
 	var reviewidx = $(this).data("idx");
 	var recommend = $(this).data("recommend");
-	recommend++;
-	alert(typeof reviewidx +reviewidx);
-	
-	console.log("좋아요"+ reviewidx +"!!!"+recommend);
+//	recommend++;
 	var data= {
 		idx : reviewidx,
 		recommend :recommend
@@ -180,7 +200,10 @@
 	$.ajax({
 		url:'<%=request.getContextPath()%>/insertLike',
          type: 'post',
-	     data: data,
+	     data: {
+	 		"idx" : reviewidx,
+			"recommend" :recommend
+		},
 //	     data: JSON.stringify(data),
 //		 contentType: 'application/json; charset=utf-8',
 	     //dataType:'json',
@@ -432,28 +455,6 @@
 				html +=	'	</div>  '
 				html +=	'	<!-- End additional-details area  -->'
 				html +=	'	<div class="section property-features">   '
-				html +=	'		<!-- 리뷰 영역 시작 -->'
-				html +=	'		<div class="section">'
-				html +=	'			<h4 class="s-property-title">리뷰</h4>'
-				html +=	'			<table class="table review">'
-				html +=	'				<tr>'
-				html +=	'					<td width="100">아이디</td>'
-				html +=	'					<td>리뷰내용</td>'
-				html +=	'				</tr>'
-				html +=	'			<c:forEach items="${rList }" var="review" varStatus="i">'
-				html +=	'				<tr>'
-				html +=	'					<td width="100">${review.name}</td>'
-				html +=	'					<td>${review.content}</td>'
-				html +=	'				</tr>'
-				html +=	'			</c:forEach>'
-				html +=	'		</table>'
-				html +=	'		<div id="insertReview">'
-				html +=	'			<label >리뷰를 등록하세요</label>'
-				html +=	'				 <input type="text" name="reviewcontent" style=" border:4px solid #4ea0d8;" ></input>'
-				html +=	'			<button type="button" id="reviewbtn" onclick="postReview()">등록하기</button>'
-				html +=	'		</div>'
-				html +=	'	</div>'
-				html +=	'	<!-- 리뷰 영역 끝 -->'
 				html +=	'	<!-- End features area  -->'
 				html +=	'	</div>'
 				html +=' </div>'

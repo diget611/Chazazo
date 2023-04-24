@@ -71,7 +71,7 @@ public class VehicleController {
 	}
 	
 
-	@GetMapping("/seachlist")
+	@GetMapping("/searchlist")
 	@ResponseBody
 	public String getList(ModelAndView mv, @RequestParam(required=false) String page
 			, @RequestParam(value="typeList[]", required=false) List<String> typeList

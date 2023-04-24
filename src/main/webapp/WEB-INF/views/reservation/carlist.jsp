@@ -302,7 +302,7 @@
         
 		
 		  $.ajax({
-	            url: "seachlist",
+	            url: "searchlist",
 	            data: selectList,
 	            type: 'get',
 	            dataType:'json',
@@ -343,7 +343,7 @@
          };
          
          $.ajax({
-            url: "seachlist",
+            url: "searchlist",
             data: 	selectList,
             type: 'get',
             dataType:'json',

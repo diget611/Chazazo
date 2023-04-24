@@ -60,8 +60,20 @@
 							<!-- 좌측 컨텐츠 -->
 							<div id="content">
 							</div>
-					
-
+							<div>
+							<table>
+									<tr>
+										<td width="100">아이디</td>
+										<td>리뷰내용</td>
+									</tr>
+								<c:forEach items="${rList }" var="review" varStatus="i">
+									<tr>
+										<td width="100">${review.name}</td>
+										<td>${review.content}</td>
+									</tr>
+								</c:forEach>
+							</table>
+						 </div>
 					</div>
 					
 						<!-- 우측 카테고리 시작 -->
@@ -378,26 +390,11 @@
 				html +=	'		<!-- 리뷰 영역 시작 -->'
 				html +=	'		<div class="section">'
 				html +=	'			<h4 class="s-property-title">리뷰</h4>'
-				html +=	'			<table>'
-				html += '						<input type="hidden" id="userid"  value="'+ result.info.idx+'" >'
-				html +=	'					<tr>'
-				html +=	'						<td width="100">아이디</td>'
-				html +=	'						<td>리뷰내용</td>'
-				html +=	'					</tr>'
-				html +=	'				<c:forEach items="${rList }" var="review" varStatus="i">'
-				html +=	'					<tr>'
-				html +=	'						<td width="100">${review.name}</td>'
-				html +=	'						<td>${review.content}</td>'
-				html +=	'					</tr>'
-				html +=	'				</c:forEach>'
-				html +=	'			</table>'
+
 				html +=	'		<div>'
 				html +=	'			<label >리뷰를 등록하세요</label>'
 				html +=	'				 <input type="text" name="reviewcontent" style=" border:4px solid #4ea0d8;" ></input>'
 				html +=	'			<button type="button" id="reviewbtn" onclick="postReview()">등록하기</button>'
-				html +=	'		</div>'
-				html +=	'		<div class="s-property-content">'
-				html +=	'			<p>Nulla quis dapibus nisl. Suspendisse ultricies Nulla quis dapibus nisl. Suspendisse ultricies commodo arcu nec pretium. Nullam sed arcu ultricies commodo arcu nec pretium. Nullam sed arcu ultricies Nulla quis dapibus nisl. Suspendisse ultricies commodo arcu nec pretium. Nullam sed arcu ultricies Nulla quis dapibus nisl. Suspendisse ultricies commodo arcu nec pretium. Nullam sed arcu ultricies </p>'
 				html +=	'		</div>'
 				html +=	'	</div>'
 				html +=	'	<!-- 리뷰 영역 끝 -->'

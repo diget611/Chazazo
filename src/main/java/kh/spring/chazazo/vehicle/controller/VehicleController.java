@@ -59,7 +59,6 @@ public class VehicleController {
 			String username = prin.getName();
 			mv.addObject("info", mService.selectMypageOne(username));
 		}
-		Map<String, Object> result = new HashMap<String,Object>();
 		mv.addObject("car", vService.getVehicleInfo(index));
 		mv.addObject("option", vService.getOptionInfo(index));
 		List<ReviewDto> rList= rService.selectOne(index);

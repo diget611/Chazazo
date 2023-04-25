@@ -85,7 +85,9 @@
 								<h6 class="mb-0">최근 월별 매출</h6>
 								<a href="">더보기</a>
 							</div>
-							<canvas id="recentMonthChart"></canvas>
+							<div>
+								<canvas id="recentMonthChart"></canvas>							
+							</div>
 						</div>
 					</div>
 					<div class="col-sm-12 col-xl-6">
@@ -203,7 +205,7 @@
             ]
             },
         options: {
-            responsive: true
+        	maintainAspectRatio: false
         }
     });
     
@@ -239,9 +241,11 @@
     
     const canvas = $('#recentMonthChart');
     const cv = canvas.get(0).getContext('2d')
-
+	
+    const heig = $('#recentCanvas').height();
     $(window).resize(function() {
-    	canvas.height($('#recentCanvas').height());
+    	console.log($('#recentCanvas').height());
+    	canvas.height(heig);
         canvas.width($('#recentCanvas').width());
     });
 </script>

@@ -267,7 +267,7 @@
 
 	$(window).on('scroll', function() {
 		let scrTest = $(window).scrollTop();
-		console.log("ㅇㅇㅇㅇㅇㅇㅇ"+$(document).height()+"###"+$(window).height());
+		console.log("document height,window height= "+$(document).height()+"###"+$(window).height());
 		if(Math.round(scrTest) == Math.round($(document).height() - $(window).height())) {
 			page++;
 			console.log("page"+page);

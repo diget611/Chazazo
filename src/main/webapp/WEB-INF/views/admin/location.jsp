@@ -57,7 +57,7 @@
 						</thead>
 						<tbody>
 							<c:forEach items="${locationList }" var="location" varStatus="status">	
-							<tr onclick='window.open("<%=request.getContextPath()%>/admin/location/${location.idx}", "지점 상세 정보", "width=500, height=800")'>
+							<tr onclick='window.open("<%=request.getContextPath()%>/admin/location/${location.idx}", "지점 상세 정보", "width=500, height=auto")'>
 								<th scope="row">${pagination.count - (pagination.currentPage - 1) * 10 - status.index}</th>
 								<td>${location.name }</td>
 								<td>${location.phoneNumber }</td>

@@ -59,7 +59,7 @@
 						</thead>
 						<tbody>						
 							<c:forEach items="${reportList }" var="report" varStatus="status">
-								<tr onclick='window.open("<%=request.getContextPath()%>/admin/report/${report.idx}", "신고 상세 정보", "width=500, height=600")'>
+								<tr onclick='window.open("<%=request.getContextPath()%>/admin/report/${report.idx}", "신고 상세 정보", "width=500, height=auto")'>
 									<th scope="row">${pagination.count - (pagination.currentPage - 1) * 10 - status.index}</th>
 									<td>${report.reviewIdx }</td>
 									<td>${report.username }</td>

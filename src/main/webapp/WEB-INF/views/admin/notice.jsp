@@ -59,7 +59,7 @@
 						</thead>
 						<tbody>
 							<c:forEach items="${noticeList }" var="notice" varStatus="status">	
-							<tr onclick='window.open("<%=request.getContextPath()%>/admin/notice/${notice.idx }", "공지사항 상세 정보", "width=500, height=600")'>
+							<tr onclick='window.open("<%=request.getContextPath()%>/admin/notice/${notice.idx }", "공지사항 상세 정보", "width=500, height=auto")'>
 								<th scope="row">${pagination.count - (pagination.currentPage - 1) * 10 - status.index}</th>
 								<td>${notice.title }</td>
 								<td>${notice.createDate }

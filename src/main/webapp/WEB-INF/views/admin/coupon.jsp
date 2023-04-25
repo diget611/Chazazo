@@ -56,7 +56,7 @@
 						</thead>
 						<tbody>
 							<c:forEach items="${couponList }" var="coupon" varStatus="status">	
-							<tr onclick='window.open("<%=request.getContextPath()%>/admin/coupon/${coupon.idx}", "쿠폰 상세 정보", "width=500, height=600")'>
+							<tr onclick='window.open("<%=request.getContextPath()%>/admin/coupon/${coupon.idx}", "쿠폰 상세 정보", "width=500, height=auto")'>
 								<th scope="row">${pagination.count - (pagination.currentPage - 1) * 10 - status.index}</th>
 								<td>${coupon.name }</td>
 								<td>${coupon.period }</td>

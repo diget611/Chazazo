@@ -1,16 +1,3 @@
-var ckName = 0;
-var ckBirth = 0;
-var ckPhone = 0;
-var ckLicense = 0;
-var ckEmail = 0;
-
-$('input').on('blur', function() {
-	if(ckName == 1 && ckBirth == 1 && ckPhone ==1 && ckLicense == 1 && ckEmail == 1) {
-		$('#kakaobtn').attr('disabled', false);
-		$('#paybtn').attr('disabled', false);
-	}
-})
-
 // ID 유효성 체크 (영어 소문자로 시작, 영어 소문자, 숫자, 특수문자(-, _) 가능)
 $('[name=username]').on('blur', function(){
 	let testId = /^[a-z]{1}[a-z0-9_-]{4,19}$/;
@@ -51,7 +38,6 @@ $('[name=name]').on('blur', function(){
 		$('[name=name]').after('<div style="color: red;">2 ~ 10자 사이의 한글 이름을 입력하세요.</div>')
 	} else {
 		$('[name=name]').next().remove();
-		ckName = 1;
 	}
 });
 
@@ -66,7 +52,6 @@ $('[name=birth]').on('blur', function(){
 		$('[name=birth]').after('<div style="color: red;">생년월일을 확인하세요.</div>');
 	} else {
 		$('[name=birth]').next().remove();
-		ckBirth = 1;
 	}
 });
 
@@ -91,7 +76,6 @@ $('[name=phoneNumber]').on('blur', function(){
 		$('[name=phoneNumber]').after('<div style="color: red;">전화번호를 확인하세요.</div>');
 	} else {
 		$('[name=phoneNumber]').next().remove();
-		ckPhone = 1;
 	}
 });
 
@@ -106,7 +90,6 @@ $('[name=license]').on('blur', function(){
 		$('[name=license]').after('<div style="color: red;">면허증 번호를 확인하세요.</div>');
 	} else {
 		$('[name=license]').next().remove();
-		ckLicense = 1;
 	}
 });
 	
@@ -121,6 +104,5 @@ $('[name=email]').on('blur', function(){
 		$('[name=email]').after('<div style="color: red;">이메일 주소를 확인하세요.</div>');
 	} else {
 		$('[name=email]').next().remove();
-		ckEmail = 1;
 	}
 });

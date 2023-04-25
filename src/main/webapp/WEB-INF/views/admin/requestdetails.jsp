@@ -29,7 +29,7 @@
     <script src="<%=request.getContextPath()%>/resources/dashmin/lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
     <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/main.css">
 </head>
-<body>
+<body onload="resizeWindow(this)">
 	<!-- Form Start -->
 	<div class="container-fluid pt-4 px-4">
 		<div class="col-sm-12 col-xl-6">
@@ -77,6 +77,10 @@
 
 <script src="<%=request.getContextPath()%>/resources/dashmin/js/main.js"></script>
 <script>
+	function resizeWindow(win)    {
+		var hei = win.document.body.offsetHeight + 100;
+		win.resizeTo(500, hei);
+	}
 	$('#ansBtn').on('click', insertAns);
 	
 	function insertAns() {

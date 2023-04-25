@@ -62,7 +62,7 @@
 						</thead>
 						<tbody>
 							<c:forEach items="${vehicleList }" var="vehicle" varStatus="status">	
-							<tr onclick='window.open("<%=request.getContextPath()%>/admin/vehicle/${vehicle.idx}", "차량 상세 정보", "width=500, height=600")'>
+							<tr onclick='window.open("<%=request.getContextPath()%>/admin/vehicle/${vehicle.idx}", "차량 상세 정보", "width=500, height=auto")'>
 								<th scope="row">${pagination.count - (pagination.currentPage - 1) * 10 - status.index}</th>
 								<td>${vehicle.model }</td>
 								<td>${vehicle.year }</td>

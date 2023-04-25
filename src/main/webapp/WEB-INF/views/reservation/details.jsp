@@ -58,38 +58,39 @@
 				<div class="clearfix padding-top-40">
 					<div class="col-md-8 single-property-content">
 							<!-- 좌측 컨텐츠 -->
-							<input type="text" id="useridx"  value="${info.idx }" >
+							<input type="hidden" id="useridx"  value="${info.idx }" >
 							<div id="content">
 							</div>
-							<div id="review" ">
+							<div id="reviewDiv" >
 								<div style=" margin-top:450px;" >
 								
 									<h4 class="s-property-title" >리뷰</h4>
-									<table class="table review" width="100%">
+									<table class="table review" width="100%" style="padding: 3em;">
 											<tr>
 												<td width="0"></td>
-												<td colspan='2' width="300" >닉네임</td>
-												<td width="300">리뷰내용</td>
-												<td width="50"></td>
-												<td width="30"></td>
+												<td  width="15%" >닉네임</td>
+												<td width="55%">리뷰내용</td>
+												<td width="10%"></td>
+												<td width="20%"></td>
 											</tr>
 										<c:forEach items="${rList }" var="review" varStatus="i">
 											<tr>
 												<td ><input type="hidden" id="reviewIdx" value="${review.idx }"></td>
-												<td colspan='2' >${review.name}</td>
+												<td  >${review.name}</td>
 												<td >${review.content}</td>
-												<td ><input data-idx="${review.idx}" data-recommend="${review.recommend}" class="likebtn" type="button" id="like${review.idx}" name="like${review.idx}" value="좋아요" style="float:left;">${review.recommend}</td>
+												<td align="center"><input data-idx="${review.idx}" data-recommend="${review.recommend}"  src="<%=request.getContextPath()%>/resources/garoestate/assets/img/icon/like.png" class="likebtn" type="image" id="like${review.idx}" name="like${review.idx}"  style="float:left;">
+												${review.recommend}</td>
 												<td >${review.createdate}</td>
 											</tr>
 										</c:forEach>
+										</table>
+										<table id="insertReviewbody">
 											<tr>
-											<td>
-											
-											</td>
-												<td colspan='2'>
-													<input type="text" >${info.name }
+				
+												<td style="padding-bottom : 3em;">
+													<input type="text"  >${info.name }
 												</td>
-												<td  colspan='2'>
+												<td  >
 													<div id="insertReview" style="display: inline-block; ">	
 														 <input type="text" name="reviewcontent" style=" border:4px solid #4ea0d8; width:550px; padding-rigth:30px;" placeholder="리뷰 작성"  ></input>
 													</div>
@@ -100,7 +101,6 @@
 												<td>
 												</td>
 											</tr>
-											
 									</table>
 								</div>
 						 </div>
@@ -187,6 +187,11 @@
 
 
 <script type="text/javascript">
+var ckName = 0;
+var ckBirth = 0;
+var ckPhone = 0;
+var ckLicense = 0;
+var ckEmail = 0;
 
 //좋아요
  $('.likebtn').click(function(){
@@ -253,15 +258,11 @@
 	    //비회원일 경우 리뷰 입력 숨기기
 		var name = $('#useridx').val();
 		if(name !==''){
-			$('#insertReview').show();
+			$('#insertReviewbody').show();
 		} else {
-			$('#insertReview').hide();
+			$('#insertReviewbody').hide();
 		}
-		if(name !== '') {
-			var ismember ='1';
-		} else {
-			var ismember ='0';
-		}
+
 
 	}
 
@@ -351,6 +352,7 @@
     //결제하기 누르면 ajax불러오기
 	$('#payment').on('click', content);
 	$('#payment').on('click', payajax);
+	
 
 
 	
@@ -384,7 +386,7 @@
 				html +=	'			<div class="favorite-and-print">'
 				html +=	'				<a class="add-to-fav" href="#login-modal" data-toggle="modal"><i class="fa fa-star-o"></i></a>'
 				html +=	'			</div> '
-				html +=	'			${car.image }'
+				html +=	'			<img src="${car.image }">'
 				html +=	'		</div>'
 				html +=	'	</div>'
 				html += '	</div>'
@@ -473,8 +475,6 @@
 			var content = $('[name=reviewcontent]').val()
 			var memberIdx = $('#useridx').val();
 			var vehicleIdx = $('[name=caridx]').val();
-			console.log("리뷰뷰뷰뷰"+memberIdx+"$$"+vehicleIdx+content);
-
 			var data ={
 					"vehicleIdx":vehicleIdx,
 					"memberIdx": memberIdx,
@@ -592,7 +592,6 @@
 		$('#paysection').html(html);
 		}
 	
-
 	//카드결제 전 입력정보 유효성 검사
 	function checkForm(){
 
@@ -725,7 +724,6 @@
 		var caridx = $('#caridx').val();
 		var useridx = $('#useridx').val();
 		
-		console.log("useridx:::::" + useridx);
 		var returnLocation =$("#returnSelect").val();
 
 		//결제 시간 저장을 위한 현재 시간 포맷
@@ -735,7 +733,6 @@
 		const date = new Date(d.getTime() + TIME_ZONE).toISOString().split('T')[0];
 		const time = d.toTimeString().split(' ')[0];
 		var paidtime= date + " " + time;
-		console.log("paidtime:::::::" +paidtime);
 		if ($(''))
 		var sdate = new Date($('#startDate').val());
 		var edate = new Date($('#endDate').val());
@@ -766,8 +763,6 @@
 		const randomNumber = Math.floor(Math.random()*(999-100)+100);
 		var random = String(randomNumber);
 		
-		var payidx = (daynum + random)*1;
-		
 		
 		//보험 선택값주기
 		if ( $('#selectins').val()=='0.1'){
@@ -789,10 +784,14 @@
 	
 		
 		
-		
+		var nameval = $('#name').val();
+		var useridx = $('#useridx').val();
+		var phoneval = $('#phone').val();
+		var birthval = $('#birth').val();
+		var mailval = $('#mail').val();
+		var license = $('#license').val();
 		
 		var data = {
-				  "idx" : payidx,
 	        	  "ismember" : ismember,
 	        	  "memberIdx" : useridx, // 회원idx, 비회원은 0
 	        	  "vehicleIdx" : "${car.idx}", //차량idx
@@ -803,6 +802,11 @@
 				  "endDate":endDate, //반납일
 				  "rentLocation": "${car.locationIdx}", //대여지점idx
 	        	  "returnLocation": returnLocation, //반납지점idx
+	        	  "name" : nameval,
+					"birth" :birthval,
+					"phone" :phoneval,
+					"license" :license,
+					"email": mailval
 	          };
 		
 		  $.ajax({
@@ -814,7 +818,6 @@
 	          success: function(result) {
 	        	  if(result >0) {
 		  		  insertNmemInfo(payidx);
-		  		  console.log("비회원정보등록");
 	        	  } else {
 	        		  alert("결제가 완료되지 않았습니다")
 	        	  }
@@ -824,52 +827,6 @@
 	          }
 	       });
 		
-	}
-	
-
-	//비회원 결제 정보 저장
-	function insertNmemInfo(payidx) {
-		
-		var useridx = $('#useridx').val();
-		console.log(payidx+"!!!!!!!")
-		if (useridx == '') {
-			
-		var nameval = $('#name').val();
-		var useridx = $('#birth').val();
-		var phoneval = $('#phone').val();
-		var birthval = $('#birth').val();
-		var mailval = $('#mail').val();
-		var license = $('#license').val();
-		
-		console.log("##########"+nameval+useridx+phoneval);
-		var data = {
-				"idx":payidx,
-				"name" : nameval,
-				"birth" :birthval,
-				"phone" :phoneval,
-				"license" :license,
-				"email": mailval
-		}
-				console.log(phoneval);
-		  $.ajax({
-	          url:'<%=request.getContextPath()%>/payment/nMempaid',
-	          contentType: 'application/json; charset=utf-8',
-	          type: 'post',
-	          dataType:'json',
-	          data: JSON.stringify(data),
-	          success: function(result) {
-	        	  if(result >0) {
-	        		  console.log("비회원 저장 성공");
-	        	  } else {
-	        		  alert("비회원 정보 저장 실패")
-	        	  }
-	          },
-	          error: function() {
-	          	alert('로딩 실패');
-	          }
-	       });
-		}
-	
 	}
 	
 	

@@ -60,7 +60,7 @@
 						<tbody>						
 							<c:forEach items="${memberList }" var="member" varStatus="status">
 								<c:if test="${member.auth ne 'ROLE_ADMIN'}">
-									<tr onclick='window.open("<%=request.getContextPath()%>/admin/member/${member.username }", "회원 상세 정보", "width=500, height=600")'>
+									<tr onclick='window.open("<%=request.getContextPath()%>/admin/member/${member.username }", "회원 상세 정보", "width=500, height=auto")'>
 										<th scope="row">${pagination.count - (pagination.currentPage - 1) * 10 - status.index}</th>
 										<td>${member.username }</td>
 										<td>${member.name }</td>

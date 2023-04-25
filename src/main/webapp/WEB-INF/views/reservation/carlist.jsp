@@ -208,7 +208,6 @@
 		$('input:checkbox[name=cartypeIdx]:Checked').each(function() {
 			arr.push($(this).val());
 		})
-		console.log(arr);
 		
 		// 모두 선택되지 않았을경우 자동으로 전체가 체크되게 한다
 		if($('input:checkbox[name=cartypeIdx]:checked').length == 0 &&  ($("#alltype:checkbox" ).is( ":checked") == false )) {
@@ -248,7 +247,6 @@
 		$('input:checkbox[name=fueltypeIdx]:Checked').each(function() {
 			arr.push($(this).val());
 		})
-		console.log(arr);
 		
 		// 모두 선택되지 않았을경우 자동으로 전체가 체크되게 한다
 		if($('input:checkbox[name=fueltypeIdx]:checked').length == 0 &&  ($("#allfuel:checkbox" ).is( ":checked") == false )) {
@@ -267,21 +265,14 @@
 
 	$(window).on('scroll', function() {
 		let scrTest = $(window).scrollTop();
-		console.log("document height,window height= "+$(document).height()+"###"+$(window).height());
 		if(Math.round(scrTest) == Math.round($(document).height() - $(window).height())) {
 			page++;
-			console.log("page"+page);
-			console.log("scroll"+$(window).scrollTop());
-			console.log("document height"+$(document).height());
-			console.log("window height"+$(window).height());
-			console.log(Math.round(scrTest) == $(document).height() - $(window).height());
 			paging();
 		}
 	});
 	
 	
 	function paging() {
-		console.log(page);
 		let carType = [];
         let fuelType = [];
         var keyword = "%"+$('#inputword').val() +"%";
@@ -357,7 +348,6 @@
             }
          });
       }
-         
          function getSearch(result) {
         	 var html = '';
         	 for(var i in result.carlist) {
@@ -365,7 +355,7 @@
  				html += '<div class="col-sm-6 col-md-4 p0">'; 
  				html += '<div class="box-two proerty-item">';
  				html += '		<div class="item-thumb">'; 
- 				html += '		<a href="${pageContext.request.contextPath}/carlist/' + car.idx + '"><img src="https://placeimg.com/327/220/animals" /></a> ';                               			
+ 				html += '		<a href="${pageContext.request.contextPath}/carlist/' + car.idx + '"><img src="' +car.image+ '" /></a> ';                               			
  				html += '		</div>'; 
  				html += '		<div class="item-entry overflow" id="listbody">'; 
  				html += '			<h5><a href="/chazazo/details">' + car.model + ' </a></h5>'; 

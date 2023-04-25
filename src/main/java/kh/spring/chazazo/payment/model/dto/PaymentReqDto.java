@@ -16,9 +16,6 @@ import lombok.Getter;
 @Data
 public class PaymentReqDto {
 	
-	
-	
-	
 	private int ismember;
 	private int memberIdx;
 	private int finalprice;

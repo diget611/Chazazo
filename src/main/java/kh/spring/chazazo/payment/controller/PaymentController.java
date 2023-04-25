@@ -102,7 +102,7 @@ private PaymentService pService;
 	
 	//결제정보 저장
 	@PostMapping("/payment/paid")
-	public int insertPayInfo(@RequestBody PaymentReqDto data) {
+	public int insertPayInfo(@RequestBody PaymentReqDto data, Principal prin) {
 		// 결제대기 / 완료 -> 예약 테이블 인서트 동시에 진행
 		/*
 		System.out.println("##########컨트롤러");
@@ -119,21 +119,16 @@ private PaymentService pService;
 		payMap.put("mail", mail);
 		*/
 		
-		int result = pService.insertPayInfo(data);
-		System.out.println("insertPayInfo:::::::::"+data);
-
-
+		int isMember = 0;
+		if(prin == null) {
+			isMember = 0;
+		} else {
+			isMember = 1;
+		}
+		
+		int result = pService.insertPayInfo(data, isMember);
 		return result;
 	}
-	
-	//비회원 정보 저장
-	@PostMapping("/payment/nMempaid")
-	public int InsertNmemInfo(@RequestBody PaymentReqDto data) {
-		int result = pService.insertNmemInfo(data);
-		return result;
-	}
-	
-	
 	
 //	관리자
 	public ModelAndView viewReservationList(ModelAndView mv) {

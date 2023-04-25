@@ -257,6 +257,11 @@
 		} else {
 			$('#insertReview').hide();
 		}
+		if(name !== '') {
+			var ismember ='1';
+		} else {
+			var ismember ='0';
+		}
 
 	}
 
@@ -503,6 +508,7 @@
 				html += '<section>'
 				html += '	<div style="text-align:center">';
 				html += '		<h2>결제 정보</h2>';
+				html += '		<h2>${info.idx}</h2>';
 				html += '	</div>';
 				html += '	<div style="overflow: hidden;">';
 				html += '		<div class="blog-asside-right col-md-12" style="padding: 80px;" >';
@@ -549,7 +555,7 @@
 		html += '		</div>';
 		html += '		<div class="form-group">';
 		html += '					<h6 style="text-align:center">운전자 정보 </h6>';
-		html += '						<input type="hidden" id="useridx"  value="'+ result.info.idx+'" >'
+		html += '						<input type="text" id="useridx"  value="'+ result.info.idx+'" >'
 		html += '						<label class="small">이름</label>  <div> <input type="text" id="name" name ="name" class="form-control"  value="'+ result.info.name+'" readonly> </div>';
 		html += '						<label class="small">생년월일</label>  <div> <input type="text" id="birth" name="birth" class="form-control" value="'+ result.info.birth+'" readonly> </div>';
 		html += '						<label class="small">휴대폰 번호</label> <div> <input type="text"  id="phone" name="phoneNumber" class="form-control"  value="'+ result.info.phoneNumber+'" readonly> </div>';
@@ -718,6 +724,8 @@
 		var finalprice = parseInt($('#finalprice').val());
 		var caridx = $('#caridx').val();
 		var useridx = $('#useridx').val();
+		
+		console.log("useridx:::::" + useridx);
 		var returnLocation =$("#returnSelect").val();
 
 		//결제 시간 저장을 위한 현재 시간 포맷
@@ -773,11 +781,14 @@
 			}
 		
 		//비회원,회원 식별값 주기
-		if(useridx =='0') {
-			var ismember ='0';
-		} else {
+		if(useridx !== '') {
 			var ismember ='1';
+		} else {
+			var ismember ='0';
 		}
+	
+		
+		
 		
 		
 		var data = {
@@ -803,6 +814,7 @@
 	          success: function(result) {
 	        	  if(result >0) {
 		  		  insertNmemInfo(payidx);
+		  		  console.log("비회원정보등록");
 	        	  } else {
 	        		  alert("결제가 완료되지 않았습니다")
 	        	  }
@@ -819,15 +831,17 @@
 	function insertNmemInfo(payidx) {
 		
 		var useridx = $('#useridx').val();
-		if (useridx == '0') {
+		console.log(payidx+"!!!!!!!")
+		if (useridx == '') {
 			
-		console.log("##########"+useridx);
 		var nameval = $('#name').val();
-		var birthval = $('#birth').val();
+		var useridx = $('#birth').val();
 		var phoneval = $('#phone').val();
+		var birthval = $('#birth').val();
 		var mailval = $('#mail').val();
 		var license = $('#license').val();
 		
+		console.log("##########"+nameval+useridx+phoneval);
 		var data = {
 				"idx":payidx,
 				"name" : nameval,

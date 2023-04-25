@@ -146,9 +146,6 @@
 						</div>
 					</div>
 				</div>
-				<div>
-					${locationList }
-				</div>
 			</div>
 			<jsp:include page="/WEB-INF/views/admin/base/footer.jsp"/>
 		</div>
@@ -184,9 +181,6 @@
 		loc4Sales.push(value.loc4);
 		loc5Sales.push(value.loc5);
 	});
-	
-	console.log(month)
-	console.log(monthList);
 	
 	var ctx1 = $("#recentMonthChart").get(0).getContext("2d");
     var myChart1 = new Chart(ctx1, {

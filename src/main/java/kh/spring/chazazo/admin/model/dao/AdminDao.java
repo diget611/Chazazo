@@ -169,4 +169,8 @@ public class AdminDao {
 	public List<String> selectLocNameList() {
 		return sqlSession.selectList("location.selectNameList");
 	}
+	
+	public List<String> monthList() {
+		return sqlSession.selectList("payment.monthList");
+	}
 }

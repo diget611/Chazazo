@@ -55,5 +55,6 @@ public interface AdminService {
 	public List<AdminReservByModelRespDto> selectByModel();
 	public List<AdminStatisticsRecentMonthDto> recentMonth();
 	public List<String> selectLocNameList();
+	public List<String> monthList();
 	
 }

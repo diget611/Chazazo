@@ -14,8 +14,10 @@ import lombok.ToString;
 @ToString
 public class AdminStatisticsRecentMonthDto {
 	
-	private String now;
-	private int monthAgo;
-	private int twoMonthsAgo;
+	private int loc1;
+	private int loc2;
+	private int loc3;
+	private int loc4;
+	private int loc5;
 	
 }

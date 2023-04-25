@@ -39,6 +39,7 @@ public class AdminController {
 		mv.addObject("monthList", new Gson().toJson(aService.monthList()));
 		mv.addObject("locationList", new Gson().toJson(aService.selectLocNameList()));
 		
+		mv.addObject("modelList", new Gson().toJson(aService.selectByModel()));
 		mv.setViewName("admin/main");
 		
 		return mv;

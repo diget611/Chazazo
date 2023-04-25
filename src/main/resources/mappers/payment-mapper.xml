@@ -41,9 +41,12 @@
 	</insert>
 
 	<select id="reservByModel" resultType="adminReservByModelRespDto">
-		SELECT V.MODEL AS MODEL, COUNT(*) AS CNT, SUM(FINAL_PRICE) AS SUM
-          FROM PAYMENT P
-         INNER JOIN VEHICLE V ON P.VEHICLE_IDX = V.IDX GROUP BY V.MODEL
+		SELECT *
+		  FROM (SELECT ROWNUM RNUM, PAY.*
+		          FROM (SELECT V.MODEL, COUNT(*) CNT, SUM(FINAL_PRICE) SUM
+                          FROM PAYMENT P INNER JOIN VEHICLE V ON P.VEHICLE_IDX = V.IDX
+                         GROUP BY V.MODEL ORDER BY SUM DESC) PAY)
+         WHERE RNUM BETWEEN 1 AND 5
 	</select>
 	
 	<select id="selectList" resultType="adminReservRespDto">

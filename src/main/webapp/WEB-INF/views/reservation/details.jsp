@@ -65,32 +65,32 @@
 								<div style=" margin-top:450px;" >
 								
 									<h4 class="s-property-title" >리뷰</h4>
-									<table class="table review" width="100%">
+									<table class="table review" width="100%" style="padding: 3em;">
 											<tr>
 												<td width="0"></td>
-												<td colspan='2' width="300" >닉네임</td>
-												<td width="300">리뷰내용</td>
-												<td width="50"></td>
-												<td width="30"></td>
+												<td  width="15%" >닉네임</td>
+												<td width="55%">리뷰내용</td>
+												<td width="10%"></td>
+												<td width="20%"></td>
 											</tr>
 										<c:forEach items="${rList }" var="review" varStatus="i">
 											<tr>
 												<td ><input type="hidden" id="reviewIdx" value="${review.idx }"></td>
-												<td colspan='2' >${review.name}</td>
+												<td  >${review.name}</td>
 												<td >${review.content}</td>
-												<td ><input data-idx="${review.idx}" data-recommend="${review.recommend}" class="likebtn" type="button" id="like${review.idx}" name="like${review.idx}" value="좋아요" style="float:left;">${review.recommend}</td>
+												<td align="center"><input data-idx="${review.idx}" data-recommend="${review.recommend}"  src="<%=request.getContextPath()%>/resources/garoestate/assets/img/icon/like.png" class="likebtn" type="image" id="like${review.idx}" name="like${review.idx}"  style="float:left;">
+												${review.recommend}</td>
 												<td >${review.createdate}</td>
 											</tr>
 										</c:forEach>
-										<tbody id="insertReviewbody">
+										</table>
+										<table id="insertReviewbody">
 											<tr>
-											<td>
-											
-											</td>
-												<td colspan='2'>
-													<input type="text" >${info.name }
+				
+												<td style="padding-bottom : 3em;">
+													<input type="text"  >${info.name }
 												</td>
-												<td  colspan='2'>
+												<td  >
 													<div id="insertReview" style="display: inline-block; ">	
 														 <input type="text" name="reviewcontent" style=" border:4px solid #4ea0d8; width:550px; padding-rigth:30px;" placeholder="리뷰 작성"  ></input>
 													</div>
@@ -101,7 +101,6 @@
 												<td>
 												</td>
 											</tr>
-											</tbody>
 									</table>
 								</div>
 						 </div>

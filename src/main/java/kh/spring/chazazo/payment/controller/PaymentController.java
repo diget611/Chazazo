@@ -31,6 +31,7 @@ import kh.spring.chazazo.payment.model.dto.PaymentReqDto;
 import kh.spring.chazazo.payment.model.service.PaymentService;
 import kh.spring.chazazo.vehicle.model.dto.VehicleInfoDto;
 import kh.spring.chazazo.vehicle.model.service.VehicleService;
+import lombok.Data;
 
 @RestController
 public class PaymentController {
@@ -189,29 +190,37 @@ private PaymentService pService;
 	
 	
 	@GetMapping("/profile/nonereservation")
-	public String viewNoneReservationListUser(ModelAndView mv, int idx) {
-		// 비회원 예약 조회 조회
+	public String viewNoneReservationListUser(ModelAndView mv, int idx, PaymentReqDto data) {
+		// 비회원 예약 조회 
 		
 		
 		
 		Map<String, Object> result = new HashMap<String,Object>();
-		System.out.println(result);
 	
+		System.out.println(data);
+		System.out.println(result);
+		System.out.println("비회원 컨트롤러");
+				
+		
+			mv.addObject("reservation", pService.selectNoneM(data));
+			result.put("reservation", pService.selectNoneM(data));
+			mv.addObject("noneReservation", pService.noneReser(idx));
+			result.put("noneReservation", pService.noneReser(idx));
 			
-			mv.addObject("reservation", pService.ReservationOne(idx));
-			result.put("reservation", pService.ReservationOne(idx));
+			
 			System.out.println(result);
-			System.out.println("ddddddd송공d");
+			System.out.println("d비회원정보");
 			return new Gson().toJson(result);
+			
 		}
 	
 
 	@GetMapping("/profile/reservation/{idx}")
 	public ModelAndView viewReservationOne(ModelAndView mv
-										   , @PathVariable String idx, Principal prin) {
+										   , @PathVariable String username, Principal prin) {
 		// 예약 정보 상세 조회
 		
-		int index = Integer.parseInt(idx);
+		int index = Integer.parseInt(username);
 		if(prin == null) {
 			mv.setViewName("member/history");
 		}else{
@@ -219,7 +228,7 @@ private PaymentService pService;
 			String loginId = prin.getName();
 			mv.addObject("memberinfo", mService.selectMypageOne(loginId) );
 			mv.addObject("reservation", pService.selectList(loginId));
-			mv.setViewName("member/history");
+			mv.setViewName("member/details");
 		}
 		
 		
@@ -229,8 +238,8 @@ private PaymentService pService;
 	
 	}
 
-	@PatchMapping("/profile/reservation/{idx}")
-	public int updateReservation(ModelAndView mv) {
+	@PatchMapping("/profile/reservation/{username}")
+	public int updateReservation(ModelAndView mv, String username) {
 		// 예약 정보 수정
 		int result=0;
 		
@@ -239,14 +248,19 @@ private PaymentService pService;
 	
 	@PostMapping("/profile/reservation/{idx}")
 	@ResponseBody
-	public ModelAndView deleteReservation(ModelAndView mv, @PathVariable String idx) {
+	public ModelAndView deleteReservation(ModelAndView mv, @PathVariable String idx, Principal prin) {
 		
 		// 예약 정보 삭제
-		int ridx = Integer.parseInt(idx);
-		pService.deleteResv(ridx);
-		System.out.println(idx);
-		System.out.println(ridx);
+//		if(prin == null) {
+//			
+//		}else {
+//			
+//		int result = pService.deleteResv(ridx);
+//		System.out.println(idx);
+//		System.out.println(ridx);
+//		}
 		
+//		
 		return mv;
 	}
 	

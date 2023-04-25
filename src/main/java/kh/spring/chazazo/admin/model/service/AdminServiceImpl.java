@@ -205,5 +205,10 @@ public class AdminServiceImpl implements AdminService {
 	public List<String> selectLocNameList() {
 		return dao.selectLocNameList();
 	}
+	
+	@Override
+	public List<String> monthList() {
+		return dao.monthList();
+	}
 
 }

@@ -37,7 +37,7 @@
 			<jsp:include page="/WEB-INF/views/admin/base/navbar.jsp"/>	
 			<div class="container-fluid pt-4 px-4">
 				<div class="bg-light text-center rounded p-4">
-					<div>${locationList }</div>
+					<div>${test }</div>
 					<div class="d-flex align-items-center justify-content-between mb-4">
 						<h6 class="mb-0">최근 문의</h6>
 						<a href="<%=request.getContextPath()%>/admin/request">더보기</a>
@@ -146,6 +146,9 @@
 						</div>
 					</div>
 				</div>
+				<div>
+					${locationList }
+				</div>
 			</div>
 			<jsp:include page="/WEB-INF/views/admin/base/footer.jsp"/>
 		</div>
@@ -155,39 +158,68 @@
 <script src="<%=request.getContextPath()%>/resources/dashmin/js/main.js"></script>
 
 <script>
-	console.log(${testList})
+	var recentStat = JSON.parse('${recentStat}');
+	var locationList = JSON.parse('${locationList}');
+	var monthList = JSON.parse('${monthList}');
+	var loc1Sales = [];
+	var loc2Sales = [];
+	var loc3Sales = [];
+	var loc4Sales = [];
+	var loc5Sales = [];
+	var loc = [];
+	var month = [];
 	
-	$('.day').on('click', function(){
-		console.log(this);
-	})
-
-	var recentMonthList = JSON.parse('${recentMonth}');
-	var recentMonthTime = [];
-	var recentMonthSum = [];
-	var color = [];
-	$.each(recentMonthList, function (index, value) {
-		recentMonthTime.push(value.time);
-		recentMonthSum.push(value.sum);
-		color.push("rgba(0, 156, 111, ." + (index * 2 + 1) + ")");
+	$.each(locationList, function(idx, value) {
+		loc.push(value.NAME);
+	});
+	
+	$.each(monthList, function(idx, value) {
+		month.push(value.MONTH);
 	})
 	
-	var ctx4 = $("#recentMonthChart").get(0).getContext("2d");
-    var myChart4 = new Chart(ctx4, {
+	$.each(recentStat, function(idx, value) {
+		loc1Sales.push(value.loc1);
+		loc2Sales.push(value.loc2);
+		loc3Sales.push(value.loc3);
+		loc4Sales.push(value.loc4);
+		loc5Sales.push(value.loc5);
+	});
+	
+	console.log(month)
+	console.log(monthList);
+	
+	var ctx1 = $("#recentMonthChart").get(0).getContext("2d");
+    var myChart1 = new Chart(ctx1, {
         type: "bar",
         data: {
-	    	labels: recentMonthTime,
+            labels: month,
             datasets: [{
-	            label: '매출 현황',
-                backgroundColor: color,
-                data: recentMonthSum
-            }]
-        },
+                    label: loc[0],
+                    data: loc1Sales,
+                    backgroundColor: "rgba(0, 156, 255, .9)"
+                }, {
+                    label: loc[1],
+                    data: loc2Sales,
+                    backgroundColor: "rgba(0, 156, 255, .7)"
+                }, {
+                    label: loc[2],
+                    data: loc3Sales,
+                    backgroundColor: "rgba(0, 156, 255, .5)"
+                }, {
+                    label: loc[3],
+                    data: loc4Sales,
+                    backgroundColor: "rgba(0, 156, 255, .3)"
+                }, {
+                    label: loc[4],
+                    data: loc5Sales,
+                    backgroundColor: "rgba(0, 156, 255, .1)"
+                }
+            ]
+            },
         options: {
             responsive: true
         }
     });
-	
-	
 </script>
 </body>
 

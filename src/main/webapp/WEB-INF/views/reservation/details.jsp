@@ -65,26 +65,39 @@
 								<div style=" margin-top:450px;" >
 								
 									<h4 class="s-property-title" >리뷰</h4>
+									
 									<table class="table review" width="100%" style="padding: 3em;">
 											<tr>
-												<td width="0"></td>
+												<td width="0%"></td>
 												<td  width="15%" >닉네임</td>
-												<td width="55%">리뷰내용</td>
-												<td width="10%"></td>
-												<td width="20%"></td>
+												<td  width="50%">리뷰내용</td>
+												<td width="15%">수정</td>
+												<td width="10%">추천</td>
 											</tr>
 										<c:forEach items="${rList }" var="review" varStatus="i">
 											<tr>
 												<td ><input type="hidden" id="reviewIdx" value="${review.idx }"></td>
-												<td  >${review.name}</td>
+												<td >${review.name}<br>${review.createdate}</td>
 												<td >${review.content}</td>
-												<td align="center"><input data-idx="${review.idx}" data-recommend="${review.recommend}"  src="<%=request.getContextPath()%>/resources/garoestate/assets/img/icon/like.png" class="likebtn" type="image" id="like${review.idx}" name="like${review.idx}"  style="float:left;">
+												<td >
+													<div>
+														<form name="reviewForm">
+															<c:if test="${info.name eq review.name }">
+																	<button type="button" class="edit">수정</button>
+																	<button type="button" class="deleteReview">삭제</button>
+															</c:if>
+														</form>
+													</div>
+												</td>
+												<td align="center"><input data-idx="${review.idx}" data-recommend="${review.recommend}"  src="<%=request.getContextPath()%>/resources/garoestate/assets/img/icon/like.png" class="likebtn" type="image"  style="float:left;">
 												${review.recommend}</td>
-												<td >${review.createdate}</td>
+										    	<td ></td>
 											</tr>
+											<div> 
+											</div>
 										</c:forEach>
 										</table>
-										<table id="insertReviewbody">
+										<table>
 											<tr>
 				
 												<td style="padding-bottom : 3em;">
@@ -92,11 +105,11 @@
 												</td>
 												<td  >
 													<div id="insertReview" style="display: inline-block; ">	
-														 <input type="text" name="reviewcontent" style=" border:4px solid #4ea0d8; width:550px; padding-rigth:30px;" placeholder="리뷰 작성"  ></input>
+														 <input type="text" name="reviewcontent" style=" border:4px solid #4ea0d8; width:550px; padding-rigth:30px;" placeholder="리뷰를 입력하세요.."  ></input>
 													</div>
 												</td>
 												<td>
-													<button type="button" id="reviewbtn" onclick="postReview()" style="margin-left:10px; " class="btn btn-default">등록하기</button>
+													<button type="button" id="reviewbtn" onclick="postReview()" style="margin-left:10px; " class="btn btn-default">리뷰쓰기</button>
 												</td>
 												<td>
 												</td>
@@ -193,33 +206,7 @@ var ckPhone = 0;
 var ckLicense = 0;
 var ckEmail = 0;
 
-//좋아요
- $('.likebtn').click(function(){
-	var reviewidx = $(this).data("idx");
-	var recommend = $(this).data("recommend");
-//	recommend++;
-	var data= {
-		idx : reviewidx,
-		recommend :recommend
-	}
-	$.ajax({
-		url:'<%=request.getContextPath()%>/insertLike',
-         type: 'post',
-	     data: {
-	 		"idx" : reviewidx,
-			"recommend" :recommend
-		},
-//	     data: JSON.stringify(data),
-//		 contentType: 'application/json; charset=utf-8',
-	     //dataType:'json',
-         success: function(result) {
-        	  location.reload();
-          },
-          error: function() {
-          	alert('좋아요 등록 실패');
-          }
-	});		
-});
+
 
 	$('.main-nav').children().eq(0).children().css('color', '#18B4E9')
 	
@@ -262,9 +249,9 @@ var ckEmail = 0;
 		} else {
 			$('#insertReviewbody').hide();
 		}
-
-
 	}
+	
+
 
 		
 		
@@ -497,8 +484,61 @@ var ckEmail = 0;
 		}
 	
 	
+		//리뷰 좋아요
+		 $('.likebtn').click(function(){
+			var reviewidx = $(this).data("idx");
+			var recommend = $(this).data("recommend");
+//			recommend++;
+			var data= {
+				idx : reviewidx,
+				recommend :recommend
+			}
+			$.ajax({
+				url:'<%=request.getContextPath()%>/insertLike',
+		         type: 'post',
+			     data: {
+			 		"idx" : reviewidx,
+					"recommend" :recommend
+				},
+//			     data: JSON.stringify(data),
+//				 contentType: 'application/json; charset=utf-8',
+			     //dataType:'json',
+		         success: function(result) {
+		        	  location.reload();
+		          },
+		          error: function() {
+		          	alert('좋아요 등록 실패');
+		          }
+			});		
+		});
 	
 	
+	//리뷰 수정 누르면 인풋박스 나타내고 버튼 바꾸기
+	$('.edit').on('click', function(){
+		var before = $(this).closest('tr').find('td');
+		var leng = before.length;
+		//수정 버튼을 누르면 리뷰칸에 리뷰내용이 들어간 input박스를 넣고 등록버튼 나타내기
+ 		var editform = "<input type='text' value='"+before[2].innerText+"' name='editContent' id='editContent' style='font-style: oblique' size='10'  '/>";
+		var editbtn = "<button  type='button' class='btn btn-default' id='updateReview' onclick='updateReview()'>등록</button>";
+			var el = $(before[2]).find('input').val();
+			$(before[2]).html(editform);
+			 $(before[3]).html(editbtn);
+			 
+			//수정 버튼 클릭시 리뷰 텍스트 마지막에 커서 깜빡임 넣기 
+			var len = $('#editContent').val().length;
+			 $('#editContent').focus();
+			 $('#editContent')[0].setSelectionRange(len, len);
+	});
+	$('.deleteReview').on('click', function(){
+		console.log("리뷰삭제");
+	});
+	
+	
+	//리뷰 수정 
+		function updateReview() {
+		
+			console.log("리뷰수정~~~~~~");
+	}
 	
 	//결제하기 눌렀을때 정보 입력창
 	function getPayinfo(result) {

@@ -387,7 +387,7 @@ console.log(ckName);
 				html +=	'			<div class="favorite-and-print">'
 				html +=	'				<a class="add-to-fav" href="#login-modal" data-toggle="modal"><i class="fa fa-star-o"></i></a>'
 				html +=	'			</div> '
-				html +=	'			${car.image }'
+				html +=	'			<img src="${car.image }">'
 				html +=	'		</div>'
 				html +=	'	</div>'
 				html += '	</div>'

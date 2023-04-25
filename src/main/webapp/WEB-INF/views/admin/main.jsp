@@ -56,7 +56,7 @@
 							</thead>
 							<tbody>
 								<c:forEach items="${requestList }" var="request" varStatus="status">	
-									<tr onclick='window.open("<%=request.getContextPath()%>/admin/request/${request.idx}", "문의 상세 정보", "width=500, height=600")'>
+									<tr onclick='window.open("<%=request.getContextPath()%>/admin/request/${request.idx}", "문의 상세 정보", "width=500, height=auto")'>
 								<th scope="row">${fn:length(requestList) - status.index}</th>
 								<td>${request.title }</td>
 								<c:choose>
@@ -80,7 +80,7 @@
 			<div class="container-fluid pt-4 px-4">
 				<div class="row g-4">
 					<div class="col-sm-12 col-xl-6">
-						<div class="bg-light text-center rounded p-4">
+						<div class="bg-light text-center rounded p-4" style="height: 100%;" id="recentCanvas">
 							<div class="d-flex align-items-center justify-content-between mb-4">
 								<h6 class="mb-0">최근 월별 매출</h6>
 								<a href="">더보기</a>
@@ -91,20 +91,12 @@
 					<div class="col-sm-12 col-xl-6">
 						<div class="bg-light text-center rounded p-4">
 							<div class="d-flex align-items-center justify-content-between mb-4">
-								<h6 class="mb-0">Salse & Revenue</h6>
-								<a href="">Show All</a>
+								<h6 class="mb-0">차량별 매출</h6>
+								<a href="">더보기</a>
 							</div>
-							<canvas id="salse-revenue"></canvas>
+							<canvas id="bestReservModel">></canvas>
 						</div>
 					</div>
-				</div>
-			</div>
-			<div class="container-fluid pt-4 px-4">
-				<div class="h-100 bg-light rounded p-4">
-					<div class="d-flex align-items-center justify-content-between mb-4">
-						<h6 class="mb-0">Calender</h6>
-					</div>
-					<div id="calender"></div>
 				</div>
 			</div>
 			<div class="container-fluid pt-4 px-4">
@@ -213,6 +205,44 @@
         options: {
             responsive: true
         }
+    });
+    
+    var modelData = JSON.parse('${modelList}');
+    var modelList = [];
+    var sumList = [];
+    
+    $.each(modelData, function(idx, value) {
+    	modelList.push(value.model);
+    	sumList.push(value.sum);
+    });
+    
+    var ctx2 = $("#bestReservModel").get(0).getContext("2d");
+    var myChart5 = new Chart(ctx2, {
+        type: "pie",
+        data: {
+            labels: modelList,
+            datasets: [{
+                backgroundColor: [
+                    "rgba(0, 156, 255, .7)",
+                    "rgba(0, 156, 255, .6)",
+                    "rgba(0, 156, 255, .5)",
+                    "rgba(0, 156, 255, .4)",
+                    "rgba(0, 156, 255, .3)"
+                ],
+                data: sumList
+            }]
+        },
+        options: {
+            responsive: true
+        }
+    });
+    
+    const canvas = $('#recentMonthChart');
+    const cv = canvas.get(0).getContext('2d')
+
+    $(window).resize(function() {
+    	canvas.height($('#recentCanvas').height());
+        canvas.width($('#recentCanvas').width());
     });
 </script>
 </body>

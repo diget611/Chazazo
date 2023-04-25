@@ -77,15 +77,16 @@
 										<c:forEach items="${rList }" var="review" varStatus="i">
 											<tr>
 												<td ><input type="hidden" id="reviewIdx" value="${review.idx }"></td>
-												<td >${review.name}<br>${review.createdate}</td>
+												<td >${review.name}</td>
 												<td >${review.content}</td>
 												<td >
 													<div>
 														<form name="reviewForm">
 															<c:if test="${info.name eq review.name }">
-																	<button type="button" class="edit">수정</button>
-																	<button type="button" class="deleteReview">삭제</button>
+																	<input data-idx="${review.idx }" type="button" class="edit" value="수정">&nbsp; 
+																	<input data-idx="${review.idx }" type="button" class="deleteReview" value="삭제">
 															</c:if>
+																	<br>${review.createdate}
 														</form>
 													</div>
 												</td>
@@ -97,24 +98,26 @@
 											</div>
 										</c:forEach>
 										</table>
-										<table>
-											<tr>
-				
-												<td style="padding-bottom : 3em;">
-													<input type="text"  >${info.name }
-												</td>
-												<td  >
-													<div id="insertReview" style="display: inline-block; ">	
-														 <input type="text" name="reviewcontent" style=" border:4px solid #4ea0d8; width:550px; padding-rigth:30px;" placeholder="리뷰를 입력하세요.."  ></input>
-													</div>
-												</td>
-												<td>
-													<button type="button" id="reviewbtn" onclick="postReview()" style="margin-left:10px; " class="btn btn-default">리뷰쓰기</button>
-												</td>
-												<td>
-												</td>
-											</tr>
-									</table>
+										<div id="insertReviewbody">
+											<table>
+												<tr>
+					
+													<td style="padding-bottom : 3em;">
+														<input type="text"  >${info.name }
+													</td>
+													<td  >
+														<div id="insertReview" style="display: inline-block; ">	
+															 <input type="text" name="reviewcontent" style=" border:4px solid #4ea0d8; width:550px; padding-rigth:30px;"   ></input>
+														</div>
+													</td>
+													<td>
+														<button type="button" id="reviewbtn" onclick="postReview()" style="margin-left:10px; " class="btn btn-default">리뷰쓰기</button>
+													</td>
+													<td>
+													</td>
+												</tr>
+											</table>
+										</div>
 								</div>
 						 </div>
 					</div>
@@ -244,6 +247,7 @@ var ckEmail = 0;
 	    $('#insSection').hide();
 	    //비회원일 경우 리뷰 입력 숨기기
 		var name = $('#useridx').val();
+	    console.log(name+"$$$$$")
 		if(name !==''){
 			$('#insertReviewbody').show();
 		} else {
@@ -359,9 +363,6 @@ var ckEmail = 0;
 	          }
 	       });
 	}
-	
-	
-	
 	
 	
 
@@ -489,10 +490,7 @@ var ckEmail = 0;
 			var reviewidx = $(this).data("idx");
 			var recommend = $(this).data("recommend");
 //			recommend++;
-			var data= {
-				idx : reviewidx,
-				recommend :recommend
-			}
+
 			$.ajax({
 				url:'<%=request.getContextPath()%>/insertLike',
 		         type: 'post',
@@ -517,18 +515,23 @@ var ckEmail = 0;
 	$('.edit').on('click', function(){
 		var before = $(this).closest('tr').find('td');
 		var leng = before.length;
+		
 		//수정 버튼을 누르면 리뷰칸에 리뷰내용이 들어간 input박스를 넣고 등록버튼 나타내기
- 		var editform = "<input type='text' value='"+before[2].innerText+"' name='editContent' id='editContent' style='font-style: oblique' size='10'  '/>";
-		var editbtn = "<button  type='button' class='btn btn-default' id='updateReview' onclick='updateReview()'>등록</button>";
-			var el = $(before[2]).find('input').val();
+			var reviewidx = $(this).data("idx");
+ 		var idx = "<input type='hidden'  value='"+reviewidx+"' id='reviewNum'   '/>";
+ 		var editform = "<input type='text'  value='"+before[2].innerText+"'  id='editContent' style='font-style: oblique' size='10'  '/>";
+		var editbtn = "<input  type='button' value='등록' class='btn btn-default' id='updateReview' onclick='updateReview()'>";
+		var el = $(before[2]).find('input').val();
+			
+			$(before[1]).html(idx);
 			$(before[2]).html(editform);
 			 $(before[3]).html(editbtn);
-			 
 			//수정 버튼 클릭시 리뷰 텍스트 마지막에 커서 깜빡임 넣기 
 			var len = $('#editContent').val().length;
 			 $('#editContent').focus();
 			 $('#editContent')[0].setSelectionRange(len, len);
 	});
+	
 	$('.deleteReview').on('click', function(){
 		console.log("리뷰삭제");
 	});
@@ -537,7 +540,27 @@ var ckEmail = 0;
 	//리뷰 수정 
 		function updateReview() {
 		
-			console.log("리뷰수정~~~~~~");
+		var idx = $('#reviewNum').val();
+		var content = $('#editContent').val();
+		console.log("***" + idx +"***" + content);
+		
+
+			$.ajax({
+				url:'<%=request.getContextPath()%>/updateReview',
+		         type: 'post',
+			     data: {
+			 		"idx" : idx,
+					"content" :content
+				},
+		         success: function(result) {
+		        	 location.reload();
+		          },
+		          error: function() {
+		          	alert('리뷰 수정 실패');
+		          }
+			});	
+
+			
 	}
 	
 	//결제하기 눌렀을때 정보 입력창

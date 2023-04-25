@@ -47,6 +47,11 @@ public class ReviewServiceImpl implements ReviewService{
 		return dao.insertLike(dto);
 	}
 
+	@Override
+	public int updateReview(ReviewDto dto) {
+		return dao.updateReview(dto);
+	}
+
 
 
 }

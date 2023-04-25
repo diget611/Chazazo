@@ -30,7 +30,9 @@ public class ReviewDao {
 		return sqlSession.selectList("review.selectOne", vehicleIdx);
 	}
 	public int insertLike(ReviewDto dto) {
-		// TODO Auto-generated method stub
 		return sqlSession.insert("review.inserLike", dto);
+	}
+	public int updateReview(ReviewDto dto) {
+		return sqlSession.insert("review.updateReview", dto);
 	}
 }

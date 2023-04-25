@@ -357,7 +357,6 @@
             }
          });
       }
-         
          function getSearch(result) {
         	 var html = '';
         	 for(var i in result.carlist) {
@@ -365,7 +364,7 @@
  				html += '<div class="col-sm-6 col-md-4 p0">'; 
  				html += '<div class="box-two proerty-item">';
  				html += '		<div class="item-thumb">'; 
- 				html += '		<a href="${pageContext.request.contextPath}/carlist/' + car.idx + '"><img src="https://placeimg.com/327/220/animals" /></a> ';                               			
+ 				html += '		<a href="${pageContext.request.contextPath}/carlist/' + car.idx + '"><img src="' +car.image+ '" /></a> ';                               			
  				html += '		</div>'; 
  				html += '		<div class="item-entry overflow" id="listbody">'; 
  				html += '			<h5><a href="/chazazo/details">' + car.model + ' </a></h5>'; 

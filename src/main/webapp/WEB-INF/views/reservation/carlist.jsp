@@ -208,7 +208,6 @@
 		$('input:checkbox[name=cartypeIdx]:Checked').each(function() {
 			arr.push($(this).val());
 		})
-		console.log(arr);
 		
 		// 모두 선택되지 않았을경우 자동으로 전체가 체크되게 한다
 		if($('input:checkbox[name=cartypeIdx]:checked').length == 0 &&  ($("#alltype:checkbox" ).is( ":checked") == false )) {
@@ -248,7 +247,6 @@
 		$('input:checkbox[name=fueltypeIdx]:Checked').each(function() {
 			arr.push($(this).val());
 		})
-		console.log(arr);
 		
 		// 모두 선택되지 않았을경우 자동으로 전체가 체크되게 한다
 		if($('input:checkbox[name=fueltypeIdx]:checked').length == 0 &&  ($("#allfuel:checkbox" ).is( ":checked") == false )) {
@@ -267,21 +265,14 @@
 
 	$(window).on('scroll', function() {
 		let scrTest = $(window).scrollTop();
-		console.log("document height,window height= "+$(document).height()+"###"+$(window).height());
 		if(Math.round(scrTest) == Math.round($(document).height() - $(window).height())) {
 			page++;
-			console.log("page"+page);
-			console.log("scroll"+$(window).scrollTop());
-			console.log("document height"+$(document).height());
-			console.log("window height"+$(window).height());
-			console.log(Math.round(scrTest) == $(document).height() - $(window).height());
 			paging();
 		}
 	});
 	
 	
 	function paging() {
-		console.log(page);
 		let carType = [];
         let fuelType = [];
         var keyword = "%"+$('#inputword').val() +"%";

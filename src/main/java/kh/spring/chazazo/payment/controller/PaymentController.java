@@ -126,9 +126,6 @@ private PaymentService pService;
 		}
 		
 		int result = pService.insertPayInfo(data, isMember);
-		System.out.println("insertPayInfo:::::::::"+data);
-
-
 		return result;
 	}
 	

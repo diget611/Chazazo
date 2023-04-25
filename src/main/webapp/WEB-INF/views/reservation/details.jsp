@@ -58,7 +58,7 @@
 				<div class="clearfix padding-top-40">
 					<div class="col-md-8 single-property-content">
 							<!-- 좌측 컨텐츠 -->
-							<input type="text" id="useridx"  value="${info.idx }" >
+							<input type="hidden" id="useridx"  value="${info.idx }" >
 							<div id="content">
 							</div>
 							<div id="reviewDiv" >
@@ -193,7 +193,6 @@ var ckPhone = 0;
 var ckLicense = 0;
 var ckEmail = 0;
 
-console.log(ckName);
 //좋아요
  $('.likebtn').click(function(){
 	var reviewidx = $(this).data("idx");
@@ -476,8 +475,6 @@ console.log(ckName);
 			var content = $('[name=reviewcontent]').val()
 			var memberIdx = $('#useridx').val();
 			var vehicleIdx = $('[name=caridx]').val();
-			console.log("리뷰뷰뷰뷰"+memberIdx+"$$"+vehicleIdx+content);
-
 			var data ={
 					"vehicleIdx":vehicleIdx,
 					"memberIdx": memberIdx,
@@ -727,7 +724,6 @@ console.log(ckName);
 		var caridx = $('#caridx').val();
 		var useridx = $('#useridx').val();
 		
-		console.log("useridx:::::" + useridx);
 		var returnLocation =$("#returnSelect").val();
 
 		//결제 시간 저장을 위한 현재 시간 포맷
@@ -737,7 +733,6 @@ console.log(ckName);
 		const date = new Date(d.getTime() + TIME_ZONE).toISOString().split('T')[0];
 		const time = d.toTimeString().split(' ')[0];
 		var paidtime= date + " " + time;
-		console.log("paidtime:::::::" +paidtime);
 		if ($(''))
 		var sdate = new Date($('#startDate').val());
 		var edate = new Date($('#endDate').val());
@@ -823,7 +818,6 @@ console.log(ckName);
 	          success: function(result) {
 	        	  if(result >0) {
 		  		  insertNmemInfo(payidx);
-		  		  console.log("비회원정보등록");
 	        	  } else {
 	        		  alert("결제가 완료되지 않았습니다")
 	        	  }

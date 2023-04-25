@@ -17,8 +17,7 @@ public interface PaymentService {
 	
 	
 	public int deleteResv(int idx);
-	public int insertPayInfo(PaymentReqDto data);
-	public int insertNmemInfo(PaymentReqDto data);
+	public int insertPayInfo(PaymentReqDto data, int isMember);
 
 
 

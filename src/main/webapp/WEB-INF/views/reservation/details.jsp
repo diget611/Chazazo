@@ -61,7 +61,7 @@
 							<input type="text" id="useridx"  value="${info.idx }" >
 							<div id="content">
 							</div>
-							<div id="review" ">
+							<div id="reviewDiv" >
 								<div style=" margin-top:450px;" >
 								
 									<h4 class="s-property-title" >리뷰</h4>
@@ -82,6 +82,7 @@
 												<td >${review.createdate}</td>
 											</tr>
 										</c:forEach>
+										<tbody id="insertReviewbody">
 											<tr>
 											<td>
 											
@@ -100,7 +101,7 @@
 												<td>
 												</td>
 											</tr>
-											
+											</tbody>
 									</table>
 								</div>
 						 </div>
@@ -187,7 +188,13 @@
 
 
 <script type="text/javascript">
+var ckName = 0;
+var ckBirth = 0;
+var ckPhone = 0;
+var ckLicense = 0;
+var ckEmail = 0;
 
+console.log(ckName);
 //좋아요
  $('.likebtn').click(function(){
 	var reviewidx = $(this).data("idx");
@@ -253,15 +260,11 @@
 	    //비회원일 경우 리뷰 입력 숨기기
 		var name = $('#useridx').val();
 		if(name !==''){
-			$('#insertReview').show();
+			$('#insertReviewbody').show();
 		} else {
-			$('#insertReview').hide();
+			$('#insertReviewbody').hide();
 		}
-		if(name !== '') {
-			var ismember ='1';
-		} else {
-			var ismember ='0';
-		}
+
 
 	}
 
@@ -351,6 +354,7 @@
     //결제하기 누르면 ajax불러오기
 	$('#payment').on('click', content);
 	$('#payment').on('click', payajax);
+	
 
 
 	
@@ -592,7 +596,6 @@
 		$('#paysection').html(html);
 		}
 	
-
 	//카드결제 전 입력정보 유효성 검사
 	function checkForm(){
 
@@ -766,8 +769,6 @@
 		const randomNumber = Math.floor(Math.random()*(999-100)+100);
 		var random = String(randomNumber);
 		
-		var payidx = (daynum + random)*1;
-		
 		
 		//보험 선택값주기
 		if ( $('#selectins').val()=='0.1'){
@@ -789,10 +790,14 @@
 	
 		
 		
-		
+		var nameval = $('#name').val();
+		var useridx = $('#useridx').val();
+		var phoneval = $('#phone').val();
+		var birthval = $('#birth').val();
+		var mailval = $('#mail').val();
+		var license = $('#license').val();
 		
 		var data = {
-				  "idx" : payidx,
 	        	  "ismember" : ismember,
 	        	  "memberIdx" : useridx, // 회원idx, 비회원은 0
 	        	  "vehicleIdx" : "${car.idx}", //차량idx
@@ -803,6 +808,11 @@
 				  "endDate":endDate, //반납일
 				  "rentLocation": "${car.locationIdx}", //대여지점idx
 	        	  "returnLocation": returnLocation, //반납지점idx
+	        	  "name" : nameval,
+					"birth" :birthval,
+					"phone" :phoneval,
+					"license" :license,
+					"email": mailval
 	          };
 		
 		  $.ajax({
@@ -824,52 +834,6 @@
 	          }
 	       });
 		
-	}
-	
-
-	//비회원 결제 정보 저장
-	function insertNmemInfo(payidx) {
-		
-		var useridx = $('#useridx').val();
-		console.log(payidx+"!!!!!!!")
-		if (useridx == '') {
-			
-		var nameval = $('#name').val();
-		var useridx = $('#birth').val();
-		var phoneval = $('#phone').val();
-		var birthval = $('#birth').val();
-		var mailval = $('#mail').val();
-		var license = $('#license').val();
-		
-		console.log("##########"+nameval+useridx+phoneval);
-		var data = {
-				"idx":payidx,
-				"name" : nameval,
-				"birth" :birthval,
-				"phone" :phoneval,
-				"license" :license,
-				"email": mailval
-		}
-				console.log(phoneval);
-		  $.ajax({
-	          url:'<%=request.getContextPath()%>/payment/nMempaid',
-	          contentType: 'application/json; charset=utf-8',
-	          type: 'post',
-	          dataType:'json',
-	          data: JSON.stringify(data),
-	          success: function(result) {
-	        	  if(result >0) {
-	        		  console.log("비회원 저장 성공");
-	        	  } else {
-	        		  alert("비회원 정보 저장 실패")
-	        	  }
-	          },
-	          error: function() {
-	          	alert('로딩 실패');
-	          }
-	       });
-		}
-	
 	}
 	
 	

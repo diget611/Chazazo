@@ -32,15 +32,12 @@ public class PaymentServiceImpl implements PaymentService {
 	}
 
 	@Override
-	public int insertPayInfo(PaymentReqDto data) {
-		return dao.insertPayInfo(data);
+	public int insertPayInfo(PaymentReqDto data, int isMember) {
+		int result = dao.insertPayInfo(data);
+		if(result == 1 && isMember == 0) {
+			dao.insertNmemInfo(data);
+		}		
+		return result;
 	}
-
-	@Override
-	public int insertNmemInfo(PaymentReqDto data) {
-		// TODO Auto-generated method stub
-		return dao.insertNmemInfo(data);
-	}
-
 
 }

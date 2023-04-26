@@ -76,7 +76,7 @@
 											<tr>
 												<td ><input type="hidden" id="reviewIdx" value="${review.idx }"></td>
 												<td >${review.name}</td>
-												<td ><input class="review_content" type="text" value="${review.content}" disabled></td>
+												<td ><input class="review_content" id="focusinput" type="text" value="${review.content}"  autofocus disabled></td>
 												<td  id="parentId">
 													<c:if test="${info.name eq review.name }">
 															<input data-idx="${review.idx }" src="<%=request.getContextPath()%>/resources/garoestate/assets/img/icon/edit.png" style="float:left;  width:49%; " type="image" class="edit" value="수정">
@@ -87,7 +87,10 @@
 												<td align="center"><input data-idx="${review.idx}" data-recommend="${review.recommend}"  src="<%=request.getContextPath()%>/resources/garoestate/assets/img/icon/like.png" class="likebtn" type="image"  style="float:left;">
 												${review.recommend}</td>
 										    	<td >
-										    	<button type="button">신고</button>
+											    	<c:if test="${info.name ne review.name }">
+											    		<button type="button" class="btn btn-secondary" style="display:inline-block" 
+					    								    onclick='window.open("<%=request.getContextPath()%>/reportReview", "리뷰 신고", "width=500, height=auto")'>신고</button>
+											    	</c:if>
 										    	</td>
 											</tr>
 											<div> 
@@ -103,7 +106,7 @@
 													</td>
 													<td  >
 														<div id="insertReview" style="display: inline-block; ">	
-															 <input type="text" name="reviewcontent" style=" border:4px solid #4ea0d8; width:550px; padding-rigth:30px;"   ></input>
+															 <input type="text" name="reviewcontent" style=" border:4px solid #4ea0d8; width:550px; padding-rigth:30px;"  placeholder="리뷰를 작성해주세요" ></input>
 														</div>
 													</td>
 													<td>
@@ -343,8 +346,6 @@ var ckEmail = 0;
 	});
 	
 
-
-	
 	//결제하기 버튼 눌렀을때 바뀔 ajax 불러오기
 	function content() {
 		  $.ajax({

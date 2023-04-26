@@ -34,11 +34,5 @@ public class InquiryController {
 		List<InquiryRespDto> result = iService.selectList(data);
 		return new Gson().toJson(result);
 	}
-	
-	@GetMapping("/{searchword}")
-	public ModelAndView searchInquiry(ModelAndView mv) {
-		// 문의 검색 조회
-		return mv;
-	}
 
 }

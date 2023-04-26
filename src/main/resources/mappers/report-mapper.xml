@@ -9,8 +9,11 @@
 		            ON REPORT.MEMBER_IDX = MEMBER.IDX ORDER BY REPORT.IDX DESC)
          WHERE RNUM BETWEEN #{start} and #{end}
 	</select>
+	
 	<select id="selectOne" resultType="adminReportRespDto">
-		SELECT REPORT.*, USERNAME FROM REPORT INNER JOIN MEMBER ON REPORT.MEMBER_IDX = MEMBER.IDX WHERE REPORT.IDX = #{idx}
+		SELECT REPORT.*, USERNAME
+		  FROM REPORT INNER JOIN MEMBER ON REPORT.MEMBER_IDX = MEMBER.IDX
+		 WHERE REPORT.IDX = #{idx}
 	</select>
 	<select id="count" resultType="_int">
 		SELECT COUNT(*) FROM REPORT

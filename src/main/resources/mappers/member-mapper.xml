@@ -7,13 +7,12 @@
 	</select>
 	
 	<select id="selectMypageOne" resultType="memberInfoRespDto">
-		select * 
-            from member_info
-            where idx in (select idx from member where username=#{username})
+		SELECT * FROM MEMBER_INFO
+		 WHERE IDX IN (SELECT IDX FROM MEMBER WHERE USERNAME = #{username})
 	</select>
 	
 	<select id="selectOne" resultType="memberInfoRespDto">
-		select * from member_info where idx = #{idx}
+		SELECT * FROM MEMBER_INFO WHERE IDX = #{idx}
 	</select>
 	
 	<select id="findId" resultType="string">
@@ -31,7 +30,8 @@
 	</select>
 	
 	<update id="findPass" parameterType="map">
-		UPDATE MEMBER SET PASSWORD = #{password} WHERE USERNAME = #{username}
+		UPDATE MEMBER
+		   SET PASSWORD = #{password} WHERE USERNAME = #{username}
 	</update>
 	
 	<insert id="insert" parameterType="memberReqDto">
@@ -49,9 +49,9 @@
 	</select>
 	
 	<update id="updateInfo">
-		UPDATE MEMBER_INFO SET GENDER = #{gender}, BIRTH = #{birth}, PASSWORD = #{password}
-									, PHONENUMBER = #{phoneNumber}, EMAIL = #{email}
-					 where idx in (select idx from member where username=#{username})
+		UPDATE MEMBER_INFO
+		   SET GENDER = #{gender}, BIRTH = #{birth}, PASSWORD = #{password}, PHONENUMBER = #{phoneNumber}, EMAIL = #{email}
+		 WHERE IDX IN (SELECT IDX FROM MEMBER WHERE USERNAME = #{username})
 	</update>
 	
 	<update id="deleteMember">
@@ -78,15 +78,17 @@
                          ORDER BY MEMBER.IDX DESC) M)
          WHERE RNUM BETWEEN #{start} AND #{end}
 	</select>
+	
 	<select id="selectMemberOne" resultType="adminMemberRespDto">
 		SELECT * FROM MEMBER INNER JOIN MEMBER_INFO ON MEMBER.IDX = MEMBER_INFO.IDX WHERE USERNAME = #{username}
 	</select>
+	
 	<select id="getMemberInfo" resultType="memberInfoRespDto">
 		select * from member_info where username = #{username}
 	</select>
+	
 	<select id="count" resultType="_int">
 		SELECT COUNT(*) FROM MEMBER WHERE AUTH='ROLE_USER'
 	</select>
-	
 	
 </mapper>

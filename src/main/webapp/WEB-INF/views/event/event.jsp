@@ -55,8 +55,8 @@
 							</div>
 						</div>
 						<div class="btn-group btn-group-lg btn-group-vertical" role="group" aria-label="Basic outlined example">
-							<button type="button" class="btn btn-outline-primary" id="" style="text-align: left;">진행중인 이벤트</button>
-							<button type="button" class="btn btn-outline-primary" id="" style="text-align: left;">종료된 이벤트</button>
+							<button type="button" class="btn btn-outline-primary" id="onEvent" style="text-align: left;">진행중인 이벤트</button>
+							<button type="button" class="btn btn-outline-primary" id="offEvent" style="text-align: left;">종료된 이벤트</button>
 						</div>
 					</div>   
 					<div class="blog-lst col-md-9 p0">
@@ -96,6 +96,35 @@
 	
 	<script>
 		$('.main-nav').children().eq(1).children().css('color', '#18B4E9')
+		
+		window.onload = pageLoad();
+		$('#onEvent').on('click', pageLoad);
+		$('#offEvent').on('click', pageLoad);
+		
+		function pageLoad() {
+			$.ajax({
+				url: "${pageContext.request.contextPath}/event/load",
+				data: {data: 1},
+				type: "get",
+				success: function(result) {
+					console.log('123');
+					getList();
+				},
+				error: function() {
+					alert("실패");
+				}
+			}) 		
+		}
+		
+		function getList() {
+			var html = '';
+			html += '<div class="panel panel-default"><img src="https://dummyimage.com/700x150/18B5E1/fff" alt="없어"></div>';
+			html += '<div class="panel panel-default"><img src="https://dummyimage.com/700x150/e74a1e/fff" alt="없어"></div>';
+			html += '<div class="panel panel-default"><img src="https://dummyimage.com/700x150/080808/fff" alt="없어"></div>';
+			html += '<div class="panel panel-default"><img src="https://dummyimage.com/700x150/a76bcf/fff" alt="없어"></div>';
+			html += '<div class="panel panel-default"><img src="https://dummyimage.com/700x150/589430/fff" alt="없어"></div>';
+			$('.panel-group').html(html);
+		}
 	</script>
 </body>
 </html>

@@ -7,12 +7,15 @@
                   FROM LOCATION ORDER BY IDX DESC)
          WHERE RNUM BETWEEN #{start} AND #{end}
 	</select>
+	
 	<select id="selectOne" resultType="adminLocationOneRespDto">
 		SELECT * FROM LOCATION WHERE IDX = #{idx}
 	</select>
+	
 	<select id="count" resultType="_int">
 		SELECT COUNT(*) FROM LOCATION
 	</select>
+	
 	<select id="selectNameList" resultType="map">
 		SELECT NAME FROM LOCATION
 	</select>

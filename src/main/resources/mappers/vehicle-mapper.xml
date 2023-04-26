@@ -2,47 +2,44 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="vehicle">
 
-		<select id="selectList" resultType="VehicleInfo" >
-	with t as
-		(select row_number() over(order by v.idx) num, v.*, f.type as fuelname, c.type as typename, l.name
-		from FUELTYPE f, CARTYPE c, VEHICLE v ,location l 
-        where v.cartype_idx = c.idx and v.fueltype_idx = f.idx and v.location_idx=l.idx 
-	<if test="typeList !=null">
-		and c.idx in
-	 <foreach collection="typeList" item="type" separator="," open="(" close=")">
-		#{type}
-	 </foreach>
-	</if>
-	<if test="fuelList !=null">
-		and f.idx in
-	 <foreach collection="fuelList" item="fuel" separator=","  open="(" close=")">
-		#{fuel}
-	 </foreach>
-	</if>
-	<if test = "keyword != null">
-	 and v.model like #{keyword}
-	</if>
-	) select * from t 
-	where num between 1 and #{page}
+	<select id="selectList" resultType="VehicleInfo" >
+		WITH T AS
+			(SELECT ROW_NUMBER() OVER(ORDER BY V.IDX) NUM, V.*, F.TYPE AS FUELNAME, C.TYPE AS TYPENAME, L.NAME
+			   FROM FUELTYPE F, CARTYPE C, VEHICLE V, LOCATION L
+			  WHERE V.CARTYPE_IDX = C.IDX AND V.FUELTYPE_IDX = F.IDX AND V.LOCATION_IDX = L.IDX
+		<if test="typeList !=null">
+			AND C.IDX IN
+		 	<foreach collection="typeList" item="type" separator="," open="(" close=")">
+				#{type}
+		 	</foreach>
+		</if>
+		<if test="fuelList !=null">
+			AND F.IDX IN
+		 	<foreach collection="fuelList" item="fuel" separator=","  open="(" close=")">
+				#{fuel}
+		 	</foreach>
+		</if>
+		<if test = "keyword != null">
+			AND V.MODEL LIKE #{keyword}
+		</if>
+			) SELECT * FROM T
+			   WHERE NUM BETWEEN 1 AND #{page}
 	</select>
 
-
  	<select id="getVehicleInfo" resultType="VehicleInfo">
- 		 select *
-        from vehicle v
-        left outer join location l
-        on v.location_idx = l.idx
-        where v.idx = #{idx}
+ 		 SELECT *
+ 		   FROM VEHICLE V LEFT OUTER JOIN LOCATION L
+ 		     ON V.LOCATION_IDX = L.IDX WHERE V.IDX = #{idx}
  	</select>
  	
  	<select id="getOptionInfo" resultType="VehicleInfo">
-	 select f.type as fuelname,  c.type as typename
-	from FUELTYPE f, CARTYPE c, VEHICLE v
-	where v.cartype_idx = c.idx and v.fueltype_idx = f.idx and v.idx=#{idx}
- 	
+	 	SELECT F.TYPE AS FUELNAME, C.TYPE AS TYPENAME
+	 	  FROM FUELTYPE F, CARTYPE C, VEHICLE V
+	     WHERE V.CARTYPE_IDX = C.IDX AND V.FUELTYPE_IDX = F.IDX AND V.IDX = #{idx}
  	</select>
+ 	
  	<select id="selectOneCount" resultType="_int">
-	select count(*) cnt from vehicle
+ 		SELECT COUNT(*) CNT FROM VEHICLE
 	</select>
 	
 	<select id="selectListAdmin" parameterType="pagination" resultType="adminVehicleRespDto">
@@ -60,6 +57,5 @@
 		  FROM VEHICLE V, FUELTYPE F, CARTYPE C, LOCATION L
          WHERE V.CARTYPE_IDX = C.IDX AND V.FUELTYPE_IDX = F.IDX AND V.LOCATION_IDX = L.IDX AND V.IDX = #{idx}
 	</select>
- 	
  	
 </mapper>

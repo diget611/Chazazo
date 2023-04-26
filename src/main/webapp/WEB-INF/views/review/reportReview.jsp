@@ -4,10 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>리뷰 신고하기</title>
 <head>
-    <meta charset="utf-8">
-    <title>쿠폰 상세 정보</title>
+
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -37,9 +36,20 @@
 		<div class="col-sm-12 col-xl-6">
 			<div class="bg-light rounded h-100 p-4">
 				<h6 class="mb-4">리뷰 신고</h6>
-				<form>
+				<label></label>
+				<form style="flex-direction: column">
 					<input type="text" id="idx" value="${review.idx }">
-					
+					  <input type="radio" name="reason" value="1" /> 스팸홍보/도배글 입니다
+					  <input type="radio" name="reason" value="2" /> 음란물입니다
+					  <input type="radio" name="reason" value="3" /> 불법정보를 포함하고 있습니다
+					  <input type="radio" name="reason" value="4" /> 청소년에게 유해한 내용입니다
+					  <input type="radio" name="reason" value="5" /> 불쾌한 표현이 있습니다
+					  <input type="radio" name="reason" value="6" onClick="this.form.reasontxt.disabled=false"/> 기타
+					  사유 입력:<input type="text" name="reasontxt" disabled>
+					  <button type='submit' id="rbtn">신고하기</button>
+					  
+					  
+					  
 				</form>
 			</div>
 		</div>

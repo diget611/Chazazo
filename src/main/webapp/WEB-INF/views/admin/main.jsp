@@ -86,17 +86,17 @@
 								<a href="">더보기</a>
 							</div>
 							<div>
-								<canvas id="recentMonthChart"></canvas>							
+								<canvas id="recentMonthChart" class="chartCanvas" height="450"></canvas>							
 							</div>
 						</div>
 					</div>
 					<div class="col-sm-12 col-xl-6">
-						<div class="bg-light text-center rounded p-4">
+						<div class="bg-light text-center rounded p-4" style="height: 100%;">
 							<div class="d-flex align-items-center justify-content-between mb-4">
 								<h6 class="mb-0">차량별 매출</h6>
 								<a href="">더보기</a>
 							</div>
-							<canvas id="bestReservModel">></canvas>
+							<canvas id="bestReservModel" class="chartCanvas"></canvas>
 						</div>
 					</div>
 				</div>
@@ -239,15 +239,19 @@
         }
     });
     
-    const canvas = $('#recentMonthChart');
+    const canvas = $('.chartCanvas');
     const cv = canvas.get(0).getContext('2d')
 	
     const heig = $('#recentCanvas').height();
     $(window).resize(function() {
-    	console.log($('#recentCanvas').height());
     	canvas.height(heig);
         canvas.width($('#recentCanvas').width());
     });
+    
+   	window.onload = function() {
+   		canvas.height(heig);
+        canvas.width($('#recentCanvas').width());
+   	};
 </script>
 </body>
 

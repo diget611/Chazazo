@@ -91,4 +91,10 @@
 		SELECT COUNT(*) FROM MEMBER WHERE AUTH='ROLE_USER'
 	</select>
 	
+	<select id="dayRegiCount" resultType="_int">
+		SELECT COUNT(*) AS CNT
+		  FROM MEMBER_INFO
+		 WHERE TO_CHAR(REGI_DATE,'YY/MM/DD') = TO_DATE(SYSDATE, 'YY/MM/DD')
+	</select>
+	
 </mapper>

@@ -77,6 +77,10 @@ public class AdminDao {
 		return sqlSession.selectOne("couponmanage.selectOne", idx);
 	}
 	
+	public int deleteCoupon(int idx) {
+		return sqlSession.update("couponmanage.delete", idx);
+	}
+	
 	public int requestCount() {
 		return sqlSession.selectOne("request.count");
 	}
@@ -172,5 +176,18 @@ public class AdminDao {
 	
 	public List<String> monthList() {
 		return sqlSession.selectList("payment.monthList");
+	}
+	
+	// 메인페이지
+	public int dayReservCount() {
+		return sqlSession.selectOne("payment.dayReservCount");
+	}
+	
+	public int dayReservSum() {
+		return sqlSession.selectOne("payment.dayReservSum");
+	}
+	
+	public int dayRegiCount() {
+		return sqlSession.selectOne("member.dayRegiCount");
 	}
 }

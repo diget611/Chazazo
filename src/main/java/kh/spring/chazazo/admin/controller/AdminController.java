@@ -38,8 +38,11 @@ public class AdminController {
 		mv.addObject("recentStat", new Gson().toJson(aService.recentMonth()));
 		mv.addObject("monthList", new Gson().toJson(aService.monthList()));
 		mv.addObject("locationList", new Gson().toJson(aService.selectLocNameList()));
-		
 		mv.addObject("modelList", new Gson().toJson(aService.selectByModel()));
+		
+		mv.addObject("reservCount", aService.dayReservCount());
+		mv.addObject("reservSum", aService.dayReservSum());
+		mv.addObject("regiCount", aService.dayRegiCount());
 		mv.setViewName("admin/main");
 		
 		return mv;
@@ -160,6 +163,18 @@ public class AdminController {
 		mv.addObject("coupon", aService.selectCouponOne(idx));
 		mv.setViewName("admin/coupondetails");
 		return mv;
+	}
+	
+	@GetMapping("/coupon/insert")
+	public ModelAndView viewInsertCoupon(ModelAndView mv) {
+		mv.setViewName("admin/couponinsert");
+		return mv;
+	}
+	
+	@PatchMapping("/coupon/delete")
+	public int deleteCoupon(int idx) {
+		int result = aService.deleteCoupon(idx);
+		return result;
 	}
 	
 	@GetMapping("/notice")

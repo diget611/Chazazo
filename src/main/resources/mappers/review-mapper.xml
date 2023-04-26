@@ -9,7 +9,9 @@
 		SELECT *
 		  FROM REVIEW R LEFT OUTER JOIN MEMBER_INFO M
 		    ON R.MEMBER_IDX = M.IDX
+		     WHERE R.VEHICLE_IDX=#{idx}
 		 ORDER BY CREATE_DATE ASC
+		 
 	</select>
 	
 	<insert id="insert">
@@ -24,22 +26,13 @@
 	</update>
 	
 	<update id="updateReview">
-		UPDATE REVIEW
-		   SET CONTENT=#{content}
-		WHERE IDX =#{idx}
+	UPDATE REVIEW SET CONTENT=#{content} WHERE IDX =#{idx}
 	</update>
 	
-	<update id="update">
-		UPDATE MEMBER
-		   SET IDX = #{idx}, vehicleIdx = #{vehicleIdx}, content = #{content}
-		 WHERE IDX = #{idx}
-	</update>
-	
-	<delete id="delete">
-		DELETE FROM REVIEW
-		 WHERE IDX = #{idx}	
+	<delete id="deleteReview">
+	DELETE FROM REVIEW WHERE IDX =#{idx}
 	</delete>
-	
+
 	<select id="selectReviewContent" resultType="string">
 		SELECT REVIEW.*, REVIEW_IDX
 		  FROM REVIEW INNER JOIN REPORT

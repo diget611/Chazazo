@@ -32,6 +32,7 @@ public interface AdminService {
 	public int couponCount();
 	public List<AdminCouponManageRespDto> selectCouponList(Pagination pagination);
 	public AdminCouponManageRespDto selectCouponOne(String idx);
+	public int deleteCoupon(int idx);
 	public int requestCount();
 	public List<AdminRequestRespDto> selectRequestList(Pagination pagination);
 	public List<AdminRequestRespDto> selectRequestList(Map<String, Integer> data);
@@ -56,5 +57,10 @@ public interface AdminService {
 	public List<AdminStatisticsRecentMonthDto> recentMonth();
 	public List<String> selectLocNameList();
 	public List<String> monthList();
+	
+	// 메인페이지
+	public int dayReservCount();
+	public int dayReservSum();
+	public int dayRegiCount();
 	
 }

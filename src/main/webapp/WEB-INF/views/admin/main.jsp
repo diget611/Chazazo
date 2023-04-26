@@ -34,7 +34,48 @@
 	<div class="container-xxl position-relative bg-white d-flex p-0">
 		<jsp:include page="/WEB-INF/views/admin/base/sidebar.jsp"/>
 		<div class="content">
-			<jsp:include page="/WEB-INF/views/admin/base/navbar.jsp"/>	
+			<jsp:include page="/WEB-INF/views/admin/base/navbar.jsp"/>
+			<div class="container-fluid pt-4 px-4">
+				<div class="row g-4">
+					<div class="col-sm-6 col-xl-3">
+						<div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
+							<i class="fa fa-chart-line fa-3x text-primary"></i>
+							<div class="ms-3">
+								<p class="mb-2">금일 예약</p>
+								<h6 class="mb-0" style="text-align: center;">${reservCount }</h6>
+							</div>
+						</div>
+					</div>
+                    <div class="col-sm-6 col-xl-3">
+						<div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
+							<i class="fa fa-chart-line fa-3x text-primary"></i>
+							<div class="ms-3">
+								<p class="mb-2">금일 매출</p>
+								<h6 class="mb-0" style="text-align: center;">${reservSum }</h6>
+							</div>
+						</div>
+					</div>
+                    <div class="col-sm-6 col-xl-3">
+						<div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
+							<i class="fa fa-chart-line fa-3x text-primary"></i>
+							<div class="ms-3">
+								<p class="mb-2">금일 회원가입</p>
+								<h6 class="mb-0" style="text-align: center;">${regiCount }</h6>
+							</div>
+						</div>
+					</div>
+                    <div class="col-sm-6 col-xl-3">
+						<div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
+							<i class="fa fa-chart-line fa-3x text-primary"></i>
+							<div class="ms-3">
+								<p class="mb-2">?</p>
+								<h6 class="mb-0" style="text-align: center;">$1234</h6>
+							</div>
+						</div>
+					</div>
+					
+				</div>
+			</div>	
 			<div class="container-fluid pt-4 px-4">
 				<div class="bg-light text-center rounded p-4">
 					<div>${test }</div>
@@ -81,7 +122,7 @@
 				<div class="row g-4">
 					<div class="col-sm-12 col-xl-6">
 						<div class="bg-light text-center rounded p-4" style="height: 100%;" id="recentCanvas">
-							<div class="d-flex align-items-center justify-content-between mb-4">
+							<div class="d-flex align-items-center justify-content-between mb-5">
 								<h6 class="mb-0">최근 월별 매출</h6>
 								<a href="">더보기</a>
 							</div>
@@ -97,46 +138,6 @@
 								<a href="">더보기</a>
 							</div>
 							<canvas id="bestReservModel" class="chartCanvas"></canvas>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="container-fluid pt-4 px-4">
-				<div class="row g-4">
-					<div class="col-sm-6 col-xl-3">
-						<div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
-							<i class="fa fa-chart-line fa-3x text-primary"></i>
-							<div class="ms-3">
-								<p class="mb-2">Today Sale</p>
-								<h6 class="mb-0">$1234</h6>
-							</div>
-						</div>
-					</div>
-                    <div class="col-sm-6 col-xl-3">
-						<div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
-							<i class="fa fa-chart-line fa-3x text-primary"></i>
-							<div class="ms-3">
-								<p class="mb-2">Today Sale</p>
-								<h6 class="mb-0">$1234</h6>
-							</div>
-						</div>
-					</div>
-                    <div class="col-sm-6 col-xl-3">
-						<div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
-							<i class="fa fa-chart-line fa-3x text-primary"></i>
-							<div class="ms-3">
-								<p class="mb-2">Today Sale</p>
-								<h6 class="mb-0">$1234</h6>
-							</div>
-						</div>
-					</div>
-                    <div class="col-sm-6 col-xl-3">
-						<div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
-							<i class="fa fa-chart-line fa-3x text-primary"></i>
-							<div class="ms-3">
-								<p class="mb-2">Today Sale</p>
-								<h6 class="mb-0">$1234</h6>
-							</div>
 						</div>
 					</div>
 				</div>
@@ -184,19 +185,19 @@
             datasets: [{
                     label: loc[0],
                     data: loc1Sales,
-                    backgroundColor: "rgba(0, 156, 255, .9)"
+                    backgroundColor: "rgba(0, 156, 255, .17)"
                 }, {
                     label: loc[1],
                     data: loc2Sales,
-                    backgroundColor: "rgba(0, 156, 255, .7)"
+                    backgroundColor: "rgba(0, 156, 255, .13)"
                 }, {
                     label: loc[2],
                     data: loc3Sales,
-                    backgroundColor: "rgba(0, 156, 255, .5)"
+                    backgroundColor: "rgba(0, 156, 255, .9)"
                 }, {
                     label: loc[3],
                     data: loc4Sales,
-                    backgroundColor: "rgba(0, 156, 255, .3)"
+                    backgroundColor: "rgba(0, 156, 255, .5)"
                 }, {
                     label: loc[4],
                     data: loc5Sales,
@@ -225,11 +226,11 @@
             labels: modelList,
             datasets: [{
                 backgroundColor: [
+                    "rgba(0, 156, 255, .9)",
                     "rgba(0, 156, 255, .7)",
-                    "rgba(0, 156, 255, .6)",
                     "rgba(0, 156, 255, .5)",
-                    "rgba(0, 156, 255, .4)",
-                    "rgba(0, 156, 255, .3)"
+                    "rgba(0, 156, 255, .3)",
+                    "rgba(0, 156, 255, .1)"
                 ],
                 data: sumList
             }]

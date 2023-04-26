@@ -87,12 +87,11 @@
 										<label class="text-14 color-grey-4 mb-0">지역</label>
 									</div>
 									<select id="lunchBegins" class="selectpicker" data-live-search="true" data-live-search-style="begins" title="장소 선택 ">
-										<option>New york, CA</option>
-										<option>Paris</option>
-										<option>Casablanca</option>
-										<option>Tokyo</option>
-										<option>Marraekch</option>
-										<option>kyoto , shibua</option>
+										<option value="1">강남점</option>
+										<option value="2">용산점</option>
+										<option value="3">수원점</option>
+										<option value="4">일산점</option>
+										<option value="5">송도점</option>
 									</select>
 								</div>
 								<div class="form-group mb-0">
@@ -110,83 +109,120 @@
 				</div>
 			</div>
 		</div>
-				
-		<div class="content-area home-area-1 recent-property" style="background-color: #FCFCFC; padding-bottom: 55px;">
+		<div class="count-area">
 			<div class="container">
 				<div class="row">
 					<div class="col-md-10 col-md-offset-1 col-sm-12 text-center page-title">
-						<!-- /.feature title -->
-						<h2>Top submitted property</h2>
-						<p>Nulla quis dapibus nisl. Suspendisse ultricies commodo arcu
-							nec pretium. Nullam sed arcu ultricies .</p>
+						<h2>리뷰</h2> 
 					</div>
 				</div>
 				<div class="row">
-					<div class="proerty-th">
-						<div class="col-sm-6 col-md-3 p0">
-							<div class="box-two proerty-item">
-								<div class="item-thumb">
-									<a href="property-1.html"><img src="assets/img/demo/property-1.jpg"></a>
+					<div class="col-md-12 col-xs-12 percent-blocks m-main" data-waypoint-scroll="true">
+						<div class="row">
+							<div class="col-sm-3 col-xs-6">
+								<div class="count-item">
+									<div class="count-item-circle">
+										<span class="pe-7s-users"></span>
+									</div>
+									<div class="chart" data-percent="5000">
+										<h2 class="percent" id="counter">1008</h2>
+										<h5>HAPPY CUSTOMER </h5>
+									</div>
 								</div>
 							</div>
-						</div>
-						<div class="col-sm-6 col-md-3 p0">
-							<div class="box-two proerty-item">
-								<div class="item-thumb">
-									<a href="property-2.html"><img src="assets/img/demo/property-2.jpg"></a>
-								</div>
+							<div class="col-sm-3 col-xs-6">
+								<div class="count-item">
+									<div class="count-item-circle">
+										<span class="pe-7s-home"></span>
+									</div>
+									<div class="chart" data-percent="12000">
+										<h2 class="percent" id="counter1">1 300</h2>
+										<h5>Properties in stock</h5>
+									</div>
+								</div> 
+							</div> 
+							<div class="col-sm-3 col-xs-6">
+								<div class="count-item">
+									<div class="count-item-circle">
+										<span class="pe-7s-flag"></span>
+									</div>
+									<div class="chart" data-percent="120">
+										<h2 class="percent" id="counter2">146</h2>
+										<h5>City registered </h5>
+									</div>
+								</div> 
+							</div> 
+							<div class="col-sm-3 col-xs-6">
+								<div class="count-item">
+									<div class="count-item-circle">
+										<span class="pe-7s-graph2"></span>
+									</div>
+									<div class="chart" data-percent="5000">
+										<h2 class="percent" id="counter3">1023</h2>
+										<h5>DEALER BRANCHES</h5>
+									</div>
+								</div> 
 							</div>
 						</div>
-						<div class="col-sm-6 col-md-3 p0">
-							<div class="box-two proerty-item">
-								<div class="item-thumb">
-									<a href="property-3.html"><img src="assets/img/demo/property-3.jpg"></a>
-								</div>
-							</div>
-						</div>
-						<div class="col-sm-6 col-md-3 p0">
-							<div class="box-two proerty-item">
-								<div class="item-thumb">
-									<a href="property-1.html"><img src="assets/img/demo/property-4.jpg"></a>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="content-area home-area-1 recent-property" style="background-color: #FCFCFC; padding-bottom: 55px;">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-10 col-md-offset-1 col-sm-12 text-center page-title">
-						<!-- /.feature title -->
-						<h2>통계</h2>
-						<p>Nulla quis dapibus nisl. Suspendisse ultricies commodo arcu
-							nec pretium. Nullam sed arcu ultricies .</p>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="content-area home-area-1 recent-property" style="background-color: #FCFCFC; padding-bottom: 55px;">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-10 col-md-offset-1 col-sm-12 text-center page-title">
-						<!-- /.feature title -->
-						<h2>리뷰</h2>
-						<p>Nulla quis dapibus nisl. Suspendisse ultricies commodo arcu
-							nec pretium. Nullam sed arcu ultricies .</p>
 					</div>
 				</div>
 			</div>
 		</div>
-		<div class="content-area home-area-1 recent-property" style="background-color: #FCFCFC; padding-bottom: 55px;">
+		<div class="count-area">
 			<div class="container">
 				<div class="row">
 					<div class="col-md-10 col-md-offset-1 col-sm-12 text-center page-title">
-						<!-- /.feature title -->
-						<h2>자주묻는질문</h2>
-						<p>Nulla quis dapibus nisl. Suspendisse ultricies commodo arcu
-							nec pretium. Nullam sed arcu ultricies .</p>
+						<h2>통계</h2> 
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12 col-xs-12 percent-blocks m-main" data-waypoint-scroll="true">
+						<div class="row">
+							<div class="col-sm-3 col-xs-6">
+								<div class="count-item">
+									<div class="count-item-circle">
+										<span class="pe-7s-users"></span>
+									</div>
+									<div class="chart" data-percent="5000">
+										<h2 class="percent" id="counter">1008</h2>
+										<h5>HAPPY CUSTOMER </h5>
+									</div>
+								</div>
+							</div>
+							<div class="col-sm-3 col-xs-6">
+								<div class="count-item">
+									<div class="count-item-circle">
+										<span class="pe-7s-home"></span>
+									</div>
+									<div class="chart" data-percent="12000">
+										<h2 class="percent" id="counter1">1 300</h2>
+										<h5>Properties in stock</h5>
+									</div>
+								</div> 
+							</div> 
+							<div class="col-sm-3 col-xs-6">
+								<div class="count-item">
+									<div class="count-item-circle">
+										<span class="pe-7s-flag"></span>
+									</div>
+									<div class="chart" data-percent="120">
+										<h2 class="percent" id="counter2">146</h2>
+										<h5>City registered </h5>
+									</div>
+								</div> 
+							</div> 
+							<div class="col-sm-3 col-xs-6">
+								<div class="count-item">
+									<div class="count-item-circle">
+										<span class="pe-7s-graph2"></span>
+									</div>
+									<div class="chart" data-percent="5000">
+										<h2 class="percent" id="counter3">1023</h2>
+										<h5>DEALER BRANCHES</h5>
+									</div>
+								</div> 
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>

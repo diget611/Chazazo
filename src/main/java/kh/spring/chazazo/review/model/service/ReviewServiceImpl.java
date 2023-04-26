@@ -20,18 +20,6 @@ public class ReviewServiceImpl implements ReviewService{
 	}
 
 	@Override
-	public int update(ReviewDto dto) {
-		return dao.update(dto);
-	}
-
-	@Override
-	public int delete(int idx) {
-		return dao.delete(idx);
-	}
-
-
-
-	@Override
 	public List<ReviewDto> selectList() {
 		return dao.selectList();
 	}
@@ -51,6 +39,13 @@ public class ReviewServiceImpl implements ReviewService{
 	public int updateReview(ReviewDto dto) {
 		return dao.updateReview(dto);
 	}
+
+	@Override
+	public int deleteReview(ReviewDto dto) {
+		return dao.deleteReview(dto);
+	}
+
+
 
 
 

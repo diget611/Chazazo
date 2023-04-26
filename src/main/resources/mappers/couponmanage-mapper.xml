@@ -3,17 +3,23 @@
 <mapper namespace="couponmanage">
 	<select id="selectList" parameterType="pagination" resultType="adminCouponManageRespDto">
 		SELECT *
-		  FROM (SELECT ROWNUM AS RNUM, IDX, RATE * 100 AS RATE, PERIOD, NAME FROM COUPON_MANAGE
+		  FROM (SELECT ROWNUM AS RNUM, IDX, RATE * 100 AS RATE, PERIOD, NAME, STATUS FROM COUPON_MANAGE
 		         WHERE IDX >= 1 ORDER BY IDX DESC)
          WHERE RNUM BETWEEN #{start} AND #{end}
 	</select>
 	
 	<select id="selectOne" resultType="adminCouponManageRespDto">
-		SELECT IDX, RATE * 100 AS RATE, PERIOD, NAME
+		SELECT IDX, RATE * 100 AS RATE, PERIOD, NAME, STATUS
 		  FROM COUPON_MANAGE WHERE IDX = #{idx}
 	</select>
 	
 	<select id="count" resultType="_int">
 		SELECT COUNT(*) FROM COUPON_MANAGE
 	</select>
+	
+	<update id="delete">
+		UPDATE COUPON_MANAGE
+		   SET RATE = 0, PERIOD = 0, NAME = 0, STATUS = 1
+		 WHERE IDX = #{idx}
+	</update>
 </mapper>

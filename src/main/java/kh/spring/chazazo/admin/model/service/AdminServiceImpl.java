@@ -89,6 +89,11 @@ public class AdminServiceImpl implements AdminService {
 	}
 	
 	@Override
+	public int deleteCoupon(int idx) {
+		return dao.deleteCoupon(idx);
+	}
+	
+	@Override
 	public int requestCount() {
 		return dao.requestCount();
 	}
@@ -209,6 +214,21 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public List<String> monthList() {
 		return dao.monthList();
+	}
+	
+	@Override
+	public int dayReservCount() {
+		return dao.dayReservCount();
+	}
+	
+	@Override
+	public int dayReservSum() {
+		return dao.dayReservSum();
+	}
+	
+	@Override
+	public int dayRegiCount() {
+		return dao.dayRegiCount();
 	}
 
 }

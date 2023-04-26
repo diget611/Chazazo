@@ -16,12 +16,6 @@ public class ReviewDao {
 	public int insertReview(ReviewDto dto) {
 		return sqlSession.insert("review.insert", dto);
 	}
-	public int update(ReviewDto dto) {
-		return sqlSession.update("review.update", dto);
-	}
-	public int delete(int idx) {
-		return sqlSession.delete("review.delete", idx);
-	}		
 
 	public List<ReviewDto> selectList() {
 		return sqlSession.selectList("review.selectList");
@@ -34,5 +28,8 @@ public class ReviewDao {
 	}
 	public int updateReview(ReviewDto dto) {
 		return sqlSession.insert("review.updateReview", dto);
+	}
+	public int deleteReview(ReviewDto dto) {
+		return sqlSession.delete("review.deleteReview", dto);
 	}
 }

@@ -32,6 +32,7 @@ public interface AdminService {
 	public int couponCount();
 	public List<AdminCouponManageRespDto> selectCouponList(Pagination pagination);
 	public AdminCouponManageRespDto selectCouponOne(String idx);
+	public int deleteCoupon(int idx);
 	public int requestCount();
 	public List<AdminRequestRespDto> selectRequestList(Pagination pagination);
 	public List<AdminRequestRespDto> selectRequestList(Map<String, Integer> data);

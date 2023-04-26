@@ -89,6 +89,11 @@ public class AdminServiceImpl implements AdminService {
 	}
 	
 	@Override
+	public int deleteCoupon(int idx) {
+		return dao.deleteCoupon(idx);
+	}
+	
+	@Override
 	public int requestCount() {
 		return dao.requestCount();
 	}

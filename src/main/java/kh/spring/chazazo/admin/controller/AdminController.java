@@ -162,6 +162,18 @@ public class AdminController {
 		return mv;
 	}
 	
+	@GetMapping("/coupon/insert")
+	public ModelAndView viewInsertCoupon(ModelAndView mv) {
+		mv.setViewName("admin/couponinsert");
+		return mv;
+	}
+	
+	@PatchMapping("/coupon/delete")
+	public int deleteCoupon(int idx) {
+		int result = aService.deleteCoupon(idx);
+		return result;
+	}
+	
 	@GetMapping("/notice")
 	public ModelAndView viewNotice(ModelAndView mv, @RequestParam(required = false, defaultValue = "1") int page) {
 		int count = aService.noticeCount();

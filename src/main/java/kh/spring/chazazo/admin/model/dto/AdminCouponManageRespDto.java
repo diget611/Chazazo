@@ -18,5 +18,6 @@ public class AdminCouponManageRespDto {
 	private int rate;
 	private int period;
 	private String name;
+	private int status;
 	
 }

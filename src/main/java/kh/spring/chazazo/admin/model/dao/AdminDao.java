@@ -77,6 +77,10 @@ public class AdminDao {
 		return sqlSession.selectOne("couponmanage.selectOne", idx);
 	}
 	
+	public int deleteCoupon(int idx) {
+		return sqlSession.update("couponmanage.delete", idx);
+	}
+	
 	public int requestCount() {
 		return sqlSession.selectOne("request.count");
 	}

@@ -34,24 +34,23 @@
 	<div class="container-fluid pt-4 px-4">
 		<div class="col-sm-12 col-xl-6">
 			<div class="bg-light rounded h-100 p-4">
-				<h6 class="mb-4">쿠폰 상세 정보</h6>
+				<h6 class="mb-4">쿠폰 등록</h6>
 				<form>
 					<input type="hidden" id="idx" value="${coupon.idx }">
 					<div class="form-floating mb-3">
-						<input type="text" class="form-control" id="name" name="name" value="${coupon.name}" readonly>
+						<input type="text" class="form-control" id="name" name="name">
 						<label for="name">쿠폰명</label>
 					</div>
 					<div class="form-floating mb-3">
-						<input type="text" class="form-control" id="period" name="period" value="${coupon.period}" readonly>
+						<input type="number" class="form-control" id="period" name="period">
 						<label for="period">쿠폰 사용 기간</label>
 					</div>
 					<div class="form-floating mb-3">
-						<input type="text" class="form-control" id="rate" name="rate" value="${coupon.rate}" readonly>
+						<input type="number" class="form-control" id="rate" name="rate">
 						<label for="rate">할인율</label>
 					</div>
 					<div style="text-align: center;">
-						<button type="button" class="btn btn-primary" id="updateBtn" style="display: inline-block">정보 수정</button>
-						<button type="button" class="btn btn-primary" id="deleteBtn" style="display: inline-block">삭제</button>
+						<button type="button" class="btn btn-primary" id="insertBtn" style="display: inline-block">등록하기</button>
 					</div>
 				</form>
 			</div>
@@ -67,14 +66,14 @@
 		win.resizeTo(500, hei);
 	}
 	
-	$('#deleteBtn').on('click', deleteCoupon);
+	$('#insertBtn').on('click', insertCoupon);
 	
-	function deleteCoupon() {
+	function insertCoupon() {
 		let idx = $('#idx').val();
 		$.ajax({
 			url: "${pageContext.request.contextPath}/admin/coupon/delete",
 			data: {idx: idx},
-			type: "patch",
+			type: "post",
 			success: function(result) {
 				if(result == 1) {
 					opener.parent.location.reload();

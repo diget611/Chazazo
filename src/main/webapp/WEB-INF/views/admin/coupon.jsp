@@ -42,16 +42,19 @@
 			<!-- Table Start -->
 			<div class="container-fluid pt-4 px-4">
 				<div class="bg-light rounded p-4 text-center">
-					<div>
-					<h4 class="mb-4 text-start">쿠폰 관리</h4>
+					<div class="d-flex justify-content-between">
+					<h4 style="display:inline-block">쿠폰 관리</h4>
+					<button type="button" class="btn btn-secondary" style="display:inline-block"
+					        onclick='window.open("<%=request.getContextPath()%>/admin/coupon/insert", "쿠폰 등록", "width=500, height=auto")'>등록하기</button>
 					</div>
 					<table class="table table-hover">
 						<thead>
 							<tr class="text-dark">
 								<th scope="col" style="width: 5%;">#</th>
-								<th scope="col" style="width: 30%;">쿠폰명</th>
+								<th scope="col" style="width: 40%;">쿠폰명</th>
 								<th scope="col" style="width: 15%;">기간</th>
 								<th scope="col" style="width: 20%;">할인율</th>
+								<th scope="col" style="width: 20%;">상태</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -61,6 +64,14 @@
 								<td>${coupon.name }</td>
 								<td>${coupon.period }</td>
 								<td>${coupon.rate }</td>
+								<c:choose>
+									<c:when test="${coupon.status eq 0 }">	
+										<td>사용 가능</td>
+									</c:when>
+									<c:otherwise>
+										<td>사용 불가</td>
+									</c:otherwise>
+								</c:choose>
 							</tr>
 							</c:forEach>
 						</tbody>

@@ -9,7 +9,9 @@
 		SELECT *
 		  FROM REVIEW R LEFT OUTER JOIN MEMBER_INFO M
 		    ON R.MEMBER_IDX = M.IDX
+		     WHERE R.VEHICLE_IDX=#{idx}
 		 ORDER BY CREATE_DATE ASC
+		 
 	</select>
 	
 	<insert id="insert">

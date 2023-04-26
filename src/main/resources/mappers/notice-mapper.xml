@@ -10,9 +10,11 @@
                   FROM NOTICE)
          WHERE RNUM BETWEEN #{start} AND #{end}
 	</select>
+	
 	<select id="selectOne" resultType="adminNoticeOneRespDto">
 		SELECT IDX, TITLE, CONTENT FROM NOTICE WHERE IDX = #{idx}
 	</select>
+	
 	<select id="count" resultType="_int">
 		SELECT COUNT(*) FROM NOTICE
 	</select>

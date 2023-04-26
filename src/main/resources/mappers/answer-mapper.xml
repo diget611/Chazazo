@@ -4,10 +4,15 @@
 	<insert id="insert" parameterType="map">
 		INSERT INTO ANSWER VALUES(#{idx}, #{answer})
 	</insert>
+	
 	<update id="update" parameterType="map">
-		UPDATE ANSWER SET CONTENT = #{answer} WHERE REQUEST_IDX = #{idx}
+		UPDATE ANSWER
+		   SET CONTENT = #{answer} WHERE REQUEST_IDX = #{idx}
 	</update>
+	
 	<delete id="delete">
-		DELETE FROM ANSWER WHERE REQUEST_IDX = #{idx}
+	
+		DELETE FROM ANSWER
+		 WHERE REQUEST_IDX = #{idx}
 	</delete>
 </mapper>

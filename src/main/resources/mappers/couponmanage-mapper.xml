@@ -7,9 +7,12 @@
 		         WHERE IDX >= 1 ORDER BY IDX DESC)
          WHERE RNUM BETWEEN #{start} AND #{end}
 	</select>
+	
 	<select id="selectOne" resultType="adminCouponManageRespDto">
-		SELECT IDX, RATE * 100 AS RATE, PERIOD, NAME FROM COUPON_MANAGE WHERE IDX = #{idx}
+		SELECT IDX, RATE * 100 AS RATE, PERIOD, NAME
+		  FROM COUPON_MANAGE WHERE IDX = #{idx}
 	</select>
+	
 	<select id="count" resultType="_int">
 		SELECT COUNT(*) FROM COUPON_MANAGE
 	</select>

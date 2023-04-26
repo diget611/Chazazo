@@ -47,12 +47,12 @@
 					<div class="blog-asside-right col-md-3">
 						<div class="panel panel-default sidebar-menu wow fadeInRight animated animated" style="visibility: visible; animation-name: fadeInRight;">
 							<div class="panel-heading">
-								<h3 class="panel-title"> </h3>
+								<hr>
 							</div>
 						</div>
 						<div class="btn-group btn-group-lg btn-group-vertical" role="group" aria-label="Basic outlined example">
-							<button type="button" class="btn btn-outline-primary" id="mainBtn">자주 묻는 질문</button>
-							<button type="button" class="btn btn-outline-primary" id="requestBtn">1:1 문의</button>
+							<button type="button" class="btn btn-outline-primary" id="mainBtn" style="text-align: left;">자주 묻는 질문</button>
+							<button type="button" class="btn btn-outline-primary" id="requestBtn" style="text-align: left;">1:1 문의</button>
 						</div>
 					</div>  
 					<div class="blog-lst col-md-9 p0">
@@ -64,7 +64,40 @@
 							</div>
 						</section>
 						<section>
-							${request }
+							<c:choose>
+								<c:when test="${requestList eq null }">
+									<div style="margin-bottom: 50px; font-size: 20px;">1:1 문의 내역이 존재하지 않습니다.</div>
+								</c:when>
+								<c:otherwise>
+									<div class="feat-list">
+										<div class="panel-group">
+											<c:forEach items="${requestList }" var="request">
+												<div class="panel panel-default">
+													<c:choose>
+														<c:when test="${request.status eq 0 }">
+															<div class="panel-heading">
+																<h4 class="panel-title fqa-title collapsed" data-toggle="collapse" data-target="#fqa${request.idx }" aria-expanded="false"><span style="padding-right: 10px;">[답변 대기 중]</span>${request.title }</h4>
+															</div>
+														</c:when>
+														<c:otherwise>
+															<div class="panel-heading" style="background-color: red;">
+																<h4 class="panel-title fqa-title collapsed" data-toggle="collapse" data-target="#fqa${request.idx }" aria-expanded="false"><span style="padding-right: 10px;">[답변 완료]</span>${request.title }</h4>
+															</div>
+														</c:otherwise>
+													</c:choose>
+													<div id="fqa${request.idx }" class="panel-collapse fqa-body collapse" aria-expanded="false" style="height: 0px;">
+														<div class="panel-body">${request.content }</div>
+														<c:if test="${request.answer ne null }">
+															<hr style="padding: 0; margin: 0;">
+															<div class="panel-body">${request.answer }</div>
+														</c:if>
+													</div>
+												</div>
+											</c:forEach>
+										</div>
+									</div>
+								</c:otherwise>
+							</c:choose>
 							<button type="button" class="btn btn-primary" id="insertBtn">문의 작성하기</button>
 						</section>
 					</div>                    
@@ -83,7 +116,7 @@
 		})
 	
 		$('#requestBtn').on('click', function() {
-			location.href="${pageContext.request.contextPath}/request";
+			location.href="${pageContext.request.contextPath}/inquiry/request";
 		})
 		
 		$('#insertBtn').on('click', function() {

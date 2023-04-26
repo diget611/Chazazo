@@ -51,12 +51,12 @@
 					<div class="blog-asside-right col-md-3">
 						<div class="panel panel-default sidebar-menu wow fadeInRight animated animated" style="visibility: visible; animation-name: fadeInRight;">
 							<div class="panel-heading">
-								<h3 class="panel-title"> </h3>
+								<hr>
 							</div>
 						</div>
 						<div class="btn-group btn-group-lg btn-group-vertical" role="group" aria-label="Basic outlined example">
-							<button type="button" class="btn btn-outline-primary" id="mainBtn">자주 묻는 질문</button>
-							<button type="button" class="btn btn-outline-primary" id="requestBtn">1:1 문의</button>
+							<button type="button" class="btn btn-outline-primary" id="mainBtn" style="text-align: left;">자주 묻는 질문</button>
+							<button type="button" class="btn btn-outline-primary" id="requestBtn" style="text-align: left;">1:1 문의</button>
 						</div>
 					</div>   
 					<div class="blog-lst col-md-9 p0">
@@ -114,7 +114,7 @@
 		})
 
 		$('#requestBtn').on('click', function() {
-			location.href="${pageContext.request.contextPath}/request";
+			location.href="${pageContext.request.contextPath}/inquiry/request";
 		})
 		
 		$('.category').on('click', function() {

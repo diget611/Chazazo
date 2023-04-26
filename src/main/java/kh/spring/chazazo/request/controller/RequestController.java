@@ -29,7 +29,7 @@ public class RequestController {
 			mv.setViewName("redirect:/inquiry");
 		} else {
 			String username = prin.getName();
-			mv.addObject("request", rService.selectListByMember(username));
+			mv.addObject("requestList", rService.selectListByMember(username));
 			mv.setViewName("inquiry/request");
 		}
 		return mv;

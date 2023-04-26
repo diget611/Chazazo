@@ -1,7 +1,5 @@
 package kh.spring.chazazo.request.model.dto;
 
-import java.sql.Date;
-
 import org.springframework.stereotype.Component;
 
 import lombok.AllArgsConstructor;
@@ -16,10 +14,10 @@ import lombok.ToString;
 @ToString
 public class RequestRespDto {
 	
+	private String idx;
 	private String title;
 	private String content;
+	private String answer;
 	private int status;
-	private Date reqDate;
-	private Date ansDate;
 	
 }

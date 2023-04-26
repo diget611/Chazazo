@@ -77,10 +77,10 @@
 												<td ><input type="hidden" id="reviewIdx" value="${review.idx }"></td>
 												<td >${review.name}</td>
 												<td ><input class="review_content" type="text" value="${review.content}" disabled></td>
-												<td id="reviewTd" >
+												<td  id="parentId">
 													<c:if test="${info.name eq review.name }">
-															<input data-idx="${review.idx }" src="<%=request.getContextPath()%>/resources/garoestate/assets/img/icon/edit.png" style="float:left;" type="image" class="edit" value="수정">
-															<input data-idx="${review.idx }" src="<%=request.getContextPath()%>/resources/garoestate/assets/img/icon/delete.png"  type="image" class="delete" value="삭제" >
+															<input data-idx="${review.idx }" src="<%=request.getContextPath()%>/resources/garoestate/assets/img/icon/edit.png" style="float:left;  width:49%; " type="image" class="edit" value="수정">
+															<input data-idx="${review.idx }" src="<%=request.getContextPath()%>/resources/garoestate/assets/img/icon/delete.png"  style=" float:left;  width:50%; " type="image" class="delete" value="삭제" >
 													</c:if>
 													<br>${review.createdate}
 												</td>
@@ -516,32 +516,34 @@ var ckEmail = 0;
 		$(this).attr('hidden', true);
 		$(this).next().attr('hidden', true);
 		$(this).parent().append('<button type="button" id="btnUpdate" name="btnUpdate">등록</button>')
+		console.log($(this).parent());
 	});
 	
 
-		$('#reviewTd').on('click','.btnUpdate', function() {
-			 console.log("ㅠㅠㅠㅠㅠ");
+		$(document).on('click','#btnUpdate', function() {
+			 
+			 var reviewidx = $(this).parent().prev().prev().prev().children().val();
+			 var content = $(this).parent().prev().children().val();
+			 
+					$.ajax({
+						url:'<%=request.getContextPath()%>/updateReview',
+				         type: 'post',
+					     data: {
+					 		"idx" : reviewidx,
+							"content" :content
+						},
+				         success: function(result) {
+				        	 location.reload();
+				          },
+				          error: function() {
+				          	alert('리뷰 수정 실패');
+				          }
+					});	
+			 
 		})
-	//리뷰 수정 
-		function updateReview() {
-	console.log("????");
-			var idx = $('#reviewNum').val();
-			var content = $('#editContent').val();
-				$.ajax({
-					url:'<%=request.getContextPath()%>/updateReview',
-			         type: 'post',
-				     data: {
-				 		"idx" : idx,
-						"content" :content
-					},
-			         success: function(result) {
-			        	 // location.reload();
-			          },
-			          error: function() {
-			          	alert('리뷰 수정 실패');
-			          }
-				});	
-	}
+		
+	//리뷰 수정한 내용 등록
+
 	
 	//리뷰 삭제
 	$('.delete').on('click', function(){
@@ -862,7 +864,7 @@ var ckEmail = 0;
 	        	  "ismember" : ismember,
 	        	  "memberIdx" : useridx, // 회원idx, 비회원은 0
 	        	  "vehicleIdx" : "${car.idx}", //차량idx
-	        	  "insurance": ins, //선택한 보험종류
+	        	  "insuranceIdx": ins, //선택한 보험종류
 	        	  "finalprice" : finalprice, //결제금액
 	        	  "paidtime": paidtime, //결제시간
 				  "startDate":startDate, //대여일
@@ -871,7 +873,7 @@ var ckEmail = 0;
 	        	  "returnLocation": returnLocation, //반납지점idx
 	        	  "name" : nameval,
 					"birth" :birthval,
-					"phone" :phoneval,
+					"phoneNumber" :phoneval,
 					"license" :license,
 					"email": mailval
 	          };

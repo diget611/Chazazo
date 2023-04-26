@@ -51,12 +51,12 @@
 					<div class="blog-asside-right col-md-3">
 						<div class="panel panel-default sidebar-menu wow fadeInRight animated animated" style="visibility: visible; animation-name: fadeInRight;">
 							<div class="panel-heading">
-								<h3 class="panel-title"> </h3>
+								<h3 class="panel-title">이벤트</h3>
 							</div>
 						</div>
 						<div class="btn-group btn-group-lg btn-group-vertical" role="group" aria-label="Basic outlined example">
-							<button type="button" class="btn btn-outline-primary" id="">진행중인 이벤트</button>
-							<button type="button" class="btn btn-outline-primary" id="">종료된 이벤트</button>
+							<button type="button" class="btn btn-outline-primary" id="" style="text-align: left;">진행중인 이벤트</button>
+							<button type="button" class="btn btn-outline-primary" id="" style="text-align: left;">종료된 이벤트</button>
 						</div>
 					</div>   
 					<div class="blog-lst col-md-9 p0">

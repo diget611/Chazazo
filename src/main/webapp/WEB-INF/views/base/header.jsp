@@ -12,7 +12,7 @@
 					class="icon-bar"></span>
 			</button>
 			<a class="navbar-brand" href="<%=request.getContextPath() %>">
-			<img src="../resources/garoestate/assets/img/logo.png" alt=""></a>
+			<img src="<%=request.getContextPath() %>/resources/garoestate/assets/img/logo.png" alt=""></a>
 		</div>
 		<!-- Collect the nav links, forms, and other content for toggling -->
 		<div class="collapse navbar-collapse yamm" id="navigation">

@@ -16,6 +16,11 @@ public class EventController {
 		return mv;
 	}
 	
+	@GetMapping("/load")
+	public String pageLoad() {
+		return null;
+	}
+	
 	@GetMapping("/event/{idx}")
 	public ModelAndView viewEventOne(ModelAndView mv) {
 		// 이벤트 상세 조회

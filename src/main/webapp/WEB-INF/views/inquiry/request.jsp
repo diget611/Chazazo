@@ -116,7 +116,7 @@
 		})
 	
 		$('#requestBtn').on('click', function() {
-			location.href="${pageContext.request.contextPath}/inquiry/request";
+			location.href="${pageContext.request.contextPath}/request";
 		})
 		
 		$('#insertBtn').on('click', function() {

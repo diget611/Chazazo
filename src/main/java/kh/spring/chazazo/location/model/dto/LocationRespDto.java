@@ -16,7 +16,7 @@ public class LocationRespDto {
 	private double latitude;
 	private double longitude;
 	private String phoneNumber;
-	private String nusinessHours;
+	private String businessHours;
 	private String address;
 	
 	

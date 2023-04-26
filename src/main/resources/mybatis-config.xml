@@ -32,6 +32,8 @@
 		<typeAlias type="kh.spring.chazazo.admin.model.dto.AdminStatisticsRecentMonthDto" alias="adminStatisticsRecentMonthDto"/>
 		<typeAlias type="kh.spring.chazazo.inquiry.model.dto.InquiryRespDto" alias="inquiryRespDto"/>
 		<typeAlias type="kh.spring.chazazo.common.Pagination" alias="pagination"/>
+		<typeAlias type="kh.spring.chazazo.location.model.dto.LocationRespDto" alias="LocationRespDto"/>
+		
 		
 	</typeAliases>
 </configuration>

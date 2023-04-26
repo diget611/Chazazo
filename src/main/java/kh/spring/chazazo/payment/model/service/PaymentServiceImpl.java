@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import kh.spring.chazazo.location.model.dto.LocationRespDto;
 import kh.spring.chazazo.payment.model.dao.PaymentDao;
 import kh.spring.chazazo.payment.model.dto.PaymentInfoDto;
 import kh.spring.chazazo.payment.model.dto.PaymentReqDto;
@@ -43,9 +44,9 @@ public class PaymentServiceImpl implements PaymentService {
 
 
 	@Override
-	public PaymentReqDto noneReser(int idx) {
+	public PaymentReqDto noneReser(int paymentIdx) {
 		// TODO Auto-generated method stub
-		return dao.noneReser(idx);
+		return dao.noneReser(paymentIdx);
 	}
 
 	@Override
@@ -54,5 +55,9 @@ public class PaymentServiceImpl implements PaymentService {
 		return dao.selectNoneM(dto);
 	}
 
+	@Override
+	public LocationRespDto resvLocation(int idx) {
+		return dao.resvLocation(idx);
 
+	}
 }

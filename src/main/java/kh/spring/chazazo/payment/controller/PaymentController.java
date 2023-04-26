@@ -185,26 +185,21 @@ private PaymentService pService;
 	
 	
 	@GetMapping("/profile/nonereservation")
-	public String viewNoneReservationListUser(ModelAndView mv, int idx, PaymentReqDto data) {
+	public String viewNoneReservationListUser(ModelAndView mv, int paymentIdx, PaymentReqDto data) {
 		// 비회원 예약 조회 
 		
 		
 		
 		Map<String, Object> result = new HashMap<String,Object>();
 	
-		System.out.println(data);
-		System.out.println(result);
-		System.out.println("비회원 컨트롤러");
-				
 		
-			mv.addObject("reservation", pService.selectNoneM(data));
-			result.put("reservation", pService.selectNoneM(data));
-			mv.addObject("noneReservation", pService.noneReser(idx));
-			result.put("noneReservation", pService.noneReser(idx));
+			mv.addObject("selectNone", pService.selectNoneM(data));
+			result.put("selectNone", pService.selectNoneM(data));
+			mv.addObject("noneReservation", pService.noneReser(paymentIdx));
+			result.put("noneReservation", pService.noneReser(paymentIdx));
 			
 			
-			System.out.println(result);
-			System.out.println("d비회원정보");
+			
 			return new Gson().toJson(result);
 			
 		}
@@ -212,10 +207,9 @@ private PaymentService pService;
 
 	@GetMapping("/profile/reservation/{idx}")
 	public ModelAndView viewReservationOne(ModelAndView mv
-										   , @PathVariable String username, Principal prin) {
+										   , @PathVariable int idx, Principal prin) {
 		// 예약 정보 상세 조회
 		
-		int index = Integer.parseInt(username);
 		if(prin == null) {
 			mv.setViewName("member/history");
 		}else{
@@ -223,6 +217,7 @@ private PaymentService pService;
 			String loginId = prin.getName();
 			mv.addObject("memberinfo", mService.selectMypageOne(loginId) );
 			mv.addObject("reservation", pService.selectList(loginId));
+			mv.addObject("location",pService.resvLocation(idx));
 			mv.setViewName("member/details");
 		}
 		

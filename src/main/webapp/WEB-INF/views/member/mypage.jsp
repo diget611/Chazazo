@@ -252,7 +252,10 @@
 	<jsp:include page="/WEB-INF/views/base/footer.jsp"/>
 
 	<script>
-	
+		$('tr').on('click', function() {
+			var sss = $(this).children().eq(0).text();
+			location.href = "${pageContext.request.contextPath}/profile/reservation/" + sss; 
+		})
 		$('#updateinfoBtn').on('click', function() {
 			location.href='<%=request.getContextPath()%>/member/profile/update';
 			
@@ -318,52 +321,69 @@
 		function noMeberReser(){
 			console.log("클릭");
 			var username = $('#username').val();
-			var phone = $('#phone').val();
+			var phoneNumber = $('#phone').val();
 			var reservationNumber = $('#reservationNumber').val();
+			console.log(username);
 		
 		
 			$.ajax({
 				url:'<%=request.getContextPath()%>/profile/nonereservation',
 				type: 'get',
 				dataType:'json',
-				data ={
+				data : {
 						"name":username,
-						"phoneNumber":phone,
-						"idx":reservationNumber
+						"phoneNumber":phoneNumber,
+						"paymentIdx":reservationNumber
 				},
 				success: function(result){
 					getNoneResr(result);
 					console.log(result);
-					console.log(reservationNumber+"22222222"+phone);
 					
 				},
 				error: function(){
-					console.log(data);
 					alert("fail!!!!!!!");
 				}
 				
 			});
+		}
 		
-		};
 		
 		function getNoneResr(result){
-			console.log("예약내역떠야지?")
+			console.log("예약내역")
 			var html = '';
-			html += '	<table>'
-			html += '	<c:forEach items="${noneReservation }" var="list">'
-			
-			html += '	<tr>'
-			
-			html += '		<td>${list.startDate }</td>'
-			html += '	<td>${list.state }</td>'
-			html += '<td>${list.vehicleIdx }</td>'
-			html += '<td>${list.rentLocationName }</td>'
-			html += '<td>${list.returnLocationName }</td>'
-			html += '	</tr>	'
-			html += '</c:forEach>'
-			html += '	</table>'
+			html += '				<div>'
+				html += '					<h3>${selectNone.name } 님의 예약내역</h3>'
+				html += '				</div>'
+				html += '				<c:if test="${empty noneReservation}">'
+				html += '					<p style="text-align: center; font-size: large;"><strong>예약 정보가 없습니다.</strong></p><br>'
+				html += '				</c:if>'	
+				html += '				<c:if test="${!empty noneReservation}">'
+				html += '					<c:forEach items="${noneReservation }" var="list">'
+				html += '						<table>'
+				html += '							<tr>'
+				html += '								<th scope="row">예약번호</th>'
+				html += '									<td>${list.Idx }</td>'
+				html += '								<th scope="row">예약시작날짜</th>'
+				html += '									<td>${list.startDate }</td>'
+				html += '								<th scope="row">예약상태</th>'
+				html += '									<td>${list.state }</td>'
+				html += '								<th scope="row">보험종류</th>'
+				html += '									<td>${list.insuranceIdx }</td>'
+				html += '								<th scope="row">차종류</th>'
+				html += '									<td>${list.vehicleIdx }</td>'
+				html += '								<th scope="row">대여지점</th>'
+				html += '									<td>${list.rentLocation }</td>'
+				html += '								<th scope="row">반납지점</th>'
+				html += '									<td>${list.returnLocation }</td>'
+				html += '								</tr>'
+				
+				html += '							</table>'
+
+				html += '						</c:forEach>'
+				html += '				</c:if>'
 		
-		}	$('#content').html(html);
+		$('#content').html(html);
+		}
 		
 		
 		

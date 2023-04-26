@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import kh.spring.chazazo.location.model.dto.LocationRespDto;
 import kh.spring.chazazo.payment.model.dto.PaymentInfoDto;
 import kh.spring.chazazo.payment.model.dto.PaymentReqDto;
 
@@ -29,9 +30,9 @@ public class PaymentDao {
 		
 	}
 	
-	public PaymentReqDto noneReser(int idx){
+	public PaymentReqDto noneReser(int paymentIdx){
 		
-		return session.selectOne("payment.noneMemberRes",idx);
+		return session.selectOne("payment.noneMemberRes",paymentIdx);
 		
 	}
 	
@@ -41,6 +42,10 @@ public class PaymentDao {
 		
 	}
 	
+	//렌트업체 정보
+	public LocationRespDto resvLocation(int idx) {
+		return session.selectOne("payment.reservLocation", idx);
+	}
 	
 	public List<PaymentReqDto> selectList(String username) {
 		

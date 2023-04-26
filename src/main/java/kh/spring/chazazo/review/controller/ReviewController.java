@@ -2,6 +2,8 @@ package kh.spring.chazazo.review.controller;
 
 
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -43,9 +45,10 @@ public class ReviewController {
 	}
 	
 	
-	@DeleteMapping("/carlist/{vehicleIdx}/remove")
-	public ModelAndView deleteReview(ModelAndView mv) {
-		return mv;
+	@DeleteMapping("/deleteReview")
+	public int deleteReview(ReviewDto data) {
+		int result = rService.deleteReview(data);
+		return result;
 	}
 	
 	

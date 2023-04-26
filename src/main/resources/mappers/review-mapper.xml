@@ -22,16 +22,12 @@
 	
 	<update id="updateReview">
 	UPDATE REVIEW SET CONTENT=#{content} WHERE IDX =#{idx}
-
 	</update>
 	
-	<update id="update">
-		UPDATE MEMBER SET IDX = #{idx}, vehicleIdx = #{vehicleIdx}, content = #{content} WHERE IDX = #{idx}
-	</update>
-	
-	<delete id="delete">
-		DELETE FROM REVIEW WHERE IDX = #{idx}	
+	<delete id="deleteReview">
+	DELETE FROM REVIEW WHERE IDX =#{idx}
 	</delete>
+
 	<select id="selectReviewContent" resultType="string">
 		SELECT REVIEW.*, REVIEW_IDX FROM REVIEW INNER JOIN REPORT ON REVIEW.IDX = REPORT.REVIEW_IDX WHERE REPORT.IDX = #{idx}
 	</select>

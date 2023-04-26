@@ -93,7 +93,7 @@
 	
 	<select id = "reservLocation" resultType="LocationRespDto">
 		SELECT NAME, PHONE_NUMBER, BUSINESS_HOURS, ADDRESS FROM LOCATION WHERE IDX IN (SELECT RENT_LOCATION FROM PAYMENT WHERE IDX = #{idx} )
-		
+		</select>
 	
 	<select id="dayReservCount" resultType="_int">
 		SELECT COUNT(*) AS CNT

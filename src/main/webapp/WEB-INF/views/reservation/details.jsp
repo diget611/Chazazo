@@ -64,55 +64,55 @@
 							<div id="reviewDiv" >
 								<div style=" margin-top:450px;" >
 								<h4 class="s-property-title" >리뷰</h4>
-									<table class="table review" width="100%" style="padding: 3em;">
-											<tr>
-												<td width="0%"></td>
-												<td  width="15%" >닉네임</td>
-												<td  width="50%">리뷰내용</td>
-												<td width="15%">수정</td>
-												<td width="10%">추천</td>
-											</tr>
-										<c:forEach items="${rList }" var="review" varStatus="i">
-											<tr>
-												<td ><input type="hidden" id="reviewIdx" value="${review.idx }"></td>
-												<td >${review.name}</td>
-												<td ><input class="review_content" id="focusinput" type="text" value="${review.content}"  autofocus disabled></td>
-												<td  id="parentId">
-													<c:if test="${info.name eq review.name }">
-															<input data-idx="${review.idx }" src="<%=request.getContextPath()%>/resources/garoestate/assets/img/icon/edit.png" style="float:left;  width:49%; " type="image" class="edit" value="수정">
-															<input data-idx="${review.idx }" src="<%=request.getContextPath()%>/resources/garoestate/assets/img/icon/delete.png"  style=" float:left;  width:50%; " type="image" class="delete" value="삭제" >
-													</c:if>
-													<br>${review.createdate}
-												</td>
-												<td align="center"><input data-idx="${review.idx}" data-recommend="${review.recommend}"  src="<%=request.getContextPath()%>/resources/garoestate/assets/img/icon/like.png" class="likebtn" type="image"  style="float:left;">
-												${review.recommend}</td>
-										    	<td >
-											    	<c:if test="${info.name ne review.name }">
-											    		<button type="button" class="btn btn-secondary" style="display:inline-block" 
-					    								    onclick='window.open("<%=request.getContextPath()%>/reportReview", "리뷰 신고", "width=500, height=auto")'>신고</button>
-											    	</c:if>
-										    	</td>
-											</tr>
-											<div> 
-											</div>
-										</c:forEach>
+									<table class="table table-review" style="padding: 3em;  height: 300px; ">
+										<tbody>
+										
+												<tr style="text-align:center;">
+													<th width="0%"></th>
+													<th  width="15%" >닉네임</th>
+													<th  width="50%">리뷰내용</th>
+													<th width="15%">작성일</th>
+													<th width="10%">추천</th>
+												</tr>
+												<c:forEach items="${rList }" var="review" varStatus="i">
+													<tr>
+														<td ><input type="hidden" id="reviewIdx" value="${review.idx }"></td>
+														<td >${review.name}</td>
+														<td ><input class="review_content"  type="text" value="${review.content}"  autofocus disabled></td>
+														<td  >
+															<c:if test="${info.name eq review.name }">
+																	<input data-idx="${review.idx }" src="<%=request.getContextPath()%>/resources/garoestate/assets/img/icon/edit.png" style="float:left;  width:50%; " type="image" class="edit" value="수정">
+																	<input data-idx="${review.idx }" src="<%=request.getContextPath()%>/resources/garoestate/assets/img/icon/delete.png"  style=" float:left;  width:50%; " type="image" class="delete" value="삭제" >
+															</c:if>
+															<br><label >${review.createdate}</label>
+														</td>
+														<td align="center"><input data-idx="${review.idx}" data-recommend="${review.recommend}"  src="<%=request.getContextPath()%>/resources/garoestate/assets/img/icon/like.png" class="likebtn" type="image"  style="float:left;">
+														${review.recommend}</td>
+												    	<td >
+													    	<c:if test="${info.name ne review.name }">
+													    		<button type="button" class="btn btn-secondary" style="display:inline-block" 
+							    								    onclick='window.open("<%=request.getContextPath()%>/reportReview", "리뷰 신고", "width=500, height=auto")'>신고</button>
+													    	</c:if>
+												    	</td>
+													</tr>
+													<div> 
+													</div>
+												</c:forEach>
+											</tbody>
 										</table>
 										<div id="insertReviewbody">
-											<table>
+											<table class="table table-insert">
 												<tr>
-					
-													<td style="padding-bottom : 3em;">
-														<input type="text"  >${info.name }
+													<td width="20%">
+														<input type="text"  value="${info.name }">
 													</td>
-													<td  >
-														<div id="insertReview" style="display: inline-block; ">	
-															 <input type="text" name="reviewcontent" style=" border:4px solid #4ea0d8; width:550px; padding-rigth:30px;"  placeholder="리뷰를 작성해주세요" ></input>
+													<td >
+														<div id="insertReview" >	
+															 <input type="text" name="reviewcontent" style=" width:400px;  border:4px solid #4ea0d8; padding-rigth:30px;"  placeholder="리뷰를 작성해주세요" ></input>
 														</div>
 													</td>
 													<td>
 														<button type="button" id="reviewbtn" onclick="postReview()" style="margin-left:10px; " class="btn btn-default">리뷰쓰기</button>
-													</td>
-													<td>
 													</td>
 												</tr>
 											</table>
@@ -516,7 +516,8 @@ var ckEmail = 0;
 		$(this).parent().prev().children().attr('disabled', false);
 		$(this).attr('hidden', true);
 		$(this).next().attr('hidden', true);
-		$(this).parent().append('<button type="button" id="btnUpdate" name="btnUpdate">등록</button>')
+		$(this).next().next().next().attr('hidden', true);
+		$(this).parent().append('<button type="button" class="btn btn-default" id="btnUpdate" style="margin:0">등록</button>')
 		console.log($(this).parent());
 	});
 	
@@ -543,8 +544,6 @@ var ckEmail = 0;
 			 
 		})
 		
-	//리뷰 수정한 내용 등록
-
 	
 	//리뷰 삭제
 	$('.delete').on('click', function(){

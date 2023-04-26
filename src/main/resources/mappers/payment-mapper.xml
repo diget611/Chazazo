@@ -86,4 +86,16 @@
          ORDER BY MONTH
 	</select>
 	
+	<select id="dayReservCount" resultType="_int">
+		SELECT COUNT(*) AS CNT
+		  FROM PAYMENT
+		 WHERE TO_CHAR(PAID_TIME,'YY/MM/DD') = TO_DATE(SYSDATE, 'YY/MM/DD') AND CANCEL_DATE IS NULL
+	</select>
+	
+	<select id="dayReservSum" resultType="_int">
+		SELECT SUM(FINAL_PRICE) AS SUM
+	      FROM  PAYMENT
+	     WHERE TO_CHAR(PAID_TIME,'YY/MM/DD') = TO_DATE(SYSDATE, 'YY/MM/DD') AND CANCEL_DATE IS NULL
+	</select>
+	
 </mapper>

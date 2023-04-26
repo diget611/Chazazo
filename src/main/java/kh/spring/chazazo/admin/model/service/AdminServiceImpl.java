@@ -215,5 +215,20 @@ public class AdminServiceImpl implements AdminService {
 	public List<String> monthList() {
 		return dao.monthList();
 	}
+	
+	@Override
+	public int dayReservCount() {
+		return dao.dayReservCount();
+	}
+	
+	@Override
+	public int dayReservSum() {
+		return dao.dayReservSum();
+	}
+	
+	@Override
+	public int dayRegiCount() {
+		return dao.dayRegiCount();
+	}
 
 }

@@ -177,4 +177,17 @@ public class AdminDao {
 	public List<String> monthList() {
 		return sqlSession.selectList("payment.monthList");
 	}
+	
+	// 메인페이지
+	public int dayReservCount() {
+		return sqlSession.selectOne("payment.dayReservCount");
+	}
+	
+	public int dayReservSum() {
+		return sqlSession.selectOne("payment.dayReservSum");
+	}
+	
+	public int dayRegiCount() {
+		return sqlSession.selectOne("member.dayRegiCount");
+	}
 }

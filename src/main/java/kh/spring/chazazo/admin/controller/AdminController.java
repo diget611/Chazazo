@@ -38,8 +38,11 @@ public class AdminController {
 		mv.addObject("recentStat", new Gson().toJson(aService.recentMonth()));
 		mv.addObject("monthList", new Gson().toJson(aService.monthList()));
 		mv.addObject("locationList", new Gson().toJson(aService.selectLocNameList()));
-		
 		mv.addObject("modelList", new Gson().toJson(aService.selectByModel()));
+		
+		mv.addObject("reservCount", aService.dayReservCount());
+		mv.addObject("reservSum", aService.dayReservSum());
+		mv.addObject("regiCount", aService.dayRegiCount());
 		mv.setViewName("admin/main");
 		
 		return mv;

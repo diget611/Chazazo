@@ -58,4 +58,9 @@ public interface AdminService {
 	public List<String> selectLocNameList();
 	public List<String> monthList();
 	
+	// 메인페이지
+	public int dayReservCount();
+	public int dayReservSum();
+	public int dayRegiCount();
+	
 }

@@ -58,50 +58,66 @@
 				<div class="clearfix padding-top-40">
 					<div class="col-md-8 single-property-content">
 							<!-- 좌측 컨텐츠 -->
-							<input type="text" id="useridx"  value="${info.idx }" >
+							<input type="hidden" id="useridx"  value="${info.idx }" >
 							<div id="content">
 							</div>
 							<div id="reviewDiv" >
 								<div style=" margin-top:450px;" >
 								
 									<h4 class="s-property-title" >리뷰</h4>
+									
 									<table class="table review" width="100%" style="padding: 3em;">
 											<tr>
-												<td width="0"></td>
+												<td width="0%"></td>
 												<td  width="15%" >닉네임</td>
-												<td width="55%">리뷰내용</td>
-												<td width="10%"></td>
-												<td width="20%"></td>
+												<td  width="50%">리뷰내용</td>
+												<td width="15%">수정</td>
+												<td width="10%">추천</td>
 											</tr>
 										<c:forEach items="${rList }" var="review" varStatus="i">
 											<tr>
 												<td ><input type="hidden" id="reviewIdx" value="${review.idx }"></td>
-												<td  >${review.name}</td>
+												<td >${review.name}</td>
 												<td >${review.content}</td>
-												<td align="center"><input data-idx="${review.idx}" data-recommend="${review.recommend}"  src="<%=request.getContextPath()%>/resources/garoestate/assets/img/icon/like.png" class="likebtn" type="image" id="like${review.idx}" name="like${review.idx}"  style="float:left;">
-												${review.recommend}</td>
-												<td >${review.createdate}</td>
-											</tr>
-										</c:forEach>
-										</table>
-										<table id="insertReviewbody">
-											<tr>
-				
-												<td style="padding-bottom : 3em;">
-													<input type="text"  >${info.name }
-												</td>
-												<td  >
-													<div id="insertReview" style="display: inline-block; ">	
-														 <input type="text" name="reviewcontent" style=" border:4px solid #4ea0d8; width:550px; padding-rigth:30px;" placeholder="리뷰 작성"  ></input>
+												<td >
+													<div>
+														<form name="reviewForm">
+															<c:if test="${info.name eq review.name }">
+																	<input data-idx="${review.idx }" type="button" class="edit" value="수정">&nbsp; 
+																	<input data-idx="${review.idx }" type="button" class="deleteReview" value="삭제">
+															</c:if>
+																	<br>${review.createdate}
+														</form>
 													</div>
 												</td>
-												<td>
-													<button type="button" id="reviewbtn" onclick="postReview()" style="margin-left:10px; " class="btn btn-default">등록하기</button>
-												</td>
-												<td>
-												</td>
+												<td align="center"><input data-idx="${review.idx}" data-recommend="${review.recommend}"  src="<%=request.getContextPath()%>/resources/garoestate/assets/img/icon/like.png" class="likebtn" type="image"  style="float:left;">
+												${review.recommend}</td>
+										    	<td ></td>
 											</tr>
-									</table>
+											<div> 
+											</div>
+										</c:forEach>
+										</table>
+										<div id="insertReviewbody">
+											<table>
+												<tr>
+					
+													<td style="padding-bottom : 3em;">
+														<input type="text"  >${info.name }
+													</td>
+													<td  >
+														<div id="insertReview" style="display: inline-block; ">	
+															 <input type="text" name="reviewcontent" style=" border:4px solid #4ea0d8; width:550px; padding-rigth:30px;"   ></input>
+														</div>
+													</td>
+													<td>
+														<button type="button" id="reviewbtn" onclick="postReview()" style="margin-left:10px; " class="btn btn-default">리뷰쓰기</button>
+													</td>
+													<td>
+													</td>
+												</tr>
+											</table>
+										</div>
 								</div>
 						 </div>
 					</div>
@@ -193,34 +209,7 @@ var ckPhone = 0;
 var ckLicense = 0;
 var ckEmail = 0;
 
-console.log(ckName);
-//좋아요
- $('.likebtn').click(function(){
-	var reviewidx = $(this).data("idx");
-	var recommend = $(this).data("recommend");
-//	recommend++;
-	var data= {
-		idx : reviewidx,
-		recommend :recommend
-	}
-	$.ajax({
-		url:'<%=request.getContextPath()%>/insertLike',
-         type: 'post',
-	     data: {
-	 		"idx" : reviewidx,
-			"recommend" :recommend
-		},
-//	     data: JSON.stringify(data),
-//		 contentType: 'application/json; charset=utf-8',
-	     //dataType:'json',
-         success: function(result) {
-        	  location.reload();
-          },
-          error: function() {
-          	alert('좋아요 등록 실패');
-          }
-	});		
-});
+
 
 	$('.main-nav').children().eq(0).children().css('color', '#18B4E9')
 	
@@ -258,14 +247,15 @@ console.log(ckName);
 	    $('#insSection').hide();
 	    //비회원일 경우 리뷰 입력 숨기기
 		var name = $('#useridx').val();
+	    console.log(name+"$$$$$")
 		if(name !==''){
 			$('#insertReviewbody').show();
 		} else {
 			$('#insertReviewbody').hide();
 		}
-
-
 	}
+	
+
 
 		
 		
@@ -375,9 +365,6 @@ console.log(ckName);
 	}
 	
 	
-	
-	
-	
 
 	function getcarInfo(result) {
 		var html = '';
@@ -476,8 +463,6 @@ console.log(ckName);
 			var content = $('[name=reviewcontent]').val()
 			var memberIdx = $('#useridx').val();
 			var vehicleIdx = $('[name=caridx]').val();
-			console.log("리뷰뷰뷰뷰"+memberIdx+"$$"+vehicleIdx+content);
-
 			var data ={
 					"vehicleIdx":vehicleIdx,
 					"memberIdx": memberIdx,
@@ -500,8 +485,83 @@ console.log(ckName);
 		}
 	
 	
+		//리뷰 좋아요
+		 $('.likebtn').click(function(){
+			var reviewidx = $(this).data("idx");
+			var recommend = $(this).data("recommend");
+//			recommend++;
+
+			$.ajax({
+				url:'<%=request.getContextPath()%>/insertLike',
+		         type: 'post',
+			     data: {
+			 		"idx" : reviewidx,
+					"recommend" :recommend
+				},
+//			     data: JSON.stringify(data),
+//				 contentType: 'application/json; charset=utf-8',
+			     //dataType:'json',
+		         success: function(result) {
+		        	  location.reload();
+		          },
+		          error: function() {
+		          	alert('좋아요 등록 실패');
+		          }
+			});		
+		});
 	
 	
+	//리뷰 수정 누르면 인풋박스 나타내고 버튼 바꾸기
+	$('.edit').on('click', function(){
+		var before = $(this).closest('tr').find('td');
+		var leng = before.length;
+		
+		//수정 버튼을 누르면 리뷰칸에 리뷰내용이 들어간 input박스를 넣고 등록버튼 나타내기
+			var reviewidx = $(this).data("idx");
+ 		var idx = "<input type='hidden'  value='"+reviewidx+"' id='reviewNum'   '/>";
+ 		var editform = "<input type='text'  value='"+before[2].innerText+"'  id='editContent' style='font-style: oblique' size='10'  '/>";
+		var editbtn = "<input  type='button' value='등록' class='btn btn-default' id='updateReview' onclick='updateReview()'>";
+		var el = $(before[2]).find('input').val();
+			
+			$(before[1]).html(idx);
+			$(before[2]).html(editform);
+			 $(before[3]).html(editbtn);
+			//수정 버튼 클릭시 리뷰 텍스트 마지막에 커서 깜빡임 넣기 
+			var len = $('#editContent').val().length;
+			 $('#editContent').focus();
+			 $('#editContent')[0].setSelectionRange(len, len);
+	});
+	
+	$('.deleteReview').on('click', function(){
+		console.log("리뷰삭제");
+	});
+	
+	
+	//리뷰 수정 
+		function updateReview() {
+		
+		var idx = $('#reviewNum').val();
+		var content = $('#editContent').val();
+		console.log("***" + idx +"***" + content);
+		
+
+			$.ajax({
+				url:'<%=request.getContextPath()%>/updateReview',
+		         type: 'post',
+			     data: {
+			 		"idx" : idx,
+					"content" :content
+				},
+		         success: function(result) {
+		        	 location.reload();
+		          },
+		          error: function() {
+		          	alert('리뷰 수정 실패');
+		          }
+			});	
+
+			
+	}
 	
 	//결제하기 눌렀을때 정보 입력창
 	function getPayinfo(result) {
@@ -727,7 +787,6 @@ console.log(ckName);
 		var caridx = $('#caridx').val();
 		var useridx = $('#useridx').val();
 		
-		console.log("useridx:::::" + useridx);
 		var returnLocation =$("#returnSelect").val();
 
 		//결제 시간 저장을 위한 현재 시간 포맷
@@ -737,7 +796,6 @@ console.log(ckName);
 		const date = new Date(d.getTime() + TIME_ZONE).toISOString().split('T')[0];
 		const time = d.toTimeString().split(' ')[0];
 		var paidtime= date + " " + time;
-		console.log("paidtime:::::::" +paidtime);
 		if ($(''))
 		var sdate = new Date($('#startDate').val());
 		var edate = new Date($('#endDate').val());
@@ -823,7 +881,6 @@ console.log(ckName);
 	          success: function(result) {
 	        	  if(result >0) {
 		  		  insertNmemInfo(payidx);
-		  		  console.log("비회원정보등록");
 	        	  } else {
 	        		  alert("결제가 완료되지 않았습니다")
 	        	  }

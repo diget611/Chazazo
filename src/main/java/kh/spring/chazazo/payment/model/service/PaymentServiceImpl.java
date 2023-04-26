@@ -40,4 +40,19 @@ public class PaymentServiceImpl implements PaymentService {
 		return result;
 	}
 
+
+
+	@Override
+	public PaymentReqDto noneReser(int idx) {
+		// TODO Auto-generated method stub
+		return dao.noneReser(idx);
+	}
+
+	@Override
+	public PaymentReqDto selectNoneM(PaymentReqDto dto) {
+		// TODO Auto-generated method stub
+		return dao.selectNoneM(dto);
+	}
+
+
 }

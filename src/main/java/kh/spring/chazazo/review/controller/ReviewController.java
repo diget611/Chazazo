@@ -27,17 +27,22 @@ public class ReviewController {
 	@PostMapping("/postReview")
 	public int insertReview(@RequestBody ReviewDto data) {
 	
-		System.out.println("data######:" +data);
 		int result = rService.insertReview(data);
 		return result;
 	}
 	
 	@PostMapping("/insertLike") 
 	public int insertLike(ReviewDto data) {
-		System.out.println("dataaaaaaaaa" + data);
 		int result = rService.insertLike(data);
 		return result;
 	}
+	@PostMapping("/updateReview") 
+	public int updateReview(ReviewDto data) {
+		int result = rService.updateReview(data);
+		return result;
+	}
+	
+	
 	@DeleteMapping("/carlist/{vehicleIdx}/remove")
 	public ModelAndView deleteReview(ModelAndView mv) {
 		return mv;

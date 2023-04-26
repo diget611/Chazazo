@@ -29,6 +29,19 @@ public class PaymentDao {
 		
 	}
 	
+	public PaymentReqDto noneReser(int idx){
+		
+		return session.selectOne("payment.noneMemberRes",idx);
+		
+	}
+	
+	public PaymentReqDto selectNoneM(PaymentReqDto dto){
+		
+		return session.selectOne("payment.selectNoneM",dto);
+		
+	}
+	
+	
 	public List<PaymentReqDto> selectList(String username) {
 		
 		return session.selectList("payment.resList", username);

@@ -20,6 +20,13 @@ public interface PaymentService {
 	public int insertPayInfo(PaymentReqDto data, int isMember);
 
 
-
+	
+	
+	
+	
+	public PaymentReqDto noneReser(int idx);
+	
+	public PaymentReqDto selectNoneM(PaymentReqDto dto);
+	
 
 }

@@ -17,14 +17,18 @@
 	</insert>
 	
 	<update id="inserLike">
-	
 	UPDATE REVIEW SET RECOMMEND=(SELECT RECOMMEND from review WHERE IDX =#{idx}) +1 WHERE IDX =#{idx}
+	</update>
+	
+	<update id="updateReview">
+	UPDATE REVIEW SET CONTENT=#{content} WHERE IDX =#{idx}
 
 	</update>
 	
 	<update id="update">
 		UPDATE MEMBER SET IDX = #{idx}, vehicleIdx = #{vehicleIdx}, content = #{content} WHERE IDX = #{idx}
 	</update>
+	
 	<delete id="delete">
 		DELETE FROM REVIEW WHERE IDX = #{idx}	
 	</delete>

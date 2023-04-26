@@ -146,8 +146,6 @@
 							<div>예약 상세 조회</div>
 										<table>
 											<tr>
-												<th scope="row">예약자</th>
-												<td>${reservation.idx }</td>
 												<th scope="row">예약시작날짜</th>
 												<td>${reservation.reservStart }</td>
 												<th scope="row">예약날자</th>
@@ -160,6 +158,8 @@
 												<td>${reservation.rentLocation }</td>
 												<th scope="row">반납지점</th>
 												<td>${reservation.returnLocation }</td>
+												<th>결제내역</th>
+												<th>결제수단</th>
 											</tr>
 										</table>
 								</div>	

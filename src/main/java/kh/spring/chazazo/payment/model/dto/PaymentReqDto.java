@@ -19,7 +19,7 @@ public class PaymentReqDto {
 	private int ismember;
 	private int memberIdx;
 	private int finalprice;
-	private String phone;
+	private String phoneNumber;
 	private String email;
 	private String license;
 	private int birth;
@@ -33,9 +33,9 @@ public class PaymentReqDto {
 	@JsonFormat(pattern="yyyy/MM/dd")
 	private Date endDate;
 	private int state;
-	private int isMember;
+	
 	private int vehicleIdx;
-	private int insurance;
+	private int insuranceIdx;
 	private int couponIdx;
 	private Date cancelDate;
 	
@@ -45,6 +45,9 @@ public class PaymentReqDto {
 	private String rentLocationName;
 	private String returnLocationName;
 	private String vehicleModel;
+	
+	private int paymentIdx;
+	private int idx;
 	
 	
 }

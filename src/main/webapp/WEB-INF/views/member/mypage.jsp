@@ -26,7 +26,7 @@
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/garoestate/assets/css/responsive.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.min.css">
 
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.min.js"></script>
+
 
 <script src="<%=request.getContextPath()%>/resources/garoestate/assets/js/modernizr-2.6.2.min.js"></script>
 <script src="<%=request.getContextPath()%>/resources/garoestate/assets/js/jquery-1.10.2.min.js"></script>
@@ -199,6 +199,7 @@
 								<button class="js-mypage-btn-go-car-list btn btn-outline-primary btn-block max-w-lg-40rem mx-auto py-1" onclick="moveRent();">렌트하러 가기</button>
 							</c:if>
 										<table>
+										<!-- 	
 											<tr>
 												<th scope="row">예약</th><br>
 												<th scope="row">예약시작날짜</th>
@@ -207,6 +208,7 @@
 												<th scope="row">대여지점</th>
 												<th scope="row">반납지점</th>
 											</tr>
+										-->
 							<c:forEach items="${reservation }" var="list">
 											
 											<tr>
@@ -226,7 +228,9 @@
 								
 								</div>
 					
-									
+									<div id="noMeberReser">
+								
+								</div>
 								</div>
 								
 					 
@@ -282,16 +286,15 @@
 			console.log("gggdddddddddsssssssssss")
 			var html = '';
 			if(result == 1){
-				
-				html += '			<h4>비회원 예약조회</h4>';
-				html += '			<form>';
+				html += '			<h4>비회원 예약조회</h4><button type="button" id="test2">테스트</button>';
+				html += '			<form >';
 				html += '			<div class="form-group">';
-				html += '				<label>운전자 이름</label> <input type="text" class="form-control" name="name" placeholder="성명을 입력해 주세요">';
+				html += '				<label>운전자 이름</label> <input type="text" class="form-control" id ="username" name="name" placeholder="성명을 입력해 주세요">';
 				html += '				<div class="invalid-feedback" id="vsnmr_input_driver_name_invalid_msg" style="display: block;">이름을 입력해 주세요</div>';
 				html += '				</div>';
 				html += '				<div class="form-group">';
 				html += '					<label>예약번호</label> <input type="text" class="form-control"';
-				html += '						name="reservationNumber">';
+				html += '						name="reservationNumber" id="reservationNumber">';
 				html += '					<div class="invalid-feedback"';
 				html += '						id="vsnmr_input_reserv_num_invalid_msg">예약번호를 입력해 주세요</div>';
 				html += '					<small class="color-blue">예약번호는 문자와 메일로 보내드린 예약내용에 재되어있습니다.</small>';
@@ -299,8 +302,8 @@
 				html += '				<div class="form-group">';
 				html += '					<label>전화번호</label> <input type="text" id="phone" name="phone" required>';
 				html += '				</div>';
-				html += '				<div class="text-center">';
-				html += '					<button type="submit" class="btn btn-default" id="noneMember">예약 조회하기</button>';
+				html += '				<div class="text-center">';	
+				html += '					<button type="button" class="btn btn-default" name = "noneMember" onclick="noMeberReser()">예약 조회하기</button>';
 				html += '				</div>';
 				html += '			</form>';
 			
@@ -310,54 +313,62 @@
 		
 
 		
-		$('#bookmark').on('click', function() {
-			location.href='<%=request.getContextPath()%>/profile/favorites';
-		});
 		
-		
-		
-		$('[name=deleteBtn]').on('click', deleteMember);
-		
-		
-		function deleteMember() {
-			let username = $('#username').val();
-			console.log(username);
-			swal({
-				title:"주의",
-				text: "정말로 탈퇴 하시겠습니까?",
-				icon:"warning",
-				showCancelButton: true, // cancel버튼 보이기. 기본은 원래 없음
-				confirmButtonColor: '#3085d6', // confrim 버튼 색깔 지정
-				cancelButtonColor: '#d33', // cancel 버튼 색깔 지정
-				confirmButtonText: '승인', // confirm 버튼 텍스트 지정
-				cancelButtonText: '취소', // cancel 버튼 텍스트 지정
-				closeOnConfirm: false,
-		        closeOnCancel: false
-			}).then(result => {
-				   // 만약 Promise리턴을 받으면,
-				   if (result.isConfirmed) { // 만약 모달창에서 confirm 버튼을 눌렀다면
-					$.ajax({
-						url: "<%=request.getContextPath()%>/member/profile",
-						data: {username: username},
-						type: 'delete',
-						success: function(result) {
-							if(result == 1) {
-								alert('삭제 성공');
-							} else {
-								alert('오류 발생');
-							}
-						},
-						error: function() {
-							console.log('통신 실패');
-						}
-					}); 
-				}
-			});
-		};
-			
-			
-	
 
+		function noMeberReser(){
+			console.log("클릭");
+			var username = $('#username').val();
+			var phone = $('#phone').val();
+			var reservationNumber = $('#reservationNumber').val();
+		
+		
+			$.ajax({
+				url:'<%=request.getContextPath()%>/profile/nonereservation',
+				type: 'get',
+				dataType:'json',
+				data ={
+						"name":username,
+						"phoneNumber":phone,
+						"idx":reservationNumber
+				},
+				success: function(result){
+					getNoneResr(result);
+					console.log(result);
+					console.log(reservationNumber+"22222222"+phone);
+					
+				},
+				error: function(){
+					console.log(data);
+					alert("fail!!!!!!!");
+				}
+				
+			});
+		
+		};
+		
+		function getNoneResr(result){
+			console.log("예약내역떠야지?")
+			var html = '';
+			html += '	<table>'
+			html += '	<c:forEach items="${noneReservation }" var="list">'
+			
+			html += '	<tr>'
+			
+			html += '		<td>${list.startDate }</td>'
+			html += '	<td>${list.state }</td>'
+			html += '<td>${list.vehicleIdx }</td>'
+			html += '<td>${list.rentLocationName }</td>'
+			html += '<td>${list.returnLocationName }</td>'
+			html += '	</tr>	'
+			html += '</c:forEach>'
+			html += '	</table>'
+		
+		}	$('#content').html(html);
+		
+		
+		
+		
+			
 			
 			
 		

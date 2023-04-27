@@ -192,7 +192,7 @@
 		setTimeout(function(){
 		 $('[name=cartypeIdx]').iCheck('uncheck');
 		  },0);
-		// 모두 선택되지 않았을경우 경고를 띄우고 자동으로 전체가 체크되게 한다
+		// 모두 선택되지 않았을경우 자동으로 전체가 체크되게 한다
 		} else if ($('input:checkbox[name=cartypeIdx]:checked').length == 0 )  {
 					setTimeout(function(){ 
 						$('#alltype').iCheck('check');
@@ -231,7 +231,7 @@
 		setTimeout(function(){
 		 $('[name=fueltypeIdx]').iCheck('uncheck');
 		  },0);
-		// 모두 선택되지 않았을경우 경고를 띄우고 자동으로 전체가 체크되게 한다
+		// 모두 선택되지 않았을경우 자동으로 전체가 체크되게 한다
 		} else if ($('#allfuel:checkbox').is(":checked")==false &&($('input:checkbox[name=fueltypeIdx]:checked').length == 0 ) ) {
 					setTimeout(function(){ 
 						$('#allfuel').iCheck('check');
@@ -310,10 +310,6 @@
 	}
 		
 		
-		
-		
-		
-		
 	$('[name=cartypeIdx]').on('ifChanged',getList);
 	$('[name=fueltypeIdx]').on('ifChanged',getList);
     window.onload = getList();
@@ -348,6 +344,7 @@
             }
          });
       }
+      
          function getSearch(result) {
         	 var html = '';
         	 for(var i in result.carlist) {
@@ -372,9 +369,7 @@
  				html += '</div>';
  				html += '</div>';  
  				}
-
  				$('#list-type').html(html);
-
       }
          
          

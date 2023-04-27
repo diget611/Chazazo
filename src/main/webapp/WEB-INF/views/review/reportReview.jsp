@@ -36,16 +36,32 @@
 		<div class="col-sm-12 col-xl-6">
 			<div class="bg-light rounded h-100 p-4">
 				<h6 class="mb-4">리뷰 신고</h6>
-				<label></label>
 				<form style="flex-direction: column">
-					<input type="text" id="idx" value="${review.idx }">
-					  <input type="radio" name="reason" value="1" /> 스팸홍보/도배글 입니다
-					  <input type="radio" name="reason" value="2" /> 음란물입니다
-					  <input type="radio" name="reason" value="3" /> 불법정보를 포함하고 있습니다
-					  <input type="radio" name="reason" value="4" /> 청소년에게 유해한 내용입니다
-					  <input type="radio" name="reason" value="5" /> 불쾌한 표현이 있습니다
-					  <input type="radio" name="reason" value="6" onClick="this.form.reasontxt.disabled=false"/> 기타
-					  사유 입력:<input type="text" name="reasontxt" disabled>
+					<label>
+					<input type="hidden" id="idx" value="${review.idx }">
+					</label>
+					<div>
+					  <input type="radio" name="reason" value="1" onClick="this.form.reasontxt.disabled=true"/> 스팸홍보/도배글 입니다
+					  </div>
+					  <div>
+					  <input type="radio" name="reason" value="2" onClick="this.form.reasontxt.disabled=true"/> 음란물입니다
+					  </div>
+					  <div>
+					  <input type="radio" name="reason" value="3" onClick="this.form.reasontxt.disabled=true"/> 불법정보를 포함하고 있습니다
+					  </div>
+					  <div>
+					  <input type="radio" name="reason" value="4" onClick="this.form.reasontxt.disabled=true"/> 청소년에게 유해한 내용입니다
+					  </div>
+					  <div>
+					  <input type="radio" name="reason" value="5" onClick="this.form.reasontxt.disabled=true"/> 불쾌한 표현이 있습니다
+					  </div>
+					  <div>
+					  <input type="radio" id="radioBtn" name="reason" value="6" onClick="this.form.reasontxt.disabled=false"/>
+					  <label for="radioBtn">기타</label>
+					  </div>
+					  <div></div>
+					  <label for="reasontxt">사유 입력:</label>
+					  <input type="text" name="reasontxt" id="reasontxt" disabled>
 					  <button type='submit' id="rbtn">신고하기</button>
 					  
 					  
@@ -59,6 +75,17 @@
 
 
 <script>
+function resizeWindow(win)    {
+	var hei = win.document.body.offsetHeight + 100;
+	win.resizeTo(500, hei);
+}
+
+$('#rbtn').on('click', function() {
+	var reason = $('input[name=reason]:checked').val()
+	var idx = $('#idx').val();
+
+	alert(idx + reason );
+});
 
 </script>
 </body>

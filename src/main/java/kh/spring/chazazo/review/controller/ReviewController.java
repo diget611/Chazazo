@@ -2,7 +2,6 @@ package kh.spring.chazazo.review.controller;
 
 
 
-import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -53,8 +52,9 @@ public class ReviewController {
 		return result;
 	}
 	
-	@GetMapping ("/reportReview")
-	public ModelAndView reportReview(ModelAndView mv) {
+	@GetMapping ("/reportReview/{idx}")
+	public ModelAndView reportReview(ModelAndView mv, @PathVariable String idx, ReviewDto data) {
+
 		mv.setViewName("review/reportReview");
 		return mv;
 	}

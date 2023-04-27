@@ -17,18 +17,17 @@ public class PaymentDao {
 	private SqlSession session;
 	
 	
+
 	
-//	public List<ReservationRespDto> selectList(){
-//		
-//		return session.selectList("reservation.selectList");
-//		
-//	}
-	
-	public List<PaymentReqDto> ReservationOne(int idx){
+	public List<PaymentReqDto> ReservationList(int idx){
 		
 		return session.selectList("payment.ReservationOne",idx);
 		
 	}
+	public PaymentReqDto ReservationOne(String idx) {
+		return session.selectOne("payment.ReservationOne",idx);
+	}
+	
 	
 	public PaymentReqDto noneReser(int paymentIdx){
 		
@@ -42,8 +41,10 @@ public class PaymentDao {
 		
 	}
 	
+	
+	
 	//렌트업체 정보
-	public LocationRespDto resvLocation(int idx) {
+	public LocationRespDto resvLocation(String idx) {
 		return session.selectOne("payment.reservLocation", idx);
 	}
 	

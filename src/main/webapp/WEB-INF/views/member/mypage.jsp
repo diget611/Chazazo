@@ -41,6 +41,27 @@
 <script src="<%=request.getContextPath()%>/resources/garoestate/assets/js/price-range.js"></script>
 <script src="<%=request.getContextPath()%>/resources/garoestate/assets/js/main.js"></script>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/main.css">
+<style>
+	table {
+      border-top: 1px solid black;
+      text-align: center;
+      width: 100%;
+      
+   }
+  
+   th {
+      text-align: center;
+      border-bottom: 1px solid black;
+   }
+   
+   td {
+      border-bottom: 1px solid black;
+   }
+   
+   tbody tr:hover {
+      background-color: #f1f3f5;
+   }		
+</style>
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/base/header.jsp"/>
@@ -94,9 +115,9 @@
 									<div>
 										<div class="mb-3" id="js_mypage_btn_pc_login"
 											style="display: block;">
-											<button
-												class="js-mypage-btn-login btn btn-primary btn-block max-w-lg-40rem mx-auto click-effect-press">가입
-												/ 로그인 하기</button>
+												<a href="<%=request.getContextPath()%>/member/login" 
+												class="js-mypage-btn-login btn btn-primary btn-block max-w-lg-40rem mx-auto click-effect-press">가입 / 로그인 하기</a>
+												
 										</div>
 									</div>
 								</div>
@@ -198,19 +219,20 @@
 								<p style="text-align: center; font-size: large;"><strong> 진행 중인 렌트 내역이 없습니다 !!</strong></p><br>
 								<button class="js-mypage-btn-go-car-list btn btn-outline-primary btn-block max-w-lg-40rem mx-auto py-1" onclick="moveRent();">렌트하러 가기</button>
 							</c:if>
-										<table>
-										<!-- 	
+								<sec:authorize access="hasRole('ROLE_USER')">
+									<table>
+										<thead>
 											<tr>
-												<th scope="row">예약</th><br>
+												<th scope="row">예약</th>
 												<th scope="row">예약시작날짜</th>
 												<th scope="row">예약상태</th>
 												<th scope="row">차종류</th>
 												<th scope="row">대여지점</th>
 												<th scope="row">반납지점</th>
 											</tr>
-										-->
-							<c:forEach items="${reservation }" var="list">
-											
+											</thead>
+											<tbody>
+										<c:forEach items="${reservation }" var="list">
 											<tr>
 												<td>${list.idx }</td>
 												<td>${list.startDate }</td>
@@ -218,9 +240,12 @@
 												<td>${list.vehicleModel }</td>
 												<td>${list.rentLocationName }</td>
 												<td>${list.returnLocationName }</td>
-											</tr>	
+											</tr>
 										</c:forEach>
+										</tbody>
 								</table>
+								</sec:authorize>
+											
 								
 								</div>
 									
@@ -252,41 +277,38 @@
 	<jsp:include page="/WEB-INF/views/base/footer.jsp"/>
 
 	<script>
-		$('tr').on('click', function() {
-			var sss = $(this).children().eq(0).text();
-			location.href = "${pageContext.request.contextPath}/profile/reservation/" + sss; 
-		})
+	
 		$('#updateinfoBtn').on('click', function() {
-			location.href='<%=request.getContextPath()%>/member/profile/update';
+			location.href="${pageContext.request.contextPath}/member/profile/update";
 			
 		});
 
 		$('#historyBtn').on('click', function() {
-			location.href='<%=request.getContextPath()%>/member/profile';
+			location.href="${pageContext.request.contextPath}/member/profile";
 			
 		});
 
+		
+		// 회원이면 예약내역이 보이고 비회원이면 비회원예약조회 확인이 가능하다
 		$('#none-Member-history').on('click',content);
 		function content(){
 			$.ajax({
-				url:'<%=request.getContextPath()%>/profile/reservation',
+				url:"${pageContext.request.contextPath}/profile/reservation",
 				type: 'get',
 				dataType:'json',
 				success: function(result){
 					
 					memberResv(result);
-					console.log("dddddddddddffff")
 					$('#hideRent').hide();
 				},
 				error: function(){
-					alert("fail!!!!!!!");
+					alert("예약내역이 없습니다.");
 				}
 				
 			});
 		};
 		
 		function memberResv(result){
-			console.log("gggdddddddddsssssssssss")
 			var html = '';
 			if(result == 1){
 				html += '			<h4>비회원 예약조회</h4><button type="button" id="test2">테스트</button>';
@@ -317,17 +339,14 @@
 
 		
 		
-
+		//비회원 예약 조회
 		function noMeberReser(){
-			console.log("클릭");
 			var username = $('#username').val();
 			var phoneNumber = $('#phone').val();
 			var reservationNumber = $('#reservationNumber').val();
-			console.log(username);
-		
-		
+	
 			$.ajax({
-				url:'<%=request.getContextPath()%>/profile/nonereservation',
+				url:"${pageContext.request.contextPath}/profile/nonereservation",
 				type: 'get',
 				dataType:'json',
 				data : {
@@ -341,7 +360,7 @@
 					
 				},
 				error: function(){
-					alert("fail!!!!!!!");
+					alert("예약내역이 없습니다.");
 				}
 				
 			});
@@ -349,44 +368,47 @@
 		
 		
 		function getNoneResr(result){
-			console.log("예약내역")
+			var noneList = result.noneReservation;
 			var html = '';
-			html += '				<div>'
-				html += '					<h3>${selectNone.name } 님의 예약내역</h3>'
-				html += '				</div>'
-				html += '				<c:if test="${empty noneReservation}">'
+			if(noneList == null) {
 				html += '					<p style="text-align: center; font-size: large;"><strong>예약 정보가 없습니다.</strong></p><br>'
-				html += '				</c:if>'	
-				html += '				<c:if test="${!empty noneReservation}">'
-				html += '					<c:forEach items="${noneReservation }" var="list">'
+			} else {
+				html += '				<div>'
+				html += '					<h3>'+ result.selectNone.name +'님의 예약내역</h3>'
+				html += '				</div>'
 				html += '						<table>'
+				html += '							<thead>'
 				html += '							<tr>'
 				html += '								<th scope="row">예약번호</th>'
-				html += '									<td>${list.Idx }</td>'
 				html += '								<th scope="row">예약시작날짜</th>'
-				html += '									<td>${list.startDate }</td>'
 				html += '								<th scope="row">예약상태</th>'
-				html += '									<td>${list.state }</td>'
 				html += '								<th scope="row">보험종류</th>'
-				html += '									<td>${list.insuranceIdx }</td>'
 				html += '								<th scope="row">차종류</th>'
-				html += '									<td>${list.vehicleIdx }</td>'
 				html += '								<th scope="row">대여지점</th>'
-				html += '									<td>${list.rentLocation }</td>'
 				html += '								<th scope="row">반납지점</th>'
-				html += '									<td>${list.returnLocation }</td>'
+				html += '							</thead>'
+				html += '							<tbody>'
 				html += '								</tr>'
-				
+				html += '									<td>' + noneList.idx + '</td>'
+				html += '									<td>' + noneList.startDate + '</td>'
+				html += '									<td>' + noneList.state + '</td>'
+				html += '									<td>' + noneList.insuranceIdx + '</td>'
+				html += '									<td>' + noneList.vehicleModel+ '</td>'
+				html += '									<td>' + noneList.rentLocationName + '</td>'
+				html += '									<td>' + noneList.returnLocationName + '</td>'
+				html += '								</tr>'
+				html += '							<tbody>'
 				html += '							</table>'
-
-				html += '						</c:forEach>'
-				html += '				</c:if>'
-		
-		$('#content').html(html);
+			}
+			$('#content').html(html);
+			
 		}
 		
 		
-		
+		$('tr').on('click', function() {
+			var sss = $(this).children().eq(0).text();
+			location.href = "${pageContext.request.contextPath}/profile/reservation/" + sss; 
+		})
 		
 			
 			

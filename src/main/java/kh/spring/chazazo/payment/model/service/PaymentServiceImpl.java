@@ -17,11 +17,7 @@ public class PaymentServiceImpl implements PaymentService {
 	@Autowired
 	private PaymentDao dao;
 	
-	@Override
-	public List<PaymentReqDto> ReservationOne(int idx) {
-		return dao.ReservationOne(idx);
-	}
-
+	
 	@Override
 	public List<PaymentReqDto> selectList(String username) {
 		return dao.selectList(username);
@@ -56,8 +52,19 @@ public class PaymentServiceImpl implements PaymentService {
 	}
 
 	@Override
-	public LocationRespDto resvLocation(int idx) {
+	public LocationRespDto resvLocation(String idx) {
 		return dao.resvLocation(idx);
 
+	}
+
+	@Override
+	public List<PaymentReqDto> ReservationList(int idx) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public PaymentReqDto ReservationOne(String idx) {
+	return dao.ReservationOne(idx);
 	}
 }

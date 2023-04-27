@@ -26,6 +26,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
 
+import kh.spring.chazazo.admin.model.service.AdminService;
 import kh.spring.chazazo.member.model.service.MemberService;
 import kh.spring.chazazo.payment.model.dto.PaymentReqDto;
 import kh.spring.chazazo.payment.model.service.PaymentService;
@@ -42,6 +43,8 @@ private MemberService mService;
 private VehicleService vService;
 @Autowired
 private PaymentService pService;
+@Autowired
+private AdminService aService;
 
 //	@GetMapping 
 //	public ModelAndView viewPaymentOne(ModelAndView mv) {
@@ -199,7 +202,6 @@ private PaymentService pService;
 			result.put("noneReservation", pService.noneReser(paymentIdx));
 			
 			
-			
 			return new Gson().toJson(result);
 			
 		}
@@ -207,17 +209,19 @@ private PaymentService pService;
 
 	@GetMapping("/profile/reservation/{idx}")
 	public ModelAndView viewReservationOne(ModelAndView mv
-										   , @PathVariable int idx, Principal prin) {
+										   , @PathVariable String idx, PaymentReqDto data, Principal prin) {
 		// 예약 정보 상세 조회
 		
 		if(prin == null) {
-			mv.setViewName("member/history");
+			mv.setViewName("member/details");
 		}else{
 			System.out.println("ddddddddd");
 			String loginId = prin.getName();
-			mv.addObject("memberinfo", mService.selectMypageOne(loginId) );
-			mv.addObject("reservation", pService.selectList(loginId));
+			mv.addObject("memberinfo", mService.selectMypageOne(loginId));
+			mv.addObject("reservation", pService.ReservationOne(idx));	
 			mv.addObject("location",pService.resvLocation(idx));
+			mv.addObject("vehicle", aService.selectVehicleOne(idx));
+			System.out.println(idx);
 			mv.setViewName("member/details");
 		}
 		
@@ -228,30 +232,13 @@ private PaymentService pService;
 	
 	}
 
-	@PatchMapping("/profile/reservation/{username}")
-	public int updateReservation(ModelAndView mv, String username) {
-		// 예약 정보 수정
-		int result=0;
+
+	
+	@DeleteMapping("/profile/reservation/{idx}")
+	public int deleteReservation(ModelAndView mv, @PathVariable int idx, Principal prin) {
+		int result = pService.deleteResv(idx);
 		
 		return result;
-	}
-	
-	@PostMapping("/profile/reservation/{idx}")
-	@ResponseBody
-	public ModelAndView deleteReservation(ModelAndView mv, @PathVariable String idx, Principal prin) {
-		
-		// 예약 정보 삭제
-//		if(prin == null) {
-//			
-//		}else {
-//			
-//		int result = pService.deleteResv(ridx);
-//		System.out.println(idx);
-//		System.out.println(ridx);
-//		}
-		
-//		
-		return mv;
 	}
 	
 

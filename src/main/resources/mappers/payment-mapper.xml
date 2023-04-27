@@ -16,12 +16,8 @@
 		  WHERE idx = #{idx}
 	</select>
 	
-	<update id="deleteRes">
-		UPDATE PAYMENT
-		   SET STATE = 1 WHERE IDX = #{idx}
-	</update>
 
-	<delete id="resDelete" parameterType="int">
+	<delete id="resDelete" parameterType="_int">
 		DELETE FROM payment
 		 WHERE IDX = #{IDX}
 	</delete>
@@ -38,7 +34,7 @@
 			, (SELECT NAME FROM LOCATION WHERE IDX = TB_P.RETURN_LOCATION) AS RETURN_LOCATION_NAME
 		 	, TB_P.*
 		 	FROM PAYMENT TB_P
-		 	WHERE IDX IN ( SELECT PAYMENR_IDX FROM NMEMPAYMENT WHERE PAYMENT_IDX = #{paymentIdx})
+		 	WHERE IDX IN ( SELECT PAYMENT_IDX FROM NMEMPAYMENT WHERE PAYMENT_IDX = #{paymentIdx})
 		  
 	</select>
 	

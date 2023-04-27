@@ -9,6 +9,7 @@
 <title>마이페이지</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
+
 <link
 	href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700,800'
 	rel='stylesheet' type='text/css'>
@@ -64,6 +65,7 @@
 	src="<%=request.getContextPath()%>/resources/garoestate/assets/js/main.js"></script>
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/resources/css/main.css">
+	
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/base/header.jsp" />
@@ -100,7 +102,7 @@
 								<h3 class="panel-title">회원정보</h3>
 							</div>
 						</div>
-						<div class="dealer-widget  row-md-4">
+						
 							<div class="dealer-content">
 								<div class="inner-wrapper">
 									
@@ -139,7 +141,7 @@
 								</div>
 							
 							</div>
-						</div>
+						
 						<div class="blog-asside-right">
 							<div
 								class="panel panel-default sidebar-menu wow fadeInRight animated animated animated"
@@ -150,13 +152,6 @@
 											class="btn btn-outline-primary">예약내역</button>
 										<br>
 
-
-
-										<button type="button" class="btn btn-outline-primary">예약
-											수정 / 취소</button>
-										<br>
-										<button type="button" class="btn btn-outline-primary">비회원
-											예약 확인</button>
 									</h3>
 								</div>
 							</div>
@@ -197,28 +192,25 @@
 					</div>
 				</div>
 				<div class="blog-lst col-md-8 p0 " style="float: right;">
-					<section class="carmore-section col-lg-6 mx-lg-auto">
+					<section class="carmore-section">
 						<div class="container">
 							<div
-								class="js-vrsi-container bg-white bg-shadow p-3 rounded-sm mb-3"
-								data-rn="GM930413" data-bcn="제주드림렌트카" data-clickable="0">
+								class="js-vrsi-container bg-white bg-shadow p-3 rounded-sm mb-3">
 								<div class="dc-flex justify-content-between align-items-center">
 									<div class="dc-flex align-items-center">
 										<div
 											class="square-30 bg-color-grey-7 dc-flex justify-content-center align-items-center rounded-circle">
 											</div>
-										<div class="js-vrsi-txt-rent-type text-12 color-grey-2 ml-1">단기렌트</div>
 									</div>
 									<div class="text-12 color-grey-2">
 										<span>예약번호&nbsp;</span><span
-											class="js-vrsi-txt-reserv-num font-weight-bold">GM930413</span>
+											class="js-vrsi-txt-reserv-num font-weight-bold">${reservation.idx }</span>
 									</div>
 								</div>
 								<hr class="my-2">
 								<div class="dc-flex align juaenter">
 									<div
-										class="text-16 font-weight-bold color-grey-2 vreserv-car-model-name">모닝
-										3세대</div>
+										class="text-16 font-weight-bold color-grey-2 vreserv-car-model-name">${reservation.vehicleIdx }</div>
 									<div class="ml-1">
 										<span
 											class="badge-state badge-state-reserv-complete badge badge-primary"
@@ -261,50 +253,12 @@
 									<div class="dc-flex justify-content-end mt-1">
 										<div class="color-blue">
 											<span class="text-12 font-weight-normal">총 결제 금액</span><span
-												class="js-vrsi-txt-total-price text-16 font-weight-bold ml-1">6,280원</span>
+												class="js-vrsi-txt-total-price text-16 font-weight-bold ml-1">${vehicle.price }</span>
 										</div>
 									</div>
 								</div>
-								<div
-									class="js-vrsi-container-subscribe-prices js-vrsi-container-price-wrap dc-none"
-									style="display: none;">
-									<div class="dc-flex justify-content-end">
-										<div class="color-blue">
-											<span class="text-12 font-weight-normal">첫 달 결제</span><span
-												class="js-vrsi-txt-subscribe-first-month-price text-16 font-weight-bold ml-1">&nbsp;</span>
-										</div>
-									</div>
-									<div
-										class="js-vrsi-monthly-price dc-flex justify-content-end dc-none">
-										<div class="color-grey-3">
-											<span class="text-12 font-weight-normal">월 납부 금액</span><span
-												class="js-vrsi-txt-monthly-price text-16 font-weight-bold ml-1">&nbsp;</span>
-										</div>
-									</div>
-								</div>
-								<div
-									class="js-vrsi-container-total-price-by-overseas-api js-vrsi-container-price-wrap dc-none"
-									style="display: none;">
-									<div class="dc-flex justify-content-end mt-1">
-										<div class="color-blue">
-											<span class="text-12 font-weight-normal">총 금액</span><span
-												class="js-vrsi-txt-total-price-by-overseas-api text-16 font-weight-bold ml-1">&nbsp;</span>
-										</div>
-									</div>
-									<div
-										class="dc-flex justify-content-end align-items-center color-grey-3 text-12">
-										<div class="dc-flex">
-											온라인 결제&nbsp;<span
-												class="js-vrsi-txt-online-price font-weight-bold"></span>
-										</div>
-										<div class="dc-flex js-vrsi-txt-poa-price-wrap dc-none">
-											&nbsp;/&nbsp;현장 결제
-											<div class="font-weight-bold ml-1">
-												<span class="js-vrsi-txt-poa-price"></span>
-											</div>
-										</div>
-									</div>
-								</div>
+								
+							
 								<div class="dc-none js-vrsi-container-bottom-btn" data-type="c"
 									style="display: none;">
 									<button
@@ -331,38 +285,84 @@
 								</div>
 								<div
 									class="js-vrsi-txt-write-review-desc mt-2 text-14 color-grey-5 text-center dc-none tmobi-dc-none"
-									style="display: none;">리뷰를 남겨주세요! 최대 3천원 쿠폰을 드립니다:D</div>
+									style="display: none;">리뷰를 남겨주세요! 최대 3천원 쿠폰을 드립니다:D
+								</div>
 							</div>
-							<div class="text-center space-1 dc-none dc-lg-block">
-								<button
-									class="js-vpr-btn-go-main btn btn-wide btn-pill mx-auto px-6 btn-primary">메인화면으로</button>
-							</div>
+							
+					
+					
+					<section >
+						<div>
+							<div>운전자 정보</div>
+							<div>이름</div>
+							<div>전화번호</div>
+							
 						</div>
+					
+					</section>
+					<hr class="my-2">
+					<section >
+						<div>
+							<div>가입된 보험</div>
+							
+						</div>
+					
+					</section>
+					
+					<hr class="my-2">
+					
+					<section>
+						<div>결제정보</div>
+						
+						<div>결제수단</div>
+						<div>대여요금</div>
+						<div>할인적용</div>
+						<hr class="my-2">
+						<div>총 결제요금</div>
+						
+					</section>
+					<hr class="my-2">
+					<section >
+						<div>업체정보</div>
+					
+						<div >업체이름
+							<div>${location.name}</div>
+						</div>
+						<div >주소
+						<div>${location.address}</div></div>
+						<div >전화
+						<div >${location.phoneNumber}</div></div>
+						<div >영업시간
+						<div>${location.businessHours}</div></div>
+					</section>
+					<hr class="my-2">
+					<div class="text-center space-1 dc-none dc-lg-block">
+								<button
+									class="js-vpr-btn-go-main btn btn-wide btn-pill mx-auto px-6 btn-primary">예약 취소하기</button>
+							</div>
+							</div>
 					</section>
 				</div>
 			</div>
+			
 		</div>
+		
 	</section>
+	
 
 	<jsp:include page="/WEB-INF/views/base/footer.jsp" />
 
 	<script>
-	$('#updateinfoBtn').on('click', function() {
-		location.href='<%=request.getContextPath()%>/member/profile';
-		
-	});
+	
 	$('#historyBtn').on('click', function() {
-		location.href='<%=request.getContextPath()%>/profile/reservation';
+		location.href='<%=request.getContextPath()%>/member/profile';
 	});
 	
-	$('#moveNoneMemberReservation').on('click', function() {
-		location.href='<%=request.getContextPath()%>/profile/reservation';
-	});
+	
 	
 	$('#bookmark').on('click', function() {
-		location.href='<%=request.getContextPath()%>
-		/profile/favorites';
-		});
+		location.href='<%=request.getContextPath()%>/profile/favorites';
+	});
 	</script>
 </body>
 </html>

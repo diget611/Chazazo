@@ -102,8 +102,8 @@
 	</select>
 	
 	<select id="dayReservSum" resultType="_int">
-		SELECT SUM(FINAL_PRICE) AS SUM
-	      FROM  PAYMENT
+		SELECT NVL(SUM(FINAL_PRICE), 0) AS SUM
+	      FROM PAYMENT
 	     WHERE TO_CHAR(PAID_TIME,'YY/MM/DD') = TO_DATE(SYSDATE, 'YY/MM/DD') AND CANCEL_DATE IS NULL
 	</select>
 	

@@ -89,8 +89,8 @@
 														${review.recommend}</td>
 												    	<td >
 													    	<c:if test="${info.name ne review.name }">
-													    		<button type="button" class="btn btn-secondary" style="display:inline-block" 
-							    								    onclick='window.open("<%=request.getContextPath()%>/reportReview/${review.idx }", "리뷰 신고", "width=500, height=auto")'>신고</button>
+													    		<button type="button"  data-memberIdx="${info.idx}"class="btn btn-secondary" style="display:inline-block" 
+							    								    onclick='window.open("${pageContext.request.contextPath}/reportReview/${review.idx }", "리뷰 신고", "width=500, height=auto")'>신고</button>
 													    	</c:if>
 												    	</td>
 													</tr>
@@ -144,7 +144,7 @@
                                     
 									<section class="mt-3 p-3">
 									<h6>결제 정보</h6><hr>
-									<form id="payform" action="<%=request.getContextPath() %>/payment" method="get" onsubmit="false">
+									<form id="payform" action="${pageContext.request.contextPath}/payment" method="get" onsubmit="false">
 									<input type="hidden" name="caridx" value="${car.idx }" >
 									<table class="table">
 										<tbody>

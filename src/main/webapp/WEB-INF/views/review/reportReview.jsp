@@ -1,10 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>리뷰 신고하기</title>
+
 <head>
 
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -31,15 +33,14 @@
     <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/main.css">
 </head>
 <body onload="resizeWindow(this)">
+<sec:authentication var="user" property="principal" />
 	<!-- Form Start -->
 	<div class="container-fluid pt-4 px-4">
 		<div class="col-sm-12 col-xl-6">
 			<div class="bg-light rounded h-100 p-4">
 				<h6 class="mb-4">리뷰 신고</h6>
 				<form style="flex-direction: column">
-					<label>
-					<input type="hidden" id="idx" value="${review.idx }">
-					</label>
+					<input type="hidden" id="idx" value="${idx }">
 					<div>
 					  <input type="radio" name="reason" value="1" onClick="this.form.reasontxt.disabled=true"/> 스팸홍보/도배글 입니다
 					  </div>
@@ -65,7 +66,6 @@
 					  <button type='submit' id="rbtn">신고하기</button>
 					  
 					  
-					  
 				</form>
 			</div>
 		</div>
@@ -80,12 +80,31 @@ function resizeWindow(win)    {
 	win.resizeTo(500, hei);
 }
 
-$('#rbtn').on('click', function() {
-	var reason = $('input[name=reason]:checked').val()
-	var idx = $('#idx').val();
 
-	alert(idx + reason );
-});
+	$('#rbtn').on('click', function() {
+		var reason = Number($('input[name=reason]:checked').val());
+		var idx = $('#idx').val();
+		var memberIdx = $(this).data("idx");
+		
+		  $.ajax({
+	          url:'<%=request.getContextPath()%>/',
+	          contentType: 'application/json; charset=utf-8',
+	          type: 'post',
+	          dataType:'json',
+	          data: {
+	        	  "idx":idx,
+	        	  "reason":reason,
+	        	  "memberIdx":memberIdx
+	          },
+	          success: function(result) {
+	        	  alert('리뷰가 등록되었습니다')
+	        	  location.reload();
+	          },
+	          error: function() {
+	          	alert('리뷰 등록 실패');
+	          }
+	       });
+	});
 
 </script>
 </body>

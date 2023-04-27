@@ -39,4 +39,14 @@
 		    ON REVIEW.IDX = REPORT.REVIEW_IDX
 		 WHERE REPORT.IDX = #{idx}
 	</select>
+	
+	<insert id="insertReport" parameterType="reviewDto">
+	INSERT INTO REPORT(IDX,REVIEW_IDX,MEMBER_IDX,REASON,STATUS,START_DATE) 
+	VALUES(REPORT_SEQ.NEXTVAL,#{idx}, 7, #{reason}, 0, SYSDATE)
+	</insert> 
+	<select id="selectReview" resultType="reviewDto">
+	SELECT * FROM REVIEW WHERE IDX = #{idx}
+	</select>
+	
+	
 </mapper>

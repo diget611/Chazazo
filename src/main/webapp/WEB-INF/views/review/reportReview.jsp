@@ -34,13 +34,14 @@
 </head>
 <body onload="resizeWindow(this)">
 <sec:authentication var="user" property="principal" />
+
 	<!-- Form Start -->
 	<div class="container-fluid pt-4 px-4">
 		<div class="col-sm-12 col-xl-6">
 			<div class="bg-light rounded h-100 p-4">
-				<h6 class="mb-4">리뷰 신고</h6>
+				<h6 class="mb-4">리뷰 신고</h6>!
 				<form style="flex-direction: column">
-					<input type="hidden" id="idx" value="${idx }">
+					<input type="text" id="idx" value="${r.idx}">
 					<div>
 					  <input type="radio" name="reason" value="1" onClick="this.form.reasontxt.disabled=true"/> 스팸홍보/도배글 입니다
 					  </div>
@@ -84,24 +85,21 @@ function resizeWindow(win)    {
 	$('#rbtn').on('click', function() {
 		var reason = Number($('input[name=reason]:checked').val());
 		var idx = $('#idx').val();
-		var memberIdx = $(this).data("idx");
-		
+	alert(reason + idx); 
+		console.log(reason + idx)
 		  $.ajax({
-	          url:'<%=request.getContextPath()%>/',
-	          contentType: 'application/json; charset=utf-8',
+	          url:'<%=request.getContextPath()%>/postReport',
 	          type: 'post',
-	          dataType:'json',
 	          data: {
 	        	  "idx":idx,
 	        	  "reason":reason,
-	        	  "memberIdx":memberIdx
 	          },
 	          success: function(result) {
-	        	  alert('리뷰가 등록되었습니다')
-	        	  location.reload();
+	        	  window.close();
+	        	  alert('리뷰를 신고했습니다')
 	          },
 	          error: function() {
-	          	alert('리뷰 등록 실패');
+	          	alert('신고실패');
 	          }
 	       });
 	});

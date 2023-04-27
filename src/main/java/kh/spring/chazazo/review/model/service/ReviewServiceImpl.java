@@ -28,7 +28,10 @@ public class ReviewServiceImpl implements ReviewService{
 	public List<ReviewDto> selectOne(int vehicleIdx) {
 		return dao.selectOne(vehicleIdx);
 	}
-
+	@Override
+	public ReviewDto selectReview(int idx) {
+		return dao.selectReview(idx);
+	}
 	@Override
 	public int insertLike(ReviewDto dto) {
 		return dao.insertLike(dto);
@@ -43,6 +46,13 @@ public class ReviewServiceImpl implements ReviewService{
 	public int deleteReview(ReviewDto dto) {
 		return dao.deleteReview(dto);
 	}
+
+	//@Override
+	public int insertReport(ReviewDto data) {
+		return dao.insertReport(data);
+	}
+
+
 
 
 

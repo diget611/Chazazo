@@ -59,11 +59,20 @@ public class ReviewController {
 	
 	@GetMapping ("/reportReview/{idx}")
 	public ModelAndView reportReview(ModelAndView mv, @PathVariable String idx) {
-
+		int index = Integer.parseInt(idx);
+		mv.addObject("r", rService.selectReview(index));
 		mv.setViewName("review/reportReview");
-		
 		return mv;
 	}
+	@PostMapping ("/postReport")
+	public int insertReport(ReviewDto data) {
+	int result = rService.insertReport(data);
+		return result;
+	}
+	
+	
+	
+	
 	
 	
 	

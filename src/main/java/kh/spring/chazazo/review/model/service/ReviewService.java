@@ -12,5 +12,7 @@ public interface ReviewService {
 	public int insertLike(ReviewDto dto);
 	public int updateReview(ReviewDto dto);
 	public int deleteReview(ReviewDto dto);
+	public int insertReport(ReviewDto data);
+	public ReviewDto selectReview(int idx);
 	
 }

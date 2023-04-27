@@ -31,7 +31,6 @@ public class ReviewServiceImpl implements ReviewService{
 
 	@Override
 	public int insertLike(ReviewDto dto) {
-		// TODO Auto-generated method stub
 		return dao.insertLike(dto);
 	}
 

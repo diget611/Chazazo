@@ -64,9 +64,8 @@
 							<div id="reviewDiv" >
 								<div style=" margin-top:450px;" >
 								<h4 class="s-property-title" >리뷰</h4>
-									<table class="table table-review" style="padding: 3em;  height: 300px; ">
+									<table class="table table-review" style="padding: 3em; ">
 										<tbody>
-										
 												<tr style="text-align:center;">
 													<th width="0%"></th>
 													<th  width="15%" >닉네임</th>
@@ -90,13 +89,11 @@
 														${review.recommend}</td>
 												    	<td >
 													    	<c:if test="${info.name ne review.name }">
-													    		<button type="button" class="btn btn-secondary" style="display:inline-block" 
-							    								    onclick='window.open("<%=request.getContextPath()%>/reportReview", "리뷰 신고", "width=500, height=auto")'>신고</button>
+													    		<button type="button"  data-memberIdx="${info.idx}"class="btn btn-secondary" style="display:inline-block" 
+							    								    onclick='window.open("${pageContext.request.contextPath}/reportReview/${review.idx }", "리뷰 신고", "width=500, height=auto")'>신고</button>
 													    	</c:if>
 												    	</td>
 													</tr>
-													<div> 
-													</div>
 												</c:forEach>
 											</tbody>
 										</table>
@@ -147,7 +144,7 @@
                                     
 									<section class="mt-3 p-3">
 									<h6>결제 정보</h6><hr>
-									<form id="payform" action="<%=request.getContextPath() %>/payment" method="get" onsubmit="false">
+									<form id="payform" action="${pageContext.request.contextPath}/payment" method="get" onsubmit="false">
 									<input type="hidden" name="caridx" value="${car.idx }" >
 									<table class="table">
 										<tbody>
@@ -518,7 +515,6 @@ var ckEmail = 0;
 		$(this).next().attr('hidden', true);
 		$(this).next().next().next().attr('hidden', true);
 		$(this).parent().append('<button type="button" class="btn btn-default" id="btnUpdate" style="margin:0">등록</button>')
-		console.log($(this).parent());
 	});
 	
 
@@ -548,7 +544,6 @@ var ckEmail = 0;
 	//리뷰 삭제
 	$('.delete').on('click', function(){
 			var reviewidx = $(this).data("idx");
-				console.log("리뷰삭제"+reviewidx);
 				$.ajax({
 					url:'<%=request.getContextPath()%>/deleteReview',
 			         type: 'delete',

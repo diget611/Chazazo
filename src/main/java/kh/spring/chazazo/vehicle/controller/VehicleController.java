@@ -41,8 +41,6 @@ public class VehicleController {
 	
 	@GetMapping("/carlist")
 	public ModelAndView searchVehicle(ModelAndView mv,HttpServletRequest req, String page) {
-
-		
 		mv.setViewName("reservation/carlist");
 		return mv;
 
@@ -52,7 +50,6 @@ public class VehicleController {
 	@GetMapping("/carlist/{idx}")
 	public ModelAndView viewVehicle(ModelAndView mv, @PathVariable String idx, Principal prin, HttpSession session) {
 		int index = Integer.parseInt(idx);
-		// 차량 정보랑 리뷰랑 동시에
 		if(prin == null) {
 			mv.setViewName("reservation/details");
 		}else {
@@ -95,8 +92,6 @@ public class VehicleController {
 		Map<String, Object> result = new HashMap<String,Object>();		
 	
 		result.put("carlist",vService.selectList(search));
-		
-		System.out.println(keyword);
 		return new Gson().toJson(result);		
 	}
 	

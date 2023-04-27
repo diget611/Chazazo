@@ -1,10 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>리뷰 신고하기</title>
+
 <head>
 
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -31,23 +33,37 @@
     <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/main.css">
 </head>
 <body onload="resizeWindow(this)">
+<sec:authentication var="user" property="principal" />
 	<!-- Form Start -->
 	<div class="container-fluid pt-4 px-4">
 		<div class="col-sm-12 col-xl-6">
 			<div class="bg-light rounded h-100 p-4">
 				<h6 class="mb-4">리뷰 신고</h6>
-				<label></label>
 				<form style="flex-direction: column">
-					<input type="text" id="idx" value="${review.idx }">
-					  <input type="radio" name="reason" value="1" /> 스팸홍보/도배글 입니다
-					  <input type="radio" name="reason" value="2" /> 음란물입니다
-					  <input type="radio" name="reason" value="3" /> 불법정보를 포함하고 있습니다
-					  <input type="radio" name="reason" value="4" /> 청소년에게 유해한 내용입니다
-					  <input type="radio" name="reason" value="5" /> 불쾌한 표현이 있습니다
-					  <input type="radio" name="reason" value="6" onClick="this.form.reasontxt.disabled=false"/> 기타
-					  사유 입력:<input type="text" name="reasontxt" disabled>
+					<input type="hidden" id="idx" value="${idx }">
+					<div>
+					  <input type="radio" name="reason" value="1" onClick="this.form.reasontxt.disabled=true"/> 스팸홍보/도배글 입니다
+					  </div>
+					  <div>
+					  <input type="radio" name="reason" value="2" onClick="this.form.reasontxt.disabled=true"/> 음란물입니다
+					  </div>
+					  <div>
+					  <input type="radio" name="reason" value="3" onClick="this.form.reasontxt.disabled=true"/> 불법정보를 포함하고 있습니다
+					  </div>
+					  <div>
+					  <input type="radio" name="reason" value="4" onClick="this.form.reasontxt.disabled=true"/> 청소년에게 유해한 내용입니다
+					  </div>
+					  <div>
+					  <input type="radio" name="reason" value="5" onClick="this.form.reasontxt.disabled=true"/> 불쾌한 표현이 있습니다
+					  </div>
+					  <div>
+					  <input type="radio" id="radioBtn" name="reason" value="6" onClick="this.form.reasontxt.disabled=false"/>
+					  <label for="radioBtn">기타</label>
+					  </div>
+					  <div></div>
+					  <label for="reasontxt">사유 입력:</label>
+					  <input type="text" name="reasontxt" id="reasontxt" disabled>
 					  <button type='submit' id="rbtn">신고하기</button>
-					  
 					  
 					  
 				</form>
@@ -59,6 +75,36 @@
 
 
 <script>
+function resizeWindow(win)    {
+	var hei = win.document.body.offsetHeight + 100;
+	win.resizeTo(500, hei);
+}
+
+
+	$('#rbtn').on('click', function() {
+		var reason = Number($('input[name=reason]:checked').val());
+		var idx = $('#idx').val();
+		var memberIdx = $(this).data("idx");
+		
+		  $.ajax({
+	          url:'<%=request.getContextPath()%>/',
+	          contentType: 'application/json; charset=utf-8',
+	          type: 'post',
+	          dataType:'json',
+	          data: {
+	        	  "idx":idx,
+	        	  "reason":reason,
+	        	  "memberIdx":memberIdx
+	          },
+	          success: function(result) {
+	        	  alert('리뷰가 등록되었습니다')
+	        	  location.reload();
+	          },
+	          error: function() {
+	          	alert('리뷰 등록 실패');
+	          }
+	       });
+	});
 
 </script>
 </body>

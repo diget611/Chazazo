@@ -18,6 +18,6 @@ public class ReviewDto {
 	private int recommend;
 	private int score;
 	private int vehicleIdx;
-	private int reason;
+	private String reason;
 	
 }

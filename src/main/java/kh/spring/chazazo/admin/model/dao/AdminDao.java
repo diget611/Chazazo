@@ -150,7 +150,7 @@ public class AdminDao {
 	}
 	
 	public int vehicleCount() {
-		return sqlSession.selectOne("vehicle.selectOneCount");
+		return sqlSession.selectOne("vehicle.count");
 	}
 	
 	public List<AdminReservRespDto> selectReservList(Pagination pagination) {

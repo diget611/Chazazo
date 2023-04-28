@@ -30,36 +30,24 @@ public class VehicleDao {
 		return sqlSession.selectList("vehicle.selectList", search);
 	}
 
-
 	public List<VehicleRespDto> selectDetails(int idx) {
-		// TODO Auto-generated method stub
 		return sqlSession.selectList("vehicle.selectDetails",idx);
 	}
-
 
 	public VehicleRespDto selectOne(int idx) {
 		return sqlSession.selectOne("vehicle.selectOne", idx);
 	}
 	
-	
 	public VehicleInfoDto getVehicleInfo(int idx) {
 		return sqlSession.selectOne("vehicle.getVehicleInfo", idx);
 	}
-
 
 	public VehicleInfoDto getOptionInfo(int idx) {
 		return sqlSession.selectOne("vehicle.getOptionInfo",idx);
 	}
 
-
 	public int selectOneCount() {
-		return sqlSession.selectOne("vehicle.selectOneCount");
+		return sqlSession.selectOne("vehicle.count");
 	}
-
-	
-
-
-
-
 
 }

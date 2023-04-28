@@ -184,8 +184,8 @@
 										<span class="pe-7s-users"></span>
 									</div>
 									<div class="chart" data-percent="5000">
-										<h2 class="percent" id="counter">1008</h2>
-										<h5>HAPPY CUSTOMER </h5>
+										<h2 class="percent" id="counter">${reserv }</h2>
+										<h5>누적 예약</h5>
 									</div>
 								</div>
 							</div>
@@ -195,8 +195,8 @@
 										<span class="pe-7s-home"></span>
 									</div>
 									<div class="chart" data-percent="12000">
-										<h2 class="percent" id="counter1">1 300</h2>
-										<h5>Properties in stock</h5>
+										<h2 class="percent" id="counter1">${review }</h2>
+										<h5>사용자 리뷰</h5>
 									</div>
 								</div> 
 							</div> 
@@ -206,8 +206,8 @@
 										<span class="pe-7s-flag"></span>
 									</div>
 									<div class="chart" data-percent="120">
-										<h2 class="percent" id="counter2">146</h2>
-										<h5>City registered </h5>
+										<h2 class="percent" id="counter2">${vehicle }</h2>
+										<h5>예약 가능 차량</h5>
 									</div>
 								</div> 
 							</div> 
@@ -217,8 +217,8 @@
 										<span class="pe-7s-graph2"></span>
 									</div>
 									<div class="chart" data-percent="5000">
-										<h2 class="percent" id="counter3">1023</h2>
-										<h5>DEALER BRANCHES</h5>
+										<h2 class="percent" id="counter3">${location }</h2>
+										<h5>지점 수</h5>
 									</div>
 								</div> 
 							</div>

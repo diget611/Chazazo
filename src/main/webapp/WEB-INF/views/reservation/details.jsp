@@ -90,7 +90,7 @@
 												    	<td >
 													    	<c:if test="${info.name ne review.name }">
 														    	<c:if test ="${empty info.name }">
-														    		<button type="button" class="btn btn-secondary"  onclick="alert('회원만 신고가 가능합니다.');return false;">가짜신고</button>
+														    		<button type="button" class="btn btn-secondary"  onclick="alert('회원만 신고가 가능합니다.');return false;">신고</button>
 														    	</c:if>
 														    		<c:if test ="${not empty  info.name }">
 															    		<button type="button" id="report" data-memberIdx="${info.idx}"class="btn btn-secondary" style="display:inline-block" 

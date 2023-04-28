@@ -63,7 +63,7 @@
 					  </div>
 					  <div></div>
 					  <label for="reasontxt">사유 입력:</label>
-					  <input type="text" name="reasontxt" id="reasontxt" disabled>
+					  <input type="text" id="reasontxt" disabled>
 					  <button type="button" id="rbtn">신고하기</button>
 					  
 					  
@@ -80,18 +80,36 @@ function resizeWindow(win)    {
 	var hei = win.document.body.offsetHeight + 100;
 	win.resizeTo(500, hei);
 }
-
-
+	
+	$('[name=reason]').on('change', function() {
+	var a = $('input[name=reason]:checked').val();
+	if (a == 6) {
+			var reason = $('#reasontxt').val();
+	} else {
+			$('#reasontxt').val('');
+			var reason =$('input[name=reason]:checked').val();
+	}
+	});
+		
+		
 	$('#rbtn').on('click', function() {
-		var reason = Number($('input[name=reason]:checked').val());
 		var idx = $('#idx').val();
 		var username = $('#username').val();
+		var a = $('input[name=reason]:checked').val();
+		var reason = '';
+		if (a == 6) {
+			reason = $('#reasontxt').val();
+		} else {
+			$('#reasontxt').val('');
+			reason =$('input[name=reason]:checked').val();
+		}
+		console.log('aaa');
+		console.log(reason);	
 		var data = {
 	        	  "idx":idx,
 	        	  "reason":reason,
 	        	  "name":username
 	          };
-		console.log("^^^");
 		  $.ajax({
 	          url:'<%=request.getContextPath()%>/postReport',
 	          contentType: 'application/json; charset=utf-8',

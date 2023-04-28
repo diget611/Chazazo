@@ -44,12 +44,14 @@
 					<textarea class="form-control" id="content" name="content" style="height: 300px;" readonly>${notice.content}</textarea>
 					<label for="content">내용</label>
 				</div>
-				<div class="form-floating mb-3">
-					<div style="text-align: center;">
-						<button type="button" class="btn btn-primary" style="display: inline-block" id="updateBtn">수정하기</button>
-						<button type="button" class="btn btn-primary" style="display: inline-block" id="deleteBtn">삭제하기</button>
+				<c:if test="${notice.deleteDate eq null }">
+					<div class="form-floating mb-3">
+						<div style="text-align: center;">
+							<button type="button" class="btn btn-primary" style="display: inline-block" id="updateBtn">수정하기</button>
+							<button type="button" class="btn btn-primary" style="display: inline-block" id="deleteBtn">삭제하기</button>
+						</div>
 					</div>
-				</div>
+				</c:if>
 			</div>
 		</div>
 	</div>
@@ -60,6 +62,66 @@
 	function resizeWindow(win)    {
 		var hei = win.document.body.offsetHeight + 100;
 		win.resizeTo(500, hei);
+	}
+	
+	$('#updateBtn').on('click', updateNotice);
+	
+	function updateNotice() {
+		if($('#updateBtn').text() == '수정하기') {
+			$('#updateBtn').text('수정 완료');
+			$('#title').attr('readonly', false);
+			$('#content').attr('readonly', false);
+		} else {
+			let idx = $('#idx').val();
+			let title = $('#title').val();
+			let content = $('#content').val();
+			let data = {
+					idx: idx,
+					title: title,
+					content: content
+			}
+			$.ajax({
+				url: "${pageContext.request.contextPath}/admin/coupon/update",
+				type: "patch",
+				data: JSON.stringify(data),
+				contentType: "application/json; charset=utf-8",
+				success: function(result) {
+					if(result == 1) {
+						alert("공지사항 수정 완료");
+						opener.parent.location.reload();
+						window.close();
+					} else {
+						alert('실패');
+					}
+				},
+				error: function() {
+					alert("에러");
+				}
+			});
+		} 
+	}
+	
+	$('#deleteBtn').on('click', deleteNotice)
+	
+	function deleteNotice() {
+		let idx = $('#idx').val();
+		$.ajax({
+			url: "${pageContext.request.contextPath}/admin/notice/delete",
+			type: "patch",
+			data: {idx: idx},
+			success: function(result) {
+				if(result == 1) {
+					alert('삭제 완료');
+					opener.parent.location.reload();
+					window.close();
+				} else {
+					alert('실패');
+				}
+			},
+			error: function() {
+				alert('에러');
+			}
+		});
 	}
 </script>
 </body>

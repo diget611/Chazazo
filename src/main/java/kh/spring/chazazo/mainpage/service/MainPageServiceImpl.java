@@ -1,5 +1,7 @@
 package kh.spring.chazazo.mainpage.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -29,6 +31,11 @@ public class MainPageServiceImpl implements MainPageService {
 	@Override
 	public int locationCount() {
 		return dao.locationCount();
+	}
+
+	@Override
+	public List<String> reviewList() {
+		return dao.reviewList();
 	}
 
 }

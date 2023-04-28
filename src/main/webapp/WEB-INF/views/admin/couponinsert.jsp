@@ -36,17 +36,16 @@
 			<div class="bg-light rounded h-100 p-4">
 				<h6 class="mb-4">쿠폰 등록</h6>
 				<form>
-					<input type="hidden" id="idx" value="${coupon.idx }">
 					<div class="form-floating mb-3">
 						<input type="text" class="form-control" id="name" name="name">
 						<label for="name">쿠폰명</label>
 					</div>
 					<div class="form-floating mb-3">
-						<input type="number" class="form-control" id="period" name="period">
+						<input type="text" class="form-control" id="period" name="period">
 						<label for="period">쿠폰 사용 기간</label>
 					</div>
 					<div class="form-floating mb-3">
-						<input type="number" class="form-control" id="rate" name="rate">
+						<input type="text" class="form-control" id="rate" name="rate">
 						<label for="rate">할인율</label>
 					</div>
 					<div style="text-align: center;">
@@ -69,24 +68,39 @@
 	$('#insertBtn').on('click', insertCoupon);
 	
 	function insertCoupon() {
-		let idx = $('#idx').val();
-		$.ajax({
-			url: "${pageContext.request.contextPath}/admin/coupon/delete",
-			data: {idx: idx},
-			type: "post",
-			success: function(result) {
-				if(result == 1) {
-					opener.parent.location.reload();
-					window.close();
-				} else {
-				alert('실패');					
-				}
-			}, 
-			error: function() {
-				alert('에러');
-			}
-		})
+		let name = $('#name').val();
+		let period = $('#period').val();
+		let rate = $('#rate').val() / 100;
+		let data = {
+			name: name,
+			period: period,
+			rate: rate
+		};
 		
+		if(name == '') {
+			alert('쿠폰명을 입력하세요')
+		} else if(period <= 0 || rate >= 1) {
+			alert('입력하신 값을 확인하세요')
+		} else {
+			$.ajax({
+				url: "${pageContext.request.contextPath}/admin/coupon/insert",
+				data: JSON.stringify(data),
+				type: "post",
+				contentType: "application/json; charset=utf-8",
+				success: function(result) {
+					if(result == 1) {
+						alert("쿠폰 등록 완료");
+						opener.parent.location.reload();
+						window.close();
+					} else {
+					alert('실패');					
+					}
+				}, 
+				error: function() {
+					alert('에러');
+				}
+			})
+		}
 	}
 </script>
 </body>

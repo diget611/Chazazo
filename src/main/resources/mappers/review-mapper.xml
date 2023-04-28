@@ -53,4 +53,11 @@
 		SELECT COUNT(*) CNT FROM REVIEW
 	</select>
 	
+	<select id="selectListForMain" resultType="map">
+		SELECT CONTENT
+		  FROM (SELECT ROWNUM RNUM, RE.*
+		          FROM (SELECT CONTENT, CREATE_DATE FROM REVIEW ORDER BY CREATE_DATE DESC) RE)
+		 WHERE RNUM BETWEEN 1 AND 4
+	</select>
+	
 </mapper>

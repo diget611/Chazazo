@@ -15,6 +15,7 @@ public class MainPageController {
 	
 	@GetMapping(value = {"/", "/main"})
 	public ModelAndView viewMain(ModelAndView mv) {
+		mv.addObject("reviewList", mService.reviewList());
 		mv.addObject("review", mService.reviewCount());
 		mv.addObject("reserv", mService.reservCount());
 		mv.addObject("vehicle", mService.vehicleCount());

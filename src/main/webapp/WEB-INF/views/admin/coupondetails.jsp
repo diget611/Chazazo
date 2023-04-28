@@ -49,10 +49,12 @@
 						<input type="text" class="form-control" id="rate" name="rate" value="${coupon.rate}" readonly>
 						<label for="rate">할인율</label>
 					</div>
-					<div style="text-align: center;">
-						<button type="button" class="btn btn-primary" id="updateBtn" style="display: inline-block">정보 수정</button>
-						<button type="button" class="btn btn-primary" id="deleteBtn" style="display: inline-block">삭제</button>
-					</div>
+					<c:if test="${coupon.status ne 1}">
+						<div style="text-align: center;">
+							<button type="button" class="btn btn-primary" id="updateBtn" style="display: inline-block">수정하기</button>
+							<button type="button" class="btn btn-primary" id="deleteBtn" style="display: inline-block">삭제하기</button>
+						</div>
+					</c:if>
 				</form>
 			</div>
 		</div>
@@ -65,6 +67,51 @@
 	function resizeWindow(win) {
 		var hei = win.document.body.offsetHeight + 100;
 		win.resizeTo(500, hei);
+	}
+	
+	$('#updateBtn').on('click', updateNotice);
+	
+	function updateNotice() {
+		if($('#updateBtn').text() == '수정하기') {
+			$('#updateBtn').text('수정 완료');
+			$('#name').attr('readonly', false);
+			$('#period').attr('readonly', false);
+			$('#rate').attr('readonly', false);
+		} else {
+			let idx = $('#idx').val();
+			let name = $('#name').val();
+			let period = $('#period').val();
+			let rate = $('#rate').val() / 100;
+			let data = {
+					idx: idx,
+					name: name,
+					period: period,
+					rate: rate
+			}
+			
+			if(period <= 0 || rate >= 1) {
+				alert("입력하신 값을 확인하세요")
+			} else {
+				$.ajax({
+					url: "${pageContext.request.contextPath}/admin/coupon/update",
+					type: "patch",
+					data: JSON.stringify(data),
+					contentType: "application/json; charset=utf-8",
+					success: function(result) {
+						if(result == 1) {
+							alert("쿠폰 수정 완료");
+							opener.parent.location.reload();
+							window.close();
+						} else {
+							alert('실패');
+						}
+					},
+					error: function() {
+						alert("에러");
+					}
+				});
+			}
+		} 
 	}
 	
 	$('#deleteBtn').on('click', deleteCoupon);

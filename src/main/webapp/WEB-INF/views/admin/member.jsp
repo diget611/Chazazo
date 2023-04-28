@@ -61,18 +61,24 @@
 							<c:forEach items="${memberList }" var="member" varStatus="status">
 								<c:if test="${member.auth ne 'ROLE_ADMIN'}">
 									<tr onclick='window.open("<%=request.getContextPath()%>/admin/member/${member.username }", "회원 상세 정보", "width=500, height=auto")'>
-										<th scope="row">${pagination.count - (pagination.currentPage - 1) * 10 - status.index}</th>
-										<td>${member.username }</td>
-										<td>${member.name }</td>
-										<td>${member.email }</td>
-										<c:if test="${member.enabled eq 0 }">
-											<td>탈퇴</td>
-											<td>${member.outDate }</td>
-										</c:if>
-										<c:if test="${member.enabled eq 1 }">
-											<td>활동</td>
-											<td>${member.regiDate }</td>
-										</c:if>
+										<c:choose>
+											<c:when test="${member.enabled eq 0 }">
+												<th scope="row">${pagination.count - (pagination.currentPage - 1) * 10 - status.index}</th>
+												<td>${member.username }</td>
+												<td>-</td>
+												<td>-</td>
+												<td>탈퇴</td>
+												<td>${member.outDate }</td>
+											</c:when>	
+											<c:otherwise>
+												<th scope="row">${pagination.count - (pagination.currentPage - 1) * 10 - status.index}</th>
+												<td>${member.username }</td>
+												<td>${member.name }</td>
+												<td>${member.email }</td>
+												<td>활동</td>
+												<td>${member.regiDate }</td>
+											</c:otherwise>
+										</c:choose>
 									</tr>
 								</c:if>
 							</c:forEach>

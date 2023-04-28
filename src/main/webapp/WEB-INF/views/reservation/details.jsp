@@ -89,8 +89,13 @@
 														${review.recommend}</td>
 												    	<td >
 													    	<c:if test="${info.name ne review.name }">
-													    		<button type="button" id="report" data-memberIdx="${info.idx}"class="btn btn-secondary" style="display:inline-block" 
-							    								    onclick='window.open("${pageContext.request.contextPath}/reportReview/${review.idx }", "리뷰 신고", "width=500, height=auto")'>신고</button>
+														    	<c:if test ="${empty info.name }">
+														    		<button type="button" class="btn btn-secondary"  onclick="alert('회원만 신고가 가능합니다.');return false;">가짜신고</button>
+														    	</c:if>
+														    		<c:if test ="${not empty  info.name }">
+															    		<button type="button" id="report" data-memberIdx="${info.idx}"class="btn btn-secondary" style="display:inline-block" 
+									    								    onclick='window.open("${pageContext.request.contextPath}/reportReview/${review.idx }", "리뷰 신고", "width=500, height=auto")'>신고</button>
+													    			</c:if>
 													    	</c:if>
 												    	</td>
 													</tr>

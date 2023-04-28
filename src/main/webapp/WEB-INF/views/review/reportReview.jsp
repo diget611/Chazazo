@@ -21,6 +21,7 @@
     <link href="<%=request.getContextPath()%>/resources/dashmin/lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
     <link href="<%=request.getContextPath()%>/resources/dashmin/css/bootstrap.min.css" rel="stylesheet">
     <link href="<%=request.getContextPath()%>/resources/dashmin/css/style.css" rel="stylesheet">
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
@@ -92,6 +93,8 @@ function resizeWindow(win)    {
 	});
 		
 		
+
+	
 	$('#rbtn').on('click', function() {
 		var idx = $('#idx').val();
 		var username = $('#username').val();
@@ -116,8 +119,8 @@ function resizeWindow(win)    {
 	          type: 'post',
 	          data: JSON.stringify(data),
 	          success: function(result) {
-	        	  alert('신고가 등록되었습니다')
-	        	  window.close();
+	        	  	swal("신고가 접수되었습니다.","해당 리뷰는 운영자 검토 후 삭제됩니다.", {icon: "success"});
+	        	  	 setTimeout(function () { window.close(); }, 3000);
 	          },
 	          error: function() {
 	          	alert('신고 등록 실패');

@@ -30,7 +30,9 @@
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/garoestate/assets/css/price-range.css">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/garoestate/assets/css/style.css">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/garoestate/assets/css/responsive.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.min.css">
 
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script src="<%=request.getContextPath()%>/resources/garoestate/assets/js/modernizr-2.6.2.min.js"></script>
 <script src="<%=request.getContextPath()%>/resources/garoestate/assets/js/jquery-1.10.2.min.js"></script>
 <script src="<%=request.getContextPath()%>/resources/garoestate/bootstrap/js/bootstrap.min.js"></script>
@@ -90,7 +92,7 @@
 												    	<td >
 													    	<c:if test="${info.name ne review.name }">
 														    	<c:if test ="${empty info.name }">
-														    		<button type="button" class="btn btn-secondary"  onclick="alert('회원만 신고가 가능합니다.');return false;">신고</button>
+														    		<button type="button" class="btn btn-secondary"  onclick="reportSwal()" >신고</button>
 														    	</c:if>
 														    		<c:if test ="${not empty  info.name }">
 															    		<button type="button" id="report" data-memberIdx="${info.idx}"class="btn btn-secondary" style="display:inline-block" 
@@ -204,6 +206,13 @@
 
 
 <script type="text/javascript">
+
+function reportSwal() {
+	swal("현재 로그아웃 상태입니다.","신고하려면 로그인을 해주세요.", {icon: "warning"});
+}
+
+
+
 var ckName = 0;
 var ckBirth = 0;
 var ckPhone = 0;
@@ -343,7 +352,7 @@ if(useridx !== '') {
     
     //회원가입 클릭시 이동
 	$('#register').on('click', function() {
-		location.href='<%=request.getContextPath()%>/member/register';
+		location.href='${pageContext.request.contextPath}/member/register';
 	});
     
     //결제하기 누르면 ajax불러오기
@@ -362,7 +371,7 @@ if(useridx !== '') {
 	          dataType:'json',
 	          success: function(result) {
 				getPayinfo(result);
-				var test = '<%=request.getContextPath()%>/resources/js/validation.js';
+				var test = '${pageContext.request.contextPath}/resources/js/validation.js';
 				$('.footer-copy').after('<script src="' + test + '"/>');
 	          },
 	          error: function() {
@@ -393,7 +402,7 @@ if(useridx !== '') {
 				html +=	'	<div class="property-meta entry-meta clearfix ">   '
 				html +=	'		<div class="col-xs-3 col-sm-3 col-md-3 p-b-15">'
 				html +=	'			<div class="property-icon">'
-				html +=	'				<img src="<%=request.getContextPath()%>/resources/garoestate/assets/img/icon/clock.png">'
+				html +=	'				<img src="${pageContext.request.contextPath}/resources/garoestate/assets/img/icon/clock.png">'
 				html +=	'				<span class="property-info-value">연식 ${car.year }년</span>'
 				html +=	'			</div>'
 				html +=	'			</div>'
@@ -401,7 +410,7 @@ if(useridx !== '') {
 				html +=	'	<div class="property-meta entry-meta clearfix ">   '
 				html +=	'		<div class="col-xs-3 col-sm-3 col-md-3 p-b-15">'
 				html +=	'			<div class="property-icon">'
-				html +=	'				<img src="<%=request.getContextPath()%>/resources/garoestate/assets/img/icon/fuel.png">'
+				html +=	'				<img src="${pageContext.request.contextPath}/resources/garoestate/assets/img/icon/fuel.png">'
 				html +=	'				<span class="property-info-label">연료</span>'
 				html +=	'				<span class="property-info-value">${option.fuelname }</span>'
 				html +=	'			</div>'
@@ -410,7 +419,7 @@ if(useridx !== '') {
 				html +=	'		<div class="property-meta entry-meta clearfix ">   '
 				html +=	'		<div class="col-xs-3 col-sm-3 col-md-3 p-b-15">'
 				html +=	'			<div class="property-icon">		'
-				html +=	'				<img src="<%=request.getContextPath()%>/resources/garoestate/assets/img/icon/car.png">'
+				html +=	'				<img src="${pageContext.request.contextPath}/resources/garoestate/assets/img/icon/car.png">'
 				html +=	'				<span class="property-info-value">${option.typename }</span>'
 				html +=	'			</div>'
 				html +=	'		</div>'
@@ -470,13 +479,20 @@ if(useridx !== '') {
 			var content = $('[name=reviewcontent]').val()
 			var memberIdx = $('#useridx').val();
 			var vehicleIdx = $('[name=caridx]').val();
+			
+			if(!content) {
+				swal("입력된 내용이 없습니다","", {icon: "warning"});
+				setTimeout(function () { window.close(); }, 2000);
+				return false;
+			}
+			
 			var data ={
 					"vehicleIdx":vehicleIdx,
 					"memberIdx": memberIdx,
 					"content" : content
 			}
 			  $.ajax({
-		          url:'<%=request.getContextPath()%>/postReview',
+		          url:'${pageContext.request.contextPath}/postReview',
 		          contentType: 'application/json; charset=utf-8',
 		          type: 'post',
 		          dataType:'json',
@@ -486,7 +502,6 @@ if(useridx !== '') {
 		        	  location.reload();
 		          },
 		          error: function() {
-		          	alert('리뷰 등록 실패');
 		          }
 		       });
 		}
@@ -496,18 +511,15 @@ if(useridx !== '') {
 		 $('.likebtn').click(function(){
 			var reviewidx = $(this).data("idx");
 			var recommend = $(this).data("recommend");
-//			recommend++;
 
 			$.ajax({
-				url:'<%=request.getContextPath()%>/insertLike',
+				url:'${pageContext.request.contextPath}/insertLike',
 		         type: 'post',
 			     data: {
 			 		"idx" : reviewidx,
 					"recommend" :recommend
 				},
-//			     data: JSON.stringify(data),
-//				 contentType: 'application/json; charset=utf-8',
-			     //dataType:'json',
+
 		         success: function(result) {
 		        	  location.reload();
 		          },
@@ -535,7 +547,7 @@ if(useridx !== '') {
 			 var content = $(this).parent().prev().children().val();
 			 
 					$.ajax({
-						url:'<%=request.getContextPath()%>/updateReview',
+						url:'${pageContext.request.contextPath}/updateReview',
 				         type: 'post',
 					     data: {
 					 		"idx" : reviewidx,
@@ -556,7 +568,7 @@ if(useridx !== '') {
 	$('.delete').on('click', function(){
 			var reviewidx = $(this).data("idx");
 				$.ajax({
-					url:'<%=request.getContextPath()%>/deleteReview',
+					url:'${pageContext.request.contextPath}/deleteReview',
 			         type: 'delete',
 				     data: {
 				 		"idx" : reviewidx
@@ -880,7 +892,7 @@ if(useridx !== '') {
 	          };
 		
 		  $.ajax({
-	          url:'<%=request.getContextPath()%>/payment/paid',
+	          url:'${pageContext.request.contextPath}/payment/paid',
 	          contentType: 'application/json; charset=utf-8',
 	          type: 'post',
 	          dataType:'json',

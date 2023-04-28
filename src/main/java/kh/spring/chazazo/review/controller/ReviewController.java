@@ -64,8 +64,10 @@ public class ReviewController {
 		mv.setViewName("review/reportReview");
 		return mv;
 	}
+	
 	@PostMapping ("/postReport")
-	public int insertReport(ReviewDto data) {
+	public int insertReport(@RequestBody ReviewDto data) {
+		System.out.println("++++++++"+data);
 	int result = rService.insertReport(data);
 		return result;
 	}

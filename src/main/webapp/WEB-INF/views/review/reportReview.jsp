@@ -33,15 +33,15 @@
     <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/main.css">
 </head>
 <body onload="resizeWindow(this)">
-<sec:authentication var="user" property="principal" />
-
+ <sec:authentication property="principal.username" var="currentUserName"/>
 	<!-- Form Start -->
 	<div class="container-fluid pt-4 px-4">
 		<div class="col-sm-12 col-xl-6">
 			<div class="bg-light rounded h-100 p-4">
-				<h6 class="mb-4">리뷰 신고</h6>!
+				<h6 class="mb-4">리뷰 신고</h6>
 				<form style="flex-direction: column">
-					<input type="text" id="idx" value="${r.idx}">
+					<input type="hidden" id="idx" value="${idx }">
+					<input type="hidden" id="username" value="${currentUserName}">
 					<div>
 					  <input type="radio" name="reason" value="1" onClick="this.form.reasontxt.disabled=true"/> 스팸홍보/도배글 입니다
 					  </div>
@@ -64,7 +64,7 @@
 					  <div></div>
 					  <label for="reasontxt">사유 입력:</label>
 					  <input type="text" name="reasontxt" id="reasontxt" disabled>
-					  <button type='submit' id="rbtn">신고하기</button>
+					  <button type="button" id="rbtn">신고하기</button>
 					  
 					  
 				</form>
@@ -85,21 +85,24 @@ function resizeWindow(win)    {
 	$('#rbtn').on('click', function() {
 		var reason = Number($('input[name=reason]:checked').val());
 		var idx = $('#idx').val();
-	alert(reason + idx); 
-		console.log(reason + idx)
-		  $.ajax({
-	          url:'<%=request.getContextPath()%>/postReport',
-	          type: 'post',
-	          data: {
+		var username = $('#username').val();
+		var data = {
 	        	  "idx":idx,
 	        	  "reason":reason,
-	          },
+	        	  "name":username
+	          };
+		console.log("^^^");
+		  $.ajax({
+	          url:'<%=request.getContextPath()%>/postReport',
+	          contentType: 'application/json; charset=utf-8',
+	          type: 'post',
+	          data: JSON.stringify(data),
 	          success: function(result) {
+	        	  alert('신고가 등록되었습니다')
 	        	  window.close();
-	        	  alert('리뷰를 신고했습니다')
 	          },
 	          error: function() {
-	          	alert('신고실패');
+	          	alert('신고 등록 실패');
 	          }
 	       });
 	});

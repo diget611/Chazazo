@@ -89,7 +89,7 @@
 														${review.recommend}</td>
 												    	<td >
 													    	<c:if test="${info.name ne review.name }">
-													    		<button type="button"  data-memberIdx="${info.idx}"class="btn btn-secondary" style="display:inline-block" 
+													    		<button type="button" id="report" data-memberIdx="${info.idx}"class="btn btn-secondary" style="display:inline-block" 
 							    								    onclick='window.open("${pageContext.request.contextPath}/reportReview/${review.idx }", "리뷰 신고", "width=500, height=auto")'>신고</button>
 													    	</c:if>
 												    	</td>
@@ -204,6 +204,12 @@ var ckBirth = 0;
 var ckPhone = 0;
 var ckLicense = 0;
 var ckEmail = 0;
+//비회원,회원 식별값 주기
+if(useridx !== '') {
+	var ismember ='1';
+} else {
+	var ismember ='0';
+}
 
 
 
@@ -561,6 +567,7 @@ var ckEmail = 0;
 				
 	});
 	
+
 	
 	
 	
@@ -839,12 +846,6 @@ var ckEmail = 0;
 				var ins = "1"
 			}
 		
-		//비회원,회원 식별값 주기
-		if(useridx !== '') {
-			var ismember ='1';
-		} else {
-			var ismember ='0';
-		}
 	
 		
 		

@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -30,7 +31,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.google.gson.Gson;
 
 import kh.spring.chazazo.member.model.dto.MemberReqDto;
-import kh.spring.chazazo.member.model.dto.MemberUpdateInfoRespDto;
+
 import kh.spring.chazazo.common.email.MailSendService;
 import kh.spring.chazazo.member.model.dto.MemberInfoReqDto;
 import kh.spring.chazazo.member.model.dto.MemberInfoRespDto;
@@ -164,6 +165,7 @@ public class MemberController {
 		System.out.println(loginId);
 		mv.addObject("memberinfo", mService.selectMypageOne(loginId));
 		mv.setViewName("member/profile");
+		
 		return mv;
 	}
 	
@@ -189,26 +191,14 @@ public class MemberController {
 	
 	
 	// 회원정보 수정 / Put, Patch
-	@PostMapping("/update")
-	public String updateMember(ModelAndView mv, @RequestBody MemberUpdateInfoRespDto data, Principal prin) {
-		
-		Map<String, Object> result = new HashMap<String,Object>();
-		
-		System.out.println("ggggggggggggggggggggg컨트롤러 ");
-		String loginId = prin.getName();
-		
-		
-		mv.addObject("memberinfo", mService.updateInfo(data));
-		result.put("memberinfo", mService.updateInfo(data));
-		
-		
-		System.out.println(result);
-		
-		return new Gson().toJson(result);
+	@PostMapping("/profile/update")
+	@ResponseBody
+	public String updateMember(MemberInfoRespDto dto,Principal pricipal ) {
+		dto.setUsername(pricipal.getName());
+		int result = mService.updateInfo(dto);
+	System.out.println("updatedddd!!");
+			return String.valueOf(result);
 	}
-
-	
-	 
 	
 	
 	@DeleteMapping("/profile")

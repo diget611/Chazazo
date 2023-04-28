@@ -17,6 +17,7 @@ public class MemberInfoRespDto {
 	private String phoneNumber;
 	private String license;
 	private String email;
+	private String password;
 	
 	
 }

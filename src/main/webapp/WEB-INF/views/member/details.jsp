@@ -210,7 +210,7 @@
 								<hr class="my-2">
 								<div class="dc-flex align juaenter">
 									<div
-										class="text-16 font-weight-bold color-grey-2 vreserv-car-model-name">${reservation.vehicleIdx }</div>
+										class="text-16 font-weight-bold color-grey-2 vreserv-car-model-name">${reservation.vehicleModel }</div>
 									<div class="ml-1">
 										<span
 											class="badge-state badge-state-reserv-complete badge badge-primary"
@@ -233,9 +233,9 @@
 											style="display: none;">예약접수</span>
 									</div>
 								</div>
-								<div class="vreserv-txt-rent-period text-14 color-grey-2">  (24시간)</div>
+								
 								<div
-									class="js-vrsi-txt-branch-name js-budget-summarized-hide text-14 color-grey-5 mt-1">${location.name}</div>
+									class="js-vrsi-txt-branch-name js-budget-summarized-hide text-14 color-grey-5 mt-1">${reservation.startDate} ~ ${reservation.endDate}</div>
 								<hr class="my-2">
 								<div class="js-vrsi-container-pay-method mb-1">
 									<div class="dc-flex justify-content-between pay-type-container">
@@ -295,7 +295,9 @@
 						<div>
 							<div>운전자 정보</div>
 							<div>이름</div>
+							<div>${memberinfo.name }</div>
 							<div>전화번호</div>
+							<div>${memberinfo.phoneNumber }</div>
 							
 						</div>
 					
@@ -304,7 +306,7 @@
 					<section >
 						<div>
 							<div>가입된 보험</div>
-							
+								<div>${insurance.insuranceName}</div>
 						</div>
 					
 					</section>
@@ -314,11 +316,15 @@
 					<section>
 						<div>결제정보</div>
 						
-						<div>결제수단</div>
+						
 						<div>대여요금</div>
+							<div>${reservation.finalPrice }</div>
 						<div>할인적용</div>
 						<hr class="my-2">
 						<div>총 결제요금</div>
+							
+						<div>결제 시간</div>
+							<div>${reservation.paidTime }</div>
 						
 					</section>
 					<hr class="my-2">
@@ -338,7 +344,7 @@
 					<hr class="my-2">
 					<div class="text-center space-1 dc-none dc-lg-block">
 								<button
-									class="js-vpr-btn-go-main btn btn-wide btn-pill mx-auto px-6 btn-primary">예약 취소하기</button>
+									class="js-vpr-btn-go-main btn btn-wide btn-pill mx-auto px-6 btn-primary" id="delReserv-btn">예약 취소하기</button>
 							</div>
 							</div>
 					</section>
@@ -363,6 +369,15 @@
 	$('#bookmark').on('click', function() {
 		location.href='<%=request.getContextPath()%>/profile/favorites';
 	});
+	
+	$('#delReserv-btn').on('click', function() {
+		var idx = $(this).children().eq(0).text();
+		
+		
+		
+		location.href="${pageContext.request.contextPath}/profile/reservation/" + idx;
+	});
+	
 	</script>
 </body>
 </html>

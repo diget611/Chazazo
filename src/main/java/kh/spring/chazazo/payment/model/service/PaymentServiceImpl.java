@@ -41,21 +41,15 @@ public class PaymentServiceImpl implements PaymentService {
 
 	@Override
 	public PaymentReqDto noneReser(int paymentIdx) {
-		// TODO Auto-generated method stub
 		return dao.noneReser(paymentIdx);
 	}
 
 	@Override
 	public PaymentReqDto selectNoneM(PaymentReqDto dto) {
-		// TODO Auto-generated method stub
 		return dao.selectNoneM(dto);
 	}
 
-	@Override
-	public LocationRespDto resvLocation(String idx) {
-		return dao.resvLocation(idx);
-
-	}
+	
 
 	@Override
 	public List<PaymentReqDto> ReservationList(int idx) {
@@ -64,7 +58,19 @@ public class PaymentServiceImpl implements PaymentService {
 	}
 
 	@Override
-	public PaymentReqDto ReservationOne(String idx) {
+	public PaymentReqDto ReservationOne(int idx) {
 	return dao.ReservationOne(idx);
+	}
+
+	@Override
+	public LocationRespDto resvLocation(int idx) {
+		
+		return dao.resvLocation(idx);
+	}
+
+	@Override
+	public PaymentReqDto reservInsurace(int idx) {
+		
+		return dao.reservInsurace(idx);
 	}
 }

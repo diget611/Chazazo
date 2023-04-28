@@ -1,7 +1,6 @@
 package kh.spring.chazazo.member.model.service;
 
 import kh.spring.chazazo.member.model.dto.MemberReqDto;
-import kh.spring.chazazo.member.model.dto.MemberUpdateInfoRespDto;
 
 import java.util.List;
 
@@ -19,7 +18,7 @@ public interface MemberService {
 	public MemberInfoRespDto selectMypageOne(String username);
 	public String userPass(String username);
 	public MemberInfoRespDto getMemberInfo(String username);
-	public int updateInfo(MemberUpdateInfoRespDto dto);
+	public int updateInfo(MemberInfoRespDto dto);
 	public int deleteMember(String username);
 //	public int deleteMemberInfo(String username);
 }

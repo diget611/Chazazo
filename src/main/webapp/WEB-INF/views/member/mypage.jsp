@@ -253,9 +253,7 @@
 								
 								</div>
 					
-									<div id="noMeberReser">
-								
-								</div>
+									
 								</div>
 								
 					 
@@ -277,6 +275,10 @@
 	<jsp:include page="/WEB-INF/views/base/footer.jsp"/>
 
 	<script>
+	$('tr').on('click', function() {
+		var sss = $(this).children().eq(0).text();
+		location.href = "${pageContext.request.contextPath}/profile/reservation/" + sss; 
+	})
 	
 		$('#updateinfoBtn').on('click', function() {
 			location.href="${pageContext.request.contextPath}/member/profile/update";
@@ -382,17 +384,16 @@
 				html += '								<th scope="row">예약번호</th>'
 				html += '								<th scope="row">예약시작날짜</th>'
 				html += '								<th scope="row">예약상태</th>'
-				html += '								<th scope="row">보험종류</th>'
 				html += '								<th scope="row">차종류</th>'
 				html += '								<th scope="row">대여지점</th>'
 				html += '								<th scope="row">반납지점</th>'
+				html += '							</tr>'
 				html += '							</thead>'
 				html += '							<tbody>'
-				html += '								</tr>'
+				html += '								<tr>'
 				html += '									<td>' + noneList.idx + '</td>'
 				html += '									<td>' + noneList.startDate + '</td>'
 				html += '									<td>' + noneList.state + '</td>'
-				html += '									<td>' + noneList.insuranceIdx + '</td>'
 				html += '									<td>' + noneList.vehicleModel+ '</td>'
 				html += '									<td>' + noneList.rentLocationName + '</td>'
 				html += '									<td>' + noneList.returnLocationName + '</td>'
@@ -405,12 +406,17 @@
 		}
 		
 		
-		$('tr').on('click', function() {
-			var sss = $(this).children().eq(0).text();
-			location.href = "${pageContext.request.contextPath}/profile/reservation/" + sss; 
-		})
 		
-			
+			$('#deleteBtn').on("click", function(){
+				$.ajax({
+					type: "delete",
+					data: {
+						
+					}
+					
+					
+				})
+			});
 			
 			
 		

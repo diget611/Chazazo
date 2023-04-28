@@ -43,7 +43,7 @@
 
 <body>
 	<jsp:include page="/WEB-INF/views/base/header.jsp"/>
-	${memberinfo.idx }
+
 	<section>
 		<div class="content-area blog-page padding-top-40" style="background-color: #FCFCFC; padding-bottom: 55px;">
 			<div class="container">
@@ -73,7 +73,7 @@
 												<div class="col-xs-8 col-sm-8 ">
 													<h3 class="dealer-name">
 														<span>		
-															<input type="text" class="form-control" name="name" value="${memberinfo.name }" readonly >
+															<input type="text" class="form-control"  value="${memberinfo.name }" readonly >
 															<input type="hidden" class="form-control" name="usernname" id="username" value="${memberinfo.username }" >
 															<input type="hidden" class="form-control"  value="${memberinfo.idx }" >
 														</span>
@@ -84,11 +84,11 @@
 												<ul class="dealer-contacts">                                       
 													<li>
 														<i class="pe-7s-call strong"> </i>
-														<input type="text" class="form-control" name="phoneNumber" value="${memberinfo.phoneNumber}" readonly >
+														<input type="text" class="form-control" value="${memberinfo.phoneNumber}" readonly >
 													</li>
 													<li>
 														<i class="pe-7s-mail strong"> </i> 
-														<input type="text" class="form-control" name="email" value="${memberinfo.email }" readonly >
+														<input type="text" class="form-control"  value="${memberinfo.email }" readonly >
 													</li>
 												</ul>
 											<div>
@@ -162,15 +162,14 @@
 					
 					
 				
-						<form id="updateForm" action="<%=request.getContextPath() %>/member/profile/update"
-								style="display:none"; onsubmit="return checkForm()">
-							<div class="form-group">
-									<label>이름</label>
-									<input type="text" class="form-control" id="name" name="name" value="${memberinfo.name }" readonly >
-								</div>
+						<form id="updateForm"	style="display:none"; >
 									<div class="form-group">
 									<label>이메일</label>
 									<input type="email" class="form-control" name="email" value="${memberinfo.email }" readonly >
+								</div>
+							<div class="form-group">
+									<label>이름</label>
+									<input type="text" class="form-control" id="name" name="name" value="${memberinfo.name }"  >
 								</div>
 								
 								<div class="form-group">
@@ -188,7 +187,7 @@
 								
 								<div class="form-group">
 									<label>성별</label>
-									<select class="form-control" name="gender" value="${memberinfo.gender }" >
+									<select class="form-control" name="gender" id="gender" value="${memberinfo.gender }" >
 										<option selected="selected" hidden="hidden" value="2">성별</option>
 										<option value="0">남성</option>
 										<option value="1">여성</option>
@@ -196,21 +195,20 @@
 								</div>
 								<div class="form-group">
 									<label>생년월일</label>
-									<input type="text" class="form-control" name="birth" value="${memberinfo.birth }" >
+									<input type="text" class="form-control" name="birth" id="birth" value="${memberinfo.birth }" >
 								</div>
 								<div class="form-group">
 									<label>전화번호</label>
-									<input type="text" class="form-control" name="phoneNumber" value="${memberinfo.phoneNumber }" >
+									<input type="text" class="form-control" id="phoneNumber" name="phoneNumber" value="${memberinfo.phoneNumber }" >
 								</div>
 													
 								<div class="text-center">
-									<button id="btn-update" type="submit" class="btn btn-default" 
-									 >회원 정보 수정</button>
+									<button type="button" class="btn btn-default" id="btn-update" >회원 정보 수정</button>
 								</div>
 							</form>
 							
 							
-							
+							</section>
 					</div>
 		</div>
 		
@@ -227,11 +225,6 @@
 		location.href='<%=request.getContextPath()%>/member/profile';
 		
 	});
-	
-	$('#moveNoneMemberReservation').on('click', function() {
-		location.href='<%=request.getContextPath()%>/profile/reservation';
-	});
-	
 	$('#bookmark').on('click', function() {
 		location.href='<%=request.getContextPath()%>/profile/favorites';
 	});
@@ -250,7 +243,9 @@
 		             success: function(result) {
 		            	 if(result) {
 		            		 console.log('일치');
-		            		 
+		            			var test = "${pageContext.request.contextPath}/resources/js/validation.js";
+			                	$('.footer-copy').after('<script src="' + test + '"/>');
+			  	          
 		            		 $('#updateForm').show();
 		            		 $('#passCheck').hide();
 		            	 } else {
@@ -268,30 +263,66 @@
 		
 		
 			
+		function checkForm(){
 
+			let testName = /^[가-힣]{2,10}$/;
+			let testBirth = /^(19[0-9]{2}|20[0-1]{1}[0-9]{1}|202[0-3]{1})(0[1-9]|1[0-2])(0[1-9]|[1-2][0-9]|3[0-1])$/;
+			let testPhone = /^01[0|1|6|7|8|9][0-9]{7,8}$/;
+			let testPass = /^(?=.*\d)(?=.*[a-z])(?=.*[!@#$%^&\*])[\da-zA-Z!@#$%^&\*]{8,30}$/;
+			
+			 if( $('[name=name]').val() == ''
+			| $('[name=birth]').val() == ''  | $('[name=password]').val() == ''
+			| $('[name=phoneNumber]').val() == '' | $('[name=gender]').val() == '' ) {
+				alert("다시 입력하세요");
+				return false;
+			} else if(!testName.test($('[name=name]').val()) | !testBirth.test($('[name=birth]').val())
+			| !testPhone.test($('[name=phoneNumber]').val()) | !testPass.test($('[name=password]').val()) ) {
+				alert("다시 입력하세요");
+				return false;		
+			} else {
+				return true;
+			}
+		}
 		
 		
-		$('#btn-update').click(function(){
+		
+		$('#btn-update').on('click', function(){
+			
+			if(!checkForm()){
+				return;
+			}
+			
+			var data = {
+ 					name: $('#name').val(),
+					password :$('#password').val(),
+					gender:$('#gender').val(),
+					birth:$('#birth').val(),
+					phoneNumber:$('#phoneNumber').val()
+					
+			};
+	
 			 $.ajax({
 	                type: 'POST',
-	                url: '<%=request.getContextPath()%>/member/profile/update',
-	                contentType: 'application/json; charset=utf-8',
-	                data: JSON.stringify(data),
+	                url: "${pageContext.request.contextPath}/member/profile/update",
+	                //contentType: 'application/json; charset=utf-8',
+	  	       		//data: JSON.stringify(data),
+	  	       		data:data,
+	  	       		
+	  	       	    //dataType:'json',
 	                success: function(result){
-	                if(result){ 
-	                    var script = '<%=request.getContextPath()%>/resources/js/validation.js';
-	                    cosole.log("update !!!!!!");
-	                    swal("회원 정보 수정","수정 성공.", {icon: "success"});
+	                	if(result>0){
+	                		alert("수정완료!");
+	                		
 	                	}else{
-	                		alert("수정실패")
-	                	}
+	                		alert("수정실패")	                	
+	            	      }
 	                },
-	                	error: function(){
+	               	error: function(){
 	                alert('실패');
 	            }
 	        });
-		});
-		
+	                
+		})
 		
 		
 		

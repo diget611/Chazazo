@@ -24,7 +24,7 @@ public class PaymentDao {
 		return session.selectList("payment.ReservationOne",idx);
 		
 	}
-	public PaymentReqDto ReservationOne(String idx) {
+	public PaymentReqDto ReservationOne(int idx) {
 		return session.selectOne("payment.ReservationOne",idx);
 	}
 	
@@ -41,10 +41,14 @@ public class PaymentDao {
 		
 	}
 	
+	public PaymentReqDto reservInsurace(int idx) {
+		return session.selectOne("payment.reservInsurace" ,idx);
+	}
+	
 	
 	
 	//렌트업체 정보
-	public LocationRespDto resvLocation(String idx) {
+	public LocationRespDto resvLocation(int idx) {
 		return session.selectOne("payment.reservLocation", idx);
 	}
 	

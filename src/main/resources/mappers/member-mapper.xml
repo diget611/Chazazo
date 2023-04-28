@@ -48,11 +48,12 @@
 		SELECT COUNT(*) FROM MEMBER WHERE USERNAME = #{username}
 	</select>
 	
-	<update id="updateInfo">
+	<update id="updateInfo" parameterType="MemberInfoRespDto">
 		UPDATE MEMBER_INFO
-		   SET GENDER = #{gender}, BIRTH = #{birth}, PASSWORD = #{password}, PHONENUMBER = #{phoneNumber}, EMAIL = #{email}
+		   SET NAME = #{name}, GENDER = #{gender}, BIRTH = #{birth}, PHONE_NUMBER = #{phoneNumber}
 		 WHERE IDX IN (SELECT IDX FROM MEMBER WHERE USERNAME = #{username})
 	</update>
+		
 	
 	<update id="deleteMember">
 		UPDATE MEMBER SET ENABLED = 0 WHERE USERNAME = #{username}

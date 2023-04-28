@@ -11,23 +11,32 @@
 		 WHERE MEMBER_IDX IN (SELECT IDX FROM MEMBER WHERE USERNAME = #{username})		
 	</select>
 	
+	
 	<select id="ReservationOne" resultType="PaymentReqDto" >
-		 SELECT * FROM PAYMENT
+		 SELECT (SELECT NAME FROM INSURANCE WHERE IDX = TB_P.INSURANCE_IDX) AS INSURANCE_NAME
+				, (SELECT NAME FROM LOCATION WHERE IDX = TB_P.RENT_LOCATION) AS RENT_LOCATION_NAME
+			, (SELECT NAME FROM LOCATION WHERE IDX = TB_P.RETURN_LOCATION) AS RETURN_LOCATION_NAME
+			, (SELECT NAME FROM INSURANCE WHERE IDX = TB_P.INSURANCE_IDX) AS INSURANCE_NAME
+		 	,(SELECT MODEL FROM VEHICLE WHERE IDX = TB_P.VEHICLE_IDX) AS VEHICLE_MODEL
+		 	, TB_P.*
+		 FROM PAYMENT TB_P
 		  WHERE idx = #{idx}
 	</select>
 	
-
+		
 	<delete id="resDelete" parameterType="_int">
 		DELETE FROM payment
 		 WHERE IDX = #{IDX}
 	</delete>
-	
+		
+		
 	<select id="selectNoneM" resultType="PaymentReqDto">
 		SELECT *
 		  FROM NMEMPAYMENT
 		 WHERE PAYMENT_IDX = #{paymentIdx} AND NAME = #{name} AND PHONE_NUMBER = #{phoneNumber}
 	</select>
-	
+		
+		
 	<select id="noneMemberRes" resultType="PaymentReqDto">
 		SELECT (SELECT MODEL FROM VEHICLE WHERE IDX = TB_P.VEHICLE_IDX) AS VEHICLE_MODEL
 			, (SELECT NAME FROM LOCATION WHERE IDX = TB_P.RENT_LOCATION) AS RENT_LOCATION_NAME
@@ -90,6 +99,13 @@
 	<select id = "reservLocation" resultType="LocationRespDto">
 		SELECT NAME, PHONE_NUMBER, BUSINESS_HOURS, ADDRESS FROM LOCATION WHERE IDX IN (SELECT RENT_LOCATION FROM PAYMENT WHERE IDX = #{idx} )
 		</select>
+	
+	
+
+	<select id ="reservInsurace" resultType="PaymentReqDto">
+		SELECT NAME AS INSURANCE_NAME , PRICE FROM INSURANCE WHERE IDX IN (SELECT INSURANCE_IDX FROM PAYMENT WHERE IDX = #{IDX})
+	</select>
+	
 	
 	<select id="dayReservCount" resultType="_int">
 		SELECT COUNT(*) AS CNT

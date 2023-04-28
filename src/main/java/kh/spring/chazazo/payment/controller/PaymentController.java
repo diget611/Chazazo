@@ -209,7 +209,7 @@ private AdminService aService;
 
 	@GetMapping("/profile/reservation/{idx}")
 	public ModelAndView viewReservationOne(ModelAndView mv
-										   , @PathVariable String idx, PaymentReqDto data, Principal prin) {
+										   , @PathVariable int idx, PaymentReqDto data, Principal prin) {
 		// 예약 정보 상세 조회
 		
 		if(prin == null) {
@@ -217,10 +217,12 @@ private AdminService aService;
 		}else{
 			System.out.println("ddddddddd");
 			String loginId = prin.getName();
+			String index = Integer.toString(idx);
 			mv.addObject("memberinfo", mService.selectMypageOne(loginId));
 			mv.addObject("reservation", pService.ReservationOne(idx));	
 			mv.addObject("location",pService.resvLocation(idx));
-			mv.addObject("vehicle", aService.selectVehicleOne(idx));
+			mv.addObject("vehicle", aService.selectVehicleOne(index));
+			mv.addObject("insurance", pService.reservInsurace(idx));
 			System.out.println(idx);
 			mv.setViewName("member/details");
 		}

@@ -17,14 +17,14 @@ public interface PaymentService {
 	public List<PaymentReqDto> selectList(String username);
 
 	public List<PaymentReqDto> ReservationList(int idx);
-	public PaymentReqDto ReservationOne(String idx);
+	public PaymentReqDto ReservationOne(int idx);
 	
 	public int deleteResv(int idx);
 	public int insertPayInfo(PaymentReqDto data, int isMember);
 
 
-	public LocationRespDto resvLocation(String idx);
-	
+	public LocationRespDto resvLocation(int idx);
+	public PaymentReqDto reservInsurace(int idx);
 	
 	
 	public PaymentReqDto noneReser(int idx);

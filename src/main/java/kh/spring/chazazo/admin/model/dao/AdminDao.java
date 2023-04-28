@@ -21,6 +21,7 @@ import kh.spring.chazazo.admin.model.dto.AdminReportRespDto;
 import kh.spring.chazazo.admin.model.dto.AdminRequestOneRespDto;
 import kh.spring.chazazo.admin.model.dto.AdminRequestRespDto;
 import kh.spring.chazazo.admin.model.dto.AdminReservByModelRespDto;
+import kh.spring.chazazo.admin.model.dto.AdminReservOneRespDto;
 import kh.spring.chazazo.admin.model.dto.AdminReservRespDto;
 import kh.spring.chazazo.admin.model.dto.AdminStatisticsRecentMonthDto;
 import kh.spring.chazazo.admin.model.dto.AdminVehicleOneRespDto;
@@ -174,7 +175,10 @@ public class AdminDao {
 	}
 	public List<AdminReservRespDto> selectReservList(Pagination pagination) {
 		return sqlSession.selectList("payment.selectList", pagination);
-	}	
+	}
+	public AdminReservOneRespDto selectReservOne(int idx) {
+		return sqlSession.selectOne("payment.selectOneForAdmin", idx);
+	}
 	
 	// 통계용
 	public List<AdminReservByModelRespDto> selectByModel() {

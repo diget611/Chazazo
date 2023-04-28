@@ -116,6 +116,13 @@ public class AdminController {
 		return mv;
 	}
 	
+	@GetMapping("/reservation/{idx}")
+	public ModelAndView viewReservaitonOne(ModelAndView mv, @PathVariable int idx) {
+		mv.addObject("reserv", aService.selectReservOne(idx));
+		mv.setViewName("admin/reservationdetails");
+		return mv;
+	}
+	
 	// 지점
 	@GetMapping("/location")
 	public ModelAndView viewLocation(ModelAndView mv, @RequestParam(required = false, defaultValue = "1") int page) {

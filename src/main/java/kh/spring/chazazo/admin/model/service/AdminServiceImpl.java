@@ -21,6 +21,7 @@ import kh.spring.chazazo.admin.model.dto.AdminReportRespDto;
 import kh.spring.chazazo.admin.model.dto.AdminRequestOneRespDto;
 import kh.spring.chazazo.admin.model.dto.AdminRequestRespDto;
 import kh.spring.chazazo.admin.model.dto.AdminReservByModelRespDto;
+import kh.spring.chazazo.admin.model.dto.AdminReservOneRespDto;
 import kh.spring.chazazo.admin.model.dto.AdminReservRespDto;
 import kh.spring.chazazo.admin.model.dto.AdminStatisticsRecentMonthDto;
 import kh.spring.chazazo.admin.model.dto.AdminVehicleOneRespDto;
@@ -200,6 +201,10 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public List<AdminReservRespDto> selectReservList(Pagination pagination) {
 		return dao.selectReservList(pagination);
+	}
+	@Override
+	public AdminReservOneRespDto selectReservOne(int idx) {
+		return dao.selectReservOne(idx);
 	}
 	
 	// 통계

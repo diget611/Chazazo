@@ -17,6 +17,7 @@ import kh.spring.chazazo.admin.model.dto.AdminReportRespDto;
 import kh.spring.chazazo.admin.model.dto.AdminRequestOneRespDto;
 import kh.spring.chazazo.admin.model.dto.AdminRequestRespDto;
 import kh.spring.chazazo.admin.model.dto.AdminReservByModelRespDto;
+import kh.spring.chazazo.admin.model.dto.AdminReservOneRespDto;
 import kh.spring.chazazo.admin.model.dto.AdminReservRespDto;
 import kh.spring.chazazo.admin.model.dto.AdminStatisticsRecentMonthDto;
 import kh.spring.chazazo.admin.model.dto.AdminVehicleOneRespDto;
@@ -80,6 +81,7 @@ public interface AdminService {
 	// 예약
 	public int reservCount();
 	public List<AdminReservRespDto> selectReservList(Pagination pagination);
+	public AdminReservOneRespDto selectReservOne(int idx);
 	
 	// 통계용
 	public List<AdminReservByModelRespDto> selectByModel();

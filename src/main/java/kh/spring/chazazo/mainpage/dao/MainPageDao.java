@@ -1,5 +1,7 @@
 package kh.spring.chazazo.mainpage.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -24,5 +26,9 @@ public class MainPageDao {
 	
 	public int locationCount() {
 		return sqlSession.selectOne("location.count");
+	}
+	
+	public List<String> reviewList() { 
+		return sqlSession.selectList("review.selectListForMain");
 	}
 }

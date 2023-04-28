@@ -17,9 +17,18 @@
 		SELECT COUNT(*) FROM COUPON_MANAGE
 	</select>
 	
-	<update id="delete">
+	<insert id="insert" parameterType="adminCouponInsertReqDto">
+		INSERT INTO COUPON_MANAGE
+		VALUES (COUPON_MANAGE_SEQ.NEXTVAL, #{rate}, #{period}, #{name}, DEFAULT)
+	</insert>
+	
+	<update id="update" parameterType="adminCouponUpdateReqDto">
 		UPDATE COUPON_MANAGE
-		   SET RATE = 0, PERIOD = 0, NAME = 0, STATUS = 1
+		   SET RATE = #{rate}, PERIOD = #{period},  NAME = #{name}
 		 WHERE IDX = #{idx}
+	</update>
+	
+	<update id="delete">
+		UPDATE COUPON_MANAGE SET STATUS = 1 WHERE IDX = #{idx}
 	</update>
 </mapper>

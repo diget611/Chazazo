@@ -40,47 +40,76 @@
 						<input type="text" class="form-control" id="username" name="username" value="${member.username}" readonly>
 						<label for="username">아이디</label>
 					</div>
-					<div class="form-floating mb-3 row">
-						<div class="form-floating col-4">
-							<input type="text" class="form-control" id="name" name="name" value="${member.name}" readonly>
-							<label for="name" class="ps-4">이름</label>
-						</div>
-						<div class="form-floating col-4">
-							<c:choose>
-								<c:when test="${member.enabled eq 0}">
-									<c:set var="gender" value="0"/>
-								</c:when>
-								<c:when test="${member.gender eq 0}">
-									<c:set var="gender" value="남"/>
-								</c:when>
-								<c:otherwise>
-									<c:set var="gender" value="여"/>
-								</c:otherwise>
-							</c:choose>
-							<input type="text" class="form-control" id="gender" name="gender" value="${gender }" readonly>
-							<label for="gender" class="ps-4">성별</label>
-						</div>
-						<div class="form-floating col-4">
-							<input type="text" class="form-control" id="birth" name="birth" value="${member.birth}" readonly>
-							<label for="birth" class="ps-4">생년월일</label>
-						</div>
-					</div>
-					<div class="form-floating mb-3">
-						<input type="text" class="form-control" id="phoneNumber" name="phoneNumber" value="${member.phoneNumber}" readonly>
-						<label for="phoneNumber">전화번호</label>
-					</div>
-					<div class="form-floating mb-3">
-						<input type="text" class="form-control" id="license" name="license" value="${member.license}" readonly>
-						<label for="license">면허증 번호</label>
-					</div>
-					<div class="form-floating mb-3">
-						<input type="text" class="form-control" id="email" name="email" value="${member.email}" readonly>
-						<label for="email">이메일</label>
-					</div>
-					<div style="text-align: center;">
-						<button type="button" class="btn btn-primary" style="display: inline-block" name="updateBtn">회원 정보 수정</button>
-						<button type="button" class="btn btn-primary" style="display: inline-block" name="deleteBtn">삭제</button>
-					</div>
+					<c:choose>
+						<c:when test="${member.enabled eq 0}">
+							<div class="form-floating mb-3 row">
+								<div class="form-floating col-4">
+									<input type="text" class="form-control" id="name" name="name" value="-" readonly>
+									<label for="name" class="ps-4">이름</label>
+								</div>
+								<div class="form-floating col-4">	
+									<input type="text" class="form-control" id="gender" name="gender" value="-" readonly>
+									<label for="gender" class="ps-4">성별</label>
+								</div>
+								<div class="form-floating col-4">
+									<input type="text" class="form-control" id="birth" name="birth" value="-" readonly>
+									<label for="birth" class="ps-4">생년월일</label>
+								</div>
+							</div>
+							<div class="form-floating mb-3">
+								<input type="text" class="form-control" id="phoneNumber" name="phoneNumber" value="-" readonly>
+								<label for="phoneNumber">전화번호</label>
+							</div>
+							<div class="form-floating mb-3">
+								<input type="text" class="form-control" id="license" name="license" value="-" readonly>
+								<label for="license">면허증 번호</label>
+							</div>
+							<div class="form-floating mb-3">
+								<input type="text" class="form-control" id="email" name="email" value="-" readonly>
+								<label for="email">이메일</label>
+							</div>
+						</c:when>
+						<c:otherwise>
+							<div class="form-floating mb-3 row">
+								<div class="form-floating col-4">
+									<input type="text" class="form-control" id="name" name="name" value="${member.name}" readonly>
+									<label for="name" class="ps-4">이름</label>
+								</div>
+								<div class="form-floating col-4">
+									<c:choose>
+										<c:when test="${member.gender eq 0}">
+											<c:set var="gender" value="남"/>
+										</c:when>
+										<c:otherwise>
+											<c:set var="gender" value="여"/>
+										</c:otherwise>
+									</c:choose>
+									<input type="text" class="form-control" id="gender" name="gender" value="${gender }" readonly>
+									<label for="gender" class="ps-4">성별</label>
+								</div>
+								<div class="form-floating col-4">
+									<input type="text" class="form-control" id="birth" name="birth" value="${member.birth}" readonly>
+									<label for="birth" class="ps-4">생년월일</label>
+								</div>
+							</div>
+							<div class="form-floating mb-3">
+								<input type="text" class="form-control" id="phoneNumber" name="phoneNumber" value="${member.phoneNumber}" readonly>
+								<label for="phoneNumber">전화번호</label>
+							</div>
+							<div class="form-floating mb-3">
+								<input type="text" class="form-control" id="license" name="license" value="${member.license}" readonly>
+								<label for="license">면허증 번호</label>
+							</div>
+							<div class="form-floating mb-3">
+								<input type="text" class="form-control" id="email" name="email" value="${member.email}" readonly>
+								<label for="email">이메일</label>
+							</div>
+							<div style="text-align: center;">
+								<button type="button" class="btn btn-primary" style="display: inline-block" name="updateBtn">회원 정보 수정</button>
+								<button type="button" class="btn btn-primary" style="display: inline-block" name="deleteBtn">삭제</button>
+							</div>
+						</c:otherwise>
+					</c:choose>
 				</form>
 			</div>
 		</div>

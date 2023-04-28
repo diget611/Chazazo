@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,6 +17,10 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
 
+import kh.spring.chazazo.admin.model.dto.AdminCouponInsertReqDto;
+import kh.spring.chazazo.admin.model.dto.AdminCouponUpdateReqDto;
+import kh.spring.chazazo.admin.model.dto.AdminNoticeInsertReqDto;
+import kh.spring.chazazo.admin.model.dto.AdminNoticeUpdateReqDto;
 import kh.spring.chazazo.admin.model.service.AdminService;
 import kh.spring.chazazo.common.Pagination;
 
@@ -26,6 +31,7 @@ public class AdminController {
 	@Autowired
 	private AdminService aService;
 	
+	// 메인페이지
 	@GetMapping("/main")
 	public ModelAndView viewMain(ModelAndView mv) {
 		// 메인페이지 1:1문의 테이블
@@ -48,6 +54,7 @@ public class AdminController {
 		return mv;
 	}
 	
+	// 회원
 	@GetMapping("/member")
 	public ModelAndView viewMember(ModelAndView mv, @RequestParam(required = false, defaultValue = "1") int page) {
 		int count = aService.memberCount();
@@ -75,6 +82,7 @@ public class AdminController {
 		return result;
 	}
 	
+	// 신고
 	@GetMapping("/report")
 	public ModelAndView viewReport(ModelAndView mv, @RequestParam(required = false, defaultValue = "1") int page) {
 		int count = aService.reportCount();
@@ -95,6 +103,7 @@ public class AdminController {
 		return mv;
 	}
 	
+	// 예약
 	@GetMapping("/reservation")
 	public ModelAndView viewReservation(ModelAndView mv, @RequestParam(required = false, defaultValue = "1") int page) {
 		int count = aService.reservCount();
@@ -107,6 +116,7 @@ public class AdminController {
 		return mv;
 	}
 	
+	// 지점
 	@GetMapping("/location")
 	public ModelAndView viewLocation(ModelAndView mv, @RequestParam(required = false, defaultValue = "1") int page) {
 		int count = aService.locationCount();
@@ -127,6 +137,7 @@ public class AdminController {
 		return mv;
 	}
 	
+	// 차량
 	@GetMapping("/vehicle")
 	public ModelAndView viewVehicle(ModelAndView mv, @RequestParam(required = false, defaultValue = "1") int page) {
 		int count = aService.vehicleCount();
@@ -146,6 +157,7 @@ public class AdminController {
 		return mv;
 	}
 	
+	// 쿠폰
 	@GetMapping("/coupon")
 	public ModelAndView viewCoupon(ModelAndView mv, @RequestParam(required = false, defaultValue = "1") int page) {
 		int count = aService.couponCount() - 1;
@@ -171,12 +183,25 @@ public class AdminController {
 		return mv;
 	}
 	
+	@PostMapping("/coupon/insert")
+	public int insertCoupon(@RequestBody AdminCouponInsertReqDto data) {
+		int result = aService.insertCoupon(data); 
+		return result;
+	}
+	
+	@PatchMapping("/coupon/update")
+	public int updateCoupon(@RequestBody AdminCouponUpdateReqDto data) {
+		int result = aService.updateCoupon(data);
+		return result;
+	}
+	
 	@PatchMapping("/coupon/delete")
 	public int deleteCoupon(int idx) {
 		int result = aService.deleteCoupon(idx);
 		return result;
 	}
 	
+	// 공지사항
 	@GetMapping("/notice")
 	public ModelAndView viewNotice(ModelAndView mv, @RequestParam(required = false, defaultValue = "1") int page) {
 		int count = aService.noticeCount();
@@ -202,6 +227,25 @@ public class AdminController {
 		return mv;
 	}
 	
+	@PostMapping("/notice/insert")
+	public int insertNotice(@RequestBody AdminNoticeInsertReqDto data) {
+		int result = aService.insertNotice(data); 
+		return result;
+	}
+	
+	@PatchMapping("/notice/update")
+	public int updateNotice(@RequestBody AdminNoticeUpdateReqDto data) {
+		int result = aService.updateNotice(data);
+		return result;
+	}
+	
+	@PatchMapping("/notice/delete")
+	public int deleteNotice(int idx) {
+		int result = aService.deleteNotice(idx);
+		return result;
+	}
+	
+	// 1:1 문의
 	@GetMapping("/request")
 	public ModelAndView viewRequest(ModelAndView mv, @RequestParam(required = false, defaultValue = "1") int page) {
 		int count = aService.requestCount();
@@ -249,6 +293,7 @@ public class AdminController {
 		return result;
 	}
 	
+	// 통계
 	@GetMapping("/statistics")
 	public ModelAndView viewStatistics(ModelAndView mv) {
 		mv.setViewName("admin/statistics");

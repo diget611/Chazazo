@@ -66,7 +66,34 @@
 <script src="<%=request.getContextPath()%>/resources/dashmin/js/main.js"></script>
 	
 <script>
+	$('#insertBtn').on('click', insertNotice);
 	
+	function insertNotice() {
+		let title = $('#title').val();
+		let content = $('#content').val();
+		let data = {
+				title : title,
+				content : content
+		}
+		
+		$.ajax({
+			url: "${pageContext.request.contextPath}/admin/notice/insert",
+			type: "post",
+			data: JSON.stringify(data),
+			contentType: "application/json; charset=utf-8",
+			success: function(result) {
+				if(result == 1) {
+					alert("공지사항 작성 완료")
+					window.open='${pageContext.request.contextPath}/admin/notice'
+				} else {
+					alert("실패");
+				}
+			},
+			error: function() {
+				alert("에러");
+			}
+		});
+	}
 </script>
 </body>
 

@@ -53,7 +53,7 @@
 								<th scope="col" style="width: 28%;">제목</th>
 								<th scope="col" style="width: 20%;">작성일</th>
 								<th scope="col" style="width: 7%;">조회수</th>
-								<th scope="col" style="width: 20%;">수정일</th>
+								<th scope="col" style="width: 20%;">최근 수정일</th>
 								<th scope="col" style="width: 20%;">삭제일</th>
 							</tr>
 						</thead>

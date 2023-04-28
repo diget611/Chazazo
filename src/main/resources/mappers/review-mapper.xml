@@ -49,5 +49,8 @@
 	SELECT * FROM REVIEW WHERE IDX = #{idx}
 	</select>
 	
+	<select id="count" resultType="_int">
+		SELECT COUNT(*) CNT FROM REVIEW
+	</select>
 	
 </mapper>

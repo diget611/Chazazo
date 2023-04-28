@@ -38,7 +38,7 @@
 	     WHERE V.CARTYPE_IDX = C.IDX AND V.FUELTYPE_IDX = F.IDX AND V.IDX = #{idx}
  	</select>
  	
- 	<select id="selectOneCount" resultType="_int">
+ 	<select id="count" resultType="_int">
  		SELECT COUNT(*) CNT FROM VEHICLE
 	</select>
 	

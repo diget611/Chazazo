@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import kh.spring.chazazo.member.model.service.MemberService;
+import kh.spring.chazazo.payment.model.service.PaymentService;
 import kh.spring.chazazo.review.model.dto.ReviewDto;
 import kh.spring.chazazo.review.model.service.ReviewService;
 
@@ -29,6 +30,8 @@ public class ReviewController {
 	
 	@Autowired
 	private ReviewService rService;
+	@Autowired
+	private PaymentService pService;
 	
 
 	
@@ -70,6 +73,20 @@ public class ReviewController {
 		System.out.println("++++++++"+data);
 	int result = rService.insertReport(data);
 		return result;
+	}
+	
+	@GetMapping("/myReview")
+	public ModelAndView selectMyReview( Principal prin, ModelAndView mv) {
+		
+		
+		String loginId = prin.getName();
+		mv.addObject("memberinfo", mService.selectMypageOne(loginId));
+		
+		mv.addObject("reservation", pService.selectList(loginId));
+	
+		mv.addObject("myReview",rService.selectMyReview(loginId));
+		mv.setViewName("review/myReview");
+		return mv;
 	}
 	
 	

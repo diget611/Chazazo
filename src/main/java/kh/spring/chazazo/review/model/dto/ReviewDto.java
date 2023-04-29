@@ -19,5 +19,6 @@ public class ReviewDto {
 	private int score;
 	private int vehicleIdx;
 	private String reason;
+	private String vehicleModel;
 	
 }

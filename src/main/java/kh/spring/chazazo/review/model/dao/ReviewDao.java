@@ -39,5 +39,8 @@ public class ReviewDao {
 		return sqlSession.insert("review.insertReport", data);
 	}
 
+	public List<ReviewDto> selectMyReview(String username) {
+		return sqlSession.selectList("review.selectMyReview", username);
+	}
 
 }

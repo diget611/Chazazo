@@ -15,4 +15,5 @@ public interface ReviewService {
 	public int insertReport(ReviewDto data);
 	public ReviewDto selectReview(int idx);
 	
+	public List<ReviewDto> selectMyReview(String username);
 }

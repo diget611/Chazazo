@@ -52,6 +52,15 @@ public class ReviewServiceImpl implements ReviewService{
 		return dao.insertReport(data);
 	}
 
+	
+	
+	@Override
+	public List<ReviewDto> selectMyReview(String usesrname) {
+		return dao.selectMyReview(usesrname);
+	}
+
+	
+	
 
 
 

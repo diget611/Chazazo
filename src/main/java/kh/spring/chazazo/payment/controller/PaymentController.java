@@ -139,13 +139,12 @@ private AdminService aService;
 		// 관리자가 조건별로 검색한 예약 정보도 필요하지 않나?(메소드 추가)
 		return mv;
 	}
+
 	
+	// 유저 예약 리스트 조회
 	@GetMapping("/profile/reservation")
 	public String viewReservationListUser(ModelAndView mv, Principal prin) {
-		// 유저 예약 리스트 조회
-		System.out.println("ddddddddsssssssssdddddddd");
-		
-		
+	
 		Map<String, Object> result = new HashMap<String,Object>();
 		System.out.println(result);
 		
@@ -170,33 +169,14 @@ private AdminService aService;
 		
 	}	
 
-	
-//	Map<String, Object> result = new HashMap<String,Object>();	
-//	
-//	if(prin == null) {	
-//		mv.setViewName("member/history");
-//		return "1";
-//	}else {
-//		String username = prin.getName();
-//		mv.addObject("info", mService.selectMypageOne(username));
-//		result.put("info",mService.selectMypageOne(username));
-//		mv.addObject("reservation", rService.ReservationOne(index));
-//		return new Gson().toJson(result);
-//	}
-//	
-	
-	
-	
+	// 비회원 예약 조회 
 	@GetMapping("/profile/nonereservation")
 	public String viewNoneReservationListUser(ModelAndView mv, int paymentIdx, PaymentReqDto data) {
-		// 비회원 예약 조회 
 		
 		
 		
 		Map<String, Object> result = new HashMap<String,Object>();
-	
-		
-			mv.addObject("selectNone", pService.selectNoneM(data));
+		    mv.addObject("selectNone", pService.selectNoneM(data));
 			result.put("selectNone", pService.selectNoneM(data));
 			mv.addObject("noneReservation", pService.noneReser(paymentIdx));
 			result.put("noneReservation", pService.noneReser(paymentIdx));
@@ -207,11 +187,10 @@ private AdminService aService;
 		}
 	
 
+	// 예약 정보 상세 조회	
 	@GetMapping("/profile/reservation/{idx}")
 	public ModelAndView viewReservationOne(ModelAndView mv
-										   , @PathVariable int idx, PaymentReqDto data, Principal prin) {
-		// 예약 정보 상세 조회
-		
+										   , @PathVariable int idx,  Principal prin) {
 		if(prin == null) {
 			mv.setViewName("member/details");
 		}else{
@@ -222,7 +201,6 @@ private AdminService aService;
 			mv.addObject("reservation", pService.ReservationOne(idx));	
 			mv.addObject("location",pService.resvLocation(idx));
 			mv.addObject("vehicle", aService.selectVehicleOne(index));
-			mv.addObject("insurance", pService.reservInsurace(idx));
 			System.out.println(idx);
 			mv.setViewName("member/details");
 		}
@@ -237,8 +215,9 @@ private AdminService aService;
 
 	
 	@DeleteMapping("/profile/reservation/{idx}")
-	public int deleteReservation(ModelAndView mv, @PathVariable int idx, Principal prin) {
-		int result = pService.deleteResv(idx);
+	public int deleteReservation(ModelAndView mv, @PathVariable int idx) {
+		
+		int result = pService.deleteReserv(idx);
 		
 		return result;
 	}

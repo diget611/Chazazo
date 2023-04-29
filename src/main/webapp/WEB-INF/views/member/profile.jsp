@@ -23,8 +23,9 @@
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/garoestate/assets/css/price-range.css">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/garoestate/assets/css/style.css">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/garoestate/assets/css/responsive.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
 
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
 <script src="<%=request.getContextPath()%>/resources/garoestate/assets/js/modernizr-2.6.2.min.js"></script>
 <script src="<%=request.getContextPath()%>/resources/garoestate/assets/js/jquery-1.10.2.min.js"></script>
 <script src="<%=request.getContextPath()%>/resources/garoestate/bootstrap/js/bootstrap.min.js"></script>
@@ -180,7 +181,7 @@
 								
 								<div class="form-group">
 									<label>비밀번호 확인</label>
-									<input type="password" class="form-control" name="passwordCheck" style="border-radius: 2px;">
+									<input type="password" class="form-control" name="passwordCh" style="border-radius: 2px;">
 								</div>								
 								
 								<!-- 정보 수정 시 정규식 확인?  -->
@@ -206,7 +207,6 @@
 									<button type="button" class="btn btn-default" id="btn-update" >회원 정보 수정</button>
 								</div>
 							</form>
-							
 							
 							</section>
 					</div>
@@ -264,7 +264,8 @@
 		
 			
 		function checkForm(){
-
+			var checkPass = 0;
+			
 			let testName = /^[가-힣]{2,10}$/;
 			let testBirth = /^(19[0-9]{2}|20[0-1]{1}[0-9]{1}|202[0-3]{1})(0[1-9]|1[0-2])(0[1-9]|[1-2][0-9]|3[0-1])$/;
 			let testPhone = /^01[0|1|6|7|8|9][0-9]{7,8}$/;
@@ -272,7 +273,7 @@
 			
 			 if( $('[name=name]').val() == ''
 			| $('[name=birth]').val() == ''  | $('[name=password]').val() == ''
-			| $('[name=phoneNumber]').val() == '' | $('[name=gender]').val() == '' ) {
+			| $('[name=phoneNumber]').val() == '' | $('[name=gender]').val() == '' | $('[name=passwordCh]').val() == '' ) {
 				alert("다시 입력하세요");
 				return false;
 			} else if(!testName.test($('[name=name]').val()) | !testBirth.test($('[name=birth]').val())
@@ -283,7 +284,23 @@
 				return true;
 			}
 		}
+		$('[name=password]').on('change', isPassEq);
+		$('[name=passwordCh]').on('change', isPassEq);
 		
+		function isPassEq() {
+			let pass = $('[name=password]').val();
+			let passChk = $('[name=passwordCh]').val();
+			
+			if(pass != passChk) {
+				$('[name=passwordCh]').next().remove();
+				$('[name=passwordCh]').after('<div style="color: red;">비밀번호가 일치하지 않습니다.</div>');
+				checkPass = 0;
+			} else {
+				$('[name=passwordCh]').next().remove();
+				$('[name=passwordCh]').after('<div style="color: green;">비밀번호가 일치합니다.</div>');
+				checkPass = 1;
+			}
+		}
 		
 		
 		$('#btn-update').on('click', function(){
@@ -295,11 +312,14 @@
 			var data = {
  					name: $('#name').val(),
 					password :$('#password').val(),
+					
 					gender:$('#gender').val(),
 					birth:$('#birth').val(),
 					phoneNumber:$('#phoneNumber').val()
 					
 			};
+			
+			var passCh = $('[name=passwordCh]').val(); 
 	
 			 $.ajax({
 	                type: 'POST',
@@ -309,11 +329,22 @@
 	  	       		data:data,
 	  	       		
 	  	       	    //dataType:'json',
+	  	       	    //비밀번호 일치 확인..
 	                success: function(result){
 	                	if(result>0){
-	                		swal("성공 ","회원정보 수정이 완료되었습니다!", {icon: "success"});
-	                		location.href = '${pageContext.request.contextPath}/member/profile';
-	                		
+	                		Swal.fire({
+	             			   title: '수정이 완료되었습니다!  ',
+	             			   text: '확인을 눌러주세요! ',
+	             			   icon: 'success',
+	             			  confirmButtonColor: '#3085d6', // confrim 버튼 색깔 지정
+	             			   confirmButtonText: '확인 ', // confirm 버튼 텍스트 지정
+	         
+	             			}).then(result => {
+	             			    if (result.isConfirmed) { // 만약 모달창에서 confirm 버튼을 눌렀다면
+	             			    	 location.href = '${pageContext.request.contextPath}/member/profile';
+	     			                
+	             			    }
+	             			});
 	                	}else{
 	                		alert("수정실패")	                	
 	            	      }

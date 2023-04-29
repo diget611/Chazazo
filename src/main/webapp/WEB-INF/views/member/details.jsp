@@ -38,6 +38,9 @@
 	href="<%=request.getContextPath()%>/resources/garoestate/assets/css/style.css">
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/resources/garoestate/assets/css/responsive.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
 
 <script
 	src="<%=request.getContextPath()%>/resources/garoestate/assets/js/modernizr-2.6.2.min.js"></script>
@@ -66,6 +69,11 @@
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/resources/css/main.css">
 	
+<style type="text/css">
+.bg-shadow, .filter-section {
+    box-shadow: 0 7px 18px -6px rgba(65,78,118,.1);
+}
+</style>
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/base/header.jsp" />
@@ -194,8 +202,7 @@
 				<div class="blog-lst col-md-8 p0 " style="float: right;">
 					<section class="carmore-section">
 						<div class="container">
-							<div
-								class="js-vrsi-container bg-white bg-shadow p-3 rounded-sm mb-3">
+							<div class="js-vrsi-container bg-white bg-shadow p-3 rounded-sm mb-3">
 								<div class="dc-flex justify-content-between align-items-center">
 									<div class="dc-flex align-items-center">
 										<div
@@ -306,7 +313,7 @@
 					<section >
 						<div>
 							<div>가입된 보험</div>
-								<div>${insurance.insuranceName}</div>
+								<div>${reservation.insuranceName}</div>
 						</div>
 					
 					</section>
@@ -343,8 +350,7 @@
 					</section>
 					<hr class="my-2">
 					<div class="text-center space-1 dc-none dc-lg-block">
-								<button
-									class="js-vpr-btn-go-main btn btn-wide btn-pill mx-auto px-6 btn-primary" id="delReserv-btn">예약 취소하기</button>
+					<button type="button" class="js-vpr-btn-go-main btn btn-wide btn-pill mx-auto px-6 btn-primary" id="delReserv-btn">예약 취소하기</button>
 							</div>
 							</div>
 					</section>
@@ -371,12 +377,49 @@
 	});
 	
 	$('#delReserv-btn').on('click', function() {
-		var idx = $(this).children().eq(0).text();
-		
-		
-		
-		location.href="${pageContext.request.contextPath}/profile/reservation/" + idx;
+		var index = '<c:out value="${reservation.idx}"/>';
+		$.ajax({
+			url:'${pageContext.request.contextPath}/profile/reservation/' +index ,
+			type:'delete',
+			success:function(result){
+				if(result == 1){
+					
+					Swal.fire({
+						   title: '예약 취소',
+						   text: '정말로 예약을 취소하시겠습니까?',
+						   icon: 'warning',
+						   
+						   showCancelButton: true, // cancel버튼 보이기. 기본은 원래 없음
+						   confirmButtonColor: '#3085d6', // confrim 버튼 색깔 지정
+						   cancelButtonColor: '#d33', // cancel 버튼 색깔 지정
+						   confirmButtonText: '확인', // confirm 버튼 텍스트 지정
+						   cancelButtonText: '취소', // cancel 버튼 텍스트 지정
+						   
+						   reverseButtons:false// 버튼 순서 거꾸로
+						   
+						}).then(result => {
+						    if (result.isConfirmed) { // 만약 모달창에서 confirm 버튼을 눌렀다면
+						    	location.href = '${pageContext.request.contextPath}/member/profile';
+						    }else{
+						    	 Swal.fire('예약 삭제를 취소합니다 ', '다시 시도하세요 ', 'error');
+						    }
+						});
+					 
+		             
+				}else{
+					 Swal.fire('예약 삭제 실패 ', '다시 시도하세요 ', 'error');
+							
+				}	
+				},
+				error:function(){
+					alert("실패");
+				}
+			});
 	});
+
+			
+			
+		
 	
 	</script>
 </body>

@@ -23,10 +23,7 @@ public class PaymentServiceImpl implements PaymentService {
 		return dao.selectList(username);
 	}
 
-	@Override
-	public int deleteResv(int idx) {
-		return dao.deleteResv(idx);
-	}
+
 
 	@Override
 	public int insertPayInfo(PaymentReqDto data, int isMember) {
@@ -53,24 +50,21 @@ public class PaymentServiceImpl implements PaymentService {
 
 	@Override
 	public List<PaymentReqDto> ReservationList(int idx) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public PaymentReqDto ReservationOne(int idx) {
-	return dao.ReservationOne(idx);
+		return dao.ReservationOne(idx);
 	}
 
 	@Override
 	public LocationRespDto resvLocation(int idx) {
-		
 		return dao.resvLocation(idx);
 	}
 
 	@Override
-	public PaymentReqDto reservInsurace(int idx) {
-		
-		return dao.reservInsurace(idx);
+	public int deleteReserv(int idx) {
+		return dao.deleteReserv(idx);
 	}
 }

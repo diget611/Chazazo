@@ -18,34 +18,31 @@ public class PaymentDao {
 	
 	
 
-	
+	//예약내역 리스트  
 	public List<PaymentReqDto> ReservationList(int idx){
-		
 		return session.selectList("payment.ReservationOne",idx);
-		
 	}
+	
+	//예약상세  
 	public PaymentReqDto ReservationOne(int idx) {
 		return session.selectOne("payment.ReservationOne",idx);
 	}
 	
-	
+	//비회원 예약내역 
 	public PaymentReqDto noneReser(int paymentIdx){
-		
 		return session.selectOne("payment.noneMemberRes",paymentIdx);
-		
 	}
 	
+	//비회원 예약조회 
 	public PaymentReqDto selectNoneM(PaymentReqDto dto){
-		
 		return session.selectOne("payment.selectNoneM",dto);
-		
 	}
 	
-	public PaymentReqDto reservInsurace(int idx) {
-		return session.selectOne("payment.reservInsurace" ,idx);
+
+	//예약내역 삭제
+	public int deleteReserv(int idx) {
+		return session.update("payment.deleteReserv",idx);
 	}
-	
-	
 	
 	//렌트업체 정보
 	public LocationRespDto resvLocation(int idx) {
@@ -57,15 +54,7 @@ public class PaymentDao {
 		return session.selectList("payment.resList", username);
 	}
 	
-//		
-//	public PaymentInfoDto selectList(int idx) {
-//		return session.selectOne("payment.resList", idx);
-//	}
-	
-	
-	public int deleteResv(int idx) {
-		return session.delete("payment.resDelete", idx);
-	}
+
 
 	public int insertPayInfo(PaymentReqDto data) {
 		return session.insert("payment.insertPayInfo", data);

@@ -20,4 +20,5 @@ public class MemberInfoRespDto {
 	private String password;
 	
 	
+	
 }

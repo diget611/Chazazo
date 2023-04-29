@@ -50,6 +50,8 @@ public class MemberController {
 	private PasswordEncoder passwordEncoder;
 	@Autowired
 	private PaymentService pService;
+	@Autowired
+	private PaymentService aService;
 
 
     
@@ -76,6 +78,7 @@ public class MemberController {
 			
 			String loginId = prin.getName();
 			mv.addObject("memberinfo", mService.selectMypageOne(loginId));
+			
 			mv.addObject("reservation", pService.selectList(loginId));
 			
 			mv.setViewName("member/mypage");
@@ -190,7 +193,7 @@ public class MemberController {
 		}
 	
 	
-	// 회원정보 수정 / Put, Patch
+	// 회원정보 수정 
 	@PostMapping("/profile/update")
 	@ResponseBody
 	public String updateMember(MemberInfoRespDto dto,Principal pricipal ) {
@@ -202,8 +205,9 @@ public class MemberController {
 	
 	
 	@DeleteMapping("/profile")
-	public int deleteMember(@PathVariable String username) {
+	public int deleteMember(Principal prin) {
 		// 회원탈퇴 / DeleteMapping
+		String username = prin.getName();
 		System.out.println(username);
 		int result = mService.deleteMember(username);
 		System.out.println(result);

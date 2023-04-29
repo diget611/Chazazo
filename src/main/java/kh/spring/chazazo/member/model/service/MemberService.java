@@ -14,11 +14,10 @@ public interface MemberService {
 	public List<String> findId(String email);
 	public String forFindPass(String username);
 	public int findPass(String username, String password);
-	public MemberInfoRespDto selectOne(int idx);
 	public MemberInfoRespDto selectMypageOne(String username);
 	public String userPass(String username);
 	public MemberInfoRespDto getMemberInfo(String username);
 	public int updateInfo(MemberInfoRespDto dto);
 	public int deleteMember(String username);
-//	public int deleteMemberInfo(String username);
+
 }

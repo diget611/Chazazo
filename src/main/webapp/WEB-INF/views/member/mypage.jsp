@@ -24,10 +24,9 @@
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/garoestate/assets/css/price-range.css">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/garoestate/assets/css/style.css">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/garoestate/assets/css/responsive.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
 
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
 <script src="<%=request.getContextPath()%>/resources/garoestate/assets/js/modernizr-2.6.2.min.js"></script>
 <script src="<%=request.getContextPath()%>/resources/garoestate/assets/js/jquery-1.10.2.min.js"></script>
 <script src="<%=request.getContextPath()%>/resources/garoestate/bootstrap/js/bootstrap.min.js"></script>
@@ -201,7 +200,7 @@
 									<button type="button" class="btn btn-outline-primary">1:1 문의</button><br>
 									<sec:authorize access="isAuthenticated()">
 										<button type="button" class="btn btn-outline-primary">쿠폰 관리</button><br>
-										<button type="button" class="btn btn-outline-primary" name="deleteBtn">회원탈퇴</button></h3>
+										<button type="button" class="btn btn-outline-primary" name="deleteBtn" onclick="deleteMember()">회원탈퇴</button></h3>
 									</sec:authorize>
 								
 								</div>
@@ -275,6 +274,8 @@
 	<jsp:include page="/WEB-INF/views/base/footer.jsp"/>
 
 	<script>
+		
+		
 	$('tr').on('click', function() {
 		var sss = $(this).children().eq(0).text();
 		location.href = "${pageContext.request.contextPath}/profile/reservation/" + sss; 
@@ -291,7 +292,7 @@
 		});
 
 		
-		// 회원이면 예약내역이 보이고 비회원이면 비회원예약조회 확인이 가능하다
+		
 		$('#none-Member-history').on('click',content);
 		function content(){
 			$.ajax({
@@ -405,22 +406,59 @@
 			
 		}
 		
-		
-		
-			$('#deleteBtn').on("click", function(){
-				$.ajax({
-					type: "delete",
-					data: {
-						
-					}
-					
-					
-				})
+
+		function deleteMember(){
+			
+		Swal.fire({
+			   title: '정말로 그렇게 하시겠습니까?',
+			   text: '다시 되돌릴 수 없습니다. 신중하세요.',
+			   icon: 'warning',
+			   
+			   showCancelButton: true, // cancel버튼 보이기. 기본은 원래 없음
+			   confirmButtonColor: '#3085d6', // confrim 버튼 색깔 지정
+			   cancelButtonColor: '#d33', // cancel 버튼 색깔 지정
+			   confirmButtonText: '승인', // confirm 버튼 텍스트 지정
+			   cancelButtonText: '취소', // cancel 버튼 텍스트 지정
+			   
+			   reverseButtons:false// 버튼 순서 거꾸로
+			   
+			}).then(result => {
+			    if (result.isConfirmed) { // 만약 모달창에서 confirm 버튼을 눌렀다면
+			    	delMember();
+			    }
 			});
-			
-			
 		
-	
+		};
+		
+		function delMember(){
+			var username = $('#username').val();
+			console.log(username);
+			$.ajax({
+					url:"${pageContext.request.contextPath}/member/profile" ,
+					type: "DELETE",
+					data: {
+						username:username
+					},
+					success : function(result) {
+							if(result == 1){
+							 Swal.fire('탈퇴성공  ', '탈퇴합니다 ', 'success');
+							 location.href = '${pageContext.request.contextPath}/member/register';
+			                	
+							}else{
+								swal.fire("실패", "작업수행에 실패하였습니다.", "warining");
+							}
+						},
+							error : function() {
+								swal.fire("에러입니다", "작업수행에 실패하였습니다.", "error");
+						}, timeout:100000
+					});
+				}
+					
+					
+				
+					
+				
+		
 	</script>
 </body>
 </html>

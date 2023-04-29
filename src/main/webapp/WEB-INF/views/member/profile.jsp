@@ -311,7 +311,8 @@
 	  	       	    //dataType:'json',
 	                success: function(result){
 	                	if(result>0){
-	                		alert("수정완료!");
+	                		swal("성공 ","회원정보 수정이 완료되었습니다!", {icon: "success"});
+	                		location.href = '${pageContext.request.contextPath}/member/profile';
 	                		
 	                	}else{
 	                		alert("수정실패")	                	

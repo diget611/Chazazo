@@ -2,18 +2,13 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="member">
 
-	<select id="selectList">
-		SELECT * FROM MEMBER
-	</select>
+
 	
 	<select id="selectMypageOne" resultType="memberInfoRespDto">
 		SELECT * FROM MEMBER_INFO
 		 WHERE IDX IN (SELECT IDX FROM MEMBER WHERE USERNAME = #{username})
 	</select>
 	
-	<select id="selectOne" resultType="memberInfoRespDto">
-		SELECT * FROM MEMBER_INFO WHERE IDX = #{idx}
-	</select>
 	
 	<select id="findId" resultType="string">
 		SELECT USERNAME

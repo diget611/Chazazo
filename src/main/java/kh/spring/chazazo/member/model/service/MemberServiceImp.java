@@ -68,15 +68,8 @@ public class MemberServiceImp implements MemberService {
 	//회원정보조회
 	@Override
 	public MemberInfoRespDto selectMypageOne(String username) {
-		// TODO Auto-generated method stub
 		return dao.selectMypageOne(username);
 	}
-
-//	@Override
-//	public MemberInfoRespDto selectOne(int idx) {
-//		// TODO Auto-generated method stub
-//		return dao.selectOne(idx);
-//	}
 
 	
 	//비밀번호확인
@@ -107,12 +100,8 @@ public class MemberServiceImp implements MemberService {
 	}
 
 	
-	@Override
-	public MemberInfoRespDto selectOne(int idx) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
+	//탈퇴 
 	@Override
 	public int deleteMember(String username) {
 		int result = 0;
@@ -122,14 +111,9 @@ public class MemberServiceImp implements MemberService {
 		return result;
 	}
 
-//	@Override
-//	public int deleteMemberInfo(String username) {
-//		// TODO Auto-generated method stub
-//		return 0;
-//	}
-
 	
-	//탈퇴
+
+
 
 	
 }

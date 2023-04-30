@@ -222,7 +222,7 @@ $('.delete').on('click', function(){
 	console.log(reviewidx+"______");
 		$.ajax({
 			url:'${pageContext.request.contextPath}/deleteReview',
-	         type: 'post',
+	         type: 'delete',
 		     data: {
 		 		"idx" : reviewidx
 			},

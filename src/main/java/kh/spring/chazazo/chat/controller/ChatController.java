@@ -30,13 +30,14 @@ public class ChatController {
 	// 관리자 채팅 문의 들어온 방들 확인용
 	@GetMapping("/rooms")
 	public ModelAndView getChatRoomList(ModelAndView mv) {
-		//mv.addObject("roomList", service);
+		// TODO: chat_room list 받기
 		mv.setViewName("chat/rooms");
 		return mv;
 	}
 	
 	@GetMapping("/room/{roomIdx}")
 	public ModelAndView enterChat(ModelAndView mv, Principal prin, @PathVariable int roomIdx) {
+		// TODO: chat_log에서 roomIdx에 맞는 chat_log list 받기
 		String username = prin.getName();
 		mv.addObject("username", username);
 		mv.addObject("roomIdx", roomIdx);
@@ -46,6 +47,7 @@ public class ChatController {
 	
 	@MessageMapping("/chat/message")
     public void message(ChatDto chat) {
+		// TODO: 메시지 보내면 chat_log 테이블에 insert
 		template.convertAndSend("/sub/chat/room/" + chat.getRoomIdx(), chat);
     }
 	

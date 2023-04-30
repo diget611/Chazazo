@@ -219,12 +219,12 @@ $(document).on('click','#btnUpdate', function() {
 //리뷰 삭제
 $('.delete').on('click', function(){
 	var reviewidx = $(this).data("idx");
-	console.log(reviewidx+"______");
+	console.log(typeof reviewidx +reviewidx+"______");
 		$.ajax({
 			url:'${pageContext.request.contextPath}/deleteReview',
 	         type: 'delete',
 		     data: {
-		 		"idx" : reviewidx
+		 		idx : reviewidx
 			},
 	         success: function(result) {
 	       	  swal({

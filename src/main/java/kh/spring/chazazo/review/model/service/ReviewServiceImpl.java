@@ -43,8 +43,8 @@ public class ReviewServiceImpl implements ReviewService{
 	}
 
 	@Override
-	public int deleteReview(ReviewDto dto) {
-		return dao.deleteReview(dto);
+	public int deleteReview(int idx) {
+		return dao.deleteReview(idx);
 	}
 
 	//@Override

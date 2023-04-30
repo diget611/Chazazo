@@ -55,8 +55,8 @@ public class ReviewController {
 	
 	
 	@DeleteMapping("/deleteReview")
-	public int deleteReview(ReviewDto data) {
-		int result = rService.deleteReview(data);
+	public int deleteReview(int idx) {
+		int result = rService.deleteReview(idx);
 		return result;
 	}
 	

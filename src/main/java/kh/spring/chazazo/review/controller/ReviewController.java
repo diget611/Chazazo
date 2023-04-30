@@ -57,6 +57,7 @@ public class ReviewController {
 	@DeleteMapping("/deleteReview")
 	public int deleteReview(int idx) {
 		int result = rService.deleteReview(idx);
+		System.out.println(idx);
 		return result;
 	}
 	

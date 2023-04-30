@@ -38,6 +38,7 @@
 		<typeAlias type="kh.spring.chazazo.inquiry.model.dto.InquiryRespDto" alias="inquiryRespDto"/>
 		<typeAlias type="kh.spring.chazazo.common.Pagination" alias="pagination"/>
 		<typeAlias type="kh.spring.chazazo.location.model.dto.LocationRespDto" alias="LocationRespDto"/>
+		<typeAlias type="kh.spring.chazazo.chat.model.dto.ChatDto" alias="chatDto"/>
 		
 	</typeAliases>
 </configuration>

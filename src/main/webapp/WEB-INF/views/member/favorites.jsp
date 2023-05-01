@@ -60,7 +60,7 @@
 								<h3 class="panel-title">회원정보</h3>
 							</div>
 						</div>
-							<div class="dealer-widget  row-md-4">
+							
 							<div class="dealer-content">
 								<div class="inner-wrapper">
 									<div class="clear">
@@ -93,7 +93,7 @@
 											</div>
 									</div>	
 								</div>
-							</div>
+							
 						</div>
 						<div class="blog-asside-right">
 							<div
@@ -154,6 +154,9 @@
 									<li>나의 관심 지점은 최대 5개까지 등록할 수 있습니다.</li>
 									<li>렌터카 예약 시, ‘나의 지점’ 선택을 통해 빠른 지점 선택이 가능합니다.</li>
 								</ul>
+								
+								<hr class="my-2">
+								
 								<a href="#" id="totalLocation"
 									class="btn-normal black">전국지점안내 전체보기</a>
 							</div>
@@ -164,6 +167,7 @@
 
 
 							<!-- 관심 지점이 없을 경우 -->
+							
 							<div class="result-none">등록 된 나의 관심 지점이 없습니다.</div>
 
 
@@ -176,21 +180,28 @@
 									<p class="tit">가산디지털</p>
 									<div class="cont">
 										<ul class="info-list">
-											<li><span class="info-tit">영업시간</span>
+											<li>
+											<span class="info-tit">영업시간</span>
 												<div class="info-cont">
 													<span><button type="button" class="accorSpotBtn"
 															data-target="accorSpotCont0" data-on="true"
 															data-siblings="true">24시간 스마트키박스 운영 (00:00 ~
-															24:00) 당일예약 가능시간 08:30 ~ 16:00</button></span>
-												</div></li>
-											<li><span class="info-tit">주소</span>
+															24:00) 당일예약 가능시간 08:30 ~ 16:00</button>
+															</span>
+												</div>
+											</li>
+											<li>
+											<span class="info-tit">주소</span>
 												<div class="info-cont">
 													<span>서울시 금천구 가산동 459-11 B106호</span>
-												</div></li>
-											<li><span class="info-tit">전화번호</span>
+												</div>
+											</li>
+											<li>
+											<span class="info-tit">전화번호</span>
 												<div class="info-cont">
 													<span>02-3664-8000</span>
-												</div></li>
+												</div>
+											</li>
 										</ul>
 										<div class="btns">
 											<button type="button" class="btn-auto line-red"

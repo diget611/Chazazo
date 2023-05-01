@@ -14,64 +14,48 @@
 	href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700,800'
 	rel='stylesheet' type='text/css'>
 
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/resources/garoestate/assets/css/normalize.css">
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/resources/garoestate/assets/css/font-awesome.min.css">
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/resources/garoestate/assets/css/fontello.css">
-<link
-	href="<%=request.getContextPath()%>/resources/garoestate/assets/fonts/icon-7-stroke/css/pe-icon-7-stroke.css"
-	rel="stylesheet">
-<link
-	href="<%=request.getContextPath()%>/resources/garoestate/assets/fonts/icon-7-stroke/css/helper.css"
-	rel="stylesheet">
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/resources/garoestate/assets/css/bootstrap-select.min.css">
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/resources/garoestate/bootstrap/css/bootstrap.min.css">
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/resources/garoestate/assets/css/icheck.min_all.css">
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/resources/garoestate/assets/css/price-range.css">
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/resources/garoestate/assets/css/style.css">
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/resources/garoestate/assets/css/responsive.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/garoestate/assets/css/normalize.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/garoestate/assets/css/font-awesome.min.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/garoestate/assets/css/fontello.css">
+<link href="<%=request.getContextPath()%>/resources/garoestate/assets/fonts/icon-7-stroke/css/pe-icon-7-stroke.css" rel="stylesheet">
+<link href="<%=request.getContextPath()%>/resources/garoestate/assets/fonts/icon-7-stroke/css/helper.css" rel="stylesheet">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/garoestate/assets/css/bootstrap-select.min.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/garoestate/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/garoestate/assets/css/icheck.min_all.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/garoestate/assets/css/price-range.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/garoestate/assets/css/style.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/garoestate/assets/css/responsive.css">
+
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
 
-<script
-	src="<%=request.getContextPath()%>/resources/garoestate/assets/js/modernizr-2.6.2.min.js"></script>
-<script
-	src="<%=request.getContextPath()%>/resources/garoestate/assets/js/jquery-1.10.2.min.js"></script>
-<script
-	src="<%=request.getContextPath()%>/resources/garoestate/bootstrap/js/bootstrap.min.js"></script>
-<script
-	src="<%=request.getContextPath()%>/resources/garoestate/assets/js/bootstrap-select.min.js"></script>
-<script
-	src="<%=request.getContextPath()%>/resources/garoestate/assets/js/bootstrap-hover-dropdown.js"></script>
-<script
-	src="<%=request.getContextPath()%>/resources/garoestate/assets/js/easypiechart.min.js"></script>
-<script
-	src="<%=request.getContextPath()%>/resources/garoestate/assets/js/jquery.easypiechart.min.js"></script>
-<script
-	src="<%=request.getContextPath()%>/resources/garoestate/assets/js/wow.js"></script>
-<script
-	src="<%=request.getContextPath()%>/resources/garoestate/assets/js/icheck.min.js"></script>
-<script
-	src="<%=request.getContextPath()%>/resources/garoestate/assets/js/owl.carousel.min.js"></script>
-<script
-	src="<%=request.getContextPath()%>/resources/garoestate/assets/js/price-range.js"></script>
-<script
-	src="<%=request.getContextPath()%>/resources/garoestate/assets/js/main.js"></script>
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/resources/css/main.css">
+<script src="<%=request.getContextPath()%>/resources/garoestate/assets/js/modernizr-2.6.2.min.js"></script>
+<script src="<%=request.getContextPath()%>/resources/garoestate/assets/js/jquery-1.10.2.min.js"></script>
+<script src="<%=request.getContextPath()%>/resources/garoestate/bootstrap/js/bootstrap.min.js"></script>
+<script src="<%=request.getContextPath()%>/resources/garoestate/assets/js/bootstrap-select.min.js"></script>
+<script src="<%=request.getContextPath()%>/resources/garoestate/assets/js/bootstrap-hover-dropdown.js"></script>
+<script src="<%=request.getContextPath()%>/resources/garoestate/assets/js/easypiechart.min.js"></script>
+<script src="<%=request.getContextPath()%>/resources/garoestate/assets/js/jquery.easypiechart.min.js"></script>
+<script src="<%=request.getContextPath()%>/resources/garoestate/assets/js/wow.js"></script>
+<script src="<%=request.getContextPath()%>/resources/garoestate/assets/js/icheck.min.js"></script>
+<script src="<%=request.getContextPath()%>/resources/garoestate/assets/js/owl.carousel.min.js"></script>
+<script src="<%=request.getContextPath()%>/resources/garoestate/assets/js/price-range.js"></script>
+<script rel="stylesheet" href="<%=request.getContextPath()%>/resources/js/modal.js"></script>
+
+<script src="<%=request.getContextPath()%>/resources/garoestate/assets/js/main.js"></script>
+
+<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/main.css">
 	
 <style type="text/css">
 .bg-shadow, .filter-section {
     box-shadow: 0 7px 18px -6px rgba(65,78,118,.1);
+}
+
+.cover{
+	display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 </style>
 </head>
@@ -201,7 +185,7 @@
 				</div>
 				<div class="blog-lst col-md-8 p0 " style="float: right;">
 					<section class="carmore-section">
-						<div class="container">
+						<div class="container" id="hideReser">
 							<div class="js-vrsi-container bg-white bg-shadow p-3 rounded-sm mb-3">
 								<div class="dc-flex justify-content-between align-items-center">
 									<div class="dc-flex align-items-center">
@@ -301,8 +285,11 @@
 					<section >
 						<div>
 							<div>운전자 정보</div>
-							<div>이름</div>
-							<div>${memberinfo.name }</div>
+							
+								<div>이름</div>
+								<div>${memberinfo.name }</div>
+							
+							
 							<div>전화번호</div>
 							<div>${memberinfo.phoneNumber }</div>
 							
@@ -352,6 +339,9 @@
 					<div class="text-center space-1 dc-none dc-lg-block">
 					<button type="button" class="js-vpr-btn-go-main btn btn-wide btn-pill mx-auto px-6 btn-primary" id="delReserv-btn">예약 취소하기</button>
 							</div>
+							
+							</div>
+							<div id="content">
 							</div>
 					</section>
 				</div>
@@ -399,8 +389,11 @@
 						   
 						}).then(result => {
 						    if (result.isConfirmed) { // 만약 모달창에서 confirm 버튼을 눌렀다면
-						    	location.href = '${pageContext.request.contextPath}/member/profile';
-						    }else{
+						    //	$('#hideReser').hide();
+						    //	canclePay();
+						    	
+						   		 Swal.fire('예약 취소 완료 ', ' 예약이 취소되었습니다. ', 'success');
+						     }else{
 						    	 Swal.fire('예약 삭제를 취소합니다 ', '다시 시도하세요 ', 'error');
 						    }
 						});
@@ -417,9 +410,99 @@
 			});
 	});
 
+	
+	/*function canclePay(){
+		var html='';
+		html += '		<div class="container d-flex justify-content-center">';
+		    
+		  html += '	  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" id="Modal_button">';
+			  html += '		    Open modal';
+				  html += '		  </button>';
+
+		  html += '		  <div class="modal fade" id="myModal">';
+			  html += '		    <div class="modal-dialog">';
+				  html += '		      <div class="modal-content">';
+		      
+		        html += '	        <div class="modal-header">';
+		        	html += '	          <button type="button" class="close" data-dismiss="modal">&times;</button>';
+		        		html += '	        </div>';
+		        
+		        html += '	        <div class="modal-body mb-0 pb-0 mt-0">';
+		        	html += '	        <div class="container ">';
+		            html += '	            <div class="holder">';
+		            	html += '	                <div class="row mb-1">';
+		            		html += '	                <div class="col">';
+		            			html += '	                <h2>Choose File Types</h2>';
+		            				html += '	                </div>';
+		            					html += '	            </div>';
+		            						html += '	               <form action="#" class="customRadio customCheckbox m-0 p-0">';
+		            							html += '	               <div class="row mb-0">';
+		            								html += '	               <div class="row justify-content-start">';
+		            									html += '	                  <div class="col-12">';
+		            										html += '	                 <div class="row">';
+		                        
+		            											html += '	                       <input type="radio" name="textEditor" id="dreamweaver" checked>';
+		                        html += '	                        <label for="dreamweaver">Back up all files folders</label>';
+		                        	html += '	                   </div>';
+		                        		html += '	                  <div class="row">';
+		                        			html += '	                        <input type="radio" name="textEditor" id="sublime">';
+		                        				html += '	                        <label for="sublime">Back up photos and videos</label>';
+		                        					html += '	                    </div>';
+		                    html += '	                    </div>';
+		                    html += '	                </div>';
+		                html += '	               </div>';
+		                	html += '	               <div class="row mt-0 ml-4">';
+		                html += '	                   <div class="col-12 my_checkbox ">';
+		                	html += '	            <div class="row">';
+		                		html += '	             <input type="checkbox" id="screenshots" checked>';
+		                    html += '	                    <label for="javascript" id="screenshots_label">Back up screenshots</label>';
+		                    	html += '	            </div>';
+		                    		html += '	             <div class="row">';
+		                    html += '	                    <input type="checkbox" id="RAW">';
+		                    	html += '	                 <label for="RAW">Back up RAW files</label>';
+		                    		html += '	          </div>';
+		                    html += '	                  <div class="row">';
+		                    	html += '	            <input type="checkbox" id="Library">';
+		                    		html += '	              <label for="Library">Back up Photos Library metadata</label>';
+		                    html += '	                   </div>';
+		        
+		                    	html += '	             </div>';
+		                    		html += '	            </div>  ';
+		                    			html += '	            <div class="row mt-4">';
+		                    				html += '	                 <div class="col-12 Advanced_setting" >';
+		                    html += '	                  Advanced Setting &nbsp;<i class="icon-action fa fa-chevron-down"></i>';
+		                    	html += '	                  </div>';
+		                    		html += '	               </div>';
+		                    			html += '	                </form>';
+		                    				html += '	            </div>  ';
+		            html += '	            </div>';
+		            html += '	        </div>';
+		        
+		        html += '	       <div class="modal-footer pt-0 mt-0 pb-5 pr-6 m-1 ">';
+		        	html += '	        <div class="col-2">';
+		            
+		          html += '	         </div>';
+		        	  html += '	         <div class="col-6 justify-content-start">';
+		           
+		        		  html += '	        <a href="#" id="modal_footer_support" data-toggle="popover" title="Support" data-content="Support Message" class="modal_footer"><i class="fa fa-question-circle-o modal_footer"  aria-hidden="true"></i> <span class="modal_footer" >Support</span>';
+		            html += '	          </a>';
+		            	html += '	          </div>';
+		            		html += '	           <div class="col-2 justify-content-end ">';
+		              html += '	             <button type="button" class="btn btn-outline-light modal_footer"  data-dismiss="modal">Cancel</button>';
+		              html += '	          </div>';
+		            	  html += '	         <div class="col-2 justify-content-start m-0 p-0">';
+		           html += '	             <button type="button" class="btn btn-success box-shadow--16dp" data-dismiss="modal">OK</button> ';
+		        	   html += '	         </div>  ';
+		        		   html += '	        </div> ';
+		        html += '		      </div>';
+		      html += '		    </div>';
+		    html += '		  </div> ';
+		  html += '		</div>';
+		  $('#content').html(html);
+	}
 			
 			
-		
+	*/	
 	
 	</script>
 </body>

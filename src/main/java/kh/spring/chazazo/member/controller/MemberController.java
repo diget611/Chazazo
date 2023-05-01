@@ -68,9 +68,9 @@ public class MemberController {
 		return mv;
 	}
 
+	// 마이페이지에 들어가는 url
 	@GetMapping("/profile")
 	public ModelAndView viewMemberOne(ModelAndView mv, Principal prin) {
-		// 마이페이지에 들어가는 url
 		
 		if(prin == null) {
 			mv.setViewName("member/mypage");

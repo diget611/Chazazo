@@ -200,8 +200,8 @@
 									<h3 class="panel-title">
 									<button type="button" class="btn btn-outline-primary">1:1 문의</button><br>
 									<sec:authorize access="isAuthenticated()">
-										<button type="button" class="btn btn-outline-primary">쿠폰 관리</button><br>
-										<button type="button" class="btn btn-outline-primary" name="deleteBtn" onclick="deleteMember()">회원탈퇴</button></h3>
+										<button id="coupon" type="button" class="btn btn-outline-primary">쿠폰 관리</button><br>
+										<button class="btn btn-outline-primary" name="deleteBtn" onclick="deleteMember()">회원탈퇴</button></h3>
 									</sec:authorize>
 								
 								</div>
@@ -460,6 +460,11 @@
 	
 		$("#myReview").on("click", function(){
 			location.href="${pageContext.request.contextPath}/myReview";
+			
+		});
+
+		$("#coupon").on("click", function(){
+			location.href="${pageContext.request.contextPath}/coupon";
 			
 		});
 				

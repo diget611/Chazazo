@@ -66,16 +66,14 @@
                 var str = '';
 
                 if(writer == username){
-                    str = "<div class='col-6'>";
-                    str += "<div class='alert alert-secondary'>";
-                    str += "<b>" + content.chatCon + "</b>";
-                    str += "</div></div>";
+					str += '<div class="row justify-content-end">'
+					str += '<div class="col-6 text-bg-warning mb-3 p-3">' + content.chatCon + '</div>'
+					str += '</div>'
                     $("#msgArea").append(str);
                 } else {
-                    str = "<div class='col-6'>";
-                    str += "<div class='alert alert-warning'>";
-                    str += "<b>" + content.chatCon + "</b>";
-                    str += "</div></div>";
+                	str += '<div class="row justify-content-start">'
+    				str += '<div class="col-6 text-bg-light mb-3 p-3">' + content.chatCon + '</div>'
+    				str += '</div>'
                     $("#msgArea").append(str);
                 }
             });

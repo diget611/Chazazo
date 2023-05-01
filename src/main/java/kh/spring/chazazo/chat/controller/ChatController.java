@@ -39,6 +39,13 @@ public class ChatController {
 	public ModelAndView enterChat(ModelAndView mv, Principal prin, @PathVariable String roomIdx) {
 		// TODO: 채팅방에 들어와서 채팅 확인을 하면 status 업데이트
 		String username = prin.getName();
+
+		Map<String, String> data = new HashMap<String, String>();
+		data.put("username", username);
+		data.put("roomIdx", roomIdx);
+		
+		service.updateChat(data);
+		
 		mv.addObject("chatList", service.selectChatList(roomIdx));
 		mv.addObject("username", username);
 		mv.addObject("roomIdx", roomIdx);
@@ -60,6 +67,23 @@ public class ChatController {
 			if(service.createRoom(data) == 1) result = room.getIdx();
 		}
 			
+		return result;
+	}
+	
+	@GetMapping("/check")
+	public int checkChat(Principal prin) {
+		System.out.println("123123123123");
+		int result = 0;
+		if(prin.getName() == null) {
+			result = 0;
+		} else {
+			String username = prin.getName();
+			if(service.checkAuth(username).equals("ROLE_ADMIN")) {
+				result = service.countForAdmin();
+			} else {
+				result = service.countForMember(username);
+			}
+		}
 		return result;
 	}
 	

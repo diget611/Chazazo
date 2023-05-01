@@ -11,4 +11,25 @@
 		INSERT INTO CHAT_LOG
 		VALUES (CHAT_LOG_SEQ.NEXTVAL, #{roomIdx}, #{chatCon}, DEFAULT, #{sender}, DEFAULT)
 	</insert>
+	
+	<update id="update" parameterType="map">
+		UPDATE CHAT_LOG
+		   SET STATUS = 0
+		 WHERE ROOM_IDX = #{roomIdx} AND SENDER != #{username}
+	</update>
+	
+	<select id="countForAdmin" resultType="_int">
+		SELECT COUNT(*)
+		  FROM (SELECT L.ROOM_IDX, L.SENDER, L.STATUS, M.AUTH
+		          FROM CHAT_LOG L INNER JOIN MEMBER M ON L.SENDER = M.USERNAME)
+         WHERE AUTH != 'ROLE_ADMIN' AND STATUS = 1
+	</select>
+	
+	<select id="countForMember" resultType="_int">
+		SELECT COUNT(*)
+		  FROM (SELECT L.ROOM_IDX, L.SENDER, L.STATUS, M.AUTH
+		          FROM CHAT_LOG L INNER JOIN MEMBER M ON L.SENDER = M.USERNAME)
+	     WHERE AUTH = 'ROLE_ADMIN' AND ROOM_IDX = (SELECT IDX FROM CHAT_ROOM 
+	                                                WHERE MEMBER_IDX = (SELECT IDX FROM MEMBER WHERE USERNAME = #{username})) AND STATUS = 1
+	</select> 
 </mapper>

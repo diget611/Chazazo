@@ -38,6 +38,11 @@ public class ChatServiceImpl implements ChatService{
 	}
 	
 	@Override
+	public int updateChat(Map<String, String> data) {
+		return dao.updateChat(data);
+	}
+	
+	@Override
 	public List<ChatLogDto> selectChatList(String roomIdx) {
 		return dao.selectChatList(roomIdx);
 	}
@@ -45,6 +50,21 @@ public class ChatServiceImpl implements ChatService{
 	@Override
 	public int insertChat(ChatDto chat) {
 		return dao.insertChat(chat);
+	}
+
+	@Override
+	public String checkAuth(String username) {
+		return dao.checkAuth(username);
+	}
+
+	@Override
+	public int countForAdmin() {
+		return dao.countForAdmin();
+	}
+
+	@Override
+	public int countForMember(String username) {
+		return dao.countForMember(username);
 	}
 
 }

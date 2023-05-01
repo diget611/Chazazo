@@ -93,4 +93,8 @@
 		 WHERE TO_CHAR(REGI_DATE,'YY/MM/DD') = TO_DATE(SYSDATE, 'YY/MM/DD')
 	</select>
 	
+	<select id="checkAuth" resultType="string">
+		SELECT AUTH FROM MEMBER WHERE USERNAME = #{username}
+	</select> 
+	
 </mapper>

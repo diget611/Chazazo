@@ -34,12 +34,28 @@ public class ChatDao {
 		return sqlSession.selectOne("chatroom.selectRoom", username);
 	}
 	
+	public int updateChat(Map<String, String> data) {
+		return sqlSession.update("chatlog.update", data);
+	}
+	
 	public List<ChatLogDto> selectChatList(String roomIdx) {
 		return sqlSession.selectList("chatlog.selectList", roomIdx);
 	}
 	
 	public int insertChat(ChatDto chat) {
 		return sqlSession.insert("chatlog.insert", chat);
+	}
+	
+	public String checkAuth(String username) {
+		return sqlSession.selectOne("member.checkAuth", username);
+	}
+	
+	public int countForAdmin() {
+		return sqlSession.selectOne("chatlog.countForAdmin");
+	}
+	
+	public int countForMember(String username) {
+		return sqlSession.selectOne("chatlog.countForMember", username);
 	}
 
 }

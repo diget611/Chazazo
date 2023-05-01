@@ -260,6 +260,7 @@ tbody tr:hover {
 											</p>
 											<br>
 										</c:if>
+										<div>내가 작성한 리뷰</div>
 										<table>
 											<thead>
 												<tr>

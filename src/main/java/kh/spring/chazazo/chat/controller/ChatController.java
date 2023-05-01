@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.google.gson.Gson;
+
 import kh.spring.chazazo.chat.model.dto.ChatDto;
 import kh.spring.chazazo.chat.model.dto.ChatRoomDto;
 import kh.spring.chazazo.chat.model.service.ChatService;
@@ -28,18 +30,16 @@ public class ChatController {
 	@Autowired
 	private SimpMessagingTemplate template;
 	
-	// 관리자 채팅 문의 들어온 방들 확인용
 	@GetMapping("/rooms")
-	public ModelAndView getChatRoomList(ModelAndView mv) {
-		// TODO: chat_room list 받기
-		mv.setViewName("chat/rooms");
-		return mv;
+	public String getChatRoomList() {
+		return new Gson().toJson(service.chatRoomList());
 	}
 	
 	@GetMapping("/room/{roomIdx}")
 	public ModelAndView enterChat(ModelAndView mv, Principal prin, @PathVariable String roomIdx) {
-		// TODO: chat_log에서 roomIdx에 맞는 chat_log list 받기
+		// TODO: 채팅방에 들어와서 채팅 확인을 하면 status 업데이트
 		String username = prin.getName();
+		mv.addObject("chatList", service.selectChatList(roomIdx));
 		mv.addObject("username", username);
 		mv.addObject("roomIdx", roomIdx);
 		mv.setViewName("chat/room");

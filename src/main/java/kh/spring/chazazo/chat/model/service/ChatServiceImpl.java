@@ -1,5 +1,6 @@
 package kh.spring.chazazo.chat.model.service;
 
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +8,8 @@ import org.springframework.stereotype.Service;
 
 import kh.spring.chazazo.chat.model.dao.ChatDao;
 import kh.spring.chazazo.chat.model.dto.ChatDto;
+import kh.spring.chazazo.chat.model.dto.ChatLogDto;
+import kh.spring.chazazo.chat.model.dto.ChatRoomListDto;
 
 @Service
 public class ChatServiceImpl implements ChatService{
@@ -14,6 +17,11 @@ public class ChatServiceImpl implements ChatService{
 	@Autowired
 	private ChatDao dao;
 
+	@Override
+	public List<ChatRoomListDto> chatRoomList() {
+		return dao.chatRoomList();
+	}
+	
 	@Override
 	public int createRoom(Map<String, String> data) {
 		return dao.createRoom(data);
@@ -28,11 +36,15 @@ public class ChatServiceImpl implements ChatService{
 	public String selectRoom(String username) {
 		return dao.selectRoom(username);
 	}
+	
+	@Override
+	public List<ChatLogDto> selectChatList(String roomIdx) {
+		return dao.selectChatList(roomIdx);
+	}
 
 	@Override
 	public int insertChat(ChatDto chat) {
 		return dao.insertChat(chat);
 	}
-	
 
 }

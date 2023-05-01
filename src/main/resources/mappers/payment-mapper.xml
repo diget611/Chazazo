@@ -8,7 +8,7 @@
              , (SELECT NAME FROM LOCATION WHERE IDX = TB_P.RENT_LOCATION) AS RENT_LOCATION_NAME
              , TB_P.*
 		  FROM PAYMENT TB_P
-		 WHERE MEMBER_IDX IN (SELECT IDX FROM MEMBER WHERE USERNAME = #{username}) AND STATE = 1		
+		 WHERE MEMBER_IDX IN (SELECT IDX FROM MEMBER WHERE USERNAME = #{username}) AND STATE = 0	
 	</select>
 	
 	
@@ -46,7 +46,7 @@
 	</select>
 	
 	<update id="deleteReserv" >
-		 UPDATE PAYMENT SET STATE = 0 WHERE IDX = #{idx} 
+		 UPDATE PAYMENT SET STATE = 1 , CANCEL_DATE = TO_CHAR(SYSDATE, 'YYYY-MM-DD') WHERE IDX = #{idx} 
 	
 	</update>
 	

@@ -32,8 +32,8 @@ public class ReviewDao {
 	public int updateReview(ReviewDto dto) {
 		return sqlSession.insert("review.updateReview", dto);
 	}
-	public int deleteReview(ReviewDto dto) {
-		return sqlSession.delete("review.deleteReview", dto);
+	public int deleteReview(int idx) {
+		return sqlSession.delete("review.deleteReview", idx);
 	}
 	public int insertReport(ReviewDto data) {
 		return sqlSession.insert("review.insertReport", data);

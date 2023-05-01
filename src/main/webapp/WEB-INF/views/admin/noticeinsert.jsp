@@ -8,6 +8,7 @@
     <title>공지사항 작성</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,-25" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -19,7 +20,7 @@
     <link href="<%=request.getContextPath()%>/resources/dashmin/css/bootstrap.min.css" rel="stylesheet">
     <link href="<%=request.getContextPath()%>/resources/dashmin/css/style.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js" async="true"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
     <script src="<%=request.getContextPath()%>/resources/dashmin/lib/easing/easing.min.js"></script>
     <script src="<%=request.getContextPath()%>/resources/dashmin/lib/waypoints/waypoints.min.js"></script>
@@ -59,8 +60,7 @@
 			</div>
 			<jsp:include page="/WEB-INF/views/admin/base/footer.jsp"/>
 		</div>
-		<!-- Back to Top -->
-		<a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+		<jsp:include page="/WEB-INF/views/admin/base/chat.jsp"/>
 	</div>
 
 <script src="<%=request.getContextPath()%>/resources/dashmin/js/main.js"></script>

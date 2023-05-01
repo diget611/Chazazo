@@ -115,6 +115,12 @@
 </body>
 <script type="text/javascript">
 
+//비회원 경고
+function reportSwal() {
+	swal("현재 로그아웃 상태입니다.","신고하려면 로그인을 해주세요.", {icon: "warning"});
+}
+
+
 //리뷰등록
 function postReview() {
 	var content = $('[name=reviewcontent]').val()
@@ -213,12 +219,12 @@ $(document).on('click','#btnUpdate', function() {
 //리뷰 삭제
 $('.delete').on('click', function(){
 	var reviewidx = $(this).data("idx");
-	console.log(reviewidx+"______");
+	console.log(typeof reviewidx +reviewidx+"______");
 		$.ajax({
 			url:'${pageContext.request.contextPath}/deleteReview',
-	         type: 'post',
+	         type: 'delete',
 		     data: {
-		 		"idx" : reviewidx
+		 		idx : reviewidx
 			},
 	         success: function(result) {
 	       	  swal({

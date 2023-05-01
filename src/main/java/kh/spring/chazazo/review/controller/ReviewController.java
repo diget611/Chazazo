@@ -55,8 +55,9 @@ public class ReviewController {
 	
 	
 	@DeleteMapping("/deleteReview")
-	public int deleteReview(ReviewDto data) {
-		int result = rService.deleteReview(data);
+	public int deleteReview(int idx) {
+		int result = rService.deleteReview(idx);
+		System.out.println(idx);
 		return result;
 	}
 	
@@ -75,17 +76,18 @@ public class ReviewController {
 		return result;
 	}
 	
+	
+	
+	//마이페이지 나의리뷰 목록
 	@GetMapping("/myReview")
 	public ModelAndView selectMyReview( Principal prin, ModelAndView mv) {
 		
 		
 		String loginId = prin.getName();
 		mv.addObject("memberinfo", mService.selectMypageOne(loginId));
-		
 		mv.addObject("reservation", pService.selectList(loginId));
-	
 		mv.addObject("myReview",rService.selectMyReview(loginId));
-		mv.setViewName("review/myReview");
+		mv.setViewName("member/myReview");
 		return mv;
 	}
 	

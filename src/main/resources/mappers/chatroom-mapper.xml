@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="chatroom">
+	<insert id="insert" parameterType="map">
+		INSERT INTO CHAT_ROOM
+		VALUES (#{idx}, DEFAULT, DEFAULT, (SELECT IDX FROM MEMBER WHERE USERNAME = #{username}))
+	</insert>
+	
+	<select id="hasRoom" resultType="_int">
+		SELECT COUNT(*)
+		  FROM CHAT_ROOM WHERE MEMBER_IDX = (SELECT IDX FROM MEMBER WHERE USERNAME = #{username}) AND END_DATE IS NULL
+	</select>
+	
+	<select id="selectRoom" resultType="string">
+		SELECT IDX
+		  FROM CHAT_ROOM WHERE MEMBER_IDX = (SELECT IDX FROM MEMBER WHERE USERNAME = #{username}) AND END_DATE IS NULL
+	</select>
+	
+	<select id="selectList" resultType="chatRoomListDto">
+		SELECT * FROM (SELECT R.IDX AS IDX, L.SENDER AS SENDER, L.CHAT_CON AS CHAT_CON
+		                    , TO_CHAR(L.CHAT_DATE, 'YYYY/MM/DD HH:MI:SS') AS CHAT_DATE, ROW_NUMBER() OVER (PARTITION BY R.IDX ORDER BY CHAT_DATE DESC) RNUM
+                         FROM CHAT_ROOM R INNER JOIN CHAT_LOG L ON R.IDX = L.ROOM_IDX WHERE END_DATE IS NULL)
+         WHERE RNUM = 1
+	</select>
+</mapper>

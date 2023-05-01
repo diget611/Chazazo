@@ -11,7 +11,7 @@ public interface ReviewService {
 	public List<ReviewDto> selectOne(int vehicleIdx);
 	public int insertLike(ReviewDto dto);
 	public int updateReview(ReviewDto dto);
-	public int deleteReview(ReviewDto dto);
+	public int deleteReview(int idx);
 	public int insertReport(ReviewDto data);
 	public ReviewDto selectReview(int idx);
 	

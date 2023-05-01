@@ -19,4 +19,10 @@
 	<select id="selectNameList" resultType="map">
 		SELECT NAME FROM LOCATION
 	</select>
+	
+	<select id="likeLocation">
+		select (select name from location where idx = like_location.location_idx) as name 
+		from like_location where member_idx in (select idx from member where username=#{username});
+	
+	</select>
 </mapper>

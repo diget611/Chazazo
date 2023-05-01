@@ -7,173 +7,99 @@
 <title>Insert title here</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <script src="https://code.jquery.com/jquery-3.6.4.js"></script>
-<style>
-	.container {
-		width: 500px;
-	}
-	
-	#list {
-		height: 300px;
-		padding: 15px;
-		overflow: auto;
-	}
-</style>
+<script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
 </head>
-<body onload="test();">
+<body>
 	<div class="container">
-		<h1 class="page-header">Chat</h1>
-		<table class="table table-bordered">
-			<tr>
-				<td>
-					<input type="text" name="user" id="user" class="form-control" placeholder="유저명">
-				</td>
-				<td>
-					<button type="button" class="btn btn-default" id="btnConnect">연결</button>
-					<button type="button" class="btn btn-default" id="btnDisconnect" disabled>종료</button>
-				</td>	
-			</tr>
-			<tr>
-				<td colspan="2"><div id="list"></div></td>
-			</tr>
-			<tr>
-				<td colspan="2">
-					<input type="text" name="msg" id="msg" placeholder="대화 내용을 입력하세요" class="form-control" disabled>
-				</td>
-			</tr>
-		</table>
+		<div class="col-6">
+			<label><b>채팅방</b></label>
+		</div>
+		<div>
+			<div id="msgArea" class="col"></div>
+			<div class="col-6">
+				<div class="input-group mb-3">
+					<input type="text" id="msg" class="form-control" aria-label="Recipient's username" aria-describedby="button-addon2">
+					<div class="input-group-append">
+						<button class="btn btn-outline-secondary" type="button" id="button-send">전송</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-6"></div>
 	</div>
-	<script>
-		// 채팅 서버 주소
-		let url = "ws://localhost:8080/chazazo/chatserver";
+	
+	<script type="text/javascript">
+	//전송 버튼 누르는 이벤트
+	$("#button-send").on("click", function(e) {
+		sendMessage();
+		$('#msg').val('')
+	});
+
+	var sock = new SockJS('http://localhost:8080/chatting');
+	sock.onmessage = onMessage;
+	sock.onclose = onClose;
+	sock.onopen = onOpen;
+
+	function sendMessage() {
+		sock.send($("#msg").val());
+	}
+	//서버에서 메시지를 받았을 때
+	function onMessage(msg) {
 		
-		// 웹소켓
-		let ws;
+		var data = msg.data;
+		var sessionId = null; //데이터를 보낸 사람
+		var message = null;
 		
-		// 연결하기
-		$('#btnConnect').click(function() {
-			
-			// 유저명 확인
-			if($('#user').val().trim() != '') {
-				// 연결
-				ws = new WebSocket(url);
-				
-				// 소켓 이벤트 매핑
-				ws.onopen = function(evt) {
-					print($('#user').val(), '입장했습니다');
-					
-					// -> 1#유저명
-					ws.send('1#' + $('#user').val() + '#');
-					
-					$('#user').attr('readonly', true);
-					$('#btnConnect').attr('disabled', true);
-					$('#btnDisconnect').attr('disabled', false);
-					$('#msg').attr('disabled', false);
-					$('#msg').focus();
-				};
-				
-				ws.onmessage = function(evt) {
-					let index = evt.data.indexOf("#", 2);
-					let no = evt.data.substring(0, 1);
-					let user = evt.data.substring(2, index);
-					let txt = evt.data.substring(index + 1);
-					
-					if(no == '1') {
-						print2(user);
-					} else if (no == '2') {
-						print(user, txt);
-					} else if (no == '3') {
-						print3(user);
-					}
-					$('#list').scrollTop($('#list').prop('scrollHeight'));
-				}
-				
-				ws.onclose = function(evt) {
-					console.log("소켓 닫힘");
-				}
-				
-				ws.onerror = function(evt) {
-					console.log(evt.data);
-				}
-			} else {
-				alert('유저명을 입력하세요');
-				$('#user').focus();
-			}
-		});
+		var arr = data.split(":");
 		
-		// 메세지 전송 및 아이디
-		function print(user, txt) {
-			let temp = '';
-			temp += '<div style="margin-bottom:3px;">';
-			temp += '[' + user + ']';
-			temp += txt;
-			temp += '<span style="font-size:11px; color:#777;">' + new Date().toLocaleTimeString() + '</span>';
-			temp += '</div>';
-			
-			$('#list').append(temp);
+		for(var i=0; i<arr.length; i++){
+			console.log('arr[' + i + ']: ' + arr[i]);
 		}
 		
-		// 다른 클라이언트 접속
-		function print2(user) {
-			let temp = '';
-			temp += '<div style="margin-bottom:3px;">';
-			temp += "'" + user + "이(가) 접속했습니다.";
-			temp += '<span style="font-size:11px; color:#777;"' + new Date().toLocaleTimeString() + '</span>';
-			temp += '</div>';
+		var cur_session = '${userId}'; //현재 세션에 로그인 한 사람
+		console.log("cur_session : " + cur_session);
+		
+		sessionId = arr[0];
+		message = arr[1];
+		
+	    //로그인 한 클라이언트와 타 클라이언트를 분류하기 위함
+		if(sessionId == cur_session){
 			
-			$('#list').append(temp);
+			var str = "<div class='col-6'>";
+			str += "<div class='alert alert-secondary'>";
+			str += "<b>" + sessionId + " : " + message + "</b>";
+			str += "</div></div>";
+			
+			$("#msgArea").append(str);
+		}
+		else{
+			
+			var str = "<div class='col-6'>";
+			str += "<div class='alert alert-warning'>";
+			str += "<b>" + sessionId + " : " + message + "</b>";
+			str += "</div></div>";
+			
+			$("#msgArea").append(str);
 		}
 		
-		// 클라이언트 접속 종료
-		function print3(user) {
-			let temp = '';
-			temp += '<div style="margin-bottom:3px;">';
-			temp += "'" + user + "이(가) 종료했습니다.";
-			temp += '<span style="font-size:11px; color:#777;"' + new Date().toLocaleTimeString() + '</span>';
-			temp += '</div>';
-			
-			$('#list').append(temp);
-		}
+	}
+	//채팅창에서 나갔을 때
+	function onClose(evt) {
 		
-		$('#user').keydown(function() {
-			if(event.keyCode == 13) {
-				$('#btnConnect').click();
-			}
-		});
+		var user = '${userId}';
+		var str = user + " 님이 퇴장하셨습니다.";
 		
-		$('#msg').keydown(function() {
-			if(event.keyCode == 13) {
-				ws.send('2#' + $('#user').val() + '#' + $(this).val());
-				print($('#user').val(), $(this).val());
-				
-				$('#msg').val('');
-				$('#msg').focus();
-			}
-		});
+		$("#msgArea").append(str);
+	}
+	//채팅창에 들어왔을 때
+	function onOpen(evt) {
 		
+		var user = '${userId}';
+		var str = user + "님이 입장하셨습니다.";
 		
-		$('#btnDisconnect').on('click', chatDisconnect);
-		
-		// 새로고침시 웹소켓 연결 해제
-		function test() {
-		    window.onbeforeunload = function (e) {
-				$('#btnDisconnect').click();
-		    };
-		}
-		
-		function chatDisconnect() {
-			ws.send('3#' + $('#user').val() + '#');
-			ws.close();
-			
-			$('#user').attr('readonly', false);
-			$('#user').val('');
-			
-			$('#btnConnect').attr('disabled', false);
-			$('#btnDisconnect').attr('disabled', true);
-			
-			$('#msg').val('');
-			$('#msg').attr('disabled', true);
-		}
-		
+		$("#msgArea").append(str);
+	}
+
 	</script>
 </body>
 </html>

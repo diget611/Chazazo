@@ -26,7 +26,7 @@
 								<div class="col-6 text-bg-warning mb-3 p-3">${chat.chatCon }</div>
 							</div>
 						</c:when>
-						<c:otherwise>$
+						<c:otherwise>
 							<div class="row justify-content-start">
 								<div class="col-6 text-bg-light mb-3 p-3">${chat.chatCon }</div>
 							</div>
@@ -34,9 +34,8 @@
 					</c:choose>
 				</c:forEach>
 			</div>
-			<div class="col-6">
+			<div class="row">
 				<div class="input-group mb-3">
-					
 					<input type="text" id="msg" class="form-control" aria-label="Recipient's username" aria-describedby="button-addon2">
 					<div class="input-group-append">
 						<button class="btn btn-outline-secondary" type="button" id="button-send">전송</button>

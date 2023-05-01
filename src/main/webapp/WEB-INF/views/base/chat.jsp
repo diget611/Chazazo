@@ -30,7 +30,7 @@
 	}
 	
 	function makeFrame(result) {
-		var html = '<iframe src="${pageContext.request.contextPath}/chat/room/' + result + '" style="width:100%; height:300px">';
+		var html = '<iframe src="${pageContext.request.contextPath}/chat/room/' + result + '" style="width:100%; height:300px"></iframe>';
 		$('#content').children().remove();
 		$('#content').append(html);	
 		$('.modal').css('display', 'block');

@@ -145,9 +145,7 @@
 			</div>
 			<jsp:include page="/WEB-INF/views/admin/base/footer.jsp"/>
 		</div>
-		
 		<jsp:include page="/WEB-INF/views/admin/base/chat.jsp"/>
-		
 	</div>
 
 <script src="<%=request.getContextPath()%>/resources/dashmin/js/main.js"></script>

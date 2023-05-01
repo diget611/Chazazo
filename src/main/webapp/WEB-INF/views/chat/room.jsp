@@ -48,6 +48,10 @@
 	</div>
 	
 	<script>
+	window.onload = function() {
+		window.scrollTo(0, document.body.scrollHeight);
+	}
+	
 	 $(document).ready(function(){
 		 var roomIdx = '${roomIdx}';
 		 var username = '${username}'

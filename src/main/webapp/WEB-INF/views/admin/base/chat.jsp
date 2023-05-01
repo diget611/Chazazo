@@ -71,7 +71,8 @@
 	
 	function toChat(e) {
 		$('.modal-body').children().remove();
-		var html = '<iframe src="${pageContext.request.contextPath}/chat/room/' + $(e).attr('id') + '" style="width:100%; height:300px">';
+		var html = '<iframe src="${pageContext.request.contextPath}/chat/room/' + $(e).attr('id') + '" style="width:100%; height:300px" id="chatFrame"></iframe>';
+		document.body.scrollTop = document.body.scrollHeight;
 		$('.modal-body').append(html);
 		
 		var btn = '<button type="button" class="btn btn-primary" id="pageBack">뒤로가기</button>';

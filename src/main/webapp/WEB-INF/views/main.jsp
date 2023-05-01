@@ -45,6 +45,44 @@
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/main.css">
+
+<style>
+	.modal {
+			position: absolute;
+			top: 0;
+			left: 0;
+
+			width: 100%;
+			height: 100%;
+
+			display: none;
+
+			background-color: rgba(0, 0, 0, 0.4);
+	}
+      
+	.modal.show {
+				display: block;
+	}
+
+	.modal_body {
+				position: absolute;
+				top: 50%;
+				left: 50%;
+
+				width: 400px;
+				height: auto;
+
+				padding: 10px;
+
+				text-align: center;
+
+				background-color: rgb(255, 255, 255);
+				border-radius: 10px;
+				box-shadow: 0 2px 3px 0 rgba(34, 36, 38, 0.15);
+
+				transform: translateX(-50%) translateY(-50%);
+	}
+</style>
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/base/header.jsp"/>
@@ -229,8 +267,51 @@
 			</div>
 		</div>
 	</section>
+	<div class="modal">
+		<div class="modal_body">
+			<div id="content">
+				
+			</div>
+			<button type="button" id="modalCloseBtn">확인</button>
+		</div>		
+	</div>
+	<button type="button" id="chatBtn">테스트</button>
 	
 	<jsp:include page="/WEB-INF/views/base/footer.jsp"/>
+	
+	<script>
+		$('#chatBtn').on('click', craeteRoom);
+		
+		function craeteRoom() {
+			$.ajax({
+				url: '${pageContext.request.contextPath}/chat/room',
+				type: 'get',
+				success: function(result) {
+					if(result != '') {
+						console.log(result);
+						makeFrame(result);
+					} else {
+						console.log('방 생성 실패');
+					}
+				},
+				error: function() {
+					alert('에러');
+				}
+			})
+		}
+		
+		function makeFrame(result) {
+			var html = '<iframe src="${pageContext.request.contextPath}/chat/room/' + result + '" style="width:100%; height:300px">';
+			$('#content').children().remove();
+			$('#content').append(html);	
+			$('.modal').css('display', 'block');
+		}
+		
+		$('#modalCloseBtn').on('click', function() {
+			$('.modal').css('display', 'none');
+		});
+		
+	</script>
 	
 	<script>
 		$('input[name="dates"]').daterangepicker();

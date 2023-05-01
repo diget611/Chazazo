@@ -10,7 +10,7 @@ import lombok.Getter;
 @Setter
 public class ChatDto {
 	
-	private int roomIdx;
+	private String roomIdx;
 	private String chatCon;
 	private String sender;
 	

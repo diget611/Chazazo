@@ -61,8 +61,6 @@
                     str += "</div></div>";
                     $("#msgArea").append(str);
                 }
-
-                $("#msgArea").append(str);
             });
 
          });
@@ -73,7 +71,7 @@
              console.log(username + ":" + msg);
              
              stomp.send('/pub/chat/message' , {}, JSON.stringify({roomIdx: roomIdx, chatCon: msg, sender: username}));
-             msg.value = '';
+             $('#msg').val('');
          });
      });
 	</script>

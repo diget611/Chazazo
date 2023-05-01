@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import kh.spring.chazazo.chat.model.dto.ChatDto;
+import kh.spring.chazazo.chat.model.dto.ChatRoomDto;
 import kh.spring.chazazo.chat.model.service.ChatService;
 
 @RestController
@@ -36,7 +37,7 @@ public class ChatController {
 	}
 	
 	@GetMapping("/room/{roomIdx}")
-	public ModelAndView enterChat(ModelAndView mv, Principal prin, @PathVariable int roomIdx) {
+	public ModelAndView enterChat(ModelAndView mv, Principal prin, @PathVariable String roomIdx) {
 		// TODO: chat_log에서 roomIdx에 맞는 chat_log list 받기
 		String username = prin.getName();
 		mv.addObject("username", username);
@@ -45,10 +46,32 @@ public class ChatController {
 		return mv;
 	}
 	
+	@GetMapping("/room")
+	public String createRoom(Principal prin) {
+		String result = "";
+		String username = prin.getName();
+		if(service.hasRoom(username) >= 1) {
+			result = service.selectRoom(username);
+		} else {
+			ChatRoomDto room = new ChatRoomDto();
+			Map<String, String> data = new HashMap<String, String>();
+			data.put("username", username);
+			data.put("idx", room.getIdx());
+			if(service.createRoom(data) == 1) result = room.getIdx();
+		}
+			
+		return result;
+	}
+	
 	@MessageMapping("/chat/message")
     public void message(ChatDto chat) {
-		// TODO: 메시지 보내면 chat_log 테이블에 insert
-		template.convertAndSend("/sub/chat/room/" + chat.getRoomIdx(), chat);
+		if(service.insertChat(chat) == 1) {
+			template.convertAndSend("/sub/chat/room/" + chat.getRoomIdx(), chat);			
+		} else {
+			chat.setChatCon("문제 발생");
+			chat.setSender("null");
+			template.convertAndSend("/sub/chat/room/" + chat.getRoomIdx(), chat);
+		}
     }
 	
 }

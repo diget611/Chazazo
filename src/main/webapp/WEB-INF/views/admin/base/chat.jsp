@@ -2,6 +2,9 @@
     pageEncoding="UTF-8"%>
 <button type="button" id="chatBtn" class="btn btn-lg btn-primary btn-lg-square back-to-top" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
 	<span class="material-symbols-outlined">chat</span>
+	<span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" id="chatCheck">
+    	<span class="visually-hidden">unread messages</span>
+  	</span>
 </button>
 
 <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -21,10 +24,20 @@
 </div>
 
 <script>
-	$('#chatBtn').on('click', chatRoomList);
-	$('#pageBack').on('click', function() {
-		console.log('dddd');
+	$(document).ready(function() {
+		$.ajax({
+			url: '${pageContext.request.contextPath}/chat/check',
+			type: 'get',
+			success: function(result) {
+				$('#chatCheck').prepend(result);
+			},
+			error: function() {
+				alert('에러');
+			}
+		});
 	})
+
+	$('#chatBtn').on('click', chatRoomList);
 	
 	function chatRoomList() {
 		$.ajax({
@@ -42,6 +55,7 @@
 	
 	function makeList(result) {
 		$('.modal-body').children().remove();
+		$('.modal-footer').children().remove();
 		var html = '';
 		for(var i in result) {
 			html += '<div class="alert alert-warning mb-3" onclick="toChat(this)" id="' + result[i].idx + '">'
@@ -50,6 +64,9 @@
 			html += '</div>'
 		}
 		$('.modal-body').append(html);
+		
+		var btn = '<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>';
+		$('.modal-footer').append(btn);
 	}
 	
 	function toChat(e) {
@@ -59,5 +76,7 @@
 		
 		var btn = '<button type="button" class="btn btn-primary" id="pageBack">뒤로가기</button>';
 		$('.modal-footer').append(btn);
+		
+		$('#pageBack').on('click', chatRoomList);
 	}
 </script>

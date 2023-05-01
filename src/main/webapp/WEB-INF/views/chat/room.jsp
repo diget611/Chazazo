@@ -50,7 +50,7 @@
 	<script>
 	 $(document).ready(function(){
 		 var roomIdx = '${roomIdx}';
-		 var username = '${username}';
+		 var username = '${username}'
 		 
          var sock = new SockJS("${pageContext.request.contextPath}/stomp/chat");
          var stomp = Stomp.over(sock);
@@ -61,11 +61,11 @@
             stomp.subscribe("/sub/chat/room/" + roomIdx, function (chat) {
                 var content = JSON.parse(chat.body);
 
-                var writer = '${username}';
+                var sender = content.sender;
                 var message= $('#msg').val();
                 var str = '';
 
-                if(writer == username){
+                if(username == sender){
 					str += '<div class="row justify-content-end">'
 					str += '<div class="col-6 text-bg-warning mb-3 p-3">' + content.chatCon + '</div>'
 					str += '</div>'
@@ -83,8 +83,6 @@
          $("#button-send").on("click", function(e){
              var msg = $('#msg').val();
 	
-             console.log(username + ":" + msg);
-             
              stomp.send('/pub/chat/message' , {}, JSON.stringify({roomIdx: roomIdx, chatCon: msg, sender: username}));
              $('#msg').val('');
          });

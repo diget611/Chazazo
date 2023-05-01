@@ -13,7 +13,11 @@ public interface ChatService {
 	public int createRoom(Map<String, String> data);
 	public int hasRoom(String username);
 	public String selectRoom(String username);
+	public int updateChat(Map<String, String> data);
 	public List<ChatLogDto> selectChatList(String roomIdx);
 	public int insertChat(ChatDto chat);
-	
+	public String checkAuth(String username);
+	public int countForAdmin();	
+	public int countForMember(String username);
+
 }

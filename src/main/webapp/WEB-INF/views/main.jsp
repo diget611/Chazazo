@@ -61,13 +61,13 @@
 				display: block;
 	}
 
-	.modal_body {
+	.modal-body {
 				position: fixed;
 				right: -110px;
 				bottom: -250px;
 				z-index: 98;
 				width: 400px;
-				height: auto;
+				height: 670px;
 				padding: 10px;
 				text-align: center;
 				background-color: rgb(255, 255, 255);

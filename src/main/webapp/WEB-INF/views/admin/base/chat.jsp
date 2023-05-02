@@ -57,7 +57,7 @@
 		$('.modal-footer').children().remove();
 		var html = '';
 		for(var i in result) {
-			html += '<div class="alert alert-warning mb-3" onclick="toChat(this)" id="' + result[i].idx + '">'
+			html += '<div class="alert alert-warning mb-3" onclick="toChat(this)" id="' + result[i].idx + '">'	
 			html += '<div>' + result[i].sender  + '</div>'
 			html += '<div>' + result[i].chatCon + '</div>'
 			html += '</div>'
@@ -83,6 +83,7 @@
 			url: '${pageContext.request.contextPath}/chat/check',
 			type: 'get',
 			success: function(result) {
+				console.log(result);
 				$('#chatCheck').text('');
 				$('#chatCheck').prepend(result);
 			},

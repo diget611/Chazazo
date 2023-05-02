@@ -24,6 +24,18 @@
 </div>
 
 <script>
+	$(document).ready(function() {
+		$.ajax({
+			url: '${pageContext.request.contextPath}/chat/check',
+			type: 'get',
+			success: function(result) {
+				$('#chatCheck').prepend(result);
+			},
+			error: function() {
+				alert('에러');
+			}
+		});
+	})
 	$('#chatBtn').on('click', chatRoomList);
 	
 	function chatRoomList() {
@@ -66,5 +78,17 @@
 		$('.modal-footer').append(btn);
 		
 		$('#pageBack').on('click', chatRoomList);
+		
+		$.ajax({
+			url: '${pageContext.request.contextPath}/chat/check',
+			type: 'get',
+			success: function(result) {
+				$('#chatCheck').text('');
+				$('#chatCheck').prepend(result);
+			},
+			error: function() {
+				alert('에러');
+			}
+		});
 	}
 </script>

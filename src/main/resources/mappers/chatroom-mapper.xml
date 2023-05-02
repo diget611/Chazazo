@@ -6,6 +6,10 @@
 		VALUES (#{idx}, DEFAULT, DEFAULT, (SELECT IDX FROM MEMBER WHERE USERNAME = #{username}))
 	</insert>
 	
+	<update id="chatEnd">
+		UPDATE CHAT_ROOM SET END_DATE = SYSTIMESTAMP WHERE IDX = #{roomIdx}
+	</update>
+	
 	<select id="hasRoom" resultType="_int">
 		SELECT COUNT(*)
 		  FROM CHAT_ROOM WHERE MEMBER_IDX = (SELECT IDX FROM MEMBER WHERE USERNAME = #{username}) AND END_DATE IS NULL

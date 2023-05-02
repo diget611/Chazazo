@@ -10,6 +10,7 @@ import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -69,9 +70,14 @@ public class ChatController {
 		return result;
 	}
 	
+	@PatchMapping("/room")
+	public int chatEnd(String roomIdx) {
+		int result = service.chatEnd(roomIdx);
+		return result;
+	}
+ 	
 	@GetMapping("/check")
 	public int checkChat(Principal prin) {
-		System.out.println("123123123123");
 		int result = 0;
 		if(prin.getName() == null) {
 			result = 0;

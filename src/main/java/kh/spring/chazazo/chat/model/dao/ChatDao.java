@@ -57,5 +57,13 @@ public class ChatDao {
 	public int countForMember(String username) {
 		return sqlSession.selectOne("chatlog.countForMember", username);
 	}
+	
+	public int chatEnd(String roomIdx) {
+		return sqlSession.update("chatroom.chatEnd", roomIdx);
+	}
+	
+	public int updateStatus(String roomIdx) {
+		return sqlSession.update("chatlog.updateStatus", roomIdx);
+	}
 
 }

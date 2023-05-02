@@ -19,5 +19,6 @@ public interface ChatService {
 	public String checkAuth(String username);
 	public int countForAdmin();	
 	public int countForMember(String username);
+	public int chatEnd(String roomIdx);
 
 }

@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import kh.spring.chazazo.chat.model.dao.ChatDao;
 import kh.spring.chazazo.chat.model.dto.ChatDto;
@@ -65,6 +66,17 @@ public class ChatServiceImpl implements ChatService{
 	@Override
 	public int countForMember(String username) {
 		return dao.countForMember(username);
+	}
+
+	@Override
+	@Transactional
+	public int chatEnd(String roomIdx) {
+		int result = 0;
+		if(dao.chatEnd(roomIdx) == 1) {
+			dao.updateStatus(roomIdx);
+			result = 1;
+		}
+		return result;
 	}
 
 }

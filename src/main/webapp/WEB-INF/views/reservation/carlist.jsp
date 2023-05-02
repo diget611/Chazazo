@@ -359,7 +359,7 @@
  				html += '			<div class="dot-hr"></div>'; 
  				html += '				<span class="pull-left"><b> 대여지점 : ' + car.name + '</b>  </span>'; 
  				html += '				<span class="proerty-price pull-right"> ' + car.price + '원</span>'; 
- 				html += '			<p style="display: none;">Suspendisse ultricies Suspendisse ultricies Nulla quis dapibus nisl. Suspendisse ultricies commodo arcu nec pretium ...</p>'; 
+ 				html += '			<p style="display: none;">차량 예약 전 대여 규정사항을 필독해주세요.</p>'; 
  				html += '			<div class="property-icon">'; 
  				html += '				<img src="./resources/garoestate/assets/img/icon/clock.png">' + car.year + '년|'; 
  				html += '				<img src="./resources/garoestate/assets/img/icon/fuel.png">' + car.fuelname + '|'; 

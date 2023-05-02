@@ -35,7 +35,7 @@ public class ReviewController {
 	
 
 	
-	@PostMapping("/postReview")
+	@PostMapping("/post")
 	public int insertReview(@RequestBody ReviewDto data) {
 	
 		int result = rService.insertReview(data);

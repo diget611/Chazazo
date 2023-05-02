@@ -24,6 +24,7 @@
 <link href="<%=request.getContextPath()%>/resources/garoestate/assets/fonts/icon-7-stroke/css/pe-icon-7-stroke.css" rel="stylesheet">
 <link href="<%=request.getContextPath()%>/resources/garoestate/assets/fonts/icon-7-stroke/css/helper.css" rel="stylesheet">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/garoestate/assets/css/bootstrap-select.min.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/garoestate/bootstrap/css/star.css">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/garoestate/bootstrap/css/bootstrap.min.css">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/garoestate/assets/css/icheck.min_all.css">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/garoestate/assets/css/price-range.css">
@@ -93,6 +94,21 @@
 											</tbody>
 										</table>
 										<div id="insertReviewbody">
+											<form class="mb-3" name="myform" id="myform" method="post">
+												<fieldset>
+													<span class="text-bold">별점을 선택해주세요</span>
+													<input type="radio" name="reviewStar" value="5" id="rate1"><label
+														for="rate1">★</label>
+													<input type="radio" name="reviewStar" value="4" id="rate2"><label
+														for="rate2">★</label>
+													<input type="radio" name="reviewStar" value="3" id="rate3"><label
+														for="rate3">★</label>
+													<input type="radio" name="reviewStar" value="2" id="rate4"><label
+														for="rate4">★</label>
+													<input type="radio" name="reviewStar" value="1" id="rate5"><label
+														for="rate5">★</label>
+												</fieldset>
+											</form>
 											<table class="table table-insert">
 												<tr>
 													<td width="20%">
@@ -103,6 +119,7 @@
 															 <input type="text" name="reviewcontent" style=" width:400px;  border:4px solid #4ea0d8; padding-rigth:30px;"  placeholder="리뷰를 작성해주세요" ></input>
 														</div>
 													</td>
+									
 													<td>
 														<button type="button" id="reviewbtn" onclick="postReview()" style="margin-left:10px; " class="btn btn-default">리뷰쓰기</button>
 													</td>
@@ -119,6 +136,8 @@
 function reportSwal() {
 	swal("현재 로그아웃 상태입니다.","신고하려면 로그인을 해주세요.", {icon: "warning"});
 }
+
+//별점
 
 
 //리뷰등록
@@ -139,7 +158,7 @@ function postReview() {
 			"content" : content
 	}
 	  $.ajax({
-          url:'${pageContext.request.contextPath}/postReview',
+          url:'${pageContext.request.contextPath}/post',
           contentType: 'application/json; charset=utf-8',
           type: 'post',
           dataType:'json',

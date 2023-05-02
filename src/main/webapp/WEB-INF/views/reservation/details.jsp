@@ -215,7 +215,6 @@
 				html += '<section>'
 				html += '	<div style="text-align:center">';
 				html += '		<h2>결제 정보</h2>';
-				html += '		<h2>${info.idx}</h2>';
 				html += '	</div>';
 				html += '	<div style="overflow: hidden;">';
 				html += '		<div class="blog-asside-right col-md-12" style="padding: 80px;" >';
@@ -262,7 +261,7 @@
 		html += '		</div>';
 		html += '		<div class="form-group">';
 		html += '					<h6 style="text-align:center">운전자 정보 </h6>';
-		html += '						<input type="text" id="useridx"  value="'+ result.info.idx+'" >'
+		html += '						<input type="hidden" id="useridx"  value="'+ result.info.idx+'" >'
 		html += '						<label class="small">이름</label>  <div> <input type="text" id="name" name ="name" class="form-control"  value="'+ result.info.name+'" readonly> </div>';
 		html += '						<label class="small">생년월일</label>  <div> <input type="text" id="birth" name="birth" class="form-control" value="'+ result.info.birth+'" readonly> </div>';
 		html += '						<label class="small">휴대폰 번호</label> <div> <input type="text"  id="phone" name="phoneNumber" class="form-control"  value="'+ result.info.phoneNumber+'" readonly> </div>';
@@ -316,7 +315,7 @@
 		} else if(!testName.test($('[name=name]').val()) | !testBirth.test($('[name=birth]').val())
 		| !testPhone.test($('[name=phoneNumber]').val()) | !testLicense.test($('[name=license]').val())
 		| !testEmail.test($('[name=email]').val())) {
-			alert("예약 정보를 다시 확인해주세요");
+			swal("예약정보를 다시 확인해주세요","형식에 맞게 정보를 입력해주세요", {icon: "warning"});
 			return false;	
 		} else if($('#finalprice').val() == 0){
 			alert("결제할 정보가 없습니다")

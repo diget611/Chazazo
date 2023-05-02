@@ -37,7 +37,6 @@ public class ChatController {
 	
 	@GetMapping("/room/{roomIdx}")
 	public ModelAndView enterChat(ModelAndView mv, Principal prin, @PathVariable String roomIdx) {
-		// TODO: 채팅방에 들어와서 채팅 확인을 하면 status 업데이트
 		String username = prin.getName();
 
 		Map<String, String> data = new HashMap<String, String>();

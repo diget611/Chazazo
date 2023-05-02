@@ -2,8 +2,8 @@
 
 body {
 	overflow: overlay;
-	
 }
+
 body::-webkit-scrollbar {
 	display: none;
 }
@@ -14,7 +14,40 @@ body::-webkit-scrollbar {
     font-weight: 700;
     font-style: normal;
 }
+
 body {
-	 font-family: 'TheJamsil5Bold';
-	 
+	 font-family: 'TheJamsil5Bold';	 
+}
+
+.chat-btn {
+	position: fixed;
+    right: 45px;
+    bottom: 45px;
+    z-index: 99;
+}
+
+.btn-square {
+	padding: 10px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: normal;
+    border-radius: 50px;
+}
+
+.round-pill {
+	border-radius: 50rem !important;
+	left: 87% !important; 
+	top: -5px !important;
+	position: absolute !important;
+	display: inline-block;
+	padding: 0.5em 0.9em;
+	font-size: .75em;
+	font-weight: 700;
+	line-height: 1;
+	color: #fff;
+	text-align: center;
+	white-sapce: nowrap;
+	vertical-align: baseline;
+	background-color: #dc3545 !important;
 }

@@ -9,7 +9,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
 <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700,800' rel='stylesheet' type='text/css'>
-
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,-25" />
 
 
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/garoestate/assets/css/normalize.css">
@@ -51,12 +51,9 @@
 			position: absolute;
 			top: 0;
 			left: 0;
-
 			width: 100%;
 			height: 100%;
-
 			display: none;
-
 			background-color: rgba(0, 0, 0, 0.4);
 	}
       
@@ -65,21 +62,17 @@
 	}
 
 	.modal_body {
-				position: absolute;
-				top: 50%;
-				left: 50%;
-
+				position: fixed;
+				right: -110px;
+				bottom: -250px;
+				z-index: 98;
 				width: 400px;
 				height: auto;
-
 				padding: 10px;
-
 				text-align: center;
-
 				background-color: rgb(255, 255, 255);
 				border-radius: 10px;
 				box-shadow: 0 2px 3px 0 rgba(34, 36, 38, 0.15);
-
 				transform: translateX(-50%) translateY(-50%);
 	}
 </style>

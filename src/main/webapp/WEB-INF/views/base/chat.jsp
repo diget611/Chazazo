@@ -3,10 +3,13 @@
 <div class="modal">
 	<div class="modal_body">
 		<div id="content"></div>
-		<button type="button" id="modalCloseBtn">확인</button>
+		<button type="button" id="modalCloseBtn" class="btn btn-secondary">닫기</button>
 	</div>		
 </div>
-<button type="button" id="chatBtn">테스트</button>
+<button type="button" class="chat-btn btn btn-primary btn-square" id="chatBtn">
+	<span class="material-symbols-outlined">chat</span>
+	<span class="round-pill bg-danger" id="chatCheck"></span>
+</button>
 
 <script>
 	$('#chatBtn').on('click', craeteRoom);
@@ -30,7 +33,7 @@
 	}
 	
 	function makeFrame(result) {
-		var html = '<iframe src="${pageContext.request.contextPath}/chat/room/' + result + '" style="width:100%; height:300px"></iframe>';
+		var html = '<iframe src="${pageContext.request.contextPath}/chat/room/' + result + '" style="width:100%; height:600px; border: none;"></iframe>';
 		$('#content').children().remove();
 		$('#content').append(html);	
 		$('.modal').css('display', 'block');

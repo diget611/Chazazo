@@ -10,7 +10,6 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <spring:eval expression="@keyProperty['kakao-admin-key']" var="key"/>
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=${key }"></script>
 
 <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
 <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
@@ -18,34 +17,12 @@
 
 <!-- CSS only -->
 
-<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/garoestate/assets/css/normalize.css">
-<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/garoestate/assets/css/font-awesome.min.css">
-<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/garoestate/assets/css/fontello.css">
-<link href="<%=request.getContextPath()%>/resources/garoestate/assets/fonts/icon-7-stroke/css/pe-icon-7-stroke.css" rel="stylesheet">
-<link href="<%=request.getContextPath()%>/resources/garoestate/assets/fonts/icon-7-stroke/css/helper.css" rel="stylesheet">
-<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/garoestate/assets/css/bootstrap-select.min.css">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/garoestate/bootstrap/css/star.css">
-<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/garoestate/bootstrap/css/bootstrap.min.css">
-<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/garoestate/assets/css/icheck.min_all.css">
-<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/garoestate/assets/css/price-range.css">
-<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/garoestate/assets/css/style.css">
-<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/garoestate/assets/css/responsive.css">
+
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.min.css">
 
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-<script src="<%=request.getContextPath()%>/resources/garoestate/assets/js/modernizr-2.6.2.min.js"></script>
-<script src="<%=request.getContextPath()%>/resources/garoestate/assets/js/jquery-1.10.2.min.js"></script>
-<script src="<%=request.getContextPath()%>/resources/garoestate/bootstrap/js/bootstrap.min.js"></script>
-<script src="<%=request.getContextPath()%>/resources/garoestate/assets/js/bootstrap-select.min.js"></script>
-<script src="<%=request.getContextPath()%>/resources/garoestate/assets/js/bootstrap-hover-dropdown.js"></script>
-<script src="<%=request.getContextPath()%>/resources/garoestate/assets/js/easypiechart.min.js"></script>
-<script src="<%=request.getContextPath()%>/resources/garoestate/assets/js/jquery.easypiechart.min.js"></script>
-<script src="<%=request.getContextPath()%>/resources/garoestate/assets/js/wow.js"></script>
-<script src="<%=request.getContextPath()%>/resources/garoestate/assets/js/icheck.min.js"></script>
-<script src="<%=request.getContextPath()%>/resources/garoestate/assets/js/owl.carousel.min.js"></script>
-<script src="<%=request.getContextPath()%>/resources/garoestate/assets/js/price-range.js"></script>
-<script src="<%=request.getContextPath()%>/resources/garoestate/assets/js/main.js"></script>
-<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/main.css">
+
 </head>
 <body>
 					<div class="col-md-8 single-property-content">
@@ -94,21 +71,14 @@
 											</tbody>
 										</table>
 										<div id="insertReviewbody">
-											<form class="mb-3" name="myform" id="myform" method="post">
-												<fieldset>
-													<span class="text-bold">별점을 선택해주세요</span>
-													<input type="radio" name="reviewStar" value="5" id="rate1"><label
-														for="rate1">★</label>
-													<input type="radio" name="reviewStar" value="4" id="rate2"><label
-														for="rate2">★</label>
-													<input type="radio" name="reviewStar" value="3" id="rate3"><label
-														for="rate3">★</label>
-													<input type="radio" name="reviewStar" value="2" id="rate4"><label
-														for="rate4">★</label>
-													<input type="radio" name="reviewStar" value="1" id="rate5"><label
-														for="rate5">★</label>
-												</fieldset>
-											</form>
+<p class="star_rating">
+    <a href="#" class="on">★</a>
+    <a href="#" class="on">★</a>
+    <a href="#" class="on">★</a>
+    <a href="#">★</a>
+    <a href="#">★</a>
+</p>
+
 											<table class="table table-insert">
 												<tr>
 													<td width="20%">
@@ -119,7 +89,6 @@
 															 <input type="text" name="reviewcontent" style=" width:400px;  border:4px solid #4ea0d8; padding-rigth:30px;"  placeholder="리뷰를 작성해주세요" ></input>
 														</div>
 													</td>
-									
 													<td>
 														<button type="button" id="reviewbtn" onclick="postReview()" style="margin-left:10px; " class="btn btn-default">리뷰쓰기</button>
 													</td>
@@ -138,6 +107,13 @@ function reportSwal() {
 }
 
 //별점
+$( ".star_rating a" ).click(function() {
+     $(this).parent().children("a").removeClass("on");
+     $(this).addClass("on").prevAll("a").addClass("on");
+     return false;
+});
+
+
 
 
 //리뷰등록

@@ -2613,11 +2613,12 @@ th {
 	background-color: transparent;
 }
 .table-insert{
-	margin-top: 40px;
+	margin-top: 10px;
 }
 .table-insert>tbody>tr>td {
-	padding-top: 40px;
-	border-top: 2px solid #4EA0D8;
+	padding-top: 10px;
+	
+	
 }
 
 

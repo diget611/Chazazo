@@ -16,15 +16,17 @@
 		SELECT COUNT(*) FROM LOCATION
 	</select>
 	
-	<select id="selectNameList" resultType="map">
-		SELECT NAME FROM LOCATION
+	<select id="selectNameList" resultType="LocationRespDto">
+		SELECT NAME, IDX FROM LOCATION
 	</select>
+	
+	
 	
 	<select id="likeLocation" resultType = "LocationRespDto">
 		
       select l.name, l.PHONE_NUMBER, l.BUSINESS_HOURS, l.ADDRESS 
       from location l left join like_location on idx = like_location.location_idx 
-        where member_idx in (select idx from member where username=#{username})
+      where member_idx in (select idx from member where username=#{username})
 	</select>
 	
 	<select id="checkLike">
@@ -35,6 +37,11 @@
 		INSERT INTO LIKE_LOCATION VALUES (#{locationIdx}, #{memberIdx})
 	
 	</insert>
+	
+	<select id="getLikeLoction" resultType="LocationRespDto">
+		SELECT * FROM LIKE_LOCATION WHERE LOCATION_IDX = #{locationIdx} AND MEMBER_IDX = #{memberIdx}
+	
+	</select>
 	
 	<delete id="deleteFav" >
 		DELETE FROM LIKE_LOCATION WHERE LOCATION_IDX = #{locationIdx} AND MEMBER_IDX = #{memberIdx}

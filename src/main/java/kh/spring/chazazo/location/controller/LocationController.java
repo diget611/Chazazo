@@ -7,6 +7,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -31,6 +32,7 @@ public class LocationController {
 	@GetMapping("/location")
 	public ModelAndView viewLocationList(ModelAndView mv) {
 		// 지점 전체 조회
+		mv.addObject("location", lService.selectLocation());
 		mv.setViewName("/temp/location");
 		return mv;
 	}
@@ -68,17 +70,26 @@ public class LocationController {
 	}
 	
 	//찜하기
-	@PostMapping("profile/favorites")
+	@PostMapping("profile/like")
 	@ResponseBody
-	public int insertFavLocation(@RequestBody LocationReqDto dto) {
+	public int insertFavLocation( Integer idx, Principal prin) {
 		
-		int result = lService.insertFavLocation(dto);
-		return result;
+		String usename = prin.getName();
+		Integer userId = Integer.parseInt(usename);
+		boolean Liked = lService.getLike(userId, idx);
+		if(Liked) {
+			lService.deleteFav(userId, idx);
+			return 0;
+		}else {
+			LocationReqDto dto = new LocationReqDto();
+			dto.setLocationIdx(idx);
+			dto.setMemberIdx(userId);
+			lService.insertFavLocation(dto);
+			return 1;
+		}
+		
+	
 	}
 	
-	@DeleteMapping("profile/favorites")
-	public int deleteFavLocation(int idx) {
-		int result = lService.deleteFav(idx);
-		return result;
-	}
+	
 }

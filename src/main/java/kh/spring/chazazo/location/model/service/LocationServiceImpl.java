@@ -41,8 +41,21 @@ public class LocationServiceImpl implements LocationService {
 	}
 
 	@Override
-	public int deleteFav(int idx) {
-		return dao.deleteFav(idx);
+	public boolean getLike(Integer memberIdx, Integer idx) {
+		LocationRespDto dto = dao.getLike(memberIdx, idx);
+		return dto != null;
 	}
+
+	@Override
+	public int deleteFav(Integer memberIdx, Integer idx) {
+		
+		return dao.deleteFav(memberIdx, idx);
+	}
+
+	@Override
+	public List<LocationRespDto> selectLocation() {
+		return dao.selectLocation();
+	}
+
 
 }

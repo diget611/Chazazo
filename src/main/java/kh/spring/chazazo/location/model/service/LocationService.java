@@ -14,5 +14,8 @@ public interface LocationService {
 		//나의 관심 지점
 		public List<LocationRespDto> selectLikeLocation(String username);
 		public int insertFavLocation(LocationReqDto dto);
-		public int deleteFav(int idx);
+		public boolean getLike(Integer memberIdx, Integer idx);
+		public int deleteFav(Integer memberIdx, Integer idx);
+		public List<LocationRespDto> selectLocation();
+
 }

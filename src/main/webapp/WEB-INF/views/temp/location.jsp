@@ -51,23 +51,14 @@
 						<h4>지점 안내 </h4>
 						<div class="footer-title-line"></div>
 						<ul class="footer-menu">
-							<li ><a href="#">강남점</a>
-							<div>
-								<div class="w3-border w3-center w3-padding">
-									<c:if test="${ username == null }">
-										추천 기능은 <button type="button" id="newLogin"><b class="w3-text-blue">로그인</b></button> 후 사용 가능합니다.<br />
-										<i class="fa fa-heart" style="font-size:16px;color:red"></i>
-										<span class="rec_count"></span>					
-									</c:if>
-									<c:if test="${ username != null }">
-										<button class="w3-button w3-black w3-round" id="rec_update">
-											<i class="fa fa-heart" style="font-size:16px;color:red"></i>
-											&nbsp;<span class="rec_count"></span>
-										</button> 
-									</c:if>
-								</div>
-							</div>
-							</li> 
+							<c:forEach items="${location }" var="list">
+								<li><a href="#">${list.name }</a></li>
+								<button class="w3-button w3-black w3-round" id="rec_update">
+								<i class="fa fa-heart" style="font-size:16px;color:red"></i>
+								&nbsp;
+								</button> 
+							</c:forEach>
+							<li ><a href="#">강남점</a></li> 
 							<li><a href="#">용산점</a></li> 
 							<li><a href="#">수원점</a></li> 
 							<li><a href="#">송도점</a></li> 
@@ -168,10 +159,31 @@ function makeOutListener(infowindow) {
 	$("#rec_update").on("click", like);
 	
 	function like(){
-		var locationIdx = $('#locationIdx').val();
+		var idx = $('#idx').val();
+		$.ajax({
+			url: '${pageContext.request.contextPath}/profile/like',
+			type: 'POST',
+			dataType:'json',
+			data:{
+				idx : idx
+			},
+			success: function(result){
+				console.log(result);
+				if(result == 1){
+					alert("찜완료");
+				}else if(result == 0){
+					alert("찜제거");
+				}
+					
+				},
+			error:function(){
+				alert("오류");
+			}
+			});
 		
+		}
 		
-	}
+	
 	
 		
 	</script>

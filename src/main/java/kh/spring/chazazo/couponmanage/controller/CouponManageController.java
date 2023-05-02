@@ -13,35 +13,4 @@ public class CouponManageController {
 		mv.setViewName("/member/coupon");
 		return mv;
 	}
-	
-//	@GetMapping
-	public ModelAndView viewInsertCoupon(ModelAndView mv) {
-		// 쿠폰 등록 페이지 조회
-		return mv;
-	}
-	
-//	@GetMapping
-	public ModelAndView insertCoupon(ModelAndView mv) {
-		// 쿠폰 등록
-		return mv;
-	}
-
-//	@GetMapping
-	public ModelAndView viewUpdateCoupon(ModelAndView mv) {
-		// 쿠폰 수정 페이지 조회
-		return mv;
-	}
-
-//	@GetMapping
-	public ModelAndView updateCoupon(ModelAndView mv) {
-		// 쿠폰 수정
-		return mv;
-	}
-
-//	@GetMapping
-	public ModelAndView deleteCoupon(ModelAndView mv) {
-		// 쿠폰 삭제
-		return mv;
-	}
-
 }

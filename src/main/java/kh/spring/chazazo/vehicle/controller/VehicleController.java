@@ -95,42 +95,4 @@ public class VehicleController {
 		return new Gson().toJson(result);		
 	}
 	
-	
-	// 관리자
-	public ModelAndView viewVehicleList(ModelAndView mv) {
-		// 관리자 페이지 차량 관리
-		return mv;
-	}
-	
-	// 관리자
-	public ModelAndView viewVehicleOne(ModelAndView mv) {
-		// 관리자 페이지 차량 관리 / 예약, 결제 페이지 차량 정보 출력
-		return mv;
-	}
-	// 관리자
-	public ModelAndView viewInsertVehicle(ModelAndView mv) {
-		// 관리자 페이지 차량 관리
-		return mv;
-	}
-	// 관리자
-	public ModelAndView insertVehicle(ModelAndView mv) {
-		// 관리자 페이지 차량 관리
-		return mv;
-	}
-	// 관리자
-	public ModelAndView viewUpdateVehicle(ModelAndView mv) {
-		// 관리자 페이지 차량 관리
-		return mv;
-	}
-	// 관리자
-	public ModelAndView updateVehicle(ModelAndView mv) {
-		// 관리자 페이지 차량 관리
-		return mv;
-	}
-	// 관리자
-	public ModelAndView deleteVehicle(ModelAndView mv) {
-		// 관리자 페이지 차량 관리
-		return mv;
-	}
-	
 }

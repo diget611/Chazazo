@@ -38,34 +38,4 @@ public class LocationController {
 		return mv;
 	}
 	
-	// 관리자
-	public ModelAndView viewInsertLocation(ModelAndView mv) {
-		// 지점 등록 페이지 조회
-		return mv;
-	}
-
-	// 관리자
-	public ModelAndView insertLocation(ModelAndView mv) {
-		// 지점 등록
-		return mv;
-	}
-
-	// 관리자
-	public ModelAndView viewUpdatLocation(ModelAndView mv) {
-		// 지점 정보 수정 페이지 조회
-		return mv;
-	}
-	
-	// 관리자
-	public ModelAndView updateLocation(ModelAndView mv) {
-		// 지점 정보 수정
-		return mv;
-	}
-
-	// 관리자
-	public ModelAndView deleteLocation(ModelAndView mv) {
-		// 지점 정보 삭제
-		return mv;
-	}
-
 }

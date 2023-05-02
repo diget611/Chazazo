@@ -18,10 +18,33 @@
 <!-- CSS only -->
 
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/garoestate/bootstrap/css/star.css">
-
+<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/garoestate/assets/css/normalize.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/garoestate/assets/css/font-awesome.min.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/garoestate/assets/css/fontello.css">
+<link href="<%=request.getContextPath()%>/resources/garoestate/assets/fonts/icon-7-stroke/css/pe-icon-7-stroke.css" rel="stylesheet">
+<link href="<%=request.getContextPath()%>/resources/garoestate/assets/fonts/icon-7-stroke/css/helper.css" rel="stylesheet">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/garoestate/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/garoestate/assets/css/icheck.min_all.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/garoestate/assets/css/price-range.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/garoestate/assets/css/style.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/garoestate/assets/css/responsive.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.min.css">
 
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="<%=request.getContextPath()%>/resources/garoestate/assets/js/modernizr-2.6.2.min.js"></script>
+<script src="<%=request.getContextPath()%>/resources/garoestate/assets/js/jquery-1.10.2.min.js"></script>
+<script src="<%=request.getContextPath()%>/resources/garoestate/bootstrap/js/bootstrap.min.js"></script>
+<script src="<%=request.getContextPath()%>/resources/garoestate/assets/js/bootstrap-select.min.js"></script>
+<script src="<%=request.getContextPath()%>/resources/garoestate/assets/js/bootstrap-hover-dropdown.js"></script>
+<script src="<%=request.getContextPath()%>/resources/garoestate/assets/js/easypiechart.min.js"></script>
+<script src="<%=request.getContextPath()%>/resources/garoestate/assets/js/jquery.easypiechart.min.js"></script>
+<script src="<%=request.getContextPath()%>/resources/garoestate/assets/js/wow.js"></script>
+<script src="<%=request.getContextPath()%>/resources/garoestate/assets/js/icheck.min.js"></script>
+<script src="<%=request.getContextPath()%>/resources/garoestate/assets/js/owl.carousel.min.js"></script>
+<script src="<%=request.getContextPath()%>/resources/garoestate/assets/js/price-range.js"></script>
+<script src="<%=request.getContextPath()%>/resources/garoestate/assets/js/main.js"></script>
+<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/main.css">
+
 
 </head>
 <body>
@@ -72,11 +95,11 @@
 										</table>
 										<div id="insertReviewbody">
 <p class="star_rating">
-    <a href="#" class="on">★</a>
-    <a href="#" class="on">★</a>
-    <a href="#" class="on">★</a>
-    <a href="#">★</a>
-    <a href="#">★</a>
+    <a href="#"  class="on" ><input type="hidden" value="1">★</a>
+    <a href="#"  class="on"><input type="hidden" value="2">★</a>
+    <a href="#"  class="on"><input type="hidden" value="3">★</a>
+    <a href="#"   ><input type="hidden" value="4">★</a>
+    <a href="#"   ><input type="hidden" value="5">★</a>
 </p>
 
 											<table class="table table-insert">
@@ -106,10 +129,13 @@ function reportSwal() {
 	swal("현재 로그아웃 상태입니다.","신고하려면 로그인을 해주세요.", {icon: "warning"});
 }
 
+
 //별점
+var score=3;
 $( ".star_rating a" ).click(function() {
      $(this).parent().children("a").removeClass("on");
-     $(this).addClass("on").prevAll("a").addClass("on");
+     $(this).addClass("on").prevAll("a").addClass("on");   
+     score=Number($(this).children("input").val()); 
      return false;
 });
 
@@ -122,6 +148,9 @@ function postReview() {
 	var memberIdx = $('#useridx').val();
 	var vehicleIdx = $('[name=caridx]').val();
 	
+
+
+	
 	if(!content) {
 		swal("입력된 내용이 없습니다","", {icon: "warning"});
 		setTimeout(function () { window.close(); }, 2000);
@@ -131,7 +160,8 @@ function postReview() {
 	var data ={
 			"vehicleIdx":vehicleIdx,
 			"memberIdx": memberIdx,
-			"content" : content
+			"content" : content,
+			"score" : score
 	}
 	  $.ajax({
           url:'${pageContext.request.contextPath}/post',
@@ -152,7 +182,8 @@ function postReview() {
           error: function() {
           }
        });
-}
+	};
+
 
 //리뷰 좋아요
  $('.likebtn').click(function(){

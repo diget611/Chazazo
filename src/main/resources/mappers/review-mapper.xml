@@ -16,7 +16,7 @@
 	
 	<insert id="insert">
 		INSERT INTO REVIEW(IDX,MEMBER_IDX,CONTENT,CREATE_DATE,RECOMMEND,SCORE,VEHICLE_IDX) 
-					VALUES(REVIEW_SEQ.NEXTVAL, #{memberIdx},  #{content}, DEFAULT, DEFAULT, 3.5, #{vehicleIdx})
+					VALUES(REVIEW_SEQ.NEXTVAL, #{memberIdx},  #{content}, DEFAULT, DEFAULT, #{score}, #{vehicleIdx})
 	</insert>
 	
 	<update id="inserLike">

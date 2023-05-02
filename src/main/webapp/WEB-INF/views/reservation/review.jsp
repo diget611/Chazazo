@@ -150,8 +150,6 @@ function postReview() {
 	var vehicleIdx = $('[name=caridx]').val();
 	
 
-
-	
 	if(!content) {
 		swal("입력된 내용이 없습니다","", {icon: "warning"});
 		setTimeout(function () { window.close(); }, 2000);
@@ -210,9 +208,9 @@ function postReview() {
 
 
 //리뷰 수정 누르면 다른 리뷰수정 disabled
-$('.edit').on('click', function(){
+$('.edit').on('click', function(){	
 $('.review_content').attr('disabled', true);
-$(this).parent().prev().children().attr('disabled', false);
+$(this).parent().children().next().children().attr('disabled', false);
 $(this).attr('hidden', true);
 $(this).next().attr('hidden', true);
 $(this).next().next().next().attr('hidden', true);
@@ -221,9 +219,8 @@ $(this).parent().append('<button type="button" class="btn btn-default" id="btnUp
 
 
 $(document).on('click','#btnUpdate', function() {
-	 
-	 var reviewidx = $(this).parent().prev().prev().prev().children().val();
-	 var content = $(this).parent().prev().children().val();
+	 var reviewidx = $(this).parent().children().children().val();
+	 var content = $(this).parent().children().next().children().val();
 	 
 			$.ajax({
 				url:'${pageContext.request.contextPath}/updateReview',

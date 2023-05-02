@@ -68,6 +68,7 @@
 													<h3 class="dealer-name">
 														<span>		
 															<input type="text" class="form-control" name="name" value="${memberinfo.name }" readonly >
+														
 														</span>
 													</h3>
 												</div>
@@ -167,17 +168,27 @@
 
 
 							<!-- 관심 지점이 없을 경우 -->
+							<c:if test="${empty favLocation }">
+							<div class="result-none">등록 된 나의 관심 지점이 없습니다.
+							</div>
+							</c:if>
 							
-							<div class="result-none">등록 된 나의 관심 지점이 없습니다.</div>
-
-
+							<div>
+				
+												
+							</div>
+					<button class="w3-button w3-black w3-round" id="rec_update">
+						<i class="fa fa-heart" style="font-size:16px;color:red"></i>
+						&nbsp;<span class="rec_count"></span>
+					</button> 
 
 
 							<!-- 관심 지점이 있을 경우 -->
+							
 							<ul class="branch-info-list">
 
 								<li>
-									<p class="tit">가산디지털</p>
+									<p class="tit">가산디지털 </p>
 									<div class="cont">
 										<ul class="info-list">
 											<li>
@@ -230,6 +241,8 @@
 	<jsp:include page="/WEB-INF/views/base/footer.jsp"/>
 
 	<script>
+	
+	
 	$('#updateinfoBtn').on('click', function() {
 		location.href='<%=request.getContextPath()%>/member/profile/update';
 		

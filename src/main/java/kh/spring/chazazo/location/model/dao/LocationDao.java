@@ -22,4 +22,15 @@ public class LocationDao {
 		return sqlSession.selectList("vehicle.selectLocation",idx);
 	}
 
+	public List<LocationRespDto> selectLikeLocation(String username){
+		return sqlSession.selectList("location.likeLocation", username);
+	}
+	
+	public int insertFavLocation(LocationReqDto dto) {
+		return sqlSession.insert("location.insertFavorite", dto);
+	}
+	
+	public int deleteFav(int idx) {
+		return sqlSession.delete("location.deleteFav",idx);
+	}
 }

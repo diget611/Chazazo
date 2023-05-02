@@ -41,6 +41,7 @@
 		<typeAlias type="kh.spring.chazazo.chat.model.dto.ChatDto" alias="chatDto"/>
 		<typeAlias type="kh.spring.chazazo.chat.model.dto.ChatLogDto" alias="chatLogDto"/>
 		<typeAlias type="kh.spring.chazazo.chat.model.dto.ChatRoomListDto" alias="chatRoomListDto"/>
+		<typeAlias type="kh.spring.chazazo.location.model.dto.LocationReqDto" alias="LocationReqDto"/>
 		
 	</typeAliases>
 </configuration>

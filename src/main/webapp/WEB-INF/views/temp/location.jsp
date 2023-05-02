@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>회원가입</title>
+<title>지점안내</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <spring:eval expression="@keyProperty['kakao-admin-key']" var="key"/>
@@ -51,7 +51,23 @@
 						<h4>지점 안내 </h4>
 						<div class="footer-title-line"></div>
 						<ul class="footer-menu">
-							<li ><a href="#">강남점</a></li> 
+							<li ><a href="#">강남점</a>
+							<div>
+								<div class="w3-border w3-center w3-padding">
+									<c:if test="${ username == null }">
+										추천 기능은 <button type="button" id="newLogin"><b class="w3-text-blue">로그인</b></button> 후 사용 가능합니다.<br />
+										<i class="fa fa-heart" style="font-size:16px;color:red"></i>
+										<span class="rec_count"></span>					
+									</c:if>
+									<c:if test="${ username != null }">
+										<button class="w3-button w3-black w3-round" id="rec_update">
+											<i class="fa fa-heart" style="font-size:16px;color:red"></i>
+											&nbsp;<span class="rec_count"></span>
+										</button> 
+									</c:if>
+								</div>
+							</div>
+							</li> 
 							<li><a href="#">용산점</a></li> 
 							<li><a href="#">수원점</a></li> 
 							<li><a href="#">송도점</a></li> 
@@ -149,6 +165,14 @@ function makeOutListener(infowindow) {
 }
 	
 		
+	$("#rec_update").on("click", like);
+	
+	function like(){
+		var locationIdx = $('#locationIdx').val();
+		
+		
+	}
+	
 		
 	</script>
 	

@@ -60,11 +60,7 @@ public class MemberServiceImp implements MemberService {
 		return dao.findPass(info);
 	}
 
-	
-	
-	
-	
-	
+
 	//회원정보조회
 	@Override
 	public MemberInfoRespDto selectMypageOne(String username) {

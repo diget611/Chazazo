@@ -19,5 +19,11 @@ public class LocationRespDto {
 	private String businessHours;
 	private String address;
 	
+	private int locationIdx;
+	private int memberIdx;
+	private String favLocation;
+	private String favAddress;
+	
+	
 	
 }

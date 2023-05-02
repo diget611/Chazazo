@@ -185,7 +185,7 @@
 				</div>
 				<div class="blog-lst col-md-8 p0 " style="float: right;">
 					<section class="carmore-section">
-						<div class="">
+						<div class="container">
 							<div class="js-vrsi-container bg-white bg-shadow p-3 rounded-sm mb-3">
 								<div class="dc-flex justify-content-between align-items-center">
 									<div class="dc-flex align-items-center">

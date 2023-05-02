@@ -25,4 +25,24 @@ public class LocationServiceImpl implements LocationService {
 		return dao.selectLocation(idx);
 	}
 
+	@Override
+	public List<LocationRespDto> selectLikeLocation(String username) {
+		
+		List<LocationRespDto> likeList = dao.selectLikeLocation(username);
+		if(likeList == null) {
+			return null;
+		}
+		return dao.selectLikeLocation(username);
+	}
+
+	@Override
+	public int insertFavLocation(LocationReqDto dto) {
+		return dao.insertFavLocation(dto);
+	}
+
+	@Override
+	public int deleteFav(int idx) {
+		return dao.deleteFav(idx);
+	}
+
 }

@@ -318,7 +318,7 @@
 				html += '			<h4>비회원 예약조회</h4>';
 				html += '			<form >';
 				html += '			<div class="form-group">';
-				html += '				<label>운전자 이름</label> <input type="text" class="form-control" id ="username" name="name" placeholder="성명을 입력해 주세요">';
+				html += '				<label>운전자 이름</label> <input type="text" class="form-control" id ="name" name="name" placeholder="성명을 입력해 주세요">';
 				html += '				<div class="invalid-feedback" id="vsnmr_input_driver_name_invalid_msg" style="display: block;">이름을 입력해 주세요</div>';
 				html += '				</div>';
 				html += '				<div class="form-group">';
@@ -345,7 +345,7 @@
 		
 		//비회원 예약 조회
 		function noMeberReser(){
-			var username = $('#username').val();
+			var name = $('#name').val();
 			var phoneNumber = $('#phone').val();
 			var reservationNumber = $('#reservationNumber').val();
 	
@@ -354,7 +354,7 @@
 				type: 'get',
 				dataType:'json',
 				data : {
-						"name":username,
+						"name":name,
 						"phoneNumber":phoneNumber,
 						"paymentIdx":reservationNumber
 				},
@@ -373,6 +373,7 @@
 		
 		function getNoneResr(result){
 			var noneList = result.noneReservation;
+			console.log(noneList);
 			var html = '';
 			if(noneList == null) {
 				html += '					<p style="text-align: center; font-size: large;"><strong>예약 정보가 없습니다.</strong></p><br>'
@@ -469,7 +470,9 @@
 		});
 				
 					
-				
+		$('#bookmark').on('click', function() {
+			location.href='<%=request.getContextPath()%>/profile/favorites';
+		});
 		
 	</script>
 </body>

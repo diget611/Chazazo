@@ -52,77 +52,76 @@
 							<input type="hidden" id="useridx"  value="${info.idx }" >
 							<div id="content">
 							</div>
-							<div id="reviewDiv" >
+							<div id="reviewDiv">
 								<div style=" margin-top:450px;" >
 								<h4 class="s-property-title" >리뷰</h4>
-									<table class="table table-review" style="padding: 3em; ">
-										<tbody>
-												<tr style="text-align:center;">
-													<th width="0%"></th>
-													<th  width="15%" >닉네임</th>
-													<th  width="50%">리뷰내용</th>
-													<th width="15%">작성일</th>
-													<th width="10%">추천</th>
-												</tr>
-												<c:forEach items="${rList }" var="review" varStatus="i">
-													<tr>
-														<td ><input type="hidden" id="reviewIdx" value="${review.idx }"></td>
-														<td >${review.name}</td>
-														<td ><input class="review_content"  type="text" value="${review.content}"  autofocus disabled></td>
-														<td  >
-															<c:if test="${info.name eq review.name }">
-																	<input data-idx="${review.idx }" src="<%=request.getContextPath()%>/resources/garoestate/assets/img/icon/edit.png" style="float:left;  width:50%; " type="image" class="edit" value="수정">
-																	<input data-idx="${review.idx }" src="<%=request.getContextPath()%>/resources/garoestate/assets/img/icon/delete.png"  style=" float:left;  width:50%; " type="image" class="delete" value="삭제" >
-															</c:if>
-															<br><label >${review.createdate}</label>
-														</td>
-														<td align="center"><input data-idx="${review.idx}" data-recommend="${review.recommend}"  src="<%=request.getContextPath()%>/resources/garoestate/assets/img/icon/like.png" class="likebtn" type="image"  style="float:left;">
-														${review.recommend}</td>
-												    	<td >
-													    	<c:if test="${info.name ne review.name }">
-														    	<c:if test ="${empty info.name }">
-														    		<button type="button" class="btn btn-secondary"  onclick="reportSwal()" >신고</button>
-														    	</c:if>
-														    		<c:if test ="${not empty  info.name }">
-															    		<button type="button" id="report" data-memberIdx="${info.idx}"class="btn btn-secondary" style="display:inline-block" 
-									    								    onclick='window.open("${pageContext.request.contextPath}/reportReview/${review.idx }", "리뷰 신고", "width=500, height=auto")'>신고</button>
-													    			</c:if>
-													    	</c:if>
-												    	</td>
-													</tr>
-												</c:forEach>
-											</tbody>
-										</table>
-										<div id="insertReviewbody">
-<p class="star_rating">
-    <a href="#"  class="on" ><input type="hidden" value="1">★</a>
-    <a href="#"  class="on"><input type="hidden" value="2">★</a>
-    <a href="#"  class="on"><input type="hidden" value="3">★</a>
-    <a href="#"   ><input type="hidden" value="4">★</a>
-    <a href="#"   ><input type="hidden" value="5">★</a>
-</p>
-
-											<table class="table table-insert">
-												<tr>
-													<td width="20%">
-														<input type="text"  value="${info.name }">
-													</td>
-													<td >
-														<div id="insertReview" >	
-															 <input type="text" name="reviewcontent" style=" width:400px;  border:4px solid #4ea0d8; padding-rigth:30px;"  placeholder="리뷰를 작성해주세요" ></input>
-														</div>
-													</td>
-													<td>
-														<button type="button" id="reviewbtn" onclick="postReview()" style="margin-left:10px; " class="btn btn-default">리뷰쓰기</button>
-													</td>
-												</tr>
-											</table>
+									<c:forEach items="${rList }" var="review" varStatus="i">
+										<div style="margin-bottom :80px;">
+											<div>
+												<input type="hidden" id="reviewIdx" value="${review.idx }">
+												<div style="margin:0px">
+													<img src="<%=request.getContextPath()%>/resources/garoestate/assets/img/icon/person.png" style="width:20px; float:left;">
+													<input type="text" style="font-size:13px; width:200px;" value="${review.name}">
+												</div>
+												<small class=${review.score }></small><label >&nbsp; ${review.createdate}</label>&nbsp;&nbsp;
+												<input data-idx="${review.idx}" data-recommend="${review.recommend}"  src="<%=request.getContextPath()%>/resources/garoestate/assets/img/icon/like.png" class="likebtn" type="image"  
+												style=" width:55px;">${review.recommend}
+											</div>
+											<div >
+												<input class="review_content"  type="text" value="${review.content}" style="height:100px; width:400px; font-size:18px;"autofocus disabled>
+												
+														
+											</div>	
+												<c:if test="${info.name eq review.name }">
+													<input data-idx="${review.idx }" src="<%=request.getContextPath()%>/resources/garoestate/assets/img/icon/edit.png" style="float:left;  width:45px; " type="image" class="edit" value="수정">
+													<input data-idx="${review.idx }" src="<%=request.getContextPath()%>/resources/garoestate/assets/img/icon/delete.png"  style=" float:left;  width:45px; " type="image" class="delete" value="삭제" >
+												</c:if>
+											
+											   	<c:if test="${info.name ne review.name }">
+														<c:if test ="${empty info.name }">
+																<button type="button" class="btn btn-secondary"  onclick="reportSwal()" >신고</button>
+														</c:if>
+														<c:if test ="${not empty  info.name }">
+																<button type="button" id="report" data-memberIdx="${info.idx}"class="btn btn-secondary" style="display:inline-block" 
+											    					    onclick='window.open("${pageContext.request.contextPath}/reportReview/${review.idx }", "리뷰 신고", "width=500, height=auto")'>신고</button>
+														</c:if>
+												</c:if>
 										</div>
-								</div>
-						 </div>
-					</div>
+									</c:forEach>
+									
+										<label>${info.name } </label>
+											<div id="insertReviewbody" style="text-align:center;">
+												
+											<div id="insertReview" style=" float:left;" class="col-md-6">	
+												 <input type="text" name="reviewcontent" style=" height:80px; width:100%; border:4px solid #4ea0d8;"  placeholder="리뷰를 작성해주세요" ></input>
+											</div>
+											<div class="col-md-4" >
+													<p class="star_rating">
+													    <a href="#"  class="on" ><input type="hidden" value="1">★</a>
+													    <a href="#"  class="on"><input type="hidden" value="2">★</a>
+													    <a href="#"  class="on"><input type="hidden" value="3">★</a>
+													    <a href="#"   ><input type="hidden" value="4">★</a>
+													    <a href="#"   ><input type="hidden" value="5">★</a>
+													</p>
+													<button type="button" id="reviewbtn" onclick="postReview()" style=" margin:10px" class="btn btn-default">리뷰등록</button>
+											</div>
+											</div>
+											
+											
+											
+									</div>
+								 </div>
+							</div>
 </body>
 <script type="text/javascript">
+
+$(".1").html("&#9733; &#9734; &#9734; &#9734; &#9734;");
+$(".2").html("&#9733; &#9733; &#9734; &#9734; &#9734;");
+$(".3").html("&#9733; &#9733; &#9733; &#9734; &#9734;");
+$(".4").html("&#9733; &#9733; &#9733; &#9733; &#9734;");
+$(".5").html("&#9733; &#9733; &#9733; &#9733; &#9733;"); 
+
+
 
 //비회원 경고
 function reportSwal() {

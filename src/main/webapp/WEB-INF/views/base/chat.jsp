@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
-<sec:authorize access="isAuthenticated()">
+<sec:authorize access="isAuthenticated()" var="isLogin">
 	<sec:authentication property="principal.authorities" var="auth"/>
 	<sec:authentication property="principal.username" var="username"/>
 </sec:authorize>
@@ -26,6 +26,64 @@
 </div>
 
 <script>
+	$(document).ready(function(){
+		var isLogin = ${isLogin};
+		var username = '${username}';
+		var auth = '${auth}';
+		
+		function checkRoom() {
+			$.ajax({
+				url: '${pageContext.request.contextPath}/chat/checkroom',
+				type: 'get',
+				data: {username: username},
+				success: function(result) {
+					openSocket(result);
+				},
+				error: function() {
+					alert("에러임");
+				}
+			});
+		}
+		
+		function openSocket(result) {
+			if(isLogin == true && auth == '[ROLE_ADMIN]') {
+				var sock = new SockJS("${pageContext.request.contextPath}/stomp/chat");
+				var stomp = Stomp.over(sock);
+				
+				stomp.connect({}, function (){
+			        stomp.subscribe("/sub/chat/room/*", function() {
+						chatCheck();
+					});
+				})
+			} else if(isLogin == true && auth == '[ROLE_USER]' && result != '') {
+				var sock = new SockJS("${pageContext.request.contextPath}/stomp/chat");
+				var stomp = Stomp.over(sock);
+				
+				stomp.connect({}, function (){
+			        stomp.subscribe("/sub/chat/room/" + result, function() {
+						chatCheck();
+					});
+				})
+			}	
+		}
+		
+		function chatCheck() {
+			$.ajax({
+				url: '${pageContext.request.contextPath}/chat/check',
+				type: 'get',
+				success: function(result) {
+					$('#chatCheck').text('');
+					$('#chatCheck').prepend(result);
+				},
+				error: function() {
+					alert('에러');
+				}
+			});
+		}
+		
+		checkRoom();
+	});
+
 	$('#chatBtn').on('click', openModal);
 	
 	var roomIdx = '';
@@ -155,6 +213,7 @@
 	}
 	
 	function modalClose() {
+		chatCheck();
 		$('#chatCheck').css('display', 'block');
 		$('.modal-body').children().remove();
 	}

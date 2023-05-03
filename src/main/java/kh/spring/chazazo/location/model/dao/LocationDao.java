@@ -38,7 +38,7 @@ public class LocationDao {
 	}
 	
 	
-	
+	// 지점안내 찜하기
 	public int insertFavLocation(Map<String, Object> map) {
 		return sqlSession.insert("location.insertFavorite", map);
 	}
@@ -51,4 +51,7 @@ public class LocationDao {
 		return sqlSession.selectOne("location.getLikeLoction",map);
 		
 	}
+	
+		
+	
 }

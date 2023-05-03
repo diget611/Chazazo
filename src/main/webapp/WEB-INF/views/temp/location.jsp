@@ -52,7 +52,7 @@
 						<div class="footer-title-line"></div>
 						<ul class="footer-menu">
 							<c:forEach items="${locationList }" var="location">
-								<li><a href="#">${location.name } [[ ${location.liked} ]]</a></li>
+								<li><a href="#">${location.name }</a></li>
 								<div>
 								<c:choose>
 									<c:when test="${location.liked == 0 }">
@@ -191,8 +191,10 @@ function makeOutListener(infowindow) {
 				console.log(result);
 				if(result == 0){
 					alert("찜완료");
+					history.go();
 				}else{
 					alert("찜제거");
+					history.go();
 				}
 					
 				},

@@ -598,44 +598,11 @@ tbody tr:hover {
 			location.href='<%=request.getContextPath()%>/location';
 		});
 	
-		$('#bookmark').on('click', like);
-		function like(){
-			$.ajax({
-				url:"${pageContext.request.contextPath}/profile/favorites",
-				type:'get',
-				dataType:'json',
-				success:function(result){
-					favorite(result);
-				},
-				error:function(){
-					alert("없음");
-				}
-			});
-		};
+		$('#bookmark').on('click', function() {
+			location.href='<%=request.getContextPath()%>/profile/favorites';
+		});
 		
-			function favorite(result){
-				var likeList = result.favLocation;
-				console.log(likeList)
-				var html = '';
-				html += '		<c:if test="${empty likeList }">'
-					html += '		<p style="text-align: center; font-size: large;">'
-						html += '			<strong> 관심지점이 없습니다 !!</strong>'
-							html += '			</p>'
-								html += '			<br>'
-					
-												html += '			</c:if>'
-				
-				html += '								<ul>'
-				html += '									<li>' + likeList.name + '</li>'
-				html += '									<li>' + likeList.phoneNumber + '</li>'
-				html += '									<li>' + likeList.address + '</li>'
-				html += '									<li>' + likeList.locationIdx+ '</li>'
-				html += '									<li>' + likeList.memberIdx + '</li>'
-				html += '									<li>' + likeList.businessHours + '</li>'
-				html += '								</ul>'
-					
-				$('#content').html(html);
-			}
+			
 		
 	</script>
 </body>

@@ -17,8 +17,10 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
 
+import kh.spring.chazazo.location.model.dao.LocationDao;
 import kh.spring.chazazo.location.model.dto.LocationReqDto;
 import kh.spring.chazazo.location.model.service.LocationService;
+import kh.spring.chazazo.member.model.dao.MemberDao;
 import kh.spring.chazazo.member.model.service.MemberService;
 
 @RestController
@@ -29,17 +31,23 @@ public class LocationController {
 	
 	@Autowired
 	private LocationService lService;
+	@Autowired
+	private LocationDao dao;
 	
 	@GetMapping("/location")
 	public ModelAndView viewLocationList(ModelAndView mv, Principal prin) {
 		// 지점 전체 조회
+	if(prin == null) {
+			mv.setViewName("/temp/location");
+		}else {
 		String username = prin.getName();
 		mv.addObject("member",mService.selectMypageOne(username));
 		mv.addObject("locationList", lService.selectLocation(username));
 		mv.setViewName("/temp/location");
+		
+	}
 		return mv;
 	}
-	
 	@GetMapping("/location/{idx}")
 	public ModelAndView viewLocationOne(ModelAndView mv) {
 		// 지점 상세 조회
@@ -47,10 +55,10 @@ public class LocationController {
 	}
 	
 	
+	// 관심 지점
 	@GetMapping("/profile/favorites")
 	//@ResponseBody
 	public ModelAndView selectFavLocation(ModelAndView mv, Principal prin, String username) {
-		// 관심 지점
 		Map<String, Object> result = new HashMap<String,Object>();
 		
 		String loginId = prin.getName();
@@ -60,17 +68,13 @@ public class LocationController {
 		result.put("favLocation", lService.selectLikeLocation(loginId));
 	
 		System.out.println(result); 
-		System.out.println("favorite!!!!!!!!!!!!!!!!!!!!location");		
-//		return new Gson().toJson(result);
+		System.out.println("favorite!!!!!!!!!!!!!!!!!!!!location");	
+		
+
 		mv.setViewName("/member/favorites");
 		return mv;
 	
-//		String loginId = prin.getName();
-//		
-//		mv.addObject("memberinfo", mService.selectMypageOne(loginId) );
-//		mv.addObject("favLocation", lService.selectLikeLocation(loginId));
-//		System.out.println(loginId);
-//		return mv;
+		
 	}
 	
 	//찜하기
@@ -84,6 +88,7 @@ public class LocationController {
 		map.put("usename", usename);
 		map.put("locationIdx", locationIdx);
 		
+		System.out.println(map);
 		result = lService.getLike(map);
 		if(result > 0) {
 			lService.deleteFav(map);
@@ -95,5 +100,21 @@ public class LocationController {
 	
 	}
 	
+	@DeleteMapping("/deleteLike")
+	public String deleteLike(Principal prin, int locationIdx) {
+		int result = 0;
+		
+		
+		String usename = prin.getName();
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("usename", usename);
+		map.put("locationIdx", locationIdx);
+		
+		System.out.println(result);
+		System.out.println(locationIdx);
+		result = lService.deleteFav(map);
+		return String.valueOf(result);
+	}
 	
 }

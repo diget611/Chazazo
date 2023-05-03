@@ -22,7 +22,11 @@
 <link rel="stylesheet"	href="<%=request.getContextPath()%>/resources/garoestate/assets/css/price-range.css">
 <link rel="stylesheet"	href="<%=request.getContextPath()%>/resources/garoestate/assets/css/style.css">
 <link rel="stylesheet"	href="<%=request.getContextPath()%>/resources/garoestate/assets/css/responsive.css">
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
 
+<script
+	src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
 <script	src="<%=request.getContextPath()%>/resources/garoestate/assets/js/modernizr-2.6.2.min.js"></script>
 <script	src="<%=request.getContextPath()%>/resources/garoestate/assets/js/jquery-1.10.2.min.js"></script>
 <script	src="<%=request.getContextPath()%>/resources/garoestate/bootstrap/js/bootstrap.min.js"></script>
@@ -189,42 +193,30 @@
 							<div id ="content">
 		<c:forEach items="${favLocation }" var="like">
 			<ul>
-				<li>${like.name }</li>
-				<li>${like.phoneNumber }</li>
-				<li>${like.idx }</li>
-				<li>${like.address }</li>
-				<li>${like.locationIdx }</li>
-				<li>${like.memberIdx }</li>
-				<li>${like.businessHours }</li>
-			</ul>
-		</c:forEach>
-		
-							</div>
-							<ul class="branch-info-list">
-								<li>
-									<p class="tit">가산디지털 </p>
-									<div class="cont">
+				<li>
+					<p class="tit">${like.name }</p>
+					<p class="tit">${like.locationIdx }</p>
+					<div class="cont">
 										<ul class="info-list">
 											<li>
 											<span class="info-tit">영업시간</span>
 												<div class="info-cont">
 													<span><button type="button" class="accorSpotBtn"
 															data-target="accorSpotCont0" data-on="true"
-															data-siblings="true">24시간 스마트키박스 운영 (00:00 ~
-															24:00) 당일예약 가능시간 08:30 ~ 16:00</button>
+															data-siblings="true">${like.businessHours } | 당일예약 가능시간 08:30 ~ 16:00</button>
 															</span>
 												</div>
 											</li>
 											<li>
 											<span class="info-tit">주소</span>
 												<div class="info-cont">
-													<span>서울시 금천구 가산동 459-11 B106호</span>
+													<span>${like.address }</span>
 												</div>
 											</li>
 											<li>
 											<span class="info-tit">전화번호</span>
 												<div class="info-cont">
-													<span>02-3664-8000</span>
+													<span>${like.phoneNumber }</span>
 												</div>
 											</li>
 										</ul>
@@ -234,12 +226,18 @@
 											<button type="button" class="btn-auto line-black"
 												onclick="setBranchInfo('421');">자세히보기</button>
 											<button type="button" class="btn-auto black"
-												onclick="delFn('421','01')">삭제</button>
+												onclick="delFn()">삭제</button>
 										</div>
 									</div>
-								</li>
-
-							</ul>
+					
+					
+				</li>
+			
+			</ul>
+		</c:forEach>
+		
+				</div>
+						
 
 
 
@@ -279,40 +277,36 @@
 		location.href='<%=request.getContextPath()%>/location';
 	});
 	
-	$('#change').on('click', content);
-	function content(){
+	function delFn(){
+
 		$.ajax({
-			url:"${pageContext.request.contextPath}/profile/favorites",
-			type:'get',
-			dataType:'json',
-			success:function(result){
-				console.log(result);
-				favorite(result);
+			url:"${pageContext.request.contextPath}/deleteLike", 
+			type: 'DELETE',
+			data: {
+				locationIdx:locationIdx,
+				username:username
+				},
+			success : function(result){
+				if(result == 0){
+					 Swal.fire('삭제  ', '탈퇴합니다 ', 'success');
+				}else{
+					 Swal.fire('취소 ', '취소 ', 'error');
+						
+				}
 			},
-			error:function(){
-				alert("없음");
+			error: function(){
+				alert("오류");
 			}
+			
+			
 		});
+		
+		
+		
 	};
 
-	function favorite(result){
-		var likeList = result.favLocation;
-		console.log(likeList)
-		var html = '';
-		for(i=0; i<likeList; i++){
-			like = likeList[i];
-			html += '								<ul>'
-			html += '									<li>' + like.name + '</li>'
-			html += '									<li>' + like.phoneNumber + '</li>'
-			html += '									<li>' + like.idx + '</li>'
-			html += '									<li>' + like.address+ '</li>'
-			html += '									<li>' + like.locationIdx + '</li>'
-			html += '									<li>' + like.memberIdx + '</li>'
-			html += '									<li>' + like.businessHours + '</li>'
-			html += '								</ul>'
-		}
-		$('#content').html(html);
-	}
+
+	
 	</script>
 </body>
 </html>

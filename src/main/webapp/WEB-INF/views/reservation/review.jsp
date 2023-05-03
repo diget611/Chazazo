@@ -96,7 +96,7 @@
 										<label>${info.name } </label>
 											<div id="insertReviewbody" style="text-align:center;">
 												
-											<div id="insertReview" style=" float:left;" class="col-md-6">	
+											<div id="insertReview" style=" float:left;" class="col-md-8">	
 												 <input type="text" name="reviewcontent" style=" height:80px; width:100%; border:4px solid #4ea0d8;"  placeholder="리뷰를 작성해주세요" ></input>
 											</div>
 											<div class="col-md-4" >

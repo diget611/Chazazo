@@ -50,49 +50,55 @@
 					<div class="blog-asside-right col-md-3" style="float: left;">
 						<h4>지점 안내 </h4>
 						<div class="footer-title-line"></div>
-						<ul class="footer-menu">
-							<c:forEach items="${locationList }" var="location">
-								<li><a href="${pageContext.request.contextPath}/location/${location.idx }">${location.name } [[ ${location.liked} ]]</a></li>
-								<div>
-								<c:choose>
-									<c:when test="${location.liked == 0 }">
-										<div class="w3-border w3-center w3-padding">
-											<button class="w3-button w3-black w3-round rec_update" data-idx="${ location.idx }">
-												<i class="fa fa-heart" style="font-size:16px;color:white"></i>
-												&nbsp;<span class="rec_count"></span>
-											</button> 
-										</div>
-									</c:when>
-									<c:otherwise>
-										<div class="w3-border w3-center w3-padding">
-										<sec:authorize access="isAuthenticated()">
-											<button class="w3-button w3-black w3-round rec_update" data-idx="${ location.idx }">
-												<i class="fa fa-heart" style="font-size:16px;color:red"></i>
-												&nbsp;<span class="rec_count"></span>
-											</button> 
-										</sec:authorize>
-										</div>
-									</c:otherwise>
-								</c:choose>
+						<div >
+							<ul class="footer-menu">
+								<c:forEach items="${locationList }" var="location">
+									<li><a href="${pageContext.request.contextPath}/location/${location.idx }">${location.name } [[ ${location.liked} ]]</a></li>
+									<div>
+									<c:choose>
+										<c:when test="${location.liked == 0 }">
+											<div class="w3-border w3-center w3-padding">
+												<button class="w3-button w3-black w3-round rec_update" data-idx="${ location.idx }">
+													<i class="fa fa-heart" style="font-size:16px;color:white"></i>
+													&nbsp;<span class="rec_count"></span>
+												</button> 
+											</div>
+										</c:when>
+										<c:otherwise>
+											<div class="w3-border w3-center w3-padding">
+											<sec:authorize access="isAuthenticated()">
+												<button class="w3-button w3-black w3-round rec_update" data-idx="${ location.idx }">
+													<i class="fa fa-heart" style="font-size:16px;color:red"></i>
+													&nbsp;<span class="rec_count"></span>
+												</button> 
+											</sec:authorize>
+											</div>
+										</c:otherwise>
+									</c:choose>
+									
+								</div>
+								</c:forEach>
 								
-							</div>
-							</c:forEach>
-							
-							<!-- 
-							<li ><a href="#">강남점</a></li> 
-							<li><a href="#">용산점</a></li> 
-							<li><a href="#">수원점</a></li> 
-							<li><a href="#">송도점</a></li> 
-							<li><a href="#">일산점</a></li> 
-							 -->
-						</ul>
+							</ul>
+						</div>
 					</div>
-				</div>  
-					<div class="blog-lst col-md-12 padding-top-40" style="float: right;">
+						<div style="float:left; width:70%; margin-top:30px;">
+							<div style="color:#1583AF; font-size:22px; text-align:center; "> 차자조 ${location.name } 입니다.</div><br>
+							<div style="margin:0px 0px 20px 40px;">
+								<label style="font-size:18px; color:#1583AF;">찾아 오시는 길</label> <br>
+									<label>${location.address }</label><br><br>
+								<label style="font-size:18px; color:#1583AF;">전화번호 </label> <br>
+									<label>${location.phoneNumber }</label><br><br>
+								<label style="font-size:18px; color:#1583AF;">영업 시간</label> <br>
+									<label>${location.businessHours }</label>
+							</div>
+					<div class="blog-lst col-md-12 " style="float: right;">
 						<section id="id-100" class="post single">
 							<div id="map" style="width:100%; height:400px"></div>   
 						</section>
 					</div>
+						</div>
+				</div>  
 			</div>                    
 		</div>
 	</section>
@@ -103,9 +109,12 @@
 </body>
 
  <script type="text/javascript">
+ 
+ 
+ 
 		// <맵 생성>
-		var mapContainer = document.getElementById('map'), // 지도를 표시할 div  
-    mapOption = { 
+	var mapContainer = document.getElementById('map'), // 지도를 표시할 div  
+   		 mapOption = { 
         center: new kakao.maps.LatLng(${location.latitude} , ${location.longitude}), // 지도의 중심좌표
         level: 3 // 지도의 확대 레벨
     };

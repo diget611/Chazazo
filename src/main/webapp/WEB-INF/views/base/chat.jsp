@@ -8,7 +8,7 @@
 
 <button type="button" class="chat-btn btn btn-primary btn-square" id="chatBtn" data-toggle="modal" data-target="#myModal">
 	<span class="material-symbols-outlined">chat</span>
-	<span class="round-pill bg-danger" id="chatCheck">0</span>
+	<span class="round-pill bg-danger" id="chatCheck" hidden="true">0</span>
 </button>
 
 <div class="modal" id="myModal">
@@ -33,9 +33,11 @@
 	function openModal() {
 		var auth = '${auth}';
 		if(auth == '[ROLE_USER]') {
-			createRoom();			
+			createRoom();
+			$('#chatCheck').css('display', 'none');
 		} else if(auth == '[ROLE_ADMIN]') {
 			chatRoomList();
+			$('#chatCheck').css('display', 'none');
 		} else {
 			alert('안됨');
 		}
@@ -153,6 +155,7 @@
 	}
 	
 	function modalClose() {
+		$('#chatCheck').css('display', 'block');
 		$('.modal-body').children().remove();
-	}	
+	}
 </script>

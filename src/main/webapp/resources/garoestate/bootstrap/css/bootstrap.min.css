@@ -6481,10 +6481,8 @@ button.close {
 
 .modal {
 	position: fixed;
-	top: 0;
-	right: 0;
-	bottom: 0;
-	left: 0;
+	top: 90px;
+	right: 70px;
 	z-index: 1050;
 	display: none;
 	overflow: hidden;

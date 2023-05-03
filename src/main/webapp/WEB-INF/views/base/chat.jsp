@@ -18,7 +18,7 @@
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 				<h4 class="modal-title">채팅 문의</h4>
 			</div>
-			<div class="modal-body"></div>
+			<div class="modal-body" style="height: 640px;"></div>
 			<div class="modal-footer">
 			</div>
 		</div>

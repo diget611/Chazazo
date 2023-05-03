@@ -103,4 +103,10 @@ public class ChatController {
 		}
     }
 	
+	@GetMapping("/checkroom")
+	public String checkRoom(String username) {
+		String result = service.selectRoom(username);
+		return result;
+	}
+	
 }

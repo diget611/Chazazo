@@ -13,7 +13,7 @@
 <link
 	href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700,800'
 	rel='stylesheet' type='text/css'>
-
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,-25" />
 
 
 <link rel="stylesheet"
@@ -69,6 +69,8 @@
 	src="<%=request.getContextPath()%>/resources/garoestate/assets/js/price-range.js"></script>
 <script
 	src="<%=request.getContextPath()%>/resources/garoestate/assets/js/main.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/resources/css/main.css">
 <style>
@@ -92,10 +94,10 @@ tbody tr:hover {
 }
 
 .coupon-item-container {
-    margin: 0 0 8px;
-    border-radius: 16px;
-    box-shadow: 0 4px 14px 0 rgba(177,177,177,.2);
-    background-color: #fff;
+	margin: 0 0 8px;
+	border-radius: 16px;
+	box-shadow: 0 4px 14px 0 rgba(177, 177, 177, .2);
+	background-color: #fff;
 }
 </style>
 </head>
@@ -133,7 +135,7 @@ tbody tr:hover {
 									<h3 class="panel-title">회원정보</h3>
 								</div>
 							</div>
-							
+
 							<sec:authorize access="isAuthenticated()">
 								<div class="dealer-content">
 									<div class="inner-wrapper">
@@ -283,7 +285,7 @@ tbody tr:hover {
 												</c:forEach>
 											</tbody>
 										</table>
-										
+
 									</div>
 
 
@@ -307,6 +309,7 @@ tbody tr:hover {
 		</div>
 	</section>
 
+	<jsp:include page="/WEB-INF/views/base/chat.jsp"/>
 	<jsp:include page="/WEB-INF/views/base/footer.jsp" />
 
 	<script>

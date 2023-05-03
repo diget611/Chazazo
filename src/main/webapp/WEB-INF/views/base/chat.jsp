@@ -8,10 +8,10 @@
 
 <button type="button" class="chat-btn btn btn-primary btn-square" id="chatBtn" data-toggle="modal" data-target="#myModal">
 	<span class="material-symbols-outlined">chat</span>
-	<span class="round-pill bg-danger" id="chatCheck"></span>
+	<span class="round-pill bg-danger" id="chatCheck">0</span>
 </button>
 
-<div class="modal fade" id="myModal">
+<div class="modal" id="myModal">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
@@ -26,19 +26,6 @@
 </div>
 
 <script>
-	$(document).ready(function() {
-		$.ajax({
-			url: '${pageContext.request.contextPath}/chat/check',
-			type: 'get',
-			success: function(result) {
-				$('#chatCheck').prepend(result);
-			},
-			error: function() {
-				alert('에러');
-			}
-		});
-	})
-	
 	$('#chatBtn').on('click', openModal);
 	
 	var roomIdx = '';
@@ -79,8 +66,9 @@
 		$('.modal-body').append(html);
 		
 		$('.modal-footer').children().remove();
-		var btn = '<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button> <button type="button" id="chatEndBtn" class="btn btn-primary">상담 종료</button>';
+		var btn = '<button type="button" id="closeBtn" class="btn btn-default" data-dismiss="modal">닫기</button> <button type="button" id="chatEndBtn" class="btn btn-primary">상담 종료</button>';
 		$('.modal-footer').append(btn);
+		$('#closeBtn').on('click', modalClose);
 		$('#chatEndBtn').on('click', chatEnd);
 		chatCheck();		
 	}
@@ -111,8 +99,9 @@
 		}
 		$('.modal-body').append(html);
 		
-		var btn = '<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>';
+		var btn = '<button type="button" id="closeBtn" class="btn btn-default" data-dismiss="modal">닫기</button>';
 		$('.modal-footer').append(btn);
+		$('#closeBtn').on('click', modalClose);
 		chatCheck();
 	}
 	
@@ -145,6 +134,8 @@
 				alert('에러');
 			}
 		});
+		
+		window.location.reload();
 	}
 	
 	function chatCheck() {
@@ -152,7 +143,6 @@
 			url: '${pageContext.request.contextPath}/chat/check',
 			type: 'get',
 			success: function(result) {
-				console.log(result);	
 				$(top.document).find('#chatCheck').text('');
 				$(top.document).find('#chatCheck').prepend(result);
 			},
@@ -161,4 +151,8 @@
 			}
 		});
 	}
+	
+	function modalClose() {
+		$('.modal-body').children().remove();
+	}	
 </script>

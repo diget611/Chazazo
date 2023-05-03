@@ -19,31 +19,39 @@
 	<select id="selectNameList" resultType="adminStatisticsLocationRespDto">
 		SELECT NAME, IDX FROM LOCATION
 	</select>
+	<select id="selectNameListWLiked" resultType="LocationRespDto">
+		SELECT (   SELECT count(*) FROM LIKE_LOCATION WHERE LOCATION_IDX = tloc.IDX
+			AND MEMBER_IDX = (select idx from member where username =   #{usename})    ) as liked
+			, tloc.* 
+		FROM LOCATION tloc
+	</select>
 	
 	
 	
 	<select id="likeLocation" resultType = "LocationRespDto">
-		
-      select l.name, l.PHONE_NUMBER, l.BUSINESS_HOURS, l.ADDRESS 
-      from location l left join like_location on idx = like_location.location_idx 
-      where member_idx in (select idx from member where username=#{username})
+	select l.name, l.PHONE_NUMBER, l.BUSINESS_HOURS, l.ADDRESS ,ll.LOCATION_IDX, ll.MEMBER_IDX
+      from location l join like_location ll on idx = ll.location_idx 
+      where ll.member_idx in (select idx from member where username=#{username})
+	
 	</select>
 	
 	<select id="checkLike">
 	 	SELECT COUNT(*) FROM LIKE_LOCATION WHERE LOCATION_IDX = #{locationIdx} AND MEMBER_IDX = #{memberIdx}
 	</select>
 	
-	<insert id="insertFavorite" parameterType="LocationReqDto">
-		INSERT INTO LIKE_LOCATION VALUES (#{locationIdx}, #{memberIdx})
-	
+	<insert id="insertFavorite" >
+		INSERT all
+			INTO LIKE_LOCATION VALUES (#{locationIdx}, idx)
+		select idx from member where username =   #{usename}
 	</insert>
 	
-	<select id="getLikeLoction" resultType="LocationRespDto">
-		SELECT * FROM LIKE_LOCATION WHERE LOCATION_IDX = #{locationIdx} AND MEMBER_IDX = #{memberIdx}
-	
+	<select id="getLikeLoction" resultType="_int">
+		SELECT count(*) FROM LIKE_LOCATION WHERE LOCATION_IDX = #{locationIdx} 
+			AND MEMBER_IDX = (select idx from member where username =   #{usename})
 	</select>
 	
 	<delete id="deleteFav" >
-		DELETE FROM LIKE_LOCATION WHERE LOCATION_IDX = #{locationIdx} AND MEMBER_IDX = #{memberIdx}
+		DELETE FROM LIKE_LOCATION WHERE LOCATION_IDX = #{locationIdx} 
+		AND MEMBER_IDX = (select idx from member where username =   #{usename})
 	</delete>
 </mapper>

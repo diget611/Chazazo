@@ -319,80 +319,63 @@ tbody tr:hover {
 
 
 									</div>
-									
-										<hr class="my-2">
-				
+
+									<hr class="my-2">
+
 									<section class="carmore-section pb-0"
 										id="js_mypage_section_notice" style="display: block;">
-										<div class="container">
-											<div class="pt-2 pb-3 text-20 color-grey-3">차자조 공지사항</div>
-											<div id="js_mypage_container_notice">
-												<div class="" id="js_mypage_template_notice"
-													style="display: block;">
-													<div
-														class="js-mypage-item-notice mypage-item-notice dc-flex justify-content-between align-items-center py-3 click-effect-press"
-														bi="12">
-														<div>
-															<div class="mb-0 text-16 line-height-1"
-																id="js_mypage_txt_notice_tite">해외지역 서비스 점검 안내</div>
-															<span class="text-12 color-grey-5"
-																id="js_mypage_txt_notice_content"></span>
+										
+											<div class="feat-list">
+												<div class="panel-group">
+													<div class="panel panel-default">
+														<div class="panel-heading">
+															<h4 class=" collapsed"
+																data-toggle="collapse" data-target="#fqa0"
+																aria-expanded="false">공지사항</h4>
+														</div>
+														<div id="fqa0" class="panel-collapse fqa-body collapse"
+															aria-expanded="false" style="height: 0px;">
+															<div class="panel-body">공지사항1</div>
 														</div>
 													</div>
-												</div>
-												<div class="" id="js_mypage_template_notice"
-													style="display: block;">
-													<div
-														class="js-mypage-item-notice mypage-item-notice dc-flex justify-content-between align-items-center py-3 click-effect-press"
-														bi="11">
-														<div>
-															<div class="mb-0 text-16 line-height-1"
-																id="js_mypage_txt_notice_tite">8차 차자조 개인정보처리방침 개정</div>
-															<span class="text-12 color-grey-5"
-																id="js_mypage_txt_notice_content"></span>
+													<div class="panel panel-default">
+														<div class="panel-heading">
+															<h4 class="panel-title fqa-title collapsed"
+																data-toggle="collapse" data-target="#fqa1"
+																aria-expanded="false">공지사항 2</h4>
+														</div>
+														<div id="fqa1" class="panel-collapse fqa-body collapse"
+															aria-expanded="false" style="height: 0px;">
+															<div class="panel-body">공지사항 2</div>
 														</div>
 													</div>
-												</div>
-												<div class="" id="js_mypage_template_notice"
-													style="display: block;">
-													<div
-														class="js-mypage-item-notice mypage-item-notice dc-flex justify-content-between align-items-center py-3 click-effect-press"
-														bi="10">
-														<div>
-															<div class="mb-0 text-16 line-height-1"
-																id="js_mypage_txt_notice_tite">13차 차자조 이용약관 개정</div>
-															<span class="text-12 color-grey-5"
-																id="js_mypage_txt_notice_content"></span>
+													<div class="panel panel-default">
+														<div class="panel-heading">
+															<h4 class="panel-title fqa-title collapsed"
+																data-toggle="collapse" data-target="#fqa2"
+																aria-expanded="false">공지사항 3</h4>
+														</div>
+														<div id="fqa2" class="panel-collapse fqa-body collapse"
+															aria-expanded="false" style="height: 0px;">
+															<div class="panel-body">공지사항 3</div>
 														</div>
 													</div>
-												</div>
-												<div class="" id="js_mypage_template_notice"
-													style="display: block;">
-													<div
-														class="js-mypage-item-notice mypage-item-notice dc-flex justify-content-between align-items-center py-3 click-effect-press"
-														bi="9">
-														<div>
-															<div class="mb-0 text-16 line-height-1"
-																id="js_mypage_txt_notice_tite">12차 차자조 이용약관 개정</div>
-															<span class="text-12 color-grey-5"
-																id="js_mypage_txt_notice_content"></span>
+													<div class="panel panel-default">
+														<div class="panel-heading">
+															<h4 class="panel-title fqa-title collapsed"
+																data-toggle="collapse" data-target="#fqa3"
+																aria-expanded="false">자주 묻는 질문 제목 4</h4>
+														</div>
+														<div id="fqa3" class="panel-collapse fqa-body collapse"
+															aria-expanded="false" style="height: 0px;">
+															<div class="panel-body">자주 묻는 질문 내용 테스트 4</div>
 														</div>
 													</div>
+													
 												</div>
 											</div>
-											<div class="dc-none" id="js_mypage_template_notice">
-												<div
-													class="js-mypage-item-notice mypage-item-notice dc-flex justify-content-between align-items-center py-3 click-effect-press">
-													<div>
-														<div class="mb-0 text-16 line-height-1"
-															id="js_mypage_txt_notice_tite">&nbsp;</div>
-														<span class="text-12 color-grey-5"
-															id="js_mypage_txt_notice_content">&nbsp;</span>
-													</div>
-												</div>
-											</div>
-										</div>
 									</section>
+									<button id="change" type="button"></button>
 									<div id="content"></div>
 
 
@@ -611,11 +594,48 @@ tbody tr:hover {
 			location.href="${pageContext.request.contextPath}/coupon";
 			
 		});
-				
-					
-		$('#bookmark').on('click', function() {
-			location.href='<%=request.getContextPath()%>/profile/favorites';
+		$('#totalLocation').on('click', function() {
+			location.href='<%=request.getContextPath()%>/location';
 		});
+	
+		$('#bookmark').on('click', like);
+		function like(){
+			$.ajax({
+				url:"${pageContext.request.contextPath}/profile/favorites",
+				type:'get',
+				dataType:'json',
+				success:function(result){
+					favorite(result);
+				},
+				error:function(){
+					alert("없음");
+				}
+			});
+		};
+		
+			function favorite(result){
+				var likeList = result.favLocation;
+				console.log(likeList)
+				var html = '';
+				html += '		<c:if test="${empty likeList }">'
+					html += '		<p style="text-align: center; font-size: large;">'
+						html += '			<strong> 관심지점이 없습니다 !!</strong>'
+							html += '			</p>'
+								html += '			<br>'
+					
+												html += '			</c:if>'
+				
+				html += '								<ul>'
+				html += '									<li>' + likeList.name + '</li>'
+				html += '									<li>' + likeList.phoneNumber + '</li>'
+				html += '									<li>' + likeList.address + '</li>'
+				html += '									<li>' + likeList.locationIdx+ '</li>'
+				html += '									<li>' + likeList.memberIdx + '</li>'
+				html += '									<li>' + likeList.businessHours + '</li>'
+				html += '								</ul>'
+					
+				$('#content').html(html);
+			}
 		
 	</script>
 </body>

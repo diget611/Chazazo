@@ -14,28 +14,25 @@
 </head>
 <body>
 	<div class="container">
-		<div class="col-6 mb-3">
-			<label><b>채팅방</b></label>
-		</div>
 		<div>
 			<div id="msgArea">
 				<c:forEach items="${chatList }" var="chat">
 					<c:choose>
 						<c:when test="${chat.sender eq username }">
-							<div class="row justify-content-end">
-								<div class="col-6 bg-info mb-3 ps-3 pe-3 pt-1 pb-1">${chat.chatCon }</div>
+							<div class="d-flex justify-content-end float-end" style="width: 400px;">
+								<div class="bg-info mb-3 ps-3 pe-3 pt-2 pb-2 rounded bg-opacity-50">${chat.chatCon }</div>
 							</div>
 						</c:when>
 						<c:otherwise>
-							<div class="row justify-content-start">
-								<div class="col-6 bg-light mb-3 ps-3 pe-3 pt-1 pb-1">${chat.chatCon }</div>
+							<div class="d-flex justify-content-start float-start" style="width: 400px;">
+								<div class="bg-light mb-3 ps-3 pe-3 pt-2 pb-2 rounded">${chat.chatCon }</div>
 							</div>
 						</c:otherwise>
 					</c:choose>
 				</c:forEach>
 			</div>
 			<div class="row">
-				<div class="input-group mb-3">
+				<div class="input-group fixed-bottom">
 					<input type="text" id="msg" class="form-control" aria-label="Recipient's username" aria-describedby="button-addon2">
 					<div class="input-group-append">
 						<button class="btn btn-outline-secondary" type="button" id="button-send">전송</button>
@@ -43,7 +40,6 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-6"></div>
 	</div>
 	
 	<script>
@@ -69,13 +65,13 @@
             var str = '';
             
             if(username == sender){
-				str += '<div class="row justify-content-end">'
-				str += '<div class="col-6 bg-info mb-3 ps-3 pe-3 pt-1 pb-1">' + content.chatCon + '</div>'
+				str += '<div class="d-flex justify-content-end float-end" style="width: 400px;">'
+				str += '<div class="bg-info mb-3 ps-3 pe-3 pt-2 pb-2 rounded bg-opacity-50">' + content.chatCon + '</div>'
 				str += '</div>'
                 $("#msgArea").append(str);
             } else {
-            	str += '<div class="row justify-content-start">'
-				str += '<div class="col-6 bg-light mb-3 ps-3 pe-3 pt-1 pb-1">' + content.chatCon + '</div>'
+            	str += '<div class="d-flex justify-content-start float-start" style="width: 400px;">'
+				str += '<div class="bg-light mb-3 ps-3 pe-3 pt-2 pb-2 rounded">' + content.chatCon + '</div>'
 				str += '</div>'
 				$("#msgArea").append(str);
 			}

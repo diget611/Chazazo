@@ -1,14 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
-<sec:authorize access="isAuthenticated()">
+<sec:authorize access="isAuthenticated()" var="isLogin">
 	<sec:authentication property="principal.authorities" var="auth"/>
 	<sec:authentication property="principal.username" var="username"/>
 </sec:authorize>
 
 <button type="button" class="chat-btn btn btn-primary btn-square" id="chatBtn" data-toggle="modal" data-target="#myModal">
 	<span class="material-symbols-outlined">chat</span>
-	<span class="round-pill bg-danger" id="chatCheck">0</span>
+	<span class="round-pill bg-danger" id="chatCheck" hidden="true">0</span>
 </button>
 
 <div class="modal" id="myModal">
@@ -18,7 +18,7 @@
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 				<h4 class="modal-title">채팅 문의</h4>
 			</div>
-			<div class="modal-body"></div>
+			<div class="modal-body" style="height: 640px;"></div>
 			<div class="modal-footer">
 			</div>
 		</div>
@@ -26,6 +26,66 @@
 </div>
 
 <script>
+	$(document).ready(function(){
+		chatCheck();
+		
+		var isLogin = ${isLogin};
+		var username = '${username}';
+		var auth = '${auth}';
+		
+		function checkRoom() {
+			$.ajax({
+				url: '${pageContext.request.contextPath}/chat/checkroom',
+				type: 'get',
+				data: {username: username},
+				success: function(result) {
+					openSocket(result);
+				},
+				error: function() {
+					alert("에러임");
+				}
+			});
+		}
+		
+		function openSocket(result) {
+			if(isLogin == true && auth == '[ROLE_ADMIN]') {
+				var sock = new SockJS("${pageContext.request.contextPath}/stomp/chat");
+				var stomp = Stomp.over(sock);
+				
+				stomp.connect({}, function (){
+			        stomp.subscribe("/sub/chat/room/*", function() {
+						chatCheck();
+					});
+				})
+			} else if(isLogin == true && auth == '[ROLE_USER]' && result != '') {
+				var sock = new SockJS("${pageContext.request.contextPath}/stomp/chat");
+				var stomp = Stomp.over(sock);
+				
+				stomp.connect({}, function (){
+			        stomp.subscribe("/sub/chat/room/" + result, function() {
+						chatCheck();
+					});
+				})
+			}	
+		}
+		
+		function chatCheck() {
+			$.ajax({
+				url: '${pageContext.request.contextPath}/chat/check',
+				type: 'get',
+				success: function(result) {
+					$('#chatCheck').text('');
+					$('#chatCheck').prepend(result);
+				},
+				error: function() {
+					alert('에러');
+				}
+			});
+		}
+		
+		checkRoom();
+	});
+
 	$('#chatBtn').on('click', openModal);
 	
 	var roomIdx = '';
@@ -33,9 +93,11 @@
 	function openModal() {
 		var auth = '${auth}';
 		if(auth == '[ROLE_USER]') {
-			createRoom();			
+			createRoom();
+			$('#chatCheck').css('display', 'none');
 		} else if(auth == '[ROLE_ADMIN]') {
 			chatRoomList();
+			$('#chatCheck').css('display', 'none');
 		} else {
 			alert('안됨');
 		}
@@ -153,6 +215,8 @@
 	}
 	
 	function modalClose() {
+		chatCheck();
+		$('#chatCheck').css('display', 'block');
 		$('.modal-body').children().remove();
-	}	
+	}
 </script>

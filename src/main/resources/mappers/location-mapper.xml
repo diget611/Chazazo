@@ -16,8 +16,8 @@
 		SELECT COUNT(*) FROM LOCATION
 	</select>
 	
-	<select id="selectNameList" resultType="LocationRespDto">
-		SELECT * FROM LOCATION
+	<select id="selectNameList" resultType="adminStatisticsLocationRespDto">
+		SELECT NAME, IDX FROM LOCATION
 	</select>
 	
 	

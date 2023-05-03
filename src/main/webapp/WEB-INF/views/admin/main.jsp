@@ -29,6 +29,8 @@
     <script src="<%=request.getContextPath()%>/resources/dashmin/lib/tempusdominus/js/moment.min.js"></script>
     <script src="<%=request.getContextPath()%>/resources/dashmin/lib/tempusdominus/js/moment-timezone.min.js"></script>
     <script src="<%=request.getContextPath()%>/resources/dashmin/lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
     <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/main.css">
 </head>
 <body>
@@ -147,7 +149,7 @@
 		</div>
 		<jsp:include page="/WEB-INF/views/admin/base/chat.jsp"/>
 	</div>
-
+	
 <script src="<%=request.getContextPath()%>/resources/dashmin/js/main.js"></script>
 
 <script>
@@ -163,7 +165,7 @@
 	var month = [];
 	
 	$.each(locationList, function(idx, value) {
-		loc.push(value.NAME);
+		loc.push(value.name);
 	});
 	
 	$.each(monthList, function(idx, value) {

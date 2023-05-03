@@ -191,8 +191,10 @@ function makeOutListener(infowindow) {
 				console.log(result);
 				if(result == 0){
 					alert("찜완료");
+					history.go();
 				}else{
 					alert("찜제거");
+					history.go();
 				}
 					
 				},

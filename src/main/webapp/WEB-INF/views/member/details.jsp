@@ -395,8 +395,10 @@
 						    //	canclePay();
 						    	
 						   		 Swal.fire('예약 취소 완료 ', ' 예약이 취소되었습니다. ', 'success');
+						   		history.go(0);
 						     }else{
 						    	 Swal.fire('예약 삭제를 취소합니다 ', '다시 시도하세요 ', 'error');
+						    	
 						    }
 						});
 					 

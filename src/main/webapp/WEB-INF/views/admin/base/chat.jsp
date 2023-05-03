@@ -26,6 +26,8 @@
 
 <script>
 	$(document).ready(function(){
+		chatCheck();
+		
 		var sock = new SockJS("${pageContext.request.contextPath}/stomp/chat");
 		var stomp = Stomp.over(sock);
 		

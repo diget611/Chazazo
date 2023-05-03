@@ -27,6 +27,8 @@
 
 <script>
 	$(document).ready(function(){
+		chatCheck();
+		
 		var isLogin = ${isLogin};
 		var username = '${username}';
 		var auth = '${auth}';

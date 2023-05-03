@@ -59,5 +59,10 @@ public class LocationServiceImpl implements LocationService {
 		return dao.selectLocation();
 	}
 
+	@Override
+	public LocationRespDto getInfo(int idx) {
+		return dao.getInfo(idx);
+	}
+
 
 }

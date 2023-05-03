@@ -51,4 +51,8 @@ public class LocationDao {
 		return sqlSession.selectOne("location.getLikeLoction",map);
 		
 	}
+
+	public LocationRespDto getInfo(int idx) {
+		return sqlSession.selectOne("location.getInfo",idx);
+	}
 }

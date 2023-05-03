@@ -41,8 +41,11 @@ public class LocationController {
 	}
 	
 	@GetMapping("/location/{idx}")
-	public ModelAndView viewLocationOne(ModelAndView mv) {
+	public ModelAndView viewLocationOne(ModelAndView mv, @PathVariable String idx) {
 		// 지점 상세 조회
+		int index = Integer.parseInt(idx);
+		mv.addObject("location", lService.getInfo(index));
+		mv.setViewName("/temp/location");
 		return mv;
 	}
 	

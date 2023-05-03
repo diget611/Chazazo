@@ -20,4 +20,6 @@ public interface LocationService {
 		public int deleteFav(Map<String, Object> map);
 		public List<LocationRespDto> selectLocation();
 
+		public LocationRespDto getInfo(int idx);
+
 }

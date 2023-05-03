@@ -52,7 +52,7 @@
 						<div class="footer-title-line"></div>
 						<ul class="footer-menu">
 							<c:forEach items="${locationList }" var="location">
-								<li><a href="#">${location.name } [[ ${location.liked} ]]</a></li>
+								<li><a href="${pageContext.request.contextPath}/location/${location.idx }">${location.name } [[ ${location.liked} ]]</a></li>
 								<div>
 								<c:choose>
 									<c:when test="${location.liked == 0 }">
@@ -106,7 +106,7 @@
 		// <맵 생성>
 		var mapContainer = document.getElementById('map'), // 지도를 표시할 div  
     mapOption = { 
-        center: new kakao.maps.LatLng(37.49640072828634, 127.02725329040501), // 지도의 중심좌표
+        center: new kakao.maps.LatLng(${location.latitude} , ${location.longitude}), // 지도의 중심좌표
         level: 3 // 지도의 확대 레벨
     };
 

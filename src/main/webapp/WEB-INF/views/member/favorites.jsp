@@ -40,6 +40,7 @@
 	<jsp:include page="/WEB-INF/views/base/header.jsp"/>
 
 	<section>
+
 		<div class="content-area blog-page padding-top-40"
 			style="background-color: #FCFCFC; padding-bottom: 55px;">
 			<div class="container">
@@ -177,16 +178,26 @@
 				
 												
 							</div>
-					<button class="w3-button w3-black w3-round" id="rec_update">
-						<i class="fa fa-heart" style="font-size:16px;color:red"></i>
-						&nbsp;<span class="rec_count"></span>
-					</button> 
-
+		
 
 							<!-- 관심 지점이 있을 경우 -->
 							
+							<button id="change"></button>
+							<div id ="content">
+		<c:forEach items="${favLocation }" var="like">
+			<ul>
+				<li>${like.name }</li>
+				<li>${like.phoneNumber }</li>
+				<li>${like.idx }</li>
+				<li>${like.address }</li>
+				<li>${like.locationIdx }</li>
+				<li>${like.memberIdx }</li>
+				<li>${like.businessHours }</li>
+			</ul>
+		</c:forEach>
+		
+							</div>
 							<ul class="branch-info-list">
-
 								<li>
 									<p class="tit">가산디지털 </p>
 									<div class="cont">
@@ -264,6 +275,40 @@
 		location.href='<%=request.getContextPath()%>/location';
 	});
 	
+	$('#change').on('click', content);
+	function content(){
+		$.ajax({
+			url:"${pageContext.request.contextPath}/profile/favorites",
+			type:'get',
+			dataType:'json',
+			success:function(result){
+				console.log(result);
+				favorite(result);
+			},
+			error:function(){
+				alert("없음");
+			}
+		});
+	};
+
+	function favorite(result){
+		var likeList = result.favLocation;
+		console.log(likeList)
+		var html = '';
+		for(i=0; i<likeList; i++){
+			like = likeList[i];
+			html += '								<ul>'
+			html += '									<li>' + like.name + '</li>'
+			html += '									<li>' + like.phoneNumber + '</li>'
+			html += '									<li>' + like.idx + '</li>'
+			html += '									<li>' + like.address+ '</li>'
+			html += '									<li>' + like.locationIdx + '</li>'
+			html += '									<li>' + like.memberIdx + '</li>'
+			html += '									<li>' + like.businessHours + '</li>'
+			html += '								</ul>'
+		}
+		$('#content').html(html);
+	}
 	</script>
 </body>
 </html>

@@ -11,7 +11,7 @@ import lombok.Data;
 @Data
 public class LocationRespDto {
 
-	private Integer idx;
+	private int idx;
 	private String name;
 	private double latitude;
 	private double longitude;
@@ -20,9 +20,10 @@ public class LocationRespDto {
 	private String address;
 	
 	private int locationIdx;
-	private Integer memberIdx;
-	private String favLocation;
-	private String favAddress;
+	private int memberIdx;
+	
+	private int liked; // 1: liked, 0:unliked
+	
 	
 	
 	

@@ -23,13 +23,15 @@ public class LocationDao {
 	public List<LocationRespDto> selectLocation(int idx) {
 		return sqlSession.selectList("vehicle.selectLocation",idx);
 	}
-
 	
+	// 좋아요상태 포함
+	public List<LocationRespDto> selectLocation(String username) {
+		return sqlSession.selectList("location.selectNameListWLiked", username);
+	}
 	
 	public List<LocationRespDto> selectLocation() {
 		return sqlSession.selectList("location.selectNameList");
 	}
-
 	
 	public List<LocationRespDto> selectLikeLocation(String username){
 		return sqlSession.selectList("location.likeLocation", username);
@@ -37,24 +39,16 @@ public class LocationDao {
 	
 	
 	
-	public int insertFavLocation(LocationReqDto dto) {
-		return sqlSession.insert("location.insertFavorite", dto);
+	public int insertFavLocation(Map<String, Object> map) {
+		return sqlSession.insert("location.insertFavorite", map);
 	}
 	
-	public int deleteFav(Integer memberIdx, Integer idx) {
-		Map<String, Object> result = new HashMap<String, Object>();
-	
-		result.put("memberIdx", memberIdx);
-		result.put("locationIdx", idx);
-		return sqlSession.delete("location.deleteFav", result);
+	public int deleteFav(Map<String, Object> map)  {
+		return sqlSession.delete("location.deleteFav", map);
 	}
 	
-	public LocationRespDto getLike(Integer memberIdx, Integer idx){
-		Map<String, Object> result = new HashMap<String, Object>();
-		
-		result.put("memberIdx", memberIdx);
-		result.put("locationIdx", idx);
-		return sqlSession.selectOne("location.getLikeLoction",result);
+	public int getLike(Map<String, Object> map) {
+		return sqlSession.selectOne("location.getLikeLoction",map);
 		
 	}
 }

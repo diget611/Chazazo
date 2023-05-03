@@ -1,6 +1,7 @@
 package kh.spring.chazazo.location.model.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,7 +25,10 @@ public class LocationServiceImpl implements LocationService {
 	public List<LocationRespDto> selectLocation(int idx) {
 		return dao.selectLocation(idx);
 	}
-
+	@Override
+	public List<LocationRespDto> selectLocation(String username) {
+		return dao.selectLocation(username);
+	}
 	@Override
 	public List<LocationRespDto> selectLikeLocation(String username) {
 		
@@ -36,20 +40,18 @@ public class LocationServiceImpl implements LocationService {
 	}
 
 	@Override
-	public int insertFavLocation(LocationReqDto dto) {
-		return dao.insertFavLocation(dto);
+	public int insertFavLocation(Map<String, Object> map) {
+		return dao.insertFavLocation(map);
 	}
 
 	@Override
-	public boolean getLike(Integer memberIdx, Integer idx) {
-		LocationRespDto dto = dao.getLike(memberIdx, idx);
-		return dto != null;
+	public int getLike(Map<String, Object> map) {
+		return dao.getLike(map);
 	}
 
 	@Override
-	public int deleteFav(Integer memberIdx, Integer idx) {
-		
-		return dao.deleteFav(memberIdx, idx);
+	public int deleteFav(Map<String, Object> map) {
+		return dao.deleteFav(map);
 	}
 
 	@Override

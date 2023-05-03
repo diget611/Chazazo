@@ -51,18 +51,40 @@
 						<h4>지점 안내 </h4>
 						<div class="footer-title-line"></div>
 						<ul class="footer-menu">
-							<c:forEach items="${location }" var="list">
-								<li><a href="#">${list.name }</a></li>
-								<button class="w3-button w3-black w3-round" id="rec_update">
-								<i class="fa fa-heart" style="font-size:16px;color:red"></i>
-								&nbsp;
-								</button> 
+							<c:forEach items="${locationList }" var="location">
+								<li><a href="#">${location.name } [[ ${location.liked} ]]</a></li>
+								<div>
+								<c:choose>
+									<c:when test="${location.liked == 0 }">
+										<div class="w3-border w3-center w3-padding">
+											<button class="w3-button w3-black w3-round rec_update" data-idx="${ location.idx }">
+												<i class="fa fa-heart" style="font-size:16px;color:white"></i>
+												&nbsp;<span class="rec_count"></span>
+											</button> 
+										</div>
+									</c:when>
+									<c:otherwise>
+										<div class="w3-border w3-center w3-padding">
+										<sec:authorize access="isAuthenticated()">
+											<button class="w3-button w3-black w3-round rec_update" data-idx="${ location.idx }">
+												<i class="fa fa-heart" style="font-size:16px;color:red"></i>
+												&nbsp;<span class="rec_count"></span>
+											</button> 
+										</sec:authorize>
+										</div>
+									</c:otherwise>
+								</c:choose>
+								
+							</div>
 							</c:forEach>
+							
+							<!-- 
 							<li ><a href="#">강남점</a></li> 
 							<li><a href="#">용산점</a></li> 
 							<li><a href="#">수원점</a></li> 
 							<li><a href="#">송도점</a></li> 
 							<li><a href="#">일산점</a></li> 
+							 -->
 						</ul>
 					</div>
 				</div>  
@@ -156,22 +178,20 @@ function makeOutListener(infowindow) {
 }
 	
 		
-	$("#rec_update").on("click", like);
-	
+	$(".rec_update").on("click", like);
 	function like(){
-		var idx = $('#idx').val();
+		console.log( $(this).data("idx"));
 		$.ajax({
 			url: '${pageContext.request.contextPath}/profile/like',
 			type: 'POST',
-			dataType:'json',
 			data:{
-				idx : idx
+				locationIdx : $(this).data("idx")
 			},
 			success: function(result){
 				console.log(result);
-				if(result == 1){
+				if(result == 0){
 					alert("찜완료");
-				}else if(result == 0){
+				}else{
 					alert("찜제거");
 				}
 					

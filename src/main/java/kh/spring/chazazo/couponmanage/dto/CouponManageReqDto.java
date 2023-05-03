@@ -2,7 +2,18 @@ package kh.spring.chazazo.couponmanage.dto;
 
 import org.springframework.stereotype.Component;
 
-@Component
-public class CouponManageReqDto {
+import lombok.Data;
 
+@Component
+@Data
+
+public class CouponManageReqDto {
+	private String couponCode;
+	private int idx;
+	private int rate;
+	private int period;
+	private String name;
+	private int state;
+	
+	
 }

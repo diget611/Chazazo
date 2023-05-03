@@ -9,7 +9,7 @@ import lombok.Data;
 
 public class LocationReqDto {
 	
-	private Integer idx;
+	private int idx;
 	private String name;
 	private double latitude;
 	private double longitude;
@@ -18,8 +18,7 @@ public class LocationReqDto {
 	private String address;
 	
 	private int locationIdx;
-	private Integer memberIdx;
-	private String favLocation;
-	private String favAddress;
+	private int memberIdx;
+	
 	
 }

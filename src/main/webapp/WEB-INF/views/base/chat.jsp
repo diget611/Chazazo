@@ -4,17 +4,26 @@
 <sec:authorize access="isAuthenticated()">
 	<sec:authentication property="principal.authorities" var="auth"/>
 	<sec:authentication property="principal.username" var="username"/>
-</sec:authorize>	
-<div class="modal">
-	<div class="modal-body">
-		<div id="content"></div>
-			
-	</div>
-</div>
-<button type="button" class="chat-btn btn btn-primary btn-square" id="chatBtn">
+</sec:authorize>
+
+<button type="button" class="chat-btn btn btn-primary btn-square" id="chatBtn" data-toggle="modal" data-target="#myModal">
 	<span class="material-symbols-outlined">chat</span>
 	<span class="round-pill bg-danger" id="chatCheck"></span>
 </button>
+
+<div class="modal fade" id="myModal">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title">채팅 문의</h4>
+			</div>
+			<div class="modal-body"></div>
+			<div class="modal-footer">
+			</div>
+		</div>
+	</div>
+</div>
 
 <script>
 	$(document).ready(function() {
@@ -41,7 +50,7 @@
 		} else if(auth == '[ROLE_ADMIN]') {
 			chatRoomList();
 		} else {
-			alert(안됨);
+			alert('안됨');
 		}
 	}
 	
@@ -52,7 +61,6 @@
 			success: function(result) {
 				if(result != '') {
 					roomIdx = result;
-					console.log(result);
 					makeFrame(result);
 				} else {
 					console.log('방 생성 실패');
@@ -65,30 +73,16 @@
 	}
 	
 	function makeFrame(result) {
+		$('.modal-body').children().remove();
 		var html = '<iframe src="${pageContext.request.contextPath}/chat/room/' + result + '" style="width:100%; height:600px; border: none;"></iframe>';
-		$('#content').children().remove();
-		$('#content').append(html);	
+		document.body.scrollTop = document.body.scrollHeight;
+		$('.modal-body').append(html);
 		
-		var btn = '<button type="button" id="chatEndBtn" class="btn btn-secondary">상담 종료</button><button type="button" id="modalCloseBtn" class="btn btn-secondary">닫기</button>';
-		$('#content').append(btn);
+		$('.modal-footer').children().remove();
+		var btn = '<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button> <button type="button" id="chatEndBtn" class="btn btn-primary">상담 종료</button>';
+		$('.modal-footer').append(btn);
 		$('#chatEndBtn').on('click', chatEnd);
-		$('#modalCloseBtn').on('click', function() {
-			$('.modal').css('display', 'none');
-		});
-		
-		$('.modal').css('display', 'block');
-		
-		$.ajax({
-			url: '${pageContext.request.contextPath}/chat/check',
-			type: 'get',
-			success: function(result) {
-				$('#chatCheck').text('');
-				$('#chatCheck').prepend(result);
-			},
-			error: function() {
-				alert('에러');
-			}
-		});
+		chatCheck();		
 	}
 	
 	function chatRoomList() {
@@ -106,6 +100,8 @@
 	}
 	
 	function makeList(result) {
+		$('.modal-body').children().remove();
+		$('.modal-footer').children().remove();
 		var html = '';
 		for(var i in result) {
 			html += '<div class="alert alert-warning mb-3" onclick="toChat(this)" id="' + result[i].idx + '">'
@@ -113,50 +109,23 @@
 			html += '<div>' + result[i].chatCon + '</div>'
 			html += '</div>'
 		}
-		$('#content').children().remove();
-		$('#content').append(html);
+		$('.modal-body').append(html);
 		
-		var btn = '<button type="button" class="btn btn-secondary" id="modalCloseBtn">닫기</button>';
-		$('#content').append(btn);
-		$('#modalCloseBtn').on('click', function() {
-			$('.modal').css('display', 'none');
-		});
-		$('.modal').css('display', 'block');
+		var btn = '<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>';
+		$('.modal-footer').append(btn);
+		chatCheck();
 	}
 	
 	function toChat(e) {
-		$('#content').children().remove();
+		$('.modal-body').children().remove();
 		var html = '<iframe src="${pageContext.request.contextPath}/chat/room/' + $(e).attr('id') + '" style="width:100%; height:600px; border: none;"></iframe>';
 		document.body.scrollTop = document.body.scrollHeight;
-		$('#content').append(html);
+		$('.modal-body').append(html);
 		
 		var btn = '<button type="button" class="btn btn-primary" id="pageBack">뒤로가기</button>';
-		$('#content').append(btn);
+		$('.modal-footer').append(btn);
 		$('#pageBack').on('click', chatRoomList);
-		
-		$.ajax({
-			url: '${pageContext.request.contextPath}/chat/check',
-			type: 'get',
-			success: function(result) {
-				$('#chatCheck').text('');
-				$('#chatCheck').prepend(result);
-			},
-			error: function() {
-				alert('에러');
-			}
-		});
-		
-		$.ajax({
-			url: '${pageContext.request.contextPath}/chat/check',
-			type: 'get',
-			success: function(result) {
-				$('#chatCheck').text('');
-				$('#chatCheck').prepend(result);
-			},
-			error: function() {
-				alert('에러');
-			}
-		});
+		chatCheck();
 	}
 
 	function chatEnd() {
@@ -183,9 +152,9 @@
 			url: '${pageContext.request.contextPath}/chat/check',
 			type: 'get',
 			success: function(result) {
-				console.log(result);
-				$('#chatCheck').text('');
-				$('#chatCheck').prepend(result);
+				console.log(result);	
+				$(top.document).find('#chatCheck').text('');
+				$(top.document).find('#chatCheck').prepend(result);
 			},
 			error: function() {
 				alert('에러');

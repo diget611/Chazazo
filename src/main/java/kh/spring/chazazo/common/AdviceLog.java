@@ -18,8 +18,6 @@ public class AdviceLog {
 	@Pointcut("execution(public * kh.spring.chazazo..*Controller.*(..))")
 	public void controllerPointCut() {}
 	
-	@Pointcut("execution(public * kh.spring.chazazo..*ServiceImpl.*(..))")
-	public void serviceImplPointCut() {}
 	
 	@Pointcut("execution(public * kh.spring.chazazo..*Dao.*(..))")
 	public void daoPointCut() {}
@@ -44,28 +42,7 @@ public class AdviceLog {
 		
 		return returnObj;
 	}
-	
-	@Around("serviceImplPointCut()")
-	public Object aroundServiceImplPointCut(ProceedingJoinPoint pjp) throws Throwable {
-		Object returnObj = null;
-		
-		logger.info("▶▶Srv : {} {}", pjp.getThis(), pjp.getSignature().getName());
-		
-		Object[] args = pjp.getArgs();
-		for(int i = 0; i < args.length; i++) {
-			logger.info("▶▶Srv Args[{}] : {}", i, args[i]);
-		}
-		
-		StopWatch stopwatch = new StopWatch();
-		stopwatch.start();
-		returnObj = pjp.proceed();
-		stopwatch.stop();
-		
-		logger.info("▶▶Srv Return[{}] : {}", stopwatch.getTotalTimeMillis(), returnObj);
-		
-		return returnObj;
-	}
-	
+
 	@Around("daoPointCut()")
 	public Object aroundDaoPointCut(ProceedingJoinPoint pjp) throws Throwable {
 		Object returnObj = null;

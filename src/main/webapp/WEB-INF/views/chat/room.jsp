@@ -105,7 +105,6 @@
 			success: function(result) {
 				$(top.document).find('#chatCheck').text('');
 				$(top.document).find('#chatCheck').prepend(result);
-				console.log(result);
 			},
 			error: function() {
 				alert('에러');

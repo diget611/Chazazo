@@ -11,7 +11,6 @@
 <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700,800' rel='stylesheet' type='text/css'>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,-25" />
 
-
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/garoestate/assets/css/normalize.css">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/garoestate/assets/css/font-awesome.min.css">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/garoestate/assets/css/fontello.css">
@@ -39,43 +38,12 @@
 <script src="<%=request.getContextPath()%>/resources/garoestate/assets/js/owl.carousel.min.js"></script>
 <script src="<%=request.getContextPath()%>/resources/garoestate/assets/js/price-range.js"></script>
 <script src="<%=request.getContextPath()%>/resources/garoestate/assets/js/main.js"></script>
-
 <!-- Date Range Picker -->
 <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/main.css">
 
-<style>
-	.modal {
-			position: absolute;
-			top: 0;
-			left: 0;
-			width: 100%;
-			height: 100%;
-			display: none;
-			background-color: rgba(0, 0, 0, 0.4);
-	}
-      
-	.modal.show {
-				display: block;
-	}
-
-	.modal-body {
-				position: fixed;
-				right: -110px;
-				bottom: -250px;
-				z-index: 98;
-				width: 400px;
-				height: 670px;
-				padding: 10px;
-				text-align: center;
-				background-color: rgb(255, 255, 255);
-				border-radius: 10px;
-				box-shadow: 0 2px 3px 0 rgba(34, 36, 38, 0.15);
-				transform: translateX(-50%) translateY(-50%);
-	}
-</style>
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/base/header.jsp"/>

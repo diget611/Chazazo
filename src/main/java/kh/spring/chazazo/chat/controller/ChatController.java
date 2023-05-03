@@ -39,7 +39,7 @@ public class ChatController {
 	@GetMapping("/room/{roomIdx}")
 	public ModelAndView enterChat(ModelAndView mv, Principal prin, @PathVariable String roomIdx) {
 		String username = prin.getName();
-
+		System.out.println(roomIdx);
 		Map<String, String> data = new HashMap<String, String>();
 		data.put("username", username);
 		data.put("roomIdx", roomIdx);
@@ -79,7 +79,7 @@ public class ChatController {
 	@GetMapping("/check")
 	public int checkChat(Principal prin) {
 		int result = 0;
-		if(prin.getName() == null) {
+		if(prin == null) {
 			result = 0;
 		} else {
 			String username = prin.getName();

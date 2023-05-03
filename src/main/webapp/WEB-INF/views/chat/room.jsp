@@ -61,13 +61,13 @@
 		stomp.connect({}, function (){
 		console.log("STOMP Connection")
 
-        stomp.subscribe("/sub/chat/room/*", function (chat) {
+        stomp.subscribe("/sub/chat/room/" + roomIdx, function (chat) {
 			var content = JSON.parse(chat.body);
-
+			
             var sender = content.sender;
             var message= $('#msg').val();
             var str = '';
-
+            
             if(username == sender){
 				str += '<div class="row justify-content-end">'
 				str += '<div class="col-6 bg-info mb-3 ps-3 pe-3 pt-1 pb-1">' + content.chatCon + '</div>'

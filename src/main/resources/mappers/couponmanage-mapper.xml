@@ -9,7 +9,7 @@
 	</select>
 	
 	<select id="selectOne" resultType="adminCouponManageRespDto">
-		SELECT IDX, RATE * 100 AS RATE, PERIOD, NAME, STATUS
+		SELECT IDX, RATE * 100 AS RATE, PERIOD, NAME, STATUS, COUPON_CODE
 		  FROM COUPON_MANAGE WHERE IDX = #{idx}
 	</select>
 	
@@ -19,7 +19,7 @@
 	
 	<insert id="insert" parameterType="adminCouponInsertReqDto">
 		INSERT INTO COUPON_MANAGE
-		VALUES (COUPON_MANAGE_SEQ.NEXTVAL, #{rate}, #{period}, #{name}, DEFAULT)
+		VALUES (COUPON_MANAGE_SEQ.NEXTVAL, #{rate}, #{period}, #{name}, DEFAULT, #{couponCode})
 	</insert>
 	
 	<update id="update" parameterType="adminCouponUpdateReqDto">

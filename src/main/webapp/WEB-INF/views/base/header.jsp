@@ -5,7 +5,7 @@
 	<sec:authentication property="principal.authorities" var="auth"/>
 	<sec:authentication property="principal.username" var="username"/>
 </sec:authorize>
-<nav class="navbar navbar-default" style="position: sticky; top: 0px; z-index: 999;">
+<nav class="navbar navbar-default" style="position: sticky; top: 0px; z-index: 10000;">
 	<div class="container">
 		<!-- Brand and toggle get grouped for better mobile display -->
 		<div class="navbar-header">

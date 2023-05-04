@@ -19,5 +19,6 @@ public class AdminCouponManageRespDto {
 	private int period;
 	private String name;
 	private int status;
+	private String couponCode;
 	
 }

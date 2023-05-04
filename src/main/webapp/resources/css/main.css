@@ -22,7 +22,7 @@ body {
 .chat-btn {
 	position: fixed;
     right: 45px;
-    bottom: 45px;
+    bottom: 60px;
     z-index: 99;
 }
 

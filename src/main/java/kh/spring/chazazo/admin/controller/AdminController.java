@@ -3,6 +3,7 @@ package kh.spring.chazazo.admin.controller;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -192,7 +193,10 @@ public class AdminController {
 	
 	@PostMapping("/coupon/insert")
 	public int insertCoupon(@RequestBody AdminCouponInsertReqDto data) {
-		int result = aService.insertCoupon(data); 
+		String code = RandomStringUtils.randomAlphanumeric(16).toUpperCase();
+		data.setCouponCode(code);
+		int result = aService.insertCoupon(data);
+		System.out.println(code);
 		return result;
 	}
 	

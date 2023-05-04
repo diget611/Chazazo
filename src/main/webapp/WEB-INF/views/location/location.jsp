@@ -113,7 +113,7 @@
 </body>
 
  <script type="text/javascript">
- 
+	$('.main-nav').children().eq(3).children().css('color', '#18B4E9')
  
  
 		// <맵 생성>

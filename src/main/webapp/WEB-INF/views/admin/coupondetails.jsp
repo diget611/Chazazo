@@ -49,6 +49,10 @@
 						<input type="text" class="form-control" id="rate" name="rate" value="${coupon.rate}" readonly>
 						<label for="rate">할인율</label>
 					</div>
+					<div class="form-floating mb-3">
+						<input type="text" class="form-control" id="couponCode" name="couponCode" value="${coupon.couponCode}" readonly>
+						<label for="couponCode">등록용 코드</label>
+					</div>
 					<c:if test="${coupon.status ne 1}">
 						<div style="text-align: center;">
 							<button type="button" class="btn btn-primary" id="updateBtn" style="display: inline-block">수정하기</button>

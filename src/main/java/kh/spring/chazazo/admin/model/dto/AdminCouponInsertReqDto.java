@@ -17,5 +17,10 @@ public class AdminCouponInsertReqDto {
 	private double rate;
 	private int period;
 	private String name;
+	private String couponCode;
+	
+	public void setCouponCode(String couponCode) {
+		this.couponCode = couponCode;
+	}
 	
 }

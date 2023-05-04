@@ -59,6 +59,11 @@ public class ReviewServiceImpl implements ReviewService{
 		return dao.selectMyReview(usesrname);
 	}
 
+	@Override
+	public int checkResv(ReviewDto data) {
+		return dao.checkResv(data);
+	}
+
 	
 	
 

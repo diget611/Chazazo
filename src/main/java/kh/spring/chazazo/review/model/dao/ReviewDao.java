@@ -36,11 +36,15 @@ public class ReviewDao {
 		return sqlSession.delete("review.deleteReview", idx);
 	}
 	public int insertReport(ReviewDto data) {
-		return sqlSession.insert("review.insertReport", data);
+		return sqlSession.selectOne("review.insertReport", data);
 	}
 
 	public List<ReviewDto> selectMyReview(String username) {
 		return sqlSession.selectList("review.selectMyReview", username);
+	}
+
+	public int checkResv(ReviewDto data) {
+		return sqlSession.selectOne("review.checkResv", data);
 	}
 
 }

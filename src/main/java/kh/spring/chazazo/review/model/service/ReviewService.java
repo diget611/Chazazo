@@ -16,4 +16,5 @@ public interface ReviewService {
 	public ReviewDto selectReview(int idx);
 	
 	public List<ReviewDto> selectMyReview(String username);
+	public int checkResv(ReviewDto data);
 }

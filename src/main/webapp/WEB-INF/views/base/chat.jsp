@@ -15,7 +15,7 @@
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true" id="closeBtn">&times;</span></button>
 				<h4 class="modal-title">채팅 문의</h4>
 			</div>
 			<div class="modal-body" style="height: 640px;"></div>
@@ -128,9 +128,8 @@
 		$('.modal-body').append(html);
 		
 		$('.modal-footer').children().remove();
-		var btn = '<button type="button" id="closeBtn" class="btn btn-default" data-dismiss="modal">닫기</button> <button type="button" id="chatEndBtn" class="btn btn-primary">상담 종료</button>';
+		var btn = '<button type="button" id="chatEndBtn" class="btn btn-info">상담 종료</button>';
 		$('.modal-footer').append(btn);
-		$('#closeBtn').on('click', modalClose);
 		$('#chatEndBtn').on('click', chatEnd);
 		chatCheck();		
 	}
@@ -162,9 +161,6 @@
 		}
 		$('.modal-body').append(html);
 		
-		var btn = '<button type="button" id="closeBtn" class="btn btn-default" data-dismiss="modal">닫기</button>';
-		$('.modal-footer').append(btn);
-		$('#closeBtn').on('click', modalClose);
 		chatCheck();
 	}
 	
@@ -174,7 +170,7 @@
 		document.body.scrollTop = document.body.scrollHeight;
 		$('.modal-body').append(html);
 		
-		var btn = '<button type="button" class="btn btn-primary" id="pageBack">뒤로가기</button>';
+		var btn = '<button type="button" class="btn btn-info" id="pageBack">뒤로가기</button>';
 		$('.modal-footer').append(btn);
 		$('#pageBack').on('click', chatRoomList);
 		chatCheck();

@@ -75,6 +75,7 @@
             
             if(username == sender){
             	str += '<div class="d-flex justify-content-end float-end" style="width: 400px;">'
+            	str += '<span class="badge bg-white text-dark" style="padding-top: 10px;">' + content.chatDate + '</span>'
 				str += '	<div class="bg-info mb-2 ps-2 pe-2 pt-2 pb-2 rounded bg-opacity-50">'
 				str += '		<div style="font-size: 0.7rem; text-align: right; border-bottom-style: solid; border-bottom-width: 1px; border-color: lightslategray;">' + content.sender + '</div>'
 				str += '		<div>' + content.chatCon + '</div>'
@@ -87,6 +88,7 @@
 				str += '		<div style="font-size: 0.7rem; text-align: left; border-bottom-style: solid; border-bottom-width: 1px; border-color: lightslategray;">' + content.sender + '</div>'
 				str += '		<div>' + content.chatCon + '</div>'
 				str += '	</div>'
+				str += '<span class="badge bg-white text-dark" style="padding-top: 10px;">' + content.chatDate + '</span>' 
 				str += '</div>'
 				$("#msgArea").append(str);
 			}
@@ -97,8 +99,43 @@
 	
 	$("#button-send").on("click", function(e){
 		var msg = $('#msg').val();
+		
+		var offset = 1000 * 60 * 60 * 9;
+		var korea = new Date();
+		var year = korea.getFullYear().toString().substring(2);
+		
+		var month = korea.getMonth() + 1;
+		if(month < 10) {
+			month = '0' + month;
+		}
+		
+		var day = korea.getDate();
+		if(day < 10) {
+			day = '0' + day;
+		}
+		
+		var str;
+		var hour = korea.getHours();
+		if(hour < 12) {
+			str = '오전';
+		} else if(hour == 12) {
+			str = '오후';
+		} else {
+			str = '오후';
+			hour = hour - 12;
+		}
+		if(hour < 10) {
+			hour = '0' + hour;
+		}
+		
+		var minute = korea.getMinutes();
+		if(minute < 10) {
+			minute = '0' + minute;
+		}
+		
+		var chatDate = year + '/' + month + '/' + day + ' ' + str + ' '+ hour + ':' + minute;
 
-		stomp.send('/pub/chat/message' , {}, JSON.stringify({roomIdx: roomIdx, chatCon: msg, sender: username, chatDate: new Date()}));
+		stomp.send('/pub/chat/message' , {}, JSON.stringify({roomIdx: roomIdx, chatCon: msg, sender: username, chatDate: chatDate}));
 		$('#msg').val('');
 		window.scrollTo(0, document.body.scrollHeight);
 	});

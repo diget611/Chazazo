@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="chatlog">
 	<select id="selectList" resultType="chatLogDto">
-		SELECT CHAT_CON, TO_CHAR(CHAT_DATE, 'AM HH:MI') CHAT_DATE, SENDER, STATUS
+		SELECT CHAT_CON, TO_CHAR(CHAT_DATE, 'YY/MM/DD AM HH:MI') CHAT_DATE, SENDER, STATUS
 		  FROM CHAT_LOG
          WHERE ROOM_IDX = #{roomIdx} ORDER BY IDX
 	</select>

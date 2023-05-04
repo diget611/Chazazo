@@ -110,4 +110,15 @@ public class ChatController {
 		return result;
 	}
 	
+	@GetMapping("/checkclose")
+	public int checkClose(String roomIdx, String username) {
+		Map<String, String> data = new HashMap<String, String>();
+		data.put("username", username);
+		data.put("roomIdx", roomIdx);
+		
+		int result = service.updateChat(data);
+		
+		return result;
+	}
+	
 }

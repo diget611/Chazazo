@@ -36,7 +36,7 @@ public class LocationController {
 		
 		int index = Integer.parseInt(idx);
 		mv.addObject("location", lService.getInfo(index));
-		mv.setViewName("/temp/location");
+		mv.setViewName("/location/location");
 		return mv;
 	}
 	

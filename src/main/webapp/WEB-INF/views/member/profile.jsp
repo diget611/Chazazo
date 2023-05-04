@@ -221,7 +221,7 @@
 
 	
 	<script>
-	
+	$('.main-nav').children().eq(2).children().css('color', '#18B4E9');
 	
 	$('#historyBtn').on('click', function() {
 		location.href='<%=request.getContextPath()%>/member/profile';

@@ -154,7 +154,7 @@
 	<jsp:include page="/WEB-INF/views/base/footer.jsp" />
 
 	<script>
-		$('.main-nav').children().eq(1).children().css('color', '#18B4E9')
+		$('.main-nav').children().eq(1).children().css('color', '#18B4E9');
 
 		window.onload = pageLoad();
 		$('#onEvent').on('click', pageLoad);

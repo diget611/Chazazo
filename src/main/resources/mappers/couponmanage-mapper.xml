@@ -31,4 +31,22 @@
 	<update id="delete">
 		UPDATE COUPON_MANAGE SET STATUS = 1 WHERE IDX = #{idx}
 	</update>
+	
+		
+	<insert id="insertCoupon" parameterType="CouponManageReqDto">
+		INSERT INTO COUPON_MANAGE
+		VALUES (COUPON_MANAGE_SEQ.NEXTVAL, #{rate}, #{period}, #{name}, DEFAULT, #{couponCode})
+	</insert>
+	
+	<select id="selectCouponCode" resultType="_int">
+		SELECT COUNT(*) FROM COUPON_MANAGE WHERE COUPON_CODE=#{couponCode}
+ 	</select>
+	
+	<select id="couponList" resultType="CouponManageRespDto" >
+		SELECT CM.RATE * 100 AS RATE, CM.PERIOD, C.START_DATE, C.EXPIRE_DATE, CM.NAME FROM COUPON C, COUPON_MANAGE CM
+		WHERE C.COUPON_IDX = CM.IDX AND STATUS = 0 MEMBER_IDX = (SELECT IDX FROM MEMBER WHERE USERNAME = #{username})
+	</select>
+	
+	
+	
 </mapper>

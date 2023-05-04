@@ -255,7 +255,7 @@
 
 	<script>
 	
-	
+	$('.main-nav').children().eq(2).children().css('color', '#18B4E9');
 	$('#updateinfoBtn').on('click', function() {
 		location.href='<%=request.getContextPath()%>/member/profile/update';
 		
@@ -278,7 +278,9 @@
 	});
 	
 	function delFn(){
-
+		var locationIdx = $(this).data("locationIdx");
+		var username = $(this).data("username");
+		console.log(username);
 		$.ajax({
 			url:"${pageContext.request.contextPath}/deleteLike", 
 			type: 'DELETE',

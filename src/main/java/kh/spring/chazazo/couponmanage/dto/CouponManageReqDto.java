@@ -8,6 +8,7 @@ import lombok.Data;
 @Data
 
 public class CouponManageReqDto {
+	
 	private String couponCode;
 	private int idx;
 	private int rate;

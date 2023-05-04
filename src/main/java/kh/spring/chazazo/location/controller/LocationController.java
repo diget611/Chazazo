@@ -55,16 +55,9 @@ public class LocationController {
 	
 		System.out.println(result); 
 		System.out.println("favorite!!!!!!!!!!!!!!!!!!!!location");		
-//		return new Gson().toJson(result);
 		mv.setViewName("/member/favorites");
 		return mv;
 	
-//		String loginId = prin.getName();
-//		
-//		mv.addObject("memberinfo", mService.selectMypageOne(loginId) );
-//		mv.addObject("favLocation", lService.selectLikeLocation(loginId));
-//		System.out.println(loginId);
-//		return mv;
 	}
 	
 	//찜하기

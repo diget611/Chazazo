@@ -43,6 +43,10 @@
 		<typeAlias type="kh.spring.chazazo.chat.model.dto.ChatRoomListDto" alias="chatRoomListDto"/>
 		<typeAlias type="kh.spring.chazazo.location.model.dto.LocationReqDto" alias="LocationReqDto"/>
 		<typeAlias type="kh.spring.chazazo.admin.model.dto.AdminStatisticsLocationRespDto" alias="adminStatisticsLocationRespDto"/>
+		<typeAlias type="kh.spring.chazazo.couponmanage.dto.CouponManageReqDto" alias="CouponManageReqDto"/>
+		<typeAlias type="kh.spring.chazazo.couponmanage.dto.CouponManageRespDto" alias="CouponManageRespDto"/>
+		
+		
 		
 	</typeAliases>
 </configuration>

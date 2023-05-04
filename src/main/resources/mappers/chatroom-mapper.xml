@@ -21,9 +21,15 @@
 	</select>
 	
 	<select id="selectList" resultType="chatRoomListDto">
-		SELECT * FROM (SELECT R.IDX AS IDX, L.SENDER AS SENDER, L.CHAT_CON AS CHAT_CON
-		                    , TO_CHAR(L.CHAT_DATE, 'YYYY/MM/DD HH:MI:SS') AS CHAT_DATE, ROW_NUMBER() OVER (PARTITION BY R.IDX ORDER BY CHAT_DATE DESC) RNUM
-                         FROM CHAT_ROOM R INNER JOIN CHAT_LOG L ON R.IDX = L.ROOM_IDX WHERE END_DATE IS NULL)
-         WHERE RNUM = 1
+		SELECT T2.IDX AS IDX, NVL(T1.CNT, 0) AS CNT, T2.SENDER AS SENDER, T2.CHAT_CON AS CHAT_CON
+          FROM (SELECT ROOM_IDX, COUNT(*) CNT
+                  FROM CHAT_LOG WHERE STATUS = 1 AND SENDER != #{username} GROUP BY ROOM_IDX) T1
+         RIGHT OUTER JOIN (SELECT * 
+                             FROM (SELECT R.IDX AS IDX, L.SENDER AS SENDER, L.CHAT_CON AS CHAT_CON
+		                                , TO_CHAR(L.CHAT_DATE, 'YYYY/MM/DD HH:MI:SS') AS CHAT_DATE
+                                        , ROW_NUMBER() OVER (PARTITION BY R.IDX ORDER BY CHAT_DATE DESC) RNUM
+                                     FROM CHAT_ROOM R INNER JOIN CHAT_LOG L ON R.IDX = L.ROOM_IDX WHERE END_DATE IS NULL)
+                            WHERE RNUM = 1) T2
+            ON T1.ROOM_IDX = T2.IDX
 	</select>
 </mapper>

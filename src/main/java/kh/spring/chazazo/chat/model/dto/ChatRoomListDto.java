@@ -15,8 +15,8 @@ import lombok.ToString;
 public class ChatRoomListDto {
 	
 	private String idx;
+	private Integer cnt;
 	private String sender;
 	private String chatCon;
-	private String chatDate;
 	
 }

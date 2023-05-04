@@ -11,6 +11,7 @@
 <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/main.css">
 </head>
 <body>
 	<div class="container">
@@ -20,12 +21,20 @@
 					<c:choose>
 						<c:when test="${chat.sender eq username }">
 							<div class="d-flex justify-content-end float-end" style="width: 400px;">
-								<div class="bg-info mb-3 ps-3 pe-3 pt-2 pb-2 rounded bg-opacity-50">${chat.chatCon }</div>
+								<span class="badge bg-white text-dark" style="padding-top: 10px;">${chat.chatDate }</span>
+								<div class="bg-info mb-2 ps-2 pe-2 pt-2 pb-2 rounded bg-opacity-50">
+									<div style="font-size: 0.7rem; text-align: right; border-bottom-style: solid; border-bottom-width: 1px; border-color: lightslategray;">${chat.sender }</div>
+									<div>${chat.chatCon }</div>
+								</div>
 							</div>
 						</c:when>
 						<c:otherwise>
-							<div class="d-flex justify-content-start float-start" style="width: 400px;">
-								<div class="bg-light mb-3 ps-3 pe-3 pt-2 pb-2 rounded">${chat.chatCon }</div>
+							<div class="d-flex justify-content-start float-start" style="width: 400px;">								
+								<div class="bg-light mb-2 ps-2 pe-2 pt-2 pb-2 rounded">
+									<div style="font-size: 0.7rem; text-align: left; border-bottom-style: solid; border-bottom-width: 1px; border-color: lightslategray;">${chat.sender }</div>
+									<div>${chat.chatCon }</div>
+								</div>
+								<span class="badge bg-white text-dark" style="padding-top: 10px;">${chat.chatDate }</span>
 							</div>
 						</c:otherwise>
 					</c:choose>
@@ -65,13 +74,19 @@
             var str = '';
             
             if(username == sender){
-				str += '<div class="d-flex justify-content-end float-end" style="width: 400px;">'
-				str += '<div class="bg-info mb-3 ps-3 pe-3 pt-2 pb-2 rounded bg-opacity-50">' + content.chatCon + '</div>'
+            	str += '<div class="d-flex justify-content-end float-end" style="width: 400px;">'
+				str += '	<div class="bg-info mb-2 ps-2 pe-2 pt-2 pb-2 rounded bg-opacity-50">'
+				str += '		<div style="font-size: 0.7rem; text-align: right; border-bottom-style: solid; border-bottom-width: 1px; border-color: lightslategray;">' + content.sender + '</div>'
+				str += '		<div>' + content.chatCon + '</div>'
+				str += '	</div>'
 				str += '</div>'
                 $("#msgArea").append(str);
             } else {
             	str += '<div class="d-flex justify-content-start float-start" style="width: 400px;">'
-				str += '<div class="bg-light mb-3 ps-3 pe-3 pt-2 pb-2 rounded">' + content.chatCon + '</div>'
+				str += '	<div class="bg-info mb-2 ps-2 pe-2 pt-2 pb-2 rounded bg-opacity-50">'
+				str += '		<div style="font-size: 0.7rem; text-align: left; border-bottom-style: solid; border-bottom-width: 1px; border-color: lightslategray;">' + content.sender + '</div>'
+				str += '		<div>' + content.chatCon + '</div>'
+				str += '	</div>'
 				str += '</div>'
 				$("#msgArea").append(str);
 			}
@@ -83,7 +98,7 @@
 	$("#button-send").on("click", function(e){
 		var msg = $('#msg').val();
 
-		stomp.send('/pub/chat/message' , {}, JSON.stringify({roomIdx: roomIdx, chatCon: msg, sender: username}));
+		stomp.send('/pub/chat/message' , {}, JSON.stringify({roomIdx: roomIdx, chatCon: msg, sender: username, chatDate: new Date()}));
 		$('#msg').val('');
 		window.scrollTo(0, document.body.scrollHeight);
 	});

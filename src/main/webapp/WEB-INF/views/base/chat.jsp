@@ -154,9 +154,10 @@
 		$('.modal-footer').children().remove();
 		var html = '';
 		for(var i in result) {
-			html += '<div class="alert alert-warning mb-3" onclick="toChat(this)" id="' + result[i].idx + '">'
-			html += '<div>' + result[i].sender  + '</div>'
-			html += '<div>' + result[i].chatCon + '</div>'
+			html += '<div class="alert alert-warning mb-3" onclick="toChat(this)" id="' + result[i].idx + '" style="border-radius: 10px;">'
+			html += '	<div class="mb-2" style="font-size: 1.2rem;">'+ result[i].sender +'</div>'
+			html += '	<div class="ps-2" style="font-size: 0.9rem;">' + result[i].chatCon + '</div>'
+			html += '	<span class="badge">' + result[i].cnt + '</span>'
 			html += '</div>'
 		}
 		$('.modal-body').append(html);

@@ -32,8 +32,9 @@ public class ChatController {
 	private SimpMessagingTemplate template;
 	
 	@GetMapping("/rooms")
-	public String getChatRoomList() {
-		return new Gson().toJson(service.chatRoomList());
+	public String getChatRoomList(Principal prin) {
+		String username = prin.getName();
+		return new Gson().toJson(service.chatRoomList(username));
 	}
 	
 	@GetMapping("/room/{roomIdx}")

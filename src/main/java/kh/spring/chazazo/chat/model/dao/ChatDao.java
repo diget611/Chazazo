@@ -18,8 +18,8 @@ public class ChatDao {
 	@Autowired
 	private SqlSession sqlSession;
 	
-	public List<ChatRoomListDto> chatRoomList() {
-		return sqlSession.selectList("chatroom.selectList");
+	public List<ChatRoomListDto> chatRoomList(String username) {
+		return sqlSession.selectList("chatroom.selectList", username);
 	}
 	
 	public int createRoom(Map<String, String> data) {

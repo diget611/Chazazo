@@ -9,7 +9,7 @@ import kh.spring.chazazo.chat.model.dto.ChatRoomListDto;
 
 public interface ChatService {
 	
-	public List<ChatRoomListDto> chatRoomList();
+	public List<ChatRoomListDto> chatRoomList(String username);
 	public int createRoom(Map<String, String> data);
 	public int hasRoom(String username);
 	public String selectRoom(String username);

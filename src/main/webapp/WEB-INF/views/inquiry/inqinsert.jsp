@@ -1,12 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8">
-<title>문의</title>
+<title>자주 묻는 질문</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
 <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700,800' rel='stylesheet' type='text/css'>
@@ -39,15 +39,11 @@
 <script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/main.css">
-<style>
-	.category {
-		cursor: pointer;
-	}
-</style>
+
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/base/header.jsp"/>
-	
+	<sec:authentication property="name" var="username"/>	
 	<section>
 		<div class="content-area blog-page padding-top-40" style="background-color: #FCFCFC; padding-bottom: 55px;">
 			<div class="container">
@@ -62,129 +58,69 @@
 							<button type="button" class="btn btn-outline-primary" id="mainBtn" style="text-align: left;">자주 묻는 질문</button>
 							<button type="button" class="btn btn-outline-primary" id="requestBtn" style="text-align: left;">1:1 문의</button>
 						</div>
-					</div>   
+					</div>  
 					<div class="blog-lst col-md-9 p0">
 						<section id="id-100" class="post single">
 							<div class="panel panel-default sidebar-menu wow  fadeInRight animated animated" style="visibility: visible; animation-name: fadeInRight;">
 								<div class="panel-heading">
-									<h3 class="panel-title">검색</h3>
-								</div>
-								<div class="panel-body">
-									<form role="search">
-										<div class="input-group">
-											<input class="form-control" placeholder="검색어를 입력하세요" type="text" id="search">
-											<span class="input-group-btn">
-												<button type="button" class="btn btn-smal"><i class="fa fa-search"></i></button>
-	                                        </span>
-										</div>
-									</form>
+									<h3 class="panel-title">자주 묻는 질문</h3>
 								</div>
 							</div>
-							<div class="section" style="display: inline-block; margin-bottom: -10px;"> 
-								<div class="page-subheader sorting pl0 pr-10">
-									<ul class="sort-by-list pull-left">
-										<li class="active" style="width: 50px; text-align: center;">
-											<a class="category">전체</a>
-										</li>
-										<li style="width: 50px; text-align: center;">
-											<a class="category" id="1">1번</a>
-										</li>
-										<li style="width: 50px; text-align: center;">
-											<a class="category" id="2">2번</a>
-										</li>
-										<li style="width: 50px; text-align: center;">
-											<a class="category" id="3">3번</a>
-										</li>
-									</ul>
-								</div>
-							</div>
-							<div class="feat-list">
-								<div class="panel-group"></div>
-							</div>
-							<sec:authorize access="hasRole('ROLE_ADMIN')">
-								<div style="text-align: right; margin-top: 30px;">
-									<button type="button" class="btn btn-primary" id="insertBtn">작성하기</button>
-								</div>								
-							</sec:authorize>
-						</section>	
+						</section>
+						<section>
+							<form id="reqForm">
+								<input type="text" name="title" id="title">
+								<input type="text" name="content" id="content">
+								<button type="button" class="btn btn-outline-primary" id="insertBtn">작성하기</button>
+							</form>
+						</section>
 					</div>                    
 				</div>
 			</div>
 		</div>
 	</section>
-	
+
 	<jsp:include page="/WEB-INF/views/base/chat.jsp"/>
 	<jsp:include page="/WEB-INF/views/base/footer.jsp"/>
 	
 	<script>
 		$('.main-nav').children(0).eq(4).children().css('color', '#18B4E9');
-	
-		$('#mainBtn').on('click', function() {
-			location.href="${pageContext.request.contextPath}/inquiry"
-		})
-
-		$('#requestBtn').on('click', function() {
-			location.href="${pageContext.request.contextPath}/request";
-		})
 		
-		$('.category').on('click', function() {
-			$('.category').parent().removeAttr('class');
-			$(this).parent().attr('class', 'active');
+		$('#mainBtn').on('click', function() {
+			location.href='${pageContext.request.contextPath}/inquiry';
+		});
+	
+		$('#requestBtn').on('click', function() {
+			location.href='${pageContext.request.contextPath}/request';
 		});
 		
-		window.onload = loadPage();
-		$('#search').on('input', loadPage);
-		$('.category').on('click', loadPage);
+		$('#insertBtn').on('click', requestInsert);
 		
-		$('#insertBtn').on('click', function() {
-			location.href = "${pageContext.request.contextPath}/inquiry/insert";
-		})
-		
-		function loadPage() {
-			var categoryIdx;
-			var searchWord;
+		function requestInsert() {
+			var title = $('[name=title]').val();
+			var content = $('[name=content]').val();
+			var username = '${username}';
 			
-			if($(this).prop('tagName') == 'A') {
-				categoryIdx = $(this).attr('id');
-			} else if($(this).prop('tagName') == 'INPUT'){
-				searchWord = $(this).val();
-			} else {
-			}
+			var test = {"title": title, "content": content, "username": username};
 			
-			let data = {
-				"categoryIdx" : categoryIdx,
-				"searchWord" : searchWord
-			};
-			
+			console.log(test);
 			$.ajax({
-				url: '${pageContext.request.contextPath}/inquiry/pageload',
-				data: data,
-				type: 'get',
-				dataType: 'json',
+				url: '${pageContext.request.contextPath}/request/insert',
+				type: 'post',
+				contentType: 'application/json; charset=utf-8',
+				data: JSON.stringify(test),
 				success: function(result) {
-					getList(result);
+					if(result == 1) {
+						alert('성공');
+						window.open='${pageContext.request.contextPath}/request';
+					} else {
+						alert('실패');
+					}
 				},
 				error: function() {
-					alert('에러임');
+					alert('에러');
 				}
 			});
-		}
-		
-		function getList(result) {
-			var html = '';
-       	 	for(var i in result) {
-       			var list = result[i];
-       			html += '<div class="panel panel-default">'
-           		html += '	<div class="panel-heading">'
-				html += '		<h4 class="panel-title fqa-title collapsed" data-toggle="collapse" data-target="#fqa' + i + '" aria-expanded="false">' + list.title + '</h4>'
-				html += '	</div>'
-				html += '	<div id="fqa' + i + '" class="panel-collapse fqa-body collapse" aria-expanded="false" style="height: 0px;">'
-				html += '		<div class="panel-body">'+ list.content +'</div>'
-				html += '	</div>'
-				html += '</div>'
-				}
-
-				$('.panel-group').html(html);
 		}
 	</script>
 </body>

@@ -29,6 +29,12 @@ public class InquiryController {
 		return mv;
 	}
 	
+	@GetMapping("/insert")
+	public ModelAndView viewInsertInquiry(ModelAndView mv) {
+		mv.setViewName("inquiry/inqinsert");
+		return mv;
+	}
+	
 	@GetMapping("/pageload")
 	public String pageLoad(ModelAndView mv, @RequestParam(required = false) Map<String, String> data){
 		List<InquiryRespDto> result = iService.selectList(data);

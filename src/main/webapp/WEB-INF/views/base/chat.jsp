@@ -8,7 +8,7 @@
 
 <button type="button" class="chat-btn btn btn-primary btn-square" id="chatBtn" data-toggle="modal" data-target="#myModal">
 	<span class="material-symbols-outlined">chat</span>
-	<span class="round-pill bg-danger" id="chatCheck" hidden="true">0</span>
+	<span class="round-pill bg-danger" id="chatCheck">0</span>
 </button>
 
 <div class="modal" id="myModal">
@@ -175,6 +175,7 @@
 		
 		var btn = '<button type="button" class="btn btn-info" id="pageBack">뒤로가기</button>';
 		$('.modal-footer').append(btn);
+		$('#pageBack').on('click', updateClose);
 		$('#pageBack').on('click', chatRoomList);
 		chatCheck();
 	}
@@ -215,8 +216,25 @@
 	}
 	
 	function modalClose() {
+		$('#chatCheck').css('display', 'inline-block');
+		updateClose();
 		chatCheck();
-		$('#chatCheck').css('display', 'block');
 		$('.modal-body').children().remove();
+	}
+	
+	function updateClose() {
+		var room = ($('iframe').attr('src')).toString().substring(19);
+		var username = '${username}'
+		$.ajax({
+			url: '${pageContext.request.contextPath}/chat/checkclose',
+			data: {roomIdx: room, username: username},
+			type: 'get',
+			success: function(result) {
+				console.log('업데이트');
+			},
+			error: function() {
+				console.log('에러');
+			}
+		})
 	}
 </script>

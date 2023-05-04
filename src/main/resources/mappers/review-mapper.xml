@@ -68,6 +68,9 @@
 		 	 ORDER BY CREATE_DATE ASC
 	</select>
 	
+	<select id="checkResv" resultType="_int">
+	 	SELECT COUNT(*) FROM PAYMENT WHERE MEMBER_IDX = #{memberIdx} and VEHICLE_IDX = #{vehicleIdx}
+	</select>
 
 	
 </mapper>

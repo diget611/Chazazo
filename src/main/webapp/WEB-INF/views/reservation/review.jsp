@@ -171,6 +171,9 @@ function postReview() {
           dataType:'json',
           data: JSON.stringify(data),
           success: function(result) {
+        	  if(result == 0){
+        		  swal("예약한 적 없는 차량입니다.","렌트한 차량만 리뷰를 등록할 수 있습니다.", {icon: "error"});
+        	  } else{
         	  swal({
         			title : "리뷰가 등록되었습니다",
         		    icon  : "success",
@@ -178,6 +181,7 @@ function postReview() {
         		}).then(function(){
         			location.reload();
         		});
+        	  }
         	  }
        	 	  ,
           error: function() {

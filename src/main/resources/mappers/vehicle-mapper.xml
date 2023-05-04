@@ -57,5 +57,10 @@
 		  FROM VEHICLE V, FUELTYPE F, CARTYPE C, LOCATION L
          WHERE V.CARTYPE_IDX = C.IDX AND V.FUELTYPE_IDX = F.IDX AND V.LOCATION_IDX = L.IDX AND V.IDX = #{idx}
 	</select>
+	
+	<select id="insertReport" resultType="PaymentInfoDto">
+		SELECT * FROM PAYMENT WHERE MEMBER_IDX = #{memberIdx}
+	
+	</select>
  	
 </mapper>

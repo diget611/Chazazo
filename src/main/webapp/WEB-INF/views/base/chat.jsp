@@ -15,7 +15,7 @@
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true" id="closeBtn">&times;</span></button>
+				<button type="button" class="close" data-dismiss="modal" id="closeBtn" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 				<h4 class="modal-title">채팅 문의</h4>
 			</div>
 			<div class="modal-body" style="height: 640px;"></div>
@@ -87,6 +87,7 @@
 	});
 
 	$('#chatBtn').on('click', openModal);
+	$('#closeBtn').on('click', modalClose);
 	
 	var roomIdx = '';
 	
@@ -154,9 +155,11 @@
 		var html = '';
 		for(var i in result) {
 			html += '<div class="alert alert-warning mb-3" onclick="toChat(this)" id="' + result[i].idx + '" style="border-radius: 10px;">'
-			html += '	<div class="mb-2" style="font-size: 1.2rem;">'+ result[i].sender +'</div>'
-			html += '	<div class="ps-2" style="font-size: 0.9rem;">' + result[i].chatCon + '</div>'
-			html += '	<span class="badge">' + result[i].cnt + '</span>'
+			html += '	<div style="font-size: 1.8rem; margin-bottom: 0.5rem;">'+ result[i].sender +'</div>'
+			html += '	<div class="row">'
+			html += '		<div class="col-sm-11" style="font-size: 1.3rem; padding-left: 2rem;">' + result[i].chatCon + '</div>'
+			html += '		<div class="col-sm-1" style="padding-left: 0px;"><span class="badge">' + result[i].cnt + '</span></div>'
+			html += '	</div>'
 			html += '</div>'
 		}
 		$('.modal-body').append(html);

@@ -5381,16 +5381,16 @@ a.label:focus, a.label:hover {
 .badge {
 	display: inline-block;
 	min-width: 10px;
-	padding: 3px 7px;
-	font-size: 12px;
+	padding: 0.5em 0.9em;
+	font-size: 0.75em;
 	font-weight: 700;
 	line-height: 1;
 	color: #fff;
 	text-align: center;
 	white-space: nowrap;
 	vertical-align: middle;
-	background-color: #777;
-	border-radius: 10px
+	background-color: #dc3545;
+	border-radius: 50rem;
 }
 
 .badge:empty {

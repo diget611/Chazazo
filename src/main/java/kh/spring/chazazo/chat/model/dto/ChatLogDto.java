@@ -15,6 +15,7 @@ import lombok.ToString;
 public class ChatLogDto {
 	
 	private String chatCon;
+	private String chatTime;
 	private String chatDate;
 	private String sender;
 	private int status;

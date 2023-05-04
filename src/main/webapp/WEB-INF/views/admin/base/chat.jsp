@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<button type="button" id="chatBtn" class="btn btn-lg btn-primary btn-lg-square back-to-top" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+<button type="button" id="chatBtn" class="btn btn-lg btn-primary btn-lg-square chat-btn" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
 	<span class="material-symbols-outlined">chat</span>
 	<span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" id="chatCheck">
     	0
@@ -18,7 +18,6 @@
 			<div class="modal-body">
 			</div>
 			<div class="modal-footer">
-				<button type="button" id="closeBtn" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
 			</div>
 		</div>
 	</div>
@@ -39,7 +38,7 @@
 	});
 
 	$('#chatBtn').on('click', chatRoomList);
-	$('#closeBtn').on('click', modalClose);
+	$('.btn-close').on('click', modalClose);
 	
 	function chatRoomList() {
 		$.ajax({
@@ -69,10 +68,6 @@
 			html += '</div>'
 		}
 		$('.modal-body').append(html);
-		
-		var btn = '<button type="button" id="closeBtn" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>';
-		$('.modal-footer').append(btn);
-		$('#closeBtn').on('click', modalClose);
 		
 		chatCheck();
 	}

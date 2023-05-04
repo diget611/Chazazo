@@ -13,6 +13,7 @@ public class ChatDto {
 	private String roomIdx;
 	private String chatCon;
 	private String sender;
+	private String chatTime;
 	private String chatDate;
 	
 }

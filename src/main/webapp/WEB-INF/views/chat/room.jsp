@@ -16,12 +16,12 @@
 <body>
 	<div class="container">
 		<div>
-			<div id="msgArea">
+			<div id="msgArea" class="row">
 				<c:forEach items="${chatList }" var="chat">
 					<c:choose>
 						<c:when test="${chat.sender eq username }">
-							<div class="d-flex justify-content-end float-end" style="width: 400px;">
-								<span class="badge bg-white text-dark" style="padding-top: 10px;">${chat.chatDate }</span>
+							<div class="d-flex justify-content-end float-end" style="width: 100%; align-items: end;">
+								<span class="badge bg-white text-dark" style="margin-bottom: 8px;">${chat.chatDate }<br>${chat.chatTime}</span>
 								<div class="bg-info mb-2 ps-2 pe-2 pt-2 pb-2 rounded bg-opacity-50">
 									<div style="font-size: 0.7rem; text-align: right; border-bottom-style: solid; border-bottom-width: 1px; border-color: lightslategray;">${chat.sender }</div>
 									<div>${chat.chatCon }</div>
@@ -29,22 +29,22 @@
 							</div>
 						</c:when>
 						<c:otherwise>
-							<div class="d-flex justify-content-start float-start" style="width: 400px;">								
+							<div class="d-flex justify-content-start float-start" style="width: 100%; align-items: end;">								
 								<div class="bg-light mb-2 ps-2 pe-2 pt-2 pb-2 rounded">
 									<div style="font-size: 0.7rem; text-align: left; border-bottom-style: solid; border-bottom-width: 1px; border-color: lightslategray;">${chat.sender }</div>
 									<div>${chat.chatCon }</div>
 								</div>
-								<span class="badge bg-white text-dark" style="padding-top: 10px;">${chat.chatDate }</span>
+								<span class="badge bg-white text-dark" style="margin-bottom: 8px;">${chat.chatDate }<br>${chat.chatTime}</span>
 							</div>
 						</c:otherwise>
 					</c:choose>
 				</c:forEach>
 			</div>
-			<div class="row">
+			<div class="row" style="margin-top: 40px;">
 				<div class="input-group fixed-bottom">
 					<input type="text" id="msg" class="form-control" aria-label="Recipient's username" aria-describedby="button-addon2">
 					<div class="input-group-append">
-						<button class="btn btn-outline-secondary" type="button" id="button-send">전송</button>
+						<button class="btn btn-secondary" type="button" id="button-send">전송</button>
 					</div>
 				</div>
 			</div>
@@ -74,8 +74,8 @@
             var str = '';
             
             if(username == sender){
-            	str += '<div class="d-flex justify-content-end float-end" style="width: 400px;">'
-            	str += '<span class="badge bg-white text-dark" style="padding-top: 10px;">' + content.chatDate + '</span>'
+            	str += '<div class="d-flex justify-content-end float-end" style="width: 100%; align-items: end;">'
+            	str += '<span class="badge bg-white text-dark" style="margin-bottom: 8px;">' + content.chatDate + '<br>' + content.chatTime + '</span>'
 				str += '	<div class="bg-info mb-2 ps-2 pe-2 pt-2 pb-2 rounded bg-opacity-50">'
 				str += '		<div style="font-size: 0.7rem; text-align: right; border-bottom-style: solid; border-bottom-width: 1px; border-color: lightslategray;">' + content.sender + '</div>'
 				str += '		<div>' + content.chatCon + '</div>'
@@ -83,12 +83,12 @@
 				str += '</div>'
                 $("#msgArea").append(str);
             } else {
-            	str += '<div class="d-flex justify-content-start float-start" style="width: 400px;">'
-				str += '	<div class="bg-info mb-2 ps-2 pe-2 pt-2 pb-2 rounded bg-opacity-50">'
+            	str += '<div class="d-flex justify-content-start float-start" style="width: 100%; align-items: end;">'
+				str += '	<div class="bg-light mb-2 ps-2 pe-2 pt-2 pb-2 rounded bg-opacity-50">'
 				str += '		<div style="font-size: 0.7rem; text-align: left; border-bottom-style: solid; border-bottom-width: 1px; border-color: lightslategray;">' + content.sender + '</div>'
 				str += '		<div>' + content.chatCon + '</div>'
 				str += '	</div>'
-				str += '<span class="badge bg-white text-dark" style="padding-top: 10px;">' + content.chatDate + '</span>' 
+				str += '<span class="badge bg-white text-dark" style="margin-bottom: 8px;">' + content.chatDate + '<br>' + content.chatTime + '</span>' 
 				str += '</div>'
 				$("#msgArea").append(str);
 			}
@@ -133,9 +133,10 @@
 			minute = '0' + minute;
 		}
 		
-		var chatDate = year + '/' + month + '/' + day + ' ' + str + ' '+ hour + ':' + minute;
+		var chatDate = year + '/' + month + '/' + day;
+		var chatTime = str + ' '+ hour + ':' + minute;
 
-		stomp.send('/pub/chat/message' , {}, JSON.stringify({roomIdx: roomIdx, chatCon: msg, sender: username, chatDate: chatDate}));
+		stomp.send('/pub/chat/message' , {}, JSON.stringify({roomIdx: roomIdx, chatCon: msg, sender: username, chatDate: chatDate, chatTime: chatTime}));
 		$('#msg').val('');
 		window.scrollTo(0, document.body.scrollHeight);
 	});

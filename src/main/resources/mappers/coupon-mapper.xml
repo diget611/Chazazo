@@ -10,6 +10,9 @@
 	
 	</insert>
 	
+	<select id="selectCoupon" resultType="CouponReqDto">
+	SELECT * FROM COUPON WHERE MEMBER_IDX = #{memberIdx}
+	</select>
 	
 	
 </mapper>

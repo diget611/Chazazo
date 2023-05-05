@@ -40,11 +40,9 @@ public class ReviewController {
 		int chk = rService.checkResv(data);
 		if (chk < 1) {
 			int result =0;
-			System.out.println("&&&&&&&&&&&&&" + result);
 			return result;
 		} else {
 		int result = rService.insertReview(data);
-		System.out.println("&&&&&&&&&&&&&" + result);
 		return result;
 		}
 	}

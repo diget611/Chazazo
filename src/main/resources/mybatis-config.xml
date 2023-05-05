@@ -46,6 +46,7 @@
 		<typeAlias type="kh.spring.chazazo.admin.model.dto.AdminStatisticsLocationRespDto" alias="adminStatisticsLocationRespDto"/>
 		<typeAlias type="kh.spring.chazazo.couponmanage.dto.CouponManageReqDto" alias="CouponManageReqDto"/>
 		<typeAlias type="kh.spring.chazazo.couponmanage.dto.CouponManageRespDto" alias="CouponManageRespDto"/>
+		<typeAlias type="kh.spring.chazazo.coupon.dto.CouponReqDto" alias="CouponReqDto"/>
 		
 		
 		

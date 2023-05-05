@@ -15,6 +15,7 @@ public class CouponManageReqDto {
 	private int period;
 	private String name;
 	private int state;
+	private String memberIdx;
 	
 	
 }

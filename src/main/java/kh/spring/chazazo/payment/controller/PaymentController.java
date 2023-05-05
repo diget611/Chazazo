@@ -27,6 +27,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.google.gson.Gson;
 
 import kh.spring.chazazo.admin.model.service.AdminService;
+import kh.spring.chazazo.coupon.service.CouponService;
 import kh.spring.chazazo.member.model.service.MemberService;
 import kh.spring.chazazo.payment.model.dto.PaymentReqDto;
 import kh.spring.chazazo.payment.model.service.PaymentService;
@@ -40,46 +41,19 @@ public class PaymentController {
 @Autowired
 private MemberService mService;
 @Autowired
-private VehicleService vService;
+private CouponService cService;
 @Autowired
 private PaymentService pService;
 @Autowired
 private AdminService aService;
 
-//	@GetMapping 
-//	public ModelAndView viewPaymentOne(ModelAndView mv) {
-//		// 결제 상세 조회 -> 결제창이랑 비슷한 모양
-//		return mv;
-//	}
 	
-	
-	// get 조회 post 입력 putpatch update delet e
 
+// 결제창 조회
 	@GetMapping("/payment")
 	@ResponseBody
 	public String viewInsertPayment(ModelAndView mv, Principal prin,
 			PaymentReqDto paydto, String name) {
-		// 결제창 조회
-		
-		/*
-		int idx = Integer.parseInt(carIdx);
-		mv.addObject("car", vService.getVehicleInfo(idx));
-
-		if(prin == null) {	
-			mv.setViewName("reservation/payment");
-		}else {
-			String username = prin.getName();
-			
-			mv.addObject("info", mService.selectMypageOne(username));
-			mv.setViewName("reservation/payment");
-			
-			System.out.println(vService.getVehicleInfo(idx));
-		}
-		mv.addObject("daycount", paydto.getDaycount());
-		mv.addObject("rentPrice", paydto.getRentPrice());
-		mv.addObject("addIns", paydto.getAddIns());
-		mv.addObject("expIns", paydto.getExpIns());
-	*/
 		Map<String, Object> result = new HashMap<String,Object>();		
 
 		if(prin == null) {	
@@ -94,34 +68,17 @@ private AdminService aService;
 	}
 	
 	
-
-//	@RequestMapping("/payment")
-//	public void insertPayment() {
-//		// 결제대기 / 완료 -> 예약 테이블 인서트 동시에 진행
-//		
-//		System.out.println();
-//
-//	}
+	@GetMapping("/selectCoupon/{idx}")
+	public ModelAndView selectCoupon(@PathVariable String idx, ModelAndView mv) {
+		int index = Integer.parseInt(idx);
+		mv.addObject("coupon", cService.selectCoupon(index));
+		mv.setViewName("reservation/coupon");
+		return mv;
+	}
 	
 	//결제정보 저장
 	@PostMapping("/payment/paid")
 	public int insertPayInfo(@RequestBody PaymentReqDto data, Principal prin) {
-		// 결제대기 / 완료 -> 예약 테이블 인서트 동시에 진행
-		/*
-		System.out.println("##########컨트롤러");
-		System.out.println(name);
-		System.out.println(birth);
-		System.out.println(phone);
-		System.out.println(mail);
-		System.out.println("##########컨트롤러");
-		
-		Map<String,String > payMap = new HashMap<String,String>();
-		payMap.put("name", name);
-		payMap.put("birth", birth);
-		payMap.put("phone", phone);
-		payMap.put("mail", mail);
-		*/
-		
 		int isMember = 0;
 		if(prin == null) {
 			isMember = 0;

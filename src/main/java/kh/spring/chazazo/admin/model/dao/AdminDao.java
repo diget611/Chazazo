@@ -19,6 +19,7 @@ import kh.spring.chazazo.admin.model.dto.AdminNoticeOneRespDto;
 import kh.spring.chazazo.admin.model.dto.AdminNoticeRespDto;
 import kh.spring.chazazo.admin.model.dto.AdminNoticeUpdateReqDto;
 import kh.spring.chazazo.admin.model.dto.AdminReportRespDto;
+import kh.spring.chazazo.admin.model.dto.AdminReportUpdateReqDto;
 import kh.spring.chazazo.admin.model.dto.AdminRequestOneRespDto;
 import kh.spring.chazazo.admin.model.dto.AdminRequestRespDto;
 import kh.spring.chazazo.admin.model.dto.AdminReservByModelRespDto;
@@ -39,15 +40,12 @@ public class AdminDao {
 	public int dayReservCount() {
 		return sqlSession.selectOne("payment.dayReservCount");
 	}
-	
 	public int dayReservSum() {
 		return sqlSession.selectOne("payment.dayReservSum");
 	}
-	
 	public int dayRegiCount() {
 		return sqlSession.selectOne("member.dayRegiCount");
 	}
-
 	// 회원
 	public int memberCount() {
 		return sqlSession.selectOne("member.count");
@@ -78,8 +76,17 @@ public class AdminDao {
 	public AdminReportRespDto selectReportOne(String idx) {
 		return sqlSession.selectOne("report.selectOne", idx);
 	}
-	public String selectReviewContent(String idx) {
-		return sqlSession.selectOne("review.selectReviewContent", idx);
+	public int returnReport(AdminReportUpdateReqDto data) {
+		return sqlSession.update("report.return", data);
+	}
+	public int confirmReport(AdminReportUpdateReqDto data) {
+		return sqlSession.update("report.confirm", data);
+	}
+	public int returnReview(AdminReportUpdateReqDto data) {
+		return sqlSession.update("review.return", data);
+	}
+	public int confirmReview(AdminReportUpdateReqDto data) {
+		return sqlSession.update("review.confirm", data);
 	}
 	
 	// 쿠폰

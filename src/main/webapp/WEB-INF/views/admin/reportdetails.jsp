@@ -37,13 +37,17 @@
 				<h6 class="mb-4">신고 상세 정보</h6>
 				<form>
 					<div class="form-floating mb-3">
-						<textarea class="form-control" id="content" name="content" readonly style="height: 400px;">${review }</textarea>
+						<input type="hidden" id="reportIdx" value="${report.idx }">
+						<input type="hidden" id="reviewIdx" value="${report.reviewIdx }">
+						<textarea class="form-control" id="content" name="content" readonly style="height: 400px;">${report.content }</textarea>
 						<label for="content">리뷰 내용</label>
 					</div>
-					<div style="text-align: center;">
-						<button type="button" class="btn btn-primary" style="display: inline-block">Sign in</button>
-						<button type="button" class="btn btn-primary" style="display: inline-block">Sign in</button>
-					</div>
+					<c:if test="${report.status eq 0 }">
+						<div style="text-align: center;">
+							<button type="button" id="returnBtn" class="btn btn-primary" style="display: inline-block">반려</button>
+							<button type="button" id="confirmBtn" class="btn btn-primary" style="display: inline-block">확인</button>
+						</div>
+					</c:if>
 				</form>
 			</div>
 		</div>
@@ -56,6 +60,65 @@
 	function resizeWindow(win)    {
 		var hei = win.document.body.offsetHeight + 100;
 		win.resizeTo(500, hei);
+	}
+	
+	$('#returnBtn').on('click', reportReturn);
+	$('#confirmBtn').on('click', reportConfirm);
+	
+	function reportReturn() {
+		let idx = $('#reportIdx').val();
+		let reviewIdx = $('#reviewIdx').val();
+		let data = {
+			idx : idx,
+			reviewIdx : reviewIdx
+		};
+		
+		$.ajax({
+			url: '${pageContext.request.contextPath}/admin/report/return',
+			type: 'patch',
+			data: JSON.stringify(data),
+			contentType: "application/json; charset=utf-8",
+			success: function(result) {
+				if(result == 1) {
+					alert('신고 처리 완료');
+					opener.parent.location.reload();
+					window.close();
+				} else {
+					alert('신고 처리 실패');
+				}
+			},
+			error: function() {
+				alert('에러');
+			}
+		});
+	}
+	
+	function reportConfirm() {
+		let idx = $('#reportIdx').val();
+		let reviewIdx = $('#reviewIdx').val();
+		let data = {
+			idx : idx,
+			reviewIdx : reviewIdx
+		};
+		
+		$.ajax({
+			url: '${pageContext.request.contextPath}/admin/report/confirm',
+			type: 'patch',
+			data: JSON.stringify(data),
+			contentType: "application/json; charset=utf-8",
+			success: function(result) {
+				if(result == 1) {
+					alert('신고 처리 완료');
+					opener.parent.location.reload();
+					window.close();
+				} else {
+					alert('신고 처리 실패');
+				}
+			},
+			error: function() {
+				alert('에러');
+			}
+		});
 	}
 </script>
 </body>

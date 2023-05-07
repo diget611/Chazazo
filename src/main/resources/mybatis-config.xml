@@ -37,6 +37,7 @@
 		<typeAlias type="kh.spring.chazazo.admin.model.dto.AdminCouponUpdateReqDto" alias="adminCouponUpdateReqDto"/>
 		<typeAlias type="kh.spring.chazazo.admin.model.dto.AdminReservOneRespDto" alias="adminReservOneRespDto"/>
 		<typeAlias type="kh.spring.chazazo.admin.model.dto.AdminMemberUpdateReqDto" alias="adminMemberUpdateReqDto"/>
+		<typeAlias type="kh.spring.chazazo.admin.model.dto.AdminReportUpdateReqDto" alias="adminReportUpdateReqDto"/>
 		<typeAlias type="kh.spring.chazazo.inquiry.model.dto.InquiryRespDto" alias="inquiryRespDto"/>
 		<typeAlias type="kh.spring.chazazo.common.Pagination" alias="pagination"/>
 		<typeAlias type="kh.spring.chazazo.location.model.dto.LocationRespDto" alias="LocationRespDto"/>

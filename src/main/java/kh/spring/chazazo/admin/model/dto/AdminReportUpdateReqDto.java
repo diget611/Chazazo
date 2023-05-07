@@ -1,7 +1,5 @@
 package kh.spring.chazazo.admin.model.dto;
 
-import java.sql.Date;
-
 import org.springframework.stereotype.Component;
 
 import lombok.AllArgsConstructor;
@@ -14,16 +12,9 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class AdminReportRespDto {
+public class AdminReportUpdateReqDto {
 	
 	private int idx;
 	private int reviewIdx;
-	private int memberIdx;
-	private String reason;
-	private int status;
-	private Date startDate;
-	private Date endDate;
-	private String content;
-	private String username;
-
+	
 }

@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import kh.spring.chazazo.review.model.dao.ReviewDao;
 import kh.spring.chazazo.review.model.dto.ReviewDto;
@@ -48,6 +49,7 @@ public class ReviewServiceImpl implements ReviewService{
 	}
 
 	@Override
+	@Transactional
 	public int insertReport(ReviewDto data) {
 		int result = dao.insertReport(data);
 		if(result == 1) {

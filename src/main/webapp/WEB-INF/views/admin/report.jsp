@@ -71,8 +71,11 @@
 										<c:when test="${report.status eq 0 }">
 											<td>미처리</td>
 										</c:when>
-										<c:otherwise>
+										<c:when test="${report.status eq 1 }">
 											<td>처리 완료</td>
+										</c:when>
+										<c:otherwise>
+											<td>반려</td>
 										</c:otherwise>
 									</c:choose>
 									<td>${report.startDate }</td>

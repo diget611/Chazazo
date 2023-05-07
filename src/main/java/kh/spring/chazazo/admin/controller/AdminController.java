@@ -23,6 +23,8 @@ import kh.spring.chazazo.admin.model.dto.AdminCouponUpdateReqDto;
 import kh.spring.chazazo.admin.model.dto.AdminMemberUpdateReqDto;
 import kh.spring.chazazo.admin.model.dto.AdminNoticeInsertReqDto;
 import kh.spring.chazazo.admin.model.dto.AdminNoticeUpdateReqDto;
+import kh.spring.chazazo.admin.model.dto.AdminReportRespDto;
+import kh.spring.chazazo.admin.model.dto.AdminReportUpdateReqDto;
 import kh.spring.chazazo.admin.model.service.AdminService;
 import kh.spring.chazazo.common.Pagination;
 
@@ -106,9 +108,20 @@ public class AdminController {
 	@GetMapping("/report/{idx}")
 	public ModelAndView viewReportOne(ModelAndView mv, @PathVariable String idx) {
 		mv.addObject("report", aService.selectReportOne(idx));
-		mv.addObject("review", aService.selectReviewContent(idx));
 		mv.setViewName("admin/reportdetails");
 		return mv;
+	}
+	
+	@PatchMapping("/report/return")
+	public int returnReport(@RequestBody AdminReportUpdateReqDto data) {
+		int result = aService.returnReport(data);
+		return result;
+	}
+	
+	@PatchMapping("/report/confirm")
+	public int confirmReport(@RequestBody AdminReportUpdateReqDto data) {
+		int result = aService.confirmReport(data);
+		return result;
 	}
 	
 	// 예약

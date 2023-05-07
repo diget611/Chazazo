@@ -32,13 +32,6 @@
 	<delete id="deleteReview">
 	DELETE FROM REVIEW WHERE IDX =#{idx}
 	</delete>
-
-	<select id="selectReviewContent" resultType="string">
-		SELECT REVIEW.*, REVIEW_IDX
-		  FROM REVIEW INNER JOIN REPORT
-		    ON REVIEW.IDX = REPORT.REVIEW_IDX
-		 WHERE REPORT.IDX = #{idx}
-	</select>
 	
 	<insert id="insertReport" parameterType="reviewDto">
 		INSERT INTO REPORT(IDX, REVIEW_IDX, MEMBER_IDX, REASON, STATUS, START_DATE) 
@@ -72,6 +65,14 @@
 	
 	<update id="updateReviewStatus" parameterType="reviewDto">
 		UPDATE REVIEW SET STATUS = 1 WHERE IDX = #{idx}
+	</update>
+	
+	<update id="return" parameterType="adminReportUpdateReqDto">
+		UPDATE REVIEW SET STATUS = 0 WHERE IDX = #{reviewIdx}
+	</update>
+	
+	<update id="confirm" parameterType="adminReportUpdateReqDto">
+		UPDATE REVIEW SET STATUS = 2 WHERE IDX = #{reviewIdx}
 	</update>
 	
 </mapper>

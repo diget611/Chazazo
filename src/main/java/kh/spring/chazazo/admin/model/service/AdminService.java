@@ -15,6 +15,7 @@ import kh.spring.chazazo.admin.model.dto.AdminNoticeOneRespDto;
 import kh.spring.chazazo.admin.model.dto.AdminNoticeRespDto;
 import kh.spring.chazazo.admin.model.dto.AdminNoticeUpdateReqDto;
 import kh.spring.chazazo.admin.model.dto.AdminReportRespDto;
+import kh.spring.chazazo.admin.model.dto.AdminReportUpdateReqDto;
 import kh.spring.chazazo.admin.model.dto.AdminRequestOneRespDto;
 import kh.spring.chazazo.admin.model.dto.AdminRequestRespDto;
 import kh.spring.chazazo.admin.model.dto.AdminReservByModelRespDto;
@@ -43,7 +44,8 @@ public interface AdminService {
 	public int reportCount();
 	public List<AdminReportRespDto> selectReportList(Pagination pagination);
 	public AdminReportRespDto selectReportOne(String idx);
-	public String selectReviewContent(String idx);
+	public int returnReport(AdminReportUpdateReqDto data);
+	public int confirmReport(AdminReportUpdateReqDto data);
 	
 	// 쿠폰
 	public int couponCount();

@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import kh.spring.chazazo.admin.model.dao.AdminDao;
 import kh.spring.chazazo.admin.model.dto.AdminCouponInsertReqDto;
@@ -19,6 +20,7 @@ import kh.spring.chazazo.admin.model.dto.AdminNoticeOneRespDto;
 import kh.spring.chazazo.admin.model.dto.AdminNoticeRespDto;
 import kh.spring.chazazo.admin.model.dto.AdminNoticeUpdateReqDto;
 import kh.spring.chazazo.admin.model.dto.AdminReportRespDto;
+import kh.spring.chazazo.admin.model.dto.AdminReportUpdateReqDto;
 import kh.spring.chazazo.admin.model.dto.AdminRequestOneRespDto;
 import kh.spring.chazazo.admin.model.dto.AdminRequestRespDto;
 import kh.spring.chazazo.admin.model.dto.AdminReservByModelRespDto;
@@ -74,8 +76,22 @@ public class AdminServiceImpl implements AdminService {
 		return dao.selectReportOne(idx);
 	}
 	@Override
-	public String selectReviewContent(String idx) {
-		return dao.selectReviewContent(idx);
+	@Transactional
+	public int returnReport(AdminReportUpdateReqDto data) {
+		int result = dao.returnReport(data);
+		if(result == 1) {
+			result = dao.returnReview(data);
+		}
+		return result;
+	}
+	@Override
+	@Transactional
+	public int confirmReport(AdminReportUpdateReqDto data) {
+		int result = dao.confirmReport(data);
+		if(result == 1) {
+			result = dao.confirmReview(data);
+		}
+		return result;
 	}
 	
 	// 쿠폰

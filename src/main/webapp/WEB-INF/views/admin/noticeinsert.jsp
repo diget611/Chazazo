@@ -35,6 +35,9 @@
     	tr:hover {
     		cursor: pointer;
     	}
+    	
+		.ck-editor__editable { height: 400px; }
+		.ck-content { font-size: 15px; }
     </style>
 </head>
 <body>
@@ -51,8 +54,7 @@
 							<label for="title">제목</label>
 						</div>
 						<div class="form-floating">
-							<textarea class="form-control" placeholder="내용을 작성하세요" id="content" name="content" style="height: 375px;"></textarea>
-							<label for="content">내용</label>
+							<textarea class="form-control" placeholder="내용을 작성하세요" id="ckeditor"></textarea>
 						</div>
 						<div class="form-floating text-end mt-3">
 							<button type="button" class="btn btn-secondary" id="insertBtn">작성하기</button>
@@ -66,17 +68,28 @@
 	</div>
 
 <script src="<%=request.getContextPath()%>/resources/dashmin/js/main.js"></script>
-	
+
+<script src="https://cdn.ckeditor.com/ckeditor5/34.0.0/classic/ckeditor.js"></script>
+<script src="https://cdn.ckeditor.com/ckeditor5/34.0.0/classic/translations/ko.js"></script>
+
+<script>
+	ClassicEditor.create( document.querySelector( '#ckeditor' ), {
+		language: "ko"
+	} );
+</script>
+
 <script>
 	$('#insertBtn').on('click', insertNotice);
 	
 	function insertNotice() {
 		let title = $('#title').val();
-		let content = $('#content').val();
+		let content = $('[role=textbox]').html();
 		let data = {
 				title : title,
 				content : content
 		}
+		
+		console.log(data)
 		
 		$.ajax({
 			url: "${pageContext.request.contextPath}/admin/notice/insert",
@@ -85,8 +98,8 @@
 			contentType: "application/json; charset=utf-8",
 			success: function(result) {
 				if(result == 1) {
-					alert("공지사항 작성 완료")
-					window.open='${pageContext.request.contextPath}/admin/notice'
+					alert("공지사항 작성 완료");
+					window.open = '${pageContext.request.contextPath}/admin/notice';
 				} else {
 					alert("실패");
 				}

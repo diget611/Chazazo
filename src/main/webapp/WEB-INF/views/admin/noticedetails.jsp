@@ -28,6 +28,20 @@
     <script src="<%=request.getContextPath()%>/resources/dashmin/lib/tempusdominus/js/moment-timezone.min.js"></script>
     <script src="<%=request.getContextPath()%>/resources/dashmin/lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
     <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/main.css">
+    
+    <style>
+    	#content {
+    		overflow-y: scroll;
+    		border: 1px solid #ced4da;
+   		    background-color: #e9ecef;
+   		    height: 500px;
+   		    padding: 10px;
+   		    border-radius: 5px;
+    	}
+    	
+    	.ck-editor__editable { height: 400px; }
+		.ck-content { font-size: 15px; }
+    </style>
 </head>
 <body onload="resizeWindow(this)">
 	<!-- Form Start -->
@@ -40,9 +54,8 @@
 					<input type="text" class="form-control" id="title" name="title" value="${notice.title}" readonly>
 					<label for="title">제목</label>
 				</div>
-				<div class="form-floating mb-3">
-					<textarea class="form-control" id="content" name="content" style="height: 300px;" readonly>${notice.content}</textarea>
-					<label for="content">내용</label>
+				<div class="form-floating mb-3" id="addContent">
+					<div id="content">${notice.content }</div>
 				</div>
 				<c:if test="${notice.deleteDate eq null }">
 					<div class="form-floating mb-3">
@@ -58,6 +71,13 @@
 	<!-- Form End -->
 
 <script src="<%=request.getContextPath()%>/resources/dashmin/js/main.js"></script>
+<script src="https://cdn.ckeditor.com/ckeditor5/34.0.0/classic/ckeditor.js"></script>
+<script src="https://cdn.ckeditor.com/ckeditor5/34.0.0/classic/translations/ko.js"></script>
+
+<script>
+	
+</script>
+
 <script>
 	function resizeWindow(win)    {
 		var hei = win.document.body.offsetHeight + 100;
@@ -70,18 +90,24 @@
 		if($('#updateBtn').text() == '수정하기') {
 			$('#updateBtn').text('수정 완료');
 			$('#title').attr('readonly', false);
-			$('#content').attr('readonly', false);
+			$('#content').remove();
+			$('#addContent').html('<textarea class="form-control" placeholder="내용을 작성하세요" id="ckeditor"></textarea>');
+			ClassicEditor.create( document.querySelector( '#ckeditor' ), {
+				language: "ko"
+			} );
 		} else {
 			let idx = $('#idx').val();
 			let title = $('#title').val();
-			let content = $('#content').val();
+			let content = $('[role=textbox]').html();
 			let data = {
 					idx: idx,
 					title: title,
 					content: content
 			}
+			
+			console.log(data);
 			$.ajax({
-				url: "${pageContext.request.contextPath}/admin/coupon/update",
+				url: "${pageContext.request.contextPath}/admin/notice/update",
 				type: "patch",
 				data: JSON.stringify(data),
 				contentType: "application/json; charset=utf-8",

@@ -13,6 +13,7 @@ import kh.spring.chazazo.admin.model.dto.AdminCouponUpdateReqDto;
 import kh.spring.chazazo.admin.model.dto.AdminLocationOneRespDto;
 import kh.spring.chazazo.admin.model.dto.AdminLocationRespDto;
 import kh.spring.chazazo.admin.model.dto.AdminMemberRespDto;
+import kh.spring.chazazo.admin.model.dto.AdminMemberUpdateReqDto;
 import kh.spring.chazazo.admin.model.dto.AdminNoticeInsertReqDto;
 import kh.spring.chazazo.admin.model.dto.AdminNoticeOneRespDto;
 import kh.spring.chazazo.admin.model.dto.AdminNoticeRespDto;
@@ -46,6 +47,9 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public AdminMemberRespDto selectMemberOne(String username) {
 		return dao.selectMemberOne(username);
+	}
+	public int updateMember(AdminMemberUpdateReqDto data) {
+		return dao.updateMember(data);
 	}
 	@Override
 	public int deleteMember(String username) {

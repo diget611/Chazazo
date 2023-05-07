@@ -20,6 +20,7 @@ import com.google.gson.Gson;
 
 import kh.spring.chazazo.admin.model.dto.AdminCouponInsertReqDto;
 import kh.spring.chazazo.admin.model.dto.AdminCouponUpdateReqDto;
+import kh.spring.chazazo.admin.model.dto.AdminMemberUpdateReqDto;
 import kh.spring.chazazo.admin.model.dto.AdminNoticeInsertReqDto;
 import kh.spring.chazazo.admin.model.dto.AdminNoticeUpdateReqDto;
 import kh.spring.chazazo.admin.model.service.AdminService;
@@ -73,6 +74,12 @@ public class AdminController {
 		mv.addObject("member", aService.selectMemberOne(username));
 		mv.setViewName("admin/memberdetails");
 		return mv;
+	}
+	
+	@PatchMapping("/member/update")
+	public int updateMember(@RequestBody AdminMemberUpdateReqDto data) {
+		int result = aService.updateMember(data);
+		return result;
 	}
 	
 	@DeleteMapping("/member/{username}")

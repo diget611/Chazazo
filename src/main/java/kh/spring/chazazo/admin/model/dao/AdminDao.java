@@ -13,6 +13,7 @@ import kh.spring.chazazo.admin.model.dto.AdminCouponUpdateReqDto;
 import kh.spring.chazazo.admin.model.dto.AdminLocationOneRespDto;
 import kh.spring.chazazo.admin.model.dto.AdminLocationRespDto;
 import kh.spring.chazazo.admin.model.dto.AdminMemberRespDto;
+import kh.spring.chazazo.admin.model.dto.AdminMemberUpdateReqDto;
 import kh.spring.chazazo.admin.model.dto.AdminNoticeInsertReqDto;
 import kh.spring.chazazo.admin.model.dto.AdminNoticeOneRespDto;
 import kh.spring.chazazo.admin.model.dto.AdminNoticeRespDto;
@@ -56,6 +57,9 @@ public class AdminDao {
 	}
 	public AdminMemberRespDto selectMemberOne(String username) {
 		return sqlSession.selectOne("member.selectMemberOne", username);
+	}
+	public int updateMember(AdminMemberUpdateReqDto data) {
+		return sqlSession.update("member.updateInfoAdmin", data);
 	}
 	public int deleteMember(String username) {
 		return sqlSession.update("member.deleteMember", username);

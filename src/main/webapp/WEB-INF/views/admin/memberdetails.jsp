@@ -133,7 +133,90 @@
 			$('#email').attr('readonly', false);
 			$('[name=updateBtn]').text('수정 완료');
 		} else {
-			console.log('ddddd');
+			let checkPhone = 0;
+			let checkLicense = 0;
+			let checkEmail = 0;
+			
+			let testPhone = /^01[0|1|6|7|8|9][0-9]{7,8}$/;
+			if($('[name=phoneNumber]').val() == ''){
+				$('[name=phoneNumber]').next().remove();
+				$('[name=phoneNumber]').after('<label for="phoneNumber">전화번호</label>');
+				$('[name=phoneNumber]').after('<div style="color: red;">전화번호를 입력하세요.</div>');
+			} else if(!testPhone.test($('[name=phoneNumber]').val())){
+				$('[name=phoneNumber]').next().remove();
+				$('[name=phoneNumber]').after('<label for="phoneNumber">전화번호</label>');
+				$('[name=phoneNumber]').after('<div style="color: red;">전화번호를 확인하세요.</div>');
+			} else {
+				$('[name=phoneNumber]').next().remove();
+				$('[name=phoneNumber]').after('<label for="phoneNumber">전화번호</label>');
+				checkPhone = 1;
+			}
+			
+			let testLicense = /^(1[1-9]|2[0-68-8])([0-9]{2}[0-9]{6}[0-9]{2})$/;
+			if($('[name=license]').val() == ''){
+				$('[name=license]').next().remove();
+				$('[name=license]').after('<label for="license">면허증 번호</label>');
+				$('[name=license]').after('<div style="color: red;">면허증 번호를 입력하세요.</div>');
+			} else if(!testLicense.test($('[name=license]').val())){
+				$('[name=license]').next().remove();
+				$('[name=license]').after('<label for="license">면허증 번호</label>');
+				$('[name=license]').after('<div style="color: red;">면허증 번호를 확인하세요.</div>');
+			} else {
+				$('[name=license]').next().remove();
+				$('[name=license]').after('<label for="license">면허증 번호</label>');
+				checkLicense = 1;
+			}
+			
+			let testEmail = /([!#-'*+-9=?A-Z^-~-]+(\.[!#-'*+-9=?A-Z^-~-]+)*|\"\(\[\]!#-[^-~ \t]|(\\[\t -~])+\")@([!#-'*+-9=?A-Z^-~-]+(\.[!#-'*+-9=?A-Z^-~-]+)*|\[[\t -Z^-~]*])/;
+			if($('[name=email]').val() == '') {
+				$('[name=email]').next().remove();
+				$('[name=email]').after('<label for="email">이메일</label>');
+				$('[name=email]').after('<div style="color: red;">이메일 주소를 입력하세요.</div>');
+			} else if(!testEmail.test($('[name=email]').val())){
+				$('[name=email]').next().remove();
+				$('[name=email]').after('<label for="email">이메일</label>');
+				$('[name=email]').after('<div style="color: red;">이메일 주소를 확인하세요.</div>');
+			} else {
+				$('[name=email]').next().remove();
+				$('[name=email]').after('<label for="email">이메일</label>');
+				checkEmail = 1;
+			}
+			
+			if(checkPhone == 1 && checkLicense == 1 && checkEmail == 1) {
+				let username = $('#username').val();
+				let phoneNumber = $('#phoneNumber').val();
+				let license = $('#license').val();
+				let email = $('#email').val();
+				
+				let data = {
+					username : username,
+					phoneNumber : phoneNumber,
+					license : license,
+					email : email
+				};
+				
+				console.log(data);
+				
+				$.ajax({
+					url: '${pageContext.request.contextPath}/admin/member/update',
+					type: 'patch',
+					data : JSON.stringify(data),
+					contentType: "application/json; charset=utf-8",
+					success: function(result) {
+						if(result == 1) {
+							alert("수정 완료");
+							opener.parent.location.reload();
+							window.close();
+						} else {
+							alert("실패");
+						}
+					},
+					error: function() {
+						alert('에러');
+					}
+				});
+			}
+				
 		}	
 	}
 	

@@ -95,6 +95,12 @@
 	
 	<select id="checkAuth" resultType="string">
 		SELECT AUTH FROM MEMBER WHERE USERNAME = #{username}
-	</select> 
+	</select>
+	
+	<update id="updateInfoAdmin" parameterType="adminMemberUpdateReqDto">
+		UPDATE MEMBER_INFO
+		   SET PHONE_NUMBER = #{phoneNumber}, LICENSE = #{license}, EMAIL = #{email}
+		 WHERE IDX = (SELECT IDX FROM MEMBER WHERE USERNAME = #{username})
+	</update>
 	
 </mapper>

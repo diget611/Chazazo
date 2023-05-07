@@ -9,6 +9,7 @@ import kh.spring.chazazo.admin.model.dto.AdminCouponUpdateReqDto;
 import kh.spring.chazazo.admin.model.dto.AdminLocationOneRespDto;
 import kh.spring.chazazo.admin.model.dto.AdminLocationRespDto;
 import kh.spring.chazazo.admin.model.dto.AdminMemberRespDto;
+import kh.spring.chazazo.admin.model.dto.AdminMemberUpdateReqDto;
 import kh.spring.chazazo.admin.model.dto.AdminNoticeInsertReqDto;
 import kh.spring.chazazo.admin.model.dto.AdminNoticeOneRespDto;
 import kh.spring.chazazo.admin.model.dto.AdminNoticeRespDto;
@@ -35,6 +36,7 @@ public interface AdminService {
 	public int memberCount();
 	public List<AdminMemberRespDto> selectMemberList(Pagination pagination);
 	public AdminMemberRespDto selectMemberOne(String username);
+	public int updateMember(AdminMemberUpdateReqDto data);
 	public int deleteMember(String username);
 	
 	// 신고

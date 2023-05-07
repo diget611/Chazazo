@@ -338,7 +338,8 @@
 													type="text" id="search"> <span
 													class="input-group-btn">
 													<button type="button"
-														class="btn btn-primary border-radius-6">등록</button>
+														class="btn border-radius-6" id="registerCoupon">등록</button>
+														<button id ="resultMessage"></button>
 												</span>
 											</div>
 
@@ -782,38 +783,22 @@
 		});
 		
 		
-		var board = {
-			paging : function(page){
-				$("#pageIndex").val(page);
-				$("#defaultFrm").attr({"action" : "consultantList.do", "method" : "post", "target" : "_self"}).submit();
-			},
-			regidit : function(){
+		$("#registerCoupon").click(function(){
+			var couponCode = $('#couponCode').val();
+			$.ajax({
+				url:"${pageContext.request.contextPath}/registerCoupon" ,
+				type: "POST",
+				data:{couponCode: couponCode},
+				success:function(result){
+					$('#resultMessage').html(result);
+				},
+				error: function(){
+					alert("쿠폰등록실패")
+				}
 				
-				var jsonData = $("#defaultFrm").serialize();
-				
-				$.ajax({
-					type: "post",
-					url: "regidit.do",
-					data:jsonData,
-					dataType:"json",
-					success:function( result ) {
-						if( result.resultRFC == "S" ){
-							alert("쿠폰이 등록되었습니다.");
-							location.reload();
-						} else {
-							if(result.resultNm != "undefined" && result.resultNm != ""){
-								alert(result.resultNm);
-							} else {
-								alert("유효한 쿠폰 번호가 아닙니다.\n다시 입력해 주세요.");
-							}
-						}				
-					}, error:function(request,status,error){
-						alert("오류가 발생하였습니다. 고객센터에 문의해주세요. ");
-				    }
-				});
-			},
-			
-		};
+			})
+		})
+		
 		
 
 		$("#popupBtn").on("click", popup)

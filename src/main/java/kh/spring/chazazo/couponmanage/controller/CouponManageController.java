@@ -42,13 +42,14 @@ public class CouponManageController {
 
 	
 	//쿠폰등록
-	@PostMapping("/coupon")
+	@PostMapping("/registerCoupon")
 	public String insertCoupon(@RequestBody CouponManageReqDto dto, Principal prin) {
 		String couponCode = dto.getCouponCode();
 		int count = cmService.selectCouponCode(couponCode);
 		if(count == 1) {
 			cmService.insertCoupon(dto);
+			return "쿠폰등록이 완료되었습니다.";
 		}
-		return "member/coupon";
+		return "쿠폰번호를 다시 입력하십시오";
 	}
 }

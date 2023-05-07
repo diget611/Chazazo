@@ -30,6 +30,10 @@ public class LocationController {
 	@GetMapping("/location/{idx}")
 	public ModelAndView viewLocationOne(ModelAndView mv, @PathVariable String idx,Principal prin) {
 		// 지점 상세 조회
+	if(prin == null) {
+		mv.setViewName("/location/location");
+		
+	}else {
 		String username = prin.getName();
 		mv.addObject("member",mService.selectMypageOne(username));
 		mv.addObject("locationList", lService.selectLocation(username));
@@ -37,7 +41,8 @@ public class LocationController {
 		int index = Integer.parseInt(idx);
 		mv.addObject("location", lService.getInfo(index));
 		mv.setViewName("/location/location");
-		return mv;
+	}
+	return mv;
 	}
 	
 	

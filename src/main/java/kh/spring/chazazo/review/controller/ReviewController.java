@@ -77,7 +77,7 @@ public class ReviewController {
 	@PostMapping ("/postReport")
 	public int insertReport(@RequestBody ReviewDto data) {
 		System.out.println("++++++++"+data);
-	int result = rService.insertReport(data);
+		int result = rService.insertReport(data);
 		return result;
 	}
 	

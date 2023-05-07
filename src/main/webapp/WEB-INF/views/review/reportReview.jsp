@@ -122,11 +122,17 @@ function resizeWindow(win)    {
 	          type: 'post',
 	          data: JSON.stringify(data),
 	          success: function(result) {
-	        	  	swal("신고가 접수되었습니다.","해당 리뷰는 운영자 검토 후 삭제됩니다.", {icon: "success"});
-	        	  	 setTimeout(function () { window.close(); }, 3000);
+	        	  if(result == 1) {
+					swal("신고가 접수되었습니다.","해당 리뷰는 운영자 검토 후 삭제됩니다.", {icon: "success"});
+					setTimeout(function () { window.close(); }, 3000);
+					opener.parent.location.reload();
+					window.close();
+	        	  } else {
+	        		  alert('신고 등록 실패');
+	        	  }
 	          },
 	          error: function() {
-	          	alert('신고 등록 실패');
+	          	alert('에러');
 	          }
 	       });
 	});

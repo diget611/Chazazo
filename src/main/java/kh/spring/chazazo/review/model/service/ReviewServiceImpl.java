@@ -47,13 +47,15 @@ public class ReviewServiceImpl implements ReviewService{
 		return dao.deleteReview(idx);
 	}
 
-	//@Override
+	@Override
 	public int insertReport(ReviewDto data) {
-		return dao.insertReport(data);
+		int result = dao.insertReport(data);
+		if(result == 1) {
+			result = dao.updateReviewStatus(data);
+		}
+		return result;
 	}
 
-	
-	
 	@Override
 	public List<ReviewDto> selectMyReview(String usesrname) {
 		return dao.selectMyReview(usesrname);
@@ -63,13 +65,5 @@ public class ReviewServiceImpl implements ReviewService{
 	public int checkResv(ReviewDto data) {
 		return dao.checkResv(data);
 	}
-
-	
-	
-
-
-
-
-
 
 }

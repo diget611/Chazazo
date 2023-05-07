@@ -41,12 +41,12 @@
 	</select>
 	
 	<insert id="insertReport" parameterType="reviewDto">
-		INSERT INTO REPORT(IDX,REVIEW_IDX,MEMBER_IDX,REASON,STATUS,START_DATE) 
-		VALUES(REPORT_SEQ.NEXTVAL,#{idx}, (SELECT IDX FROM MEMBER WHERE USERNAME=#{name}), #{reason}, DEFAULT, SYSDATE)
+		INSERT INTO REPORT(IDX, REVIEW_IDX, MEMBER_IDX, REASON, STATUS, START_DATE) 
+		VALUES(REPORT_SEQ.NEXTVAL, #{idx}, (SELECT IDX FROM MEMBER WHERE USERNAME=#{name}), #{reason}, DEFAULT, SYSDATE)
 	</insert>
 	
 	<select id="selectReview" resultType="reviewDto">
-	SELECT * FROM REVIEW WHERE IDX = #{idx}
+		SELECT * FROM REVIEW WHERE IDX = #{idx}
 	</select>
 	
 	<select id="count" resultType="_int">
@@ -60,9 +60,7 @@
 		 WHERE RNUM BETWEEN 1 AND 4
 	</select>
 	
-	
-	<select id="selectMyReview" resultType="reviewDto">
-		
+	<select id="selectMyReview" resultType="reviewDto">	
 		SELECT r.*, (SELECT MODEL FROM VEHICLE v WHERE IDX = r.VEHICLE_IDX) AS VEHICLE_MODEL
 		 	 FROM REVIEW r WHERE MEMBER_IDX IN (SELECT IDX FROM MEMBER WHERE username = #{username}) 
 		 	 ORDER BY CREATE_DATE ASC
@@ -71,6 +69,9 @@
 	<select id="checkResv" resultType="_int">
 	 	SELECT COUNT(*) FROM PAYMENT WHERE MEMBER_IDX = #{memberIdx} and VEHICLE_IDX = #{vehicleIdx}
 	</select>
-
+	
+	<update id="updateReviewStatus" parameterType="reviewDto">
+		UPDATE REVIEW SET STATUS = 1 WHERE IDX = #{idx}
+	</update>
 	
 </mapper>

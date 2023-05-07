@@ -36,7 +36,7 @@ public class ReviewDao {
 		return sqlSession.delete("review.deleteReview", idx);
 	}
 	public int insertReport(ReviewDto data) {
-		return sqlSession.selectOne("review.insertReport", data);
+		return sqlSession.insert("review.insertReport", data);
 	}
 
 	public List<ReviewDto> selectMyReview(String username) {
@@ -45,6 +45,10 @@ public class ReviewDao {
 
 	public int checkResv(ReviewDto data) {
 		return sqlSession.selectOne("review.checkResv", data);
+	}
+	
+	public int updateReviewStatus(ReviewDto data) {
+		return sqlSession.update("review.updateReviewStatus", data);
 	}
 
 }

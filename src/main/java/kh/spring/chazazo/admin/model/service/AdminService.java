@@ -7,6 +7,7 @@ import kh.spring.chazazo.admin.model.dto.AdminCouponInsertReqDto;
 import kh.spring.chazazo.admin.model.dto.AdminCouponManageRespDto;
 import kh.spring.chazazo.admin.model.dto.AdminCouponUpdateReqDto;
 import kh.spring.chazazo.admin.model.dto.AdminLocationInsertReqDto;
+import kh.spring.chazazo.admin.model.dto.AdminLocationListRespDto;
 import kh.spring.chazazo.admin.model.dto.AdminLocationOneRespDto;
 import kh.spring.chazazo.admin.model.dto.AdminLocationRespDto;
 import kh.spring.chazazo.admin.model.dto.AdminLocationUpdateReqDto;
@@ -26,6 +27,7 @@ import kh.spring.chazazo.admin.model.dto.AdminReservRespDto;
 import kh.spring.chazazo.admin.model.dto.AdminStatisticsRecentMonthDto;
 import kh.spring.chazazo.admin.model.dto.AdminVehicleOneRespDto;
 import kh.spring.chazazo.admin.model.dto.AdminVehicleRespDto;
+import kh.spring.chazazo.admin.model.dto.AdminVehicleUpdateReqDto;
 import kh.spring.chazazo.common.Pagination;
 
 public interface AdminService {
@@ -86,6 +88,8 @@ public interface AdminService {
 	public int vehicleCount();
 	public List<AdminVehicleRespDto> selectVehicleList(Pagination pagination);
 	public AdminVehicleOneRespDto selectVehicleOne(String idx);
+	public int updateVehicle(AdminVehicleUpdateReqDto data);
+	public int deleteVehicle(int idx);
 	
 	// 예약
 	public int reservCount();
@@ -97,5 +101,8 @@ public interface AdminService {
 	public List<AdminStatisticsRecentMonthDto> recentMonth();
 	public List<String> selectLocNameList();
 	public List<String> monthList();
+	
+	// etc
+	public List<AdminLocationListRespDto> locationList();
 	
 }

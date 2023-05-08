@@ -52,5 +52,7 @@
 		<typeAlias type="kh.spring.chazazo.inquiry.model.dto.InquiryInsertReqDto" alias="inquiryInsertReqDto"/>
 		<typeAlias type="kh.spring.chazazo.admin.model.dto.AdminLocationInsertReqDto" alias="adminLocationInsertReqDto"/>
 		<typeAlias type="kh.spring.chazazo.admin.model.dto.AdminLocationUpdateReqDto" alias="adminLocationUpdateReqDto"/>
+		<typeAlias type="kh.spring.chazazo.admin.model.dto.AdminLocationListRespDto" alias="adminLocationListRespDto"/>
+		<typeAlias type="kh.spring.chazazo.admin.model.dto.AdminVehicleUpdateReqDto" alias="adminVehicleUpdateReqDto"/>
 	</typeAliases>
 </configuration>

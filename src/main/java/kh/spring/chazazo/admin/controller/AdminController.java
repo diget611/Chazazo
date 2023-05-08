@@ -27,6 +27,7 @@ import kh.spring.chazazo.admin.model.dto.AdminNoticeInsertReqDto;
 import kh.spring.chazazo.admin.model.dto.AdminNoticeUpdateReqDto;
 import kh.spring.chazazo.admin.model.dto.AdminReportRespDto;
 import kh.spring.chazazo.admin.model.dto.AdminReportUpdateReqDto;
+import kh.spring.chazazo.admin.model.dto.AdminVehicleUpdateReqDto;
 import kh.spring.chazazo.admin.model.service.AdminService;
 import kh.spring.chazazo.common.Pagination;
 
@@ -207,8 +208,21 @@ public class AdminController {
 	@GetMapping("/vehicle/{idx}")
 	public ModelAndView viewVehicleOne(ModelAndView mv, @PathVariable String idx) {
 		mv.addObject("vehicle", aService.selectVehicleOne(idx));
+		mv.addObject("list", aService.locationList());
 		mv.setViewName("admin/vehicledetails");
 		return mv;
+	}
+	
+	@PatchMapping("/vehicle/update")
+	public int updateVehicle(@RequestBody AdminVehicleUpdateReqDto data) {
+		int result = aService.updateVehicle(data);
+		return result;
+	}
+	
+	@PatchMapping("/vehicle/delete")
+	public int deleteVehicle(int idx) {
+		int result = aService.deleteVehicle(idx);
+		return result;
 	}
 	
 	// 쿠폰

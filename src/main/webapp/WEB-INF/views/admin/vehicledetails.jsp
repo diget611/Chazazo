@@ -59,22 +59,35 @@
 						<label for="fuel" class="ps-4">연료</label>
 					</div>
 					<div class="form-floating col-4">
-						<input type="text" class="form-control" id="price" name="price" value="${vehicle.price }" readonly>
+						<input type="number" class="form-control" id="price" name="price" value="${vehicle.price }" readonly>
 						<label for="price" class="ps-4">가격</label>
 					</div>
 				</div>
 				<div class="form-floating mb-3">
 					<input type="text" class="form-control" id="year" name="year" value="${vehicle.year }" readonly>
 					<label for="year">연식</label>
-				</div>
+				</div> 
 				<div class="form-floating mb-3">
-					<input type="text" class="form-control" id="location" name="location" value="${vehicle.location }" readonly>
+					<select class="form-select" disabled="disabled" id="location">
+						<c:forEach items="${list }" var="list">
+							<c:choose>	
+								<c:when test="${vehicle.location eq  list.name}">
+									<option value="${list.idx }" selected>${list.name }</option>
+								</c:when>
+								<c:otherwise>
+									<option value="${list.idx }">${list.name }</option>
+								</c:otherwise>
+							</c:choose>
+						</c:forEach>
+					</select>
 					<label for="location">지점</label>
 				</div>
-				<div style="text-align: center;">
-					<button type="button" class="btn btn-primary" style="display: inline-block" id="updateBtn">수정하기</button>
-					<button type="button" class="btn btn-primary" style="display: inline-block" id="deleteBtn">삭제하기</button>
-				</div>
+				<c:if test="${vehicle.price ne 0 }">
+					<div style="text-align: center;">
+						<button type="button" class="btn btn-primary" style="display: inline-block" id="updateBtn">차량 정보 수정</button>
+						<button type="button" class="btn btn-primary" style="display: inline-block" id="deleteBtn">삭제하기</button>
+					</div>
+				</c:if>
 			</div>
 		</div>
 	</div>
@@ -87,72 +100,68 @@
 		win.resizeTo(500, hei);
 	}
 	
-	$('#ansBtn').on('click', insertAns);
+	$('#updateBtn').on('click', updateVehicle);
 	
-	function insertAns() {
-		let idx = $('[name=idx]').val();
-		let answer = $('[name=answer]').val();
-		$.ajax({
-			url: '${pageContext.request.contextPath}/admin/request',
-			type: 'post',
-			data: {idx: idx, answer: answer},
-			success: function(result) {
-				if(result == 1) {
-					opener.parent.location.reload();
-					window.close();
-				} else {
-					alert('실패');
-				}
-			},
-			error: function() {
-				alert('에러')
+	function updateVehicle() {
+		if($('#updateBtn').text() == '차량 정보 수정') {
+			$('#price').attr('readonly', false);
+			$('#location').attr('disabled', false);
+			$('#updateBtn').text('수정 완료');
+		} else if($('#price').val <= 0) {
+			alert('값을 확인하세요.');
+		} else {
+			let idx = $('#idx').val();
+			let price = $('#price').val();
+			let location = $('#location').val();
+			
+			let data = {
+					idx: idx,
+					price : price,
+					locationIdx : location
 			}
-		});
+			
+			$.ajax({
+				url: '${pageContext.request.contextPath}/admin/vehicle/update',
+				type: 'patch',
+				data: JSON.stringify(data),
+				contentType: "application/json; charset=utf-8",
+				success: function(result) {
+					if(result == 1) {
+						alert("차량 수정 완료");
+						opener.parent.location.reload();
+						window.close();
+					} else {
+						alert('실패');
+					}
+				},
+				error: function() {
+					alert("에러");
+				}
+			});
+		}
 	}
 	
-	$('#updateBtn').on('click', updateAns);
+	$('#deleteBtn').on('click', deleteVehicle);
 	
-	function updateAns() {
-		let idxup = $('[name=idx]').val();
-		let answerup = $('[name=answer]').val();
+	function deleteVehicle() {
+		let idx = $('#idx').val();
 		$.ajax({
-			url: '${pageContext.request.contextPath}/admin/request',
+			url: '${pageContext.request.contextPath}/admin/vehicle/delete',
 			type: 'patch',
-			data: {idx: idxup, answer: answerup},
+			data: {idx: idx},
 			success: function(result) {
 				if(result == 1) {
+					alert('차량 삭제 완료');
 					opener.parent.location.reload();
-					window.close();
+					window.close(); 
 				} else {
-					alert('실패');
+					alert('차량 삭제 실패');
 				}
 			},
 			error: function() {
-				alert('에러')
+				alert('에러');
 			}
-		});
-	}
-	
-	$('#deleteBtn').on('click', deleteAns);
-	
-	function deleteAns() {
-		let idxdel = $('[name=idx]').val();
-		$.ajax({
-			url: '${pageContext.request.contextPath}/admin/request',
-			type: 'delete',
-			data: {idx: idxdel},
-			success: function(result) {
-				if(result == 1) {
-					opener.parent.location.reload();
-					window.close();
-				} else {
-					alert('실패');
-				}
-			},
-			error: function() {
-				alert('에러')
-			}
-		});
+		})
 	}
 </script>
 </body>

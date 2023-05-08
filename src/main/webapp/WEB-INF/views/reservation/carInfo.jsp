@@ -54,9 +54,12 @@
 							<aside class="sidebar sidebar-property blog-asside-right">
 								<section class="mt-3 p-3">
 										<form>
-											<label>대여일</label><input type="date" name="startDate" id="startDate" min="today">
-											<label>반납일</label><input type="date" name="endDate" id="endDate"  min="today">
-											<label>대여일수 :</label><input type="text" id="day-count" name="daycount" value="" style="width:50px; background-color:#eeeeee;"readonly /><label>일</label>
+											<div><label style="margin-left:60px;margin-right:50px;">대여일</label><label  style="margin-left:80px;">반납일</label></div>
+											<input type="date" name="startDate" id="startDate" min="today" style="width:160px; float:left; margin-right:5px;" >
+											<input type="date" name="endDate" id="endDate"  min="today" style="width:160px;  float:left;">
+											<div style="margin-top:5px; text-align:center;" >
+												<input type="text" id="day-count" name="daycount" value="" style="width:50px; background-color:#eeeeee;"readonly /><label>일 대여</label> 
+											</div>
 										</form>
 											<hr>
 									<div class="col-md-12" style="padding-bottom:100px">                                   
@@ -80,28 +83,31 @@
 										<tbody>
 											<tr>
 												<th style="width: 30%;">기본 대여 요금</th>
-												<td style="width: 70%; text-align: right;"><input type="text" id="rentPrice"  name="rentPrice"style="width:200px; background-color:#eeeeee;" readonly><label>원</label></td>
+												<td style="width: 70%; text-align: right;"><input type="text" id="rentPrice"  name="rentPrice" style=" width:90%; background-color:#eeeeee;" readonly><label>원</label></td>
 											</tr>
 											<c:if test ="${not empty  info.name }">
 											<tr>
-												<th style="width: 30%;">쿠폰 적용 </th>
-												<td style="width: 70%; text-align: right;"><button type="button" id="coupon" data-memberIdx="${info.idx}"class="btn btn-secondary" style="display:inline-block" 
-												    		    onclick='window.open("${pageContext.request.contextPath}/selectCoupon/${info.idx }", "쿠폰적용", "width=100, height=auto")'>쿠폰 선택하기</button>
+												<th style="width: 30%;"><button type="button" id="coupon" data-memberIdx="${info.idx}"class="btn btn-secondary" style=" color:#4EA0D8; border-color:#4EA0D8; padding:5px; margin-top:5px;" 
+												    		    onclick='window.open("${pageContext.request.contextPath}/selectCoupon/${info.idx }", "쿠폰적용", "width=100, height=auto")'>쿠폰 선택하기</button> </th>
+												<td style="width: 70%; text-align: right;">
 												    <input type="hidden" id="discountRate">
-												   	<input type="text" id="discount" style="color:#4EA0D8;">원
+												   <input type="text" id="discount" style="color:#4EA0D8;  width:90%; background-color:#eeeeee;"><label>원</label>
 											</tr>
+											</c:if>
+											<c:if test ="${empty  info.name }">
+												<input type="hidden" id="discountRate">
 											</c:if>
 											<tr id ="insSection" >
 												<th style="width: 30%;">보험 추가 요금</th>
-												<td style="width: 70%; text-align: right;"><input type="text"id="addIns"  name="addIns"style=" background-color:#eeeeee;" readonly><label>원</label></td>
+												<td style="width: 70%; text-align: right;"><input type="text"id="addIns"  name="addIns"style="width:90%; background-color:#eeeeee;" readonly><label>원</label></td>
 											</tr>
 											<tr id="returnSection">
 												<th style="width: 30%;">반납지점 변경 요금</th>
-												<td style="width: 70%; text-align: right;"><input type="text"id="addreturn"  name="addreturn" style=" background-color:#eeeeee;"readonly><label>원</label></td>
+												<td style="width: 70%; text-align: right;"><input type="text"id="addreturn"  name="addreturn" style=" width:90%; background-color:#eeeeee;"readonly><label>원</label></td>
 											</tr>
 											<tr>
 												<th style="width: 30%;">결제금액</th>
-												<td style="width: 70%; text-align: right;"><input type="text" id="finalprice"  name="finalprice" style="color:red; background-color:#eeeeee;" readonly><label>원</label></td>
+												<td style="width: 70%; text-align: right;"><input type="text" id="finalprice"  name="finalprice" style="width:90%; color:red; background-color:#eeeeee;" readonly><label>원</label></td>
 											</tr>
 										</tbody>
 									</table>
@@ -174,6 +180,8 @@ if(useridx !== '') {
 		$("#addIns").attr('value','0' ); //보험값
 		$("#finalprice").attr('value',(price));
 		$("#addreturn").attr('value', '0') ;
+		$("#discountRate").attr('value', '0') ;
+		var discountRate = '0';
 	    $('#returnSection').hide();
 	    $('#insSection').hide();
 	    //비회원일 경우 리뷰 입력 숨기기
@@ -207,6 +215,7 @@ if(useridx !== '') {
       	var price = ${car.price};
       	var insurance = $('#selectins').val(); //추가요금
  	
+      	
         //대여일 선택시 반납일을 대여일 이후로 제한
         var sDate = new Date();
         var sdd = startDate.getDate();
@@ -265,6 +274,7 @@ if(useridx !== '') {
 	     	  $('#discount').attr('value',(price * compareDate *(discountRate/100)));
 	     	  $("#addIns").attr('value',(price * insurance *compareDate));
 	     	  $("#finalprice").attr('value',((compareDate*price)+(compareDate * price * insurance) - (price *compareDate* discountRate / 100)));
+	     	  
 	       }
       }
 

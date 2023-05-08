@@ -72,4 +72,8 @@
 		   SET PHONE_NUMBER = '-', BUSINESS_HOURS = '-' WHERE IDX = #{idx}
 	</update>
 	
+	<select id="selectListForAdmin" resultType="adminLocationListRespDto">
+		SELECT IDX, NAME FROM LOCATION
+	</select>
+	
 </mapper>

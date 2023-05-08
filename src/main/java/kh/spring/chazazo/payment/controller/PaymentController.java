@@ -27,6 +27,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.google.gson.Gson;
 
 import kh.spring.chazazo.admin.model.service.AdminService;
+import kh.spring.chazazo.coupon.dto.CouponReqDto;
 import kh.spring.chazazo.coupon.service.CouponService;
 import kh.spring.chazazo.member.model.service.MemberService;
 import kh.spring.chazazo.payment.model.dto.PaymentReqDto;
@@ -67,11 +68,12 @@ private AdminService aService;
 		}
 	}
 	
-	
+	//쿠폰선택
 	@GetMapping("/selectCoupon/{idx}")
 	public ModelAndView selectCoupon(@PathVariable String idx, ModelAndView mv) {
 		int index = Integer.parseInt(idx);
-		mv.addObject("coupon", cService.selectCoupon(index));
+		List<CouponReqDto> cList = cService.selectCoupon(index);  
+		mv.addObject("cList", cService.selectCoupon(index));
 		mv.setViewName("reservation/coupon");
 		return mv;
 	}

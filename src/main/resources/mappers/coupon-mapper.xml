@@ -11,7 +11,8 @@
 	</insert>
 	
 	<select id="selectCoupon" resultType="CouponReqDto">
-	SELECT * FROM COUPON WHERE MEMBER_IDX = #{memberIdx}
+	SELECT COUPON.*, COUPON_MANAGE.* FROM COUPON JOIN COUPON_MANAGE ON 
+	COUPON.COUPON_IDX=COUPON_MANAGE.IDX WHERE COUPON.MEMBER_IDX = #{memberIdx}
 	</select>
 	
 	

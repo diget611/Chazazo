@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -38,7 +40,10 @@
 </head>
 <body onload="resizeWindow(this)">
  <sec:authentication property="principal.username" var="currentUserName"/>
-	${coupon.idx}
+ 적용할 쿠폰을 선택하세요
+<c:forEach items="${cList}" var="coupon" varStatus="i">
+	${coupon.name }
+</c:forEach>
 
 
 <script>

@@ -85,6 +85,13 @@
 												<th>기본 대여 요금</th>
 												<td><input type="text" id="rentPrice"  name="rentPrice" readonly><label>원</label></td>
 											</tr>
+											<c:if test ="${not empty  info.name }">
+											<tr>
+												<th>쿠폰 적용 ${info.idx } </th>
+												<td><button type="button" id="coupon" data-memberIdx="${info.idx}"class="btn btn-secondary" style="display:inline-block" 
+												    		    onclick='window.open("${pageContext.request.contextPath}/selectCoupon/${info.idx }", "쿠폰적용", "width=100, height=auto")'>쿠폰 선택하기</button>
+											</tr>
+											</c:if>
 											<tr id ="insSection" >
 												<th >보험 추가 요금</th>
 												<td><input type="text"id="addIns"  name="addIns" readonly><label>원</label></td>

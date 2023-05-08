@@ -29,8 +29,8 @@ public class CouponManageServiceImpl implements CouponManageService {
 	}
 
 	@Override
-	public int selectCouponCode(String couponCode) {
-		return dao.selectCouponCode(couponCode);
+	public int countCouponCode(String couponCode) {
+		return dao.countCouponCode(couponCode);
 	}
 
 

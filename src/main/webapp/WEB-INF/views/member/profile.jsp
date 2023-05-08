@@ -151,8 +151,8 @@
 					<!-- 회원정보 수정 버튼 클릭시 비밀번호 확인 창 뜨게 하기  -->
 					<section id="id-100"  >
 					<div class="card-body" id="passCheck">
-						<div class="text-start">
-							<div class="input-group input-group-outline my-3">
+						<div class="text-center">
+							<div class="input-group input-group-outline my-3"style="margin-left:250px;">
 								<label>비밀번호 확인</label>
 								<input type="password" id="passwordCheck" class="form-control">
 							</div>
@@ -235,7 +235,7 @@
 		$('#checkPwd').click(function(){
 			const checkPassword = $('#passwordCheck').val();
 			if(!checkPassword || checkPassword.trim() === ""){
-				 swal("앗","비밀번호 입력해주세요.", {icon: "warning"});
+				 swal.fire("앗","비밀번호 입력해주세요.", {icon: "warning"});
 			}else{
 				$.ajax({
 					type :"GET",
@@ -244,7 +244,6 @@
 		             datatype: "text",
 		             success: function(result) {
 		            	 if(result) {
-		            		 console.log('일치');
 		            			var test = "${pageContext.request.contextPath}/resources/js/validation.js";
 			                	$('.footer-copy').after('<script src="' + test + '"/>');
 			  	          
@@ -252,7 +251,7 @@
 		            		 $('#passCheck').hide();
 		            	 } else {
 		            		 console.log('불일치');
-		            		 swal("비밀번호 오류","비밀번호가 일치하지 않습니다.", {icon: "error"});
+		            		 swal.fire("비밀번호 오류","비밀번호가 일치하지 않습니다.", {icon: "error"});
 		            	 }
 		             },
 		             error: function() {
@@ -333,7 +332,7 @@
 	  	       	    //dataType:'json',
 	  	       	    //비밀번호 일치 확인..
 	                success: function(result){
-	                	if(result>0){
+	                	if(result==1){
 	                		Swal.fire({
 	             			   title: '수정이 완료되었습니다!  ',
 	             			   text: '확인을 눌러주세요! ',

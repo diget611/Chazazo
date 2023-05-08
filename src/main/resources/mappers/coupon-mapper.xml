@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="coupon">
+
 	<insert id="insertCoupon">
 	
 	INSERT INTO COUPON VALUES(COUPON_SEQ.NEXTVAL, DEFAULT, (SELECT (SYSTIMESTAMP + PERIOD) FROM COUPON_MANAGE 
-	WHERE IDX = (select idx from coupon_manage where coupon_code = ${couponCode})), 
-    (select idx from coupon_manage where coupon_code = ${couponCode}), 
-    (select idx from member where username =${username}))
-	
+	WHERE IDX = (SELECT IDX FROM COUPON_MANAGE WHERE COUPON_CODE = #{couponCode})),
+	(SELECT IDX FROM COUPON_MANAGE WHERE COUPON_CODE = #{couponCode}),
+	(SELECT IDX FROM MEMBER WHERE USERNAME = #{username}))
+
 	</insert>
 	
 	<select id="selectCoupon" resultType="CouponReqDto">
@@ -15,6 +16,12 @@
 	COUPON_MANAGE.IDX, COUPON_MANAGE.RATE*100 AS RATE, COUPON_MANAGE.NAME,COUPON_MANAGE.STATUS, COUPON_MANAGE.COUPON_CODE
 	FROM COUPON JOIN COUPON_MANAGE ON 
 	COUPON.COUPON_IDX=COUPON_MANAGE.IDX WHERE COUPON.MEMBER_IDX = #{memberIdx} AND SYSTIMESTAMP BETWEEN  START_DATE AND EXPIRE_DATE
+		SELECT * FROM COUPON WHERE MEMBER_IDX = #{memberIdx}
+	</select>
+	
+	<select id="totalCoupon" resultType="_int">
+		SELECT COUNT(*) FROM COUPON WHERE MEMBER_IDX = 
+		(SELECT IDX FROM MEMBER WHERE USERNAME = #{username})
 	</select>
 	
 	

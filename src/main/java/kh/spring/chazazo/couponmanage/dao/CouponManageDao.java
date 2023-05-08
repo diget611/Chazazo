@@ -23,7 +23,7 @@ public class CouponManageDao {
 		return sqlSession.insert("couponmanage.insertCoupon", dto);
 	}
 	
-	public int selectCouponCode(String couponCode) {
+	public int countCouponCode(String couponCode) {
 		return sqlSession.selectOne("couponmanage.selectCouponCode", couponCode);
 	}
 

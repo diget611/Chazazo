@@ -273,8 +273,9 @@
 	$('#bookmark').on('click', function() {
 		location.href='<%=request.getContextPath()%>/profile/favorites';
 	});
+	
 	$('#totalLocation').on('click', function() {
-		location.href='<%=request.getContextPath()%>/location';
+		location.href = "${pageContext.request.contextPath}/location/1"; 
 	});
 	
 	function delFn(){

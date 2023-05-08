@@ -17,4 +17,11 @@ public class CouponDao {
 		return sqlSession.selectList("coupon.selectCoupon",idx);
 	}
 
+	public int insertCoupon(CouponReqDto dto) {
+		return sqlSession.insert("coupon.insertCoupon", dto);
+	}
+	
+	public int totalCoupon(String username) {
+		return sqlSession.selectOne(username);
+	}
 }

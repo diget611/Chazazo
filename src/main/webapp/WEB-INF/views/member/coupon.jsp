@@ -10,7 +10,6 @@
 <title>쿠폰 관리</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all/css">	
 <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700,800' rel='stylesheet' type='text/css'>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,-25" />
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/garoestate/assets/css/normalize.css">
@@ -83,7 +82,6 @@
 	justify-content: space-between;
 
 }
-
 
 
 </style>
@@ -249,335 +247,96 @@
 									<p class="txt-align">
 										<span class="icon talk-small"></span> 할인쿠폰을 등록하시면 결제 시 사용하실 수 있습니다. 
 									</p>								
-									<button type="button" class="btn-normal black layer-mypage-open" id="popupBtn" data-layer="layer-registCoupon">
+									<button  onclick="openForm()" type="button" class="btn-normal black layer-mypage-open" id="popupBtn" data-layer="layer-registCoupon">
 									할인쿠폰 등록하기 <span class="icon coupon"></span>
 									</button>								
 									</div>
 								</div>
 																	
-	<!-- 							
 							
-	<form id="defaultFrm" name="defaultFrm" action="" method="post">
-	<div class="layer-wrap layer-popup layer-mypage layer-registCoupon active" style="top: 293px; left: 298px; opacity: 0;">
-		<div class="pop-inner">
-			<div class="popup-top">
-				<h4>할인쿠폰 등록</h4>
-				<button type="button" class="layer-popup-close" data-layer="layer-registCoupon"><i class="fa-light fa-circle-x"></i>닫기 버튼</button>
-			</div>
-			<div class="popup-cont layer-iscroll">
-				<div class="iscroll-in">
-
-					<div class="form-cont">
-						<div class="form-row">
-							<div class="input-tit">
-								<label for="input01">쿠폰 번호</label>
-							</div>
-							<div class="input-cont">
-								<div class="inputT">
-									<input type="text" name="couponNo" id="cp_reg">
+						<div id="myForm" style="display:none;">				
+						<form  name="defaultFrm" action="<%=request.getContextPath() %>/registerCoupon" method="post">
+						<div class="layer-wrap layer-popup layer-mypage layer-registCoupon active" style="top: 293px; left: 298px; opacity: 0;">
+							<div class="pop-inner">
+								<div class="popup-top">
+									<h4>할인쿠폰 등록</h4>
+									<button type="button" class="layer-popup-close" data-layer="layer-registCoupon" onclick="closeForm()"><i class="fa-light fa-circle-x"></i>닫기 버튼</button>
+								</div>
+								<div class="popup-cont layer-iscroll">
+									<div class="iscroll-in">
+					
+										<div class="form-cont">
+											<div class="form-row">
+												<div class="input-tit">
+													<label for="input01">쿠폰 번호</label>
+												</div>
+												<div class="input-cont">
+													<div class="inputT">
+														<input id="couponCode" type="text" name="couponNo" >
+													</div>
+												</div>
+											</div>
+										</div>
+										<ul class="lst dot">
+											<li>발급받으신 쿠폰 번호를 입력해주세요.</li>
+											<li>쿠폰 등록 후 기간, 혜택, 사용조건 등을 꼭 확인하세요.</li>
+											<li>알파벳 O 와 숫자 0 을 명확히 구분하여 입력하세요.</li>
+											<li>전화 예약 시, 이용권 번호를 말씀해 주시면 적용해 드립니다.</li>
+										</ul>
+					
+									</div>
+									<div class="popup-cont-bot-btns">
+										<button type="button" class="btn btn-white layer-popup-close" data-layer="layer-registCoupon" onclick="closeForm()">취소</button>		
+										<button type="button" class="btn btn-blue layer-popup-close" data-layer="layer-registCoupon" onclick="registerCoupon();">등록</button>		
+									</div>
 								</div>
 							</div>
 						</div>
-					</div>
-					<ul class="lst dot">
-						<li>발급받으신 쿠폰 번호를 입력해주세요.</li>
-						<li>쿠폰 등록 후 기간, 혜택, 사용조건 등을 꼭 확인하세요.</li>
-						<li>알파벳 O 와 숫자 0 을 명확히 구분하여 입력하세요.</li>
-						<li>무료 이용권은 등록할 수 없습니다. </li>
-						<li>전화 예약 시, 이용권 번호를 말씀해 주시면 적용해 드립니다.</li>
-					</ul>
-
-				</div>
-				<div class="popup-cont-bot-btns">
-					<button type="button" class="btn btn-white layer-popup-close" data-layer="layer-registCoupon">취소</button>		
-					<button type="button" class="btn btn-blue layer-popup-close" data-layer="layer-registCoupon" onclick="board.regidit();">등록</button>		
-				</div>
-			</div>
-		</div>
-	</div>
-	</form>
+						</form>
+						</div>		
+			
 									
-		 -->							
-									
-									<div id="content"></div>
-									
-									
-									
-									
-									
-									
-									
-									
-									
-									
-									
-									
-									
-									
-									
-									
-									
-									
-									
-									
-									<form role="search">
-										<div class="col">
-											<input class="form-control" id="vcdp_input_coupon_regist"
-												placeholder="쿠폰코드를 입력해주세요" maxlength="20">
-										</div>
-										<div class="">
-											<button class="btn btn-primary border-radius-6"
-												id="vcdp_btn_coupon_regist" type="button">등록</button>
-
-										</div>
-									</form>
-									<div class="form-row align-items-center">
-										<form role="search">
-											<div class="input-group">
-												<input class="form-control" placeholder="쿠폰번호를 입력하세요"
-													type="text" id="search"> <span
-													class="input-group-btn">
-													<button type="button"
-														class="btn border-radius-6" id="registerCoupon">등록</button>
-														<button id ="resultMessage"></button>
-												</span>
-											</div>
-
-
-										</form>
-									</div>
-									<div class="">
-										<h3 class="color-grey-5 text-16">쿠폰 목록</h3>
-										<div class="text-14 color-grey-4 py-3">
-											보유쿠폰&nbsp;<span class="font-weight-bold"
-												id="js_vdcp_coupon_cnt">4</span>장
-										</div>
-										<div id="vcdp_container_coupon_list">
-											<div
-												class="coupon-item-container cm-rounded px-4 py-3 click-effect-press vcdp-coupon-list-item"
-												data="8624134">
-												<div
-													class="dc-flex justify-content-between align-items-start">
-													<div class="pb-2">
-														<span
-															class="badge badge-primary text-white font-weight-bold"
-															id="cbc_grade"></span>
-														<div class="pr-2">
-															<div
-																class="cbc-txt-coupon-title text-12 font-weight-bold color-grey-3 dc-inline">신규가입
-																월구독 15,000원 할인쿠폰</div>
-															<div
-																class="js-cbc-txt-coupon-dday ml-1 text-12 font-weight-bold color-red dc-inline">D-38</div>
-														</div>
-													</div>
-													<button
-														class="btn btn-sm btn-grey-7 my-1 js-cbc-btn-coupon-condition js-show-cbc-btn-coupon-condition">조건보기</button>
-												</div>
-												<div class="dc-flex align-items-baseline">
-													<div
-														class="cbc-txt-coupon-price text-32 font-weight-bold color-grey-2">15,000</div>
-													<div
-														class="cbc-txt-coupon-unit text-16 font-weight-bold color-grey-2 ml-1">원</div>
-												</div>
-												<div
-													class="cbc-txt-coupon-rent-condition text-10 color-grey-5">350,000원
-													이상 렌트 시</div>
-												<div
-													class="cbc-txt-coupon-expiration-date text-10 color-grey-5">~2023.06.11까지
-													사용</div>
-												<div class="cbc-btn-direct-reservation dc-none"
-													style="display: none;">
-													<hr>
-													<div
-														class="dc-flex justify-content-center align-items-center">
-														<div
-															class="ml-1 text-16 font-weight-bold js-direct-reservation-btnv js-move-direct-reservation">바로
-															사용하기</div>
-														<img class="m-0"
-															src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNyIgaGVpZ2h0PSIxNiIgZmlsbD0ibm9uZSIgdmlld0JveD0iMCAwIDE3IDE2Ij4KICAgIDxwYXRoIHN0cm9rZT0iIzBENkZGQyIgc3Ryb2tlLXdpZHRoPSIyIiBkPSJNOS41IDNsNSA1LTUgNU0xLjUgOGgxMyIvPgo8L3N2Zz4K">
-													</div>
-												</div>
-											</div>
-											<div
-												class="coupon-item-container cm-rounded px-4 py-3 click-effect-press vcdp-coupon-list-item"
-												data="8624133">
-												<div
-													class="dc-flex justify-content-between align-items-start">
-													<div class="pb-2">
-														<span
-															class="badge badge-primary text-white font-weight-bold"
-															id="cbc_grade"></span>
-														<div class="pr-2">
-															<div
-																class="cbc-txt-coupon-title text-12 font-weight-bold color-grey-3 dc-inline">신규가입
-																월구독 20,000원 할인쿠폰</div>
-															<div
-																class="js-cbc-txt-coupon-dday ml-1 text-12 font-weight-bold color-red dc-inline">D-38</div>
-														</div>
-													</div>
-													<button
-														class="btn btn-sm btn-grey-7 my-1 js-cbc-btn-coupon-condition js-show-cbc-btn-coupon-condition">조건보기</button>
-												</div>
-												<div class="dc-flex align-items-baseline">
-													<div
-														class="cbc-txt-coupon-price text-32 font-weight-bold color-grey-2">20,000</div>
-													<div
-														class="cbc-txt-coupon-unit text-16 font-weight-bold color-grey-2 ml-1">원</div>
-												</div>
-												<div
-													class="cbc-txt-coupon-rent-condition text-10 color-grey-5">350,000원
-													이상 렌트 시</div>
-												<div
-													class="cbc-txt-coupon-expiration-date text-10 color-grey-5">~2023.06.11까지
-													사용</div>
-												<div class="cbc-btn-direct-reservation dc-none"
-													style="display: none;">
-													<hr>
-													<div
-														class="dc-flex justify-content-center align-items-center">
-														<div
-															class="ml-1 text-16 font-weight-bold js-direct-reservation-btnv js-move-direct-reservation">바로
-															사용하기</div>
-														<img class="m-0"
-															src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNyIgaGVpZ2h0PSIxNiIgZmlsbD0ibm9uZSIgdmlld0JveD0iMCAwIDE3IDE2Ij4KICAgIDxwYXRoIHN0cm9rZT0iIzBENkZGQyIgc3Ryb2tlLXdpZHRoPSIyIiBkPSJNOS41IDNsNSA1LTUgNU0xLjUgOGgxMyIvPgo8L3N2Zz4K">
-													</div>
-												</div>
-											</div>
-											<div
-												class="coupon-item-container cm-rounded px-4 py-3 click-effect-press vcdp-coupon-list-item"
-												data="8624132">
-												<div
-													class="dc-flex justify-content-between align-items-start">
-													<div class="pb-2">
-														<span
-															class="badge badge-primary text-white font-weight-bold"
-															id="cbc_grade"></span>
-														<div class="pr-2">
-															<div
-																class="cbc-txt-coupon-title text-12 font-weight-bold color-grey-3 dc-inline">신규가입
-																해외 10,000원 할인쿠폰</div>
-															<div
-																class="js-cbc-txt-coupon-dday ml-1 text-12 font-weight-bold color-red dc-inline">D-38</div>
-														</div>
-													</div>
-													<button
-														class="btn btn-sm btn-grey-7 my-1 js-cbc-btn-coupon-condition js-show-cbc-btn-coupon-condition">조건보기</button>
-												</div>
-												<div class="dc-flex align-items-baseline">
-													<div
-														class="cbc-txt-coupon-price text-32 font-weight-bold color-grey-2">10,000</div>
-													<div
-														class="cbc-txt-coupon-unit text-16 font-weight-bold color-grey-2 ml-1">원</div>
-												</div>
-												<div
-													class="cbc-txt-coupon-rent-condition text-10 color-grey-5 dc-none"></div>
-												<div
-													class="cbc-txt-coupon-expiration-date text-10 color-grey-5">~2023.06.11까지
-													사용</div>
-												<div class="cbc-btn-direct-reservation dc-none"
-													style="display: none;">
-													<hr>
-													<div
-														class="dc-flex justify-content-center align-items-center">
-														<div
-															class="ml-1 text-16 font-weight-bold js-direct-reservation-btnv js-move-direct-reservation">바로
-															사용하기</div>
-														<img class="m-0"
-															src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNyIgaGVpZ2h0PSIxNiIgZmlsbD0ibm9uZSIgdmlld0JveD0iMCAwIDE3IDE2Ij4KICAgIDxwYXRoIHN0cm9rZT0iIzBENkZGQyIgc3Ryb2tlLXdpZHRoPSIyIiBkPSJNOS41IDNsNSA1LTUgNU0xLjUgOGgxMyIvPgo8L3N2Zz4K">
-													</div>
-												</div>
-											</div>
-											<div
-												class="coupon-item-container cm-rounded px-4 py-3 click-effect-press vcdp-coupon-list-item"
-												data="8624131">
-												<div
-													class="dc-flex justify-content-between align-items-start">
-													<div class="pb-2">
-														<span
-															class="badge badge-primary text-white font-weight-bold"
-															id="cbc_grade"></span>
-														<div class="pr-2">
-															<div
-																class="cbc-txt-coupon-title text-12 font-weight-bold color-grey-3 dc-inline">신규가입
-																국내 5,000원 할인쿠폰</div>
-															<div
-																class="js-cbc-txt-coupon-dday ml-1 text-12 font-weight-bold color-red dc-inline">D-38</div>
-														</div>
-													</div>
-													<button
-														class="btn btn-sm btn-grey-7 my-1 js-cbc-btn-coupon-condition js-show-cbc-btn-coupon-condition">조건보기</button>
-												</div>
-												<div class="dc-flex align-items-baseline">
-													<div
-														class="cbc-txt-coupon-price text-32 font-weight-bold color-grey-2">5,000</div>
-													<div
-														class="cbc-txt-coupon-unit text-16 font-weight-bold color-grey-2 ml-1">원</div>
-												</div>
-												<div
-													class="cbc-txt-coupon-rent-condition text-10 color-grey-5 dc-none"></div>
-												<div
-													class="cbc-txt-coupon-expiration-date text-10 color-grey-5">~2023.06.11까지
-													사용</div>
-												<div class="cbc-btn-direct-reservation dc-none"
-													style="display: none;">
-													<hr>
-													<div
-														class="dc-flex justify-content-center align-items-center">
-														<div
-															class="ml-1 text-16 font-weight-bold js-direct-reservation-btnv js-move-direct-reservation">바로
-															사용하기</div>
-														<img class="m-0"
-															src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNyIgaGVpZ2h0PSIxNiIgZmlsbD0ibm9uZSIgdmlld0JveD0iMCAwIDE3IDE2Ij4KICAgIDxwYXRoIHN0cm9rZT0iIzBENkZGQyIgc3Ryb2tlLXdpZHRoPSIyIiBkPSJNOS41IDNsNSA1LTUgNU0xLjUgOGgxMyIvPgo8L3N2Zz4K">
-													</div>
-												</div>
-											</div>
-										</div>
-									
-									
-									</div>
 								</div>
-
-								<div
-									class="coupon-item-container cm-rounded px-4 py-3 click-effect-press vcdp-coupon-list-item"
-									data="8624134">
-									<div class="dc-flex justify-content-between align-items-start">
-										<div class="pb-2">
-											<span class="badge badge-primary text-white font-weight-bold"
-												id="cbc_grade"></span>
-											<div class="pr-2">
-												<div
-													class="cbc-txt-coupon-title text-12 font-weight-bold color-grey-3 dc-inline">신규가입
-													15,000원 할인쿠폰</div>
-												<div
-													class="js-cbc-txt-coupon-dday ml-1 text-12 font-weight-bold color-red dc-inline">D-42</div>
-											</div>
-										</div>
-
-									</div>
-									<div class="dc-flex align-items-baseline">
-										<div
-											class="cbc-txt-coupon-price text-32 font-weight-bold color-grey-2">15,000</div>
-										<div
-											class="cbc-txt-coupon-unit text-16 font-weight-bold color-grey-2 ml-1">원</div>
-									</div>
-									<div class="cbc-txt-coupon-rent-condition text-10 color-grey-5">350,000원
-										이상 렌트 시</div>
-									<div
-										class="cbc-txt-coupon-expiration-date text-10 color-grey-5">~2023.06.11까지
-										사용</div>
-									<div class="cbc-btn-direct-reservation dc-none"
-										style="display: none;">
-										<hr>
-										<div class="dc-flex justify-content-center align-items-center">
-											<div
-												class="ml-1 text-16 font-weight-bold js-direct-reservation-btnv js-move-direct-reservation">바로
-												사용하기</div>
-											<img class="m-0"
-												src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNyIgaGVpZ2h0PSIxNiIgZmlsbD0ibm9uZSIgdmlld0JveD0iMCAwIDE3IDE2Ij4KICAgIDxwYXRoIHN0cm9rZT0iIzBENkZGQyIgc3Ryb2tlLXdpZHRoPSIyIiBkPSJNOS41IDNsNSA1LTUgNU0xLjUgOGgxMyIvPgo8L3N2Zz4K">
-										</div>
-									</div>
-								</div>
+		
+							<div>
+								<p>쿠폰 목록</p>
+								<c:if test="${empty couponList }">
+									<p style="text-align: center; font-size: large;">
+										<strong> 보유한 쿠폰이 없습니다 </strong>
+									</p>
+									<br>
+								</c:if>
+							
 							</div>
+							</div>
+							<div class="infos-section">		
+							<c:forEach items="${couponList }" var="coupon">					
+							<ul class="tiket-list">
+									<li>
+										<div class="tiket-item coupon-item-container">
+											<div class="tiket-item-header">
+												<strong class="txt-color-red">${coupon.rate }% 할인</strong>
+												<p>${coupon.name }</p>
+											</div>
+											<ul class="info-list">
+												<li>
+													<span class="tit">쿠폰번호</span>
+													<div class="cont">
+														<span>${coupon.couponCode }</span>
+													</div>
+												</li>
+												<li>
+													<span class="tit">유효기간</span>
+													<div class="cont">
+														<span>${coupon.startDate } ~ ${coupon.expireDate } </span>
+													</div>
+												</li>											
+											</ul>
+										</div>
+									</li>
+								</ul>
+							</c:forEach>
+						</div>
 
 
 
@@ -612,119 +371,15 @@
 		});
 
 		
-		
-		$('#none-Member-history').on('click',content);
-		function content(){
-			$.ajax({
-				url:"${pageContext.request.contextPath}/profile/reservation",
-				type: 'get',
-				dataType:'json',
-				success: function(result){
-					
-					memberResv(result);
-					$('#hideRent').hide();
-				},
-				error: function(){
-					alert("예약내역이 없습니다.");
-				}
-				
-			});
-		};
-		
-		function memberResv(result){
-			var html = '';
-			if(result == 1){
-				html += '			<h4>비회원 예약조회</h4><button type="button" id="test2">테스트</button>';
-				html += '			<form >';
-				html += '			<div class="form-group">';
-				html += '				<label>운전자 이름</label> <input type="text" class="form-control" id ="username" name="name" placeholder="성명을 입력해 주세요">';
-				html += '				<div class="invalid-feedback" id="vsnmr_input_driver_name_invalid_msg" style="display: block;">이름을 입력해 주세요</div>';
-				html += '				</div>';
-				html += '				<div class="form-group">';
-				html += '					<label>예약번호</label> <input type="text" class="form-control"';
-				html += '						name="reservationNumber" id="reservationNumber">';
-				html += '					<div class="invalid-feedback"';
-				html += '						id="vsnmr_input_reserv_num_invalid_msg">예약번호를 입력해 주세요</div>';
-				html += '					<small class="color-blue">예약번호는 문자와 메일로 보내드린 예약내용에 재되어있습니다.</small>';
-				html += '				</div>';
-				html += '				<div class="form-group">';
-				html += '					<label>전화번호</label> <input type="text" id="phone" name="phone" required>';
-				html += '				</div>';
-				html += '				<div class="text-center">';	
-				html += '					<button type="button" class="btn btn-default" name = "noneMember" onclick="noMeberReser()">예약 조회하기</button>';
-				html += '				</div>';
-				html += '			</form>';
-			
-			}	
-			$('#content').html(html);
-		}
-		
-
-		
-		
-		//비회원 예약 조회
-		function noMeberReser(){
-			var username = $('#username').val();
-			var phoneNumber = $('#phone').val();
-			var reservationNumber = $('#reservationNumber').val();
 	
-			$.ajax({
-				url:"${pageContext.request.contextPath}/profile/nonereservation",
-				type: 'get',
-				dataType:'json',
-				data : {
-						"name":username,
-						"phoneNumber":phoneNumber,
-						"paymentIdx":reservationNumber
-				},
-				success: function(result){
-					getNoneResr(result);
-					console.log(result);
-					
-				},
-				error: function(){
-					alert("예약내역이 없습니다.");
-				}
-				
-			});
-		}
-		
-		
-		function getNoneResr(result){
-			var noneList = result.noneReservation;
-			var html = '';
-			if(noneList == null) {
-				html += '					<p style="text-align: center; font-size: large;"><strong>예약 정보가 없습니다.</strong></p><br>'
-			} else {
-				html += '				<div>'
-				html += '					<h3>'+ result.selectNone.name +'님의 예약내역</h3>'
-				html += '				</div>'
-				html += '						<table>'
-				html += '							<thead>'
-				html += '							<tr>'
-				html += '								<th scope="row">예약번호</th>'
-				html += '								<th scope="row">예약시작날짜</th>'
-				html += '								<th scope="row">예약상태</th>'
-				html += '								<th scope="row">차종류</th>'
-				html += '								<th scope="row">대여지점</th>'
-				html += '								<th scope="row">반납지점</th>'
-				html += '							</tr>'
-				html += '							</thead>'
-				html += '							<tbody>'
-				html += '								<tr>'
-				html += '									<td>' + noneList.idx + '</td>'
-				html += '									<td>' + noneList.startDate + '</td>'
-				html += '									<td>' + noneList.state + '</td>'
-				html += '									<td>' + noneList.vehicleModel+ '</td>'
-				html += '									<td>' + noneList.rentLocationName + '</td>'
-				html += '									<td>' + noneList.returnLocationName + '</td>'
-				html += '								</tr>'
-				html += '							<tbody>'
-				html += '							</table>'
-			}
-			$('#content').html(html);
+		$("#myReview").on("click", function(){
+			location.href="${pageContext.request.contextPath}/myReview";
 			
-		}
+		});
+		
+		$('#bookmark').on('click', function() {
+			location.href='<%=request.getContextPath()%>/profile/favorites';
+		});
 		
 
 		function deleteMember(){
@@ -776,76 +431,41 @@
 				}
 			
 		
-	
-		$("#myReview").on("click", function(){
-			location.href="${pageContext.request.contextPath}/myReview";
-			
-		});
+		function openForm() {
+		  document.getElementById("myForm").style.display = "block";
+		}
+		
+		function closeForm() {
+		  document.getElementById("myForm").style.display = "none";
+		}
+				
 		
 		
-		$("#registerCoupon").click(function(){
+		
+			function registerCoupon(){ 
 			var couponCode = $('#couponCode').val();
+			console.log(couponCode);
 			$.ajax({
 				url:"${pageContext.request.contextPath}/registerCoupon" ,
 				type: "POST",
-				data:{couponCode: couponCode},
+				data:{"couponCode": couponCode},
 				success:function(result){
-					$('#resultMessage').html(result);
-				},
+						if(result==1){
+							alert("등록완료")
+							location.reload();
+						}else{
+							swal.fire("no"," no used!","error");
+						}
+						},
 				error: function(){
 					alert("쿠폰등록실패")
 				}
 				
 			})
-		})
-		
-		
-
-		$("#popupBtn").on("click", popup)
-			function popup(){
-			var html='';
-			
-			
-			html='		<form id="defaultFrm" name="defaultFrm" action="" method="post">';
-			html='	<div class="layer-wrap layer-popup layer-mypage layer-registCoupon active" style="top: 293px; left: 298px; opacity: 0;">';
-			html='		<div class="pop-inner">';
-			html='			<div class="popup-top">';
-				html='				<h4>할인쿠폰 등록</h4>';
-					html='				<button type="button" class="layer-popup-close" data-layer="layer-registCoupon"><i class="fa-light fa-circle-x"></i>닫기 버튼</button>';
-					html='			</div>';
-					html='			<div class="popup-cont layer-iscroll">';
-				html='				<div class="iscroll-in">';
-
-					html='					<div class="form-cont">';
-				html='						<div class="form-row">';
-			html='						<div class="input-tit">';
-				html='							<label for="input01">쿠폰 번호</label>';
-					html='	</div>';
-			html='		<div class="input-cont">';
-		html='					<div class="inputT">';
-		html='				<input type="text" name="couponNo" id="cp_reg">';
-		html='									</div>';
-			html='									</div>';
-				html='			</div>';
-								html='					</div>';
-						
-
-									html='				</div>';
-										html='					<div class="popup-cont-bot-btns">';
-											html='						<button type="button" class="btn btn-white layer-popup-close" data-layer="layer-registCoupon">취소</button>		';
-					html='							<button type="button" class="btn btn-blue layer-popup-close" data-layer="layer-registCoupon" onclick="board.regidit();">등록</button>	';	
-								html='						</div>';
-									html='				</div>';
-								html='			</div>';
-									html='			</div>';
-									html='			</form>';
-		
-		$('#content').html(html);
 		}
 		
-					
 		
-		
+
 	</script>
 </body>
 </html>

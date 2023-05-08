@@ -59,6 +59,14 @@
     justify-content: space-between;
     align-items: center;
 }
+.box-between{
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+
+}
+
+
 </style>
 </head>
 <body>
@@ -240,15 +248,13 @@
 										</div>
 									</div>
 								</div>
-								<div
-									class="js-vrsi-container-total-price js-vrsi-container-price-wrap"
-									style="">
-									<div class="dc-flex justify-content-end mt-1">
+								<div class="js-vrsi-container-total-price js-vrsi-container-price-wrap box-between">
+									
 										<div class="color-blue">
-											<span class="text-12 font-weight-normal">총 결제 금액</span><span
-												class="js-vrsi-txt-total-price text-16 font-weight-bold ml-1">${vehicle.price }</span>
+											<span class="text-12 font-weight-normal">총 결제 금액</span>
+											<span class="js-vrsi-txt-total-price text-16 font-weight-bold ml-1">${vehicle.price }</span>
 										</div>
-									</div>
+									
 								</div>
 								
 							

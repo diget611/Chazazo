@@ -68,9 +68,22 @@
 							</div>
 						</section>
 						<section>
-							<form id="reqForm">
-								<input type="text" name="title" id="title">
-								<input type="text" name="content" id="content">
+							<form id="inqForm">
+								<div class="row">
+									<div class="col-xs-2">
+										<select id="category">
+											<option value="1">1번</option>
+											<option value="2">2번</option>
+											<option value="3">3번</option>
+										</select>
+									</div>
+									<div class="col-xs-10">
+										<input type="text" name="title" id="title" placeholder="제목">
+									</div>
+								</div>
+								<div>
+									<textarea id="ckeditor"></textarea>
+								</div>
 								<button type="button" class="btn btn-outline-primary" id="insertBtn">작성하기</button>
 							</form>
 						</section>
@@ -83,6 +96,15 @@
 	<jsp:include page="/WEB-INF/views/base/chat.jsp"/>
 	<jsp:include page="/WEB-INF/views/base/footer.jsp"/>
 	
+	<script src="https://cdn.ckeditor.com/ckeditor5/34.0.0/classic/ckeditor.js"></script>
+	<script src="https://cdn.ckeditor.com/ckeditor5/34.0.0/classic/translations/ko.js"></script>
+
+	<script>
+		ClassicEditor.create( document.querySelector( '#ckeditor' ), {
+			language: "ko"
+		} );
+	</script>
+	
 	<script>
 		$('.main-nav').children(0).eq(4).children().css('color', '#18B4E9');
 		
@@ -94,25 +116,28 @@
 			location.href='${pageContext.request.contextPath}/request';
 		});
 		
-		$('#insertBtn').on('click', requestInsert);
+		$('#insertBtn').on('click', inquiryInsert);
 		
-		function requestInsert() {
-			var title = $('[name=title]').val();
-			var content = $('[name=content]').val();
-			var username = '${username}';
+		function inquiryInsert() {
+			let category = $('#category').val();
+			let title = $('#title').val();
+			let content = $('[role=textbox]').html();
 			
-			var test = {"title": title, "content": content, "username": username};
+			var data = {
+					"category": category,
+					"title": title,
+					"content": content
+					};
 			
-			console.log(test);
 			$.ajax({
-				url: '${pageContext.request.contextPath}/request/insert',
+				url: '${pageContext.request.contextPath}/inquiry/insert',
 				type: 'post',
 				contentType: 'application/json; charset=utf-8',
-				data: JSON.stringify(test),
+				data: JSON.stringify(data),
 				success: function(result) {
 					if(result == 1) {
 						alert('성공');
-						window.open='${pageContext.request.contextPath}/request';
+						window.location.href = '${pageContext.request.contextPath}/inquiry';
 					} else {
 						alert('실패');
 					}

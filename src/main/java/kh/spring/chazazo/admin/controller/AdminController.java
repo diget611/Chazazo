@@ -165,6 +165,12 @@ public class AdminController {
 		return mv;
 	}
 	
+	@GetMapping("/location/insert")
+	public ModelAndView viewInsertLocation(ModelAndView mv) {
+		mv.setViewName("admin/locationinsert");
+		return mv;
+	}
+	
 	// 차량
 	@GetMapping("/vehicle")
 	public ModelAndView viewVehicle(ModelAndView mv, @RequestParam(required = false, defaultValue = "1") int page) {

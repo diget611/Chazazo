@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
     <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+	<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -40,14 +40,29 @@
 </head>
 <body onload="resizeWindow(this)">
  <sec:authentication property="principal.username" var="currentUserName"/>
- 적용할 쿠폰을 선택하세요
-<c:forEach items="${cList}" var="coupon" varStatus="i">
-	${coupon.name }
-</c:forEach>
-
+	 <div class="container-fluid pt-4 px-4">
+		<div class="col-sm-12 col-xl-6">
+			<div class="bg-light rounded h-100 p-4">
+ 				<label style="font-size:20px; margin:5px;" > ${currentUserName}님의 쿠폰</label>
+ 
+					<c:forEach items="${cList}" var="coupon" varStatus="i" >
+						<div style="margin:5px;">
+							<input type="radio" name="coupon" value="${coupon.rate}"> <label style="color: red;">${coupon.rate}%할인 </label> <br>${coupon.name }  
+						</div>
+					</c:forEach>
+							<input type="radio" name="coupon" value="0" ><label>할인 미적용</label>
+						<button type="button" id="discount" >할인 적용</button>
+			</div>
+		</div>
+</div>
 
 <script>
-
+$('#discount').on('click', function() {
+var rate = $('input[name=coupon]:checked').val();
+	opener.document.getElementById("discountRate").value = rate;
+	window.opener.calc();
+	window.close();
+});
 
 </script>
 </body>

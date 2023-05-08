@@ -56,6 +56,7 @@
 										<form>
 											<label>대여일</label><input type="date" name="startDate" id="startDate" min="today">
 											<label>반납일</label><input type="date" name="endDate" id="endDate"  min="today">
+											<label>대여일수 :</label><input type="text" id="day-count" name="daycount" value="" readonly /><label>일</label>
 										</form>
 											<hr>
 									<div class="col-md-12" style="padding-bottom:100px">                                   
@@ -78,18 +79,16 @@
 									<table class="table">
 										<tbody>
 											<tr>
-												<th>대여 일수</th>
-												<td><input type="text" id="day-count" name="daycount" value="" readonly /><label>일</label></td>
-											</tr>
-											<tr>
 												<th>기본 대여 요금</th>
 												<td><input type="text" id="rentPrice"  name="rentPrice" readonly><label>원</label></td>
 											</tr>
 											<c:if test ="${not empty  info.name }">
 											<tr>
-												<th>쿠폰 적용 ${info.idx } </th>
+												<th>쿠폰 적용 </th>
 												<td><button type="button" id="coupon" data-memberIdx="${info.idx}"class="btn btn-secondary" style="display:inline-block" 
 												    		    onclick='window.open("${pageContext.request.contextPath}/selectCoupon/${info.idx }", "쿠폰적용", "width=100, height=auto")'>쿠폰 선택하기</button>
+												    <input type="text" id="discountRate">
+												   	<input type="text" id="discount" style="color:#4EA0D8;">원
 											</tr>
 											</c:if>
 											<tr id ="insSection" >
@@ -172,8 +171,8 @@ if(useridx !== '') {
 		getcarInfo();
 		$('input[name=daycount]').attr('value','1');
 		$('#rentPrice').attr('value',price);
-		$("#addIns").attr('value','0' );
-		$("#finalprice").attr('value',(price+price * 0.1));
+		$("#addIns").attr('value','0' ); //보험값
+		$("#finalprice").attr('value',(price));
 		$("#addreturn").attr('value', '0') ;
 	    $('#returnSection').hide();
 	    $('#insSection').hide();
@@ -195,6 +194,7 @@ if(useridx !== '') {
 	$('#startDate').on('change', calc);
     $('#endDate').on('change', calc);
     $('#selectins').on('change', calc);
+    $('#discountRate').on('change', calc);
 
 
     
@@ -203,6 +203,7 @@ if(useridx !== '') {
 	    var startDate = new Date($('#startDate').val());
 	    var endDate = new Date($('#endDate').val());
         var compareDate = Math.round((endDate.getTime() - startDate.getTime()) / (1000 * 60 * 60 * 24)) + 1;
+      	var discountRate = $('#discountRate').val(); //할인률
       	var price = ${car.price};
       	var insurance = $('#selectins').val(); //추가요금
  	
@@ -261,8 +262,9 @@ if(useridx !== '') {
 		      //대여일이 반납일보다 정상적으로 선택 되었을떄 요금계산
 	     	  $('#day-count').attr('value',compareDate);
 	     	  $('#rentPrice').attr('value',(price * compareDate));
+	     	  $('#discount').attr('value',(price * compareDate *(discountRate/100)));
 	     	  $("#addIns").attr('value',(price * insurance *compareDate));
-	     	  $("#finalprice").attr('value',((compareDate*price)+(compareDate * price * insurance)+returnfee));
+	     	  $("#finalprice").attr('value',((compareDate*price)+(compareDate * price * insurance) - (price *compareDate* discountRate / 100)));
 	       }
       }
 

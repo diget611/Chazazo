@@ -69,8 +69,12 @@
 						</section>
 						<section>
 							<form id="reqForm">
-								<input type="text" name="title" id="title">
-								<input type="text" name="content" id="content">
+								<div>
+									<input type="text" name="title" id="title" placeholder="제목">
+								</div>
+								<div>
+									<textarea id="ckeditor"></textarea>
+								</div>
 								<input type="hidden" name="username" id="username" value="${username }">
 								<button type="button" class="btn btn-outline-primary" id="insertBtn">작성하기</button>
 							</form>
@@ -83,6 +87,15 @@
 
 	<jsp:include page="/WEB-INF/views/base/chat.jsp"/>
 	<jsp:include page="/WEB-INF/views/base/footer.jsp"/>
+	
+	<script src="https://cdn.ckeditor.com/ckeditor5/34.0.0/classic/ckeditor.js"></script>
+	<script src="https://cdn.ckeditor.com/ckeditor5/34.0.0/classic/translations/ko.js"></script>
+
+	<script>
+		ClassicEditor.create( document.querySelector( '#ckeditor' ), {
+			language: "ko"
+		} );
+	</script>
 	
 	<script>
 		$('.main-nav').children(0).eq(4).children().css('color', '#18B4E9');
@@ -98,13 +111,12 @@
 		$('#insertBtn').on('click', requestInsert);
 		
 		function requestInsert() {
-			var title = $('[name=title]').val();
-			var content = $('[name=content]').val();
-			var username = '${username}';
+			let title = $('[name=title]').val();
+			let content = $('[role=textbox]').html();
+			let username = '${username}';
 			
 			var test = {"title": title, "content": content, "username": username};
 			
-			console.log(test);
 			$.ajax({
 				url: '${pageContext.request.contextPath}/request/insert',
 				type: 'post',
@@ -113,7 +125,7 @@
 				success: function(result) {
 					if(result == 1) {
 						alert('성공');
-						window.open='${pageContext.request.contextPath}/request';
+						window.location.href = '${pageContext.request.contextPath}/request';
 					} else {
 						alert('실패');
 					}

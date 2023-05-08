@@ -12,4 +12,9 @@
 			</if>
 		</trim>
 	</select>
+	
+	<insert id="insert" parameterType="inquiryInsertReqDto">
+		INSERT INTO INQUIRY
+		VALUES (INQUIRY_SEQ.NEXTVAL, #{category}, #{title}, #{content})
+	</insert>
 </mapper>

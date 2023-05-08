@@ -6,8 +6,10 @@ import java.util.Map;
 import kh.spring.chazazo.admin.model.dto.AdminCouponInsertReqDto;
 import kh.spring.chazazo.admin.model.dto.AdminCouponManageRespDto;
 import kh.spring.chazazo.admin.model.dto.AdminCouponUpdateReqDto;
+import kh.spring.chazazo.admin.model.dto.AdminLocationInsertReqDto;
 import kh.spring.chazazo.admin.model.dto.AdminLocationOneRespDto;
 import kh.spring.chazazo.admin.model.dto.AdminLocationRespDto;
+import kh.spring.chazazo.admin.model.dto.AdminLocationUpdateReqDto;
 import kh.spring.chazazo.admin.model.dto.AdminMemberRespDto;
 import kh.spring.chazazo.admin.model.dto.AdminMemberUpdateReqDto;
 import kh.spring.chazazo.admin.model.dto.AdminNoticeInsertReqDto;
@@ -76,6 +78,9 @@ public interface AdminService {
 	public int locationCount();
 	public List<AdminLocationRespDto> selectLocationList(Pagination pagination);
 	public AdminLocationOneRespDto selectLocationOne(String idx);
+	public int insertLocation(AdminLocationInsertReqDto data);
+	public int updateLocation(AdminLocationUpdateReqDto data);
+	public int deleteLocation(int idx);
 	
 	// 차량
 	public int vehicleCount();

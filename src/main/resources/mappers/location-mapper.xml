@@ -55,5 +55,21 @@
 		AND MEMBER_IDX = (select idx from member where username =   #{usename})
 	</delete>
 	
+	<insert id="insert" parameterType="adminLocationInsertReqDto">
+		INSERT INTO LOCATION
+		VALUES(LOCATION_SEQ.NEXTVAL, #{name}, #{latitude}, #{longitude}, #{phoneNumber}, #{businessHours}, #{address})
+	</insert>
+	
+	<update id="update" parameterType="adminLocationUpdateReqDto">
+		UPDATE LOCATION
+		   SET NAME = #{name}, LATITUDE = #{latitude}, LONGITUDE = #{longitude}
+		     , PHONE_NUMBER = #{phoneNumber}, ADDRESS = #{address}
+		 WHERE IDX = #{idx}
+	</update>
+	
+	<update id="delete">
+		UPDATE LOCATION
+		   SET PHONE_NUMBER = '-', BUSINESS_HOURS = '-' WHERE IDX = #{idx}
+	</update>
 	
 </mapper>

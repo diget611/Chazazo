@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
+<sec:authorize access="isAuthenticated()" var="isLogin">
+	<sec:authentication property="principal.username" var="username"/>
+</sec:authorize>
 <button type="button" id="chatBtn" class="btn btn-lg btn-primary btn-lg-square chat-btn" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
 	<span class="material-symbols-outlined">chat</span>
 	<span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" id="chatCheck">
@@ -80,22 +84,8 @@
 		
 		var btn = '<button type="button" class="btn btn-primary" id="pageBack">뒤로가기</button>';
 		$('.modal-footer').append(btn);
-		
+		$('#pageBack').on('click', updateClose);
 		$('#pageBack').on('click', chatRoomList);
-		
-		$.ajax({
-			url: '${pageContext.request.contextPath}/chat/check',
-			type: 'get',
-			success: function(result) {
-				console.log(result);
-				$('#chatCheck').text('');
-				$('#chatCheck').prepend(result);
-			},
-			error: function() {
-				alert('에러');
-			}
-		});
-		
 		chatCheck();
 	}
 	
@@ -106,6 +96,7 @@
 			success: function(result) {
 				$(top.document).find('#chatCheck').text('');
 				$(top.document).find('#chatCheck').prepend(result);
+				$('.badge').text(result);
 			},
 			error: function() {
 				alert('에러');
@@ -114,8 +105,26 @@
 	}
 	
 	function modalClose() {
+		updateClose();
 		chatCheck();
 		$('#chatCheck').css('display', 'block');
 		$('.modal-body').children().remove();
+	}
+	
+	function updateClose() {
+		var room = ($('iframe').attr('src')).toString().substring(19);
+		var username = '${username}'
+		$.ajax({
+			url: '${pageContext.request.contextPath}/chat/checkclose',
+			data: {roomIdx: room, username: username},
+			type: 'get',
+			async: 'false',	
+			success: function(result) {
+				console.log('업데이트');
+			},
+			error: function() {
+				console.log('에러');
+			}
+		})
 	}
 </script>

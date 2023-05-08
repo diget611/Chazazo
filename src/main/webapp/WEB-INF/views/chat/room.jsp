@@ -152,8 +152,10 @@
 			url: '${pageContext.request.contextPath}/chat/check',
 			type: 'get',
 			success: function(result) {
+				console.log(result);
 				$(top.document).find('#chatCheck').text('');
 				$(top.document).find('#chatCheck').prepend(result);
+				$(top.document).find('.badge').text(result);
 			},
 			error: function() {
 				alert('에러');

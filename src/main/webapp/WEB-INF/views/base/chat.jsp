@@ -69,20 +69,6 @@
 			}	
 		}
 		
-		function chatCheck() {
-			$.ajax({
-				url: '${pageContext.request.contextPath}/chat/check',
-				type: 'get',
-				success: function(result) {
-					$('#chatCheck').text('');
-					$('#chatCheck').prepend(result);
-				},
-				error: function() {
-					alert('에러');
-				}
-			});
-		}
-		
 		checkRoom();
 	});
 
@@ -208,6 +194,7 @@
 			success: function(result) {
 				$(top.document).find('#chatCheck').text('');
 				$(top.document).find('#chatCheck').prepend(result);
+				$('.badge').text(result);
 			},
 			error: function() {
 				alert('에러');
@@ -229,6 +216,7 @@
 			url: '${pageContext.request.contextPath}/chat/checkclose',
 			data: {roomIdx: room, username: username},
 			type: 'get',
+			async: 'false',	
 			success: function(result) {
 				console.log('업데이트');
 			},

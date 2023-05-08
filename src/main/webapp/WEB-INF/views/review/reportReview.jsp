@@ -109,8 +109,6 @@ function resizeWindow(win)    {
 			$('#reasontxt').val('');
 			reason =$('input[name=reason]:checked').val();
 		}
-		console.log('aaa');
-		console.log(reason);	
 		var data = {
 	        	  "idx":idx,
 	        	  "reason":reason,

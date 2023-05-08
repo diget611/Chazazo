@@ -14,7 +14,7 @@ public class CouponReqDto {
 	private Date expireDate;
 	private int couponIdx;
 	private int memberIdx;
-	private long rate;
+	private int rate;
 	private String name;
 	private int status;
 	private String couponCode;

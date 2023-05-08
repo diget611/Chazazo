@@ -3,6 +3,7 @@ package kh.spring.chazazo.payment.controller;
 import java.security.Principal;
 import java.sql.Date;
 import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -73,7 +74,7 @@ private AdminService aService;
 	public ModelAndView selectCoupon(@PathVariable String idx, ModelAndView mv) {
 		int index = Integer.parseInt(idx);
 		List<CouponReqDto> cList = cService.selectCoupon(index);  
-		mv.addObject("cList", cService.selectCoupon(index));
+		mv.addObject("cList", cList);
 		mv.setViewName("reservation/coupon");
 		return mv;
 	}

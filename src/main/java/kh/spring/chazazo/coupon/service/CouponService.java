@@ -11,4 +11,5 @@ public interface CouponService {
 	
 	public int insertCoupon(CouponReqDto dto);
 	public int totalCoupon(String username);
+	public int insertWelcomeCoupon();
 }

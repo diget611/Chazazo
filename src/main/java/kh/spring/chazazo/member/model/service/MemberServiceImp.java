@@ -9,6 +9,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import kh.spring.chazazo.coupon.dao.CouponDao;
 import kh.spring.chazazo.member.model.dao.MemberDao;
 import kh.spring.chazazo.member.model.dto.MemberReqDto;
 
@@ -22,6 +23,9 @@ public class MemberServiceImp implements MemberService {
 	private MemberDao dao;
 	
 	@Autowired
+	private CouponDao cDao;
+	
+	@Autowired
 	private BCryptPasswordEncoder bcryptPasswordEncoder;
 
 	@Override
@@ -32,6 +36,7 @@ public class MemberServiceImp implements MemberService {
 		int result = dao.insert(memberDto);
 		if(result == 1) {
 			dao.insertInfo(memberInfoDto);
+			cDao.insertWelcomeCoupon();
 		}
 		return result;	
 	}

@@ -106,7 +106,7 @@
 							</div>
 							<div style="text-align: center;">
 								<button type="button" class="btn btn-primary" style="display: inline-block" name="updateBtn">회원 정보 수정</button>
-								<button type="button" class="btn btn-primary" style="display: inline-block" name="deleteBtn">삭제</button>
+								<button type="button" class="btn btn-primary" style="display: inline-block" name="deleteBtn">삭제하기</button>
 							</div>
 						</c:otherwise>
 					</c:choose>

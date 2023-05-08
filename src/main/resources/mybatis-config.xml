@@ -51,6 +51,6 @@
 		<typeAlias type="kh.spring.chazazo.coupon.dto.CouponReqDto" alias="CouponReqDto"/>
 		<typeAlias type="kh.spring.chazazo.inquiry.model.dto.InquiryInsertReqDto" alias="inquiryInsertReqDto"/>
 		<typeAlias type="kh.spring.chazazo.admin.model.dto.AdminLocationInsertReqDto" alias="adminLocationInsertReqDto"/>
-		
+		<typeAlias type="kh.spring.chazazo.admin.model.dto.AdminLocationUpdateReqDto" alias="adminLocationUpdateReqDto"/>
 	</typeAliases>
 </configuration>

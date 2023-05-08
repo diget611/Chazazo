@@ -14,6 +14,7 @@ import kh.spring.chazazo.admin.model.dto.AdminCouponUpdateReqDto;
 import kh.spring.chazazo.admin.model.dto.AdminLocationInsertReqDto;
 import kh.spring.chazazo.admin.model.dto.AdminLocationOneRespDto;
 import kh.spring.chazazo.admin.model.dto.AdminLocationRespDto;
+import kh.spring.chazazo.admin.model.dto.AdminLocationUpdateReqDto;
 import kh.spring.chazazo.admin.model.dto.AdminMemberRespDto;
 import kh.spring.chazazo.admin.model.dto.AdminMemberUpdateReqDto;
 import kh.spring.chazazo.admin.model.dto.AdminNoticeInsertReqDto;
@@ -55,6 +56,7 @@ public class AdminServiceImpl implements AdminService {
 		return dao.updateMember(data);
 	}
 	@Override
+	@Transactional
 	public int deleteMember(String username) {
 		int result = 0;
 		if(dao.deleteMember(username) == 1) {
@@ -139,6 +141,7 @@ public class AdminServiceImpl implements AdminService {
 		return dao.selectRequestOne(idx);
 	}
 	@Override
+	@Transactional
 	public int insertAnswer(Map<String, String> data, String idx) {
 		int result = dao.insertAnswer(data);
 		if(result == 1) {
@@ -147,6 +150,7 @@ public class AdminServiceImpl implements AdminService {
 		return result;
 	}
 	@Override
+	@Transactional
 	public int updateAnswer(Map<String, String> data, String idx) {
 		int result = dao.updateAnswer(data);
 		if(result == 1) {
@@ -155,6 +159,7 @@ public class AdminServiceImpl implements AdminService {
 		return result;
 	}
 	@Override
+	@Transactional
 	public int deleteRequest(String idx) {
 		int result = dao.deleteAnswer(idx);
 		System.out.println(result);
@@ -206,6 +211,14 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public int insertLocation(AdminLocationInsertReqDto data) {
 		return dao.insertLocation(data);
+	}
+	@Override
+	public int updateLocation(AdminLocationUpdateReqDto data) {
+		return dao.updateLocation(data);
+	}
+	@Override
+	public int deleteLocation(int idx) {
+		return dao.deleteLocation(idx);
 	}
 	
 	// 차량

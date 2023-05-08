@@ -21,6 +21,7 @@ import com.google.gson.Gson;
 import kh.spring.chazazo.admin.model.dto.AdminCouponInsertReqDto;
 import kh.spring.chazazo.admin.model.dto.AdminCouponUpdateReqDto;
 import kh.spring.chazazo.admin.model.dto.AdminLocationInsertReqDto;
+import kh.spring.chazazo.admin.model.dto.AdminLocationUpdateReqDto;
 import kh.spring.chazazo.admin.model.dto.AdminMemberUpdateReqDto;
 import kh.spring.chazazo.admin.model.dto.AdminNoticeInsertReqDto;
 import kh.spring.chazazo.admin.model.dto.AdminNoticeUpdateReqDto;
@@ -175,6 +176,18 @@ public class AdminController {
 	@PostMapping("/location/insert")
 	public int insertLocation(@RequestBody AdminLocationInsertReqDto data) {
 		int result = aService.insertLocation(data);
+		return result;
+	}
+	
+	@PatchMapping("/location/update")
+	public int updateLocation(@RequestBody AdminLocationUpdateReqDto data) {
+		int result = aService.updateLocation(data);
+		return result;
+	}
+	
+	@PatchMapping("/location/delete")
+	public int deleteLocation(int idx) {
+		int result = aService.deleteLocation(idx);
 		return result;
 	}
 	

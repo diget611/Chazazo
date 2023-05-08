@@ -13,6 +13,7 @@ import kh.spring.chazazo.admin.model.dto.AdminCouponUpdateReqDto;
 import kh.spring.chazazo.admin.model.dto.AdminLocationInsertReqDto;
 import kh.spring.chazazo.admin.model.dto.AdminLocationOneRespDto;
 import kh.spring.chazazo.admin.model.dto.AdminLocationRespDto;
+import kh.spring.chazazo.admin.model.dto.AdminLocationUpdateReqDto;
 import kh.spring.chazazo.admin.model.dto.AdminMemberRespDto;
 import kh.spring.chazazo.admin.model.dto.AdminMemberUpdateReqDto;
 import kh.spring.chazazo.admin.model.dto.AdminNoticeInsertReqDto;
@@ -171,6 +172,12 @@ public class AdminDao {
 	}
 	public int insertLocation(AdminLocationInsertReqDto data) {
 		return sqlSession.insert("location.insert", data);
+	}
+	public int updateLocation(AdminLocationUpdateReqDto data) {
+		return sqlSession.update("location.update", data);
+	}
+	public int deleteLocation(int idx) {
+		return sqlSession.update("location.delete", idx);
 	}
 	
 	// 차량

@@ -10,7 +10,7 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     
     <spring:eval expression="@keyProperty['kakao-admin-key']" var="key"/>
-	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=${key }"></script>
+	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=${key }&libraries=services"></script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -39,27 +39,30 @@
 		<div class="col-sm-12 col-xl-6">
 			<div class="bg-light rounded h-100 p-4">
 				<h6 class="mb-4">지점 상세 정보</h6>
+				<input type="hidden" id="idx" value="${location.idx }">
 				<div class="form-floating mb-3">
-					<input type="text" class="form-control" id="name" name="name" value="${location.name }">
+					<input type="text" class="form-control" id="name" name="name" value="${location.name }" readonly>
 					<label for="name">지점명</label>
 				</div>
 				<div class="form-floating mb-3">
-					<input type="text" class="form-control" id="phoneNumber" name="phoneNumber" value="${location.phoneNumber }">
+					<input type="text" class="form-control" id="phoneNumber" name="phoneNumber" value="${location.phoneNumber }" readonly>
 					<label for="phoneNumber">전화번호</label>
 				</div>
-				<div class="form-floating mb-3">
-					<input type="text" class="form-control" id="address" name="address" value="${location.address }">
+				<div class="form-floating mb-3" id="addressForm">
+					<input type="text" class="form-control" id="address" name="address" value="${location.address }" readonly>
 					<label for="address">주소</label>
 				</div>
 				<input type="hidden" value="${location.latitude }">
 				<input type="hidden" value="${location.longitude }">
 				<div class="mb-3" id="map" style="width: 100%; height: 400px;"></div>
-				<div class="mb-3 row">
-					<div style="text-align: center;">
-						<button type="button" class="btn btn-primary" style="display: inline-block" id="updateBtn">수정하기</button>
-						<button type="button" class="btn btn-primary" style="display: inline-block" id="deleteBtn">삭제하기</button>
+				<c:if test="${location.phoneNumber ne '-' }">
+					<div class="mb-3 row">
+						<div style="text-align: center;">
+							<button type="button" class="btn btn-primary" style="display: inline-block" id="updateBtn">지점 정보 수정</button>
+							<button type="button" class="btn btn-primary" style="display: inline-block" id="deleteBtn">삭제하기</button>
+						</div>
 					</div>
-				</div>
+				</c:if>
 			</div>
 		</div>
 	</div>
@@ -70,74 +73,6 @@
 	function resizeWindow(win)    {
 		var hei = win.document.body.offsetHeight + 100;
 		win.resizeTo(500, hei);
-	}
-	
-	$('#ansBtn').on('click', insertAns);
-	
-	function insertAns() {
-		let idx = $('[name=idx]').val();
-		let answer = $('[name=answer]').val();
-		$.ajax({
-			url: '${pageContext.request.contextPath}/admin/request',
-			type: 'post',
-			data: {idx: idx, answer: answer},
-			success: function(result) {
-				if(result == 1) {
-					alert('성공');
-					window.close();
-				} else {
-					alert('실패');
-				}
-			},
-			error: function() {
-				alert('에러')
-			}
-		});
-	}
-	
-	$('#updateBtn').on('click', updateAns);
-	
-	function updateAns() {
-		let idxup = $('[name=idx]').val();
-		let answerup = $('[name=answer]').val();
-		$.ajax({
-			url: '${pageContext.request.contextPath}/admin/request',
-			type: 'patch',
-			data: {idx: idxup, answer: answerup},
-			success: function(result) {
-				if(result == 1) {
-					alert('성공');
-					window.close();
-				} else {
-					alert('실패');
-				}
-			},
-			error: function() {
-				alert('에러')
-			}
-		});
-	}
-	
-	$('#deleteBtn').on('click', deleteAns);
-	
-	function deleteAns() {
-		let idxdel = $('[name=idx]').val();
-		$.ajax({
-			url: '${pageContext.request.contextPath}/admin/request',
-			type: 'delete',
-			data: {idx: idxdel},
-			success: function(result) {
-				if(result == 1) {
-					alert('성공');
-					window.close();
-				} else {
-					alert('실패');
-				}
-			},
-			error: function() {
-				alert('에러')
-			}
-		});
 	}
 	
 	var latitude = ${location.latitude};
@@ -174,7 +109,124 @@
 
 	// 마커가 지도 위에 표시되도록 설정합니다
 	marker.setMap(map);
+	
+	$('#updateBtn').on('click', updateLocation);
+	
+	var lat = ${location.latitude};
+	var lng = ${location.longitude};
+	
+	function updateLocation() {
+		if($('#updateBtn').text() == '지점 정보 수정') {
+			var html = '';
+			html += '<div class="form-floating mb-3 row">'
+			html += '	<div class="form-floating col-9">'
+			html += '		<input type="text" class="form-control" id="address" name="address">'
+			html += '		<label for="address" class="ps-4">주소</label>'
+			html += '	</div>'
+			html += '	<div class="form-floating col-3 pt-1">'
+			html += '		<button type="button" class="btn btn-primary btn-lg" id="search">검색</button>'					
+			html += '	</div>'
+			html += '</div>'
+			
+			$('#name').attr('readonly', false);
+			$('#phoneNumber').attr('readonly', false);
+			$('#addressForm').children().remove();
+			$('#addressForm').append(html);
+			$('#search').on('click', searchAddress);
+			$('#updateBtn').text('수정 완료');
+		} else {
+			let idx = $('#idx').val();
+			let name = $('#name').val();
+			let phoneNumber = $('#phoneNumber').val();
+			let address = $('#address').val();
+			let latitude = lat;
+			let longitude = lng;
+			
+			let data = {
+					idx : idx,
+					name : name,
+					phoneNumber : phoneNumber,
+					address : address,
+					latitude : latitude,
+					longitude : longitude
+			}
+			
+			if(name == null || phoneNumber == null || address == null || latitude == null || longitude == null) {
+				alert('정보를 입력해주세요.');
+			} else {
+				$.ajax({
+					url: '${pageContext.request.contextPath}/admin/location/update',
+					type: 'patch',
+					data: JSON.stringify(data),
+					contentType: "application/json; charset=utf-8",
+					success: function(result) {
+						if(result == 1) {
+							alert('지점 수정 완료');
+							opener.parent.location.reload();
+							window.close();
+						} else {
+							alert('지점 수정 실패');
+						}
+					},
+					error: function() {
+						alert('에러');
+					}
+				});
+			}
+		}
+	}
+	
+	$('#deleteBtn').on('click', deleteLocation);
+	
+	function deleteLocation() {
+		let idx = $('#idx').val();
+		$.ajax({
+			url: '${pageContext.request.contextPath}/admin/location/delete',
+			type: 'patch',
+			data: {idx: idx},
+			success: function(result) {
+				if(result == 1) {
+					alert('지점 삭제 완료');
+					opener.parent.location.reload();
+					window.close();
+				} else {
+					alert('지점 삭제 실패');
+				}
+			},
+			error: function() {
+				alert('에러');
+			}
+		});
+	}
+	
+	function searchAddress() {
+		var keyword = $('#address').val();
+		
+		var geocoder = new kakao.maps.services.Geocoder();
 
+		var callback = function(result, status) {
+		    if (status === kakao.maps.services.Status.OK) {
+		    	var currentPos = new window.kakao.maps.LatLng(
+		                result[0].y,
+		                result[0].x
+		        )
+				map.panTo(currentPos);
+		    	var markerPosition  = new kakao.maps.LatLng(result[0].y, result[0].x);
+		    	// 마커를 생성합니다
+		    	var marker = new kakao.maps.Marker({
+		    	    position: markerPosition,
+		    	    image: markerImage
+		    	});
+
+		    	// 마커가 지도 위에 표시되도록 설정합니다
+		    	marker.setMap(map);
+		    }
+		    
+		    lat = marker.getPosition().getLat();
+		    lng = marker.getPosition().getLng();
+		};
+		geocoder.addressSearch(keyword, callback);
+	}
 </script>
 </body>
 

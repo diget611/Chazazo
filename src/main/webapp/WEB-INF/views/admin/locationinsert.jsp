@@ -57,10 +57,14 @@
 						<label for="startTime" class="ps-4">마감 시간</label>
 					</div>
 				</div>
-				<div class="form-floating mb-3">
-					<input type="text" class="form-control" id="address" name="address">
-					<label for="address">주소</label>
-					<button type="button" id="search">검색</button>
+				<div class="form-floating mb-3 row">
+					<div class="form-floating col-9">
+						<input type="text" class="form-control" id="address" name="address">
+						<label for="address" class="ps-4">주소</label>
+					</div>
+					<div class="form-floating col-3 pt-1">
+						<button type="button" class="btn btn-primary btn-lg" id="search">검색</button>					
+					</div>
 				</div>
 				<input type="hidden" value="${location.latitude }">
 				<input type="hidden" value="${location.longitude }">
@@ -151,7 +155,7 @@
 			alert('정보를 입력해주세요.');
 		} else {
 			$.ajax({
-				url: '',
+				url: '${pageContext.request.contextPath}/admin/location/insert',
 				type: 'post',
 				data: JSON.stringify(data),
 				contentType: "application/json; charset=utf-8",

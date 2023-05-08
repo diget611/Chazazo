@@ -60,7 +60,16 @@
 	
 	<select id="insertReport" resultType="PaymentInfoDto">
 		SELECT * FROM PAYMENT WHERE MEMBER_IDX = #{memberIdx}
-	
 	</select>
+	
+	<update id="delete">
+		UPDATE VEHICLE SET PRICE = 0 WHERE IDX = #{idx}
+	</update>
+	
+	<update id="update" parameterType="adminVehicleUpdateReqDto">
+		UPDATE VEHICLE
+		   SET PRICE = #{price}, LOCATION_IDX = #{locationIdx}
+		 WHERE IDX = #{idx} 
+	</update>
  	
 </mapper>

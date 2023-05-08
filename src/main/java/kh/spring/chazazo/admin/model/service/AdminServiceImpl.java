@@ -12,6 +12,7 @@ import kh.spring.chazazo.admin.model.dto.AdminCouponInsertReqDto;
 import kh.spring.chazazo.admin.model.dto.AdminCouponManageRespDto;
 import kh.spring.chazazo.admin.model.dto.AdminCouponUpdateReqDto;
 import kh.spring.chazazo.admin.model.dto.AdminLocationInsertReqDto;
+import kh.spring.chazazo.admin.model.dto.AdminLocationListRespDto;
 import kh.spring.chazazo.admin.model.dto.AdminLocationOneRespDto;
 import kh.spring.chazazo.admin.model.dto.AdminLocationRespDto;
 import kh.spring.chazazo.admin.model.dto.AdminLocationUpdateReqDto;
@@ -31,6 +32,7 @@ import kh.spring.chazazo.admin.model.dto.AdminReservRespDto;
 import kh.spring.chazazo.admin.model.dto.AdminStatisticsRecentMonthDto;
 import kh.spring.chazazo.admin.model.dto.AdminVehicleOneRespDto;
 import kh.spring.chazazo.admin.model.dto.AdminVehicleRespDto;
+import kh.spring.chazazo.admin.model.dto.AdminVehicleUpdateReqDto;
 import kh.spring.chazazo.common.Pagination;
 
 @Service
@@ -234,6 +236,14 @@ public class AdminServiceImpl implements AdminService {
 	public AdminVehicleOneRespDto selectVehicleOne(String idx) {
 		return dao.selectVehicleOne(idx);
 	}
+	@Override
+	public int updateVehicle(AdminVehicleUpdateReqDto data) {
+		return dao.updateVehicle(data);
+	}
+	@Override
+	public int deleteVehicle(int idx) {
+		return dao.deleteVehicle(idx);
+	}
 	
 	// 예약
 	@Override
@@ -277,6 +287,11 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public int dayRegiCount() {
 		return dao.dayRegiCount();
+	}
+	
+	// etc
+	public List<AdminLocationListRespDto> locationList() {
+		return dao.locationList();
 	}
 
 }

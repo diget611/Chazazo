@@ -73,7 +73,14 @@
 								<td>${vehicle.maker }</td>
 								<td>${vehicle.fuel }</td>
 								<td>${vehicle.type }</td>
-								<td>${vehicle.location }</td>
+								<c:choose>
+									<c:when test="${vehicle.price eq 0}">
+										<td>사용 불가</td>
+									</c:when>
+									<c:otherwise>
+										<td>${vehicle.location }</td>
+									</c:otherwise>
+								</c:choose>
 							</tr>
 							</c:forEach>
 						</tbody>

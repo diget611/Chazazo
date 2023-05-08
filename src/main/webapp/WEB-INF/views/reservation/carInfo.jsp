@@ -56,7 +56,7 @@
 										<form>
 											<label>대여일</label><input type="date" name="startDate" id="startDate" min="today">
 											<label>반납일</label><input type="date" name="endDate" id="endDate"  min="today">
-											<label>대여일수 :</label><input type="text" id="day-count" name="daycount" value="" readonly /><label>일</label>
+											<label>대여일수 :</label><input type="text" id="day-count" name="daycount" value="" style="width:50px; background-color:#eeeeee;"readonly /><label>일</label>
 										</form>
 											<hr>
 									<div class="col-md-12" style="padding-bottom:100px">                                   
@@ -79,29 +79,29 @@
 									<table class="table">
 										<tbody>
 											<tr>
-												<th>기본 대여 요금</th>
-												<td><input type="text" id="rentPrice"  name="rentPrice" readonly><label>원</label></td>
+												<th style="width: 30%;">기본 대여 요금</th>
+												<td style="width: 70%; text-align: right;"><input type="text" id="rentPrice"  name="rentPrice"style="width:200px; background-color:#eeeeee;" readonly><label>원</label></td>
 											</tr>
 											<c:if test ="${not empty  info.name }">
 											<tr>
-												<th>쿠폰 적용 </th>
-												<td><button type="button" id="coupon" data-memberIdx="${info.idx}"class="btn btn-secondary" style="display:inline-block" 
+												<th style="width: 30%;">쿠폰 적용 </th>
+												<td style="width: 70%; text-align: right;"><button type="button" id="coupon" data-memberIdx="${info.idx}"class="btn btn-secondary" style="display:inline-block" 
 												    		    onclick='window.open("${pageContext.request.contextPath}/selectCoupon/${info.idx }", "쿠폰적용", "width=100, height=auto")'>쿠폰 선택하기</button>
-												    <input type="text" id="discountRate">
+												    <input type="hidden" id="discountRate">
 												   	<input type="text" id="discount" style="color:#4EA0D8;">원
 											</tr>
 											</c:if>
 											<tr id ="insSection" >
-												<th >보험 추가 요금</th>
-												<td><input type="text"id="addIns"  name="addIns" readonly><label>원</label></td>
+												<th style="width: 30%;">보험 추가 요금</th>
+												<td style="width: 70%; text-align: right;"><input type="text"id="addIns"  name="addIns"style=" background-color:#eeeeee;" readonly><label>원</label></td>
 											</tr>
 											<tr id="returnSection">
-												<th>반납지점 변경 요금</th>
-												<td><input type="text"id="addreturn"  name="addreturn" readonly><label>원</label></td>
+												<th style="width: 30%;">반납지점 변경 요금</th>
+												<td style="width: 70%; text-align: right;"><input type="text"id="addreturn"  name="addreturn" style=" background-color:#eeeeee;"readonly><label>원</label></td>
 											</tr>
 											<tr>
-												<th>결제금액</th>
-												<td><input type="text" id="finalprice"  name="finalprice" style="color:red" readonly><label>원</label></td>
+												<th style="width: 30%;">결제금액</th>
+												<td style="width: 70%; text-align: right;"><input type="text" id="finalprice"  name="finalprice" style="color:red; background-color:#eeeeee;" readonly><label>원</label></td>
 											</tr>
 										</tbody>
 									</table>

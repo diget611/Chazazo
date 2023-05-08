@@ -279,18 +279,14 @@
 	});
 	
 	function delFn(){
-		var locationIdx = $(this).data("locationIdx");
-		var username = $(this).data("username");
-		console.log(username);
 		$.ajax({
 			url:"${pageContext.request.contextPath}/deleteLike", 
 			type: 'DELETE',
 			data: {
-				locationIdx:locationIdx,
-				username:username
+				locationIdx : $(this).data("locationIdx"),
 				},
 			success : function(result){
-				if(result == 0){
+				if(result == 1){
 					 Swal.fire('삭제  ', '탈퇴합니다 ', 'success');
 				}else{
 					 Swal.fire('취소 ', '취소 ', 'error');

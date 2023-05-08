@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -86,6 +87,20 @@ public class LocationController {
 		return String.valueOf(result);
 	
 	}
-	
+	@DeleteMapping("/deleteLike")
+	public int deleteLike(Principal prin,@RequestParam(name = "locationIdx", required = false) Integer locationIdx) {
+		int result = 0;
+		String usename = prin.getName();
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("usename", usename);
+		map.put("locationIdx", locationIdx);
+		
+		System.out.println(result);
+		System.out.println(locationIdx);
+		result = lService.deleteFav(map);
+		return result;
+	}
+
 	
 }

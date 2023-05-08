@@ -378,7 +378,7 @@
 	$('#delReserv-btn').on('click', function() {
 		var index = '<c:out value="${reservation.idx}"/>';
 		$.ajax({
-			url:'${pageContext.request.contextPath}/profile/reservation/' +index ,
+			url:'${pageContext.request.contextPath}/profile/reservation/' + index ,
 			type:'delete',
 			success:function(result){
 				if(result == 1){
@@ -399,7 +399,7 @@
 						}).then(result => {
 						    if (result.isConfirmed) { // 만약 모달창에서 confirm 버튼을 눌렀다면
 						    //	$('#hideReser').hide();
-						   		canclePay();
+						   	//	canclePay();
 						    	Swal.fire('예약 취소 완료 ', ' 예약이 취소되었습니다. ', 'success');
 						   		history.go(0);
 						     }else{

@@ -455,6 +455,8 @@
 							location.reload();
 						}else{
 							swal.fire("중복쿠폰","이미 쿠폰이 존재합니다!","error");
+							
+							
 						}
 						},
 				error: function(){

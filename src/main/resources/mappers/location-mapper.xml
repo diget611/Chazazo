@@ -52,7 +52,7 @@
 	
 	<delete id="deleteFav" >
 		DELETE FROM LIKE_LOCATION WHERE LOCATION_IDX = #{locationIdx} 
-		AND MEMBER_IDX = (select idx from member where username =   #{usename})
+		AND MEMBER_IDX = (select idx from member where username = #{usename})
 	</delete>
 	
 	<insert id="insert" parameterType="adminLocationInsertReqDto">

@@ -55,5 +55,9 @@
 		AND MEMBER_IDX = (select idx from member where username =   #{usename})
 	</delete>
 	
+	<insert id="insert" parameterType="adminLocationInsertReqDto">
+		INSERT INTO LOCATION
+		VALUES(LOCATION_SEQ.NEXTVAL, #{name}, #{latitude}, #{longitude}, #{phoneNumber}, #{businessHours}, #{address})
+	</insert>
 	
 </mapper>

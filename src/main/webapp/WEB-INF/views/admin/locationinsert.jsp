@@ -1,13 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>쿠폰 상세 정보</title>
+    <title>지점 등록</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-
+	
+	<spring:eval expression="@keyProperty['kakao-admin-key']" var="key"/>
+	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=${key }&libraries=services"></script>
+	
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -43,9 +47,20 @@
 					<input type="text" class="form-control" id="phoneNumber" name="phoneNumber">
 					<label for="phoneNumber">전화번호</label>
 				</div>
+				<div class="form-floating mb-3 row">
+					<div class="form-floating col-6">
+						<input type="time" class="form-control" id="startTime" name="startTime">
+						<label for="startTime" class="ps-4">개점 시간</label>
+					</div>
+					<div class="form-floating col-6">
+						<input type="time" class="form-control" id="endTime" name="endTime">
+						<label for="startTime" class="ps-4">마감 시간</label>
+					</div>
+				</div>
 				<div class="form-floating mb-3">
 					<input type="text" class="form-control" id="address" name="address">
 					<label for="address">주소</label>
+					<button type="button" id="search">검색</button>
 				</div>
 				<input type="hidden" value="${location.latitude }">
 				<input type="hidden" value="${location.longitude }">
@@ -68,43 +83,94 @@
 		win.resizeTo(500, hei);
 	}
 	
-	$('#insertBtn').on('click', insertCoupon);
+	var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+    mapOption = {
+        center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+        level: 3 // 지도의 확대 레벨
+    };  
+
+	// 지도를 생성합니다    
+	var map = new kakao.maps.Map(mapContainer, mapOption);
 	
-	function insertCoupon() {
-		let name = $('#name').val();
-		let period = $('#period').val();
-		let rate = $('#rate').val() / 100;
-		let data = {
-			name: name,
-			period: period,
-			rate: rate
-		};
+	var imageSrc = 'https://cdn-icons-png.flaticon.com/512/5695/5695641.png', // 마커이미지의 주소입니다    
+	imageSize = new kakao.maps.Size(64, 69), // 마커이미지의 크기입니다
+	imageOption = {offset: new kakao.maps.Point(27, 69)}; 
+
+	var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption);
+	
+	var lat, lng;
+	$('#search').on('click', searchAddress);
+	function searchAddress() {
+		var keyword = $('#address').val();
 		
-		if(name == '') {
-			alert('쿠폰명을 입력하세요')
-		} else if(period <= 0 || rate >= 1) {
-			alert('입력하신 값을 확인하세요')
+		var geocoder = new kakao.maps.services.Geocoder();
+
+		var callback = function(result, status) {
+		    if (status === kakao.maps.services.Status.OK) {
+		    	var currentPos = new window.kakao.maps.LatLng(
+		                result[0].y,
+		                result[0].x
+		        )
+				map.panTo(currentPos);
+		    	var markerPosition  = new kakao.maps.LatLng(result[0].y, result[0].x);
+		    	// 마커를 생성합니다
+		    	var marker = new kakao.maps.Marker({
+		    	    position: markerPosition,
+		    	    image: markerImage
+		    	});
+
+		    	// 마커가 지도 위에 표시되도록 설정합니다
+		    	marker.setMap(map);
+		    }
+		    
+		    lat = marker.getPosition().getLat();
+		    lng = marker.getPosition().getLng();
+		};
+		geocoder.addressSearch(keyword, callback);
+	}
+	
+	$('#insertBtn').on('click', function() {
+		let name = $('#name').val();
+		let phoneNumber = $('#phoneNumber').val();
+		let address = $('#address').val();
+		let latitude = lat;
+		let longitude = lng;
+		let businessHours = $('#startTime').val() + '-' + $('#endTime').val();
+		
+		let data = {
+				name : name,
+				phoneNumber : phoneNumber,
+				address : address,
+				latitude : latitude,
+				longitude : longitude,
+				businessHours : businessHours
+		}
+		
+		if(name == null || phoneNumber == null || address == null 
+				|| latitude == null || longitude == null || $('#startTime').val() == null || $('#endTime').val() == null) {
+			alert('정보를 입력해주세요.');
 		} else {
 			$.ajax({
-				url: "${pageContext.request.contextPath}/admin/coupon/insert",
+				url: '',
+				type: 'post',
 				data: JSON.stringify(data),
-				type: "post",
 				contentType: "application/json; charset=utf-8",
 				success: function(result) {
 					if(result == 1) {
-						alert("쿠폰 등록 완료");
+						alert('지점 등록 완료');
 						opener.parent.location.reload();
 						window.close();
 					} else {
-					alert('실패');					
+						alert('지점 등록 실패');
 					}
-				}, 
+				},
 				error: function() {
 					alert('에러');
 				}
-			})
+			});
 		}
-	}
+	});
+	
 </script>
 </body>
 

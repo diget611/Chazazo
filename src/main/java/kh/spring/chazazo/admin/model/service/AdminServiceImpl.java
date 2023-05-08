@@ -11,6 +11,7 @@ import kh.spring.chazazo.admin.model.dao.AdminDao;
 import kh.spring.chazazo.admin.model.dto.AdminCouponInsertReqDto;
 import kh.spring.chazazo.admin.model.dto.AdminCouponManageRespDto;
 import kh.spring.chazazo.admin.model.dto.AdminCouponUpdateReqDto;
+import kh.spring.chazazo.admin.model.dto.AdminLocationInsertReqDto;
 import kh.spring.chazazo.admin.model.dto.AdminLocationOneRespDto;
 import kh.spring.chazazo.admin.model.dto.AdminLocationRespDto;
 import kh.spring.chazazo.admin.model.dto.AdminMemberRespDto;
@@ -201,6 +202,10 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public AdminLocationOneRespDto selectLocationOne(String idx) {
 		return dao.selectLocationOne(idx);
+	}
+	@Override
+	public int insertLocation(AdminLocationInsertReqDto data) {
+		return dao.insertLocation(data);
 	}
 	
 	// 차량

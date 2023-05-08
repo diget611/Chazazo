@@ -20,6 +20,7 @@ import com.google.gson.Gson;
 
 import kh.spring.chazazo.admin.model.dto.AdminCouponInsertReqDto;
 import kh.spring.chazazo.admin.model.dto.AdminCouponUpdateReqDto;
+import kh.spring.chazazo.admin.model.dto.AdminLocationInsertReqDto;
 import kh.spring.chazazo.admin.model.dto.AdminMemberUpdateReqDto;
 import kh.spring.chazazo.admin.model.dto.AdminNoticeInsertReqDto;
 import kh.spring.chazazo.admin.model.dto.AdminNoticeUpdateReqDto;
@@ -169,6 +170,12 @@ public class AdminController {
 	public ModelAndView viewInsertLocation(ModelAndView mv) {
 		mv.setViewName("admin/locationinsert");
 		return mv;
+	}
+	
+	@PostMapping("/location/insert")
+	public int insertLocation(@RequestBody AdminLocationInsertReqDto data) {
+		int result = aService.insertLocation(data);
+		return result;
 	}
 	
 	// 차량

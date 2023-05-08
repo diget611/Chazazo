@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import kh.spring.chazazo.admin.model.dto.AdminCouponInsertReqDto;
 import kh.spring.chazazo.admin.model.dto.AdminCouponManageRespDto;
 import kh.spring.chazazo.admin.model.dto.AdminCouponUpdateReqDto;
+import kh.spring.chazazo.admin.model.dto.AdminLocationInsertReqDto;
 import kh.spring.chazazo.admin.model.dto.AdminLocationOneRespDto;
 import kh.spring.chazazo.admin.model.dto.AdminLocationRespDto;
 import kh.spring.chazazo.admin.model.dto.AdminMemberRespDto;
@@ -167,6 +168,9 @@ public class AdminDao {
 	}
 	public AdminLocationOneRespDto selectLocationOne(String idx) {
 		return sqlSession.selectOne("location.selectOne", idx);
+	}
+	public int insertLocation(AdminLocationInsertReqDto data) {
+		return sqlSession.insert("location.insert", data);
 	}
 	
 	// 차량

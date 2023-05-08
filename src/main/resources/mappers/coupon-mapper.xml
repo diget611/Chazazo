@@ -20,7 +20,7 @@
 	
 	<select id="totalCoupon" resultType="_int">
 	     select count(*) cnt from coupon where coupon_idx = (select idx from coupon_manage where coupon_code = #{couponCode})
-        and member_idx = (select idx from member where username = #{username});
+        and member_idx = (select idx from member where username = #{username})
 	</select>
 	
 	<insert id="insertWelcome">

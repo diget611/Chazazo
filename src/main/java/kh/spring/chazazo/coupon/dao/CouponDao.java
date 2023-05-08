@@ -21,8 +21,8 @@ public class CouponDao {
 		return sqlSession.insert("coupon.insertCoupon", dto);
 	}
 	
-	public int totalCoupon(String username) {
-		return sqlSession.selectOne(username);
+	public int totalCoupon(CouponReqDto dto) {
+		return sqlSession.selectOne("coupon.totalCoupon",dto);
 	}
 	
 	public int insertWelcomeCoupon() {

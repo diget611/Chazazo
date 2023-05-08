@@ -26,8 +26,8 @@ public class CouponServiceImpl implements CouponService {
 	}
 
 	@Override
-	public int totalCoupon(String username) {
-		return dao.totalCoupon(username);
+	public int totalCoupon(CouponReqDto dto) {
+		return dao.totalCoupon(dto);
 	}
 	
 	@Override

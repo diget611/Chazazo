@@ -10,6 +10,7 @@ public interface CouponService {
 	public List<CouponReqDto> selectCoupon(int idx);
 	
 	public int insertCoupon(CouponReqDto dto);
-	public int totalCoupon(String username);
+	public int totalCoupon(CouponReqDto dto);
+	
 	public int insertWelcomeCoupon();
 }

@@ -54,10 +54,11 @@ public class CouponManageController {
 		CouponReqDto dto = new CouponReqDto();
 		dto.setCouponCode(couponCode);
 		dto.setUsername(username);
-		
+		//dto map으로 묶기
+		int totalCount = cService.totalCoupon(dto);
+		System.out.println(totalCount);
 		int count = cmService.countCouponCode(couponCode);
-		if(count == 1) {
-			
+		if(totalCount == 0 && count == 1) {
 			cService.insertCoupon(dto);
 			return 1;
 		}

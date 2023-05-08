@@ -38,44 +38,6 @@
 <script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/main.css">
-<style>
-	.modal {
-			position: absolute;
-			top: 0;
-			left: 0;
-
-			width: 100%;
-			height: 100%;
-
-			display: none;
-
-			background-color: rgba(0, 0, 0, 0.4);
-	}
-      
-	.modal.show {
-				display: block;
-	}
-
-	.modal_body {
-				position: absolute;
-				top: 50%;
-				left: 50%;
-
-				width: 400px;
-				height: auto;
-
-				padding: 10px;
-
-				text-align: center;
-
-				background-color: rgb(255, 255, 255);
-				border-radius: 10px;
-				box-shadow: 0 2px 3px 0 rgba(34, 36, 38, 0.15);
-
-				transform: translateX(-50%) translateY(-50%);
-	}
-</style>
-    
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/base/header.jsp"/>
@@ -93,7 +55,7 @@
 									<input type="text" class="form-control" id="findIdEmail" name="idemail">
 								</div>
 								<div class="text-center">
-									<button type="button" class="btn btn-default" id="findIdBtn">아이디 찾기</button>
+									<button type="button" class="btn btn-default" id="findIdBtn" data-toggle="modal" data-target="#myModal">아이디 찾기</button>
 								</div>
 							</form>
 						</div>
@@ -113,7 +75,7 @@
 									<input type="text" class="form-control" id="findPassEmail" name="passemail">
 								</div>
 								<div class="text-center">
-									<button type="button" class="btn btn-default" id="findPassBtn">비밀번호 찾기</button>
+									<button type="button" class="btn btn-default" id="findPassBtn" data-toggle="modal" data-target="#myModal">비밀번호 찾기</button>
 								</div>
 							</form>
 						</div>
@@ -122,6 +84,20 @@
 			</div>
 		</div>
 	</section>
+	
+	<div class="modal" id="myModal">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" id="close" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title"></h4>
+				</div>
+				<div class="modal-body"></div>
+				<div class="modal-footer">
+				</div>
+			</div>
+		</div>
+	</div>
 	
 	<div class="modal">
 		<div class="modal_body">
@@ -134,6 +110,10 @@
 	<jsp:include page="/WEB-INF/views/base/footer.jsp"/>
 	
 	<script>
+		$('#close').on('click', function() {
+			$('.modal').css('display', 'none');
+		});
+	
 		// 입력창에서 엔터 누를 시 작동할 버튼 할당
 		$('#findIdEmail').keydown(function() {
 			if(event.keyCode == 13) {
@@ -151,35 +131,31 @@
 			}
 		}
 		
-		$('#modalCloseBtn').on('click', function() {
-			$('.modal').css('display', 'none');
-		});
 		
 		$('#findIdBtn').on('click', findId);
 		
 		function findId(){
 			let email = $('[name=idemail]').val();
 			$.ajax({
-				url: "<%=request.getContextPath()%>/member/findid",
+				url: '${pageContext.request.contextPath}/member/findid',
 				type: 'get',
 				data: {email: email},
 				success: function(result){
+					console.log(result[0]);
 					let list = '';
 					if(result != '') {
-						// TODO : 내용 정리 어떻게 하지
-						$('.modal_body').children('div').remove();
+						$('.modal-body').children().remove();
 						list += '<div>입력하신 이메일 정보와 일치하는 아이디는</div>';
 						for(let i = 0; i < result.length; i++) {
 							list += '<div>' + result[i] + '</div>';
 						}
 						list += '<div>입니다.</div>';
-						$('#modalCloseBtn').before(list);						
+						$('.modal-body').append(list);
 					} else {
-						$('.modal_body').children().eq(0).remove();
+						$('.modal-body').children().remove();
 						list = '<div>입력하신 이메일로 가입한 아이디가 존재하지 않습니다.</div>'
-						$('#modalCloseBtn').before(list);
-					}					
-					$('.modal').css('display', 'block');
+						$('.modal-body').append(list);
+					}
 				},
 				error: function(){
 				}
@@ -192,24 +168,24 @@
 			let username = $('[name=username]').val();
 			let email = $('[name=passemail]').val();
 			$.ajax({
-				url: "<%=request.getContextPath()%>/member/findpass",
+				url: '${pageContext.request.contextPath}/member/findpass',
 				type: 'get',
 				data: {username: username, email: email},
 				success: function(result){
+					console.log(result);
 					if(result == 0) {
-						$('.modal_body').children().eq(0).remove();
+						$('.modal-body').children().remove();
 						list = '<div>입력하신 아이디와 이메일 정보가 일치하지 않습니다. 다시 확인해주세요.</div>';
-						$('#modalCloseBtn').before(list);
+						$('.modal-body').append(list);
 					} else if(result == 2) {
-						$('.modal_body').children().eq(0).remove();
+						$('.modal-body').children().remove();
 						list = '<div>오류가 발생했습니다. 다시 한 번 시도해주세요.</div>';
-						$('#modalCloseBtn').before(list);
+						$('.modal-body').append(list);
 					} else {
-						$('.modal_body').children().eq(0).remove()
+						$('.modal-body').children().remove();
 						list = '<div>임시 비밀번호를 이메일로 전송했습니다. 로그인 후 변경해주세요.</div>';
-						$('#modalCloseBtn').before(list);
+						$('.modal-body').append(list);
 					}
-					$('.modal').css('display', 'block');
 				},
 				error: function(){
 					

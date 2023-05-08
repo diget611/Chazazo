@@ -38,25 +38,39 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
     <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/main.css">
 </head>
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
 <body onload="resizeWindow(this)">
  <sec:authentication property="principal.username" var="currentUserName"/>
 	 <div class="container-fluid pt-4 px-4">
 		<div class="col-sm-12 col-xl-6">
 			<div class="bg-light rounded h-100 p-4">
  				<label style="font-size:20px; margin:5px;" > ${currentUserName}님의 쿠폰</label>
- 
+ 					<c:if test="${not empty cList }">
+ 					
 					<c:forEach items="${cList}" var="coupon" varStatus="i" >
-						<div style="margin:5px;">
-							<input type="radio" name="coupon" value="${coupon.rate}"> <label style="color: red;">${coupon.rate}%할인 </label> <br>${coupon.name }  
+						<div style="margin:10px;">
+							<input type="radio" name="coupon" value="${coupon.rate}"> <label style="color: red;">${coupon.rate}%할인 </label> <br><label style="font-size:14px;">${coupon.name }  </label>
 						</div>
 					</c:forEach>
+						<div style="margin:5px;">
 							<input type="radio" name="coupon" value="0" ><label>할인 미적용</label>
-						<button type="button" id="discount" >할인 적용</button>
+						</div>
+							<button type="button" id="discount" style="margin:15px; color:#4EA0D8; border-color:#4EA0D8;" >할인 적용</button>
+					</c:if>
+					<c:if test="${empty cList }">
+						<label>적용 가능한 쿠폰이 없습니다.</label>
+					</c:if>
 			</div>
 		</div>
 </div>
 
 <script>
+
+function resizeWindow(win)    {
+	var hei = win.document.body.offsetHeight + 100;
+	win.resizeTo(500, hei);
+}
+
 $('#discount').on('click', function() {
 var rate = $('input[name=coupon]:checked').val();
 	opener.document.getElementById("discountRate").value = rate;

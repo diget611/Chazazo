@@ -91,8 +91,13 @@ public class MemberServiceImp implements MemberService {
 		String encodingPass = bcryptPasswordEncoder.encode(password);
 		info.put("username", username);
 		info.put("password", encodingPass);
-		dao.findPass(info);
-		return dao.updateInfo(dto);
+		int result = dao.findPass(info);
+		
+		if(result == 1) {
+			result = dao.updateInfo(dto);
+		}
+		
+		return result;
 	}
 
 	

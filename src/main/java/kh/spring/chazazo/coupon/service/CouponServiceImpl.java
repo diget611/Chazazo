@@ -19,5 +19,15 @@ public class CouponServiceImpl implements CouponService {
 	public List<CouponReqDto> selectCoupon(int idx) {
 		return dao.selectCoupon(idx);
 	}
+
+	@Override
+	public int insertCoupon(CouponReqDto dto) {
+		return dao.insertCoupon(dto);
+	}
+
+	@Override
+	public int totalCoupon(String username) {
+		return dao.totalCoupon(username);
+	}
 	
 }

@@ -11,5 +11,5 @@ public interface CouponManageService {
 	public List<CouponManageRespDto> selectMycoupon(String username);
 	public int insertCoupon(CouponManageReqDto dto);
 
-	public int selectCouponCode(String couponCode);
+	public int countCouponCode(String couponCode);
 }

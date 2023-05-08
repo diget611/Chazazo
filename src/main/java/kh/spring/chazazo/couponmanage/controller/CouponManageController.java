@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import kh.spring.chazazo.coupon.dto.CouponReqDto;
+import kh.spring.chazazo.coupon.service.CouponService;
 import kh.spring.chazazo.couponmanage.dto.CouponManageReqDto;
 import kh.spring.chazazo.couponmanage.service.CouponManageService;
 import kh.spring.chazazo.member.model.service.MemberService;
@@ -24,6 +25,9 @@ public class CouponManageController {
 	private MemberService mService;
 	@Autowired
 	private CouponManageService cmService;
+	@Autowired
+	private CouponService cService;
+	
 	
 	
 	
@@ -33,7 +37,8 @@ public class CouponManageController {
 
 		String username = prin.getName();
 		mv.addObject("memberinfo", mService.selectMypageOne(username));
-		mv.addObject("coupon", cmService.selectMycoupon(username));
+		mv.addObject("couponList", cmService.selectMycoupon(username));
+		
 		mv.setViewName("/member/coupon");
 		return mv;
 		
@@ -43,13 +48,19 @@ public class CouponManageController {
 	
 	//쿠폰등록
 	@PostMapping("/registerCoupon")
-	public String insertCoupon(@RequestBody CouponManageReqDto dto, Principal prin) {
-		String couponCode = dto.getCouponCode();
-		int count = cmService.selectCouponCode(couponCode);
+	public int insertCoupon( String couponCode, Principal prin) {
+		System.out.println("*********" + couponCode);
+		String username = prin.getName();
+		CouponReqDto dto = new CouponReqDto();
+		dto.setCouponCode(couponCode);
+		dto.setUsername(username);
+		
+		int count = cmService.countCouponCode(couponCode);
 		if(count == 1) {
-			cmService.insertCoupon(dto);
-			return "쿠폰등록이 완료되었습니다.";
+			
+			cService.insertCoupon(dto);
+			return 1;
 		}
-		return "쿠폰번호를 다시 입력하십시오";
+		return 0;
 	}
 }

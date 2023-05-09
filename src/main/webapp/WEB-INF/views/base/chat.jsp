@@ -210,19 +210,23 @@
 	}
 	
 	function updateClose() {
-		var room = ($('iframe').attr('src')).toString().substring(19);
-		var username = '${username}'
-		$.ajax({
-			url: '${pageContext.request.contextPath}/chat/checkclose',
-			data: {roomIdx: room, username: username},
-			type: 'get',
-			async: 'false',	
-			success: function(result) {
-				console.log('업데이트');
-			},
-			error: function() {
-				console.log('에러');
-			}
-		})
+		var isIframe = $('iframe').length;
+		
+		if(isIframe == 1) {
+			var room = ($('iframe').attr('src')).toString().substring(19);
+			var username = '${username}'
+			$.ajax({
+				url: '${pageContext.request.contextPath}/chat/checkclose',
+				data: {roomIdx: room, username: username},
+				type: 'get',
+				async: 'false',	
+				success: function(result) {
+					console.log('업데이트');
+				},
+				error: function() {
+					console.log('에러');
+				}
+			})			
+		}
 	}
 </script>

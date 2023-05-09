@@ -34,7 +34,7 @@ public class PaymentDao {
 	}
 	
 	//비회원 예약조회 
-	public PaymentReqDto selectNoneM(PaymentReqDto dto){
+	public int selectNoneM(PaymentReqDto dto){
 		return session.selectOne("payment.selectNoneM",dto);
 	}
 	

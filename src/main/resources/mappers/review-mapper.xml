@@ -30,7 +30,7 @@
 	</update>
 	
 	<delete id="deleteReview">
-	DELETE FROM REVIEW WHERE IDX =#{idx}
+	UPDATE REVIEW SET STATUS =3 WHERE IDX=#{idx}
 	</delete>
 	
 	<insert id="insertReport" parameterType="reviewDto">

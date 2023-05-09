@@ -65,10 +65,8 @@
 											</div>
 										</form>
 											<hr>
-									<div class="col-md-12" style="padding-bottom:100px">                                   
-                                        <div class="selectbox ">
-                                 		  <label>보험 선택</label>
-                                 		  <br>
+                                        <div class="selectbox" style="margin-bottom:100px;">
+                                 		  <label style="margin-right:10px;">보험 선택</label>
 	                                   	  <select id="selectins" name="selectins"  class="select " >
 	                                   	  		<option value="0" selected>보험 미선택</option>
 	                                            <option value="0.1">일반자차</option>
@@ -76,7 +74,6 @@
 	                                            <option value="0.5">슈퍼자차</option>
 	                                        </select>
                                         </div>
-                                    </div>
                                     
 									<section class="mt-3 p-3">
 									<h6>결제 정보</h6><hr>

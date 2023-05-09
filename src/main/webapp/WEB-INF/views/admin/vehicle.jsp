@@ -47,8 +47,10 @@
 			<!-- Table Start -->
 			<div class="container-fluid pt-4 px-4">
 				<div class="bg-light rounded p-4 text-center">
-					<div>
-					<h4 class="mb-4 text-start">차량 관리</h4>
+					<div class="d-flex justify-content-between">
+					<h4 style="display:inline-block">차량 관리</h4>
+					<button type="button" class="btn btn-secondary" style="display:inline-block" id="insertBtn"
+						onclick='window.open("<%=request.getContextPath()%>/admin/vehicle/insert", "쿠폰 등록", "width=500, height=auto")'>등록하기</button>
 					</div>
 					<table class="table table-hover">
 						<thead>

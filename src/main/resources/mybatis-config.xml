@@ -58,5 +58,7 @@
 		<typeAlias type="kh.spring.chazazo.admin.model.dto.AdminStatisticsReqDto" alias="adminStatisticsReqDto"/>
 		<typeAlias type="kh.spring.chazazo.admin.model.dto.AdminStatisticsCountRespDto" alias="adminStatisticsCountRespDto"/>
 		<typeAlias type="kh.spring.chazazo.admin.model.dto.AdminStatisticsSumRespDto" alias="adminStatisticsSumRespDto"/>
+		<typeAlias type="kh.spring.chazazo.admin.model.dto.AdminCarTypeListRespDto" alias="adminCarTypeListRespDto"/>
+		<typeAlias type="kh.spring.chazazo.admin.model.dto.AdminFuelTypeListRespDto" alias="adminFuelTypeListRespDto"/>
 	</typeAliases>
 </configuration>

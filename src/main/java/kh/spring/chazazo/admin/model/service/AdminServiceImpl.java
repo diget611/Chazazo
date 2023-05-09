@@ -8,10 +8,12 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import kh.spring.chazazo.admin.model.dao.AdminDao;
+import kh.spring.chazazo.admin.model.dto.AdminCarTypeListRespDto;
 import kh.spring.chazazo.admin.model.dto.AdminChatRoomRespDto;
 import kh.spring.chazazo.admin.model.dto.AdminCouponInsertReqDto;
 import kh.spring.chazazo.admin.model.dto.AdminCouponManageRespDto;
 import kh.spring.chazazo.admin.model.dto.AdminCouponUpdateReqDto;
+import kh.spring.chazazo.admin.model.dto.AdminFuelTypeListRespDto;
 import kh.spring.chazazo.admin.model.dto.AdminLocationInsertReqDto;
 import kh.spring.chazazo.admin.model.dto.AdminLocationListRespDto;
 import kh.spring.chazazo.admin.model.dto.AdminLocationOneRespDto;
@@ -318,6 +320,12 @@ public class AdminServiceImpl implements AdminService {
 	// etc
 	public List<AdminLocationListRespDto> locationList() {
 		return dao.locationList();
+	}
+	public List<AdminCarTypeListRespDto> cartypeList() {
+		return dao.cartypeList();
+	}
+	public List<AdminFuelTypeListRespDto> fueltypeList() {
+		return dao.fueltypeList();
 	}
 
 }

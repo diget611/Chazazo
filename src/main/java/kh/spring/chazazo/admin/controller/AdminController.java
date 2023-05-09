@@ -218,6 +218,15 @@ public class AdminController {
 		return mv;
 	}
 	
+	@GetMapping("/vehicle/insert")
+	public ModelAndView viewInsertVehicle(ModelAndView mv) {
+		mv.addObject("locationList", aService.locationList());
+		mv.addObject("cartypeList", aService.cartypeList());
+		mv.addObject("fueltypeList", aService.fueltypeList());
+		mv.setViewName("admin/vehicleinsert");
+		return mv;
+	}
+	
 	@PatchMapping("/vehicle/update")
 	public int updateVehicle(@RequestBody AdminVehicleUpdateReqDto data) {
 		int result = aService.updateVehicle(data);

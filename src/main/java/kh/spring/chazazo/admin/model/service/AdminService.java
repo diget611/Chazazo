@@ -3,10 +3,12 @@ package kh.spring.chazazo.admin.model.service;
 import java.util.List;
 import java.util.Map;
 
+import kh.spring.chazazo.admin.model.dto.AdminCarTypeListRespDto;
 import kh.spring.chazazo.admin.model.dto.AdminChatRoomRespDto;
 import kh.spring.chazazo.admin.model.dto.AdminCouponInsertReqDto;
 import kh.spring.chazazo.admin.model.dto.AdminCouponManageRespDto;
 import kh.spring.chazazo.admin.model.dto.AdminCouponUpdateReqDto;
+import kh.spring.chazazo.admin.model.dto.AdminFuelTypeListRespDto;
 import kh.spring.chazazo.admin.model.dto.AdminLocationInsertReqDto;
 import kh.spring.chazazo.admin.model.dto.AdminLocationListRespDto;
 import kh.spring.chazazo.admin.model.dto.AdminLocationOneRespDto;
@@ -115,5 +117,7 @@ public interface AdminService {
 	
 	// etc
 	public List<AdminLocationListRespDto> locationList();
+	public List<AdminCarTypeListRespDto> cartypeList();
+	public List<AdminFuelTypeListRespDto> fueltypeList();
 	
 }

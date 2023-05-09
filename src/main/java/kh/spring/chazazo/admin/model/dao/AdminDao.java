@@ -7,10 +7,12 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import kh.spring.chazazo.admin.model.dto.AdminCarTypeListRespDto;
 import kh.spring.chazazo.admin.model.dto.AdminChatRoomRespDto;
 import kh.spring.chazazo.admin.model.dto.AdminCouponInsertReqDto;
 import kh.spring.chazazo.admin.model.dto.AdminCouponManageRespDto;
 import kh.spring.chazazo.admin.model.dto.AdminCouponUpdateReqDto;
+import kh.spring.chazazo.admin.model.dto.AdminFuelTypeListRespDto;
 import kh.spring.chazazo.admin.model.dto.AdminLocationInsertReqDto;
 import kh.spring.chazazo.admin.model.dto.AdminLocationListRespDto;
 import kh.spring.chazazo.admin.model.dto.AdminLocationOneRespDto;
@@ -249,5 +251,11 @@ public class AdminDao {
 	// etc
 	public List<AdminLocationListRespDto> locationList() {
 		return sqlSession.selectList("location.selectListForAdmin");
+	}
+	public List<AdminCarTypeListRespDto> cartypeList() {
+		return sqlSession.selectList("cartype.selectList");
+	}
+	public List<AdminFuelTypeListRespDto> fueltypeList() {
+		return sqlSession.selectList("fueltype.selectList");
 	}
 }

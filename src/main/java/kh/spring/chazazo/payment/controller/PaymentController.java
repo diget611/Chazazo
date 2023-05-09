@@ -158,8 +158,13 @@ private AdminService aService;
 	@GetMapping("/profile/reservation/{idx}")
 	public ModelAndView viewReservationOne(ModelAndView mv
 										   , @PathVariable int idx,  Principal prin) {
+		
+		
 		if(prin == null) {
+			mv.addObject("reservation", pService.ReservationOne(idx));	
+			mv.addObject("location",pService.resvLocation(idx));
 			mv.setViewName("member/details");
+			
 		}else{
 			System.out.println("ddddddddd");
 			String loginId = prin.getName();

@@ -1,6 +1,7 @@
 package kh.spring.chazazo.couponmanage.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +27,9 @@ public class CouponManageDao {
 	public int countCouponCode(String couponCode) {
 		return sqlSession.selectOne("couponmanage.selectCouponCode", couponCode);
 	}
+	
+	
+	
 
 
 }

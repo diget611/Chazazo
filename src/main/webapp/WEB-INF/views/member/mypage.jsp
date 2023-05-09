@@ -307,7 +307,14 @@ tbody tr:hover {
 														<tr>
 															<td>${list.idx }</td>
 															<td>${list.startDate }</td>
-															<td>${list.state }</td>
+															<c:choose>
+																<c:when test="${list.state eq 0 }">
+																	<td>예약완료</td>
+																</c:when>
+																<c:otherwise>
+																	<td>결제취소</td>
+																</c:otherwise>
+															</c:choose>
 															<td>${list.vehicleModel }</td>
 															<td>${list.rentLocationName }</td>
 															<td>${list.returnLocationName }</td>
@@ -319,7 +326,8 @@ tbody tr:hover {
 
 
 									</div>
-
+									<button id="change" type="button"></button>
+									<div id="content"></div>
 									<hr class="my-2">
 
 									<section class="carmore-section pb-0"
@@ -375,8 +383,7 @@ tbody tr:hover {
 												</div>
 											</div>
 									</section>
-									<button id="change" type="button"></button>
-									<div id="content"></div>
+									
 
 
 								</div>
@@ -403,10 +410,7 @@ tbody tr:hover {
 	<script>
 	$('.main-nav').children().eq(2).children().css('color', '#18B4E9');
 		
-	$('tr').on('click', function() {
-		var sss = $(this).children().eq(0).text();
-		location.href = "${pageContext.request.contextPath}/profile/reservation/" + sss; 
-	})
+	
 	
 		$('#updateinfoBtn').on('click', function() {
 			location.href="${pageContext.request.contextPath}/member/profile/update";
@@ -437,6 +441,25 @@ tbody tr:hover {
 				
 			});
 		};
+		
+		function checkForm(){
+			var checkPass = 0;
+			let testReservationCode;
+			let testName = /^[가-힣]{2,10}$/;
+			let testPhone = /^01[0|1|6|7|8|9][0-9]{7,8}$/;
+			
+			 if( $('[name=name]').val() == ''
+			| $('[name=phoneNumber]').val() == '' | $('[name=reservationCode]').val() ) {
+				alert("다시 입력하세요");
+				return false;
+			} else if(!testName.test($('[name=name]').val()) | !testPhone.test($('[name=phoneNumber]').val()) 
+					|  !testReservationCode.test($('[name=reservationCode]').val()) ) {
+				alert("다시 입력하세요");
+				return false;		
+			} else {
+				return true;
+			}
+		}
 		
 		function memberResv(result){
 			var html = '';
@@ -485,9 +508,12 @@ tbody tr:hover {
 						"paymentIdx":reservationNumber
 				},
 				success: function(result){
+					if(result == 1){
+						alert("다시 입력하세요");
+					}else{
 					getNoneResr(result);
 					console.log(result);
-					
+					}
 				},
 				error: function(){
 					alert("예약내역이 없습니다.");
@@ -505,7 +531,7 @@ tbody tr:hover {
 				html += '					<p style="text-align: center; font-size: large;"><strong>예약 정보가 없습니다.</strong></p><br>'
 			} else {
 				html += '				<div>'
-				html += '					<h3>'+ result.selectNone.name +'님의 예약내역</h3>'
+				html += '					<h3>'+ noneList.name +'님의 예약내역</h3>'
 				html += '				</div>'
 				html += '						<table>'
 				html += '							<thead>'
@@ -532,9 +558,14 @@ tbody tr:hover {
 			}
 			$('#content').html(html);
 			
+			$('tr').on('click', function() {
+				var sss = $(this).children().eq(0).text();
+				console.log(sss);
+				location.href = "${pageContext.request.contextPath}/profile/reservation/" + sss; 
+			})
+			
 		}
-		
-
+	
 		function deleteMember(){
 			
 		Swal.fire({
@@ -602,6 +633,10 @@ tbody tr:hover {
 			location.href='<%=request.getContextPath()%>/profile/favorites';
 		});
 		
+		$('tr').on('click', function() {
+			var sss = $(this).children().eq(0).text();
+			location.href = "${pageContext.request.contextPath}/profile/reservation/" + sss; 
+		})
 			
 		
 	</script>

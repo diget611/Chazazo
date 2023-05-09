@@ -2,6 +2,8 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib prefix="sec"
+	uri="http://www.springframework.org/security/tags"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -42,7 +44,7 @@
 <script src="<%=request.getContextPath()%>/resources/garoestate/assets/js/icheck.min.js"></script>
 <script src="<%=request.getContextPath()%>/resources/garoestate/assets/js/owl.carousel.min.js"></script>
 <script src="<%=request.getContextPath()%>/resources/garoestate/assets/js/price-range.js"></script>
-<script type="stylesheet" src="<%=request.getContextPath()%>/resources/js/modal.js"></script>
+
 <script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
 <script src="<%=request.getContextPath()%>/resources/garoestate/assets/js/main.js"></script>
@@ -108,7 +110,8 @@
 							<div class="dealer-content">
 								<div class="inner-wrapper">
 									
-								
+									<sec:authorize access="isAuthenticated()">
+									<div>
 											<div class="clear">
 												<div class="col-xs-8 col-sm-8 ">
 													<h3 class="dealer-name">
@@ -139,7 +142,42 @@
 													</div>
 												</div>
 											</div>
-										</div>	
+										</div>
+										</div>
+								</sec:authorize>
+										
+									
+							<sec:authorize access="!isAuthenticated()">
+								<section
+									class="carmore-section p-0 bg-white cm-rounded bg-shadow mb-3">
+									<div>
+										<div class="pt-4 position-relative" id="js_mypage_top_info">
+											<div
+												class="dc-flex justify-content-between align-items-center pb-3 pt-lg-0 pt-2">
+												<div class="dc-flex align-items-start pr-2">
+													<div>
+														<div
+															class="js-mypage-btn-login is-only-none-member click-effect-press">
+															<div class="color-grey-3 text-20 wordbreak-breakword">3초
+																가입/로그인 해주세요</div>
+														</div>
+													</div>
+												</div>
+											</div>
+											<div>
+												<div class="mb-3" id="js_mypage_btn_pc_login"
+													style="display: block;">
+													<a href="<%=request.getContextPath()%>/member/login"
+														class="js-mypage-btn-login btn btn-primary btn-block max-w-lg-40rem mx-auto click-effect-press">가입
+														/ 로그인 하기</a>
+
+												</div>
+											</div>
+										</div>
+									</div>
+								</section>
+
+							</sec:authorize>	
 								</div>
 							
 							</div>
@@ -158,7 +196,9 @@
 								</div>
 							</div>
 						</div>
+						<sec:authorize access="isAuthenticated()">
 						<div class="blog-asside-right">
+							
 							<div
 								class="panel panel-default sidebar-menu wow fadeInRight animated animated animated"
 								style="visibility: visible; animation-name: fadeInRight;">
@@ -173,7 +213,9 @@
 									</h3>
 								</div>
 							</div>
+							
 						</div>
+						</sec:authorize>
 						<div class="blog-asside-right">
 							<div
 								class="panel panel-default sidebar-menu wow fadeInRight animated animated animated"
@@ -183,10 +225,12 @@
 										<button type="button" class="btn btn-outline-primary">1:1
 											문의</button>
 										<br>
+										<sec:authorize access="isAuthenticated()">
 										<button type="button" class="btn btn-outline-primary">쿠폰
 											관리</button>
 										<br>
 										<button type="button" class="btn btn-outline-primary">회원탈퇴</button>
+										</sec:authorize>
 									</h3>
 								</div>
 							</div>
@@ -195,7 +239,7 @@
 				</div>
 				<div class="blog-lst col-md-8 p0 " style="float: right;">
 					<section class="carmore-section">
-						<div class="container">
+						<div class="reservationList" id="reservationList">
 							<div class="js-vrsi-container bg-white bg-shadow p-3 rounded-sm mb-3">
 								<div class="dc-flex justify-content-between align-items-center">
 									<div class="dc-flex align-items-center">
@@ -213,6 +257,16 @@
 									<div
 										class="text-16 font-weight-bold color-grey-2 vreserv-car-model-name">${reservation.vehicleModel }</div>
 									<div class="ml-1">
+											<c:choose>
+																<c:when test="${reservation.state eq 0 }">
+																	<span class="badge-state badge-state-reserv-complete badge badge-primary"
+											style="display: none;">예약완료</span>
+																</c:when>
+																<c:otherwise>
+																	<span class="badge-state badge-state-cancel dc-none badge badge-dark"
+											style="display: none;">취소/환불</span>
+																</c:otherwise>
+												</c:choose>
 										<span
 											class="badge-state badge-state-reserv-complete badge badge-primary"
 											style="">예약완료</span><span
@@ -349,7 +403,38 @@
 							</div>
 							
 							</div>
-							<div id="content">
+							<div id="content" style="display:none;">
+							<!--  
+							<div class="infos-section">		
+							<c:forEach items="${couponList }" var="coupon">					
+							<ul class="tiket-list">
+									<li>
+										<div class="tiket-item coupon-item-container">
+											<div class="tiket-item-header">
+												<strong class="txt-color-red">${coupon.rate }% 할인</strong>
+												<p>${coupon.name }</p>
+											</div>
+											<ul class="info-list">
+												<li>
+													<span class="tit">쿠폰번호</span>
+													<div class="cont">
+														<span>${coupon.couponCode }</span>
+													</div>
+												</li>
+												<li>
+													<span class="tit">유효기간</span>
+													<div class="cont">
+														<span>${coupon.startDate } ~ ${coupon.expireDate } </span>
+													</div>
+												</li>											
+											</ul>
+										</div>
+									</li>
+								</ul>
+							</c:forEach>
+						</div>
+							-->
+							삭제성공
 							</div>
 					</section>
 				</div>
@@ -368,9 +453,7 @@
 	$('#historyBtn').on('click', function() {
 		location.href='<%=request.getContextPath()%>/member/profile';
 	});
-	
-	
-	
+
 	$('#bookmark').on('click', function() {
 		location.href='<%=request.getContextPath()%>/profile/favorites';
 	});
@@ -401,7 +484,9 @@
 						    //	$('#hideReser').hide();
 						   	//	canclePay();
 						    	Swal.fire('예약 취소 완료 ', ' 예약이 취소되었습니다. ', 'success');
-						   		history.go(0);
+						    	$('#reservationList').hide();
+						    	$('#content').show();
+						    	
 						     }else{
 						    	 Swal.fire('예약 삭제를 취소합니다 ', '다시 시도하세요 ', 'error');
 						    	
@@ -421,14 +506,10 @@
 	});
 
 	
-	function canclePay(){
 	
-		
-		 
-	}
 			
 			
-	*/	
+	
 	
 	</script>
 </body>

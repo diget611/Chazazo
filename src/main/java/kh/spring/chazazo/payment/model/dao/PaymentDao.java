@@ -62,4 +62,8 @@ public class PaymentDao {
 	public int insertNmemInfo(PaymentReqDto data) {
 		return session.insert("payment.insertNmemInfo", data);
 	}
+
+	public int updateCoupon(PaymentReqDto data) {
+		return session.update("payment.updateCoupon", data);
+	}
 }

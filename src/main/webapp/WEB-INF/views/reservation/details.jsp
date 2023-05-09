@@ -374,18 +374,22 @@
 	    }, function (rsp) {
 	        if (rsp.success) {  // 결제가 성공했을 떄
 	            // 결제가 완료되었을 떄 결제 정보를 뜨게 만듬
-	            var msg = '결제가 완료되었습니다.';
-	            msg += '고유ID : ' + rsp.imp_uid;
-	            msg += '상점 거래ID : ' + rsp.merchant_uid;
-	            msg += '결제 금액 : ' + rsp.paid_amount;
+	            var msg = '결제 금액 : ' + rsp.paid_amount +'원';
 	            msg += '카드 승인번호 : ' + rsp.apply_num;
+	            paid(); //결제 정보 저장
+	            swal({
+	            	title : "예약이 완료되었습니다",
+	            	icon  : "success",
+	            	closeOnClickOutside : false
+	            	}).then(function(){
+	           		 location.href='${pageContext.request.contextPath}/member/profile';
+	            	// 함수
+	            });
 	        } else {    // 결제가 실패했을 때
 	            // 결제에 실패했을떄 실패메세지와 실패사유를 출력
-	            var msg = '결제에 실패하였습니다.';
-	            msg +=  rsp.error_msg;
-	            paid(); //결제 정보 저장
+	        	   var msg =  rsp.error_msg;
+		           swal("결제가 완료되지 않았습니다",msg, {icon: "error"});
 	        }
-	        alert(msg);
 	    });
 	}
 	
@@ -410,18 +414,22 @@
 	    }, function (rsp) {
 	        if (rsp.success) {  // 결제가 성공했을 떄
 	            // 결제가 완료되었을 떄 결제 정보를 뜨게 만듬
-	            var msg = '결제가 완료되었습니다.';
-	            msg += '고유ID : ' + rsp.imp_uid;
-	            msg += '상점 거래ID : ' + rsp.merchant_uid;
-	            msg += '결제 금액 : ' + rsp.paid_amount;
+	            var msg = '결제 금액 : ' + rsp.paid_amount +'원';
 	            msg += '카드 승인번호 : ' + rsp.apply_num;
+	            paid(); //결제 정보 저장
+	            swal({
+	            	title : "예약이 완료되었습니다",
+	            	icon  : "success",
+	            	closeOnClickOutside : false
+	            	}).then(function(){
+	           		 location.href='${pageContext.request.contextPath}/member/profile';
+	            	// 함수
+	            });
 	        } else {    // 결제가 실패했을 때
 	            // 결제에 실패했을떄 실패메세지와 실패사유를 출력
-	            var msg = '결제에 실패하였습니다.';
-	            msg +=  rsp.error_msg;
-	            paid(); //결제 정보 저장
+	           var msg =  rsp.error_msg;
+	            swal("결제가 완료되지 않았습니다",msg, {icon: "error"});
 	            }
-	        alert(msg);
 	    });
 	}
 	
@@ -433,7 +441,7 @@
 		var finalprice = parseInt($('#finalprice').val());
 		var caridx = $('#caridx').val();
 		var useridx = $('#useridx').val();
-		
+		var couponIdx= $('#cIdx').val();
 		var returnLocation =$("#returnSelect").val();
 
 		//결제 시간 저장을 위한 현재 시간 포맷
@@ -510,7 +518,8 @@
 					"birth" :birthval,
 					"phoneNumber" :phoneval,
 					"license" :license,
-					"email": mailval
+					"email": mailval,
+					"couponIdx" :couponIdx
 	          };
 		
 		  $.ajax({

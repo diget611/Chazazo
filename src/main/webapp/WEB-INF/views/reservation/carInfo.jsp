@@ -54,10 +54,13 @@
 							<aside class="sidebar sidebar-property blog-asside-right">
 								<section class="mt-3 p-3">
 										<form>
-											<div><label style="margin-left:60px;margin-right:50px;">대여일</label><label  style="margin-left:80px;">반납일</label></div>
-											<input type="date" name="startDate" id="startDate" min="today" style="width:160px; float:left; margin-right:5px;" >
-											<input type="date" name="endDate" id="endDate"  min="today" style="width:160px;  float:left;">
-											<div style="margin-top:5px; text-align:center;" >
+											<div>
+												<label>대여일 </label> &nbsp;
+												<input type="date" name="startDate" id="startDate" min="today" style="width:160px;" >
+											</div>
+											<div>
+												<label>반납일 </label> &nbsp;
+												<input type="date" name="endDate" id="endDate"  min="today" style="width:160px; ">
 												<input type="text" id="day-count" name="daycount" value="" style="width:50px; background-color:#eeeeee;"readonly /><label>일 대여</label> 
 											</div>
 										</form>
@@ -83,15 +86,15 @@
 										<tbody>
 											<tr>
 												<th style="width: 30%;">기본 대여 요금</th>
-												<td style="width: 70%; text-align: right;"><input type="text" id="rentPrice"  name="rentPrice" style=" width:90%; background-color:#eeeeee;" readonly><label>원</label></td>
+												<td style="width: 70%; text-align: right;"><input type="text" id="rentPrice"  name="rentPrice" style=" width:90%; text-align: right; background-color:#eeeeee;" readonly><label>원</label></td>
 											</tr>
 											<c:if test ="${not empty  info.name }">
 											<tr>
 												<th style="width: 30%;"><button type="button" id="coupon" data-memberIdx="${info.idx}"class="btn btn-secondary" style=" color:#4EA0D8; border-color:#4EA0D8; padding:5px; margin-top:5px;" 
 												    		    onclick='window.open("${pageContext.request.contextPath}/selectCoupon/${info.idx }", "쿠폰적용", "width=100, height=auto")'>쿠폰 선택하기</button> </th>
 												<td style="width: 70%; text-align: right;">
-												    <input type="hidden" id="discountRate">
-												   <input type="text" id="discount" style="color:#4EA0D8;  width:90%; background-color:#eeeeee;"><label>원</label>
+												    <input type="hidden" id="discountRate"><input type="hidden" id="cIdx">
+												   	<input type="text" id="discount" style="color:#4EA0D8;  text-align: right; width:90%; background-color:#eeeeee;"><label>원</label>
 											</tr>
 											</c:if>
 											<c:if test ="${empty  info.name }">
@@ -99,15 +102,15 @@
 											</c:if>
 											<tr id ="insSection" >
 												<th style="width: 30%;">보험 추가 요금</th>
-												<td style="width: 70%; text-align: right;"><input type="text"id="addIns"  name="addIns"style="width:90%; background-color:#eeeeee;" readonly><label>원</label></td>
+												<td style="width: 70%; text-align: right;"><input type="text"id="addIns"  name="addIns"style="width:90%; text-align: right;background-color:#eeeeee;" readonly><label>원</label></td>
 											</tr>
 											<tr id="returnSection">
 												<th style="width: 30%;">반납지점 변경 요금</th>
-												<td style="width: 70%; text-align: right;"><input type="text"id="addreturn"  name="addreturn" style=" width:90%; background-color:#eeeeee;"readonly><label>원</label></td>
+												<td style="width: 70%; text-align: right;"><input type="text"id="addreturn"  name="addreturn" style=" width:90%; text-align: right; background-color:#eeeeee;"readonly><label>원</label></td>
 											</tr>
 											<tr>
 												<th style="width: 30%;">결제금액</th>
-												<td style="width: 70%; text-align: right;"><input type="text" id="finalprice"  name="finalprice" style="width:90%; color:red; background-color:#eeeeee;" readonly><label>원</label></td>
+												<td style="width: 70%; text-align: right;"><input type="text" id="finalprice"  name="finalprice" style="width:90%; text-align: right;color:red; background-color:#eeeeee;" readonly><label>원</label></td>
 											</tr>
 										</tbody>
 									</table>

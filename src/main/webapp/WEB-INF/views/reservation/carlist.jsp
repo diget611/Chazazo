@@ -157,8 +157,8 @@
 									</a>
 								</li>
 								<li class="">
-									<a href="javascript:void(0);" class="order_by_price" data-orderby="property_price" data-order="DESC">
-										Property Price <i class="fa fa-sort-numeric-desc"></i>						
+									<a href="javascript:void(0);" class="order_by_price" id="orderP">
+										낮은 가격순 <i class="fa fa-sort-numeric-desc"></i>						
 									</a>
 								</li>
 							</ul><!--/ .sort-by-list-->
@@ -293,7 +293,7 @@
            "page" : page
         };
         
-		
+     
 		  $.ajax({
 	            url: "searchlist",
 	            data: selectList,
@@ -310,7 +310,6 @@
 	         });
 
 	}
-		
 		
 	$('[name=cartypeIdx]').on('ifChanged',getList);
 	$('[name=fueltypeIdx]').on('ifChanged',getList);

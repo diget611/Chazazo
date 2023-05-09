@@ -105,7 +105,7 @@
 													</div>
 												</div>
 											</c:when>
-											<c:otherwise>
+											<c:when test="${review.status eq 2}">
 												<div style="margin-bottom :80px;">
 													<div>
 														<input type="hidden" id="reviewIdx" value="${review.idx }">
@@ -118,7 +118,7 @@
 														<p>신고로 삭제된 리뷰입니다.</p>
 													</div>
 												</div>
-											</c:otherwise>
+											</c:when>
 										</c:choose>
 									</c:forEach>
 									
@@ -281,7 +281,7 @@ $('.delete').on('click', function(){
 	console.log(typeof reviewidx +reviewidx+"______");
 		$.ajax({
 			url:'${pageContext.request.contextPath}/deleteReview',
-	         type: 'delete',
+	         type: 'patch',
 		     data: {
 		 		idx : reviewidx
 			},

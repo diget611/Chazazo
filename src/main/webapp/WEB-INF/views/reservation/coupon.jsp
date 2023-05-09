@@ -49,7 +49,7 @@
  					
 					<c:forEach items="${cList}" var="coupon" varStatus="i" >
 						<div style="margin:10px;">
-							<input type="radio" name="coupon" value="${coupon.rate}"> <label style="color: red;">${coupon.rate}%할인 </label> <br><label style="font-size:14px;">${coupon.name }  </label>
+							<input type="radio" name="coupon" value="${coupon.rate}"><input type="hidden" value="${coupon.idx }"> <label style="color: red;">${coupon.rate}%할인 </label> <br><label style="font-size:14px;">${coupon.name }  </label>
 						</div>
 					</c:forEach>
 						<div style="margin:5px;">
@@ -71,9 +71,12 @@ function resizeWindow(win)    {
 	win.resizeTo(500, hei);
 }
 
+
 $('#discount').on('click', function() {
 var rate = $('input[name=coupon]:checked').val();
+var couponIdx = $('input[name=coupon]:checked').next().val();
 	opener.document.getElementById("discountRate").value = rate;
+	opener.document.getElementById("cIdx").value = couponIdx;
 	window.opener.calc();
 	window.close();
 });

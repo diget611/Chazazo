@@ -28,6 +28,7 @@ public class PaymentServiceImpl implements PaymentService {
 	@Override
 	public int insertPayInfo(PaymentReqDto data, int isMember) {
 		int result = dao.insertPayInfo(data);
+		int result2 = dao.updateCoupon(data); 
 		if(result == 1 && isMember == 0) {
 			dao.insertNmemInfo(data);
 		}		
@@ -42,7 +43,7 @@ public class PaymentServiceImpl implements PaymentService {
 	}
 
 	@Override
-	public PaymentReqDto selectNoneM(PaymentReqDto dto) {
+	public int selectNoneM(PaymentReqDto dto) {
 		return dao.selectNoneM(dto);
 	}
 

@@ -37,6 +37,11 @@
       where ll.member_idx in (select idx from member where username=#{username})
 	
 	</select>
+	
+	<select id="selectLoation" resultType="LocationRespDto">
+		 SELECT * FROM LOCATION
+	
+	</select>
 
 	
 	<insert id="insertFavorite" >

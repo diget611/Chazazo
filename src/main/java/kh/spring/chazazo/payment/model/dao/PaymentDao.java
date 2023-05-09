@@ -34,7 +34,7 @@ public class PaymentDao {
 	}
 	
 	//비회원 예약조회 
-	public PaymentReqDto selectNoneM(PaymentReqDto dto){
+	public int selectNoneM(PaymentReqDto dto){
 		return session.selectOne("payment.selectNoneM",dto);
 	}
 	
@@ -61,5 +61,9 @@ public class PaymentDao {
 	}
 	public int insertNmemInfo(PaymentReqDto data) {
 		return session.insert("payment.insertNmemInfo", data);
+	}
+
+	public int updateCoupon(PaymentReqDto data) {
+		return session.update("payment.updateCoupon", data);
 	}
 }

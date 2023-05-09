@@ -29,6 +29,7 @@ import kh.spring.chazazo.admin.model.dto.AdminReportRespDto;
 import kh.spring.chazazo.admin.model.dto.AdminReportUpdateReqDto;
 import kh.spring.chazazo.admin.model.dto.AdminVehicleUpdateReqDto;
 import kh.spring.chazazo.admin.model.service.AdminService;
+import kh.spring.chazazo.chat.model.service.ChatService;
 import kh.spring.chazazo.common.Pagination;
 
 @RestController
@@ -37,6 +38,8 @@ public class AdminController {
 	
 	@Autowired
 	private AdminService aService;
+	@Autowired
+	private ChatService cService;
 	
 	// 메인페이지
 	@GetMapping("/main")
@@ -362,6 +365,26 @@ public class AdminController {
 	public int deleteRequest(@RequestParam String idx) {
 		int result = aService.deleteRequest(idx);
 		return result;
+	}
+	
+	// 채팅
+	@GetMapping("/chat")
+	public ModelAndView viewChat(ModelAndView mv, @RequestParam(required = false, defaultValue = "1") int page) {
+		int count = aService.chatroomCount();
+		Pagination pagination = new Pagination();
+		pagination.pageInfo(10, page, count);
+		
+		mv.addObject("chatroomList", aService.selectChatroomList(pagination));
+		mv.addObject("pagination", pagination);
+		mv.setViewName("admin/chat");
+		return mv;
+	}
+	
+	@GetMapping("/chat/{roomIdx}")
+	public ModelAndView viewChatLog(ModelAndView mv, @PathVariable String roomIdx) {
+		mv.addObject("chatLogList", cService.selectChatList(roomIdx));
+		mv.setViewName("admin/chatlog");
+		return mv;
 	}
 	
 	// 통계

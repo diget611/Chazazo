@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import kh.spring.chazazo.admin.model.dao.AdminDao;
+import kh.spring.chazazo.admin.model.dto.AdminChatRoomRespDto;
 import kh.spring.chazazo.admin.model.dto.AdminCouponInsertReqDto;
 import kh.spring.chazazo.admin.model.dto.AdminCouponManageRespDto;
 import kh.spring.chazazo.admin.model.dto.AdminCouponUpdateReqDto;
@@ -253,6 +254,16 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public AdminReservOneRespDto selectReservOne(int idx) {
 		return dao.selectReservOne(idx);
+	}
+	
+	// 채팅
+	@Override
+	public List<AdminChatRoomRespDto> selectChatroomList(Pagination pagination) {
+		return dao.selectChatroomList(pagination);
+	}
+	@Override
+	public int chatroomCount() {
+		return dao.chatroomCount();
 	}
 	
 	// 통계

@@ -3,6 +3,7 @@ package kh.spring.chazazo.admin.model.service;
 import java.util.List;
 import java.util.Map;
 
+import kh.spring.chazazo.admin.model.dto.AdminChatRoomRespDto;
 import kh.spring.chazazo.admin.model.dto.AdminCouponInsertReqDto;
 import kh.spring.chazazo.admin.model.dto.AdminCouponManageRespDto;
 import kh.spring.chazazo.admin.model.dto.AdminCouponUpdateReqDto;
@@ -95,6 +96,10 @@ public interface AdminService {
 	public int reservCount();
 	public List<AdminReservRespDto> selectReservList(Pagination pagination);
 	public AdminReservOneRespDto selectReservOne(int idx);
+	
+	// 채팅
+	public List<AdminChatRoomRespDto> selectChatroomList(Pagination pagination);
+	public int chatroomCount();
 	
 	// 통계용
 	public List<AdminReservByModelRespDto> selectByModel();

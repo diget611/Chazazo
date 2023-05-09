@@ -7,6 +7,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import kh.spring.chazazo.admin.model.dto.AdminChatRoomRespDto;
 import kh.spring.chazazo.admin.model.dto.AdminCouponInsertReqDto;
 import kh.spring.chazazo.admin.model.dto.AdminCouponManageRespDto;
 import kh.spring.chazazo.admin.model.dto.AdminCouponUpdateReqDto;
@@ -210,19 +211,24 @@ public class AdminDao {
 		return sqlSession.selectOne("payment.selectOneForAdmin", idx);
 	}
 	
+	// 채팅
+	public List<AdminChatRoomRespDto> selectChatroomList(Pagination pagination) {
+		return sqlSession.selectList("chatroom.selectChatroomList", pagination);
+	}
+	public int chatroomCount() {
+		return sqlSession.selectOne("chatroom.count");
+	}
+	
 	// 통계용
 	public List<AdminReservByModelRespDto> selectByModel() {
 		return sqlSession.selectList("payment.reservByModel");
 	}
-	
 	public List<AdminStatisticsRecentMonthDto> recentMonth() {
 		return sqlSession.selectList("payment.recentMonth");
 	}
-	
 	public List<String> selectLocNameList() {
 		return sqlSession.selectList("location.selectNameList");
 	}
-	
 	public List<String> monthList() {
 		return sqlSession.selectList("payment.monthList");
 	}

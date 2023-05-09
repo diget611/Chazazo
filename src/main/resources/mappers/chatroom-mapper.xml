@@ -32,4 +32,19 @@
                             WHERE RNUM = 1) T2
             ON T1.ROOM_IDX = T2.IDX
 	</select>
+	
+	<select id="selectChatroomList" resultType="adminChatRoomRespDto">
+		SELECT *
+          FROM (SELECT ROWNUM AS RNUM, R.*
+                  FROM (SELECT C.IDX, C.START_DATE, C.END_DATE, M.USERNAME
+                          FROM CHAT_ROOM C INNER JOIN MEMBER M
+                                              ON C.MEMBER_IDX = M.IDX
+                 WHERE END_DATE IS NOT NULL ORDER BY START_DATE DESC) R)
+         WHERE RNUM BETWEEN #{start} AND ${end}
+	</select>
+	
+	<select id="count" resultType="_int">
+		SELECT COUNT(*) CNT
+		  FROM CHAT_ROOM WHERE END_DATE IS NOT NULL
+	</select>
 </mapper>

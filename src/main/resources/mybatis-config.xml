@@ -54,5 +54,6 @@
 		<typeAlias type="kh.spring.chazazo.admin.model.dto.AdminLocationUpdateReqDto" alias="adminLocationUpdateReqDto"/>
 		<typeAlias type="kh.spring.chazazo.admin.model.dto.AdminLocationListRespDto" alias="adminLocationListRespDto"/>
 		<typeAlias type="kh.spring.chazazo.admin.model.dto.AdminVehicleUpdateReqDto" alias="adminVehicleUpdateReqDto"/>
+		<typeAlias type="kh.spring.chazazo.admin.model.dto.AdminChatRoomRespDto" alias="adminChatRoomRespDto"/>
 	</typeAliases>
 </configuration>

@@ -25,7 +25,7 @@ public interface PaymentService {
 
 	//비회원
 	public PaymentReqDto noneReser(int idx);
-	public PaymentReqDto selectNoneM(PaymentReqDto dto);
+	public int selectNoneM(PaymentReqDto dto);
 
 	
 	

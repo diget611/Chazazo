@@ -42,7 +42,7 @@ public class PaymentServiceImpl implements PaymentService {
 	}
 
 	@Override
-	public PaymentReqDto selectNoneM(PaymentReqDto dto) {
+	public int selectNoneM(PaymentReqDto dto) {
 		return dao.selectNoneM(dto);
 	}
 

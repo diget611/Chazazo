@@ -135,16 +135,23 @@ private AdminService aService;
 		
 		
 		
-		Map<String, Object> result = new HashMap<String,Object>();
-		    mv.addObject("selectNone", pService.selectNoneM(data));
-			result.put("selectNone", pService.selectNoneM(data));
-			mv.addObject("noneReservation", pService.noneReser(paymentIdx));
-			result.put("noneReservation", pService.noneReser(paymentIdx));
-			
-			
-			return new Gson().toJson(result);
+		Map<String, Object> map = new HashMap<String,Object>();
+		 
+			int result = pService.selectNoneM(data);
+			System.out.println(result);
+			if(result == 0) {
+				mv.setViewName("member/mypage");
+				return "1";
+			}else {
+				mv.addObject("noneReservation", pService.noneReser(paymentIdx));
+				map.put("noneReservation", pService.noneReser(paymentIdx));
+				return new Gson().toJson(map);
+			}
 			
 		}
+			
+			
+		
 	
 
 	// 예약 정보 상세 조회	

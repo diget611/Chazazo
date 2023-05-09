@@ -39,7 +39,7 @@
  	</select>
  	
  	<select id="count" resultType="_int">
- 		SELECT COUNT(*) CNT FROM VEHICLE
+ 		SELECT COUNT(*) CNT FROM VEHICLE WHERE PRICE != 0
 	</select>
 	
 	<select id="selectListAdmin" parameterType="pagination" resultType="adminVehicleRespDto">

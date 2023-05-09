@@ -55,5 +55,8 @@
 		<typeAlias type="kh.spring.chazazo.admin.model.dto.AdminLocationListRespDto" alias="adminLocationListRespDto"/>
 		<typeAlias type="kh.spring.chazazo.admin.model.dto.AdminVehicleUpdateReqDto" alias="adminVehicleUpdateReqDto"/>
 		<typeAlias type="kh.spring.chazazo.admin.model.dto.AdminChatRoomRespDto" alias="adminChatRoomRespDto"/>
+		<typeAlias type="kh.spring.chazazo.admin.model.dto.AdminStatisticsReqDto" alias="adminStatisticsReqDto"/>
+		<typeAlias type="kh.spring.chazazo.admin.model.dto.AdminStatisticsCountRespDto" alias="adminStatisticsCountRespDto"/>
+		<typeAlias type="kh.spring.chazazo.admin.model.dto.AdminStatisticsSumRespDto" alias="adminStatisticsSumRespDto"/>
 	</typeAliases>
 </configuration>

@@ -30,7 +30,10 @@ import kh.spring.chazazo.admin.model.dto.AdminRequestRespDto;
 import kh.spring.chazazo.admin.model.dto.AdminReservByModelRespDto;
 import kh.spring.chazazo.admin.model.dto.AdminReservOneRespDto;
 import kh.spring.chazazo.admin.model.dto.AdminReservRespDto;
+import kh.spring.chazazo.admin.model.dto.AdminStatisticsCountRespDto;
 import kh.spring.chazazo.admin.model.dto.AdminStatisticsRecentMonthDto;
+import kh.spring.chazazo.admin.model.dto.AdminStatisticsReqDto;
+import kh.spring.chazazo.admin.model.dto.AdminStatisticsSumRespDto;
 import kh.spring.chazazo.admin.model.dto.AdminVehicleOneRespDto;
 import kh.spring.chazazo.admin.model.dto.AdminVehicleRespDto;
 import kh.spring.chazazo.admin.model.dto.AdminVehicleUpdateReqDto;
@@ -298,6 +301,14 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public int dayRegiCount() {
 		return dao.dayRegiCount();
+	}
+	@Override
+	public List<AdminStatisticsCountRespDto> selectCountForChart(AdminStatisticsReqDto data) {
+		return dao.selectCountForChart(data);
+	}
+	@Override
+	public List<AdminStatisticsSumRespDto> selectSumForChart(AdminStatisticsReqDto data) {
+		return dao.selectSumForChart(data);
 	}
 	
 	// etc

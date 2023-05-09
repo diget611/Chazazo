@@ -122,4 +122,17 @@
           FROM PAYMENT WHERE IDX = #{idx}
 	</select>
 	
+	<select id="selectCountForChart" parameterType="adminStatisticsReqDto" resultType="adminStatisticsCountRespDto">
+		SELECT EXTRACT(MONTH FROM PAID_TIME) AS PAID_TIME, COUNT(*) CNT
+		  FROM PAYMENT
+		 WHERE RENT_LOCATION = #{idx} AND CANCEL_DATE IS NULL AND EXTRACT(YEAR FROM PAID_TIME) = #{year}
+		 GROUP BY EXTRACT(MONTH FROM PAID_TIME)
+	</select>
+	
+	<select id="selectSumForChart" parameterType="adminStatisticsReqDto" resultType="adminStatisticsSumRespDto">
+		SELECT EXTRACT(MONTH FROM PAID_TIME) AS PAID_TIME, SUM(FINAL_PRICE) SUM
+		  FROM PAYMENT
+		 WHERE RENT_LOCATION = #{idx} AND CANCEL_DATE IS NULL AND EXTRACT(YEAR FROM PAID_TIME) = #{year}
+		 GROUP BY EXTRACT(MONTH FROM PAID_TIME)
+	</select>
 </mapper>

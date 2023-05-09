@@ -18,6 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
 
+import kh.spring.chazazo.admin.model.dto.AdminChatRoomRespDto;
 import kh.spring.chazazo.admin.model.dto.AdminCouponInsertReqDto;
 import kh.spring.chazazo.admin.model.dto.AdminCouponUpdateReqDto;
 import kh.spring.chazazo.admin.model.dto.AdminLocationInsertReqDto;
@@ -25,8 +26,8 @@ import kh.spring.chazazo.admin.model.dto.AdminLocationUpdateReqDto;
 import kh.spring.chazazo.admin.model.dto.AdminMemberUpdateReqDto;
 import kh.spring.chazazo.admin.model.dto.AdminNoticeInsertReqDto;
 import kh.spring.chazazo.admin.model.dto.AdminNoticeUpdateReqDto;
-import kh.spring.chazazo.admin.model.dto.AdminReportRespDto;
 import kh.spring.chazazo.admin.model.dto.AdminReportUpdateReqDto;
+import kh.spring.chazazo.admin.model.dto.AdminStatisticsReqDto;
 import kh.spring.chazazo.admin.model.dto.AdminVehicleUpdateReqDto;
 import kh.spring.chazazo.admin.model.service.AdminService;
 import kh.spring.chazazo.chat.model.service.ChatService;
@@ -391,7 +392,18 @@ public class AdminController {
 	@GetMapping("/statistics")
 	public ModelAndView viewStatistics(ModelAndView mv) {
 		mv.setViewName("admin/statistics");
+		mv.addObject("list", aService.locationList());
 		return mv;
+	}
+	
+	@PostMapping("/statistics/chart")
+	public String getChart(@RequestBody AdminStatisticsReqDto data) {
+		int type = data.getType();		
+		if(type == 1) {
+			return new Gson().toJson(aService.selectSumForChart(data));
+		} else {
+			return new Gson().toJson(aService.selectCountForChart(data));
+		}
 	}
 
 }

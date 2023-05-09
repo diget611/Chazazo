@@ -25,7 +25,10 @@ import kh.spring.chazazo.admin.model.dto.AdminRequestRespDto;
 import kh.spring.chazazo.admin.model.dto.AdminReservByModelRespDto;
 import kh.spring.chazazo.admin.model.dto.AdminReservOneRespDto;
 import kh.spring.chazazo.admin.model.dto.AdminReservRespDto;
+import kh.spring.chazazo.admin.model.dto.AdminStatisticsCountRespDto;
 import kh.spring.chazazo.admin.model.dto.AdminStatisticsRecentMonthDto;
+import kh.spring.chazazo.admin.model.dto.AdminStatisticsReqDto;
+import kh.spring.chazazo.admin.model.dto.AdminStatisticsSumRespDto;
 import kh.spring.chazazo.admin.model.dto.AdminVehicleOneRespDto;
 import kh.spring.chazazo.admin.model.dto.AdminVehicleRespDto;
 import kh.spring.chazazo.admin.model.dto.AdminVehicleUpdateReqDto;
@@ -106,6 +109,8 @@ public interface AdminService {
 	public List<AdminStatisticsRecentMonthDto> recentMonth();
 	public List<String> selectLocNameList();
 	public List<String> monthList();
+	public List<AdminStatisticsCountRespDto> selectCountForChart(AdminStatisticsReqDto data);
+	public List<AdminStatisticsSumRespDto> selectSumForChart(AdminStatisticsReqDto data);
 	
 	// etc
 	public List<AdminLocationListRespDto> locationList();

@@ -81,7 +81,6 @@
 			</div>	
 			<div class="container-fluid pt-4 px-4">
 				<div class="bg-light text-center rounded p-4">
-					<div>${test }</div>
 					<div class="d-flex align-items-center justify-content-between mb-4">
 						<h6 class="mb-0">최근 문의</h6>
 						<a href="<%=request.getContextPath()%>/admin/request">더보기</a>
@@ -127,7 +126,6 @@
 						<div class="bg-light text-center rounded p-4" style="height: 100%;" id="recentCanvas">
 							<div class="d-flex align-items-center justify-content-between mb-5">
 								<h6 class="mb-0">최근 월별 매출</h6>
-								<a href="">더보기</a>
 							</div>
 							<div>
 								<canvas id="recentMonthChart" class="chartCanvas" height="450"></canvas>							
@@ -138,7 +136,6 @@
 						<div class="bg-light text-center rounded p-4" style="height: 100%;">
 							<div class="d-flex align-items-center justify-content-between mb-4">
 								<h6 class="mb-0">차량별 매출</h6>
-								<a href="">더보기</a>
 							</div>
 							<canvas id="bestReservModel" class="chartCanvas"></canvas>
 						</div>

@@ -20,13 +20,8 @@
 					<a href="<%=request.getContextPath() %>/admin/chat" class="dropdown-item ms-5">채팅 로그</a>
 				</div>
 			</div>
-			<div class="nav-item dropdown">
-				<a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-chart-bar me-2"></i>통계</a>
-				<div class="dropdown-menu bg-transparent border-0">
-					<a href="<%=request.getContextPath() %>/admin/statistics" class="dropdown-item ms-5">1</a>
-					<a href="#" class="dropdown-item ms-5">2</a>
-					<a href="#" class="dropdown-item ms-5">3</a>
-				</div>
+			<div class="nav-item">
+				<a href="<%=request.getContextPath() %>/admin/statistics" class="nav-link"><i class="fa fa-chart-bar me-2"></i>통계</a>
 			</div>
 		</div>
 	</nav>

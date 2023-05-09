@@ -56,7 +56,7 @@
 						<div >
 							<ul class="footer-menu">
 								<c:forEach items="${locationList }" var="location">
-									<li><a href="${pageContext.request.contextPath}/location/${location.idx }">${location.name } [[ ${location.liked} ]]</a></li>
+									<li><a href="${pageContext.request.contextPath}/location/${location.idx }">${location.name } </a></li>
 									<div>
 									<c:choose>
 										<c:when test="${location.liked == 0 }">
@@ -84,7 +84,21 @@
 								
 							</ul>
 						</div>
+						
+						<sec:authorize access="isAuthenticated()">
+						<div >
+							<ul class="footer-menu">
+								<c:forEach items="${noneLocation }" var="noneLocation">
+									<li><a href="${pageContext.request.contextPath}/location/${noneLocation.idx }">${noneLocation.name } </a></li>
+									
+								</c:forEach>
+								
+							</ul>
+						</div>
+						
+						</sec:authorize>
 					</div>
+					
 						<div style="float:left; width:70%; margin-top:30px;">
 							<div style="color:#1583AF; font-size:22px; text-align:center; "> 차자조 ${location.name } 입니다.</div><br>
 							<div style="margin:0px 0px 20px 40px;">
@@ -101,6 +115,8 @@
 						</section>
 					</div>
 						</div>
+						
+						
 				</div>  
 			</div>                    
 		</div>

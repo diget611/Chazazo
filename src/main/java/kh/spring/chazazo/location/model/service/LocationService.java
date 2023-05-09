@@ -13,6 +13,7 @@ public interface LocationService {
 		public List<LocationRespDto> selectLocation(int idx);
 		// 좋아요상태 포함
 		public List<LocationRespDto> selectLocation(String username);
+		
 		//나의 관심 지점
 		public List<LocationRespDto> selectLikeLocation(String username);
 		public int insertFavLocation(Map<String, Object> map);

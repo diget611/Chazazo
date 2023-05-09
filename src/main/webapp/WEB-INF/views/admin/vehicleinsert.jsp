@@ -104,72 +104,43 @@
 		win.resizeTo(500, hei);
 	}
 	
-	$('#updateBtn').on('click', updateNotice);
+	$('#insertBtn').on('click', insertVehicle);
 	
-	function updateNotice() {
-		if($('#updateBtn').text() == '수정하기') {
-			$('#updateBtn').text('수정 완료');
-			$('#name').attr('readonly', false);
-			$('#period').attr('readonly', false);
-			$('#rate').attr('readonly', false);
-		} else {
-			let idx = $('#idx').val();
-			let name = $('#name').val();
-			let period = $('#period').val();
-			let rate = $('#rate').val() / 100;
-			let data = {
-					idx: idx,
-					name: name,
-					period: period,
-					rate: rate
-			}
-			
-			if(period <= 0 || rate >= 1) {
-				alert("입력하신 값을 확인하세요")
-			} else {
-				$.ajax({
-					url: "${pageContext.request.contextPath}/admin/coupon/update",
-					type: "patch",
-					data: JSON.stringify(data),
-					contentType: "application/json; charset=utf-8",
-					success: function(result) {
-						if(result == 1) {
-							alert("쿠폰 수정 완료");
-							opener.parent.location.reload();
-							window.close();
-						} else {
-							alert('실패');
-						}
-					},
-					error: function() {
-						alert("에러");
-					}
-				});
-			}
-		} 
-	}
-	
-	$('#deleteBtn').on('click', deleteCoupon);
-	
-	function deleteCoupon() {
-		let idx = $('#idx').val();
+	function insertVehicle() {
+		let model = $('#model').val();
+		let maker = $('#maker').val();
+		let cartype = $('#carType').val();
+		let fueltype = $('#fuelType').val();
+		let price = $('#price').val();
+		let year = $('#year').val();
+		let location = $('#location').val();
+		
+		let data = {
+				model: model,
+				maker: maker,
+				cartypeIdx: cartype,
+				fueltypeIdx: fueltype,
+				price: price,
+				year: year,
+				location: location
+		}
+		
 		$.ajax({
-			url: "${pageContext.request.contextPath}/admin/coupon/delete",
-			data: {idx: idx},
-			type: "patch",
+			url: '${pageContext.request.contextPath}/admin/vehicle/insert',
+			type: 'post',
+			data: JSON.stringify(data),
+			contentType: "application/json; charset=utf-8",
 			success: function(result) {
 				if(result == 1) {
-					opener.parent.location.reload();
-					window.close();
+					alert('차량 등록 완료');
 				} else {
-				alert('실패');					
+					alert('차량 등록 실패');
 				}
-			}, 
+			},
 			error: function() {
 				alert('에러');
 			}
-		})
-		
+		});
 	}
 </script>
 </body>

@@ -33,8 +33,8 @@
 	<div class="container">
 		<div>
 			<div id="msgArea" class="row">
-				<c:if test="${chatLogList eq null }">
-					<div>비었음</div>
+				<c:if test="${empty chatLogList }">
+					<div>채팅 로그 내역이 존재하지 않습니다.</div>
 				</c:if>
 				<c:forEach items="${chatLogList }" var="chat">
 					<c:choose>

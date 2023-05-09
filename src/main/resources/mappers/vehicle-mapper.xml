@@ -72,4 +72,8 @@
 		 WHERE IDX = #{idx} 
 	</update>
  	
+ 	<insert id="insert">
+ 		INSERT INTO VEHICLE
+ 		VALUES (VEHICLE_SEQ.NEXTVAL, #{model}, #{year}, #{price}, #{image}, #{maker}, #{locationIdx}, #{fueltypeIdx}, #{cartypeIdx})
+ 	</insert>
 </mapper>

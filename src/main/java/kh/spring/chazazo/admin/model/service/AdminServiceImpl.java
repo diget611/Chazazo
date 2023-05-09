@@ -303,6 +303,10 @@ public class AdminServiceImpl implements AdminService {
 		return dao.dayRegiCount();
 	}
 	@Override
+	public int dayReqCount() {
+		return dao.dayReqCount();
+	}
+	@Override
 	public List<AdminStatisticsCountRespDto> selectCountForChart(AdminStatisticsReqDto data) {
 		return dao.selectCountForChart(data);
 	}

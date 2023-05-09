@@ -40,6 +40,7 @@ public interface AdminService {
 	public int dayReservCount();
 	public int dayReservSum();
 	public int dayRegiCount();
+	public int dayReqCount();
 	
 	// 회원
 	public int memberCount();

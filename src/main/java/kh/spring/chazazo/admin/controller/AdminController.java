@@ -60,6 +60,7 @@ public class AdminController {
 		mv.addObject("reservCount", aService.dayReservCount());
 		mv.addObject("reservSum", aService.dayReservSum());
 		mv.addObject("regiCount", aService.dayRegiCount());
+		mv.addObject("reqCount", aService.dayReqCount());
 		mv.setViewName("admin/main");
 		
 		return mv;

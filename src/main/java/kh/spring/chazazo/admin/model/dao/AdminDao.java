@@ -54,6 +54,10 @@ public class AdminDao {
 	public int dayRegiCount() {
 		return sqlSession.selectOne("member.dayRegiCount");
 	}
+	public int dayReqCount() {
+		return sqlSession.selectOne("request.dayReqCount");
+	}
+	
 	// 회원
 	public int memberCount() {
 		return sqlSession.selectOne("member.count");

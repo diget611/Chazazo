@@ -71,8 +71,8 @@
 						<div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
 							<i class="fa fa-chart-line fa-3x text-primary"></i>
 							<div class="ms-3">
-								<p class="mb-2">?</p>
-								<h6 class="mb-0" style="text-align: center;">$1234</h6>
+								<p class="mb-2">금일 문의</p>
+								<h6 class="mb-0" style="text-align: center;">${reqCount }</h6>
 							</div>
 						</div>
 					</div>

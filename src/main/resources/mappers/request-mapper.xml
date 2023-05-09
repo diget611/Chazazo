@@ -55,4 +55,10 @@
 		DELETE FROM REQUEST
 		 WHERE IDX = #{idx}
 	</delete>
+	
+	<select id="dayReqCount" resultType="_int">
+		SELECT COUNT(*) AS CNT
+		  FROM REQUEST
+		 WHERE TO_CHAR(REQ_DATE,'YY/MM/DD') = TO_DATE(SYSDATE, 'YY/MM/DD')
+	</select>
 </mapper>

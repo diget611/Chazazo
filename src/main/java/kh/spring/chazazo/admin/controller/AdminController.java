@@ -227,6 +227,12 @@ public class AdminController {
 		return mv;
 	}
 	
+	@PostMapping("/vehicle/insert")
+	public int insertVehicle() {
+		int result = 0;
+		return result;
+	}
+	
 	@PatchMapping("/vehicle/update")
 	public int updateVehicle(@RequestBody AdminVehicleUpdateReqDto data) {
 		int result = aService.updateVehicle(data);

@@ -32,6 +32,9 @@ public class LocationController {
 	public ModelAndView viewLocationOne(ModelAndView mv, @PathVariable String idx,Principal prin) {
 		// 지점 상세 조회
 	if(prin == null) {
+		mv.addObject("noneLocation", lService.selectLocation());
+		int index = Integer.parseInt(idx);
+		mv.addObject("location", lService.getInfo(index));
 		mv.setViewName("/location/location");
 		
 	}else {

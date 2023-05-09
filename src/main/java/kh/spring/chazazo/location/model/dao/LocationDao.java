@@ -30,7 +30,7 @@ public class LocationDao {
 	}
 	
 	public List<LocationRespDto> selectLocation() {
-		return sqlSession.selectList("location.selectNameList");
+		return sqlSession.selectList("location.selectLoation");
 	}
 	
 	public List<LocationRespDto> selectLikeLocation(String username){

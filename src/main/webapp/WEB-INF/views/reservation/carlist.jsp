@@ -186,6 +186,14 @@
 
 	<script>
 	$('.main-nav').children().eq(0).children().css('color', '#18B4E9')
+	var order = 1;
+	$('#orderbtn').on('click', function() {
+		order =2;
+	});	
+	
+	$('#listbtn').on('click', function() {
+		order=1;
+	});
 	
 
 	//cartype: 전체 선택 체크박스가 변경되었을때	
@@ -312,8 +320,23 @@
 
 	}
 		
-	$('[name=cartypeIdx]').on('ifChanged',getList);
-	$('[name=fueltypeIdx]').on('ifChanged',getList);
+	
+	$('[name=cartypeIdx]').on('ifChanged',function() {
+		if(order==1){
+			getList();
+		} if(order ==2) {
+			orderbyP();
+		}
+	});
+	
+	$('[name=fueltypeIdx]').on('ifChanged',function() {
+		if(order==1){
+			getList();
+		} if(order ==2) {
+			orderbyP();
+		}
+	});
+	
     window.onload = getList();
       function getList() {
     	 $('#orderbtn').css('background-color','#f4f4f4');

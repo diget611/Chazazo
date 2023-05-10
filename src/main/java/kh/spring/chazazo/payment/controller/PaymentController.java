@@ -1,25 +1,16 @@
 package kh.spring.chazazo.payment.controller;
 
 import java.security.Principal;
-import java.sql.Date;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -27,16 +18,12 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
 
-import kh.spring.chazazo.admin.mainpage.model.service.AdminService;
 import kh.spring.chazazo.admin.vehicle.model.service.AdminVehicleService;
 import kh.spring.chazazo.coupon.dto.CouponReqDto;
 import kh.spring.chazazo.coupon.service.CouponService;
 import kh.spring.chazazo.member.model.service.MemberService;
 import kh.spring.chazazo.payment.model.dto.PaymentReqDto;
 import kh.spring.chazazo.payment.model.service.PaymentService;
-import kh.spring.chazazo.vehicle.model.dto.VehicleInfoDto;
-import kh.spring.chazazo.vehicle.model.service.VehicleService;
-import lombok.Data;
 
 @RestController
 public class PaymentController {
@@ -107,7 +94,6 @@ private AdminVehicleService aService;
 	public String viewReservationListUser(ModelAndView mv, Principal prin) {
 	
 		Map<String, Object> result = new HashMap<String,Object>();
-		System.out.println(result);
 		
 		if(prin == null) {
 			mv.setViewName("member/mypage");
@@ -123,8 +109,6 @@ private AdminVehicleService aService;
 			result.put("memberinfo", mService.selectMypageOne(loginId));
 			
 			
-			System.out.println(result);
-			System.out.println("ddddddd송공d");
 			return new Gson().toJson(result);
 		}
 		
@@ -151,7 +135,6 @@ private AdminVehicleService aService;
 		Map<String, Object> map = new HashMap<String,Object>();
 		 
 			int result = pService.selectNoneM(data);
-			System.out.println(result);
 			if(result == 0) {
 				mv.setViewName("member/mypage");
 				return "1";
@@ -179,14 +162,12 @@ private AdminVehicleService aService;
 			mv.setViewName("member/details");
 			
 		}else{
-			System.out.println("ddddddddd");
 			String loginId = prin.getName();
 			String index = Integer.toString(idx);
 			mv.addObject("memberinfo", mService.selectMypageOne(loginId));
 			mv.addObject("reservation", pService.ReservationOne(idx));	
 			mv.addObject("location",pService.resvLocation(idx));
 			mv.addObject("vehicle", aService.selectVehicleOne(index));
-			System.out.println(idx);
 			mv.setViewName("member/details");
 		}
 		

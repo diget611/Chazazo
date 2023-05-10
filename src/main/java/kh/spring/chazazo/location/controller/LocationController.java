@@ -96,9 +96,6 @@ public class LocationController {
 		map.put("usename", usename);
 		map.put("locationIdx", index);
 		
-		System.out.println(result);
-		System.out.println(usename);
-		System.out.println(index);
 		result = lService.deleteFav(map);
 		return result;
 	}

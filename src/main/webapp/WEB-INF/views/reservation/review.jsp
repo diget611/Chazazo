@@ -72,7 +72,7 @@
 															class="likebtn" type="image" style=" width:55px;">${review.recommend}
 													</div>
 													<div>
-														<input class="review_content"  type="text" value="${review.content}" style="height:100px; width:400px; font-size:18px;"autofocus disabled>
+														<input class="review_content"  type="text" value="${review.content}" style="height:auto; width:80%; font-size:18px;"autofocus disabled>
 													</div>	
 													<c:if test="${info.name eq review.name }">
 														<input data-idx="${review.idx }" src="<%=request.getContextPath()%>/resources/garoestate/assets/img/icon/edit.png" style="float:left;  width:45px; " type="image" class="edit" value="수정">
@@ -278,7 +278,6 @@ $(document).on('click','#btnUpdate', function() {
 //리뷰 삭제
 $('.delete').on('click', function(){
 	var reviewidx = $(this).data("idx");
-	console.log(typeof reviewidx +reviewidx+"______");
 		$.ajax({
 			url:'${pageContext.request.contextPath}/deleteReview',
 	         type: 'patch',

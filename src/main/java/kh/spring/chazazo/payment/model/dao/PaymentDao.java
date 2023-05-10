@@ -44,6 +44,7 @@ public class PaymentDao {
 		return session.update("payment.deleteReserv",idx);
 	}
 	
+	//예약 취소하면 쿠폰 재발급
 	public int reissueCoupon(int idx) {
 		return session.update("payment.reissueCoupon",idx);
 	}

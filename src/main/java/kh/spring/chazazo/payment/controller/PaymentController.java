@@ -184,10 +184,11 @@ private AdminService aService;
 	
 	}
 
-
+	//비회원 예약정보
 	@GetMapping("nmemPayInfo")
 	public ModelAndView nmemPayInfo(ModelAndView mv, @RequestParam String merchantUid, PaymentReqDto paydto) {
 		mv.addObject("info", pService.selectNmemPayInfo(merchantUid));
+		mv.setViewName("reservation/nmemPayInfo");
 		return mv;
 	}
 	

@@ -56,8 +56,10 @@
 	<jsp:include page="/WEB-INF/views/base/header.jsp"/>
 						
 	비회원 예약정보
-	{info.idx}
-	{info.finalPrice}
+	${info.idx}
+	${info.finalPrice}
+	${info.model}
+	${info.name}
 
 	
 	<jsp:include page="/WEB-INF/views/base/chat.jsp"/>

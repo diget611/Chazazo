@@ -155,6 +155,7 @@
 	</select>
 	
 	<select id ="selectNmemPayInfo" resultType="PaymentReqDto">
-		SELECT * FROM PAYMETN WHERE MERCHANT_UID = #{merchantUid}
+		SELECT N.*, P.*  FROM NMEMPAYMENT N, PAYMENT P 
+		WHERE N.PAYMENT_IDX=(SELECT IDX FROM PAYMENT P WHERE P.MERCHANT_UID = #{merchantUid}) AND P.MERCHANT_UID = #{merchantUid}
 	</select>
 </mapper>

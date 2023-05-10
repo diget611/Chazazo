@@ -71,4 +71,8 @@ public class PaymentDao {
 	public int updateCoupon(PaymentReqDto data) {
 		return session.update("payment.updateCoupon", data);
 	}
+
+	public PaymentReqDto selectNmemPayInfo(String merchantUid) {
+		return session.selectOne("payment.selectNmemPayInfo",merchantUid);
+	}
 }

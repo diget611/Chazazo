@@ -185,6 +185,13 @@ private AdminService aService;
 	}
 
 
+	@GetMapping("nmemPayInfo")
+	public ModelAndView nmemPayInfo(ModelAndView mv, @RequestParam String merchantUid, PaymentReqDto paydto) {
+		mv.addObject("info", pService.selectNmemPayInfo(merchantUid));
+		return mv;
+	}
+	
+	
 	//예약삭제
 	@DeleteMapping("/profile/reservation/{idx}")
 	public int deleteReservation(ModelAndView mv, @PathVariable int idx) {

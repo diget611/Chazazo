@@ -395,6 +395,7 @@
 	
 	//카카오페이 결제
 	function kakaopay() {
+		var useridx = $('#useridx').val();
 	    var IMP = window.IMP;
 	    var merchantUid ='merchant_' + new Date().getTime();
 	    IMP.init("imp01440251");
@@ -423,8 +424,11 @@
 	            	icon  : "success",
 	            	closeOnClickOutside : false
 	            	}).then(function(){
-	           		 location.href='${pageContext.request.contextPath}/member/profile';
-	            	// 함수
+	            		if(useridx == 0) {
+	            			location.href='${pageContext.request.contextPath}/nmemPayInfo?merchantUid='+merchantUid;
+	            		}else {
+			           		 location.href='${pageContext.request.contextPath}/member/profile';
+	            		}
 	            });
 	        } else {    // 결제가 실패했을 때
 	            // 결제에 실패했을떄 실패메세지와 실패사유를 출력

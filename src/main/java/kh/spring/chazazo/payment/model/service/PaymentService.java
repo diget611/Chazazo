@@ -31,6 +31,8 @@ public interface PaymentService {
 	
 	public int insertPayInfo(PaymentReqDto data, int isMember);
 
+	public PaymentReqDto selectNmemPayInfo(String merchantUid);
+
 	
 	
 

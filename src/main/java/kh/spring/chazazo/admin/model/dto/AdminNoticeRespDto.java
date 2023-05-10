@@ -17,7 +17,6 @@ public class AdminNoticeRespDto {
 	private int idx;
 	private String title;
 	private String createDate;
-	private int readCount;
 	private String updateDate;
 	private String deleteDate;
 	

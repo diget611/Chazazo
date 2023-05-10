@@ -85,7 +85,7 @@
 		});
 		
 		$('#profileBtn').on('click', function() {
-			location.href='${pageContext.request.contextPath}/경로지정해야함';
+			location.href='${pageContext.request.contextPath}/member/profile';
 		});
 	</script>
 </nav>

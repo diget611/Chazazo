@@ -102,7 +102,7 @@
 	        		    icon  : "success",
 	        		    closeOnClickOutside : false
 	        		}).then(function(){
-	        			window.open = '${pageContext.request.contextPath}/admin/notice';
+	        			location.href = '${pageContext.request.contextPath}/admin/notice';
 	        		});			
 				} else {
 					swal("실패", "공지사항 작성 과정에 오류가 발생했습니다. 확인 후 다시 시도해 주세요.", "error");

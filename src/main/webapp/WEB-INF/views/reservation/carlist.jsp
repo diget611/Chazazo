@@ -395,7 +395,7 @@
  				html += '<div class="col-sm-6 col-md-4 p0">'; 
  				html += '<div class="box-two proerty-item">';
  				html += '		<div class="item-thumb">'; 
- 				html += '		<a href="${pageContext.request.contextPath}/carlist/' + car.idx + '"><img src="' +car.image+ '" /></a> ';                               			
+ 				html += '		<a href="${pageContext.request.contextPath}/carlist/' + car.idx + '"><img src="${pageContext.request.contextPath}/resources/img/car/' +car.image+ '" / style="height:240px;"></a> ';                               			
  				html += '		</div>'; 
  				html += '		<div class="item-entry overflow" id="listbody">'; 
  				html += '			<h5><a href="/chazazo/details">' + car.model + ' </a></h5>'; 

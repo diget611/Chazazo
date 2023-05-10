@@ -44,6 +44,10 @@ public class PaymentDao {
 		return session.update("payment.deleteReserv",idx);
 	}
 	
+	public int reissueCoupon(int idx) {
+		return session.update("payment.reissueCoupon",idx);
+	}
+	
 	//렌트업체 정보
 	public LocationRespDto resvLocation(int idx) {
 		return session.selectOne("payment.reservLocation", idx);

@@ -304,6 +304,7 @@
       function getList() {
          let carType = [];
          let fuelType = [];
+         var keyword = "%"+$('#inputword').val() +"%";
          page = 1;
          $('input:checkbox[name=cartypeIdx]:checked').each(function() {
             carType.push($(this).val());
@@ -313,6 +314,7 @@
          })
          
          let selectList = {
+        	 "keyword" : keyword,
             "typeList" : carType,
             "fuelList" : fuelType
          };

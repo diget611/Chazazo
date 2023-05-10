@@ -350,14 +350,16 @@
 	
 	//카드결제 
 	function pay() {
+		var useridx = $('#useridx').val();
 	    var IMP = window.IMP;
+	    var merchantUid ='merchant_' + new Date().getTime();
 	    IMP.init("imp01440251");
 	    // 원포트 관리자 페이지 -> 내정보 -> 가맹점식별코드
 	    // ''안에 띄어쓰기 없이 가맹점 식별코드를 붙여넣어주세요. 안그러면 결제창이 안뜹니다.
 	    IMP.request_pay({
 	        pg: 'html5_inicis',  // 실제 계약 후에는 실제 상점아이디로 변경
 	        pay_method: 'card', // 'card'만 지원됩니다.
-	        merchant_uid: 'merchant_' + new Date().getTime(), // 상점에서 관리하는 주문 번호
+	        merchant_uid: merchantUid, // 상점에서 관리하는 주문 번호
 	        name: '차자조 테스트 결제', // 상품 이름
 	        amount: 100, // 결제창에 표시될 금액. 실제 승인이 이뤄지지는 않습니다.
 	        buyer_email: '${info.email }',
@@ -376,8 +378,12 @@
 	            	title : "예약이 완료되었습니다",
 	            	icon  : "success",
 	            	closeOnClickOutside : false
-	            	}).then(function(){
-	           		 location.href='${pageContext.request.contextPath}/member/profile';
+	            }).then(function(){
+            		if(useridx == 0) {
+            			location.href='${pageContext.request.contextPath}/nmemPayInfo?merchantUid='+merchantUid;
+            		}else {
+		           		 location.href='${pageContext.request.contextPath}/member/profile';
+            		}
 	            	// 함수
 	            });
 	        } else {    // 결제가 실패했을 때

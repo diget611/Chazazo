@@ -27,7 +27,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
 
-import kh.spring.chazazo.admin.model.service.AdminService;
+import kh.spring.chazazo.admin.mainpage.model.service.AdminService;
+import kh.spring.chazazo.admin.vehicle.model.service.AdminVehicleService;
 import kh.spring.chazazo.coupon.dto.CouponReqDto;
 import kh.spring.chazazo.coupon.service.CouponService;
 import kh.spring.chazazo.member.model.service.MemberService;
@@ -47,7 +48,7 @@ private CouponService cService;
 @Autowired
 private PaymentService pService;
 @Autowired
-private AdminService aService;
+private AdminVehicleService aService;
 
 	
 

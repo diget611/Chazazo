@@ -70,4 +70,11 @@ public class PaymentServiceImpl implements PaymentService {
 		int result1 = dao.reissueCoupon(idx);
 		return result;
 	}
+
+
+
+	@Override
+	public PaymentReqDto selectNmemPayInfo(String merchantUid) {
+		return dao.selectNmemPayInfo(merchantUid);
+	}
 }

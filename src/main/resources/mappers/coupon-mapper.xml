@@ -7,7 +7,7 @@
 	INSERT INTO COUPON VALUES(COUPON_SEQ.NEXTVAL, DEFAULT, (SELECT (SYSTIMESTAMP + PERIOD) FROM COUPON_MANAGE 
 	WHERE IDX = (SELECT IDX FROM COUPON_MANAGE WHERE COUPON_CODE = #{couponCode})),
 	(SELECT IDX FROM COUPON_MANAGE WHERE COUPON_CODE = #{couponCode}),
-	(SELECT IDX FROM MEMBER WHERE USERNAME = #{username}))
+	(SELECT IDX FROM MEMBER WHERE USERNAME = #{username}), DEFAULT)
 
 	</insert>
 	
@@ -19,8 +19,8 @@
 	</select>
 	
 	<select id="totalCoupon" resultType="_int">
-	     select count(*) cnt from coupon where coupon_idx = (select idx from coupon_manage where coupon_code = #{couponCode})
-        and member_idx = (select idx from member where username = #{username})
+	      SELECT COUNT(*) FROM COUPON WHERE COUPON_IDX = (SELECT IDX FROM COUPON_MANAGE WHERE COUPON_CODE=#{couponCode})
+		   AND MEMBER_IDX = (SELECT IDX FROM MEMBER WHERE USERNAME = #{username})
 	</select>
 	
 	<select id="countCoupon" resultType="_int">

@@ -217,7 +217,7 @@
 									class="panel panel-default sidebar-menu wow fadeInRight animated animated animated"
 									style="visibility: visible; animation-name: fadeInRight;">
 									<h3 class="panel-title">
-										<button type="button" class="btn btn-outline-primary">1:1
+										<button type="button" id="request" class="btn btn-outline-primary">1:1
 											문의</button>
 										<br>
 										<sec:authorize access="isAuthenticated()">
@@ -364,7 +364,7 @@
 	$('.main-nav').children().eq(2).children().css('color', '#18B4E9');
 
 	$('#historyBtn').on('click', function() {
-		location.href='<%=request.getContextPath()%>/profile/reservation/${memberinfo.idx}';
+		location.href='<%=request.getContextPath()%>/profile/history';
 	});
 		$('#updateinfoBtn').on('click', function() {
 			location.href="${pageContext.request.contextPath}/member/profile/update";
@@ -380,6 +380,9 @@
 		$("#coupon").on("click", function(){
 			location.href="${pageContext.request.contextPath}/coupon";
 			
+		});
+		$('#request').on('click', function() {
+			location.href='<%=request.getContextPath()%>/request';
 		});
 		
 	
@@ -457,10 +460,21 @@
 				data:{"couponCode": couponCode},
 				success:function(result){
 						if(result==1){
-							alert("등록완료")
-							location.reload();
+							swal.fire({
+				      			title : "쿠폰등록완료!",
+				      			 text: '쿠폰이 성공적으로 등록되었습니다 :)',
+				      		    icon  : "success",
+				      		    closeOnClickOutside : false
+				      		}).then(function(){
+				      			location.reload();
+				      		});
 						}else{
-							swal.fire("중복쿠폰","이미 쿠폰이 존재합니다!","error");
+							swal.fire({
+				      			title : "쿠폰등록실패",
+				      			 text: '쿠폰 번호를 다시 입력하세요',
+				      		    icon  : "error",
+				      		    closeOnClickOutside : false
+				      		})
 							
 							
 						}

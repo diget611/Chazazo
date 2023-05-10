@@ -49,14 +49,18 @@ public class CouponManageController {
 	public int insertCoupon( String couponCode, Principal prin) {
 		System.out.println("*********" + couponCode);
 		String username = prin.getName();
-		CouponReqDto dto = new CouponReqDto();
-		dto.setCouponCode(couponCode);
-		dto.setUsername(username);
-		int totalCount = cService.totalCoupon(dto);
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("username", username);
+		map.put("couponCode", couponCode);
+	
+		int totalCount = cService.totalCoupon(map);
+		
 		System.out.println(totalCount);
+		
 		int count = cmService.countCouponCode(couponCode);
 		if(totalCount == 0 && count == 1) {
-			cService.insertCoupon(dto);
+			cService.insertCoupon(map);
 			return 1;
 		}
 		return 0;

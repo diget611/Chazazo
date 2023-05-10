@@ -68,8 +68,13 @@
 															<input type="text" style="font-size:13px; width:200px;" value="${review.name}">
 														</div>
 														<small class=${review.score }></small><label >&nbsp; ${review.createdate}</label>&nbsp;&nbsp;
-														<input data-idx="${review.idx}" data-recommend="${review.recommend}" src="<%=request.getContextPath()%>/resources/garoestate/assets/img/icon/like.png"
-															class="likebtn" type="image" style=" width:55px;">${review.recommend}
+															<c:if test="${empty info.name}">
+																<input src="<%=request.getContextPath()%>/resources/garoestate/assets/img/icon/like.png" type="image" style=" width:55px;">${review.recommend}
+															</c:if>
+															<c:if test="${not empty info.name }">
+																<input data-idx="${review.idx}" data-recommend="${review.recommend}" src="<%=request.getContextPath()%>/resources/garoestate/assets/img/icon/like.png"
+																	class="likebtn" type="image" style=" width:55px;">${review.recommend}
+															</c:if>
 													</div>
 													<div>
 														<textarea id="reviewOne" class="review_content"  maxlength="100" style="height:auto; resize: none; width:80%; font-size:18px;"autofocus disabled>${review.content}</textarea>

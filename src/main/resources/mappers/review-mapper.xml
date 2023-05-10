@@ -61,7 +61,7 @@
 	</select>
 	
 	<select id="checkResv" resultType="_int">
-	 	SELECT COUNT(*) FROM PAYMENT WHERE MEMBER_IDX = #{memberIdx} and VEHICLE_IDX = #{vehicleIdx}
+	 	SELECT COUNT(*) FROM PAYMENT WHERE MEMBER_IDX = #{memberIdx} AND VEHICLE_IDX = #{vehicleIdx} AND STATE =0
 	</select>
 	
 	<update id="updateReviewStatus" parameterType="reviewDto">

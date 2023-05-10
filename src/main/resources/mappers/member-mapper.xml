@@ -34,7 +34,7 @@
 		VALUES(MEMBER_SEQ.NEXTVAL, #{username}, #{password}, DEFAULT, DEFAULT)
 	</insert>
 	
-	<insert id="insertInfo" parameterType="memberInfoReqDto">
+	<insert id="insertInfo" parameterType="memberReqDto">
 		INSERT INTO MEMBER_INFO
 		VALUES(MEMBER_SEQ.CURRVAL, #{name}, #{gender}, #{birth}, #{phoneNumber}, #{license}, #{email}, SYSTIMESTAMP, DEFAULT)
 	</insert>

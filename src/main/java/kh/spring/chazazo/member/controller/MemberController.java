@@ -11,6 +11,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -20,7 +21,6 @@ import org.springframework.web.servlet.ModelAndView;
 import kh.spring.chazazo.member.model.dto.MemberReqDto;
 
 import kh.spring.chazazo.common.email.MailSendService;
-import kh.spring.chazazo.member.model.dto.MemberInfoReqDto;
 import kh.spring.chazazo.member.model.dto.MemberInfoRespDto;
 import kh.spring.chazazo.member.model.service.MemberService;
 import kh.spring.chazazo.payment.model.service.PaymentService;
@@ -81,14 +81,9 @@ public class MemberController {
 	}
 
 	@PostMapping("/register")
-	public ModelAndView insertMember(ModelAndView mv, MemberReqDto memberDto, MemberInfoReqDto memberInfoDto) {
-		int result = mService.insert(memberDto, memberInfoDto);
-		if (result > 0) {
-			mv.setViewName("redirect:/member/login");
-		} else {
-			mv.setViewName("redirect:/");
-		}
-		return mv;
+	public int insertMember(@RequestBody MemberReqDto memberDto) {
+		int result = mService.insert(memberDto);
+		return result;
 	}
 
 	@GetMapping("/register/exist")

@@ -9,7 +9,6 @@ import org.springframework.stereotype.Repository;
 
 import kh.spring.chazazo.member.model.dto.MemberReqDto;
 
-import kh.spring.chazazo.member.model.dto.MemberInfoReqDto;
 import kh.spring.chazazo.member.model.dto.MemberInfoRespDto;
 
 @Repository
@@ -24,7 +23,7 @@ public class MemberDao {
 	}
 	
 	// 회원가입 시 유저 정보 입력
-	public int insertInfo(MemberInfoReqDto dto) {
+	public int insertInfo(MemberReqDto dto) {
 		return sqlSession.insert("member.insertInfo", dto);
 	}
 	

@@ -13,7 +13,6 @@ import kh.spring.chazazo.coupon.dao.CouponDao;
 import kh.spring.chazazo.member.model.dao.MemberDao;
 import kh.spring.chazazo.member.model.dto.MemberReqDto;
 
-import kh.spring.chazazo.member.model.dto.MemberInfoReqDto;
 import kh.spring.chazazo.member.model.dto.MemberInfoRespDto;
 
 @Service
@@ -28,12 +27,12 @@ public class MemberServiceImp implements MemberService {
 
 	@Override
 	@Transactional
-	public int insert(MemberReqDto memberDto, MemberInfoReqDto memberInfoDto) {
+	public int insert(MemberReqDto memberDto) {
 		String encodingPass = bcryptPasswordEncoder.encode(memberDto.getPassword());
 		memberDto.setPassword(encodingPass);
 		int result = dao.insert(memberDto);
 		if(result == 1) {
-			dao.insertInfo(memberInfoDto);
+			dao.insertInfo(memberDto);
 			cDao.insertWelcomeCoupon();
 		}
 		return result;	

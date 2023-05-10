@@ -10,8 +10,12 @@ public class MemberReqDto {
 	
 	private String username;
 	private String password;
-	private int enabled;
-	private String auth;
+	private String name;
+	private int gender;
+	private String birth;
+	private String phoneNumber;
+	private String license;
+	private String email;
 	
 	public void setPassword(String password) {
 		this.password = password;

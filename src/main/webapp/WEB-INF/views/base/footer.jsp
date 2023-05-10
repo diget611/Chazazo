@@ -9,20 +9,15 @@
 			</div>
 			<div class="bottom-menu pull-right">
 				<ul>
-					<li><a class="wow fadeInUp animated animated" href="#"
+					<li><a class="wow fadeInUp animated animated" href="<%=request.getContextPath() %>/"
 						data-wow-delay="0.2s"
 						style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInUp;">Home</a></li>
-					<li><a class="wow fadeInUp animated animated" href="#"
-						data-wow-delay="0.3s"
-						style="visibility: visible; animation-delay: 0.3s; animation-name: fadeInUp;">Property</a></li>
-					<li><a class="wow fadeInUp animated animated" href="#"
+					<li><a class="wow fadeInUp animated animated" href="<%=request.getContextPath() %>/inquiry"
 						data-wow-delay="0.4s"
 						style="visibility: visible; animation-delay: 0.4s; animation-name: fadeInUp;">Faq</a></li>
-					<li><a class="wow fadeInUp animated animated" href="#"
-						data-wow-delay="0.6s"
-						style="visibility: visible; animation-delay: 0.6s; animation-name: fadeInUp;">Contact</a></li>
 				</ul>
 			</div>
 		</div>
 	</div>
 </div>
+

@@ -50,8 +50,7 @@
 					<div class="box-for overflow" style="width: 800px; margin: 0 auto;">
 						<div class="col-md-12 col-xs-12 login-blocks" style="padding: 20px 40px 20px 40px;">
 							<h2>회원가입 :</h2>
-							<form action="<%=request.getContextPath() %>/member/register"
-								method="post" onsubmit="return checkForm()">
+							<form>
 								<div class="form-group">
 									<label>아이디</label>
 									<div class="row">
@@ -124,7 +123,7 @@
 									</div>
 								</div>
 								<div class="text-center" style="margin-top: 30px;">
-									<button type="submit" class="btn btn-default" style="border-radius: 2px;">회원가입</button>
+									<button type="button" id="testBtn" class="btn btn-default" style="border-radius: 2px;">회원가입</button>
 								</div>
 							</form>
 						</div>
@@ -147,6 +146,8 @@
 		// 이메일 인증 번호
 		var certNum = 0;
 		
+		$('#testBtn').on('click', checkForm);
+		
 		function checkForm(){
 			let testId = /^[a-z]{1}[a-z0-9_-]{4,19}$/;
 			let testPass = /^(?=.*\d)(?=.*[a-z])(?=.*[!@#$%^&\*])[\da-zA-Z!@#$%^&\*]{8,30}$/;
@@ -157,18 +158,58 @@
 			let testEmail = /([!#-'*+-9=?A-Z^-~-]+(\.[!#-'*+-9=?A-Z^-~-]+)*|\"\(\[\]!#-[^-~ \t]|(\\[\t -~])+\")@([!#-'*+-9=?A-Z^-~-]+(\.[!#-'*+-9=?A-Z^-~-]+)*|\[[\t -Z^-~]*])/;
 			
 			if(allowRegister == 0 || checkDupId == 0 || checkEmailCert == 0 || checkPass == 0){
-				return false;
+				swal("에러", "회원가입 양식을 확인해주세요.", "error");
 			} else if($('[name=username]').val() == '' | $('[name=password]').val() == '' | $('[name=name]').val() == ''
 			| $('[name=birth]').val() == '' | $('[name=gender]').val() == '' | $('[name=phonNumber]').val() == ''
-			| $('[name=license]').val() == '' | $('[name=email]').val() == '' | $('[name=checkEmail]'.val() == '')) {
-				return false;
+			| $('[name=license]').val() == '' | $('[name=email]').val() == '' | $('[name=checkEmail]').val() == '') {
+				swal("에러", "회원가입 양식을 확인해주세요.", "error");
 			} else if(!testId.test($('[name=username]').val()) | !testPass.test($('[name=password]').val())
 			| !testName.test($('[name=name]').val()) | !testBirth.test($('[name=birth]').val())
 			| !testPhone.test($('[name=phoneNumber]').val()) | !testLicense.test($('[name=license]').val())
 			| !testEmail.test($('[name=email]').val())) {
-				return false;	
+				swal("에러", "회원가입 양식을 확인해주세요.", "error");
 			} else {
-				return true;
+				let username = $('[name=username]').val();
+				let password = $('[name=password]').val();
+				let name = $('[name=name]').val();
+				let gender = $('[name=gender]').val();
+				let birth = $('[name=birth]').val();
+				let phoneNumber = $('[name=phoneNumber]').val();
+				let license = $('[name=license]').val();
+				let email = $('[name=email]').val();
+				
+				let data = {
+						username : username,
+						password : password,
+						name : name,
+						gender : gender,
+						birth : birth,
+						phoneNumber : phoneNumber,
+						license : license,
+						email : email
+				}
+				$.ajax({
+					url: '${pageContext.request.contextPath}/member/register',
+					type: 'post',
+					data: JSON.stringify(data),
+					contentType: "application/json; charset=utf-8",
+					success: function(result) {
+						if(result == 1) {
+							swal({
+			        			title : "회원 가입을 완료했습니다.",
+			        		    icon  : "success",
+			        		    closeOnClickOutside : false
+			        		}).then(function(){
+			        			location.href='${pageContext.request.contextPath}/';
+			        		});
+						} else {
+							swal("실패", "회원 가입 과정에 오류가 발생했습니다. 확인 후 다시 시도해 주세요.", "error");
+						}
+					},
+					error: function() {
+						swal("에러", "응답에 오류가 있습니다. 확인 후 다시 시도해 주세요.", "error");
+					}
+				});
 			}
 		}
 		
@@ -248,7 +289,7 @@
 				success: function(result){
 					let testEmail = /([!#-'*+-9=?A-Z^-~-]+(\.[!#-'*+-9=?A-Z^-~-]+)*|\"\(\[\]!#-[^-~ \t]|(\\[\t -~])+\")@([!#-'*+-9=?A-Z^-~-]+(\.[!#-'*+-9=?A-Z^-~-]+)*|\[[\t -Z^-~]*])/;
 					if(email != null && testEmail.test(email)) {
-						alert("인증번호가 발송되었습니다.")
+						swal("발송 완료", "이메일로 인증번호를 발송하였습니다.", "success");
 						$('[name=email]').attr('readonly', true);
 						$('#checkEmailBtn').attr('disabled', true);
 						$('#confirmEmailBtn').attr('disabled', false);

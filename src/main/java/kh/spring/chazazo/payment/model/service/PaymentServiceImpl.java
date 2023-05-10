@@ -50,10 +50,10 @@ public class PaymentServiceImpl implements PaymentService {
 	
 
 	@Override
-	public List<PaymentReqDto> ReservationList(int idx) {
-		return null;
+	public List<PaymentReqDto> ReservationList(String username){
+		return dao.ReservationList(username);
 	}
-
+	
 	@Override
 	public PaymentReqDto ReservationOne(int idx) {
 		return dao.ReservationOne(idx);
@@ -69,5 +69,26 @@ public class PaymentServiceImpl implements PaymentService {
 		int result = dao.deleteReserv(idx);
 		int result1 = dao.reissueCoupon(idx);
 		return result;
+	}
+
+
+
+	@Override
+	public List<PaymentReqDto> allResList(String username) {
+		return dao.allResList(username);
+	}
+
+
+
+	@Override
+	public List<PaymentReqDto> watingResList(String username) {
+		return dao.watingResList(username);
+	}
+
+
+
+	@Override
+	public List<PaymentReqDto> cancelResList(String username) {
+		return dao.cancelResList(username);
 	}
 }

@@ -50,8 +50,7 @@ public class MemberController {
 	private PasswordEncoder passwordEncoder;
 	@Autowired
 	private PaymentService pService;
-	@Autowired
-	private PaymentService aService;
+	
 
 
     
@@ -84,7 +83,6 @@ public class MemberController {
 			
 			String loginId = prin.getName();
 			mv.addObject("memberinfo", mService.selectMypageOne(loginId));
-			
 			mv.addObject("reservation", pService.selectList(loginId));
 			
 			mv.setViewName("member/mypage");

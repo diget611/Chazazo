@@ -399,9 +399,12 @@
 					</section>
 					<hr class="my-2">
 					<div class="text-center space-1 dc-none dc-lg-block">
-					<button type="button" class="js-vpr-btn-go-main btn btn-wide btn-pill mx-auto px-6 btn-primary" id="delReserv-btn">예약 취소하기</button>
-							</div>
-							
+						<button type="button" class="js-vpr-btn-go-main btn btn-wide btn-pill mx-auto px-6 btn-primary" id="delReserv-btn">예약 취소하기</button>
+					</div>
+					<div class="text-center space-1 dc-none dc-lg-block">
+						<button type="button" class="js-vpr-btn-go-main btn btn-wide btn-pill mx-auto px-6 btn-primary" id="review-btn">리뷰 쓰러가기</button>
+					</div>
+									
 							</div>
 							<div id="content" style="display:none;">
 							<!--  
@@ -434,7 +437,8 @@
 							</c:forEach>
 						</div>
 							-->
-							삭제성공
+							예약 취소 완료!! 
+							결제 취소는 1~2일이내 처리됩니다.
 							</div>
 					</section>
 				</div>
@@ -456,6 +460,12 @@
 
 	$('#bookmark').on('click', function() {
 		location.href='<%=request.getContextPath()%>/profile/favorites';
+	});
+	
+	
+	$('#review-btn').on('click', function() {
+		var idx = '<c:out value="${reservation.vehicleIdx}"/>';
+		location.href='${pageContext.request.contextPath}/carlist/' + idx;
 	});
 	
 	$('#delReserv-btn').on('click', function() {

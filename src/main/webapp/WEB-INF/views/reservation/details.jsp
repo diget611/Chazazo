@@ -373,7 +373,7 @@
 	            // 결제가 완료되었을 떄 결제 정보를 뜨게 만듬
 	            var msg = '결제 금액 : ' + rsp.paid_amount +'원';
 	            msg += '카드 승인번호 : ' + rsp.apply_num;
-	            paid(); //결제 정보 저장
+	            paid(merchantUid); //결제 정보 저장
 	            swal({
 	            	title : "예약이 완료되었습니다",
 	            	icon  : "success",

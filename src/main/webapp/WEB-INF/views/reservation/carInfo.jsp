@@ -139,13 +139,6 @@ var ckBirth = 0;
 var ckPhone = 0;
 var ckLicense = 0;
 var ckEmail = 0;
-//비회원,회원 식별값 주기
-if(useridx !== '') {
-	var ismember ='1';
-} else {
-	var ismember ='0';
-}
-
 
 
 	$('.main-nav').children().eq(0).children().css('color', '#18B4E9')

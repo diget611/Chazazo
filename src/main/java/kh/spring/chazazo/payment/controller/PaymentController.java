@@ -82,6 +82,7 @@ private AdminService aService;
 	//결제정보 저장
 	@PostMapping("/payment/paid")
 	public int insertPayInfo(@RequestBody PaymentReqDto data, Principal prin) {
+		System.out.println("ㅎㅎㅎㅎㅎ"+data);
 		int isMember = 0;
 		if(prin == null) {
 			isMember = 0;

@@ -483,7 +483,7 @@
 						    if (result.isConfirmed) { // 만약 모달창에서 confirm 버튼을 눌렀다면
 						    //	$('#hideReser').hide();
 						   	//	canclePay();
-						    	Swal.fire('예약 취소 완료 ', ' 예약이 취소되었습니다. ', 'success');
+						    	Swal.fire('예약 취소가 접수되었습니다 ', ' 취소완료까지 영업일 기준 3일 정도 소요될 수 있습니다 . ', 'success');
 						    	$('#reservationList').hide();
 						    	$('#content').show();
 						    	

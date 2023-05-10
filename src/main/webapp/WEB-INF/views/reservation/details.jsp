@@ -396,13 +396,14 @@
 	//카카오페이 결제
 	function kakaopay() {
 	    var IMP = window.IMP;
+	    var merchantUid ='merchant_' + new Date().getTime();
 	    IMP.init("imp01440251");
 	    // 원포트 관리자 페이지 -> 내정보 -> 가맹점식별코드
 	    // ''안에 띄어쓰기 없이 가맹점 식별코드를 붙여넣어주세요. 안그러면 결제창이 안뜹니다.
 	    IMP.request_pay({
 	        pg: 'kakaopay',  // 실제 계약 후에는 실제 상점아이디로 변경
 	        pay_method: 'card', // 'card'만 지원됩니다.
-	        merchant_uid: 'merchant_' + new Date().getTime(), // 상점에서 관리하는 주문 번호
+	        merchant_uid: merchantUid, // 상점에서 관리하는 주문 번호
 	        name: '차자조 테스트 결제', // 상품 이름
 	        amount: 100, // 결제창에 표시될 금액. 실제 승인이 이뤄지지는 않습니다.
 	        buyer_email: '${info.email }',
@@ -416,7 +417,7 @@
 	            // 결제가 완료되었을 떄 결제 정보를 뜨게 만듬
 	            var msg = '결제 금액 : ' + rsp.paid_amount +'원';
 	            msg += '카드 승인번호 : ' + rsp.apply_num;
-	            paid(); //결제 정보 저장
+	            paid(merchantUid); //결제 정보 저장
 	            swal({
 	            	title : "예약이 완료되었습니다",
 	            	icon  : "success",
@@ -436,7 +437,8 @@
 	
 	
 	//결제 성공시 결제 정보 저장
-	function paid(){
+	function paid(merchantUid){
+		var uid = merchantUid;
 		var returnval = $('#returnSelect option:selected').val();
 		var finalprice = parseInt($('#finalprice').val());
 		var caridx = $('#caridx').val();
@@ -519,7 +521,8 @@
 					"phoneNumber" :phoneval,
 					"license" :license,
 					"email": mailval,
-					"couponIdx" :couponIdx
+					"couponIdx" :couponIdx,
+					"merchantUid":uid
 	          };
 		
 		  $.ajax({

@@ -35,7 +35,11 @@
     -- 비회원의 결제 정보 저장
         INSERT INTO NMEMPAYMENT(PAYMENT_IDX, NAME, BIRTH, PHONE_NUMBER, LICENSE, EMAIL) 
 		VALUES(PAYMENT_SEQ.CURRVAL, #{name}, #{birth}, #{phoneNumber}, #{license}, #{email})
-
+    -- 취소 접수 
+         UPDATE PAYMENT SET STATE = 1 , CANCEL_DATE = TO_CHAR(SYSDATE, 'YYYY-MM-DD') WHERE IDX = #{idx} 
+    -- 취소 접수하면 쿠폰 재발급
+        UPDATE COUPON SET STATUS = 0 WHERE IDX = (SELECT COUPON_IDX FROM PAYMENT WHERE IDX = #{idx})
+        
 -- ReviewController
     --해당 차량에 대한 리뷰 목록 조회
     	SELECT * FROM REVIEW R LEFT OUTER JOIN MEMBER_INFO M ON R.MEMBER_IDX = M.IDX

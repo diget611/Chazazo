@@ -1,6 +1,7 @@
 package kh.spring.chazazo.coupon.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,12 +18,12 @@ public class CouponDao {
 		return sqlSession.selectList("coupon.selectCoupon",idx);
 	}
 
-	public int insertCoupon(CouponReqDto dto) {
-		return sqlSession.insert("coupon.insertCoupon", dto);
+	public int insertCoupon(Map<String, Object> map) {
+		return sqlSession.insert("coupon.insertCoupon", map);
 	}
 	
-	public int totalCoupon(CouponReqDto dto) {
-		return sqlSession.selectOne("coupon.totalCoupon",dto);
+	public int totalCoupon(Map<String, Object> map) {
+		return sqlSession.selectOne("coupon.totalCoupon",map);
 	}
 	
 	public int insertWelcomeCoupon() {

@@ -27,6 +27,9 @@
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/garoestate/assets/css/price-range.css">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/garoestate/assets/css/style.css">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/garoestate/assets/css/responsive.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
 
 <script src="<%=request.getContextPath()%>/resources/garoestate/assets/js/modernizr-2.6.2.min.js"></script>
 <script src="<%=request.getContextPath()%>/resources/garoestate/assets/js/jquery-1.10.2.min.js"></script>
@@ -219,11 +222,23 @@ function makeOutListener(infowindow) {
 			success: function(result){
 				console.log(result);
 				if(result == 0){
-					alert("찜완료");
-					history.go();
+					swal.fire({
+		      			title : "찜하기",
+		      			 text: '관심지점 등록이 완료되었습니다',
+		      		    icon  : "success",
+		      		    closeOnClickOutside : false
+		      		}).then(function(){
+		      			location.reload();
+		      		});
 				}else{
-					alert("찜제거");
-					history.go();
+					swal.fire({
+		      			title : "찜하기 해제",
+		      			 text: '괸심지점 등록이 해제되었습니다',
+		      		    icon  : "success",
+		      		    closeOnClickOutside : false
+		      		}).then(function(){
+		      			location.reload();
+		      		});
 				}
 					
 				},

@@ -134,7 +134,7 @@
 						<div class="blog-asside-right" >
 							<div class="panel panel-default sidebar-menu wow fadeInRight animated animated animated" style="visibility: visible; animation-name: fadeInRight;">
 									<h3 class="panel-title">
-									<button type="button" class="btn btn-outline-primary">1:1 문의</button><br>
+									<button type="button" id="request" class="btn btn-outline-primary">1:1 문의</button><br>
 										<button id="coupon" type="button" class="btn btn-outline-primary">쿠폰 관리</button><br>
 										<button type="button" class="btn btn-outline-primary" name="deleteBtn">회원탈퇴</button></h3>
 								
@@ -155,11 +155,11 @@
 						<div class="text-center">
 							<div class="input-group input-group-outline my-3"style="margin-left:250px;">
 								<label>비밀번호 확인</label>
-								<input type="password" id="passwordCheck" class="form-control">
+								<input type="password" id="passwordCheck" class="form-control" >
 							</div>
 						</div>
 						<div class="text-center">
-							<button class="btn bg-gradient-primary w-100 my-4 mb-2" id="checkPwd"> 비밀번호 확인</button>
+							<button class="btn bg-gradient-primary w-100 my-4 mb-2 " id="checkPwd"> 비밀번호 확인</button>
 						</div>
 					</div> 
 					
@@ -226,7 +226,7 @@
 	
 
 	$('#historyBtn').on('click', function() {
-		location.href='<%=request.getContextPath()%>/profile/reservation/${memberinfo.idx}';
+		location.href="${pageContext.request.contextPath}/profile/history";
 	});
 		$('#updateinfoBtn').on('click', function() {
 			location.href="${pageContext.request.contextPath}/member/profile/update";
@@ -243,11 +243,21 @@
 			location.href="${pageContext.request.contextPath}/coupon";
 			
 		});
+		$('#request').on('click', function() {
+			location.href='<%=request.getContextPath()%>/request';
+		});
 		
 	
 		$('#bookmark').on('click', function() {
-			location.href='<%=request.getContextPath()%>/profile/favorites';
+			location.href='${pageContext.request.contextPath}/profile/favorites';
 		});
+		
+		$('#passwordCheck').on('keypress', function(e){
+			  if(e.keyCode == '13'){
+			  	$('#checkPwd').click();
+			  }
+			});
+		
 		
 		$('#checkPwd').click(function(){
 			const checkPassword = $('#passwordCheck').val();
@@ -256,7 +266,7 @@
 			}else{
 				$.ajax({
 					type :"GET",
-					 url: "<%=request.getContextPath()%>/member/checkPwd",
+					 url: "${pageContext.request.contextPath}/member/checkPwd",
 		             data: {'checkPassword': checkPassword},
 		             datatype: "text",
 		             success: function(result) {

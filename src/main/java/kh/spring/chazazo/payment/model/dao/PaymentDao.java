@@ -19,8 +19,14 @@ public class PaymentDao {
 	
 
 	//예약내역 리스트  
-	public List<PaymentReqDto> ReservationList(int idx){
-		return session.selectList("payment.ReservationOne",idx);
+	public List<PaymentReqDto> ReservationList(String username){
+		return session.selectList("payment.resList",username);
+	}
+	public List<PaymentReqDto> watingResList(String username){
+		return session.selectList("payment.watingResList",username);
+	}
+	public List<PaymentReqDto> cancelResList(String username){
+		return session.selectList("payment.cancelResList",username);
 	}
 	
 	//예약상세  
@@ -54,13 +60,16 @@ public class PaymentDao {
 		return session.selectOne("payment.reservLocation", idx);
 	}
 	
+	//마이페이지 예약완료 내역
 	public List<PaymentReqDto> selectList(String username) {
-		
 		return session.selectList("payment.resList", username);
 	}
 	
-
-
+	//전체 예약내역
+	public List<PaymentReqDto> allResList(String username) {
+	    return session.selectList("payment.allResList", username);
+	}
+	
 	public int insertPayInfo(PaymentReqDto data) {
 		return session.insert("payment.insertPayInfo", data);
 	}

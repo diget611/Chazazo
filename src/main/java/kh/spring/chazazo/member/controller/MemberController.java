@@ -37,7 +37,7 @@ public class MemberController {
 	private PasswordEncoder passwordEncoder;
 	@Autowired
 	private PaymentService pService;
-	
+
 	@GetMapping
 	public ModelAndView viewMemberList(ModelAndView mv) {
 		// 관리자 회원 리스트 조회
@@ -66,7 +66,6 @@ public class MemberController {
 			
 			String loginId = prin.getName();
 			mv.addObject("memberinfo", mService.selectMypageOne(loginId));
-			
 			mv.addObject("reservation", pService.selectList(loginId));
 			
 			mv.setViewName("member/mypage");

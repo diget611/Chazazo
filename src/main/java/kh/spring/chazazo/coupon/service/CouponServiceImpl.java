@@ -1,6 +1,7 @@
 package kh.spring.chazazo.coupon.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,13 +22,13 @@ public class CouponServiceImpl implements CouponService {
 	}
 
 	@Override
-	public int insertCoupon(CouponReqDto dto) {
-		return dao.insertCoupon(dto);
+	public int insertCoupon(Map<String, Object> map) {
+		return dao.insertCoupon(map);
 	}
 
 	@Override
-	public int totalCoupon(CouponReqDto dto) {
-		return dao.totalCoupon(dto);
+	public int totalCoupon(Map<String, Object> map) {
+		return dao.totalCoupon(map);
 	}
 	
 	@Override

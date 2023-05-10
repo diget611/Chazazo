@@ -226,7 +226,7 @@ tbody tr:hover {
 									class="panel panel-default sidebar-menu wow fadeInRight animated animated animated"
 									style="visibility: visible; animation-name: fadeInRight;">
 									<h3 class="panel-title">
-										<button type="button" class="btn btn-outline-primary">1:1
+										<button type="button" id="request" class="btn btn-outline-primary">1:1
 											문의</button>
 										<br>
 										<sec:authorize access="isAuthenticated()">
@@ -265,7 +265,7 @@ tbody tr:hover {
 												<thead>
 													<tr>
 														<th scope="row">예약</th>
-														<th scope="row">예약시작날짜</th>
+														<th scope="row">예약날짜</th>
 														<th scope="row">예약상태</th>
 														<th scope="row">차종류</th>
 														<th scope="row">대여지점</th>
@@ -276,17 +276,12 @@ tbody tr:hover {
 													<c:forEach items="${reservation }" var="list">
 														<tr>
 															<td>${list.idx }</td>
-															<td>${list.startDate }</td>
+															<td>${list.paidTime }</td>
 															<c:choose>
 																<c:when test="${list.state eq 0 }">
 																	<td>예약완료</td>
 																</c:when>
-																<c:when test="${list.state eq 1 }">
-																	<td>취소 처리중</td>
-																</c:when>
-																<c:otherwise>
-																	<td>취소 완료</td>
-																</c:otherwise>
+																
 															</c:choose>
 															<td>${list.vehicleModel }</td>
 															<td>${list.rentLocationName }</td>
@@ -385,8 +380,9 @@ tbody tr:hover {
 		
 	
 	$('#historyBtn').on('click', function() {
-		location.href='<%=request.getContextPath()%>/profile/reservation/${memberinfo.idx}';
+		location.href="${pageContext.request.contextPath}/profile/history";
 	});
+	
 		$('#updateinfoBtn').on('click', function() {
 			location.href="${pageContext.request.contextPath}/member/profile/update";
 			
@@ -405,7 +401,7 @@ tbody tr:hover {
 		
 	
 		$('#bookmark').on('click', function() {
-			location.href='<%=request.getContextPath()%>/profile/favorites';
+			location.href='${pageContext.request.contextPath}/profile/favorites';
 		});
 		
 		$('tr').on('click', function() {
@@ -413,6 +409,9 @@ tbody tr:hover {
 			location.href = "${pageContext.request.contextPath}/profile/reservation/" + sss; 
 		})
 				
+		$('#request').on('click', function() {
+			location.href='${pageContext.request.contextPath}/request';
+		});
 		
 		
 		$('#none-Member-history').on('click',content);

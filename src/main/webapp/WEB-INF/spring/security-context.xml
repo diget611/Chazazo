@@ -19,6 +19,7 @@
 			login-processing-url="/member/login-check"
 			login-page="/member/login"
 			default-target-url="/"
+			authentication-failure-url="/member/login/error"
 		/>
 		<security:logout
 			logout-url="/logout"

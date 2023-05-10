@@ -67,6 +67,12 @@ public class MemberController {
 		mv.setViewName("member/login");
 		return mv;
 	}
+	
+	@GetMapping("/login/error")
+	public ModelAndView viewLoginError(ModelAndView mv) {
+		mv.setViewName("member/loginerror");
+		return mv;
+	}
 
 	// 마이페이지에 들어가는 url
 	@GetMapping("/profile")

@@ -53,7 +53,7 @@
 				makeList(result);
 			},
 			error: function() {
-				alert('에러');
+				 swal("에러", "응답에 오류가 있습니다. 확인 후 다시 시도해 주세요.", "error");
 			}
 		});
 		
@@ -99,7 +99,7 @@
 				$('.badge').text(result);
 			},
 			error: function() {
-				alert('에러');
+				swal("에러", "응답에 오류가 있습니다. 확인 후 다시 시도해 주세요.", "error");
 			}
 		});
 	}
@@ -126,7 +126,7 @@
 					console.log('업데이트');
 				},
 				error: function() {
-					console.log('에러');
+					swal("에러", "응답에 오류가 있습니다. 확인 후 다시 시도해 주세요.", "error");
 				}
 			})			
 		}

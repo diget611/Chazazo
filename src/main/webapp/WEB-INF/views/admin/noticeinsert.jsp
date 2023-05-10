@@ -13,6 +13,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700&display=swap" rel="stylesheet">
     
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
     <link href="<%=request.getContextPath()%>/resources/dashmin/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
@@ -89,8 +90,6 @@
 				content : content
 		}
 		
-		console.log(data)
-		
 		$.ajax({
 			url: "${pageContext.request.contextPath}/admin/notice/insert",
 			type: "post",
@@ -98,14 +97,19 @@
 			contentType: "application/json; charset=utf-8",
 			success: function(result) {
 				if(result == 1) {
-					alert("공지사항 작성 완료");
-					window.open = '${pageContext.request.contextPath}/admin/notice';
+					swal({
+	        			title : "공지사항을 작성했습니다.",
+	        		    icon  : "success",
+	        		    closeOnClickOutside : false
+	        		}).then(function(){
+	        			window.open = '${pageContext.request.contextPath}/admin/notice';
+	        		});			
 				} else {
-					alert("실패");
+					swal("실패", "공지사항 작성 과정에 오류가 발생했습니다. 확인 후 다시 시도해 주세요.", "error");
 				}
 			},
 			error: function() {
-				alert("에러");
+				swal("에러", "응답에 오류가 있습니다. 확인 후 다시 시도해 주세요.", "error");
 			}
 		});
 	}

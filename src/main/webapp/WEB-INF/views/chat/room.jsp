@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
@@ -64,7 +65,6 @@
 		var stomp = Stomp.over(sock);
 
 		stomp.connect({}, function (){
-		console.log("STOMP Connection")
 
         stomp.subscribe("/sub/chat/room/" + roomIdx, function (chat) {
 			var content = JSON.parse(chat.body);
@@ -152,13 +152,12 @@
 			url: '${pageContext.request.contextPath}/chat/check',
 			type: 'get',
 			success: function(result) {
-				console.log(result);
 				$(top.document).find('#chatCheck').text('');
 				$(top.document).find('#chatCheck').prepend(result);
 				$(top.document).find('.badge').text(result);
 			},
 			error: function() {
-				alert('에러');
+				swal("에러", "응답에 오류가 있습니다. 확인 후 다시 시도해 주세요.", "error");
 			}
 		});
 	}

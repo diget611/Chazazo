@@ -11,6 +11,7 @@
 <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700,800' rel='stylesheet' type='text/css'>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,-25" />
 
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/garoestate/assets/css/normalize.css">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/garoestate/assets/css/font-awesome.min.css">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/garoestate/assets/css/fontello.css">
@@ -87,17 +88,25 @@
 		$('#rememberCheck').on('ifClicked', rememberMe);
 		
 		function rememberMe() {
-			if(confirm('활성화 시 로그인이 유지됩니다. 안전한 환경에서만 활성화하세요.')) {
-				setTimeout(function(){
-		            $('#rememberCheck').iCheck('check');}, 0);
-			} else {
-				setTimeout(function(){
-		            $('#rememberCheck').iCheck('uncheck');}, 0);
-			}
+			swal({
+				  title: "확인",
+				  text: "활성화 시 로그인이 유지됩니다. 안전한 환경에서만 활성화하세요.",
+				  icon: "warning",
+				  buttons: ["취소", "유지"],
+				  dangerMode: true,
+				})
+				.then((willRemember) => {
+				  if (willRemember) {
+					  setTimeout(function(){
+				            $('#rememberCheck').iCheck('check');}, 0);
+				  } else {
+					  setTimeout(function(){
+				            $('#rememberCheck').iCheck('uncheck');}, 0);
+				  }
+				});
 		};
 		
 		$('#register').on('click', function() {
-			console.log('클릭');
 			location.href='${pageContext.request.contextPath}/member/register';
 		});
 		

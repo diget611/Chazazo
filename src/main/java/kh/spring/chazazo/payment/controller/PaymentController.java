@@ -188,9 +188,7 @@ private AdminService aService;
 	//예약삭제
 	@DeleteMapping("/profile/reservation/{idx}")
 	public int deleteReservation(ModelAndView mv, @PathVariable int idx) {
-		
 		int result = pService.deleteReserv(idx);
-		
 		return result;
 	}
 	

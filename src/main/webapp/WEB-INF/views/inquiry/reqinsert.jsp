@@ -12,6 +12,7 @@
 <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700,800' rel='stylesheet' type='text/css'>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,-25" />
 
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/garoestate/assets/css/normalize.css">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/garoestate/assets/css/font-awesome.min.css">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/garoestate/assets/css/fontello.css">
@@ -124,14 +125,19 @@
 				data: JSON.stringify(test),
 				success: function(result) {
 					if(result == 1) {
-						alert('성공');
-						window.location.href = '${pageContext.request.contextPath}/request';
+						swal({
+		        			title : "1:1 문의를 등록했습니다.",
+		        		    icon  : "success",
+		        		    closeOnClickOutside : false
+		        		}).then(function(){
+		        			window.location.href = '${pageContext.request.contextPath}/request';
+		        		});
 					} else {
-						alert('실패');
+						swal("실패", "1:1문의 등록 과정에 오류가 발생했습니다. 확인 후 다시 시도해 주세요.", "error");
 					}
 				},
 				error: function() {
-					alert('에러');
+					swal("에러", "응답에 오류가 있습니다. 확인 후 다시 시도해 주세요.", "error");
 				}
 			});
 		}

@@ -12,6 +12,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700&display=swap" rel="stylesheet">
     
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
     <link href="<%=request.getContextPath()%>/resources/dashmin/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
@@ -108,7 +109,7 @@
 			$('#location').attr('disabled', false);
 			$('#updateBtn').text('수정 완료');
 		} else if($('#price').val <= 0) {
-			alert('값을 확인하세요.');
+			swal("실패", "입력하신 값을 확인하세요.", "error");
 		} else {
 			let idx = $('#idx').val();
 			let price = $('#price').val();
@@ -127,15 +128,20 @@
 				contentType: "application/json; charset=utf-8",
 				success: function(result) {
 					if(result == 1) {
-						alert("차량 수정 완료");
-						opener.parent.location.reload();
-						window.close();
+						swal({
+		        			title : "차량 정보를 수정했습니다.",
+		        		    icon  : "success",
+		        		    closeOnClickOutside : false
+		        		}).then(function(){
+		        			opener.parent.location.reload();
+							window.close();
+		        		});
 					} else {
-						alert('실패');
+						swal("실패", "차량 정보 수정 과정에 오류가 발생했습니다. 확인 후 다시 시도해 주세요.", "error");
 					}
 				},
 				error: function() {
-					alert("에러");
+					swal("에러", "응답에 오류가 있습니다. 확인 후 다시 시도해 주세요.", "error");
 				}
 			});
 		}
@@ -151,15 +157,20 @@
 			data: {idx: idx},
 			success: function(result) {
 				if(result == 1) {
-					alert('차량 삭제 완료');
-					opener.parent.location.reload();
-					window.close(); 
+					swal({
+	        			title : "차량 정보를 삭제했습니다.",
+	        		    icon  : "success",
+	        		    closeOnClickOutside : false
+	        		}).then(function(){
+	        			opener.parent.location.reload();
+						window.close();
+	        		});
 				} else {
-					alert('차량 삭제 실패');
+					swal("실패", "차량 정보 삭제 과정에 오류가 발생했습니다. 확인 후 다시 시도해 주세요.", "error");
 				}
 			},
 			error: function() {
-				alert('에러');
+				swal("에러", "응답에 오류가 있습니다. 확인 후 다시 시도해 주세요.", "error");
 			}
 		})
 	}

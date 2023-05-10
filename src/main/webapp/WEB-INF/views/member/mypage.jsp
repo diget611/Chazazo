@@ -311,8 +311,11 @@ tbody tr:hover {
 																<c:when test="${list.state eq 0 }">
 																	<td>예약완료</td>
 																</c:when>
+																<c:when test="${list.state eq 1 }">
+																	<td>취소 처리중</td>
+																</c:when>
 																<c:otherwise>
-																	<td>결제취소</td>
+																	<td>취소 완료</td>
 																</c:otherwise>
 															</c:choose>
 															<td>${list.vehicleModel }</td>

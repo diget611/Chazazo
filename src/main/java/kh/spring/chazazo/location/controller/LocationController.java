@@ -54,16 +54,11 @@ public class LocationController {
 	//@ResponseBody
 	public ModelAndView selectFavLocation(ModelAndView mv, Principal prin, String username) {
 		// 관심 지점
-		Map<String, Object> result = new HashMap<String,Object>();
+		
 		
 		String loginId = prin.getName();
 		mv.addObject("memberinfo", mService.selectMypageOne(loginId) );
-		result.put("memberinfo", mService.selectMypageOne(loginId));
 		mv.addObject("favLocation", lService.selectLikeLocation(loginId));
-		result.put("favLocation", lService.selectLikeLocation(loginId));
-	
-		System.out.println(result); 
-		System.out.println("favorite!!!!!!!!!!!!!!!!!!!!location");		
 		mv.setViewName("/member/favorites");
 		return mv;
 	
@@ -90,17 +85,20 @@ public class LocationController {
 		return String.valueOf(result);
 	
 	}
-	@DeleteMapping("/deleteLike")
-	public int deleteLike(Principal prin,@RequestParam(name = "locationIdx", required = false) Integer locationIdx) {
-		int result = 0;
+	
+	@DeleteMapping("/deleteLike/{idx}")
+	public int deleteLike(Principal prin ,@PathVariable String idx) {
+		int result = 1;
 		String usename = prin.getName();
 		Map<String, Object> map = new HashMap<String, Object>();
 		
+		int index = Integer.parseInt(idx);
 		map.put("usename", usename);
-		map.put("locationIdx", locationIdx);
+		map.put("locationIdx", index);
 		
 		System.out.println(result);
-		System.out.println(locationIdx);
+		System.out.println(usename);
+		System.out.println(index);
 		result = lService.deleteFav(map);
 		return result;
 	}

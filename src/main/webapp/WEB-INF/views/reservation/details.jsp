@@ -388,7 +388,7 @@
 	        } else {    // 결제가 실패했을 때
 	            // 결제에 실패했을떄 실패메세지와 실패사유를 출력
 	        	   var msg =  rsp.error_msg;
-		           swal("결제가 완료되지 않았습니다",msg, {icon: "error"});
+		           swal("결제가 완료되지 않았습니다",'', {icon: "error"});
 	        }
 	    });
 	}
@@ -429,7 +429,7 @@
 	        } else {    // 결제가 실패했을 때
 	            // 결제에 실패했을떄 실패메세지와 실패사유를 출력
 	           var msg =  rsp.error_msg;
-	            swal("결제가 완료되지 않았습니다",msg, {icon: "error"});
+	            swal("결제가 완료되지 않았습니다",'', {icon: "error"});
 	            }
 	    });
 	}

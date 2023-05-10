@@ -30,6 +30,10 @@ public class VehicleDao {
 		return sqlSession.selectList("vehicle.selectList", search);
 	}
 
+	public List<VehicleReqDto> orderByPrice(Map<String, Object> search) {
+		return sqlSession.selectList("vehicle.orderByPrice", search);
+	}
+	
 	public List<VehicleRespDto> selectDetails(int idx) {
 		return sqlSession.selectList("vehicle.selectDetails",idx);
 	}

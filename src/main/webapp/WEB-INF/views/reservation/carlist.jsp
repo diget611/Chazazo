@@ -150,6 +150,20 @@
 				<!-- 본문 컨텐츠 시작-->
 				<div class="col-md-9 padding-top-40 properties-page">
 					<div class="col-md-12 clear"> 
+						<div class="col-xs-10 page-subheader sorting pl0">
+							<ul class="sort-by-list">
+								<li>
+									<a href="javascript:void(0);" class="order_by_price"  onClick="getList()" id="listbtn">
+										추천순				
+									</a>
+								</li>
+								<li >
+									<a href="javascript:void(0);" class="order_by_price" onClick="orderbyP()" id="orderbtn">
+										낮은 가격순 <i class="fa fa-sort-numeric-desc"></i>						
+									</a>
+								</li>
+							</ul><!--/ .sort-by-list-->
+						</div>
 						<div class="col-s-2 layout-switcher">
 							<a class="layout-list" href="javascript:void(0);"> <i class="fa fa-th-list"></i>  </a>
 							<a class="layout-grid active" href="javascript:void(0);"> <i class="fa fa-th"></i> </a>                          
@@ -302,6 +316,8 @@
 	$('[name=fueltypeIdx]').on('ifChanged',getList);
     window.onload = getList();
       function getList() {
+    	 $('#orderbtn').css('background-color','#f4f4f4');
+    	 $('#listbtn').css('background-color','#18b4e9');
          let carType = [];
          let fuelType = [];
          var keyword = "%"+$('#inputword').val() +"%";
@@ -336,7 +352,41 @@
       }
       
 
-	
+	function orderbyP() {
+		$('#orderbtn').css('background-color','#18b4e9');
+		$('#listbtn').css('background-color','#f4f4f4');
+        let carType = [];
+        let fuelType = [];
+        var keyword = "%"+$('#inputword').val() +"%";
+        page = 1;
+        $('input:checkbox[name=cartypeIdx]:checked').each(function() {
+           carType.push($(this).val());
+        })
+        $('input:checkbox[name=fueltypeIdx]:checked').each(function() {
+       	 fuelType.push($(this).val());
+        })
+        
+        let selectList = {
+       	 "keyword" : keyword,
+           "typeList" : carType,
+           "fuelList" : fuelType
+        };
+        
+        $.ajax({
+           url: "orderByPrice",
+           data: 	selectList,
+           type: 'get',
+           dataType:'json',
+           success: function(result) {
+           	getSearch(result);
+           	carType = [];
+           	fuelType=[];
+           },
+           error: function() {
+           	alert('통신 실패')
+           }
+        });
+	};
       
          function getSearch(result) {
         	 var html = '';

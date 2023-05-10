@@ -68,15 +68,38 @@ public class VehicleController {
 	}
 	
 
+	@GetMapping("/orderByPrice")
+	@ResponseBody
+	public String orderByPrice(ModelAndView mv, @RequestParam(required=false) String page
+			, @RequestParam(value="typeList[]", required=false) List<String> typeList
+			, @RequestParam(value="fuelList[]", required=false) List<String> fuelList, String keyword) {
+		System.out.println("!!!!!typeList!!!!!!!"+typeList);
+		System.out.println("!!!!!fuelList!!!!!!!"+fuelList);
+		Map<String, Object> search = new HashMap<>();
+		search.put("typeList", typeList);
+		search.put("fuelList", fuelList);
+		
+		if(page == null) {
+			page = "1";
+		}
+		int pagenum = Integer.parseInt(page)*BOARD_LIMIT;
+		
+		search.put("page", pagenum);
+		search.put("keyword", keyword);
+		
+		Map<String, Object> result = new HashMap<String,Object>();		
+	
+		result.put("carlist",vService.orderByPrice(search));
+		return new Gson().toJson(result);		
+	}
+	
 	@GetMapping("/searchlist")
 	@ResponseBody
 	public String getList(ModelAndView mv, @RequestParam(required=false) String page
 			, @RequestParam(value="typeList[]", required=false) List<String> typeList
 			, @RequestParam(value="fuelList[]", required=false) List<String> fuelList, String keyword) {
-		System.out.println("*********************");
 		System.out.println("!!!!!typeList!!!!!!!"+typeList);
 		System.out.println("!!!!!fuelList!!!!!!!"+fuelList);
-		System.out.println("*********************");
 		Map<String, Object> search = new HashMap<>();
 		search.put("typeList", typeList);
 		search.put("fuelList", fuelList);

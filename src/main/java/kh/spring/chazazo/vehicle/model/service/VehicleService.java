@@ -14,6 +14,7 @@ public interface VehicleService {
 	public List<VehicleReqDto> selectList(List<String> carTypeList);
 
 	public List<VehicleReqDto> selectList(Map<String, Object> search);
+	public List<VehicleReqDto> orderByPrice(Map<String, Object> search);
 
 
 	public List<VehicleRespDto> selectDetails(int idx);

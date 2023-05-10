@@ -10,69 +10,38 @@
 <title>마이페이지</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
-<link
-	href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700,800'
-	rel='stylesheet' type='text/css'>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700,800' rel='stylesheet' type='text/css'>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,-25" />
+<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/garoestate/assets/css/normalize.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/garoestate/assets/css/font-awesome.min.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/garoestate/assets/css/fontello.css">
+<link href="<%=request.getContextPath()%>/resources/garoestate/assets/fonts/icon-7-stroke/css/pe-icon-7-stroke.css" rel="stylesheet">
+<link href="<%=request.getContextPath()%>/resources/garoestate/assets/fonts/icon-7-stroke/css/helper.css" rel="stylesheet">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/garoestate/assets/css/bootstrap-select.min.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/garoestate/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/garoestate/assets/css/icheck.min_all.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/garoestate/assets/css/price-range.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/garoestate/assets/css/style.css">
+<link rel="stylesheet" 	href="<%=request.getContextPath()%>/resources/garoestate/assets/css/responsive.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
 
-
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/resources/garoestate/assets/css/normalize.css">
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/resources/garoestate/assets/css/font-awesome.min.css">
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/resources/garoestate/assets/css/fontello.css">
-<link
-	href="<%=request.getContextPath()%>/resources/garoestate/assets/fonts/icon-7-stroke/css/pe-icon-7-stroke.css"
-	rel="stylesheet">
-<link
-	href="<%=request.getContextPath()%>/resources/garoestate/assets/fonts/icon-7-stroke/css/helper.css"
-	rel="stylesheet">
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/resources/garoestate/assets/css/bootstrap-select.min.css">
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/resources/garoestate/bootstrap/css/bootstrap.min.css">
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/resources/garoestate/assets/css/icheck.min_all.css">
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/resources/garoestate/assets/css/price-range.css">
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/resources/garoestate/assets/css/style.css">
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/resources/garoestate/assets/css/responsive.css">
-<link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
-
-<script
-	src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
-<script
-	src="<%=request.getContextPath()%>/resources/garoestate/assets/js/modernizr-2.6.2.min.js"></script>
-<script
-	src="<%=request.getContextPath()%>/resources/garoestate/assets/js/jquery-1.10.2.min.js"></script>
-<script
-	src="<%=request.getContextPath()%>/resources/garoestate/bootstrap/js/bootstrap.min.js"></script>
-<script
-	src="<%=request.getContextPath()%>/resources/garoestate/assets/js/bootstrap-select.min.js"></script>
-<script
-	src="<%=request.getContextPath()%>/resources/garoestate/assets/js/bootstrap-hover-dropdown.js"></script>
-<script
-	src="<%=request.getContextPath()%>/resources/garoestate/assets/js/easypiechart.min.js"></script>
-<script
-	src="<%=request.getContextPath()%>/resources/garoestate/assets/js/jquery.easypiechart.min.js"></script>
-<script
-	src="<%=request.getContextPath()%>/resources/garoestate/assets/js/wow.js"></script>
-<script
-	src="<%=request.getContextPath()%>/resources/garoestate/assets/js/icheck.min.js"></script>
-<script
-	src="<%=request.getContextPath()%>/resources/garoestate/assets/js/owl.carousel.min.js"></script>
-<script
-	src="<%=request.getContextPath()%>/resources/garoestate/assets/js/price-range.js"></script>
-<script
-	src="<%=request.getContextPath()%>/resources/garoestate/assets/js/main.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
+<script src="<%=request.getContextPath()%>/resources/garoestate/assets/js/modernizr-2.6.2.min.js"></script>
+<script src="<%=request.getContextPath()%>/resources/garoestate/assets/js/jquery-1.10.2.min.js"></script>
+<script src="<%=request.getContextPath()%>/resources/garoestate/bootstrap/js/bootstrap.min.js"></script>
+<script src="<%=request.getContextPath()%>/resources/garoestate/assets/js/bootstrap-select.min.js"></script>
+<script src="<%=request.getContextPath()%>/resources/garoestate/assets/js/bootstrap-hover-dropdown.js"></script>
+<script src="<%=request.getContextPath()%>/resources/garoestate/assets/js/easypiechart.min.js"></script>
+<script src="<%=request.getContextPath()%>/resources/garoestate/assets/js/jquery.easypiechart.min.js"></script>
+<script src="<%=request.getContextPath()%>/resources/garoestate/assets/js/wow.js"></script>
+<script src="<%=request.getContextPath()%>/resources/garoestate/assets/js/icheck.min.js"></script>
+<script src="<%=request.getContextPath()%>/resources/garoestate/assets/js/owl.carousel.min.js"></script>
+<script src="<%=request.getContextPath()%>/resources/garoestate/assets/js/price-range.js"></script>
+<script src="<%=request.getContextPath()%>/resources/garoestate/assets/js/main.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/resources/css/main.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/main.css">
 <style>
 table {
 	border-top: 1px solid black;
@@ -235,7 +204,7 @@ tbody tr:hover {
 											문의</button>
 										<br>
 										<sec:authorize access="isAuthenticated()">
-											<button type="button" class="btn btn-outline-primary">쿠폰
+											<button id="coupon" type="button" class="btn btn-outline-primary">쿠폰
 												관리</button>
 											<br>
 											<button type="button" class="btn btn-outline-primary"
@@ -328,155 +297,32 @@ tbody tr:hover {
 	<script>
 	$('.main-nav').children().eq(2).children().css('color', '#18B4E9');
 	
-	
+
+	$('#historyBtn').on('click', function() {
+		location.href='<%=request.getContextPath()%>/profile/reservation/${memberinfo.idx}';
+	});
 		$('#updateinfoBtn').on('click', function() {
 			location.href="${pageContext.request.contextPath}/member/profile/update";
 			
 		});
 
-		$('#historyBtn').on('click', function() {
-			location.href="${pageContext.request.contextPath}/member/profile";
+
+		$("#myReview").on("click", function(){
+			location.href="${pageContext.request.contextPath}/myReview";
 			
 		});
 
-		
-		
-		$('#none-Member-history').on('click',content);
-		function content(){
-			$.ajax({
-				url:"${pageContext.request.contextPath}/profile/reservation",
-				type: 'get',
-				dataType:'json',
-				success: function(result){
-					
-					memberResv(result);
-					$('#hideRent').hide();
-				},
-				error: function(){
-					alert("예약내역이 없습니다.");
-				}
-				
-			});
-		};
-		
-		function memberResv(result){
-			var html = '';
-			if(result == 1){
-				html += '			<h4>비회원 예약조회</h4><button type="button" id="test2">테스트</button>';
-				html += '			<form >';
-				html += '			<div class="form-group">';
-				html += '				<label>운전자 이름</label> <input type="text" class="form-control" id ="username" name="name" placeholder="성명을 입력해 주세요">';
-				html += '				<div class="invalid-feedback" id="vsnmr_input_driver_name_invalid_msg" style="display: block;">이름을 입력해 주세요</div>';
-				html += '				</div>';
-				html += '				<div class="form-group">';
-				html += '					<label>예약번호</label> <input type="text" class="form-control"';
-				html += '						name="reservationNumber" id="reservationNumber">';
-				html += '					<div class="invalid-feedback"';
-				html += '						id="vsnmr_input_reserv_num_invalid_msg">예약번호를 입력해 주세요</div>';
-				html += '					<small class="color-blue">예약번호는 문자와 메일로 보내드린 예약내용에 재되어있습니다.</small>';
-				html += '				</div>';
-				html += '				<div class="form-group">';
-				html += '					<label>전화번호</label> <input type="text" id="phone" name="phone" required>';
-				html += '				</div>';
-				html += '				<div class="text-center">';	
-				html += '					<button type="button" class="btn btn-default" name = "noneMember" onclick="noMeberReser()">예약 조회하기</button>';
-				html += '				</div>';
-				html += '			</form>';
+		$("#coupon").on("click", function(){
+			location.href="${pageContext.request.contextPath}/coupon";
 			
-			}	
-			$('#content').html(html);
-		}
+		});
 		
-
-		
-		
-		//비회원 예약 조회
-		function noMeberReser(){
-			var username = $('#username').val();
-			var phoneNumber = $('#phone').val();
-			var reservationNumber = $('#reservationNumber').val();
 	
-			$.ajax({
-				url:"${pageContext.request.contextPath}/profile/nonereservation",
-				type: 'get',
-				dataType:'json',
-				data : {
-						"name":username,
-						"phoneNumber":phoneNumber,
-						"paymentIdx":reservationNumber
-				},
-				success: function(result){
-					getNoneResr(result);
-					console.log(result);
-					
-				},
-				error: function(){
-					alert("예약내역이 없습니다.");
-				}
-				
-			});
-		}
-		
-		
-		function getNoneResr(result){
-			var noneList = result.noneReservation;
-			var html = '';
-			if(noneList == null) {
-				html += '					<p style="text-align: center; font-size: large;"><strong>예약 정보가 없습니다.</strong></p><br>'
-			} else {
-				html += '				<div>'
-				html += '					<h3>'+ result.selectNone.name +'님의 예약내역</h3>'
-				html += '				</div>'
-				html += '						<table>'
-				html += '							<thead>'
-				html += '							<tr>'
-				html += '								<th scope="row">예약번호</th>'
-				html += '								<th scope="row">예약시작날짜</th>'
-				html += '								<th scope="row">예약상태</th>'
-				html += '								<th scope="row">차종류</th>'
-				html += '								<th scope="row">대여지점</th>'
-				html += '								<th scope="row">반납지점</th>'
-				html += '							</tr>'
-				html += '							</thead>'
-				html += '							<tbody>'
-				html += '								<tr>'
-				html += '									<td>' + noneList.idx + '</td>'
-				html += '									<td>' + noneList.startDate + '</td>'
-				html += '									<td>' + noneList.state + '</td>'
-				html += '									<td>' + noneList.vehicleModel+ '</td>'
-				html += '									<td>' + noneList.rentLocationName + '</td>'
-				html += '									<td>' + noneList.returnLocationName + '</td>'
-				html += '								</tr>'
-				html += '							<tbody>'
-				html += '							</table>'
-			}
-			$('#content').html(html);
-			
-		}
+		$('#bookmark').on('click', function() {
+			location.href='<%=request.getContextPath()%>/profile/favorites';
+		});
 		
 
-		function deleteMember(){
-			
-		Swal.fire({
-			   title: '정말로 그렇게 하시겠습니까?',
-			   text: '다시 되돌릴 수 없습니다. 신중하세요.',
-			   icon: 'warning',
-			   
-			   showCancelButton: true, // cancel버튼 보이기. 기본은 원래 없음
-			   confirmButtonColor: '#3085d6', // confrim 버튼 색깔 지정
-			   cancelButtonColor: '#d33', // cancel 버튼 색깔 지정
-			   confirmButtonText: '승인', // confirm 버튼 텍스트 지정
-			   cancelButtonText: '취소', // cancel 버튼 텍스트 지정
-			   
-			   reverseButtons:false// 버튼 순서 거꾸로
-			   
-			}).then(result => {
-			    if (result.isConfirmed) { // 만약 모달창에서 confirm 버튼을 눌렀다면
-			    	delMember();
-			    }
-			});
-		
-		};
 		
 		function delMember(){
 			var username = $('#username').val();
@@ -505,12 +351,7 @@ tbody tr:hover {
 			
 		
 	
-		$("#myReview").on("click", function(){
-			location.href="${pageContext.request.contextPath}/myReview";
-			
-		});
-				
-					
+	
 				
 		
 	</script>

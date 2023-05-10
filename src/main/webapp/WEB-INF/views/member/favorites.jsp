@@ -8,6 +8,7 @@
 <title>나의 관심 지점</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700,800' rel='stylesheet' type='text/css'>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,-25" />
 
@@ -22,11 +23,9 @@
 <link rel="stylesheet"	href="<%=request.getContextPath()%>/resources/garoestate/assets/css/price-range.css">
 <link rel="stylesheet"	href="<%=request.getContextPath()%>/resources/garoestate/assets/css/style.css">
 <link rel="stylesheet"	href="<%=request.getContextPath()%>/resources/garoestate/assets/css/responsive.css">
-<link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
 
-<script
-	src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
 <script	src="<%=request.getContextPath()%>/resources/garoestate/assets/js/modernizr-2.6.2.min.js"></script>
 <script	src="<%=request.getContextPath()%>/resources/garoestate/assets/js/jquery-1.10.2.min.js"></script>
 <script	src="<%=request.getContextPath()%>/resources/garoestate/bootstrap/js/bootstrap.min.js"></script>
@@ -140,7 +139,7 @@
 										<button type="button" class="btn btn-outline-primary">1:1
 											문의</button>
 										<br>
-										<button type="button" class="btn btn-outline-primary">쿠폰
+										<button  id="coupon" type="button" class="btn btn-outline-primary">쿠폰
 											관리</button>
 										<br>
 										<button type="button" class="btn btn-outline-primary">회원탈퇴</button>
@@ -160,7 +159,6 @@
 						<div class="top-guide-section">
 							<div class="box-between">
 								<ul class="lst dot">
-									<li>나의 관심 지점은 최대 5개까지 등록할 수 있습니다.</li>
 									<li>렌터카 예약 시, ‘나의 지점’ 선택을 통해 빠른 지점 선택이 가능합니다.</li>
 								</ul>
 								
@@ -195,7 +193,6 @@
 			<ul>
 				<li>
 					<p class="tit">${like.name }</p>
-					<p class="tit">${like.locationIdx }</p>
 					<div class="cont">
 										<ul class="info-list">
 											<li>
@@ -221,12 +218,9 @@
 											</li>
 										</ul>
 										<div class="btns">
-											<button type="button" class="btn-auto line-red"
-												onclick="locationRentReserv('421','1','');">실시간 예약</button>
-											<button type="button" class="btn-auto line-black"
-												onclick="setBranchInfo('421');">자세히보기</button>
-											<button type="button" class="btn-auto black"
-												onclick="delFn()">삭제</button>
+											
+											<button type="button" class="btn-auto delBtn black"
+												 value="${like.locationIdx }">삭제</button>
 										</div>
 									</div>
 					
@@ -256,38 +250,55 @@
 	<script>
 	
 	$('.main-nav').children().eq(2).children().css('color', '#18B4E9');
-	$('#updateinfoBtn').on('click', function() {
-		location.href='<%=request.getContextPath()%>/member/profile/update';
-		
-	});
 
 	$('#historyBtn').on('click', function() {
-		location.href='<%=request.getContextPath()%>/member/profile';
+		location.href='<%=request.getContextPath()%>/profile/reservation/${memberinfo.idx}';
+	});
+		$('#updateinfoBtn').on('click', function() {
+			location.href="${pageContext.request.contextPath}/member/profile/update";
+			
+		});
+
+
+		$("#myReview").on("click", function(){
+			location.href="${pageContext.request.contextPath}/myReview";
+			
+		});
+
+		$("#coupon").on("click", function(){
+			location.href="${pageContext.request.contextPath}/coupon";
+			
+		});
 		
-	});
 	
-	$('#moveNoneMemberReservation').on('click', function() {
-		location.href='<%=request.getContextPath()%>/profile/reservation';
-	});
-	
-	$('#bookmark').on('click', function() {
-		location.href='<%=request.getContextPath()%>/profile/favorites';
-	});
+		$('#bookmark').on('click', function() {
+			location.href='<%=request.getContextPath()%>/profile/favorites';
+		});
+		
 	
 	$('#totalLocation').on('click', function() {
 		location.href = "${pageContext.request.contextPath}/location/1"; 
 	});
 	
-	function delFn(){
+	$('.delBtn').on('click', function() {
+		var locationIdx = $(this).val();
+		console.log(locationIdx);
 		$.ajax({
-			url:"${pageContext.request.contextPath}/deleteLike", 
+			url:"${pageContext.request.contextPath}/deleteLike/"+locationIdx, 
 			type: 'DELETE',
 			data: {
-				locationIdx : $(this).data("locationIdx"),
+				idx : locationIdx,
 				},
 			success : function(result){
+				console.log(result);
 				if(result == 1){
-					 Swal.fire('삭제  ', '탈퇴합니다 ', 'success');
+					swal.fire({
+		      			title : "관심지점이 삭제되었습니다",
+		      		    icon  : "success",
+		      		    closeOnClickOutside : false
+		      		}).then(function(){
+		      			location.reload();
+		      		});
 				}else{
 					 Swal.fire('취소 ', '취소 ', 'error');
 						
@@ -302,7 +313,7 @@
 		
 		
 		
-	};
+	});
 
 
 	

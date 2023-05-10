@@ -10,6 +10,7 @@
 <title>쿠폰 관리</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700,800' rel='stylesheet' type='text/css'>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,-25" />
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/garoestate/assets/css/normalize.css">
@@ -361,24 +362,27 @@
 
 	<script>
 	$('.main-nav').children().eq(2).children().css('color', '#18B4E9');
-	
+
+	$('#historyBtn').on('click', function() {
+		location.href='<%=request.getContextPath()%>/profile/reservation/${memberinfo.idx}';
+	});
 		$('#updateinfoBtn').on('click', function() {
 			location.href="${pageContext.request.contextPath}/member/profile/update";
 			
 		});
 
-		$('#historyBtn').on('click', function() {
-			location.href="${pageContext.request.contextPath}/member/profile";
-			
-		});
 
-		
-	
 		$("#myReview").on("click", function(){
 			location.href="${pageContext.request.contextPath}/myReview";
 			
 		});
+
+		$("#coupon").on("click", function(){
+			location.href="${pageContext.request.contextPath}/coupon";
+			
+		});
 		
+	
 		$('#bookmark').on('click', function() {
 			location.href='<%=request.getContextPath()%>/profile/favorites';
 		});

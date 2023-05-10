@@ -219,6 +219,9 @@ public class AdminDao {
 	public AdminReservOneRespDto selectReservOne(int idx) {
 		return sqlSession.selectOne("payment.selectOneForAdmin", idx);
 	}
+	public int cancelReservation(int idx) {
+		return sqlSession.update("payment.cancel", idx);
+	}
 	
 	// 채팅
 	public List<AdminChatRoomRespDto> selectChatroomList(Pagination pagination) {

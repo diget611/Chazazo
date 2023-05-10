@@ -102,6 +102,7 @@ public interface AdminService {
 	public int reservCount();
 	public List<AdminReservRespDto> selectReservList(Pagination pagination);
 	public AdminReservOneRespDto selectReservOne(int idx);
+	public int cancelReservation(int idx);
 	
 	// 채팅
 	public List<AdminChatRoomRespDto> selectChatroomList(Pagination pagination);

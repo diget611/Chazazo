@@ -77,19 +77,22 @@
 									<c:when test="${reserv.state eq 0 }">
 										<td>예약완료</td>
 									</c:when>
+									<c:when test="${reserv.state eq 1 }">
+										<td>취소대기</td>
+									</c:when>
 									<c:otherwise>
 										<td>결제취소</td>
 									</c:otherwise>
 								</c:choose>
 								<td>${reserv.finalPrice }</td>
 								<c:choose>
-									<c:when test="${reserv.state eq 0 }">
-										<td>${reserv.paidTime }</td>
-										<td>${reserv.startDate }&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;${reserv.endDate }</td>
-									</c:when>
-									<c:otherwise>
+									<c:when test="${reserv.state eq 2 }">
 										<td>${reserv.cancelDate }</td>
 										<td>-</td>
+									</c:when>
+									<c:otherwise>
+										<td>${reserv.paidTime }</td>
+										<td>${reserv.startDate }&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;${reserv.endDate }</td>
 									</c:otherwise>
 								</c:choose>
 							</tr>

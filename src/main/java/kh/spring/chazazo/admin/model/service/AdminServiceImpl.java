@@ -260,6 +260,10 @@ public class AdminServiceImpl implements AdminService {
 	public AdminReservOneRespDto selectReservOne(int idx) {
 		return dao.selectReservOne(idx);
 	}
+	@Override
+	public int cancelReservation(int idx) {
+		return dao.cancelReservation(idx);
+	}
 	
 	// 채팅
 	@Override

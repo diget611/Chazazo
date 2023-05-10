@@ -152,6 +152,12 @@ public class AdminController {
 		return mv;
 	}
 	
+	@PatchMapping("/reservation/cancel")
+	public int cancelReservation(int idx) {
+		int result = aService.cancelReservation(idx);
+		return result;
+	}
+	
 	// 지점
 	@GetMapping("/location")
 	public ModelAndView viewLocation(ModelAndView mv, @RequestParam(required = false, defaultValue = "1") int page) {

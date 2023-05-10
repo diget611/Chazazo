@@ -54,8 +54,11 @@
 							<c:when test="${reserv.state eq 0 }">
 								<input type="text" class="form-control" id="state" name="state" value="예약 완료" readonly>
 							</c:when>
+							<c:when test="${reserv.state eq 1 }">
+								<input type="text" class="form-control" id="state" name="state" value="취소 대기" readonly>
+							</c:when>
 							<c:otherwise>
-								<input type="text" class="form-control" id="ㅍ" name="state" value="결제 취소" readonly>
+								<input type="text" class="form-control" id="state" name="state" value="결제 취소" readonly>
 							</c:otherwise>
 						</c:choose>
 						<label for="state" class="ps-4">상태</label>
@@ -105,6 +108,11 @@
 						<label for="returnLocation" class="ps-4">반납 지점</label>
 					</div>
 				</div>
+				<c:if test="${reserv.state eq 1 }">
+					<div style="text-align: center;">
+						<button type="button" class="btn btn-primary" style="display: inline-block" id="cancelBtn">취소 확인</button>
+					</div>
+				</c:if>
 			</div>
 		</div>
 	</div>
@@ -115,6 +123,35 @@
 	function resizeWindow(win)    {
 		var hei = win.document.body.offsetHeight + 100;
 		win.resizeTo(500, hei);
+	}
+	
+	$('#cancelBtn').on('click', reservCancel);
+	
+	function reservCancel() {
+		let idx = $('#idx').val();
+		
+		$.ajax({
+			url: '${pageContext.request.contextPath}/admin/reservation/cancel',
+			type: 'patch',
+			data: {idx: idx},
+			success: function(result) {
+				if(result == 1) {
+					swal({
+	        			title : "예약 취소 처리를 완료했습니다.",
+	        		    icon  : "success",
+	        		    closeOnClickOutside : false
+	        		}).then(function(){
+	        			opener.parent.location.reload();
+						window.close();
+	        		});
+				} else {
+					swal("실패", "예약 취소 처리 과정에 오류가 발생했습니다. 확인 후 다시 시도해 주세요.", "error");
+				}
+			},
+			error: function() {
+				swal("에러", "응답에 오류가 있습니다. 확인 후 다시 시도해 주세요.", "error");
+			}
+		})
 	}
 </script>
 </body>

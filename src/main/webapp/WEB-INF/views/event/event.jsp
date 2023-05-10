@@ -8,64 +8,37 @@
 <title>이벤트</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
-<link
-	href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700,800'
-	rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700,800' rel='stylesheet' type='text/css'>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,-25" />
 
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/resources/garoestate/assets/css/normalize.css">
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/resources/garoestate/assets/css/font-awesome.min.css">
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/resources/garoestate/assets/css/fontello.css">
-<link
-	href="<%=request.getContextPath()%>/resources/garoestate/assets/fonts/icon-7-stroke/css/pe-icon-7-stroke.css"
-	rel="stylesheet">
-<link
-	href="<%=request.getContextPath()%>/resources/garoestate/assets/fonts/icon-7-stroke/css/helper.css"
-	rel="stylesheet">
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/resources/garoestate/assets/css/bootstrap-select.min.css">
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/resources/garoestate/bootstrap/css/bootstrap.min.css">
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/resources/garoestate/assets/css/icheck.min_all.css">
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/resources/garoestate/assets/css/price-range.css">
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/resources/garoestate/assets/css/style.css">
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/resources/garoestate/assets/css/responsive.css">
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/garoestate/assets/css/normalize.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/garoestate/assets/css/font-awesome.min.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/garoestate/assets/css/fontello.css">
+<link href="<%=request.getContextPath()%>/resources/garoestate/assets/fonts/icon-7-stroke/css/pe-icon-7-stroke.css" rel="stylesheet">
+<link href="<%=request.getContextPath()%>/resources/garoestate/assets/fonts/icon-7-stroke/css/helper.css" rel="stylesheet">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/garoestate/assets/css/bootstrap-select.min.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/garoestate/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/garoestate/assets/css/icheck.min_all.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/garoestate/assets/css/price-range.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/garoestate/assets/css/style.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/garoestate/assets/css/responsive.css">
 
-<script
-	src="<%=request.getContextPath()%>/resources/garoestate/assets/js/modernizr-2.6.2.min.js"></script>
-<script
-	src="<%=request.getContextPath()%>/resources/garoestate/assets/js/jquery-1.10.2.min.js"></script>
-<script
-	src="<%=request.getContextPath()%>/resources/garoestate/bootstrap/js/bootstrap.min.js"></script>
-<script
-	src="<%=request.getContextPath()%>/resources/garoestate/assets/js/bootstrap-select.min.js"></script>
-<script
-	src="<%=request.getContextPath()%>/resources/garoestate/assets/js/bootstrap-hover-dropdown.js"></script>
-<script
-	src="<%=request.getContextPath()%>/resources/garoestate/assets/js/easypiechart.min.js"></script>
-<script
-	src="<%=request.getContextPath()%>/resources/garoestate/assets/js/jquery.easypiechart.min.js"></script>
-<script
-	src="<%=request.getContextPath()%>/resources/garoestate/assets/js/wow.js"></script>
-<script
-	src="<%=request.getContextPath()%>/resources/garoestate/assets/js/icheck.min.js"></script>
-<script
-	src="<%=request.getContextPath()%>/resources/garoestate/assets/js/owl.carousel.min.js"></script>
-<script
-	src="<%=request.getContextPath()%>/resources/garoestate/assets/js/price-range.js"></script>
-<script
-	src="<%=request.getContextPath()%>/resources/garoestate/assets/js/main.js"></script>
+<script src="<%=request.getContextPath()%>/resources/garoestate/assets/js/modernizr-2.6.2.min.js"></script>
+<script src="<%=request.getContextPath()%>/resources/garoestate/assets/js/jquery-1.10.2.min.js"></script>
+<script src="<%=request.getContextPath()%>/resources/garoestate/bootstrap/js/bootstrap.min.js"></script>
+<script src="<%=request.getContextPath()%>/resources/garoestate/assets/js/bootstrap-select.min.js"></script>
+<script src="<%=request.getContextPath()%>/resources/garoestate/assets/js/bootstrap-hover-dropdown.js"></script>
+<script src="<%=request.getContextPath()%>/resources/garoestate/assets/js/easypiechart.min.js"></script>
+<script src="<%=request.getContextPath()%>/resources/garoestate/assets/js/jquery.easypiechart.min.js"></script>
+<script src="<%=request.getContextPath()%>/resources/garoestate/assets/js/wow.js"></script>
+<script src="<%=request.getContextPath()%>/resources/garoestate/assets/js/icheck.min.js"></script>
+<script src="<%=request.getContextPath()%>/resources/garoestate/assets/js/owl.carousel.min.js"></script>
+<script src="<%=request.getContextPath()%>/resources/garoestate/assets/js/price-range.js"></script>
+<script src="<%=request.getContextPath()%>/resources/garoestate/assets/js/main.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/resources/css/main.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/main.css">
 <style>
 .category {
 	cursor: pointer;

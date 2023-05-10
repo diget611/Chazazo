@@ -42,7 +42,7 @@
 					openSocket(result);
 				},
 				error: function() {
-					alert("에러임");
+					swal("에러", "응답에 오류가 있습니다. 확인 후 다시 시도해 주세요.", "error");
 				}
 			});
 		}
@@ -86,7 +86,22 @@
 			chatRoomList();
 			$('#chatCheck').css('display', 'none');
 		} else {
-			alert('안됨');
+			swal({
+				  title: "에러",
+				  text: "로그인한 회원만 1:1 채팅을 이용할 수 있습니다. 로그인 페이지로 이동하시겠습니까?",
+				  icon: "warning",
+				  buttons: ["취소", "이동"],
+				  dangerMode: true,
+				})
+				.then((willChat) => {
+				  if (willChat) {
+					  setTimeout(function(){
+				            location.href = '${pageContext.request.contextPath}/member/login';}, 0);
+				  } else {
+					  setTimeout(function(){
+						  location.reload();}, 0);
+				  }
+				});
 		}
 	}
 	
@@ -99,11 +114,11 @@
 					roomIdx = result;
 					makeFrame(result);
 				} else {
-					console.log('방 생성 실패');
+					swal("에러", "채팅방 생성에 오류가 있습니다. 잠시 후 다시 시도해 주세요.", "error");
 				}
 			},
 			error: function() {
-				alert('에러');
+				swal("에러", "응답에 오류가 있습니다. 확인 후 다시 시도해 주세요.", "error");
 			}
 		});
 	}
@@ -130,7 +145,7 @@
 				makeList(result);
 			},
 			error: function() {
-				alert('에러');
+				swal("에러", "응답에 오류가 있습니다. 확인 후 다시 시도해 주세요.", "error");
 			}
 		});
 	}
@@ -173,14 +188,19 @@
 			type: 'patch',
 			success: function(result) {
 				if(result == 1) {
-					alert('1:1 상담을 종료하셨습니다.');
-					$('.modal').css('display', 'none');	
+					swal({
+	        			title : "1:1 상담을 종료했습니다.",
+	        		    icon  : "success",
+	        		    closeOnClickOutside : false
+	        		}).then(function(){
+						$('.modal').css('display', 'none');        			
+	        		});
 				} else {
-					alert('오류 발생');
+					swal("에러", "상담 종료 과정에 오류가 발생했습니다. 잠시 후 다시 시도해 주세요.", "error");
 				}
 			},
 			error: function() {
-				alert('에러');
+				swal("에러", "응답에 오류가 있습니다. 확인 후 다시 시도해 주세요.", "error");
 			}
 		});
 		
@@ -197,7 +217,7 @@
 				$('.badge').text(result);
 			},
 			error: function() {
-				alert('에러');
+				swal("에러", "응답에 오류가 있습니다. 확인 후 다시 시도해 주세요.", "error");
 			}
 		});
 	}
@@ -221,10 +241,9 @@
 				type: 'get',
 				async: 'false',	
 				success: function(result) {
-					console.log('업데이트');
 				},
 				error: function() {
-					console.log('에러');
+					swal("에러", "응답에 오류가 있습니다. 확인 후 다시 시도해 주세요.", "error");
 				}
 			})			
 		}

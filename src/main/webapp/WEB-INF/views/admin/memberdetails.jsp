@@ -12,6 +12,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700&display=swap" rel="stylesheet">
     
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
     <link href="<%=request.getContextPath()%>/resources/dashmin/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
@@ -195,8 +196,6 @@
 					email : email
 				};
 				
-				console.log(data);
-				
 				$.ajax({
 					url: '${pageContext.request.contextPath}/admin/member/update',
 					type: 'patch',
@@ -204,15 +203,20 @@
 					contentType: "application/json; charset=utf-8",
 					success: function(result) {
 						if(result == 1) {
-							alert("수정 완료");
-							opener.parent.location.reload();
-							window.close();
+							swal({
+			        			title : "회원 정보를 수정했습니다.",
+			        		    icon  : "success",
+			        		    closeOnClickOutside : false
+			        		}).then(function(){
+			        			opener.parent.location.reload();
+								window.close();
+			        		});
 						} else {
-							alert("실패");
+							swal("실패", "회원 정보 수정 과정에 오류가 발생했습니다. 확인 후 다시 시도해 주세요.", "error");
 						}
 					},
 					error: function() {
-						alert('에러');
+						swal("에러", "응답에 오류가 있습니다. 확인 후 다시 시도해 주세요.", "error");
 					}
 				});
 			}
@@ -231,15 +235,20 @@
 			type: 'delete',
 			success: function(result) {
 				if(result == 1) {
-					alert('삭제 성공');
-					opener.parent.location.reload();
-					window.close();
+					swal({
+	        			title : "회원 정보를 삭제했습니다.",
+	        		    icon  : "success",
+	        		    closeOnClickOutside : false
+	        		}).then(function(){
+	        			opener.parent.location.reload();
+						window.close();
+	        		});
 				} else {
-					alert('오류 발생');
+					swal("실패", "회원 정보 삭제 과정에 오류가 발생했습니다. 확인 후 다시 시도해 주세요.", "error");					
 				}
-			},
+			}, 
 			error: function() {
-				console.log('통신 실패');
+				swal("에러", "응답에 오류가 있습니다. 확인 후 다시 시도해 주세요.", "error");
 			}
 		}
 		); 

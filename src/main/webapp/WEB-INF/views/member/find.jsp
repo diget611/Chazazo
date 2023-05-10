@@ -11,6 +11,7 @@
 <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700,800' rel='stylesheet' type='text/css'>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,-25" />
 
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/garoestate/assets/css/normalize.css">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/garoestate/assets/css/font-awesome.min.css">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/garoestate/assets/css/fontello.css">
@@ -141,7 +142,6 @@
 				type: 'get',
 				data: {email: email},
 				success: function(result){
-					console.log(result[0]);
 					let list = '';
 					if(result != '') {
 						$('.modal-body').children().remove();
@@ -158,6 +158,7 @@
 					}
 				},
 				error: function(){
+					swal("에러", "응답에 오류가 있습니다. 확인 후 다시 시도해 주세요.", "error");
 				}
 			});
 		}
@@ -172,7 +173,6 @@
 				type: 'get',
 				data: {username: username, email: email},
 				success: function(result){
-					console.log(result);
 					if(result == 0) {
 						$('.modal-body').children().remove();
 						list = '<div>입력하신 아이디와 이메일 정보가 일치하지 않습니다. 다시 확인해주세요.</div>';
@@ -188,6 +188,7 @@
 					}
 				},
 				error: function(){
+					swal("에러", "응답에 오류가 있습니다. 확인 후 다시 시도해 주세요.", "error");
 					
 				}
 			});

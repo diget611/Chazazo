@@ -11,6 +11,7 @@
 <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700,800' rel='stylesheet' type='text/css'>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,-25" />
 
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/garoestate/assets/css/normalize.css">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/garoestate/assets/css/font-awesome.min.css">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/garoestate/assets/css/fontello.css">
@@ -184,20 +185,24 @@
 					let testId = /^[a-z]{1}[a-z0-9_-]{4,19}$/;
 					if(username != null && testId.test(username)) {
 						if(result > 0){
-							alert("중복된 아이디가 존재합니다.");
+							swal("중복", "중복되는 아이디가 존재합니다.", "error");
 							checkDupId = 1;
 						} else {
-							alert("가입 가능한 아이디입니다.");
+							swal({
+			        			title : "가입 가능한 아이디입니다.",
+			        		    icon  : "success",
+			        		    closeOnClickOutside : false
+			        		})
 							checkDupId = 1;
 							allowRegister = 1;
 						}						
 					} else {
-						alert("아이디를 확인하세요.");
+						swal("에러", "입력한 아이디를 확인하세요.", "error");
 						checkDupId = 1;
 					}
 				},
 				error: function(){
-					
+					swal("에러", "응답에 오류가 있습니다. 확인 후 다시 시도해 주세요.", "error");
 				}
 			});
 		}
@@ -263,7 +268,7 @@
 							
 							if(time < 0) {
 								clearInterval(x);
-								alert('인증번호가 만료되었습니다. 다시 요청하세요.');
+								swal("만료", "인증번호가 만료되었습니다. 다시 요청하세요.", "error");
 								$('[name=email]').attr('readonly', false);
 								$('#checkEmailBtn').attr('disabled', false);
 								$('#confirmEmailBtn').attr('disabled', true);
@@ -273,11 +278,11 @@
 							}
 						}, 1000)
 					} else {
-						alert("이메일 주소를 확인하세요.");
+						swal("에러", "입력한 이메일 주소를 확인하세요.", "error");
 					}
 				},
 				error: function(){
-					
+					swal("에러", "응답에 오류가 있습니다. 확인 후 다시 시도해 주세요.", "error");
 				}
 			});
 		}

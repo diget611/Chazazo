@@ -72,7 +72,7 @@
 															class="likebtn" type="image" style=" width:55px;">${review.recommend}
 													</div>
 													<div>
-														<input class="review_content"  type="text" value="${review.content}" style="height:auto; width:80%; font-size:18px;"autofocus disabled>
+														<textarea class="review_content" style="height:auto; width:80%; font-size:18px;"autofocus disabled>${review.content}</textarea>
 													</div>	
 													<c:if test="${info.name eq review.name }">
 														<input data-idx="${review.idx }" src="<%=request.getContextPath()%>/resources/garoestate/assets/img/icon/edit.png" style="float:left;  width:45px; " type="image" class="edit" value="수정">

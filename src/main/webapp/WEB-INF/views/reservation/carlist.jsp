@@ -152,19 +152,19 @@
 					<div class="col-md-12 clear"> 
 						<div class="col-xs-10 page-subheader sorting pl0">
 							<ul class="sort-by-list">
-								<li class="active">
-									<a href="javascript:void(0);" class="order_by_date" data-orderby="property_date" data-order="ASC">
-										Property Date <i class="fa fa-sort-amount-asc"></i>					
+								<li>
+									<a href="javascript:void(0);" class="order_by_price"  onClick="getList()" id="listbtn">
+										추천순				
 									</a>
 								</li>
-								<li class="">
-									<a href="javascript:void(0);" class="order_by_price" id="orderP">
+								<li >
+									<a href="javascript:void(0);" class="order_by_price" onClick="orderbyP()" id="orderbtn">
 										낮은 가격순 <i class="fa fa-sort-numeric-desc"></i>						
 									</a>
 								</li>
 							</ul><!--/ .sort-by-list-->
 						</div>
-						<div class="col-xs-2 layout-switcher">
+						<div class="col-s-2 layout-switcher">
 							<a class="layout-list" href="javascript:void(0);"> <i class="fa fa-th-list"></i>  </a>
 							<a class="layout-grid active" href="javascript:void(0);"> <i class="fa fa-th"></i> </a>                          
 						</div><!--/ .layout-switcher-->
@@ -316,8 +316,11 @@
 	$('[name=fueltypeIdx]').on('ifChanged',getList);
     window.onload = getList();
       function getList() {
+    	 $('#orderbtn').css('background-color','#f4f4f4');
+    	 $('#listbtn').css('background-color','#18b4e9');
          let carType = [];
          let fuelType = [];
+         var keyword = "%"+$('#inputword').val() +"%";
          page = 1;
          $('input:checkbox[name=cartypeIdx]:checked').each(function() {
             carType.push($(this).val());
@@ -327,6 +330,7 @@
          })
          
          let selectList = {
+        	 "keyword" : keyword,
             "typeList" : carType,
             "fuelList" : fuelType
          };
@@ -346,6 +350,43 @@
             }
          });
       }
+      
+
+	function orderbyP() {
+		$('#orderbtn').css('background-color','#18b4e9');
+		$('#listbtn').css('background-color','#f4f4f4');
+        let carType = [];
+        let fuelType = [];
+        var keyword = "%"+$('#inputword').val() +"%";
+        page = 1;
+        $('input:checkbox[name=cartypeIdx]:checked').each(function() {
+           carType.push($(this).val());
+        })
+        $('input:checkbox[name=fueltypeIdx]:checked').each(function() {
+       	 fuelType.push($(this).val());
+        })
+        
+        let selectList = {
+       	 "keyword" : keyword,
+           "typeList" : carType,
+           "fuelList" : fuelType
+        };
+        
+        $.ajax({
+           url: "orderByPrice",
+           data: 	selectList,
+           type: 'get',
+           dataType:'json',
+           success: function(result) {
+           	getSearch(result);
+           	carType = [];
+           	fuelType=[];
+           },
+           error: function() {
+           	alert('통신 실패')
+           }
+        });
+	};
       
          function getSearch(result) {
         	 var html = '';

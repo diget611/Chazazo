@@ -11,12 +11,9 @@
 <title>마이페이지</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
-
-<link
-	href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700,800'
-	rel='stylesheet' type='text/css'>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700,800' rel='stylesheet' type='text/css'>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,-25" />
-
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/garoestate/assets/css/normalize.css">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/garoestate/assets/css/font-awesome.min.css">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/garoestate/assets/css/fontello.css">
@@ -28,11 +25,8 @@
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/garoestate/assets/css/price-range.css">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/garoestate/assets/css/style.css">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/garoestate/assets/css/responsive.css">
-
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
-
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
-
 <script src="<%=request.getContextPath()%>/resources/garoestate/assets/js/modernizr-2.6.2.min.js"></script>
 <script src="<%=request.getContextPath()%>/resources/garoestate/assets/js/jquery-1.10.2.min.js"></script>
 <script src="<%=request.getContextPath()%>/resources/garoestate/bootstrap/js/bootstrap.min.js"></script>
@@ -44,13 +38,10 @@
 <script src="<%=request.getContextPath()%>/resources/garoestate/assets/js/icheck.min.js"></script>
 <script src="<%=request.getContextPath()%>/resources/garoestate/assets/js/owl.carousel.min.js"></script>
 <script src="<%=request.getContextPath()%>/resources/garoestate/assets/js/price-range.js"></script>
-
 <script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
 <script src="<%=request.getContextPath()%>/resources/garoestate/assets/js/main.js"></script>
-
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/main.css">
-	
 <style type="text/css">
 .bg-shadow, .filter-section {
     box-shadow: 0 7px 18px -6px rgba(65,78,118,.1);
@@ -226,7 +217,7 @@
 											문의</button>
 										<br>
 										<sec:authorize access="isAuthenticated()">
-										<button type="button" class="btn btn-outline-primary">쿠폰
+										<button id="coupon" type="button" class="btn btn-outline-primary">쿠폰
 											관리</button>
 										<br>
 										<button type="button" class="btn btn-outline-primary">회원탈퇴</button>
@@ -453,16 +444,31 @@
 
 	<script>
 	$('.main-nav').children().eq(2).children().css('color', '#18B4E9');
-	
-	$('#historyBtn').on('click', function() {
-		location.href='<%=request.getContextPath()%>/member/profile';
-	});
 
-	$('#bookmark').on('click', function() {
-		location.href='<%=request.getContextPath()%>/profile/favorites';
+	$('#historyBtn').on('click', function() {
+		location.href='<%=request.getContextPath()%>/profile/reservation/${memberinfo.idx}';
 	});
+		$('#updateinfoBtn').on('click', function() {
+			location.href="${pageContext.request.contextPath}/member/profile/update";
+			
+		});
+
+
+		$("#myReview").on("click", function(){
+			location.href="${pageContext.request.contextPath}/myReview";
+			
+		});
+
+		$("#coupon").on("click", function(){
+			location.href="${pageContext.request.contextPath}/coupon";
+			
+		});
+		
 	
-	
+		$('#bookmark').on('click', function() {
+			location.href='<%=request.getContextPath()%>/profile/favorites';
+		});
+		
 	$('#review-btn').on('click', function() {
 		var idx = '<c:out value="${reservation.vehicleIdx}"/>';
 		location.href='${pageContext.request.contextPath}/carlist/' + idx;

@@ -25,6 +25,32 @@
 			) SELECT * FROM T
 			   WHERE NUM BETWEEN 1 AND #{page}
 	</select>
+	
+	<select id="orderByPrice" resultType="VehicleInfo" >
+		WITH T AS
+			(SELECT ROW_NUMBER() OVER(ORDER BY V.IDX) NUM, V.*, F.TYPE AS FUELNAME, C.TYPE AS TYPENAME, L.NAME
+			   FROM FUELTYPE F, CARTYPE C, VEHICLE V, LOCATION L
+			  WHERE V.CARTYPE_IDX = C.IDX AND V.FUELTYPE_IDX = F.IDX AND V.LOCATION_IDX = L.IDX
+		<if test="typeList !=null">
+			AND C.IDX IN
+		 	<foreach collection="typeList" item="type" separator="," open="(" close=")">
+				#{type}
+		 	</foreach>
+		</if>
+		<if test="fuelList !=null">
+			AND F.IDX IN
+		 	<foreach collection="fuelList" item="fuel" separator=","  open="(" close=")">
+				#{fuel}
+		 	</foreach>
+		</if>
+		<if test = "keyword != null">
+			AND V.MODEL LIKE #{keyword}
+		</if>
+			) SELECT * FROM T
+			   WHERE NUM BETWEEN 1 AND #{page}
+			   ORDER BY PRICE ASC
+	</select>
+	
 
  	<select id="getVehicleInfo" resultType="VehicleInfo">
  		 SELECT *

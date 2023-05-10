@@ -62,5 +62,10 @@ public class VehicleServiceImpl implements VehicleService{
 	public List<VehicleReqDto> selectList(Map<String, Object> search) {
 		return dao.selectList(search);
 	}
+	
+	@Override
+	public List<VehicleReqDto> orderByPrice(Map<String, Object> search) {
+		return dao.orderByPrice(search);
+	}
 
 }

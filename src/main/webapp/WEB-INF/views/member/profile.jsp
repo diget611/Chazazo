@@ -8,6 +8,7 @@
 <title>회원 정보 수정</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700,800' rel='stylesheet' type='text/css'>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,-25" />
 
@@ -134,7 +135,7 @@
 							<div class="panel panel-default sidebar-menu wow fadeInRight animated animated animated" style="visibility: visible; animation-name: fadeInRight;">
 									<h3 class="panel-title">
 									<button type="button" class="btn btn-outline-primary">1:1 문의</button><br>
-										<button type="button" class="btn btn-outline-primary">쿠폰 관리</button><br>
+										<button id="coupon" type="button" class="btn btn-outline-primary">쿠폰 관리</button><br>
 										<button type="button" class="btn btn-outline-primary" name="deleteBtn">회원탈퇴</button></h3>
 								
 								</div>
@@ -223,15 +224,31 @@
 	<script>
 	$('.main-nav').children().eq(2).children().css('color', '#18B4E9');
 	
+
 	$('#historyBtn').on('click', function() {
-		location.href='<%=request.getContextPath()%>/member/profile';
+		location.href='<%=request.getContextPath()%>/profile/reservation/${memberinfo.idx}';
+	});
+		$('#updateinfoBtn').on('click', function() {
+			location.href="${pageContext.request.contextPath}/member/profile/update";
+			
+		});
+
+
+		$("#myReview").on("click", function(){
+			location.href="${pageContext.request.contextPath}/myReview";
+			
+		});
+
+		$("#coupon").on("click", function(){
+			location.href="${pageContext.request.contextPath}/coupon";
+			
+		});
 		
-	});
-	$('#bookmark').on('click', function() {
-		location.href='<%=request.getContextPath()%>/profile/favorites';
-	});
 	
-	
+		$('#bookmark').on('click', function() {
+			location.href='<%=request.getContextPath()%>/profile/favorites';
+		});
+		
 		$('#checkPwd').click(function(){
 			const checkPassword = $('#passwordCheck').val();
 			if(!checkPassword || checkPassword.trim() === ""){

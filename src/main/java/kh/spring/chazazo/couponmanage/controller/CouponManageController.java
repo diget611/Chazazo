@@ -35,6 +35,7 @@ public class CouponManageController {
 		String username = prin.getName();
 		mv.addObject("memberinfo", mService.selectMypageOne(username));
 		mv.addObject("couponList", cmService.selectMycoupon(username));
+		mv.addObject("countCoupon", cService.countCoupon(username));
 		
 		mv.setViewName("/member/coupon");
 		return mv;
@@ -51,8 +52,6 @@ public class CouponManageController {
 		CouponReqDto dto = new CouponReqDto();
 		dto.setCouponCode(couponCode);
 		dto.setUsername(username);
-		Map<String, Object> map = new HashMap<String, Object>();
-		//dto map으로 묶기
 		int totalCount = cService.totalCoupon(dto);
 		System.out.println(totalCount);
 		int count = cmService.countCouponCode(couponCode);

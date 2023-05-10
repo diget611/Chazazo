@@ -50,5 +50,9 @@ public class ReviewDao {
 	public int updateReviewStatus(ReviewDto data) {
 		return sqlSession.update("review.updateReviewStatus", data);
 	}
+	
+	public int countReview(String username) {
+		return sqlSession.selectOne("review.countReview",username);
+	}
 
 }

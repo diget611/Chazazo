@@ -75,4 +75,8 @@
 		UPDATE REVIEW SET STATUS = 2 WHERE IDX = #{reviewIdx}
 	</update>
 	
+	<select id = "countReview" resultType = "_int">
+		SELECT COUNT(*) FROM REVIEW WHERE MEMBER_IDX = (SELECT IDX FROM MEMBER WHERE USERNAME = #{username})
+	</select>
+	
 </mapper>

@@ -299,17 +299,19 @@
 								</div>
 		
 							<div>
-								<p>쿠폰 목록</p>
-								<c:if test="${empty couponList }">
+								<p style="font-size: large;"><strong> 쿠폰 목록</strong></p>
+								 <c:if test="${empty couponList }">
 									<p style="text-align: center; font-size: large;">
 										<strong> 보유한 쿠폰이 없습니다 </strong>
 									</p>
 									<br>
 								</c:if>
+								<p> 보유한 쿠폰 수 : ${countCoupon } 개 	</p>
 							
 							</div>
 							</div>
 							<div class="infos-section">		
+							
 							<c:forEach items="${couponList }" var="coupon">					
 							<ul class="tiket-list">
 									<li>

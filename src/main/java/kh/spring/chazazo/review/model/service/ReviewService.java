@@ -17,4 +17,6 @@ public interface ReviewService {
 	
 	public List<ReviewDto> selectMyReview(String username);
 	public int checkResv(ReviewDto data);
+	
+	public int countReview(String username);
 }

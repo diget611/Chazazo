@@ -48,7 +48,10 @@
 	
 	<update id="deleteReserv" >
 		 UPDATE PAYMENT SET STATE = 1 , CANCEL_DATE = TO_CHAR(SYSDATE, 'YYYY-MM-DD') WHERE IDX = #{idx} 
+	</update>
 	
+	<update id="reissueCoupon">
+		UPDATE COUPON SET STATUS = 0 WHERE IDX = (SELECT COUPON_IDX FROM PAYMENT WHERE IDX = #{idx})
 	</update>
 	
 	

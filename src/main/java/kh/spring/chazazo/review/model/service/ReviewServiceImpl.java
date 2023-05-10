@@ -68,4 +68,9 @@ public class ReviewServiceImpl implements ReviewService{
 		return dao.checkResv(data);
 	}
 
+	@Override
+	public int countReview(String username) {
+		return dao.countReview(username);
+	}
+
 }

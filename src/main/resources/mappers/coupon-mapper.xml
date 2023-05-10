@@ -23,6 +23,10 @@
         and member_idx = (select idx from member where username = #{username})
 	</select>
 	
+	<select id="countCoupon" resultType="_int">
+		SELECT COUNT(*) FROM COUPON WHERE MEMBER_IDX = (SELECT IDX FROM MEMBER WHERE USERNAME = #{username})
+	</select>
+	
 	<insert id="insertWelcome">
 		INSERT INTO COUPON
 		VALUES (COUPON_SEQ.NEXTVAL, SYSTIMESTAMP, SYSTIMESTAMP + (SELECT PERIOD FROM COUPON_MANAGE WHERE IDX = 1), 1, MEMBER_SEQ.CURRVAL)

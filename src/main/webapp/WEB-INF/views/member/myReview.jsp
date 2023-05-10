@@ -262,7 +262,7 @@ tbody tr:hover {
 											</p>
 											<br>
 										</c:if>
-										<div>내가 작성한 리뷰</div>
+										<div>내가 작성한 리뷰 수 : ${ countReview} 개</div>
 										<table>
 											<thead>
 												<tr>
@@ -271,6 +271,8 @@ tbody tr:hover {
 													<th scope="row">작성시간</th>
 													<th scope="row">별점</th>
 													<th scope="row">예약한 차량</th>
+													<th scope="row">상태</th>
+													
 												</tr>
 											</thead>
 											<tbody>
@@ -281,6 +283,17 @@ tbody tr:hover {
 														<td>${list.createdate }</td>
 														<td>${list.score }</td>
 														<td>${list.vehicleModel }</td>
+														<c:choose>
+															<c:when test="${list.status eq 0 }">
+																<td>작성한 리뷰</td>
+															</c:when>
+															<c:when test="${list.status eq 1 }">
+																<td>신고처리중</td>
+															</c:when>
+																<c:otherwise>
+																<td>삭제</td>
+															</c:otherwise>
+														</c:choose>
 													</tr>
 												</c:forEach>
 											</tbody>

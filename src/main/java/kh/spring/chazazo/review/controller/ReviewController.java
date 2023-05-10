@@ -93,6 +93,7 @@ public class ReviewController {
 		mv.addObject("memberinfo", mService.selectMypageOne(loginId));
 		mv.addObject("reservation", pService.selectList(loginId));
 		mv.addObject("myReview",rService.selectMyReview(loginId));
+		mv.addObject("countReview", rService.countReview(loginId));
 		mv.setViewName("member/myReview");
 		return mv;
 	}

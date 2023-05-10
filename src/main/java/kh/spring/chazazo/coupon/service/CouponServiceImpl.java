@@ -34,4 +34,9 @@ public class CouponServiceImpl implements CouponService {
 	public int insertWelcomeCoupon() {
 		return dao.insertWelcomeCoupon();
 	}
+
+	@Override
+	public int countCoupon(String username) {
+		return dao.countCoupon(username);
+	}
 }

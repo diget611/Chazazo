@@ -49,9 +49,9 @@ public class AdminController {
 		Map<String, Integer> data = new HashMap<String, Integer>();
 		data.put("start", 1); data.put("end", 5);
 		mv.addObject("requestList", aService.selectRequestList(data));
+		mv.addObject("reservList", aService.selectReservList(data));
 		
 		// 메인페이지 차트
-		// TODO: 년도 넘어갔을 때 어떻게 처리해야 하지?
 		mv.addObject("recentStat", new Gson().toJson(aService.recentMonth()));
 		mv.addObject("monthList", new Gson().toJson(aService.monthList()));
 		mv.addObject("locationList", new Gson().toJson(aService.selectLocNameList()));

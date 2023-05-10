@@ -216,6 +216,9 @@ public class AdminDao {
 	public List<AdminReservRespDto> selectReservList(Pagination pagination) {
 		return sqlSession.selectList("payment.selectList", pagination);
 	}
+	public List<AdminReservRespDto> selectReservList(Map<String, Integer> data) {
+		return sqlSession.selectList("payment.selectListForMain", data);
+	}
 	public AdminReservOneRespDto selectReservOne(int idx) {
 		return sqlSession.selectOne("payment.selectOneForAdmin", idx);
 	}

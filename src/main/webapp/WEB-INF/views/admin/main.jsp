@@ -79,7 +79,29 @@
 					</div>
 					
 				</div>
-			</div>	
+			</div>
+			<div class="container-fluid pt-4 px-4">
+				<div class="row g-4">
+					<div class="col-sm-12 col-xl-6">
+						<div class="bg-light text-center rounded p-4" style="height: 100%;" id="recentCanvas">
+							<div class="d-flex align-items-center justify-content-between mb-5">
+								<h6 class="mb-0">최근 월별 매출</h6>
+							</div>
+							<div>
+								<canvas id="recentMonthChart" class="chartCanvas" height="450"></canvas>							
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-12 col-xl-6">
+						<div class="bg-light text-center rounded p-4" style="height: 100%;">
+							<div class="d-flex align-items-center justify-content-between mb-4">
+								<h6 class="mb-0">차량별 매출</h6>
+							</div>
+							<canvas id="bestReservModel" class="chartCanvas"></canvas>
+						</div>
+					</div>
+				</div>
+			</div>
 			<div class="container-fluid pt-4 px-4">
 				<div class="bg-light text-center rounded p-4">
 					<div class="d-flex align-items-center justify-content-between mb-4">
@@ -122,24 +144,43 @@
 				</div>
 			</div>
 			<div class="container-fluid pt-4 px-4">
-				<div class="row g-4">
-					<div class="col-sm-12 col-xl-6">
-						<div class="bg-light text-center rounded p-4" style="height: 100%;" id="recentCanvas">
-							<div class="d-flex align-items-center justify-content-between mb-5">
-								<h6 class="mb-0">최근 월별 매출</h6>
-							</div>
-							<div>
-								<canvas id="recentMonthChart" class="chartCanvas" height="450"></canvas>							
-							</div>
-						</div>
+				<div class="bg-light text-center rounded p-4">
+					<div class="d-flex align-items-center justify-content-between mb-4">
+						<h6 class="mb-0">취소 대기</h6>
+						<a href="<%=request.getContextPath()%>/admin/reservation">더보기</a>
 					</div>
-					<div class="col-sm-12 col-xl-6">
-						<div class="bg-light text-center rounded p-4" style="height: 100%;">
-							<div class="d-flex align-items-center justify-content-between mb-4">
-								<h6 class="mb-0">차량별 매출</h6>
-							</div>
-							<canvas id="bestReservModel" class="chartCanvas"></canvas>
-						</div>
+					<div class="table-responsive">
+						<table class="table text-center align-middle table-bordered table-hover mb-0">
+							<thead>
+								<tr class="text-dark">
+									<th scope="col" style="width: 5%;">#</th>
+									<th scope="col" style="width: 10%;">회원</th>
+									<th scope="col" style="width: 15%;">현황</th>
+									<th scope="col" style="width: 15%;">결제금액</th>
+									<th scope="col" style="width: 20%;">예약날짜</th>
+									<th scope="col" style="width: 35%;">예약기간</th>
+								</tr>
+							</thead>
+							<tbody>
+								<c:forEach items="${reservList }" var="reserv" varStatus="status">	
+									<tr onclick='window.open("<%=request.getContextPath()%>/admin/reservation/${reserv.idx}", "예약 상세 정보", "width=500, height=600")'>
+										<th scope="row">${fn:length(requestList) - status.index}</th>
+										<c:choose>
+											<c:when test="${reserv.isMember eq 0 }">
+												<td>비회원</td>
+											</c:when>
+											<c:otherwise>
+												<td>회원</td>
+											</c:otherwise>
+										</c:choose>
+										<td>취소대기</td>
+										<td>${reserv.finalPrice }</td>
+										<td>${reserv.paidTime }</td>
+										<td>${reserv.startDate }&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;${reserv.endDate }</td>
+									</tr>
+							</c:forEach>
+							</tbody>
+						</table>
 					</div>
 				</div>
 			</div>

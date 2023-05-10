@@ -257,6 +257,10 @@ public class AdminServiceImpl implements AdminService {
 		return dao.selectReservList(pagination);
 	}
 	@Override
+	public List<AdminReservRespDto> selectReservList(Map<String, Integer> data) {
+		return dao.selectReservList(data);
+	}
+	@Override
 	public AdminReservOneRespDto selectReservOne(int idx) {
 		return dao.selectReservOne(idx);
 	}

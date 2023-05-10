@@ -101,6 +101,7 @@ public interface AdminService {
 	// 예약
 	public int reservCount();
 	public List<AdminReservRespDto> selectReservList(Pagination pagination);
+	public List<AdminReservRespDto> selectReservList(Map<String, Integer> data);
 	public AdminReservOneRespDto selectReservOne(int idx);
 	public int cancelReservation(int idx);
 	

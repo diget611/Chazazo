@@ -146,4 +146,11 @@
 	<update id="cancel">
 		UPDATE PAYMENT SET STATE = 2, CANCEL_DATE = SYSTIMESTAMP WHERE IDX = #{idx}
 	</update>
+	
+	<select id="selectListForMain" resultType="adminReservRespDto">
+		SELECT *
+		  FROM (SELECT ROWNUM AS RNUM, IDX, IS_MEMBER, STATE, FINAL_PRICE, PAID_TIME, CANCEL_DATE, START_DATE, END_DATE
+		          FROM PAYMENT WHERE STATE = 1 ORDER BY IDX DESC)
+         WHERE RNUM BETWEEN 1 AND 5
+	</select>
 </mapper>

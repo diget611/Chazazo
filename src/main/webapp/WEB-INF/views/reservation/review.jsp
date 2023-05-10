@@ -72,7 +72,7 @@
 															class="likebtn" type="image" style=" width:55px;">${review.recommend}
 													</div>
 													<div>
-														<textarea id="reviewOne" class="review_content"  maxlength="100" style="height:auto; width:80%; font-size:18px;"autofocus disabled>${review.content}</textarea>
+														<textarea id="reviewOne" class="review_content"  maxlength="100" style="height:auto; resize: none; width:80%; font-size:18px;"autofocus disabled>${review.content}</textarea>
 													</div>	
 													<c:if test="${info.name eq review.name }">
 														<input data-idx="${review.idx }" src="<%=request.getContextPath()%>/resources/garoestate/assets/img/icon/edit.png" style="float:left;  width:45px; " type="image" class="edit" value="수정">
@@ -157,6 +157,22 @@ $(".3").html("&#9733; &#9733; &#9733; &#9734; &#9734;");
 $(".4").html("&#9733; &#9733; &#9733; &#9733; &#9734;");
 $(".5").html("&#9733; &#9733; &#9733; &#9733; &#9733;"); 
 
+//리뷰 칸자동 조정
+function resize() {
+    let textarea = document.getElementById("reviewOne");
+
+    textarea.style.height = "0px";
+
+    let scrollHeight = textarea.scrollHeight;
+    let style = window.getComputedStyle(textarea);
+    let borderTop = parseInt(style.borderTop);
+    let borderBottom = parseInt(style.borderBottom);
+
+    textarea.style.height = (scrollHeight + borderTop + borderBottom)+"px";
+}
+
+window.addEventListener("load", resize);
+window.onresize = resize;
 
 
 //비회원 경고
@@ -175,6 +191,9 @@ $( ".star_rating a" ).click(function() {
 });
 
 
+
+
+//리뷰 수정 글자수 제한
 $('#reviewOne').keyup(function (e) {
 	let content = $(this).val();
     
@@ -192,7 +211,7 @@ $('#reviewOne').keyup(function (e) {
     };
 });
 
-
+//리뷰 작성 글자수 제한
 $('#textBox').keyup(function (e) {
 	let content = $(this).val();
     

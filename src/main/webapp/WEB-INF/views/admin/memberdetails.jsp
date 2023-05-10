@@ -228,7 +228,6 @@
 	
 	function deleteMember() {
 		let username = $('#username').val();
-		console.log(username);
 		$.ajax({
 			url: "<%=request.getContextPath()%>/admin/member/${member.username}",
 			data: {username: username},

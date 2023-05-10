@@ -18,7 +18,6 @@ import kh.spring.chazazo.inquiry.model.dto.InquiryInsertReqDto;
 import kh.spring.chazazo.inquiry.model.dto.InquiryRespDto;
 import kh.spring.chazazo.inquiry.model.service.InquiryService;
 
-
 @RestController
 @RequestMapping("/inquiry")
 public class InquiryController {

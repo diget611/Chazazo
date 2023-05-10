@@ -31,4 +31,5 @@ public class MainPageDao {
 	public List<String> reviewList() { 
 		return sqlSession.selectList("review.selectListForMain");
 	}
+	
 }

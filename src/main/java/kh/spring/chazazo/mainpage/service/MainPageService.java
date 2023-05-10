@@ -9,4 +9,5 @@ public interface MainPageService {
 	public int vehicleCount();
 	public int locationCount();
 	public List<String> reviewList();
+	
 }

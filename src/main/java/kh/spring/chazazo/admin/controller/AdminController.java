@@ -18,7 +18,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
 
-import kh.spring.chazazo.admin.model.dto.AdminChatRoomRespDto;
 import kh.spring.chazazo.admin.model.dto.AdminCouponInsertReqDto;
 import kh.spring.chazazo.admin.model.dto.AdminCouponUpdateReqDto;
 import kh.spring.chazazo.admin.model.dto.AdminLocationInsertReqDto;
@@ -94,9 +93,7 @@ public class AdminController {
 	
 	@DeleteMapping("/member/{username}")
 	public int deleteMember(@PathVariable String username) {
-		System.out.println(username);
 		int result = aService.deleteMember(username);
-		System.out.println(result);
 		return result;
 	}
 	
@@ -282,7 +279,6 @@ public class AdminController {
 		String code = RandomStringUtils.randomAlphanumeric(16).toUpperCase();
 		data.setCouponCode(code);
 		int result = aService.insertCoupon(data);
-		System.out.println(code);
 		return result;
 	}
 	

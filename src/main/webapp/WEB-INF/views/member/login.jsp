@@ -92,7 +92,7 @@
 				  title: "확인",
 				  text: "활성화 시 로그인이 유지됩니다. 안전한 환경에서만 활성화하세요.",
 				  icon: "warning",
-				  buttons: true,
+				  buttons: ["취소", "유지"],
 				  dangerMode: true,
 				})
 				.then((willRemember) => {

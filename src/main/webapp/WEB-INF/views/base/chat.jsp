@@ -42,7 +42,7 @@
 					openSocket(result);
 				},
 				error: function() {
-					alert("에러임");
+					swal("에러", "응답에 오류가 있습니다. 확인 후 다시 시도해 주세요.", "error");
 				}
 			});
 		}
@@ -86,7 +86,22 @@
 			chatRoomList();
 			$('#chatCheck').css('display', 'none');
 		} else {
-			alert('안됨');
+			swal({
+				  title: "에러",
+				  text: "로그인한 회원만 1:1 채팅을 이용할 수 있습니다. 로그인 페이지로 이동하시겠습니까?",
+				  icon: "warning",
+				  buttons: ["취소", "이동"],
+				  dangerMode: true,
+				})
+				.then((willChat) => {
+				  if (willChat) {
+					  setTimeout(function(){
+				            location.href = '${pageContext.request.contextPath}/member/login';}, 0);
+				  } else {
+					  setTimeout(function(){
+						  location.reload();}, 0);
+				  }
+				});
 		}
 	}
 	
@@ -202,7 +217,7 @@
 				$('.badge').text(result);
 			},
 			error: function() {
-				alert('에러');
+				swal("에러", "응답에 오류가 있습니다. 확인 후 다시 시도해 주세요.", "error");
 			}
 		});
 	}
@@ -226,10 +241,9 @@
 				type: 'get',
 				async: 'false',	
 				success: function(result) {
-					console.log('업데이트');
 				},
 				error: function() {
-					console.log('에러');
+					swal("에러", "응답에 오류가 있습니다. 확인 후 다시 시도해 주세요.", "error");
 				}
 			})			
 		}

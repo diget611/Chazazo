@@ -50,7 +50,7 @@
 
 </head>
 <body>
-					<div class="col-md-8 single-property-content">
+					<div class="col-md-8 single-property-content" style="float:left;">
 							<input type="hidden" id="useridx"  value="${info.idx }" >
 							<div id="content">
 							</div>
@@ -72,7 +72,7 @@
 															class="likebtn" type="image" style=" width:55px;">${review.recommend}
 													</div>
 													<div>
-														<textarea class="review_content" style="height:auto; width:80%; font-size:18px;"autofocus disabled>${review.content}</textarea>
+														<textarea id="reviewOne" class="review_content"  maxlength="100" style="height:auto; resize: none; width:80%; font-size:18px;"autofocus disabled>${review.content}</textarea>
 													</div>	
 													<c:if test="${info.name eq review.name }">
 														<input data-idx="${review.idx }" src="<%=request.getContextPath()%>/resources/garoestate/assets/img/icon/edit.png" style="float:left;  width:45px; " type="image" class="edit" value="수정">
@@ -122,29 +122,32 @@
 										</c:choose>
 									</c:forEach>
 									
-										<label>${info.name } </label>
 											<div id="insertReviewbody" style="text-align:center;">
-												
-											<div id="insertReview" style=" float:left;" class="col-md-8">	
-												 <input type="text" name="reviewcontent" style=" height:80px; width:100%; border:4px solid #4ea0d8;"  placeholder="리뷰를 작성해주세요" ></input>
+												<div id="insertReview"  class="col-md-12">	
+													<div class="form-group col-md-8" style="float:left;" >
+													
+														  <div>
+														${info.name } <textarea id="textBox" maxlength="100" name="reviewcontent" style=" height:80px;  resize: none; width:100%; border:4px solid #4ea0d8;"  placeholder="리뷰를 작성해주세요" ></textarea>
+														  	  <div class="textLengthWrap">
+														   		 <p class="textCount">0자</p><p class="textTotal">/100자</p>
+														  	  </div>
+														  </div>
+													</div>
+												<div class="col-md-4"  style="float:left; margin-top:10%" >
+														<p class="star_rating">
+														    <a href="#"  class="on" ><input type="hidden" value="1">★</a>
+														    <a href="#"  class="on"><input type="hidden" value="2">★</a>
+														    <a href="#"  class="on"><input type="hidden" value="3">★</a>
+														    <a href="#"   ><input type="hidden" value="4">★</a>
+														    <a href="#"   ><input type="hidden" value="5">★</a>
+														</p>
+														<button type="button" id="reviewbtn" onclick="postReview()" style=" margin:10px" class="btn btn-default">리뷰등록</button>
+												</div>
+												</div>
 											</div>
-											<div class="col-md-4" >
-													<p class="star_rating">
-													    <a href="#"  class="on" ><input type="hidden" value="1">★</a>
-													    <a href="#"  class="on"><input type="hidden" value="2">★</a>
-													    <a href="#"  class="on"><input type="hidden" value="3">★</a>
-													    <a href="#"   ><input type="hidden" value="4">★</a>
-													    <a href="#"   ><input type="hidden" value="5">★</a>
-													</p>
-													<button type="button" id="reviewbtn" onclick="postReview()" style=" margin:10px" class="btn btn-default">리뷰등록</button>
-											</div>
-											</div>
-											
-											
-											
-									</div>
 								 </div>
 							</div>
+						</div>
 </body>
 <script type="text/javascript">
 
@@ -154,6 +157,22 @@ $(".3").html("&#9733; &#9733; &#9733; &#9734; &#9734;");
 $(".4").html("&#9733; &#9733; &#9733; &#9733; &#9734;");
 $(".5").html("&#9733; &#9733; &#9733; &#9733; &#9733;"); 
 
+//리뷰 칸자동 조정
+function resize() {
+    let textarea = document.getElementById("reviewOne");
+
+    textarea.style.height = "0px";
+
+    let scrollHeight = textarea.scrollHeight;
+    let style = window.getComputedStyle(textarea);
+    let borderTop = parseInt(style.borderTop);
+    let borderBottom = parseInt(style.borderBottom);
+
+    textarea.style.height = (scrollHeight + borderTop + borderBottom)+"px";
+}
+
+window.addEventListener("load", resize);
+window.onresize = resize;
 
 
 //비회원 경고
@@ -173,6 +192,42 @@ $( ".star_rating a" ).click(function() {
 
 
 
+
+//리뷰 수정 글자수 제한
+$('#reviewOne').keyup(function (e) {
+	let content = $(this).val();
+    
+    // 글자수 세기
+    if (content.length == 0 || content == '') {
+    	$('.textCount').text('0자');
+    } else {
+    	$('.textCount').text(content.length + '자');
+    }
+    
+    // 글자수 제한
+    if (content.length > 100) {
+        $(this).val($(this).val().substring(0, 100));
+        swal("리뷰는 100자까지 입력 가능합니다","", {icon: "warning"});
+    };
+});
+
+//리뷰 작성 글자수 제한
+$('#textBox').keyup(function (e) {
+	let content = $(this).val();
+    
+    // 글자수 세기
+    if (content.length == 0 || content == '') {
+    	$('.textCount').text('0자');
+    } else {
+    	$('.textCount').text(content.length + '자');
+    }
+    
+    // 글자수 제한
+    if (content.length > 100) {
+        $(this).val($(this).val().substring(0, 100));
+        swal("리뷰는 100자까지 입력 가능합니다","", {icon: "warning"});
+    };
+});
 
 //리뷰등록
 function postReview() {

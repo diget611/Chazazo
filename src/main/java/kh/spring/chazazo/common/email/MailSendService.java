@@ -21,9 +21,6 @@ public class MailSendService {
 	public void makeRandomNum() {
 		Random rd = new Random();
 		int num = rd.nextInt(888888) + 111111;
-		System.out.println("################");
-		System.out.println("인증번호 : " + num);
-		System.out.println("################");
 		authNum = num;
 	}
 	

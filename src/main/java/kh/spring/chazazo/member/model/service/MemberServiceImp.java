@@ -21,10 +21,8 @@ public class MemberServiceImp implements MemberService {
 
 	@Autowired
 	private MemberDao dao;
-	
 	@Autowired
 	private CouponDao cDao;
-	
 	@Autowired
 	private BCryptPasswordEncoder bcryptPasswordEncoder;
 
@@ -65,24 +63,20 @@ public class MemberServiceImp implements MemberService {
 		return dao.findPass(info);
 	}
 
-
 	//회원정보조회
 	@Override
 	public MemberInfoRespDto selectMypageOne(String username) {
 		return dao.selectMypageOne(username);
 	}
-
 	
 	//비밀번호확인
 	@Override
 	public String userPass(String username) {
 		return dao.userPass(username);
 	}
-
 	
 	@Override
 	public MemberInfoRespDto getMemberInfo(String username) {
-		// TODO Auto-generated method stub
 		return dao.getMemberInfo(username);
 	}
 	
@@ -105,8 +99,6 @@ public class MemberServiceImp implements MemberService {
 		return result;
 	}
 
-	
-
 	//탈퇴 
 	@Override
 	public int deleteMember(String username) {
@@ -116,10 +108,5 @@ public class MemberServiceImp implements MemberService {
 		}
 		return result;
 	}
-
-	
-
-
-
 	
 }

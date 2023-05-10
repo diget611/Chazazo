@@ -25,9 +25,6 @@ public class CouponManageController {
 	@Autowired
 	private CouponService cService;
 	
-	
-	
-	
 	// 현재 있는 쿠폰 목록 조회
 	@GetMapping("/coupon")
 	public ModelAndView viewCouponList(ModelAndView mv, Principal prin) {
@@ -42,13 +39,11 @@ public class CouponManageController {
 		
 	}
 	
-
-	
 	//쿠폰등록
 	@PostMapping("/registerCoupon")
 	public int insertCoupon( String couponCode, Principal prin) {
-		System.out.println("*********" + couponCode);
 		String username = prin.getName();
+
 		Map<String, Object> map = new HashMap<String, Object>();
 		
 		map.put("username", username);
@@ -58,6 +53,7 @@ public class CouponManageController {
 		
 		System.out.println(totalCount);
 		
+
 		int count = cmService.countCouponCode(couponCode);
 		if(totalCount == 0 && count == 1) {
 			cService.insertCoupon(map);

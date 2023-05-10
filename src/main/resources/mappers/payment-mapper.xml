@@ -180,4 +180,9 @@
 		          FROM PAYMENT WHERE STATE = 1 ORDER BY IDX DESC)
          WHERE RNUM BETWEEN 1 AND 5
 	</select>
+	
+	<select id ="selectNmemPayInfo" resultType="PaymentReqDto">
+		SELECT N.*, P.*  FROM NMEMPAYMENT N, PAYMENT P 
+		WHERE N.PAYMENT_IDX=(SELECT IDX FROM PAYMENT P WHERE P.MERCHANT_UID = #{merchantUid}) AND P.MERCHANT_UID = #{merchantUid}
+	</select>
 </mapper>

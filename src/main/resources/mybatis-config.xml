@@ -7,54 +7,66 @@
 	</settings>
 	
 	<typeAliases>
+		<typeAlias type="kh.spring.chazazo.common.Pagination" alias="pagination"/>
+		
+		<typeAlias type="kh.spring.chazazo.chat.model.dto.ChatDto" alias="chatDto"/>
+		<typeAlias type="kh.spring.chazazo.chat.model.dto.ChatLogDto" alias="chatLogDto"/>
+		<typeAlias type="kh.spring.chazazo.chat.model.dto.ChatRoomListDto" alias="chatRoomListDto"/>
+		
 		<typeAlias type="kh.spring.chazazo.member.model.dto.MemberReqDto" alias="memberReqDto"/>
 		<typeAlias type="kh.spring.chazazo.member.model.dto.MemberInfoReqDto" alias="memberInfoReqDto"/>
 		<typeAlias type="kh.spring.chazazo.member.model.dto.MemberInfoRespDto" alias="memberInfoRespDto"/>
-		<typeAlias type="kh.spring.chazazo.review.model.dto.ReviewDto" alias="reviewDto"/>	
+		
+		<typeAlias type="kh.spring.chazazo.couponmanage.dto.CouponManageReqDto" alias="CouponManageReqDto"/>
+		<typeAlias type="kh.spring.chazazo.couponmanage.dto.CouponManageRespDto" alias="CouponManageRespDto"/>
+		<typeAlias type="kh.spring.chazazo.coupon.dto.CouponReqDto" alias="CouponReqDto"/>
+		
 		<typeAlias type="kh.spring.chazazo.vehicle.model.dto.VehicleReqDto" alias="vehicleReqDto"/>	
 		<typeAlias type="kh.spring.chazazo.vehicle.model.dto.VehicleRespDto" alias="vehicleRespDto"/>
-		<typeAlias type="kh.spring.chazazo.payment.model.dto.PaymentReqDto" alias="PaymentReqDto"/>	
-		<typeAlias type="kh.spring.chazazo.payment.model.dto.PaymentInfoDto" alias="PaymentInfoDto"/>	
 		<typeAlias type="kh.spring.chazazo.vehicle.model.dto.VehicleInfoDto" alias="VehicleInfo"/>	
-		<typeAlias type="kh.spring.chazazo.admin.model.dto.AdminMemberRespDto" alias="adminMemberRespDto"/>
-		<typeAlias type="kh.spring.chazazo.admin.model.dto.AdminReportRespDto" alias="adminReportRespDto"/>
-		<typeAlias type="kh.spring.chazazo.admin.model.dto.AdminCouponManageRespDto" alias="adminCouponManageRespDto"/>
+		
+		<typeAlias type="kh.spring.chazazo.payment.model.dto.PaymentReqDto" alias="PaymentReqDto"/>	
+		<typeAlias type="kh.spring.chazazo.payment.model.dto.PaymentInfoDto" alias="PaymentInfoDto"/>
+			
+		<typeAlias type="kh.spring.chazazo.location.model.dto.LocationRespDto" alias="LocationRespDto"/>
+		<typeAlias type="kh.spring.chazazo.location.model.dto.LocationReqDto" alias="LocationReqDto"/>
+
+		<typeAlias type="kh.spring.chazazo.inquiry.model.dto.InquiryRespDto" alias="inquiryRespDto"/>
+		<typeAlias type="kh.spring.chazazo.inquiry.model.dto.InquiryInsertReqDto" alias="inquiryInsertReqDto"/>
+		<typeAlias type="kh.spring.chazazo.inquiry.model.dto.InquiryMainRespDto" alias="inquiryMainRespDto"/>
+		
+		<typeAlias type="kh.spring.chazazo.review.model.dto.ReviewDto" alias="reviewDto"/>
+		<typeAlias type="kh.spring.chazazo.review.model.dto.ReviewMainRespDto" alias="reviewMainRespDto"/>
+			
 		<typeAlias type="kh.spring.chazazo.request.model.dto.RequestRespDto" alias="requestRespDto"/>
+		
+		<typeAlias type="kh.spring.chazazo.admin.model.dto.AdminMemberRespDto" alias="adminMemberRespDto"/>
+		<typeAlias type="kh.spring.chazazo.admin.model.dto.AdminMemberUpdateReqDto" alias="adminMemberUpdateReqDto"/>
+		<typeAlias type="kh.spring.chazazo.admin.model.dto.AdminReportRespDto" alias="adminReportRespDto"/>
+		<typeAlias type="kh.spring.chazazo.admin.model.dto.AdminReportUpdateReqDto" alias="adminReportUpdateReqDto"/>
+		<typeAlias type="kh.spring.chazazo.admin.model.dto.AdminCouponInsertReqDto" alias="adminCouponInsertReqDto"/>
+		<typeAlias type="kh.spring.chazazo.admin.model.dto.AdminCouponUpdateReqDto" alias="adminCouponUpdateReqDto"/>
+		<typeAlias type="kh.spring.chazazo.admin.model.dto.AdminCouponManageRespDto" alias="adminCouponManageRespDto"/>
 		<typeAlias type="kh.spring.chazazo.admin.model.dto.AdminRequestRespDto" alias="adminRequestRespDto"/>
 		<typeAlias type="kh.spring.chazazo.admin.model.dto.AdminRequestOneRespDto" alias="adminRequestOneRespDto"/>
 		<typeAlias type="kh.spring.chazazo.admin.model.dto.AdminNoticeRespDto" alias="adminNoticeRespDto"/>
 		<typeAlias type="kh.spring.chazazo.admin.model.dto.AdminNoticeOneRespDto" alias="adminNoticeOneRespDto"/>
-		<typeAlias type="kh.spring.chazazo.admin.model.dto.AdminLocationRespDto" alias="adminLocationRespDto"/>
-		<typeAlias type="kh.spring.chazazo.admin.model.dto.AdminLocationOneRespDto" alias="adminLocationOneRespDto"/>
-		<typeAlias type="kh.spring.chazazo.admin.model.dto.AdminVehicleRespDto" alias="adminVehicleRespDto"/>
-		<typeAlias type="kh.spring.chazazo.admin.model.dto.AdminVehicleOneRespDto" alias="adminVehicleOneRespDto"/>
-		<typeAlias type="kh.spring.chazazo.admin.model.dto.AdminReservByModelRespDto" alias="adminReservByModelRespDto"/>
-		<typeAlias type="kh.spring.chazazo.admin.model.dto.AdminReservRespDto" alias="adminReservRespDto"/>
-		<typeAlias type="kh.spring.chazazo.admin.model.dto.AdminStatisticsRecentMonthDto" alias="adminStatisticsRecentMonthDto"/>
 		<typeAlias type="kh.spring.chazazo.admin.model.dto.AdminNoticeInsertReqDto" alias="adminNoticeInsertReqDto"/>
 		<typeAlias type="kh.spring.chazazo.admin.model.dto.AdminNoticeUpdateReqDto" alias="adminNoticeUpdateReqDto"/>
-		<typeAlias type="kh.spring.chazazo.admin.model.dto.AdminCouponInsertReqDto" alias="adminCouponInsertReqDto"/>
-		<typeAlias type="kh.spring.chazazo.admin.model.dto.AdminCouponUpdateReqDto" alias="adminCouponUpdateReqDto"/>
-		<typeAlias type="kh.spring.chazazo.admin.model.dto.AdminReservOneRespDto" alias="adminReservOneRespDto"/>
-		<typeAlias type="kh.spring.chazazo.admin.model.dto.AdminMemberUpdateReqDto" alias="adminMemberUpdateReqDto"/>
-		<typeAlias type="kh.spring.chazazo.admin.model.dto.AdminReportUpdateReqDto" alias="adminReportUpdateReqDto"/>
-		<typeAlias type="kh.spring.chazazo.inquiry.model.dto.InquiryRespDto" alias="inquiryRespDto"/>
-		<typeAlias type="kh.spring.chazazo.common.Pagination" alias="pagination"/>
-		<typeAlias type="kh.spring.chazazo.location.model.dto.LocationRespDto" alias="LocationRespDto"/>
-		<typeAlias type="kh.spring.chazazo.chat.model.dto.ChatDto" alias="chatDto"/>
-		<typeAlias type="kh.spring.chazazo.chat.model.dto.ChatLogDto" alias="chatLogDto"/>
-		<typeAlias type="kh.spring.chazazo.chat.model.dto.ChatRoomListDto" alias="chatRoomListDto"/>
-		<typeAlias type="kh.spring.chazazo.location.model.dto.LocationReqDto" alias="LocationReqDto"/>
-		<typeAlias type="kh.spring.chazazo.admin.model.dto.AdminStatisticsLocationRespDto" alias="adminStatisticsLocationRespDto"/>
-		<typeAlias type="kh.spring.chazazo.couponmanage.dto.CouponManageReqDto" alias="CouponManageReqDto"/>
-		<typeAlias type="kh.spring.chazazo.couponmanage.dto.CouponManageRespDto" alias="CouponManageRespDto"/>
-		<typeAlias type="kh.spring.chazazo.coupon.dto.CouponReqDto" alias="CouponReqDto"/>
-		<typeAlias type="kh.spring.chazazo.inquiry.model.dto.InquiryInsertReqDto" alias="inquiryInsertReqDto"/>
+		<typeAlias type="kh.spring.chazazo.admin.model.dto.AdminLocationListRespDto" alias="adminLocationListRespDto"/>
+		<typeAlias type="kh.spring.chazazo.admin.model.dto.AdminLocationRespDto" alias="adminLocationRespDto"/>
+		<typeAlias type="kh.spring.chazazo.admin.model.dto.AdminLocationOneRespDto" alias="adminLocationOneRespDto"/>
 		<typeAlias type="kh.spring.chazazo.admin.model.dto.AdminLocationInsertReqDto" alias="adminLocationInsertReqDto"/>
 		<typeAlias type="kh.spring.chazazo.admin.model.dto.AdminLocationUpdateReqDto" alias="adminLocationUpdateReqDto"/>
-		<typeAlias type="kh.spring.chazazo.admin.model.dto.AdminLocationListRespDto" alias="adminLocationListRespDto"/>
+		<typeAlias type="kh.spring.chazazo.admin.model.dto.AdminVehicleRespDto" alias="adminVehicleRespDto"/>
+		<typeAlias type="kh.spring.chazazo.admin.model.dto.AdminVehicleOneRespDto" alias="adminVehicleOneRespDto"/>
 		<typeAlias type="kh.spring.chazazo.admin.model.dto.AdminVehicleUpdateReqDto" alias="adminVehicleUpdateReqDto"/>
+		<typeAlias type="kh.spring.chazazo.admin.model.dto.AdminReservByModelRespDto" alias="adminReservByModelRespDto"/>
+		<typeAlias type="kh.spring.chazazo.admin.model.dto.AdminReservRespDto" alias="adminReservRespDto"/>
+		<typeAlias type="kh.spring.chazazo.admin.model.dto.AdminReservOneRespDto" alias="adminReservOneRespDto"/>
 		<typeAlias type="kh.spring.chazazo.admin.model.dto.AdminChatRoomRespDto" alias="adminChatRoomRespDto"/>
+		<typeAlias type="kh.spring.chazazo.admin.model.dto.AdminStatisticsRecentMonthDto" alias="adminStatisticsRecentMonthDto"/>
+		<typeAlias type="kh.spring.chazazo.admin.model.dto.AdminStatisticsLocationRespDto" alias="adminStatisticsLocationRespDto"/>
 		<typeAlias type="kh.spring.chazazo.admin.model.dto.AdminStatisticsReqDto" alias="adminStatisticsReqDto"/>
 		<typeAlias type="kh.spring.chazazo.admin.model.dto.AdminStatisticsCountRespDto" alias="adminStatisticsCountRespDto"/>
 		<typeAlias type="kh.spring.chazazo.admin.model.dto.AdminStatisticsSumRespDto" alias="adminStatisticsSumRespDto"/>

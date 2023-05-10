@@ -60,16 +60,12 @@
 		<div class="content-area single-property" style="background-color: #FCFCFC;">
 			<div class="container">
 				<div class="clearfix padding-top-40">
-					<!-- 리뷰영역 -->
+					<!-- 차량정보영역 -->
 					<jsp:include page="/WEB-INF/views/reservation/review.jsp"/>
-					<!-- 리뷰영역 -->
-					
-						<!-- 우측 카테고리 시작 -->
-						<!-- 날짜 선택 시작 -->
-	
+					<!-- 차량정보영역 -->
+				<div style="text-align:left;">
 					<jsp:include page="/WEB-INF/views/reservation/carInfo.jsp"/>
-						<!-- 날짜 선택 끝 -->
-						
+				</div>
 				</div>
 			</div>
 		</div>
@@ -126,7 +122,7 @@
 				html +=	'			<div class="favorite-and-print">'
 				html +=	'				<a class="add-to-fav" href="#login-modal" data-toggle="modal"><i class="fa fa-star-o"></i></a>'
 				html +=	'			</div> '
-				html +=	'			<img src="${car.image }">'
+				html +=	'			<img src="${pageContext.request.contextPath}/resources/img/car/${car.image }">'
 				html +=	'		</div>'
 				html +=	'	</div>'
 				html += '	</div>'
@@ -321,7 +317,7 @@
 		| !testEmail.test($('[name=email]').val())) {
 			swal("예약정보를 다시 확인해주세요","형식에 맞게 정보를 입력해주세요", {icon: "warning"});
 			return false;	
-		} else if($('#finalprice').val() == 0){
+		} else if($('#finalprice').val() == '0'){
 			alert("결제할 정보가 없습니다")
 			return false;
 		}
@@ -331,7 +327,6 @@
 	}
 	//카카오페이결제 전 입력정보 유효성 검사
 	function checkForm2(){
-
 		let testName = /^[가-힣]{2,10}$/;
 		let testBirth = /^(19[0-9]{2}|20[0-1]{1}[0-9]{1}|202[0-3]{1})(0[1-9]|1[0-2])(0[1-9]|[1-2][0-9]|3[0-1])$/;
 		let testPhone = /^01[0|1|6|7|8|9][0-9]{7,8}$/;
@@ -395,6 +390,7 @@
 	
 	//카카오페이 결제
 	function kakaopay() {
+		var useridx = $('#useridx').val();
 	    var IMP = window.IMP;
 	    var merchantUid ='merchant_' + new Date().getTime();
 	    IMP.init("imp01440251");
@@ -423,8 +419,11 @@
 	            	icon  : "success",
 	            	closeOnClickOutside : false
 	            	}).then(function(){
-	           		 location.href='${pageContext.request.contextPath}/member/profile';
-	            	// 함수
+	            		if(useridx == 0) {
+	            			location.href='${pageContext.request.contextPath}/nmemPayInfo?merchantUid='+merchantUid;
+	            		}else {
+			           		 location.href='${pageContext.request.contextPath}/member/profile';
+	            		}
 	            });
 	        } else {    // 결제가 실패했을 때
 	            // 결제에 실패했을떄 실패메세지와 실패사유를 출력
@@ -441,6 +440,7 @@
 		var uid = merchantUid;
 		var returnval = $('#returnSelect option:selected').val();
 		var finalprice = parseInt($('#finalprice').val());
+		console.log("최종가격" + finalprice);
 		var caridx = $('#caridx').val();
 		var useridx = $('#useridx').val();
 		var couponIdx= $('#cIdx').val();
@@ -510,7 +510,7 @@
 	        	  "memberIdx" : useridx, // 회원idx, 비회원은 0
 	        	  "vehicleIdx" : "${car.idx}", //차량idx
 	        	  "insuranceIdx": ins, //선택한 보험종류
-	        	  "finalprice" : finalprice, //결제금액
+	        	  "finalPrice" : finalprice, //결제금액
 	        	  "paidtime": paidtime, //결제시간
 				  "startDate":startDate, //대여일
 				  "endDate":endDate, //반납일

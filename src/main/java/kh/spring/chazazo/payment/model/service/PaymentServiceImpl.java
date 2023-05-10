@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 
 import kh.spring.chazazo.location.model.dto.LocationRespDto;
 import kh.spring.chazazo.payment.model.dao.PaymentDao;
-import kh.spring.chazazo.payment.model.dto.PaymentInfoDto;
 import kh.spring.chazazo.payment.model.dto.PaymentReqDto;
 
 
@@ -67,13 +66,14 @@ public class PaymentServiceImpl implements PaymentService {
 	@Override
 	public int deleteReserv(int idx) {
 		int result = dao.deleteReserv(idx);
-		int result1 = dao.reissueCoupon(idx);
+		
 		return result;
 	}
 
 
 
 	@Override
+
 	public List<PaymentReqDto> allResList(String username) {
 		return dao.allResList(username);
 	}
@@ -85,10 +85,13 @@ public class PaymentServiceImpl implements PaymentService {
 		return dao.watingResList(username);
 	}
 
-
-
 	@Override
 	public List<PaymentReqDto> cancelResList(String username) {
 		return dao.cancelResList(username);
+}
+	@Override
+	public PaymentReqDto selectNmemPayInfo(String merchantUid) {
+		return dao.selectNmemPayInfo(merchantUid);
+
 	}
 }

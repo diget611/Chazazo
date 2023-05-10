@@ -105,7 +105,7 @@
 										<input class="form-control" value="2020-03-20" name="dates" placeholder="날짜 선택">
 									</div>
 								</div>
-								<button class="btn search-btn" type="submit" style="width:130px; height:78px; margin-left:10px;"><i class="fa fa-search"></i>차량검색</button>
+								<button class="btn search-btn" id="searchBtn" type="button" style="width:130px; height:78px; margin-left:10px;"><i class="fa fa-search"></i>차량검색</button>
 							</form>
 						</div>
 					</div>
@@ -118,6 +118,7 @@
 					<div class="col-md-10 col-md-offset-1 col-sm-12 text-center page-title">
 						<h2>리뷰</h2> 
 						${reviewList }
+						${inquiryList }
 					</div>
 				</div>
 				<div class="row">
@@ -238,6 +239,10 @@
 	
 	<script>
 		$('input[name="dates"]').daterangepicker();	
+		
+		$('#searchBtn').on('click', function() {
+			location.href = '${pageContext.request.contextPath}/carlist'
+		})
 	</script>
 </body>
 </html>

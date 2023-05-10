@@ -1,15 +1,12 @@
 package kh.spring.chazazo.request.controller;
 
 import java.security.Principal;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -37,8 +34,6 @@ public class RequestController {
 	
 	@GetMapping("/{idx}")
 	public ModelAndView viewRequestOne(ModelAndView mv, Principal prin) {
-		// jsp에서 문의 아이디랑 로그인한 아이디가 같은지 확인한 후
-		// 일치하면 상세 내용 띄우고 일치하지 않으면 페이지 이동
 		mv.setViewName("inquiry/requestdetails");
 		return mv;
 	}
@@ -51,7 +46,6 @@ public class RequestController {
 	
 	@PostMapping("/insert")
 	public int insertRequest(@RequestBody RequestReqDto data) {
-		System.out.println(data);
 		int result = rService.insert(data);
 		return result;
 	}

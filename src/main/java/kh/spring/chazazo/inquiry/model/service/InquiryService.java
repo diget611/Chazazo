@@ -10,4 +10,5 @@ public interface InquiryService {
 	
 	public List<InquiryRespDto> selectList(Map<String, String> data);
 	public int insert(InquiryInsertReqDto data);
+	
 }

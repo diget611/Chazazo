@@ -213,7 +213,7 @@
 								style="visibility: visible; animation-name: fadeInRight;">
 								<div class="panel-heading">
 									<h3 class="panel-title">
-										<button type="button" class="btn btn-outline-primary">1:1
+										<button type="button" id="request" class="btn btn-outline-primary">1:1
 											문의</button>
 										<br>
 										<sec:authorize access="isAuthenticated()">
@@ -324,6 +324,7 @@
 										<div class="w-50 ml-1">
 											<button
 												class="js-vrsi-btn-write-review btn btn-sm btn-grey-7 btn-block">리뷰쓰기</button>
+												
 										</div>
 									</div>
 								</div>
@@ -395,6 +396,11 @@
 					<div class="text-center space-1 dc-none dc-lg-block">
 						<button type="button" class="js-vpr-btn-go-main btn btn-wide btn-pill mx-auto px-6 btn-primary" id="review-btn">리뷰 쓰러가기</button>
 					</div>
+					<div class="dc-none js-vrsi-container-bottom-btn"
+																data-type="r">
+																<button
+																	class="js-vrsi-btn-write-review btn btn-sm btn-grey-7 btn-block text-16 mt-3">리뷰쓰기</button>
+															</div>
 									
 							</div>
 							<div id="content" style="display:none;">
@@ -443,11 +449,11 @@
 	<jsp:include page="/WEB-INF/views/base/footer.jsp" />
 
 	<script>
-	$('.main-nav').children().eq(2).children().css('color', '#18B4E9');
+		$('.main-nav').children().eq(2).children().css('color', '#18B4E9');
 
-	$('#historyBtn').on('click', function() {
-		location.href='<%=request.getContextPath()%>/profile/reservation/${memberinfo.idx}';
-	});
+		$('#historyBtn').on('click', function() {
+			location.href='${pageContext.request.contextPath}/profile/history';
+		});
 		$('#updateinfoBtn').on('click', function() {
 			location.href="${pageContext.request.contextPath}/member/profile/update";
 			
@@ -464,7 +470,10 @@
 			
 		});
 		
-	
+		$('#request').on('click', function() {
+			location.href='<%=request.getContextPath()%>/request';
+		});
+		
 		$('#bookmark').on('click', function() {
 			location.href='<%=request.getContextPath()%>/profile/favorites';
 		});

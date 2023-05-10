@@ -200,7 +200,7 @@ tbody tr:hover {
 									class="panel panel-default sidebar-menu wow fadeInRight animated animated animated"
 									style="visibility: visible; animation-name: fadeInRight;">
 									<h3 class="panel-title">
-										<button type="button" class="btn btn-outline-primary">1:1
+										<button type="button" id="request" class="btn btn-outline-primary">1:1
 											문의</button>
 										<br>
 										<sec:authorize access="isAuthenticated()">
@@ -298,14 +298,18 @@ tbody tr:hover {
 	$('.main-nav').children().eq(2).children().css('color', '#18B4E9');
 	
 
-	$('#historyBtn').on('click', function() {
-		location.href='<%=request.getContextPath()%>/profile/reservation/${memberinfo.idx}';
-	});
+		$('#historyBtn').on('click', function() {
+			location.href='${pageContext.request.contextPath}/profile/history';
+		});
+		
 		$('#updateinfoBtn').on('click', function() {
 			location.href="${pageContext.request.contextPath}/member/profile/update";
 			
 		});
-
+		$('#request').on('click', function() {
+			location.href='<%=request.getContextPath()%>/request';
+		});
+		
 
 		$("#myReview").on("click", function(){
 			location.href="${pageContext.request.contextPath}/myReview";

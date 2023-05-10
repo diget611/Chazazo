@@ -136,7 +136,7 @@
 								style="visibility: visible; animation-name: fadeInRight;">
 								<div class="panel-heading">
 									<h3 class="panel-title">
-										<button type="button" class="btn btn-outline-primary">1:1
+										<button type="button"  id="request" class="btn btn-outline-primary">1:1
 											문의</button>
 										<br>
 										<button  id="coupon" type="button" class="btn btn-outline-primary">쿠폰
@@ -252,13 +252,17 @@
 	$('.main-nav').children().eq(2).children().css('color', '#18B4E9');
 
 	$('#historyBtn').on('click', function() {
-		location.href='<%=request.getContextPath()%>/profile/reservation/${memberinfo.idx}';
+		location.href='<%=request.getContextPath()%>/profile/history';
 	});
 		$('#updateinfoBtn').on('click', function() {
 			location.href="${pageContext.request.contextPath}/member/profile/update";
 			
 		});
 
+		$('#request').on('click', function() {
+			location.href='<%=request.getContextPath()%>/request';
+		});
+		
 
 		$("#myReview").on("click", function(){
 			location.href="${pageContext.request.contextPath}/myReview";

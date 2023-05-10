@@ -141,7 +141,6 @@
 				},
 				type : "get",
 				success : function(result) {
-					console.log('123');
 					getList();
 				},
 				error : function() {

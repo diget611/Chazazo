@@ -2,33 +2,20 @@ package kh.spring.chazazo.member.controller;
 
 import java.security.Principal;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
-import javax.servlet.http.HttpSession;
 
 import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PatchMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
-import com.google.gson.Gson;
 
 import kh.spring.chazazo.member.model.dto.MemberReqDto;
 
@@ -50,12 +37,7 @@ public class MemberController {
 	private PasswordEncoder passwordEncoder;
 	@Autowired
 	private PaymentService pService;
-	@Autowired
-	private PaymentService aService;
-
-
-    
-
+	
 	@GetMapping
 	public ModelAndView viewMemberList(ModelAndView mv) {
 		// 관리자 회원 리스트 조회
@@ -166,12 +148,9 @@ public class MemberController {
 	
 	// 회원정보 수정 페이지 조회
 	@GetMapping("/profile/update")
-	public ModelAndView viewUpdateMember(ModelAndView mv,
-										  Principal prin) {
+	public ModelAndView viewUpdateMember(ModelAndView mv, Principal prin) {
 		
 		String loginId = prin.getName();
-		System.out.println("eeeeeeeeeeeeeeeeeeee");
-		System.out.println(loginId);
 		mv.addObject("memberinfo", mService.selectMypageOne(loginId));
 		mv.setViewName("member/profile");
 		
@@ -180,24 +159,16 @@ public class MemberController {
 	
 	//비밀번호 체크
 	@GetMapping("/checkPwd")
-	  public boolean checkPassword(Principal prin, 
-              @RequestParam String checkPassword ){
-		System.out.println("진입");
+	  public boolean checkPassword(Principal prin, @RequestParam String checkPassword ){
 		String username = prin.getName();
 		String currPass = mService.userPass(username);
-		System.out.println(checkPassword);
-		System.out.println(currPass);
 		
 		if(passwordEncoder.matches(checkPassword, currPass)) {
-			System.out.println("hhhhh");
 			return true;
 		} else {
-			System.out.println("iiiiiiiiiii");
 			return false;
 		}
-		
-		}
-	
+	}
 	
 	// 회원정보 수정 
 	@PostMapping("/profile/update")
@@ -205,33 +176,16 @@ public class MemberController {
 	public String updateMember(MemberInfoRespDto dto,Principal pricipal ) {
 		dto.setUsername(pricipal.getName());
 		int result = mService.updateInfo(dto);
-	System.out.println("updatedddd!!");
-			return String.valueOf(result);
+		return String.valueOf(result);
 	}
-	
 	
 	@DeleteMapping("/profile")
 	public int deleteMember(Principal prin) {
 		// 회원탈퇴 / DeleteMapping
 		String username = prin.getName();
-		System.out.println(username);
 		int result = mService.deleteMember(username);
-		System.out.println(result);
 		return result;
 	}
-	
-
-	
-	/*
-	 * @ExceptionHandler(Exception.class) public ModelAndView
-	 * memberExceptionHandler(Exception e 오류발생함 ModelAndView mv ) {
-	 * e.printStackTrace();
-	 * 
-	 * ModelAndView mv = new ModelAndView(); mv.addObject("msg", e.getMessage() +
-	 * "오류가       발생했습니다. 다시 시도해주세요."); mv.setViewName("error/error500");
-	 * 
-	 * return mv; }
-	 */
 	
 }
 

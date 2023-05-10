@@ -6,7 +6,6 @@ import lombok.Data;
 
 @Component
 @Data
-
 public class CouponManageReqDto {
 	
 	private String couponCode;

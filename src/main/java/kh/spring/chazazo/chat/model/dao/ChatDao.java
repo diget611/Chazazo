@@ -11,7 +11,6 @@ import kh.spring.chazazo.chat.model.dto.ChatDto;
 import kh.spring.chazazo.chat.model.dto.ChatLogDto;
 import kh.spring.chazazo.chat.model.dto.ChatRoomListDto;
 
-
 @Repository
 public class ChatDao {
 	

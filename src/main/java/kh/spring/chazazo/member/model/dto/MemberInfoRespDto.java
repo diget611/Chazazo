@@ -19,6 +19,4 @@ public class MemberInfoRespDto {
 	private String email;
 	private String password;
 	
-	
-	
 }

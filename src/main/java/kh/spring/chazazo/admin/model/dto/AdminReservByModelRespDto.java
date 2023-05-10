@@ -1,6 +1,5 @@
 package kh.spring.chazazo.admin.model.dto;
 
-
 import org.springframework.stereotype.Component;
 
 import lombok.AllArgsConstructor;

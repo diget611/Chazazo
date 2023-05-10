@@ -1,13 +1,11 @@
 package kh.spring.chazazo.chat.controller;
 
 import java.security.Principal;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.MessageMapping;
-import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -40,7 +38,6 @@ public class ChatController {
 	@GetMapping("/room/{roomIdx}")
 	public ModelAndView enterChat(ModelAndView mv, Principal prin, @PathVariable String roomIdx) {
 		String username = prin.getName();
-		System.out.println(roomIdx);
 		Map<String, String> data = new HashMap<String, String>();
 		data.put("username", username);
 		data.put("roomIdx", roomIdx);

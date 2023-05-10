@@ -1,6 +1,5 @@
 package kh.spring.chazazo.request.model.dto;
 
-
 import org.springframework.stereotype.Component;
 
 import lombok.AllArgsConstructor;

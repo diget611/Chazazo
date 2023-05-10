@@ -1,7 +1,5 @@
 package kh.spring.chazazo.admin.model.dto;
 
-import java.sql.Date;
-
 import org.springframework.stereotype.Component;
 
 import lombok.AllArgsConstructor;

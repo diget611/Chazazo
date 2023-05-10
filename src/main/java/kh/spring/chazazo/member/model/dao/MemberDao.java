@@ -50,7 +50,6 @@ public class MemberDao {
 
 	//마이페이지 회원정보
 	public MemberInfoRespDto selectMypageOne(String username) {
-		// TODO Auto-generated method stub
 		return sqlSession.selectOne("member.selectMypageOne", username);
 	}
 	

@@ -448,6 +448,11 @@
 		var finalprice = parseInt($('#finalprice').val());
 		var caridx = $('#caridx').val();
 		var useridx = $('#useridx').val();
+		if(useridx == 0) {
+			var ismember =0;
+		} else {
+			ismember =1;
+		}
 		var couponIdx= $('#cIdx').val();
 		var returnLocation =$("#returnSelect").val();
 
@@ -458,7 +463,6 @@
 		const date = new Date(d.getTime() + TIME_ZONE).toISOString().split('T')[0];
 		const time = d.toTimeString().split(' ')[0];
 		var paidtime= date + " " + time;
-		if ($(''))
 		var sdate = new Date($('#startDate').val());
 		var edate = new Date($('#endDate').val());
 		var startDate = sdate.getFullYear() + "/" + (sdate.getMonth() + 1) + "/" + sdate.getDate();
@@ -504,7 +508,6 @@
 		
 		
 		var nameval = $('#name').val();
-		var useridx = $('#useridx').val();
 		var phoneval = $('#phone').val();
 		var birthval = $('#birth').val();
 		var mailval = $('#mail').val();

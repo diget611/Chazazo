@@ -12,6 +12,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700&display=swap" rel="stylesheet">
     
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
     <link href="<%=request.getContextPath()%>/resources/dashmin/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
@@ -65,82 +66,93 @@
 	</div>
 	<!-- Form End -->
 
-<script src="<%=request.getContextPath()%>/resources/dashmin/js/main.js"></script>
-
-<script>
-	function resizeWindow(win) {
-		var hei = win.document.body.offsetHeight + 100;
-		win.resizeTo(500, hei);
-	}
+	<script src="<%=request.getContextPath()%>/resources/dashmin/js/main.js"></script>
 	
-	$('#updateBtn').on('click', updateNotice);
-	
-	function updateNotice() {
-		if($('#updateBtn').text() == '수정하기') {
-			$('#updateBtn').text('수정 완료');
-			$('#name').attr('readonly', false);
-			$('#period').attr('readonly', false);
-			$('#rate').attr('readonly', false);
-		} else {
-			let idx = $('#idx').val();
-			let name = $('#name').val();
-			let period = $('#period').val();
-			let rate = $('#rate').val() / 100;
-			let data = {
-					idx: idx,
-					name: name,
-					period: period,
-					rate: rate
-			}
-			
-			if(period <= 0 || rate >= 1) {
-				alert("입력하신 값을 확인하세요")
-			} else {
-				$.ajax({
-					url: "${pageContext.request.contextPath}/admin/coupon/update",
-					type: "patch",
-					data: JSON.stringify(data),
-					contentType: "application/json; charset=utf-8",
-					success: function(result) {
-						if(result == 1) {
-							alert("쿠폰 수정 완료");
-							opener.parent.location.reload();
-							window.close();
-						} else {
-							alert('실패');
-						}
-					},
-					error: function() {
-						alert("에러");
-					}
-				});
-			}
-		} 
-	}
-	
-	$('#deleteBtn').on('click', deleteCoupon);
-	
-	function deleteCoupon() {
-		let idx = $('#idx').val();
-		$.ajax({
-			url: "${pageContext.request.contextPath}/admin/coupon/delete",
-			data: {idx: idx},
-			type: "patch",
-			success: function(result) {
-				if(result == 1) {
-					opener.parent.location.reload();
-					window.close();
-				} else {
-				alert('실패');					
-				}
-			}, 
-			error: function() {
-				alert('에러');
-			}
-		})
+	<script>
+		function resizeWindow(win) {
+			var hei = win.document.body.offsetHeight + 100;
+			win.resizeTo(500, hei);
+		}
 		
-	}
-</script>
+		$('#updateBtn').on('click', updateNotice);
+		
+		function updateNotice() {
+			if($('#updateBtn').text() == '수정하기') {
+				$('#updateBtn').text('수정 완료');
+				$('#name').attr('readonly', false);
+				$('#period').attr('readonly', false);
+				$('#rate').attr('readonly', false);
+			} else {
+				let idx = $('#idx').val();
+				let name = $('#name').val();
+				let period = $('#period').val();
+				let rate = $('#rate').val() / 100;
+				let data = {
+						idx: idx,
+						name: name,
+						period: period,
+						rate: rate
+				}
+				
+				if(period <= 0 || rate >= 1) {
+					swal("실패", "입력하신 값을 확인하세요.", "error");
+				} else {
+					$.ajax({
+						url: "${pageContext.request.contextPath}/admin/coupon/update",
+						type: "patch",
+						data: JSON.stringify(data),
+						contentType: "application/json; charset=utf-8",
+						success: function(result) {
+							if(result == 1) {
+								swal({
+				        			title : "쿠픈을 수정했습니다.",
+				        		    icon  : "success",
+				        		    closeOnClickOutside : false
+				        		}).then(function(){
+				        			opener.parent.location.reload();
+									window.close();
+				        		});
+							} else {
+								swal("실패", "쿠폰 수정 과정에 오류가 발생했습니다. 확인 후 다시 시도해 주세요.", "error");
+							}
+						},
+						error: function() {
+							swal("에러", "응답에 오류가 있습니다. 확인 후 다시 시도해 주세요.", "error");
+						}
+					});
+				}
+			} 
+		}
+		
+		$('#deleteBtn').on('click', deleteCoupon);
+		
+		function deleteCoupon() {
+			let idx = $('#idx').val();
+			$.ajax({
+				url: "${pageContext.request.contextPath}/admin/coupon/delete",
+				data: {idx: idx},
+				type: "patch",
+				success: function(result) {
+					if(result == 1) {
+						swal({
+		        			title : "쿠픈을 삭제했습니다.",
+		        		    icon  : "success",
+		        		    closeOnClickOutside : false
+		        		}).then(function(){
+		        			opener.parent.location.reload();
+							window.close();
+		        		});
+					} else {
+						swal("실패", "쿠폰 삭제 과정에 오류가 발생했습니다. 확인 후 다시 시도해 주세요.", "error");					
+					}
+				}, 
+				error: function() {
+					swal("에러", "응답에 오류가 있습니다. 확인 후 다시 시도해 주세요.", "error");
+				}
+			})
+			
+		}
+	</script>
 </body>
 
 </html>

@@ -16,6 +16,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700&display=swap" rel="stylesheet">
     
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
     <link href="<%=request.getContextPath()%>/resources/dashmin/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
@@ -152,7 +153,7 @@
 		
 		if(name == null || phoneNumber == null || address == null 
 				|| latitude == null || longitude == null || $('#startTime').val() == null || $('#endTime').val() == null) {
-			alert('정보를 입력해주세요.');
+			swal("실패", "지점 정보를 입력해주세요.", "error");
 		} else {
 			$.ajax({
 				url: '${pageContext.request.contextPath}/admin/location/insert',
@@ -161,15 +162,20 @@
 				contentType: "application/json; charset=utf-8",
 				success: function(result) {
 					if(result == 1) {
-						alert('지점 등록 완료');
-						opener.parent.location.reload();
-						window.close();
+						swal({
+		        			title : "지점을 등록했습니다.",
+		        		    icon  : "success",
+		        		    closeOnClickOutside : false
+		        		}).then(function(){
+		        			opener.parent.location.reload();
+							window.close();
+		        		});
 					} else {
-						alert('지점 등록 실패');
+						swal("실패", "지점 등록 과정에 오류가 발생했습니다. 확인 후 다시 시도해 주세요.", "error");
 					}
 				},
 				error: function() {
-					alert('에러');
+					swal("에러", "응답에 오류가 있습니다. 확인 후 다시 시도해 주세요.", "error");
 				}
 			});
 		}

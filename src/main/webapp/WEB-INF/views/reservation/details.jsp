@@ -321,7 +321,7 @@
 		| !testEmail.test($('[name=email]').val())) {
 			swal("예약정보를 다시 확인해주세요","형식에 맞게 정보를 입력해주세요", {icon: "warning"});
 			return false;	
-		} else if($('#finalprice').val() == 0){
+		} else if($('#finalprice').val() == '0'){
 			alert("결제할 정보가 없습니다")
 			return false;
 		}
@@ -331,7 +331,6 @@
 	}
 	//카카오페이결제 전 입력정보 유효성 검사
 	function checkForm2(){
-
 		let testName = /^[가-힣]{2,10}$/;
 		let testBirth = /^(19[0-9]{2}|20[0-1]{1}[0-9]{1}|202[0-3]{1})(0[1-9]|1[0-2])(0[1-9]|[1-2][0-9]|3[0-1])$/;
 		let testPhone = /^01[0|1|6|7|8|9][0-9]{7,8}$/;
@@ -445,6 +444,7 @@
 		var uid = merchantUid;
 		var returnval = $('#returnSelect option:selected').val();
 		var finalprice = parseInt($('#finalprice').val());
+		console.log("최종가격" + finalprice);
 		var caridx = $('#caridx').val();
 		var useridx = $('#useridx').val();
 		var couponIdx= $('#cIdx').val();
@@ -514,7 +514,7 @@
 	        	  "memberIdx" : useridx, // 회원idx, 비회원은 0
 	        	  "vehicleIdx" : "${car.idx}", //차량idx
 	        	  "insuranceIdx": ins, //선택한 보험종류
-	        	  "finalprice" : finalprice, //결제금액
+	        	  "finalPrice" : finalprice, //결제금액
 	        	  "paidtime": paidtime, //결제시간
 				  "startDate":startDate, //대여일
 				  "endDate":endDate, //반납일

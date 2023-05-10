@@ -54,12 +54,32 @@
 <body>
 		
 	<jsp:include page="/WEB-INF/views/base/header.jsp"/>
-						
-	비회원 예약정보
-	${info.idx}
-	${info.finalPrice}
-	${info.model}
-	${info.name}
+				
+	<section>
+		<div class="content-area single-property" style="background-color: #FCFCFC; text-align:center;">		
+			<div style="padding:50px; widht:500px;">
+			<h3>예약이 완료되었습니다.</h3>
+				<div >
+					예약자: ${info.name}
+				</div>		
+				<div>
+					결제 금액: ${info.finalPrice}
+				</div>	
+				<div>
+					휴대폰 번호: ${info.phoneNumber}
+				</div>
+				<div>
+					이메일: ${info.email}
+				</div>
+				<div>
+					면허 번호:${info.license}
+				</div>			
+				<div>
+					예약 번호:${info.paymentIdx}
+				</div>	
+			</div>
+		</div>
+	</section>
 
 	
 	<jsp:include page="/WEB-INF/views/base/chat.jsp"/>

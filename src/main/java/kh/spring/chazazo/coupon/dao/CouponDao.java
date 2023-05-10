@@ -28,4 +28,8 @@ public class CouponDao {
 	public int insertWelcomeCoupon() {
 		return sqlSession.insert("coupon.insertWelcome");
 	}
+	public int countCoupon(String username) {
+		return sqlSession.selectOne("coupon.countCoupon", username);
+	}
+	
 }

@@ -60,16 +60,12 @@
 		<div class="content-area single-property" style="background-color: #FCFCFC;">
 			<div class="container">
 				<div class="clearfix padding-top-40">
-					<!-- 리뷰영역 -->
+					<!-- 차량정보영역 -->
 					<jsp:include page="/WEB-INF/views/reservation/review.jsp"/>
-					<!-- 리뷰영역 -->
-					
-						<!-- 우측 카테고리 시작 -->
-						<!-- 날짜 선택 시작 -->
-	
+					<!-- 차량정보영역 -->
+				<div style="text-align:left;">
 					<jsp:include page="/WEB-INF/views/reservation/carInfo.jsp"/>
-						<!-- 날짜 선택 끝 -->
-						
+				</div>
 				</div>
 			</div>
 		</div>

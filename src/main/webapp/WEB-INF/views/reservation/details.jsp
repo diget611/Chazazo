@@ -446,7 +446,6 @@
 		var uid = merchantUid;
 		var returnval = $('#returnSelect option:selected').val();
 		var finalprice = parseInt($('#finalprice').val());
-		console.log("최종가격" + finalprice);
 		var caridx = $('#caridx').val();
 		var useridx = $('#useridx').val();
 		var couponIdx= $('#cIdx').val();

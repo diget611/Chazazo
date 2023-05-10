@@ -73,8 +73,6 @@ public class VehicleController {
 	public String orderByPrice(ModelAndView mv, @RequestParam(required=false) String page
 			, @RequestParam(value="typeList[]", required=false) List<String> typeList
 			, @RequestParam(value="fuelList[]", required=false) List<String> fuelList, String keyword) {
-		System.out.println("!!!!!typeList!!!!!!!"+typeList);
-		System.out.println("!!!!!fuelList!!!!!!!"+fuelList);
 		Map<String, Object> search = new HashMap<>();
 		search.put("typeList", typeList);
 		search.put("fuelList", fuelList);
@@ -98,8 +96,6 @@ public class VehicleController {
 	public String getList(ModelAndView mv, @RequestParam(required=false) String page
 			, @RequestParam(value="typeList[]", required=false) List<String> typeList
 			, @RequestParam(value="fuelList[]", required=false) List<String> fuelList, String keyword) {
-		System.out.println("!!!!!typeList!!!!!!!"+typeList);
-		System.out.println("!!!!!fuelList!!!!!!!"+fuelList);
 		Map<String, Object> search = new HashMap<>();
 		search.put("typeList", typeList);
 		search.put("fuelList", fuelList);

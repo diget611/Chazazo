@@ -1,6 +1,7 @@
 package kh.spring.chazazo.payment.model.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,12 +23,13 @@ public class PaymentDao {
 	public List<PaymentReqDto> ReservationList(String username){
 		return session.selectList("payment.resList",username);
 	}
-	public List<PaymentReqDto> watingResList(String username){
-		return session.selectList("payment.watingResList",username);
+	public List<PaymentReqDto> optionResList(PaymentReqDto data){
+		return session.selectList("payment.optionResList",data);
 	}
-	public List<PaymentReqDto> cancelResList(String username){
-		return session.selectList("payment.cancelResList",username);
-	}
+	
+//	public List<PaymentReqDto> cancelResList(String username){
+//		return session.selectList("payment.cancelResList",username);
+//	}
 	
 	//예약상세  
 	public PaymentReqDto ReservationOne(int idx) {

@@ -1,6 +1,7 @@
 package kh.spring.chazazo.payment.model.service;
 
 import java.util.List;
+import java.util.Map;
 
 import kh.spring.chazazo.location.model.dto.LocationRespDto;
 import kh.spring.chazazo.payment.model.dto.PaymentInfoDto;
@@ -23,8 +24,8 @@ public interface PaymentService {
 	public int deleteReserv(int idx);
 	public LocationRespDto resvLocation(int idx);
 	public List<PaymentReqDto> allResList(String username);
-	public List<PaymentReqDto> watingResList(String username);
-	public List<PaymentReqDto> cancelResList(String username);
+	
+	public List<PaymentReqDto> optionResList(PaymentReqDto data);
 	
 	
 	//비회원

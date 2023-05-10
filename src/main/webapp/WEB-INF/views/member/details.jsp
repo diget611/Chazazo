@@ -390,18 +390,17 @@
 						<div>${location.businessHours}</div></div>
 					</section>
 					<hr class="my-2">
+					<c:if test="${reservation.state eq 0 }">
 					<div class="text-center space-1 dc-none dc-lg-block">
 						<button type="button" class="js-vpr-btn-go-main btn btn-wide btn-pill mx-auto px-6 btn-primary" id="delReserv-btn">예약 취소하기</button>
 					</div>
 					<div class="text-center space-1 dc-none dc-lg-block">
 						<button type="button" class="js-vpr-btn-go-main btn btn-wide btn-pill mx-auto px-6 btn-primary" id="review-btn">리뷰 쓰러가기</button>
 					</div>
-					<div class="dc-none js-vrsi-container-bottom-btn"
-																data-type="r">
-																<button
-																	class="js-vrsi-btn-write-review btn btn-sm btn-grey-7 btn-block text-16 mt-3">리뷰쓰기</button>
-															</div>
-									
+					<div class="dc-none js-vrsi-container-bottom-btn" data-type="r">
+					<button class="js-vrsi-btn-write-review btn btn-sm btn-grey-7 btn-block text-16 mt-3">리뷰쓰기</button>
+					</div>
+					</c:if>			
 							</div>
 							<div id="content" style="display:none;">
 							<!--  

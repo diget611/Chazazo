@@ -119,13 +119,20 @@ private AdminVehicleService aService;
 		String loginId = prin.getName();;
 		mv.addObject("memberinfo", mService.selectMypageOne(loginId));
 		mv.addObject("reservation", pService.allResList(loginId));
-		mv.addObject("watingRes", pService.watingResList(loginId));
-		mv.addObject("cancelRes", pService.cancelResList(loginId));
-		mv.addObject("completeRes", pService.selectList(loginId));
+//		mv.addObject("cancelRes", pService.cancelResList(loginId));
+//		mv.addObject("completeRes", pService.selectList(loginId));
 		mv.setViewName("member/history");
 		return mv;
 		
 	}	
+	
+//	@GetMapping("history/option")
+//	public String optionStateRes(int memberIdx) {
+//		
+//	}
+//	
+	
+	
 	// 비회원 예약 조회 
 	@GetMapping("/profile/nonereservation")
 	public String viewNoneReservationListUser(ModelAndView mv, int paymentIdx, PaymentReqDto data) {

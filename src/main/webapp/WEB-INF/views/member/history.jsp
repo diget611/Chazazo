@@ -81,6 +81,8 @@ table {
 	border-top: 1px solid black;
 	text-align: center;
 	width: 100%;
+	cursor:pointer;
+	
 }
 
 th {
@@ -291,7 +293,7 @@ tbody tr:hover {
 												</select>
 											</div>
 										</section>
-										<section class="carmore-section">
+										<section class="carmore-section" >
 											<div class="container">
 												<div class="" id="rent_history_container_exist"
 													style="display: none;">
@@ -399,28 +401,8 @@ tbody tr:hover {
 																	</div>
 																</div>
 															</div>
-															<div class="dc-none js-vrsi-container-bottom-btn"
-																data-type="c">
-																<button
-																	class="js-vrsi-btn-call btn btn-sm btn-grey-7 btn-block text-16 mt-3">전화</button>
-															</div>
-															<div class="dc-none js-vrsi-container-bottom-btn"
-																data-type="r">
-																<button
-																	class="js-vrsi-btn-write-review btn btn-sm btn-grey-7 btn-block text-16 mt-3">리뷰쓰기</button>
-															</div>
-															<div class="dc-none js-vrsi-container-bottom-btn"
-																data-type="cr">
-																<div
-																	class="dc-flex justify-content-between align-items-center mt-3 text-16">
-																	<div class="w-50 mr-1">
-																		<button
-																			class="js-vrsi-btn-call btn btn-sm btn-grey-7 btn-block">전화</button>
-																	</div>
-																	<div class="w-50 ml-1">
-																		<button
-																			class="js-vrsi-btn-write-review btn btn-sm btn-grey-7 btn-block">리뷰쓰기</button>
-																	</div>
+															
+																	
 																</div>
 															</div>
 															<div
@@ -428,17 +410,13 @@ tbody tr:hover {
 																남겨주세요! 최대 3천원 쿠폰을 드립니다:D</div>
 														</div>
 													</div>
-													<button class="btn btn-primary btn-block dc-none"
-														id="rhil_btn_more_review">
-														<span class="spinner-border spinner-border-sm mr-2"
-															role="status" area-hidden="true"></span>더보기
-													</button>
+													
 												</div>
 												<div class="" id="rent_history_container_empty" style="">
 													<p class="space-1 text-center">조회된 기록이 없습니다.</p>
 												</div>
 											</div>
-										</section>
+										
 									</div>
 									<div id="hideRent">
 										<c:if test="${empty reservation }">
@@ -489,6 +467,7 @@ tbody tr:hover {
 
 
 									</div>
+									</section>
 									<div id="selectRes">
 									
 									
@@ -555,20 +534,11 @@ tbody tr:hover {
 								</div>
 
 
-
-
+</div>
+							</div>
 							</div>
 						</section>
 
-
-					</div>
-
-
-				</div>
-			</div>
-
-		</div>
-	</section>
 
 
 
@@ -608,26 +578,12 @@ tbody tr:hover {
 		});
 		
 		$('tr').on('click', function() {
-			var sss = $(this).children().eq(0).text();
+			var sss = $(this).children(1).eq(0).text();
+			
 			location.href = "${pageContext.request.contextPath}/profile/reservation/" + sss; 
-		})
+		});
 				
-	
-	
-					$('#rentHistorySelect').change(function(){
-					     var history =	$("select[name=rentHistorySelect]").val();
-							if(history == 0){
-								$("#hideRent").show();
-							}else if(history == 1){
-								$("#hideRent").hide();
-								select();
-							}else if(history == 2){
-								$("#hideRent").show();
-							}else{
-								$("#hideRent").hide();
-							}
-						});
-				
+		
 
 	
 	function select(){
@@ -660,9 +616,23 @@ tbody tr:hover {
 		
 		$('#selectRes').html(html);
 	} 
-	
-	$('#rentHistorySelect').change(function(){
-	     var history =	$("select[name=rentHistorySelect]").val();
+	/*
+	 $(document).ready(function() ){
+		 $('#rentHistorySelect').change(function(){
+		 var history =	$(this).val();
+		 $.ajax({
+			 url:'${pageContext.request.contextPath}/profile/history',
+			 type:'get',
+			 data:{option:history},
+			 success:function(){
+				 
+			 
+			 }
+			 });
+		 }
+
+		};
+			 
 			if(history == 0){
 				$("#hideRent").show();
 			}else if(history == 1){
@@ -672,11 +642,11 @@ tbody tr:hover {
 				$("#hideRent").show();
 			}else{
 				$("#hideRent").hide();
-			}
-		});
-	</script>
+			}*/
+	
+</script>
 
 
 </body>
 </html>
-l>
+

@@ -13,8 +13,7 @@ public interface CouponService {
 	public int insertCoupon(Map<String, Object> map);
 	public int totalCoupon(Map<String, Object> map);
 
-	public int insertCoupon(CouponReqDto dto);
-	public int totalCoupon(CouponReqDto dto);
+	
 
 	public int countCoupon(String username);
 	public int insertWelcomeCoupon();

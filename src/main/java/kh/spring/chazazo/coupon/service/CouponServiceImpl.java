@@ -40,4 +40,7 @@ public class CouponServiceImpl implements CouponService {
 	public int countCoupon(String username) {
 		return dao.countCoupon(username);
 	}
+
+	
+
 }

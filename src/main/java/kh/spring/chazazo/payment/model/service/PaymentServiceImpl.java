@@ -1,6 +1,7 @@
 package kh.spring.chazazo.payment.model.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -80,18 +81,17 @@ public class PaymentServiceImpl implements PaymentService {
 
 
 
-	@Override
-	public List<PaymentReqDto> watingResList(String username) {
-		return dao.watingResList(username);
-	}
 
-	@Override
-	public List<PaymentReqDto> cancelResList(String username) {
-		return dao.cancelResList(username);
-}
 	@Override
 	public PaymentReqDto selectNmemPayInfo(String merchantUid) {
 		return dao.selectNmemPayInfo(merchantUid);
 
+	}
+
+
+
+	@Override
+	public List<PaymentReqDto> optionResList(PaymentReqDto data) {
+		return dao.optionResList(data);
 	}
 }

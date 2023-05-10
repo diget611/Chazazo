@@ -57,26 +57,31 @@
 				
 	<section>
 		<div class="content-area single-property" style="background-color: #FCFCFC; text-align:center;">		
-			<div style="padding:50px; widht:500px;">
+			<div style="padding:50px;">
 			<h3>예약이 완료되었습니다.</h3>
-				<div >
-					예약자: ${info.name}
-				</div>		
-				<div>
-					결제 금액: ${info.finalPrice}
-				</div>	
-				<div>
-					휴대폰 번호: ${info.phoneNumber}
+				<div style="width:400px; padding:80px; text-align:left; display:inline-block; font-size:17px;">
+					<div style="padding:5px;">
+						예약 번호 : ${info.paymentIdx}
+					</div>	
+					<div style="padding:5px;">
+						예약자 : ${info.name}
+					</div>		
+					<div style="padding:5px;">
+						결제 금액 : ${info.finalPrice}
+					</div>	
+					<div style="padding:5px;">
+						휴대폰 번호 : ${info.phoneNumber}
+					</div>
+					<div style="padding:5px;">
+						이메일 : ${info.email}
+					</div>
+					<div style="padding:5px;">
+						면허 번호 : ${info.license}
+					</div>			
 				</div>
 				<div>
-					이메일: ${info.email}
+					<br>예약 조회,취소 시 예약번호· 예약자 이름·전화번호가 필요합니다.  
 				</div>
-				<div>
-					면허 번호:${info.license}
-				</div>			
-				<div>
-					예약 번호:${info.paymentIdx}
-				</div>	
 			</div>
 		</div>
 	</section>

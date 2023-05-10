@@ -54,9 +54,8 @@
 						<thead>
 							<tr class="text-dark">
 								<th scope="col" style="width: 5%;">#</th>
-								<th scope="col" style="width: 28%;">제목</th>
+								<th scope="col" style="width: 35%;">제목</th>
 								<th scope="col" style="width: 20%;">작성일</th>
-								<th scope="col" style="width: 7%;">조회수</th>
 								<th scope="col" style="width: 20%;">최근 수정일</th>
 								<th scope="col" style="width: 20%;">삭제일</th>
 							</tr>
@@ -67,7 +66,6 @@
 								<th scope="row">${pagination.count - (pagination.currentPage - 1) * 10 - status.index}</th>
 								<td>${notice.title }</td>
 								<td>${notice.createDate }
-								<td>${notice.readCount }</td>
 								<td>${notice.updateDate }</td>
 								<td>${notice.deleteDate }</td>
 							</tr>

@@ -56,7 +56,7 @@
 					<label for="title">제목</label>
 				</div>
 				<div class="form-floating mb-3" id="addContent">
-					<div id="content">${notice.content }</div>
+					<textarea id="content">${notice.content }</textarea>
 				</div>
 				<c:if test="${notice.deleteDate eq null }">
 					<div class="form-floating mb-3">
@@ -75,11 +75,10 @@
 <script src="https://cdn.ckeditor.com/ckeditor5/34.0.0/classic/ckeditor.js"></script>
 <script src="https://cdn.ckeditor.com/ckeditor5/34.0.0/classic/translations/ko.js"></script>
 
-<script>
-	
-</script>
 
 <script>
+	
+
 	function resizeWindow(win)    {
 		var hei = win.document.body.offsetHeight + 100;
 		win.resizeTo(500, hei);
@@ -87,15 +86,27 @@
 	
 	$('#updateBtn').on('click', updateNotice);
 	
+	let ck;
+	ClassicEditor
+	  .create(document.querySelector( '#content' ), {
+	    language: 'ko'
+	  })
+	  .then( newEditor => {
+		ck = newEditor;
+	    editor = newEditor;
+		editor.enableReadOnlyMode( '#content' );
+	  } )
+	  .catch( error => {
+	    console.error( error );
+	  } );
+	  
+	
 	function updateNotice() {
+		let editor;
 		if($('#updateBtn').text() == '수정하기') {
 			$('#updateBtn').text('수정 완료');
 			$('#title').attr('readonly', false);
-			$('#content').remove();
-			$('#addContent').html('<textarea class="form-control" placeholder="내용을 작성하세요" id="ckeditor"></textarea>');
-			ClassicEditor.create( document.querySelector( '#ckeditor' ), {
-				language: "ko"
-			} );
+			ck.disableReadOnlyMode( '#content' );
 		} else {
 			let idx = $('#idx').val();
 			let title = $('#title').val();
@@ -106,7 +117,6 @@
 					content: content
 			}
 			
-			console.log(data);
 			$.ajax({
 				url: "${pageContext.request.contextPath}/admin/notice/update",
 				type: "patch",

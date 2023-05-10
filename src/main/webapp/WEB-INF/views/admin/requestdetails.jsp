@@ -42,7 +42,7 @@
 					<label for="title">제목</label>
 				</div>
 				<div class="form-floating mb-3">
-					<input type="text" class="form-control" id="content" name="content" value="${request.content}" readonly>
+					<div class="form-control" id="content">${request.content}</div>
 					<label for="content">내용</label>
 				</div>
 				<c:choose>
@@ -50,8 +50,7 @@
 						<form>
 							<div class="form-floating mb-3">
 								<textarea class="form-control mb-3" id="answer" name="answer" style="height: 300px;"></textarea>
-								<label for="answer">답변</label>
-								<div style="text-align: center;">
+								<div class="mt-3" style="text-align: center;">
 									<button type="button" class="btn btn-primary" style="display: inline-block" id="ansBtn">답변하기</button>
 									<button type="button" class="btn btn-primary" style="display: inline-block" id="deleteBtn">삭제하기</button>
 								</div>
@@ -60,10 +59,9 @@
 					</c:when>
 					<c:otherwise>
 						<form>
-							<div class="form-floating mb-3">
+							<div class="form-floating mb-3 mt-3">
 								<textarea class="form-control mb-3" id="answer" name="answer" style="height: 300px;">${request.answer }</textarea>
-								<label for="answer">답변</label>
-								<div style="text-align: center;">
+								<div class="mt-3" style="text-align: center;">
 									<button type="button" class="btn btn-primary" style="display: inline-block" id="updateBtn">수정하기</button>
 									<button type="button" class="btn btn-primary" style="display: inline-block" id="deleteBtn">삭제하기</button>
 								</div>
@@ -77,16 +75,49 @@
 	<!-- Form End -->
 
 <script src="<%=request.getContextPath()%>/resources/dashmin/js/main.js"></script>
+<script src="https://cdn.ckeditor.com/ckeditor5/34.0.0/classic/ckeditor.js"></script>
+<script src="https://cdn.ckeditor.com/ckeditor5/34.0.0/classic/translations/ko.js"></script>
+
 <script>
 	function resizeWindow(win)    {
 		var hei = win.document.body.offsetHeight + 100;
 		win.resizeTo(500, hei);
 	}
+	
+	var isAnswer = ${request.status};
+	
+	if(isAnswer == 0) {
+		ClassicEditor
+		  .create(document.querySelector( '#answer' ), {
+		    language: 'ko'
+		  })
+		  .then( newEditor => {
+		    editor = newEditor;
+		  } )
+		  .catch( error => {
+		    console.error( error );
+		  } );	
+	} else {
+		var ck;
+		ClassicEditor
+		  .create(document.querySelector( '#answer' ), {
+		    language: 'ko'
+		  })
+		  .then( newEditor => {
+			ck = newEditor;
+		    editor = newEditor;
+			editor.enableReadOnlyMode( '#answer' );
+		  } )
+		  .catch( error => {
+		    console.error( error );
+		  } );		
+	}
+	  
 	$('#ansBtn').on('click', insertAns);
 	
 	function insertAns() {
 		let idx = $('[name=idx]').val();
-		let answer = $('[name=answer]').val();
+		let answer = $('[role=textbox]').html();
 		$.ajax({
 			url: '${pageContext.request.contextPath}/admin/request',
 			type: 'post',
@@ -114,30 +145,35 @@
 	$('#updateBtn').on('click', updateAns);
 	
 	function updateAns() {
-		let idxup = $('[name=idx]').val();
-		let answerup = $('[name=answer]').val();
-		$.ajax({
-			url: '${pageContext.request.contextPath}/admin/request',
-			type: 'patch',
-			data: {idx: idxup, answer: answerup},
-			success: function(result) {
-				if(result == 1) {
-					swal({
-	        			title : "답변을 수정했습니다.",
-	        		    icon  : "success",
-	        		    closeOnClickOutside : false
-	        		}).then(function(){
-	        			opener.parent.location.reload();
-						window.close();
-	        		});
-				} else {
-					swal("실패", "답변 수정 과정에 오류가 발생했습니다. 확인 후 다시 시도해 주세요.", "error");					
+		if($('#updateBtn').text() == '수정하기') {
+			$('#updateBtn').text('수정 완료');
+			ck.disableReadOnlyMode( '#answer' );
+		} else {
+			let idxup = $('[name=idx]').val();
+			let answerup = $('[role=textbox]').html();
+			$.ajax({
+				url: '${pageContext.request.contextPath}/admin/request',
+				type: 'patch',
+				data: {idx: idxup, answer: answerup},
+				success: function(result) {
+					if(result == 1) {
+						swal({
+		        			title : "답변을 수정했습니다.",
+		        		    icon  : "success",
+		        		    closeOnClickOutside : false
+		        		}).then(function(){
+		        			opener.parent.location.reload();
+							window.close();
+		        		});
+					} else {
+						swal("실패", "답변 수정 과정에 오류가 발생했습니다. 확인 후 다시 시도해 주세요.", "error");					
+					}
+				}, 
+				error: function() {
+					swal("에러", "응답에 오류가 있습니다. 확인 후 다시 시도해 주세요.", "error");
 				}
-			}, 
-			error: function() {
-				swal("에러", "응답에 오류가 있습니다. 확인 후 다시 시도해 주세요.", "error");
-			}
-		});
+			});
+		}
 	}
 	
 	$('#deleteBtn').on('click', deleteAns);

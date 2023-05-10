@@ -6,6 +6,9 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import kh.spring.chazazo.inquiry.model.dto.InquiryMainRespDto;
+import kh.spring.chazazo.review.model.dto.ReviewMainRespDto;
+
 @Repository
 public class MainPageDao {
 	
@@ -28,8 +31,12 @@ public class MainPageDao {
 		return sqlSession.selectOne("location.count");
 	}
 	
-	public List<String> reviewList() { 
+	public List<ReviewMainRespDto> reviewList() { 
 		return sqlSession.selectList("review.selectListForMain");
+	}
+	
+	public List<InquiryMainRespDto> inquiryList() {
+		return sqlSession.selectList("inquiry.selectListForMain");
 	}
 	
 }

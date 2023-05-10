@@ -33,8 +33,10 @@
 
 		<typeAlias type="kh.spring.chazazo.inquiry.model.dto.InquiryRespDto" alias="inquiryRespDto"/>
 		<typeAlias type="kh.spring.chazazo.inquiry.model.dto.InquiryInsertReqDto" alias="inquiryInsertReqDto"/>
+		<typeAlias type="kh.spring.chazazo.inquiry.model.dto.InquiryMainRespDto" alias="inquiryMainRespDto"/>
 		
 		<typeAlias type="kh.spring.chazazo.review.model.dto.ReviewDto" alias="reviewDto"/>
+		<typeAlias type="kh.spring.chazazo.review.model.dto.ReviewMainRespDto" alias="reviewMainRespDto"/>
 			
 		<typeAlias type="kh.spring.chazazo.request.model.dto.RequestRespDto" alias="requestRespDto"/>
 		

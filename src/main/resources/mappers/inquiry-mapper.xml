@@ -17,4 +17,8 @@
 		INSERT INTO INQUIRY
 		VALUES (INQUIRY_SEQ.NEXTVAL, #{category}, #{title}, #{content})
 	</insert>
+	
+	<select id="selectListForMain" resultType="inquiryMainRespDto">
+		SELECT TITLE, CONTENT FROM INQUIRY WHERE IDX BETWEEN 1 AND 4
+	</select>
 </mapper>

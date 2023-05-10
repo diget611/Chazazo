@@ -5,7 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import kh.spring.chazazo.inquiry.model.dto.InquiryMainRespDto;
 import kh.spring.chazazo.mainpage.dao.MainPageDao;
+import kh.spring.chazazo.review.model.dto.ReviewMainRespDto;
 
 @Service
 public class MainPageServiceImpl implements MainPageService {
@@ -34,8 +36,13 @@ public class MainPageServiceImpl implements MainPageService {
 	}
 
 	@Override
-	public List<String> reviewList() {
+	public List<ReviewMainRespDto> reviewList() {
 		return dao.reviewList();
+	}
+	
+	@Override
+	public List<InquiryMainRespDto> inquiryList() {
+		return dao.inquiryList();
 	}
 
 }

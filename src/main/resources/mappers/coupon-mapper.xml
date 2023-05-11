@@ -20,7 +20,7 @@
 	
 	<select id="totalCoupon" resultType="_int">
 	      SELECT COUNT(*) FROM COUPON WHERE COUPON_IDX = (SELECT IDX FROM COUPON_MANAGE WHERE COUPON_CODE=#{couponCode})
-		   AND MEMBER_IDX = (SELECT IDX FROM MEMBER WHERE USERNAME = #{username})
+		   AND MEMBER_IDX = (SELECT IDX FROM MEMBER WHERE USERNAME = #{username})  AND STATUS = 0
 	</select>
 	
 	<select id="countCoupon" resultType="_int">

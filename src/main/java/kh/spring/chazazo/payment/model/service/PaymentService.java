@@ -1,18 +1,16 @@
 package kh.spring.chazazo.payment.model.service;
 
 import java.util.List;
-import java.util.Map;
+
 
 import kh.spring.chazazo.location.model.dto.LocationRespDto;
-import kh.spring.chazazo.payment.model.dto.PaymentInfoDto;
+
 import kh.spring.chazazo.payment.model.dto.PaymentReqDto;
 
 
 
 public interface PaymentService {
-	
-//	public List<ReservationRespDto> selectList();
-	
+
 
 	
 	public List<PaymentReqDto> selectList(String username);

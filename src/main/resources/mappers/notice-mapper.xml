@@ -32,4 +32,9 @@
 	<select id="count" resultType="_int">
 		SELECT COUNT(*) FROM NOTICE
 	</select>
+	
+	<select id="selectNotice" resultType="NoticeDto">
+		SELECT * FROM NOTICE WHERE IDX BETWEEN 1 AND 4 ORDER BY CREATE_DATE DESC
+	</select>
+	
 </mapper>

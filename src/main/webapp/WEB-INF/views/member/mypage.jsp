@@ -10,58 +10,93 @@
 <title>마이페이지</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
-<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700,800' rel='stylesheet' type='text/css'>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,-25" />
+<link
+	href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700,800'
+	rel='stylesheet' type='text/css'>
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,-25" />
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/garoestate/assets/css/normalize.css">
-<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/garoestate/assets/css/font-awesome.min.css">
-<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/garoestate/assets/css/fontello.css">
-<link href="<%=request.getContextPath()%>/resources/garoestate/assets/fonts/icon-7-stroke/css/pe-icon-7-stroke.css" rel="stylesheet">
-<link href="<%=request.getContextPath()%>/resources/garoestate/assets/fonts/icon-7-stroke/css/helper.css" rel="stylesheet">
-<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/garoestate/assets/css/bootstrap-select.min.css">
-<link rel="stylesheet" 	href="<%=request.getContextPath()%>/resources/garoestate/bootstrap/css/bootstrap.min.css">
-<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/garoestate/assets/css/icheck.min_all.css">
-<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/garoestate/assets/css/price-range.css">
-<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/garoestate/assets/css/style.css">
-<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/garoestate/assets/css/responsive.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/resources/garoestate/assets/css/normalize.css">
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/resources/garoestate/assets/css/font-awesome.min.css">
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/resources/garoestate/assets/css/fontello.css">
+<link
+	href="<%=request.getContextPath()%>/resources/garoestate/assets/fonts/icon-7-stroke/css/pe-icon-7-stroke.css"
+	rel="stylesheet">
+<link
+	href="<%=request.getContextPath()%>/resources/garoestate/assets/fonts/icon-7-stroke/css/helper.css"
+	rel="stylesheet">
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/resources/garoestate/assets/css/bootstrap-select.min.css">
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/resources/garoestate/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/resources/garoestate/assets/css/icheck.min_all.css">
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/resources/garoestate/assets/css/price-range.css">
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/resources/garoestate/assets/css/style.css">
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/resources/garoestate/assets/css/responsive.css">
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
 
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
-<script src="<%=request.getContextPath()%>/resources/garoestate/assets/js/modernizr-2.6.2.min.js"></script>
-<script src="<%=request.getContextPath()%>/resources/garoestate/assets/js/jquery-1.10.2.min.js"></script>
-<script src="<%=request.getContextPath()%>/resources/garoestate/bootstrap/js/bootstrap.min.js"></script>
-<script src="<%=request.getContextPath()%>/resources/garoestate/assets/js/bootstrap-select.min.js"></script>
-<script src="<%=request.getContextPath()%>/resources/garoestate/assets/js/bootstrap-hover-dropdown.js"></script>
-<script src="<%=request.getContextPath()%>/resources/garoestate/assets/js/easypiechart.min.js"></script>
-<script src="<%=request.getContextPath()%>/resources/garoestate/assets/js/jquery.easypiechart.min.js"></script>
-<script src="<%=request.getContextPath()%>/resources/garoestate/assets/js/wow.js"></script>
-<script src="<%=request.getContextPath()%>/resources/garoestate/assets/js/icheck.min.js"></script>
-<script src="<%=request.getContextPath()%>/resources/garoestate/assets/js/owl.carousel.min.js"></script>
-<script src="<%=request.getContextPath()%>/resources/garoestate/assets/js/price-range.js"></script>
-<script src="<%=request.getContextPath()%>/resources/garoestate/assets/js/main.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
-<link rel="stylesheet" 	href="<%=request.getContextPath()%>/resources/css/main.css">
+<script
+	src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
+<script
+	src="<%=request.getContextPath()%>/resources/garoestate/assets/js/modernizr-2.6.2.min.js"></script>
+<script
+	src="<%=request.getContextPath()%>/resources/garoestate/assets/js/jquery-1.10.2.min.js"></script>
+<script
+	src="<%=request.getContextPath()%>/resources/garoestate/bootstrap/js/bootstrap.min.js"></script>
+<script
+	src="<%=request.getContextPath()%>/resources/garoestate/assets/js/bootstrap-select.min.js"></script>
+<script
+	src="<%=request.getContextPath()%>/resources/garoestate/assets/js/bootstrap-hover-dropdown.js"></script>
+<script
+	src="<%=request.getContextPath()%>/resources/garoestate/assets/js/easypiechart.min.js"></script>
+<script
+	src="<%=request.getContextPath()%>/resources/garoestate/assets/js/jquery.easypiechart.min.js"></script>
+<script
+	src="<%=request.getContextPath()%>/resources/garoestate/assets/js/wow.js"></script>
+<script
+	src="<%=request.getContextPath()%>/resources/garoestate/assets/js/icheck.min.js"></script>
+<script
+	src="<%=request.getContextPath()%>/resources/garoestate/assets/js/owl.carousel.min.js"></script>
+<script
+	src="<%=request.getContextPath()%>/resources/garoestate/assets/js/price-range.js"></script>
+<script
+	src="<%=request.getContextPath()%>/resources/garoestate/assets/js/main.js"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/resources/css/main.css">
 <style>
-
-
-
-
-.inner-wrapper{
+.inner-wrapper {
 	margin: 0 0 8px;
 	border-radius: 16px;
 	box-shadow: 0 4px 14px 0 rgba(177, 177, 177, .2);
 	background-color: #fff;
 }
 
-
 table {
 	border-top: 1px solid black;
 	text-align: center;
 	width: 100%;
-	cursor:pointer;
+	cursor: pointer;
 }
+.box-between{
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin-right: 100px;
+	margin-left: 20px;
 
+}
 th {
 	text-align: center;
 	border-bottom: 1px solid black;
@@ -71,14 +106,52 @@ td {
 	border-bottom: 1px solid black;
 }
 
-
-
 tbody tr:hover {
 	background-color: #f1f3f5;
 }
+
+
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.4);
+}
+
+.modal-content {
+  background-color: #fff;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+  position: relative;
+}
+
+.close {
+  color: #aaa;
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
 </style>
 </head>
-<body>
+<body >
 	<jsp:include page="/WEB-INF/views/base/header.jsp" />
 
 	<script type="text/javascript">
@@ -153,12 +226,11 @@ tbody tr:hover {
 										<div class="clear">
 											<div class="col-xs-8 col-sm-8 ">
 												<h3 class="dealer-name">
-													<span> <input type="text" class=""
-														name="name" value="${memberinfo.name } 님" readonly>
-														<input type="hidden" class="f" name="usernname"
-														id="username" value="${memberinfo.username }"> <input
-														type="hidden" class=""
-														value="${memberinfo.idx }">
+													<span> <input type="text" class="" name="name"
+														value="${memberinfo.name } 님" readonly> <input
+														type="hidden" class="f" name="usernname" id="username"
+														value="${memberinfo.username }"> <input
+														type="hidden" class="" value="${memberinfo.idx }">
 													</span>
 												</h3>
 											</div>
@@ -240,8 +312,8 @@ tbody tr:hover {
 									class="panel panel-default sidebar-menu wow fadeInRight animated animated animated"
 									style="visibility: visible; animation-name: fadeInRight;">
 									<h3 class="panel-title">
-										<button type="button" id="request" class="btn btn-outline-primary">1:1
-											문의</button>
+										<button type="button" id="request"
+											class="btn btn-outline-primary">1:1 문의</button>
 										<br>
 										<sec:authorize access="isAuthenticated()">
 											<button id="coupon" type="button"
@@ -313,64 +385,41 @@ tbody tr:hover {
 
 
 									</div>
-									<button id="change" type="button"></button>
-									<div id="content"></div>
-									<hr class="my-2">
-
-									<section class="carmore-section pb-0"
-										id="js_mypage_section_notice" style="display: block;">
-										
-											<div class="feat-list">
-												<div class="panel-group">
-													<div class="panel panel-default">
-														<div class="panel-heading">
-															<h4 class=" collapsed"
-																data-toggle="collapse" data-target="#fqa0"
-																aria-expanded="false">공지사항</h4>
-														</div>
-														<div id="fqa0" class="panel-collapse fqa-body collapse"
-															aria-expanded="false" style="height: 0px;">
-															<div class="panel-body">공지사항1</div>
-														</div>
-													</div>
-													<div class="panel panel-default">
-														<div class="panel-heading">
-															<h4 class="panel-title fqa-title collapsed"
-																data-toggle="collapse" data-target="#fqa1"
-																aria-expanded="false">공지사항 2</h4>
-														</div>
-														<div id="fqa1" class="panel-collapse fqa-body collapse"
-															aria-expanded="false" style="height: 0px;">
-															<div class="panel-body">공지사항 2</div>
-														</div>
-													</div>
-													<div class="panel panel-default">
-														<div class="panel-heading">
-															<h4 class="panel-title fqa-title collapsed"
-																data-toggle="collapse" data-target="#fqa2"
-																aria-expanded="false">공지사항 3</h4>
-														</div>
-														<div id="fqa2" class="panel-collapse fqa-body collapse"
-															aria-expanded="false" style="height: 0px;">
-															<div class="panel-body">공지사항 3</div>
-														</div>
-													</div>
-													<div class="panel panel-default">
-														<div class="panel-heading">
-															<h4 class="panel-title fqa-title collapsed"
-																data-toggle="collapse" data-target="#fqa3"
-																aria-expanded="false">자주 묻는 질문 제목 4</h4>
-														</div>
-														<div id="fqa3" class="panel-collapse fqa-body collapse"
-															aria-expanded="false" style="height: 0px;">
-															<div class="panel-body">자주 묻는 질문 내용 테스트 4</div>
-														</div>
-													</div>
-													
-												</div>
-											</div>
-									</section>
 									
+									<hr class="my-2">
+	
+									<section class="carmore-section pb-0" id="js_mypage_section_notice" style="display: block;">
+										
+										
+										<div class="color-blue box-between">
+											<div class="pt-2 pb-3 text-50 color-grey-3">차자조 공지사항</div>
+											<a href="<%=request.getContextPath()%>/notice">더보기</a>
+										</div>
+									
+										
+										
+										
+											     
+										<c:forEach var="notice" items="${noticeList}">
+											   	
+											        <div class="title">${notice.title}</div>
+											    
+											</c:forEach>
+											
+											<!-- 모달 창 -->
+											<div id="myModal" class="modal">
+											    <div class="modal-content">
+											        <span class="close">&times;</span>
+											        <h2 id="modalTitle"></h2>
+											        <p id="modalContent">
+											        <c:forEach var="notice" items="${noticeList}">
+											         <div class="content">${notice.content}</div>
+											        </c:forEach>
+											        </p>
+											    </div>
+											</div>
+										
+									</section>
 
 
 								</div>
@@ -391,7 +440,12 @@ tbody tr:hover {
 		</div>
 	</section>
 
-	<jsp:include page="/WEB-INF/views/base/chat.jsp"/>
+				
+	
+	
+	
+
+	<jsp:include page="/WEB-INF/views/base/chat.jsp" />
 	<jsp:include page="/WEB-INF/views/base/footer.jsp" />
 
 	<script>
@@ -406,33 +460,53 @@ tbody tr:hover {
 		$('.main-nav').children().eq(2).children().css('color', '#18B4E9');
 		
 	
-$('#historyBtn').on('click', function() {
-		location.href="${pageContext.request.contextPath}/profile/history";
-});
-	
-$('#updateinfoBtn').on('click', function() {
-	location.href="${pageContext.request.contextPath}/member/profile/update";
+		$('#historyBtn').on('click', function() {
+				location.href="${pageContext.request.contextPath}/profile/history";
+		});
 			
-});
-
-
-$("#myReview").on("click", function(){
-	location.href="${pageContext.request.contextPath}/myReview";
-			
-});
-
-$("#coupon").on("click", function(){
-	location.href="${pageContext.request.contextPath}/coupon";
-			
-});
+		$('#updateinfoBtn').on('click', function() {
+			location.href="${pageContext.request.contextPath}/member/profile/update";
+					
+		});
 		
+		
+		$("#myReview").on("click", function(){
+			location.href="${pageContext.request.contextPath}/myReview";
+					
+		});
+		
+		$("#coupon").on("click", function(){
+			location.href="${pageContext.request.contextPath}/coupon";
+					
+		});
+				
+			
+		$('#bookmark').on('click', function() {
+			location.href='${pageContext.request.contextPath}/profile/favorites';
+		});
+		$('#request').on('click', function() {
+			location.href='${pageContext.request.contextPath}/request';
+		});
+		
+		
+		
+		$(document).ready(function() {
+		    // title 클릭 시 모달 창 띄우기
+		    $(".title").click(function() {
+		        var title = $(this).text();
+		        var content = $(this).next().text();
+		        $("#modalTitle").text(title);
+		        $("#modalContent").text(content);
+		        $("#myModal").css("display", "block");
+		    });
+
+		    // 모달 창 닫기
+		    $(".close").click(function() {
+		        $("#myModal").css("display", "none");
+		    });
+		});
+
 	
-$('#bookmark').on('click', function() {
-	location.href='${pageContext.request.contextPath}/profile/favorites';
-});
-$('#request').on('click', function() {
-	location.href='${pageContext.request.contextPath}/request';
-});
 
 function deleteMember(){
 	
@@ -628,7 +702,6 @@ function deleteMember(){
 		
 		
 	
-		
 	</script>
 </body>
 </html>

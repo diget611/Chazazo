@@ -23,6 +23,7 @@ import kh.spring.chazazo.member.model.dto.MemberReqDto;
 import kh.spring.chazazo.common.email.MailSendService;
 import kh.spring.chazazo.member.model.dto.MemberInfoRespDto;
 import kh.spring.chazazo.member.model.service.MemberService;
+import kh.spring.chazazo.notice.model.service.NoticeService;
 import kh.spring.chazazo.payment.model.service.PaymentService;
 
 @RestController
@@ -37,6 +38,9 @@ public class MemberController {
 	private PasswordEncoder passwordEncoder;
 	@Autowired
 	private PaymentService pService;
+	@Autowired
+	private NoticeService nService;
+
 
 	@GetMapping
 	public ModelAndView viewMemberList(ModelAndView mv) {
@@ -67,6 +71,7 @@ public class MemberController {
 			String loginId = prin.getName();
 			mv.addObject("memberinfo", mService.selectMypageOne(loginId));
 			mv.addObject("reservation", pService.selectList(loginId));
+			mv.addObject("noticeList", nService.selectNotice());
 			
 			mv.setViewName("member/mypage");
 		

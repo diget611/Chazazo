@@ -39,6 +39,8 @@
 			
 		<typeAlias type="kh.spring.chazazo.request.model.dto.RequestRespDto" alias="requestRespDto"/>
 		
+		<typeAlias type="kh.spring.chazazo.notice.model.dto.NoticeDto" alias="NoticeDto"/>
+		
 		<typeAlias type="kh.spring.chazazo.admin.member.model.dto.AdminMemberRespDto" alias="adminMemberRespDto"/>
 		<typeAlias type="kh.spring.chazazo.admin.member.model.dto.AdminMemberUpdateReqDto" alias="adminMemberUpdateReqDto"/>
 		<typeAlias type="kh.spring.chazazo.admin.report.model.dto.AdminReportRespDto" alias="adminReportRespDto"/>

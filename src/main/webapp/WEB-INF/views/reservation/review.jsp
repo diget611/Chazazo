@@ -61,14 +61,15 @@
 										<c:choose>
 											<c:when test="${review.status eq 0}">
 												<div style="margin-bottom :50px;">
-													<div style="text-align:left;">
+													<div >
 														<input type="hidden" id="reviewIdx" value="${review.idx }">
-														<div style="margin:0px; float:left;">
+														<div style="margin:0px; width:200px; flex-wrap:wrap;">
 															<img src="<%=request.getContextPath()%>/resources/garoestate/assets/img/icon/person.png" style="width:20px; float:left;">
-															<input type="text" style="font-size:13px; float:left; width:100px;" value="${review.name}">
+															<input type="text" style="font-size:13px; width:200px; float:left;" value="${review.name}"><small style="float:left; color:#Fcd637;" class=${review.score }></small>
+															
 														</div>
-														<div style="text-align: right;">
-														<small style="float:left; color:#Fcd637;" class=${review.score }></small><label >&nbsp; ${review.createdate}</label>&nbsp;&nbsp;
+														<div style="text-align: right; float:right; ">
+														<label >&nbsp; ${review.createdate}</label>&nbsp;
 															<c:if test="${empty info.name}">
 																<input src="<%=request.getContextPath()%>/resources/garoestate/assets/img/icon/like.png" type="image" style=" width:55px;">${review.recommend}
 															</c:if>
@@ -76,14 +77,15 @@
 																<input data-idx="${review.idx}" data-recommend="${review.recommend}" src="<%=request.getContextPath()%>/resources/garoestate/assets/img/icon/like.png"
 																	class="likebtn" type="image" style=" width:55px; box-sizing:border-box; resize:none;">${review.recommend}
 															</c:if>
+														
 														</div>
 													</div>
 													<div>
 														<textarea name="reviewOne" class="review_content"  maxlength="100" style="height:auto; overflow:hidden; resize: none; width: 100%; font-size:18px;"autofocus disabled>${review.content}</textarea>
 													</div>	
 													<c:if test="${info.name eq review.name }">
-														<input data-idx="${review.idx }" src="<%=request.getContextPath()%>/resources/garoestate/assets/img/icon/edit.png" style="float:right; margin-right:20%;  width:50px; " type="image" class="edit" value="수정">
-														<input data-idx="${review.idx }" src="<%=request.getContextPath()%>/resources/garoestate/assets/img/icon/delete.png"  style=" float:right;   margin-right:20%;  width:50px; " type="image" class="delete" value="삭제" >
+														<input data-idx="${review.idx }" src="<%=request.getContextPath()%>/resources/garoestate/assets/img/icon/delete.png" style="float:right; width:50px; " type="image" class="delete" value="삭제">
+														<input data-idx="${review.idx }" src="<%=request.getContextPath()%>/resources/garoestate/assets/img/icon/edit.png"  style=" float:right;  width:50px; " type="image" class="edit" value="수정" >
 													</c:if>
 														<div style="text-align:right;">
 														   	<c:if test="${info.name ne review.name }">
@@ -118,10 +120,10 @@
 												<div style="margin-bottom :50px;">
 													<div>
 														<input type="hidden" id="reviewIdx" value="${review.idx }">
-														<div style="margin:0px">
-															<img src="<%=request.getContextPath()%>/resources/garoestate/assets/img/icon/person.png" style="width:20px;  float:left;">
-															<input type="text" style="font-size:13px; width:200px;" value="${review.name}">
-														</div>
+															<div style="margin:0px">
+																<img src="<%=request.getContextPath()%>/resources/garoestate/assets/img/icon/person.png" style="width:20px;  float:left;">
+																<input type="text" style="font-size:13px; width:200px;" value="${review.name}">
+															</div>
 													</div>
 													<div>
 														<p>신고로 삭제된 리뷰입니다.</p>

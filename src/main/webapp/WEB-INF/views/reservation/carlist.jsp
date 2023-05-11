@@ -153,12 +153,12 @@
 						<div class="col-xs-10 page-subheader sorting pl0">
 							<ul class="sort-by-list">
 								<li>
-									<a href="javascript:void(0);" class="order_by_price"  onClick="getList()" id="listbtn">
+									<a href="javascript:void(0);" class="order"  onClick="getList()" id="listbtn">
 										추천순				
 									</a>
 								</li>
 								<li >
-									<a href="javascript:void(0);" class="order_by_price" onClick="orderbyP()" id="orderbtn">
+									<a href="javascript:void(0);" class="order" onClick="orderbyP()" id="orderbtn">
 										낮은 가격순 <i class="fa fa-sort-numeric-desc"></i>						
 									</a>
 								</li>
@@ -185,6 +185,8 @@
 	
 
 	<script>
+	var page = 1;
+	
 	$('.main-nav').children().eq(0).children().css('color', '#18B4E9')
 	var order = 1;
 	$('#orderbtn').on('click', function() {
@@ -278,7 +280,14 @@
 		let scrTest = $(window).scrollTop();
 		if(Math.round(scrTest) == Math.round($(document).height() - $(window).height())) {
 			page++;
-			paging();
+			if(order == 1) {
+				paging();
+				getList();
+			} else {
+				orderbyP();
+			}
+			console.log(page);
+			console.log(order);
 		}
 	});
 	
@@ -344,7 +353,7 @@
          let carType = [];
          let fuelType = [];
          var keyword = "%"+$('#inputword').val() +"%";
-         page = 1;
+         page = page;
          $('input:checkbox[name=cartypeIdx]:checked').each(function() {
             carType.push($(this).val());
          })
@@ -355,7 +364,8 @@
          let selectList = {
         	 "keyword" : keyword,
             "typeList" : carType,
-            "fuelList" : fuelType
+            "fuelList" : fuelType,
+            "page" : page
          };
          
          $.ajax({
@@ -381,7 +391,7 @@
         let carType = [];
         let fuelType = [];
         var keyword = "%"+$('#inputword').val() +"%";
-        page = 1;
+        page = page;
         $('input:checkbox[name=cartypeIdx]:checked').each(function() {
            carType.push($(this).val());
         })
@@ -392,7 +402,8 @@
         let selectList = {
        	 "keyword" : keyword,
            "typeList" : carType,
-           "fuelList" : fuelType
+           "fuelList" : fuelType,
+           "page" : page
         };
         
         $.ajax({

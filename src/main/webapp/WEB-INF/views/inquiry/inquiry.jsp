@@ -87,14 +87,14 @@
 										<li class="active" style="width: 50px; text-align: center;">
 											<a class="category">전체</a>
 										</li>
-										<li style="width: 50px; text-align: center;">
-											<a class="category" id="1">1번</a>
+										<li style="width: 80px; text-align: center;">
+											<a class="category" id="1">예약/취소</a>
 										</li>
-										<li style="width: 50px; text-align: center;">
-											<a class="category" id="2">2번</a>
+										<li style="width: 80px; text-align: center;">
+											<a class="category" id="2">이용방법</a>
 										</li>
-										<li style="width: 50px; text-align: center;">
-											<a class="category" id="3">3번</a>
+										<li style="width: 80px; text-align: center;">
+											<a class="category" id="3">보험/사고</a>
 										</li>
 									</ul>
 								</div>

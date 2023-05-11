@@ -156,7 +156,7 @@
 										<span class="pe-7s-ticket"></span>
 									</div>
 									<div class="chart" data-percent="5000">
-										<h2 class="percent" id="counter">${reserv }</h2>
+										<h2 class="percent" id="">${reserv }</h2>
 										<h5>누적 예약</h5>
 									</div>
 								</div>
@@ -167,7 +167,7 @@
 										<span class="pe-7s-comment"></span>
 									</div>
 									<div class="chart" data-percent="12000">
-										<h2 class="percent" id="counter1">${review }</h2>
+										<h2 class="percent" id="">${review }</h2>
 										<h5>사용자 리뷰</h5>
 									</div>
 								</div> 
@@ -178,7 +178,7 @@
 										<span class="pe-7s-flag"></span>
 									</div>
 									<div class="chart" data-percent="120">
-										<h2 class="percent" id="counter2">${vehicle }</h2>
+										<h2 class="percent" id="">${vehicle }</h2>
 										<h5>예약 가능 차량</h5>
 									</div>
 								</div> 
@@ -189,7 +189,7 @@
 										<span class="pe-7s-home"></span>
 									</div>
 									<div class="chart" data-percent="5000">
-										<h2 class="percent" id="counter3">${location }</h2>
+										<h2 class="percent" id="">${location }</h2>
 										<h5>지점 수</h5>
 									</div>
 								</div> 
@@ -223,6 +223,9 @@
 									</div>
 								</div>
 							</div>
+						</div>
+						<div style="text-align: center;">
+							<button type="button" class="btn btn-primary" onclick="location.href='<%=request.getContextPath()%>/inquiry'" style="border-radius: 5px;">질문 더보기</button>
 						</div>
 					</div>
 				</div>

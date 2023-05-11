@@ -69,8 +69,8 @@
 						</section>
 						<section>
 							<c:choose>
-								<c:when test="${requestList eq null }">
-									<div style="margin-bottom: 50px; font-size: 20px;">1:1 문의 내역이 존재하지 않습니다.</div>
+								<c:when test="${empty requestList}">
+									<div style="margin-bottom: 50px; font-size: 20px; text-align: center;">1:1 문의 내역이 존재하지 않습니다.</div>
 								</c:when>
 								<c:otherwise>
 									<div class="feat-list">
@@ -84,7 +84,7 @@
 															</div>
 														</c:when>
 														<c:otherwise>
-															<div class="panel-heading" style="background-color: red;">
+															<div class="panel-heading" style="background-color: #84d8f5;">
 																<h4 class="panel-title fqa-title collapsed" data-toggle="collapse" data-target="#fqa${request.idx }" aria-expanded="false"><span style="padding-right: 10px;">[답변 완료]</span>${request.title }</h4>
 															</div>
 														</c:otherwise>
@@ -102,7 +102,9 @@
 									</div>
 								</c:otherwise>
 							</c:choose>
-							<button type="button" class="btn btn-primary" id="insertBtn">문의 작성하기</button>
+							<div style="text-align: center; margin-top: 10px;">
+								<button type="button" class="btn btn-primary" id="insertBtn" style="border-radius: 5px;">문의 작성하기</button>
+							</div>
 						</section>
 					</div>                    
 				</div>

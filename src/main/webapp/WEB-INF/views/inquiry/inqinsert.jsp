@@ -40,7 +40,10 @@
 <script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/main.css">
-
+<style>
+	.ck-editor__editable { height: 400px; }
+	.ck-content { font-size: 15px; }
+</style>
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/base/header.jsp"/>
@@ -70,22 +73,25 @@
 						</section>
 						<section>
 							<form id="inqForm">
-								<div class="row">
+								<div class="row" style="margin-bottom: 10px;">
 									<div class="col-xs-2">
-										<select id="category">
-											<option value="1">1번</option>
-											<option value="2">2번</option>
-											<option value="3">3번</option>
+										<select id="category" style="height: 40px; width: 100%; border-radius: 5px; border-color: lightgray;">
+											<option value="1">예약/취소</option>
+											<option value="2">이용방법</option>
+											<option value="3">보험/사고</option>
 										</select>
 									</div>
 									<div class="col-xs-10">
-										<input type="text" name="title" id="title" placeholder="제목">
+										<input type="text" name="title" id="title" placeholder="제목을 입력하세요"
+										 	style="height: 40px; width: 100%; border-style: solid; border-width: 1px; border-radius: 5px; border-color: lightgray;">
 									</div>
 								</div>
 								<div>
 									<textarea id="ckeditor"></textarea>
 								</div>
-								<button type="button" class="btn btn-outline-primary" id="insertBtn">작성하기</button>
+								<div style="text-align: center; margin-top: 10px;">
+									<button type="button" class="btn btn-primary" id="insertBtn" style="border-radius: 5px;">작성하기</button>
+								</div>
 							</form>
 						</section>
 					</div>                    

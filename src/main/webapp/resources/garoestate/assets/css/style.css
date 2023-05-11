@@ -124,10 +124,10 @@ select {
 	 width: 200px;
     height: 40px;
     border-radius: 4px;
-    border: 2px solid rgb(119,212,252);
+    border: 2px solid #4EA0D8;
 }
 .selectbox .select option {
-  background: rgb(119,212,252);
+  background: #4EA0D8;
   color: #fff;
   padding: 3px 0;
   font-size: 16px;

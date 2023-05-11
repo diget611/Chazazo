@@ -50,10 +50,10 @@
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/main.css">
 
 <body>
-					<div class="col-md-4 p0" style="float:left; display:inline-block">
-							<aside class="sidebar sidebar-property blog-asside-right">
+					<div id="box" class="col-md-4 p0" style="float:left; padding:10px; display:inline-block; position:fixed;">
+							<aside style="background-color:white; margin-left:10px; padding:10px;">
 								<section class="mt-3 p-3">
-										<form>
+										<form >
 											<div>
 												<label>대여일 </label> &nbsp;
 												<input type="date" name="startDate" id="startDate" min="today" style="width:160px;" >
@@ -61,13 +61,12 @@
 											<div>
 												<label>반납일 </label> &nbsp;
 												<input type="date" name="endDate" id="endDate"  min="today" style="width:160px; ">
-												<input type="text" id="day-count" name="daycount" value="" style="width:50px; background-color:#eeeeee;"readonly /><label>일 대여</label> 
+												<input type="text" id="day-count" name="daycount" value="" style="width:50px; color:grey; "readonly /><label>일 대여</label> 
 											</div>
 										</form>
-											<hr>
-                                        <div class="selectbox" style="margin-bottom:100px;">
+                                        <div class="selectbox" style="margin:20px 0px 100px 0px;">
                                  		  <label style="margin-right:10px;">보험 선택</label>
-	                                   	  <select id="selectins" name="selectins"  class="select " >
+	                                   	  <select id="selectins" style="color:#4EA0D8;" name="selectins"  class="select " >
 	                                   	  		<option value="0" selected>보험 미선택</option>
 	                                            <option value="0.1">일반자차</option>
 	                                            <option value="0.2">완전자차</option>
@@ -76,14 +75,14 @@
                                         </div>
                                     
 									<section class="mt-3 p-3">
-									<h6>결제 정보</h6><hr>
+									<h6>결제 정보</h6>
 									<form id="payform" action="${pageContext.request.contextPath}/payment" method="get" onsubmit="false">
 									<input type="hidden" name="caridx" value="${car.idx }" >
 									<table class="table">
 										<tbody>
 											<tr>
 												<th style="width: 30%;">기본 대여 요금</th>
-												<td style="width: 70%; text-align: right;"><input type="text" id="rentPrice"  name="rentPrice" style=" width:90%; text-align: right; background-color:#eeeeee;" readonly><label>원</label></td>
+												<td style="width: 70%; text-align: right;"><input type="text" id="rentPrice"  name="rentPrice" style=" width:90%; color:grey; font-size:15px; text-align: right;" readonly><label>원</label></td>
 											</tr>
 											<c:if test ="${not empty  info.name }">
 											<tr>
@@ -91,7 +90,7 @@
 												    		    onclick='window.open("${pageContext.request.contextPath}/selectCoupon/${info.idx }", "쿠폰적용", "width=100, height=auto")'>쿠폰 선택하기</button> </th>
 												<td style="width: 70%; text-align: right;">
 												    <input type="hidden" id="discountRate"><input type="hidden" id="cIdx">
-												   	<input type="text" id="discount" style="color:#4EA0D8;  text-align: right; width:90%; background-color:#eeeeee;"><label>원</label>
+												   <label >-</label><input type="text" id="discount" style="color:grey;  font-size:15px;  text-align: right; width:33%; "><label>원</label>
 											</tr>
 											</c:if>
 											<c:if test ="${empty  info.name }">
@@ -99,19 +98,19 @@
 											</c:if>
 											<tr id ="insSection" >
 												<th style="width: 30%;">보험 추가 요금</th>
-												<td style="width: 70%; text-align: right;"><input type="text"id="addIns"  name="addIns"style="width:90%; text-align: right;background-color:#eeeeee;" readonly><label>원</label></td>
+												<td style="width: 70%; text-align: right;"><input type="text"id="addIns"  name="addIns"style="width:90%; font-size:15px;text-align: right; color:grey;" readonly><label>원</label></td>
 											</tr>
 											<tr id="returnSection">
 												<th style="width: 30%;">반납지점 변경 요금</th>
-												<td style="width: 70%; text-align: right;"><input type="text"id="addreturn"  name="addreturn" style=" width:90%; text-align: right; background-color:#eeeeee;"readonly><label>원</label></td>
+												<td style="width: 70%; text-align: right;"><input type="text"id="addreturn"  name="addreturn" style=" width:90%; font-size:15px; text-align: right;"readonly><label>원</label></td>
 											</tr>
 											<tr>
 												<th style="width: 30%;">결제금액</th>
-												<td style="width: 70%; text-align: right;"><input type="text" id="finalprice"  name="finalprice" style="width:90%; text-align: right;color:red; background-color:#eeeeee;" readonly><label>원</label></td>
+												<td style="width: 70%; text-align: right;"><input type="text" id="finalprice"  name="finalprice" style="width:90%; text-align: right; " readonly><label>원</label></td>
 											</tr>
 										</tbody>
 									</table>
-									<div id="paysection">
+									<div id="paysection" style="text-align:center;">
 									<div>
 											<sec:authorize access="!isAuthenticated()">
 												<button class="btn btn-default" id="register" type="button" >회원가입하고 혜택받기</button>
@@ -130,8 +129,6 @@
 </body>
 
 <script type="text/javascript">
-
-
 
 
 var ckName = 0;

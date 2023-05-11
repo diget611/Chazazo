@@ -116,7 +116,7 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-md-10 col-md-offset-1 col-sm-12 text-center page-title">
-						<h2>리뷰</h2>
+						<h2>베스트 리뷰</h2>
 					</div>
 				</div>
 				<div class="row">
@@ -165,7 +165,7 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-md-10 col-md-offset-1 col-sm-12 text-center page-title">
-						<h2>통계</h2> 
+						<h2>지금 차자조는?</h2> 
 					</div>
 				</div>
 				<div class="row">

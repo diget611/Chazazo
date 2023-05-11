@@ -61,23 +61,11 @@
 										<c:choose>
 											<c:when test="${review.status eq 0}">
 												<div style="margin-bottom :50px;">
-													<div >
+													<div>
 														<input type="hidden" id="reviewIdx" value="${review.idx }">
-														<div style="margin:0px; width:200px; flex-wrap:wrap;">
-															<img src="<%=request.getContextPath()%>/resources/garoestate/assets/img/icon/person.png" style="width:20px; float:left;">
-															<input type="text" style="font-size:13px; width:200px; float:left;" value="${review.name}"><small style="float:left; color:#Fcd637;" class=${review.score }></small>
-															
-														</div>
-														<div style="text-align: right; float:right; ">
-														<label >&nbsp; ${review.createdate}</label>&nbsp;
-															<c:if test="${empty info.name}">
-																<input src="<%=request.getContextPath()%>/resources/garoestate/assets/img/icon/like.png" type="image" style=" width:55px;">${review.recommend}
-															</c:if>
-															<c:if test="${not empty info.name }">
-																<input data-idx="${review.idx}" data-recommend="${review.recommend}" src="<%=request.getContextPath()%>/resources/garoestate/assets/img/icon/like.png"
-																	class="likebtn" type="image" style=" width:55px; box-sizing:border-box; resize:none;">${review.recommend}
-															</c:if>
-														
+														<div style="margin: 0px; float: left;">
+															<img src="<%=request.getContextPath()%>/resources/garoestate/assets/img/icon/person.png" style="width:25px; float:left;">
+															<input type="text" style="font-size:15px; float:left; width:50%; padding-left: 10px; margin-bottom: 10px;" value="${review.name}">
 														</div>
 													</div>
 													<div>
@@ -86,35 +74,23 @@
 													</div>
 													<div>
 													<div style="display: inline-block; position: relative; left: 77%;">${review.createdate}</div>
-													<div style="display: inline-block; position: relative; top: 5px; left: 78%;">
+													<div style="display: inline-block; position: relative; top: 5px; left: 80%;">
 														<c:if test="${empty info.name}">
 															<input src="<%=request.getContextPath()%>/resources/garoestate/assets/img/icon/like.png" type="image" style=" width:30px; padding: 0px;">
 															<span>${review.recommend}</span>
 														</c:if>
 													<c:if test="${not empty info.name }">
-															<input data-idx="${review.idx}" data-recommend="${review.recommend}" src="<%=request.getContextPath()%>/resources/garoestate/assets/img/icon/like.png"
-																class="likebtn" type="image" style="box-sizing:border-box; resize:none; padding: 0px; width: 30px;">
-															<span>${review.recommend}</span>
+														<input data-idx="${review.idx}" data-recommend="${review.recommend}" src="<%=request.getContextPath()%>/resources/garoestate/assets/img/icon/like.png"
+															class="likebtn" type="image" style="box-sizing:border-box; resize:none; padding: 0px; width: 30px;">
+														<span>${review.recommend}</span>
+													</c:if>
+													</div>
+													<div style="display: inline-block; position: relative; top: 5px; left: -20%;">
+														<c:if test="${info.name eq review.name }">
+															<input data-idx="${review.idx }" src="<%=request.getContextPath()%>/resources/garoestate/assets/img/icon/delete.png" style="float:right; width:50px; " type="image" class="delete" value="삭제">
+															<input data-idx="${review.idx }" src="<%=request.getContextPath()%>/resources/garoestate/assets/img/icon/edit.png"  style=" float:right;  width:50px; " type="image" class="edit" value="수정" >
 														</c:if>
 													</div>
-													<c:if test="${info.name eq review.name }">
-														<input data-idx="${review.idx }" src="<%=request.getContextPath()%>/resources/garoestate/assets/img/icon/delete.png" style="float:right; width:50px; " type="image" class="delete" value="삭제">
-														<input data-idx="${review.idx }" src="<%=request.getContextPath()%>/resources/garoestate/assets/img/icon/edit.png"  style=" float:right;  width:50px; " type="image" class="edit" value="수정" >
-													</c:if>
-														<div style="text-align:right;">
-														   	<c:if test="${info.name ne review.name }">
-																<c:if test ="${empty info.name }">
-																	<button type="button" class="btn btn-secondary"  onclick="reportSwal()" >신고</button>
-																	<img src="<%=request.getContextPath()%>/resources/garoestate/assets/img/icon/siren.png" style="width:25px;">
-																</c:if>
-																<c:if test ="${not empty  info.name }">
-																	<button type="button" id="report" data-memberIdx="${info.idx}"class="btn btn-secondary" style="display:inline-block" 
-														    		    onclick='window.open("${pageContext.request.contextPath}/reportReview/${review.idx }", "리뷰 신고", "width=100, height=auto")'>신고</button>
-																	<img src="<%=request.getContextPath()%>/resources/garoestate/assets/img/icon/siren.png" style="width:25px;">
-																</c:if>
-															</c:if>
-														</div>
-													</c:if>
 													</div>
 													<div style="position: relative; top: -28px;">
 													   	<c:if test="${info.name ne review.name }">
@@ -163,17 +139,18 @@
 									</c:forEach>
 									
 											<div id="insertReviewbody" style="text-align:center;">
-												<div id="insertReview"  class="col-md-12">	
-													<div class="form-group col-md-8" style="float:left;" >
+												<div id="insertReview"  class="col-md-12" style="padding: 0px;">	
+													<div class="form-group col-md-8" style="float:left; padding: 0px;" >
 													
 														  <div>
-														<textarea  maxlength="100" name="reviewcontent" style=" box-sizing:border-box; overflow:hidden; resize: none; width:100%; border:4px solid #4ea0d8;"  placeholder="${info.name } 님 ,리뷰를 작성해 주세요!" ></textarea>
-														  	  <div class="textLengthWrap">
-														   		 <p class="textCount">0자</p><p class="textTotal">/100자</p>
+														<textarea  maxlength="100" name="reviewcontent"
+															style=" box-sizing:border-box; overflow:hidden; resize: none; width:100%; border: 2px solid #4ea0d8; padding: 10px; border-radius: 10px;"  placeholder="${info.name } 님 ,리뷰를 작성해 주세요!" ></textarea>
+														  	  <div class="textLengthWrap" style="text-align: right;">
+														   		 <span class="textCount">0자</span><span class="textTotal">/100자</span>
 														  	  </div>
 														  </div>
 													</div>
-												<div class="col-md-4"  style="float:left; margin-top:3%" >
+												<div class="col-md-4"  style="float:left; margin-top:2%; padding: 0px; padding-left: 55px;" >
 														<p class="star_rating">
 														    <a href="#"  class="on" ><input type="hidden" value="1">★</a>
 														    <a href="#"  class="on"><input type="hidden" value="2">★</a>
@@ -334,35 +311,44 @@ function postReview() {
 
 //리뷰 수정 누르면 다른 리뷰수정 disabled
 $('.edit').on('click', function(){	
-$('.review_content').attr('disabled', true);
-$(this).parent().children().next().children().attr('disabled', false);
-$(this).attr('hidden', true);
-$(this).next().attr('hidden', true);
-$(this).next().next().next().attr('hidden', true);
-$(this).parent().append('<button type="button" class="btn btn-default" id="btnUpdate" style="margin:0">등록</button>')
+	$('.review_content').attr('disabled', true);
+	$(this).parent().parent().prev().children().attr('disabled', false);
+	$(this).attr('hidden', true);
+	$(this).next().attr('hidden', true);
+	$(this).next().next().next().attr('hidden', true);
+	$(this).parent().append('<button type="button" class="btn btn-default" id="btnUpdate" style="padding:3px 10px 3px 10px;">수정 완료</button>')
+	
+	$('#btnUpdate').on('click', function() {
+		 var reviewidx = $(this).parent().parent().prev().prev().children('#reviewIdx').val();
+		 var content = $(this).parent().parent().prev().children().val();
+		 
+				$.ajax({
+					url:'${pageContext.request.contextPath}/updateReview',
+			         type: 'post',
+				     data: {
+				 		"idx" : reviewidx,
+						"content" :content
+					},
+			         success: function(result) {
+			        	 swal({
+			       			title : "리뷰가 수정되었습니다",
+			       		    icon  : "success",
+			       		    closeOnClickOutside : false
+			       		}).then(function(){
+			       			location.reload();
+			       		});
+			          },
+			          error: function() {
+			          	alert('리뷰 수정 실패');
+			          }
+				});	
+		 
+	})
 });
 
 
-$(document).on('click','#btnUpdate', function() {
-	 var reviewidx = $(this).parent().children().children().val();
-	 var content = $(this).parent().children().next().children().val();
-	 
-			$.ajax({
-				url:'${pageContext.request.contextPath}/updateReview',
-		         type: 'post',
-			     data: {
-			 		"idx" : reviewidx,
-					"content" :content
-				},
-		         success: function(result) {
-		        	 location.reload();
-		          },
-		          error: function() {
-		          	alert('리뷰 수정 실패');
-		          }
-			});	
-	 
-})
+
+
 
 
 //리뷰 삭제

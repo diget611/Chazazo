@@ -60,14 +60,15 @@
 									<c:forEach items="${rList }" var="review" varStatus="i">
 										<c:choose>
 											<c:when test="${review.status eq 0}">
-												<div style="margin-bottom :80px;">
-													<div>
+												<div style="margin-bottom :50px;">
+													<div style="text-align:left;">
 														<input type="hidden" id="reviewIdx" value="${review.idx }">
-														<div style="margin:0px">
+														<div style="margin:0px; float:left;">
 															<img src="<%=request.getContextPath()%>/resources/garoestate/assets/img/icon/person.png" style="width:20px; float:left;">
-															<input type="text" style="font-size:13px; width:200px;" value="${review.name}">
+															<input type="text" style="font-size:13px; float:left; width:100px;" value="${review.name}">
 														</div>
-														<small class=${review.score }></small><label >&nbsp; ${review.createdate}</label>&nbsp;&nbsp;
+														<div style="text-align: right;">
+														<small style="float:left; color:#Fcd637;" class=${review.score }></small><label >&nbsp; ${review.createdate}</label>&nbsp;&nbsp;
 															<c:if test="${empty info.name}">
 																<input src="<%=request.getContextPath()%>/resources/garoestate/assets/img/icon/like.png" type="image" style=" width:55px;">${review.recommend}
 															</c:if>
@@ -75,29 +76,32 @@
 																<input data-idx="${review.idx}" data-recommend="${review.recommend}" src="<%=request.getContextPath()%>/resources/garoestate/assets/img/icon/like.png"
 																	class="likebtn" type="image" style=" width:55px; box-sizing:border-box; resize:none;">${review.recommend}
 															</c:if>
+														</div>
 													</div>
 													<div>
-														<textarea name="reviewOne" class="review_content"  maxlength="100" style="height:auto; overflow:hidden; resize: none; width:80%; font-size:18px;"autofocus disabled>${review.content}</textarea>
+														<textarea name="reviewOne" class="review_content"  maxlength="100" style="height:auto; overflow:hidden; resize: none; width: 100%; font-size:18px;"autofocus disabled>${review.content}</textarea>
 													</div>	
 													<c:if test="${info.name eq review.name }">
-														<input data-idx="${review.idx }" src="<%=request.getContextPath()%>/resources/garoestate/assets/img/icon/edit.png" style="float:left;  width:45px; " type="image" class="edit" value="수정">
-														<input data-idx="${review.idx }" src="<%=request.getContextPath()%>/resources/garoestate/assets/img/icon/delete.png"  style=" float:left;  width:45px; " type="image" class="delete" value="삭제" >
+														<input data-idx="${review.idx }" src="<%=request.getContextPath()%>/resources/garoestate/assets/img/icon/edit.png" style="float:right; margin-right:20%;  width:50px; " type="image" class="edit" value="수정">
+														<input data-idx="${review.idx }" src="<%=request.getContextPath()%>/resources/garoestate/assets/img/icon/delete.png"  style=" float:right;   margin-right:20%;  width:50px; " type="image" class="delete" value="삭제" >
 													</c:if>
-												   	<c:if test="${info.name ne review.name }">
-														<c:if test ="${empty info.name }">
-															<button type="button" class="btn btn-secondary"  onclick="reportSwal()" >신고</button>
-															<img src="<%=request.getContextPath()%>/resources/garoestate/assets/img/icon/siren.png" style="width:25px;">
-														</c:if>
-														<c:if test ="${not empty  info.name }">
-															<button type="button" id="report" data-memberIdx="${info.idx}"class="btn btn-secondary" style="display:inline-block" 
-												    		    onclick='window.open("${pageContext.request.contextPath}/reportReview/${review.idx }", "리뷰 신고", "width=100, height=auto")'>신고</button>
-															<img src="<%=request.getContextPath()%>/resources/garoestate/assets/img/icon/siren.png" style="width:25px;">
-														</c:if>
-													</c:if>
+														<div style="text-align:right;">
+														   	<c:if test="${info.name ne review.name }">
+																<c:if test ="${empty info.name }">
+																	<button type="button" class="btn btn-secondary"  onclick="reportSwal()" >신고</button>
+																	<img src="<%=request.getContextPath()%>/resources/garoestate/assets/img/icon/siren.png" style="width:25px;">
+																</c:if>
+																<c:if test ="${not empty  info.name }">
+																	<button type="button" id="report" data-memberIdx="${info.idx}"class="btn btn-secondary" style="display:inline-block" 
+														    		    onclick='window.open("${pageContext.request.contextPath}/reportReview/${review.idx }", "리뷰 신고", "width=100, height=auto")'>신고</button>
+																	<img src="<%=request.getContextPath()%>/resources/garoestate/assets/img/icon/siren.png" style="width:25px;">
+																</c:if>
+															</c:if>
+														</div>
 												</div>
 											</c:when>
 											<c:when test="${review.status eq 1}">
-												<div style="margin-bottom :80px;">
+												<div style="margin-bottom :50px;">
 													<div>
 														<input type="hidden" id="reviewIdx" value="${review.idx }">
 														<div style="margin:0px">
@@ -111,7 +115,7 @@
 												</div>
 											</c:when>
 											<c:when test="${review.status eq 2}">
-												<div style="margin-bottom :80px;">
+												<div style="margin-bottom :50px;">
 													<div>
 														<input type="hidden" id="reviewIdx" value="${review.idx }">
 														<div style="margin:0px">
@@ -138,7 +142,7 @@
 														  	  </div>
 														  </div>
 													</div>
-												<div class="col-md-4"  style="float:left; margin-top:10%" >
+												<div class="col-md-4"  style="float:left; margin-top:3%" >
 														<p class="star_rating">
 														    <a href="#"  class="on" ><input type="hidden" value="1">★</a>
 														    <a href="#"  class="on"><input type="hidden" value="2">★</a>
@@ -155,6 +159,10 @@
 						</div>
 </body>
 <script type="text/javascript">
+
+window.onload = function() {
+	$('small').css('color', 'red');
+}
 
 $(".1").html("&#9733; &#9734; &#9734; &#9734; &#9734;");
 $(".2").html("&#9733; &#9733; &#9734; &#9734; &#9734;");

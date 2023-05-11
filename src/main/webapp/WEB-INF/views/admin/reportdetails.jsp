@@ -82,7 +82,7 @@
 			success: function(result) {
 				if(result == 1) {
 					swal({
-	        			title : "신고 요청을 처리했습니다.",
+	        			title : "신고 요청을 반려했습니다.",
 	        		    icon  : "success",
 	        		    closeOnClickOutside : false
 	        		}).then(function(){
@@ -115,7 +115,7 @@
 			success: function(result) {
 				if(result == 1) {
 					swal({
-	        			title : "신고 요청을 반려했습니다.",
+	        			title : "신고 요청을 처리했습니다.",
 	        		    icon  : "success",
 	        		    closeOnClickOutside : false
 	        		}).then(function(){

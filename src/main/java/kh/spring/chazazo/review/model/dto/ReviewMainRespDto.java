@@ -16,5 +16,6 @@ public class ReviewMainRespDto {
 	
 	private String username;
 	private String content;
+	private int score;
 	
 }

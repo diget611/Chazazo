@@ -122,19 +122,40 @@
 				<div class="row">
 					<div class="col-md-12 col-xs-12 percent-blocks m-main" data-waypoint-scroll="true">
 						<div class="row">
-							<c:forEach items="${reviewList }" var="review">							
-								<div class="col-sm-3 col-xs-6">
-									<div class="count-item">
-										<div class="count-item-circle">
-											<span class="pe-7s-users"></span>
-										</div>
-										<div class="chart" data-percent="5000">
-											<div>${review.content }</div>
-											<h5>${review.username } </h5>
+							<c:forEach items="${reviewList }" var="review">
+								<div class="col-sm-3 col-xs-6" style="width: 25%; height: 300px;">
+									<div id="score" style="position: relative; text-align: center; top: 7%;">
+										<c:choose>
+											<c:when test="${review.score eq 5 }">
+												<div style="font-size: 30px; display: inline-block; color: #FF8400;">★★★★★</div>
+											</c:when>
+											<c:when test="${review.score eq 4 }">
+												<div style="font-size: 30px; display: inline-block; color: #FF8400;">★★★★☆</div>
+											</c:when>
+											<c:when test="${review.score eq 3 }">
+												<div style="font-size: 30px; display: inline-block; color: #FF8400;">★★★☆☆</div>
+											</c:when>
+											<c:when test="${review.score eq 2 }">
+												<div style="font-size: 30px; display: inline-block; color: #FF8400;">★★☆☆☆</div>
+											</c:when>
+											<c:when test="${review.score eq 1 }">
+												<div style="font-size: 30px; display: inline-block; color: #FF8400;">★★☆☆☆</div>
+											</c:when>
+											<c:otherwise>
+												<div style="font-size: 30px; display: inline-block; color: #FF8400;">☆☆☆☆☆</div>
+											</c:otherwise>
+										</c:choose>
+									</div>
+									<div style="position: relative; top: 10%; height: 180px; overflow-x: auto; padding: 15px;">
+										${review.content }
+									</div>
+									<div style="position: relative; text-align: center; top: 12%;">
+										<div style="display: inline-block; background-color: #84d8f5; padding: 3px 10px 3px 10px; border-radius: 5px;">
+											${review.username }
 										</div>
 									</div>
 								</div>
-							</c:forEach>
+							</c:forEach>		
 						</div>
 					</div>
 				</div>

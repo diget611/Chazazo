@@ -49,6 +49,8 @@ public class PaymentReqDto {
 	
 	private String price;
 	
+	private int coupon;
+	
 	private int paymentIdx;
 	private int idx;
 	private String merchantUid;

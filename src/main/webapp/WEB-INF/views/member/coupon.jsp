@@ -83,6 +83,12 @@
 	justify-content: space-between;
 
 }
+.inner-wrapper{
+	margin: 0 0 8px;
+	border-radius: 16px;
+	box-shadow: 0 4px 14px 0 rgba(177, 177, 177, .2);
+	background-color: #fff;
+}
 
 
 </style>
@@ -130,11 +136,11 @@
 										<div class="clear">
 											<div class="col-xs-8 col-sm-8 ">
 												<h3 class="dealer-name">
-													<span> <input type="text" class="form-control"
+													<span> <input type="text" class=""
 														name="name" value="${memberinfo.name }" readonly>
-														<input type="hidden" class="form-control" name="usernname"
+														<input type="hidden" class="" name="usernname"
 														id="username" value="${memberinfo.username }"> <input
-														type="hidden" class="form-control"
+														type="hidden" class=""
 														value="${memberinfo.idx }">
 													</span>
 												</h3>
@@ -143,10 +149,10 @@
 										<div class="clear">
 											<ul class="dealer-contacts">
 												<li><i class="pe-7s-call strong"> </i> <input
-													type="text" class="form-control" name="phoneNumber"
+													type="text" class="" name="phoneNumber"
 													value="${memberinfo.phoneNumber}" readonly></li>
 												<li><i class="pe-7s-mail strong"> </i> <input
-													type="text" class="form-control" name="email"
+													type="text" class="" name="email"
 													value="${memberinfo.email }" readonly></li>
 											</ul>
 											<div>
@@ -485,7 +491,53 @@
 				
 			})
 		}
-		
+			function deleteMember(){
+				
+				Swal.fire({
+					   title: '정말로 그렇게 하시겠습니까?',
+					   text: '다시 되돌릴 수 없습니다. 신중하세요.',
+					   icon: 'warning',
+					   
+					   showCancelButton: true, // cancel버튼 보이기. 기본은 원래 없음
+					   confirmButtonColor: '#3085d6', // confrim 버튼 색깔 지정
+					   cancelButtonColor: '#d33', // cancel 버튼 색깔 지정
+					   confirmButtonText: '승인', // confirm 버튼 텍스트 지정
+					   cancelButtonText: '취소', // cancel 버튼 텍스트 지정
+					   
+					   reverseButtons:false// 버튼 순서 거꾸로
+					   
+					}).then(result => {
+					    if (result.isConfirmed) { // 만약 모달창에서 confirm 버튼을 눌렀다면
+					    	delMember();
+					    }
+					});
+				
+				};
+				
+				function delMember(){
+					var username = $('#username').val();
+					console.log(username);
+					$.ajax({
+							url:"${pageContext.request.contextPath}/member/profile" ,
+							type: "DELETE",
+							data: {
+								username:username
+							},
+							success : function(result) {
+									if(result == 1){
+									 Swal.fire('탈퇴성공  ', '탈퇴합니다 ', 'success');
+									 location.href = '${pageContext.request.contextPath}/member/register';
+					                	
+									}else{
+										swal.fire("실패", "작업수행에 실패하였습니다.", "warining");
+									}
+								},
+									error : function() {
+										swal.fire("에러입니다", "작업수행에 실패하였습니다.", "error");
+								},
+								timeout:100000
+							});
+						}
 		
 
 	</script>

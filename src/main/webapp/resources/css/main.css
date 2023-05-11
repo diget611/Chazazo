@@ -16,7 +16,8 @@ body::-webkit-scrollbar {
 }
 
 body {
-	 font-family: 'TheJamsil5Bold';	 
+	 font-family: 'TheJamsil5Bold';	
+	
 }
 
 .chat-btn {
@@ -24,6 +25,10 @@ body {
     right: 45px;
     bottom: 60px;
     z-index: 99;
+}
+.font-300{
+	font-size:12px;
+	padding-left: 10px;
 }
 
 .btn-square {

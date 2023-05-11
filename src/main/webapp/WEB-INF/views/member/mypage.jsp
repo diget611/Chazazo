@@ -17,7 +17,7 @@
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/garoestate/assets/css/font-awesome.min.css">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/garoestate/assets/css/fontello.css">
 <link href="<%=request.getContextPath()%>/resources/garoestate/assets/fonts/icon-7-stroke/css/pe-icon-7-stroke.css" rel="stylesheet">
-<link 	href="<%=request.getContextPath()%>/resources/garoestate/assets/fonts/icon-7-stroke/css/helper.css" rel="stylesheet">
+<link href="<%=request.getContextPath()%>/resources/garoestate/assets/fonts/icon-7-stroke/css/helper.css" rel="stylesheet">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/garoestate/assets/css/bootstrap-select.min.css">
 <link rel="stylesheet" 	href="<%=request.getContextPath()%>/resources/garoestate/bootstrap/css/bootstrap.min.css">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/garoestate/assets/css/icheck.min_all.css">
@@ -41,9 +41,20 @@
 <script src="<%=request.getContextPath()%>/resources/garoestate/assets/js/main.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/resources/css/main.css">
+<link rel="stylesheet" 	href="<%=request.getContextPath()%>/resources/css/main.css">
 <style>
+
+
+
+
+.inner-wrapper{
+	margin: 0 0 8px;
+	border-radius: 16px;
+	box-shadow: 0 4px 14px 0 rgba(177, 177, 177, .2);
+	background-color: #fff;
+}
+
+
 table {
 	border-top: 1px solid black;
 	text-align: center;
@@ -284,7 +295,12 @@ tbody tr:hover {
 																<c:when test="${list.state eq 0 }">
 																	<td>예약완료</td>
 																</c:when>
-																
+																<c:when test="${list.state eq 1 }">
+																	<td>취소 처리중</td>
+																</c:when>
+																<c:otherwise>
+																	<td>취소 완료</td>
+																</c:otherwise>
 															</c:choose>
 															<td>${list.vehicleModel }</td>
 															<td>${list.rentLocationName }</td>
@@ -379,33 +395,7 @@ tbody tr:hover {
 	<jsp:include page="/WEB-INF/views/base/footer.jsp" />
 
 	<script>
-	$('.main-nav').children().eq(2).children().css('color', '#18B4E9');
-		
 	
-	$('#historyBtn').on('click', function() {
-		location.href="${pageContext.request.contextPath}/profile/history";
-	});
-	
-		$('#updateinfoBtn').on('click', function() {
-			location.href="${pageContext.request.contextPath}/member/profile/update";
-			
-		});
-
-
-		$("#myReview").on("click", function(){
-			location.href="${pageContext.request.contextPath}/myReview";
-			
-		});
-
-		$("#coupon").on("click", function(){
-			location.href="${pageContext.request.contextPath}/coupon";
-			
-		});
-		
-	
-		$('#bookmark').on('click', function() {
-			location.href='${pageContext.request.contextPath}/profile/favorites';
-		});
 		
 		$('tr').on('click', function() {
 			
@@ -413,9 +403,84 @@ tbody tr:hover {
 			location.href = "${pageContext.request.contextPath}/profile/reservation/" + sss; 
 		})
 				
-		$('#request').on('click', function() {
-			location.href='${pageContext.request.contextPath}/request';
+		$('.main-nav').children().eq(2).children().css('color', '#18B4E9');
+		
+	
+$('#historyBtn').on('click', function() {
+		location.href="${pageContext.request.contextPath}/profile/history";
+});
+	
+$('#updateinfoBtn').on('click', function() {
+	location.href="${pageContext.request.contextPath}/member/profile/update";
+			
+});
+
+
+$("#myReview").on("click", function(){
+	location.href="${pageContext.request.contextPath}/myReview";
+			
+});
+
+$("#coupon").on("click", function(){
+	location.href="${pageContext.request.contextPath}/coupon";
+			
+});
+		
+	
+$('#bookmark').on('click', function() {
+	location.href='${pageContext.request.contextPath}/profile/favorites';
+});
+$('#request').on('click', function() {
+	location.href='${pageContext.request.contextPath}/request';
+});
+
+function deleteMember(){
+	
+	Swal.fire({
+		   title: '정말로 그렇게 하시겠습니까?',
+		   text: '다시 되돌릴 수 없습니다. 신중하세요.',
+		   icon: 'warning',
+		   
+		   showCancelButton: true, // cancel버튼 보이기. 기본은 원래 없음
+		   confirmButtonColor: '#3085d6', // confrim 버튼 색깔 지정
+		   cancelButtonColor: '#d33', // cancel 버튼 색깔 지정
+		   confirmButtonText: '승인', // confirm 버튼 텍스트 지정
+		   cancelButtonText: '취소', // cancel 버튼 텍스트 지정
+		   
+		   reverseButtons:false// 버튼 순서 거꾸로
+		   
+		}).then(result => {
+		    if (result.isConfirmed) { // 만약 모달창에서 confirm 버튼을 눌렀다면
+		    	delMember();
+		    }
 		});
+	
+	};
+	
+	function delMember(){
+		var username = $('#username').val();
+		console.log(username);
+		$.ajax({
+				url:"${pageContext.request.contextPath}/member/profile" ,
+				type: "DELETE",
+				data: {
+					username:username
+				},
+				success : function(result) {
+						if(result == 1){
+						 Swal.fire('탈퇴성공  ', '탈퇴합니다 ', 'success');
+						 location.href = '${pageContext.request.contextPath}/member/register';
+		                	
+						}else{
+							swal.fire("실패", "작업수행에 실패하였습니다.", "warining");
+						}
+					},
+						error : function() {
+							swal.fire("에러입니다", "작업수행에 실패하였습니다.", "error");
+					},
+					timeout:100000
+				});
+			}
 		
 		
 		$('#none-Member-history').on('click',content);
@@ -542,7 +607,7 @@ tbody tr:hover {
 				html += '								<tr>'
 				html += '									<td>' + noneList.idx + '</td>'
 				html += '									<td>' + noneList.startDate + '</td>'
-				html += '									<td>' + noneList.state + '</td>'
+				html += '	 <td>${noneList.state == 0 ? "예약완료" : (noneList.state == 1 ? "취소대기" : "취소완료")}</td>'
 				html += '									<td>' + noneList.vehicleModel+ '</td>'
 				html += '									<td>' + noneList.rentLocationName + '</td>'
 				html += '									<td>' + noneList.returnLocationName + '</td>'
@@ -560,54 +625,7 @@ tbody tr:hover {
 			
 		}
 	
-		function deleteMember(){
-			
-		Swal.fire({
-			   title: '정말로 그렇게 하시겠습니까?',
-			   text: '다시 되돌릴 수 없습니다. 신중하세요.',
-			   icon: 'warning',
-			   
-			   showCancelButton: true, // cancel버튼 보이기. 기본은 원래 없음
-			   confirmButtonColor: '#3085d6', // confrim 버튼 색깔 지정
-			   cancelButtonColor: '#d33', // cancel 버튼 색깔 지정
-			   confirmButtonText: '승인', // confirm 버튼 텍스트 지정
-			   cancelButtonText: '취소', // cancel 버튼 텍스트 지정
-			   
-			   reverseButtons:false// 버튼 순서 거꾸로
-			   
-			}).then(result => {
-			    if (result.isConfirmed) { // 만약 모달창에서 confirm 버튼을 눌렀다면
-			    	delMember();
-			    }
-			});
 		
-		};
-		
-		function delMember(){
-			var username = $('#username').val();
-			console.log(username);
-			$.ajax({
-					url:"${pageContext.request.contextPath}/member/profile" ,
-					type: "DELETE",
-					data: {
-						username:username
-					},
-					success : function(result) {
-							if(result == 1){
-							 Swal.fire('탈퇴성공  ', '탈퇴합니다 ', 'success');
-							 location.href = '${pageContext.request.contextPath}/member/register';
-			                	
-							}else{
-								swal.fire("실패", "작업수행에 실패하였습니다.", "warining");
-							}
-						},
-							error : function() {
-								swal.fire("에러입니다", "작업수행에 실패하였습니다.", "error");
-						},
-						timeout:100000
-					});
-				}
-			
 		
 	
 		

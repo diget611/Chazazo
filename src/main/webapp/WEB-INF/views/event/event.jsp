@@ -8,37 +8,68 @@
 <title>이벤트</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
-<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700,800' rel='stylesheet' type='text/css'>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,-25" />
+<link
+	href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700,800'
+	rel='stylesheet' type='text/css'>
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,-25" />
 
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/garoestate/assets/css/normalize.css">
-<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/garoestate/assets/css/font-awesome.min.css">
-<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/garoestate/assets/css/fontello.css">
-<link href="<%=request.getContextPath()%>/resources/garoestate/assets/fonts/icon-7-stroke/css/pe-icon-7-stroke.css" rel="stylesheet">
-<link href="<%=request.getContextPath()%>/resources/garoestate/assets/fonts/icon-7-stroke/css/helper.css" rel="stylesheet">
-<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/garoestate/assets/css/bootstrap-select.min.css">
-<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/garoestate/bootstrap/css/bootstrap.min.css">
-<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/garoestate/assets/css/icheck.min_all.css">
-<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/garoestate/assets/css/price-range.css">
-<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/garoestate/assets/css/style.css">
-<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/garoestate/assets/css/responsive.css">
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/resources/garoestate/assets/css/normalize.css">
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/resources/garoestate/assets/css/font-awesome.min.css">
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/resources/garoestate/assets/css/fontello.css">
+<link
+	href="<%=request.getContextPath()%>/resources/garoestate/assets/fonts/icon-7-stroke/css/pe-icon-7-stroke.css"
+	rel="stylesheet">
+<link
+	href="<%=request.getContextPath()%>/resources/garoestate/assets/fonts/icon-7-stroke/css/helper.css"
+	rel="stylesheet">
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/resources/garoestate/assets/css/bootstrap-select.min.css">
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/resources/garoestate/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/resources/garoestate/assets/css/icheck.min_all.css">
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/resources/garoestate/assets/css/price-range.css">
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/resources/garoestate/assets/css/style.css">
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/resources/garoestate/assets/css/responsive.css">
 
-<script src="<%=request.getContextPath()%>/resources/garoestate/assets/js/modernizr-2.6.2.min.js"></script>
-<script src="<%=request.getContextPath()%>/resources/garoestate/assets/js/jquery-1.10.2.min.js"></script>
-<script src="<%=request.getContextPath()%>/resources/garoestate/bootstrap/js/bootstrap.min.js"></script>
-<script src="<%=request.getContextPath()%>/resources/garoestate/assets/js/bootstrap-select.min.js"></script>
-<script src="<%=request.getContextPath()%>/resources/garoestate/assets/js/bootstrap-hover-dropdown.js"></script>
-<script src="<%=request.getContextPath()%>/resources/garoestate/assets/js/easypiechart.min.js"></script>
-<script src="<%=request.getContextPath()%>/resources/garoestate/assets/js/jquery.easypiechart.min.js"></script>
-<script src="<%=request.getContextPath()%>/resources/garoestate/assets/js/wow.js"></script>
-<script src="<%=request.getContextPath()%>/resources/garoestate/assets/js/icheck.min.js"></script>
-<script src="<%=request.getContextPath()%>/resources/garoestate/assets/js/owl.carousel.min.js"></script>
-<script src="<%=request.getContextPath()%>/resources/garoestate/assets/js/price-range.js"></script>
-<script src="<%=request.getContextPath()%>/resources/garoestate/assets/js/main.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
-<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/main.css">
+<script
+	src="<%=request.getContextPath()%>/resources/garoestate/assets/js/modernizr-2.6.2.min.js"></script>
+<script
+	src="<%=request.getContextPath()%>/resources/garoestate/assets/js/jquery-1.10.2.min.js"></script>
+<script
+	src="<%=request.getContextPath()%>/resources/garoestate/bootstrap/js/bootstrap.min.js"></script>
+<script
+	src="<%=request.getContextPath()%>/resources/garoestate/assets/js/bootstrap-select.min.js"></script>
+<script
+	src="<%=request.getContextPath()%>/resources/garoestate/assets/js/bootstrap-hover-dropdown.js"></script>
+<script
+	src="<%=request.getContextPath()%>/resources/garoestate/assets/js/easypiechart.min.js"></script>
+<script
+	src="<%=request.getContextPath()%>/resources/garoestate/assets/js/jquery.easypiechart.min.js"></script>
+<script
+	src="<%=request.getContextPath()%>/resources/garoestate/assets/js/wow.js"></script>
+<script
+	src="<%=request.getContextPath()%>/resources/garoestate/assets/js/icheck.min.js"></script>
+<script
+	src="<%=request.getContextPath()%>/resources/garoestate/assets/js/owl.carousel.min.js"></script>
+<script
+	src="<%=request.getContextPath()%>/resources/garoestate/assets/js/price-range.js"></script>
+<script
+	src="<%=request.getContextPath()%>/resources/garoestate/assets/js/main.js"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/resources/css/main.css">
 <style>
 .category {
 	cursor: pointer;
@@ -81,7 +112,8 @@
 							</div>
 							<div class="feat-list">
 								<div class="panel-group">
-									<a class="js-btn-event link text-decoration-none w-100 mb-3 bg-shadow border-radius-16 overflow-hidden click-effect-press"
+									<a
+										class="js-btn-event link text-decoration-none w-100 mb-3 bg-shadow border-radius-16 overflow-hidden click-effect-press"
 										id="js_event_list_item" data-s="220" data-p="1" data-i="3"
 										data-l="event_tap"
 										href="page-promotion-detail.html?a=220&amp;b=3&amp;c=event_tap&amp;v=230425"
@@ -95,35 +127,35 @@
 													class="dc-flex flex-wrap justify-content-between align-items-center text-16 my-md-1">
 													<span
 														class="js-event-list-item-txt-peroid event-list-item-txt-peroid text-12 color-grey-5">2023.04.03~2023.04.30</span>
-														
-														
+
+
 												</div>
 											</div>
 										</div>
-										</a>
-									</div>
-									<div class="panel panel-default">
-										<img src="https://dummyimage.com/700x150/18B4E9/fff" alt="없어">
-									</div>
-									<div class="panel panel-default">
-										<img src="https://dummyimage.com/700x150/18B4E9/fff" alt="없어">
-									</div>
-									<div class="panel panel-default">
-										<img src="https://dummyimage.com/700x150/18B4E9/fff" alt="없어">
-									</div>
-									<div class="panel panel-default">
-										<img src="https://dummyimage.com/700x150/18B4E9/fff" alt="없어">
-									</div>
+									</a>
+								</div>
+								<div class="panel panel-default">
+									<img src="https://dummyimage.com/700x150/18B4E9/fff" alt="없어">
+								</div>
+								<div class="panel panel-default">
+									<img src="https://dummyimage.com/700x150/18B4E9/fff" alt="없어">
+								</div>
+								<div class="panel panel-default">
+									<img src="https://dummyimage.com/700x150/18B4E9/fff" alt="없어">
+								</div>
+								<div class="panel panel-default">
+									<img src="https://dummyimage.com/700x150/18B4E9/fff" alt="없어">
 								</div>
 							</div>
-						</section>
 					</div>
-				</div>
-			</div>
-		</div>
 	</section>
-	
-	<jsp:include page="/WEB-INF/views/base/chat.jsp"/>
+	</div>
+	</div>
+	</div>
+	</div>
+	</section>
+
+	<jsp:include page="/WEB-INF/views/base/chat.jsp" />
 	<jsp:include page="/WEB-INF/views/base/footer.jsp" />
 
 	<script>
@@ -169,7 +201,10 @@
 			html += '		<div class="dc-flex flex-wrap justify-content-between align-items-center text-16 my-md-1">';
 			html += '		<span class="js-event-list-item-txt-peroid event-list-item-txt-peroid text-12 color-grey-5">2022.02.15~2023.06.30</span>';
 			html += '	</div></div></div></div>';
-			html += '<div class="panel panel-default"><img src="https://dummyimage.com/700x150/080808/fff" alt="없어"></div>';
+			html += '<div class="panel panel-default"><a class="js-btn-event link text-decoration-none w-100 mb-3 bg-shadow border-radius-16 overflow-hidden click-effect-press" id="js_event_list_item" data-s="225" data-p="0" data-i="3" data-l="event_tap" href="" style="display: block;">';
+			html += '<div class="cm-rounded bg-white"><img class="js-event-list-item-img event-list-item-img center-crop object-fit w-100" src="https://d1y0pslxvt2ep5.cloudfront.net/event/banner/banner_225_20230427012224.png">';
+			html += '	<div class="px-3 py-2"><div class="dc-flex flex-wrap justify-content-between align-items-center text-16 my-md-1"><span class="js-event-list-item-txt-peroid event-list-item-txt-peroid text-12 color-grey-5">2023.05.02~2023.06.01</span>';
+			html += '</div></div></div></a></div>';
 			html += '<div class="panel panel-default"><img src="https://dummyimage.com/700x150/a76bcf/fff" alt="없어"></div>';
 			html += '<div class="panel panel-default"><img src="https://dummyimage.com/700x150/589430/fff" alt="없어"></div>';
 			$('.panel-group').html(html);

@@ -73,11 +73,11 @@
 															</c:if>
 															<c:if test="${not empty info.name }">
 																<input data-idx="${review.idx}" data-recommend="${review.recommend}" src="<%=request.getContextPath()%>/resources/garoestate/assets/img/icon/like.png"
-																	class="likebtn" type="image" style=" width:55px;">${review.recommend}
+																	class="likebtn" type="image" style=" width:55px; box-sizing:border-box; resize:none;">${review.recommend}
 															</c:if>
 													</div>
 													<div>
-														<textarea id="reviewOne" class="review_content"  maxlength="100" style="height:auto; resize: none; width:80%; font-size:18px;"autofocus disabled>${review.content}</textarea>
+														<textarea name="reviewOne" class="review_content"  maxlength="100" style="height:auto; overflow:hidden; resize: none; width:80%; font-size:18px;"autofocus disabled>${review.content}</textarea>
 													</div>	
 													<c:if test="${info.name eq review.name }">
 														<input data-idx="${review.idx }" src="<%=request.getContextPath()%>/resources/garoestate/assets/img/icon/edit.png" style="float:left;  width:45px; " type="image" class="edit" value="수정">
@@ -115,7 +115,7 @@
 													<div>
 														<input type="hidden" id="reviewIdx" value="${review.idx }">
 														<div style="margin:0px">
-															<img src="<%=request.getContextPath()%>/resources/garoestate/assets/img/icon/person.png" style="width:20px; float:left;">
+															<img src="<%=request.getContextPath()%>/resources/garoestate/assets/img/icon/person.png" style="width:20px;  float:left;">
 															<input type="text" style="font-size:13px; width:200px;" value="${review.name}">
 														</div>
 													</div>
@@ -132,7 +132,7 @@
 													<div class="form-group col-md-8" style="float:left;" >
 													
 														  <div>
-														${info.name } <textarea id="textBox" maxlength="100" name="reviewcontent" style=" height:80px;  resize: none; width:100%; border:4px solid #4ea0d8;"  placeholder="리뷰를 작성해주세요" ></textarea>
+														<textarea  maxlength="100" name="reviewcontent" style=" box-sizing:border-box; overflow:hidden; resize: none; width:100%; border:4px solid #4ea0d8;"  placeholder="${info.name } 님 ,리뷰를 작성해 주세요!" ></textarea>
 														  	  <div class="textLengthWrap">
 														   		 <p class="textCount">0자</p><p class="textTotal">/100자</p>
 														  	  </div>
@@ -163,22 +163,13 @@ $(".4").html("&#9733; &#9733; &#9733; &#9733; &#9734;");
 $(".5").html("&#9733; &#9733; &#9733; &#9733; &#9733;"); 
 
 //리뷰 칸자동 조정
-function resize() {
-    let textarea = document.getElementById("reviewOne");
-
-    textarea.style.height = "0px";
-
-    let scrollHeight = textarea.scrollHeight;
-    let style = window.getComputedStyle(textarea);
-    let borderTop = parseInt(style.borderTop);
-    let borderBottom = parseInt(style.borderBottom);
-
-    textarea.style.height = (scrollHeight + borderTop + borderBottom)+"px";
-}
-
-window.addEventListener("load", resize);
-window.onresize = resize;
-
+$(document).ready(function() {
+  $('textarea').on( 'keyup', function (e){
+    $(this).css('height', 'auto');
+    $(this).height(this.scrollHeight);
+  });
+  $('textarea').keyup();
+});
 
 //비회원 경고
 function reportSwal() {
@@ -199,7 +190,7 @@ $( ".star_rating a" ).click(function() {
 
 
 //리뷰 수정 글자수 제한
-$('#reviewOne').keyup(function (e) {
+$('[name=reviewOne]').keyup(function (e) {
 	let content = $(this).val();
     
     // 글자수 세기
@@ -217,7 +208,7 @@ $('#reviewOne').keyup(function (e) {
 });
 
 //리뷰 작성 글자수 제한
-$('#textBox').keyup(function (e) {
+$('[name=reviewcontent]').keyup(function (e) {
 	let content = $(this).val();
     
     // 글자수 세기

@@ -8,7 +8,6 @@
 <meta charset="utf-8">
 <title>지점안내</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-
 <spring:eval expression="@keyProperty['kakao-admin-key']" var="key"/>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=${key }"></script>
 

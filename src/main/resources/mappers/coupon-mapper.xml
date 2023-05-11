@@ -24,7 +24,7 @@
 	</select>
 	
 	<select id="countCoupon" resultType="_int">
-		SELECT COUNT(*) FROM COUPON WHERE MEMBER_IDX = (SELECT IDX FROM MEMBER WHERE USERNAME = #{username})
+		SELECT COUNT(*) FROM COUPON WHERE MEMBER_IDX = (SELECT IDX FROM MEMBER WHERE USERNAME = #{username}) AND STATUS = 0
 	</select>
 	
 	<insert id="insertWelcome">

@@ -41,6 +41,14 @@
 <script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/main.css">
+<style>
+.inner-wrapper{
+	margin: 0 0 8px;
+	border-radius: 16px;
+	box-shadow: 0 4px 14px 0 rgba(177, 177, 177, .2);
+	background-color: #fff;
+}
+</style>
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/base/header.jsp"/>
@@ -74,7 +82,7 @@
 												<div class="col-xs-8 col-sm-8 ">
 													<h3 class="dealer-name">
 														<span>		
-															<input type="text" class="form-control" name="name" value="${memberinfo.name }" readonly >
+															<input type="text" class="" name="name" value="${memberinfo.name }" readonly >
 														
 														</span>
 													</h3>
@@ -84,18 +92,21 @@
 												<ul class="dealer-contacts">                                       
 													<li>
 														<i class="pe-7s-call strong"> </i>
-														<input type="text" class="form-control" name="phoneNumber" value="${memberinfo.phoneNumber}" readonly >
+														<input type="text" class="" name="phoneNumber" value="${memberinfo.phoneNumber}" readonly >
 													</li>
 													<li>
 														<i class="pe-7s-mail strong"> </i> 
-														<input type="text" class="form-control" name="email" value="${memberinfo.email }" readonly >
+														<input type="text" class="" name="email" value="${memberinfo.email }" readonly >
 													</li>
 												</ul>
 											<div>
 												<div class="dc-flex justify-content-between px-2 mb-4 is-only-member">
 													<div class="dc-flex flex-column flex-grow-1 text-center click-effect-press">
 														<img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjciIGhlaWdodD0iMjYiIHZpZXdCb3g9IjAgMCAyNyAyNiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxnIGNsaXAtcGF0aD0idXJsKCN4anBrYjR1NTlhKSI+CiAgICAgICAgPHJlY3QgeD0iMi4zMzMiIHk9IjQuNTEiIHdpZHRoPSIxOS4wMTIiIGhlaWdodD0iMTkuNDkiIHJ4PSIyIiBmaWxsPSIjQzdFMEZGIi8+CiAgICAgICAgPHBhdGggZD0iTTE5Ljc3MyA2LjgzM2MtLjk3NS0uOTU4LTEuMDU3LTIuNTA2LS4xODMtMy40NGwxLjU5Ni0xLjcwNWMuODczLS45MzQgMi4zODUtLjkxNCAzLjM2LjA0My45NzQuOTU4IDEuMDU2IDIuNTA2LjE4MiAzLjQ0bC0xLjU5NiAxLjcwNmMtLjg3My45MzMtMi4zODUuOTE0LTMuMzYtLjA0NHoiIGZpbGw9IiM5NkM2RkYiLz4KICAgICAgICA8cGF0aCBkPSJtMTAuNDM4IDEzLjEyMS0yLjI0OCA1LjU4Yy0uMTMxLjMyNS4xODMuNjM2LjQ5Ni40ODhsNS4zNDgtMi41MzUtMy41OTctMy41MzZ2LjAwM3oiIGZpbGw9IiNGQkZDRkYiLz4KICAgICAgICA8cGF0aCBkPSJtOC42NDYgMTcuNTcyIDEuMTI1IDEuMTA1LTEuMjE1LjU3N2MtLjI2My4xMjUtLjUyOS0uMTM3LS40MTgtLjQxMWwuNTExLTEuMjY4LS4wMDMtLjAwM3oiIGZpbGw9IiM5NkM2RkYiLz4KICAgICAgICA8cGF0aCBkPSJtMjEuODY0IDMuMzY0LTEuMTk4LTEuMTc4LTEwLjIyOCAxMC45MzUgMS4xOTcgMS4xNzZMMjEuODY0IDMuMzY0eiIgZmlsbD0iI0I5RDVGRiIvPgogICAgICAgIDxwYXRoIGQ9Ik0yMy4wNjQgNC41MzkgMjEuODY3IDMuMzZsLTEwLjIzIDEwLjkzNCAxLjE5OCAxLjE3OCA1LjExNC01LjQ2NyA1LjExNS01LjQ2N3pNMjQuMjYgNS43MmwtMS4xOTctMS4xNzgtNS4xMTUgNS40NjctNS4xMTQgNS40NjcgMS4xOTcgMS4xNzdMMjQuMjYxIDUuNzJ6IiBmaWxsPSIjOUFDMkZGIi8+CiAgICA8L2c+CiAgICA8ZGVmcz4KICAgICAgICA8Y2xpcFBhdGggaWQ9InhqcGtiNHU1OWEiPgogICAgICAgICAgICA8cGF0aCBmaWxsPSIjZmZmIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSguMzMzKSIgZD0iTTAgMGgyNnYyNkgweiIvPgogICAgICAgIDwvY2xpcFBhdGg+CiAgICA8L2RlZnM+Cjwvc3ZnPgo=" height="26px">
-														<span class="color-grey-3 text-14">나의리뷰</span>
+														<button
+															class="color-grey-3 text-14 btn btn-outline-primary"
+															id="myReview" type="button">나의 리뷰</button>
+														<br>
 													</div>
 												</div>
 											</div>
@@ -142,7 +153,7 @@
 										<button  id="coupon" type="button" class="btn btn-outline-primary">쿠폰
 											관리</button>
 										<br>
-										<button type="button" class="btn btn-outline-primary">회원탈퇴</button>
+										<button type="button" onclick="deleteMember()" class="btn btn-outline-primary">회원탈퇴</button>
 									</h3>
 								</div>
 							</div>
@@ -319,7 +330,53 @@
 		
 	});
 
-
+	function deleteMember(){
+		
+		Swal.fire({
+			   title: '정말로 그렇게 하시겠습니까?',
+			   text: '다시 되돌릴 수 없습니다. 신중하세요.',
+			   icon: 'warning',
+			   
+			   showCancelButton: true, // cancel버튼 보이기. 기본은 원래 없음
+			   confirmButtonColor: '#3085d6', // confrim 버튼 색깔 지정
+			   cancelButtonColor: '#d33', // cancel 버튼 색깔 지정
+			   confirmButtonText: '승인', // confirm 버튼 텍스트 지정
+			   cancelButtonText: '취소', // cancel 버튼 텍스트 지정
+			   
+			   reverseButtons:false// 버튼 순서 거꾸로
+			   
+			}).then(result => {
+			    if (result.isConfirmed) { // 만약 모달창에서 confirm 버튼을 눌렀다면
+			    	delMember();
+			    }
+			});
+		
+		};
+		
+		function delMember(){
+			var username = $('#username').val();
+			console.log(username);
+			$.ajax({
+					url:"${pageContext.request.contextPath}/member/profile" ,
+					type: "DELETE",
+					data: {
+						username:username
+					},
+					success : function(result) {
+							if(result == 1){
+							 Swal.fire('탈퇴성공  ', '탈퇴합니다 ', 'success');
+							 location.href = '${pageContext.request.contextPath}/member/register';
+			                	
+							}else{
+								swal.fire("실패", "작업수행에 실패하였습니다.", "warining");
+							}
+						},
+							error : function() {
+								swal.fire("에러입니다", "작업수행에 실패하였습니다.", "error");
+						},
+						timeout:100000
+					});
+				}
 	
 	</script>
 </body>

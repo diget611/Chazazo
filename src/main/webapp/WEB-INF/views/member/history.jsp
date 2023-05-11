@@ -609,7 +609,53 @@ tbody tr:hover {
 				    }
 				  });
 				});
-		 
+	 function deleteMember(){
+			
+			Swal.fire({
+				   title: '정말로 그렇게 하시겠습니까?',
+				   text: '다시 되돌릴 수 없습니다. 신중하세요.',
+				   icon: 'warning',
+				   
+				   showCancelButton: true, // cancel버튼 보이기. 기본은 원래 없음
+				   confirmButtonColor: '#3085d6', // confrim 버튼 색깔 지정
+				   cancelButtonColor: '#d33', // cancel 버튼 색깔 지정
+				   confirmButtonText: '승인', // confirm 버튼 텍스트 지정
+				   cancelButtonText: '취소', // cancel 버튼 텍스트 지정
+				   
+				   reverseButtons:false// 버튼 순서 거꾸로
+				   
+				}).then(result => {
+				    if (result.isConfirmed) { // 만약 모달창에서 confirm 버튼을 눌렀다면
+				    	delMember();
+				    }
+				});
+			
+			};
+			
+			function delMember(){
+				var username = $('#username').val();
+				console.log(username);
+				$.ajax({
+						url:"${pageContext.request.contextPath}/member/profile" ,
+						type: "DELETE",
+						data: {
+							username:username
+						},
+						success : function(result) {
+								if(result == 1){
+								 Swal.fire('탈퇴성공  ', '탈퇴합니다 ', 'success');
+								 location.href = '${pageContext.request.contextPath}/member/register';
+				                	
+								}else{
+									swal.fire("실패", "작업수행에 실패하였습니다.", "warining");
+								}
+							},
+								error : function() {
+									swal.fire("에러입니다", "작업수행에 실패하였습니다.", "error");
+							},
+							timeout:100000
+						});
+					}
 		 
 </script>
 

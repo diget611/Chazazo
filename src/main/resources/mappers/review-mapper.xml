@@ -50,7 +50,7 @@
 		SELECT CONTENT, USERNAME
 		  FROM (SELECT ROWNUM RNUM, RE.* 
 		          FROM (SELECT CONTENT, CREATE_DATE, (SELECT USERNAME FROM MEMBER WHERE IDX = R.MEMBER_IDX) USERNAME
-		                  FROM REVIEW R ORDER BY RECOMMEND DESC) RE)
+		                  FROM REVIEW R WHERE STATUS = 0 ORDER BY RECOMMEND DESC) RE)
 		 WHERE RNUM BETWEEN 1 AND 4
 	</select>
 	
@@ -76,7 +76,7 @@
 		UPDATE REVIEW SET STATUS = 2 WHERE IDX = #{reviewIdx}
 	</update>
 	
-	<select id = "countReview" resultType = "_int">
+	<select id="countReview" resultType = "_int">
 		SELECT COUNT(*) FROM REVIEW WHERE MEMBER_IDX = (SELECT IDX FROM MEMBER WHERE USERNAME = #{username})
 	</select>
 	

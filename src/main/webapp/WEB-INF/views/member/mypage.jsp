@@ -48,6 +48,7 @@ table {
 	border-top: 1px solid black;
 	text-align: center;
 	width: 100%;
+	cursor:pointer;
 }
 
 th {
@@ -58,6 +59,8 @@ th {
 td {
 	border-bottom: 1px solid black;
 }
+
+
 
 tbody tr:hover {
 	background-color: #f1f3f5;
@@ -139,11 +142,11 @@ tbody tr:hover {
 										<div class="clear">
 											<div class="col-xs-8 col-sm-8 ">
 												<h3 class="dealer-name">
-													<span> <input type="text" class="form-control"
-														name="name" value="${memberinfo.name }" readonly>
-														<input type="hidden" class="form-control" name="usernname"
+													<span> <input type="text" class=""
+														name="name" value="${memberinfo.name } 님" readonly>
+														<input type="hidden" class="f" name="usernname"
 														id="username" value="${memberinfo.username }"> <input
-														type="hidden" class="form-control"
+														type="hidden" class=""
 														value="${memberinfo.idx }">
 													</span>
 												</h3>
@@ -152,10 +155,10 @@ tbody tr:hover {
 										<div class="clear">
 											<ul class="dealer-contacts">
 												<li><i class="pe-7s-call strong"> </i> <input
-													type="text" class="form-control" name="phoneNumber"
+													type="text" class="" name="phoneNumber"
 													value="${memberinfo.phoneNumber}" readonly></li>
 												<li><i class="pe-7s-mail strong"> </i> <input
-													type="text" class="form-control" name="email"
+													type="text" class="" name="email"
 													value="${memberinfo.email }" readonly></li>
 											</ul>
 											<div>
@@ -405,6 +408,7 @@ tbody tr:hover {
 		});
 		
 		$('tr').on('click', function() {
+			
 			var sss = $(this).children().eq(0).text();
 			location.href = "${pageContext.request.contextPath}/profile/reservation/" + sss; 
 		})

@@ -150,11 +150,11 @@
 				<div class="blog-lst col-md-8 p0 " style="float: right;">
 				
 					<!-- 회원정보 수정 버튼 클릭시 비밀번호 확인 창 뜨게 하기  -->
-					<section id="id-100"  >
+					<section id="id-100" style="margin-top:200px;" >
 					<div class="card-body" id="passCheck">
 						<div class="text-center">
-							<div class="input-group input-group-outline my-3"style="margin-left:250px;">
-								<label>비밀번호 확인</label>
+							<div class="input-group input-group-outline my-4"style="margin-left:250px;">
+								<label>비밀번호 확인 </label>
 								<input type="password" id="passwordCheck" class="form-control" >
 							</div>
 						</div>

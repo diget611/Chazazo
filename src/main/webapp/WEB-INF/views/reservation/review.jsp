@@ -61,43 +61,53 @@
 										<c:choose>
 											<c:when test="${review.status eq 0}">
 												<div style="margin-bottom :50px;">
-													<div style="text-align:left;">
+													<div>
 														<input type="hidden" id="reviewIdx" value="${review.idx }">
-														<div style="margin:0px; float:left;">
-															<img src="<%=request.getContextPath()%>/resources/garoestate/assets/img/icon/person.png" style="width:20px; float:left;">
-															<input type="text" style="font-size:13px; float:left; width:100px;" value="${review.name}">
+														<div>
+															<img src="<%=request.getContextPath()%>/resources/garoestate/assets/img/icon/person.png" style="width:25px; float:left;">
+															<input type="text" style="font-size:15px; float:left; padding-left: 6px; width: 50%; margin-bottom: 10px;" value="${review.name}">
 														</div>
-														<div style="text-align: right;">
-														<small style="float:left; color:#Fcd637;" class=${review.score }></small><label >&nbsp; ${review.createdate}</label>&nbsp;&nbsp;
-															<c:if test="${empty info.name}">
-																<input src="<%=request.getContextPath()%>/resources/garoestate/assets/img/icon/like.png" type="image" style=" width:55px;">${review.recommend}
-															</c:if>
-															<c:if test="${not empty info.name }">
-																<input data-idx="${review.idx}" data-recommend="${review.recommend}" src="<%=request.getContextPath()%>/resources/garoestate/assets/img/icon/like.png"
-																	class="likebtn" type="image" style=" width:55px; box-sizing:border-box; resize:none;">${review.recommend}
-															</c:if>
+														<div>
+															<small style="float: right; color:#Fcd637; font-size: 18px;" class=${review.score }></small>
 														</div>
 													</div>
 													<div>
-														<textarea name="reviewOne" class="review_content"  maxlength="100" style="height:auto; overflow:hidden; resize: none; width: 100%; font-size:18px;"autofocus disabled>${review.content}</textarea>
-													</div>	
+														<textarea name="reviewOne" class="review_content"  maxlength="100"
+															style="height:auto; overflow:hidden; resize: none; width: 100%; font-size:18px; background-color: #e3f8ff; border-radius: 5px; padding: 10px;"autofocus disabled>${review.content}</textarea>
+													</div>
+													<div>
+													<div style="display: inline-block; position: relative; left: 77%;">${review.createdate}</div>
+													<div style="display: inline-block; position: relative; top: 5px; left: 78%;">
+														<c:if test="${empty info.name}">
+															<input src="<%=request.getContextPath()%>/resources/garoestate/assets/img/icon/like.png" type="image" style=" width:30px; padding: 0px;">
+															<span>${review.recommend}</span>
+														</c:if>
+													<c:if test="${not empty info.name }">
+															<input data-idx="${review.idx}" data-recommend="${review.recommend}" src="<%=request.getContextPath()%>/resources/garoestate/assets/img/icon/like.png"
+																class="likebtn" type="image" style="box-sizing:border-box; resize:none; padding: 0px; width: 30px;">
+															<span>${review.recommend}</span>
+														</c:if>
+													</div>
 													<c:if test="${info.name eq review.name }">
-														<input data-idx="${review.idx }" src="<%=request.getContextPath()%>/resources/garoestate/assets/img/icon/edit.png" style="float:right; margin-right:20%;  width:50px; " type="image" class="edit" value="수정">
-														<input data-idx="${review.idx }" src="<%=request.getContextPath()%>/resources/garoestate/assets/img/icon/delete.png"  style=" float:right;   margin-right:20%;  width:50px; " type="image" class="delete" value="삭제" >
-													</c:if>
-														<div style="text-align:right;">
-														   	<c:if test="${info.name ne review.name }">
-																<c:if test ="${empty info.name }">
-																	<button type="button" class="btn btn-secondary"  onclick="reportSwal()" >신고</button>
-																	<img src="<%=request.getContextPath()%>/resources/garoestate/assets/img/icon/siren.png" style="width:25px;">
-																</c:if>
-																<c:if test ="${not empty  info.name }">
-																	<button type="button" id="report" data-memberIdx="${info.idx}"class="btn btn-secondary" style="display:inline-block" 
-														    		    onclick='window.open("${pageContext.request.contextPath}/reportReview/${review.idx }", "리뷰 신고", "width=100, height=auto")'>신고</button>
-																	<img src="<%=request.getContextPath()%>/resources/garoestate/assets/img/icon/siren.png" style="width:25px;">
-																</c:if>
-															</c:if>
+														<div style="position: relative; top: -30px; left: -85%;">
+															<input data-idx="${review.idx }" src="<%=request.getContextPath()%>/resources/garoestate/assets/img/icon/edit.png" style="float:right; width:50px; " type="image" class="edit" value="수정">
+															<input data-idx="${review.idx }" src="<%=request.getContextPath()%>/resources/garoestate/assets/img/icon/delete.png"  style=" float:right; width:50px; " type="image" class="delete" value="삭제" >
 														</div>
+													</c:if>
+													</div>
+													<div style="position: relative; top: -28px;">
+													   	<c:if test="${info.name ne review.name }">
+															<c:if test ="${empty info.name }">
+																<button type="button" class="btn btn-secondary"  onclick="reportSwal()" style="font-size: 15px; color: black; padding: 0px;">신고</button>
+																<img src="<%=request.getContextPath()%>/resources/garoestate/assets/img/icon/siren.png" style="width:28px;">
+															</c:if>
+															<c:if test ="${not empty  info.name }">
+															<button type="button" id="report" data-memberIdx="${info.idx}"class="btn btn-secondary" style="font-size: 15px; color: black; padding: 0px;" 
+													    		    onclick='window.open("${pageContext.request.contextPath}/reportReview/${review.idx }", "리뷰 신고", "width=100, height=auto")'>신고</button>
+																<img src="<%=request.getContextPath()%>/resources/garoestate/assets/img/icon/siren.png" style="width:28px;">
+															</c:if>
+														</c:if>
+													</div>
 												</div>
 											</c:when>
 											<c:when test="${review.status eq 1}">
@@ -109,7 +119,7 @@
 															<input type="text" style="font-size:13px; width:200px;" value="${review.name}">
 														</div>
 													</div>
-													<div>
+													<div style="background-color: rgb(227, 248, 255); border-radius: 5px; padding: 10px; border-style: solid; border-width: 1px; border-color: #c9d9de;">
 														<p>신고 처리 중인 리뷰입니다.</p>
 													</div>
 												</div>
@@ -123,7 +133,7 @@
 															<input type="text" style="font-size:13px; width:200px;" value="${review.name}">
 														</div>
 													</div>
-													<div>
+													<div style="background-color: rgb(227, 248, 255); border-radius: 5px; padding: 10px; border-style: solid; border-width: 1px; border-color: #c9d9de;">
 														<p>신고로 삭제된 리뷰입니다.</p>
 													</div>
 												</div>

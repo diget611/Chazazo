@@ -15,7 +15,7 @@
 					class="icon-bar"></span> <span class="icon-bar"></span> <span
 					class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="<%=request.getContextPath() %>">
+			<a class="navbar-brand" href="<%=request.getContextPath() %>" style="position: absolute; top: 0px;">
 			<img src="<%=request.getContextPath() %>/resources/garoestate/assets/img/logo.png" alt=""></a>
 		</div>
 		<!-- Collect the nav links, forms, and other content for toggling -->

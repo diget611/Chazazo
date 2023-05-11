@@ -36,14 +36,14 @@ public class AdminRequestController {
 		return mv;
 	}
 	
-	@GetMapping("/request/{idx}")
+	@GetMapping("/{idx}")
 	public ModelAndView viewRequestOne(ModelAndView mv, @PathVariable String idx) {
 		mv.addObject("request", service.selectRequestOne(idx));
 		mv.setViewName("admin/requestdetails");
 		return mv;
 	}
 	
-	@PostMapping("/")
+	@PostMapping("/insert")
 	public int insertRequest(@RequestParam String idx, @RequestParam String answer) {
 		Map<String, String> data = new HashMap<String, String>();
 		data.put("idx", idx);
@@ -54,7 +54,7 @@ public class AdminRequestController {
 		return result;
 	}
 	
-	@PatchMapping("/")
+	@PatchMapping("/update")
 	public int updateRequest(@RequestParam String idx, @RequestParam String answer) {
 		Map<String, String> data = new HashMap<String, String>();
 		data.put("idx", idx);
@@ -65,7 +65,7 @@ public class AdminRequestController {
 		return result;
 	}
 	
-	@DeleteMapping("/")
+	@DeleteMapping("/delete")
 	public int deleteRequest(@RequestParam String idx) {
 		int result = service.deleteRequest(idx);
 		return result;

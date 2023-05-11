@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kh.spring.chazazo.admin.vehicle.model.dao.AdminVehicleDao;
+import kh.spring.chazazo.admin.vehicle.model.dto.AdminVehicleInsertDto;
 import kh.spring.chazazo.admin.vehicle.model.dto.AdminVehicleOneRespDto;
 import kh.spring.chazazo.admin.vehicle.model.dto.AdminVehicleRespDto;
 import kh.spring.chazazo.admin.vehicle.model.dto.AdminVehicleUpdateReqDto;
@@ -28,6 +29,10 @@ public class AdminVehicleServiceImpl implements AdminVehicleService {
 	@Override
 	public AdminVehicleOneRespDto selectVehicleOne(String idx) {
 		return dao.selectVehicleOne(idx);
+	}
+	@Override
+	public int insertVehicle(AdminVehicleInsertDto data) {
+		return dao.insertVehicle(data);
 	}
 	@Override
 	public int updateVehicle(AdminVehicleUpdateReqDto data) {

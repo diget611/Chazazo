@@ -118,10 +118,11 @@
 	
 	function updateLocation() {
 		if($('#updateBtn').text() == '지점 정보 수정') {
+			var addr = '${location.address}';
 			var html = '';
 			html += '<div class="form-floating mb-3 row">'
 			html += '	<div class="form-floating col-9">'
-			html += '		<input type="text" class="form-control" id="address" name="address">'
+			html += '		<input type="text" class="form-control" id="address" name="address" value="' + addr + '">'
 			html += '		<label for="address" class="ps-4">주소</label>'
 			html += '	</div>'
 			html += '	<div class="form-floating col-3 pt-1">'

@@ -98,8 +98,8 @@
 		 WHERE IDX = #{idx} 
 	</update>
  	
- 	<insert id="insert">
+ 	<insert id="insert" parameterType="adminVehicleInsertDto">
  		INSERT INTO VEHICLE
- 		VALUES (VEHICLE_SEQ.NEXTVAL, #{model}, #{year}, #{price}, #{image}, #{maker}, #{locationIdx}, #{fueltypeIdx}, #{cartypeIdx})
+ 		VALUES (VEHICLE_SEQ.NEXTVAL, #{model}, #{year}, #{price}, #{model} || '.jpg', #{maker}, #{locationIdx}, #{fueltypeIdx}, #{cartypeIdx})
  	</insert>
 </mapper>

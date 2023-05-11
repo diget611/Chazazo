@@ -119,7 +119,7 @@
 		let idx = $('[name=idx]').val();
 		let answer = $('[role=textbox]').html();
 		$.ajax({
-			url: '${pageContext.request.contextPath}/admin/request',
+			url: '${pageContext.request.contextPath}/admin/request/insert',
 			type: 'post',
 			data: {idx: idx, answer: answer},
 			success: function(result) {
@@ -152,7 +152,7 @@
 			let idxup = $('[name=idx]').val();
 			let answerup = $('[role=textbox]').html();
 			$.ajax({
-				url: '${pageContext.request.contextPath}/admin/request',
+				url: '${pageContext.request.contextPath}/admin/request/update',
 				type: 'patch',
 				data: {idx: idxup, answer: answerup},
 				success: function(result) {
@@ -181,7 +181,7 @@
 	function deleteAns() {
 		let idxdel = $('[name=idx]').val();
 		$.ajax({
-			url: '${pageContext.request.contextPath}/admin/request',
+			url: '${pageContext.request.contextPath}/admin/request/delete',
 			type: 'delete',
 			data: {idx: idxdel},
 			success: function(result) {

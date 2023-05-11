@@ -84,7 +84,7 @@ var couponIdx = $('input[name=coupon]:checked').next().val();
 	opener.document.getElementById("discountRate").value = rate;
 	opener.document.getElementById("cIdx").value = couponIdx;
 	window.opener.calc();
-//	window.close();
+	window.close();
 });
 
 </script>

@@ -132,7 +132,7 @@
 													<div class="form-group col-md-8" style="float:left;" >
 													
 														  <div>
-														${info.name } <textarea id="textBox" maxlength="100" name="reviewcontent" style=" height:80px;  resize: none; width:100%; border:4px solid #4ea0d8;"  placeholder="리뷰를 작성해주세요" ></textarea>
+														<textarea id="textBox" maxlength="100" name="reviewcontent" style=" height:80px;  resize: none; width:100%; border:4px solid #4ea0d8;"  placeholder="${info.name } 님 ,리뷰를 작성해 주세요!" ></textarea>
 														  	  <div class="textLengthWrap">
 														   		 <p class="textCount">0자</p><p class="textTotal">/100자</p>
 														  	  </div>

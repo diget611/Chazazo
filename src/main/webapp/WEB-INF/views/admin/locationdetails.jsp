@@ -55,7 +55,7 @@
 				</div>
 				<input type="hidden" value="${location.latitude }">
 				<input type="hidden" value="${location.longitude }">
-				<div class="mb-3" id="map" style="width: 100%; height: 400px;"></div>
+				<div class="mb-3" id="map" style="width: 100%; height: 300px;"></div>
 				<c:if test="${location.phoneNumber ne '-' }">
 					<div class="mb-3 row">
 						<div style="text-align: center;">
@@ -75,28 +75,14 @@
 		var hei = win.document.body.offsetHeight + 100;
 		win.resizeTo(500, hei);
 	}
-	
+
 	var latitude = ${location.latitude};
 	var longitude = ${location.longitude};
-	
-	var container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
-	var options = { //지도를 생성할 때 필요한 기본 옵션
-		center: new kakao.maps.LatLng(latitude, longitude), //지도의 중심좌표.
-		draggable: false,	// 지도 드래그 막기
-		level: 3 //지도의 레벨(확대, 축소 정도)
-	};
-	
-	var map = new kakao.maps.Map(container, options); //지도 생성 및 객체 리턴
-	
-	function setDraggable(draggable) {
-	    // 마우스 드래그로 지도 이동 가능여부를 설정합니다
-	    map.setDraggable(draggable);    
-	}
+	var map;
 	
 	var imageSrc = 'https://cdn-icons-png.flaticon.com/512/5695/5695641.png', // 마커이미지의 주소입니다    
 		imageSize = new kakao.maps.Size(64, 69), // 마커이미지의 크기입니다
 		imageOption = {offset: new kakao.maps.Point(27, 69)}; 
-	 
 	
 	// 마커가 표시될 위치입니다 
 	var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption),
@@ -107,9 +93,25 @@
 	    position: markerPosition,
 	    image: markerImage
 	});
-
-	// 마커가 지도 위에 표시되도록 설정합니다
-	marker.setMap(map);
+		
+	window.onload = function() {
+		var container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
+		var options = { //지도를 생성할 때 필요한 기본 옵션
+			center: new kakao.maps.LatLng(latitude, longitude), //지도의 중심좌표.
+			draggable: true,	// 지도 드래그 막기
+			level: 4 //지도의 레벨(확대, 축소 정도)
+		};
+		
+		map = new kakao.maps.Map(container, options); //지도 생성 및 객체 리턴
+		
+		function setDraggable(draggable) {
+		    // 마우스 드래그로 지도 이동 가능여부를 설정합니다
+		    map.setDraggable(draggable);    
+		}
+		
+		// 마커가 지도 위에 표시되도록 설정합니다
+		marker.setMap(map);		
+	}
 	
 	$('#updateBtn').on('click', updateLocation);
 	
@@ -118,14 +120,15 @@
 	
 	function updateLocation() {
 		if($('#updateBtn').text() == '지점 정보 수정') {
+			var addr = '${location.address}';
 			var html = '';
 			html += '<div class="form-floating mb-3 row">'
-			html += '	<div class="form-floating col-9">'
-			html += '		<input type="text" class="form-control" id="address" name="address">'
+			html += '	<div class="form-floating col-10">'
+			html += '		<input type="text" class="form-control" id="address" name="address" value="' + addr + '">'
 			html += '		<label for="address" class="ps-4">주소</label>'
 			html += '	</div>'
-			html += '	<div class="form-floating col-3 pt-1">'
-			html += '		<button type="button" class="btn btn-primary btn-lg" id="search">검색</button>'					
+			html += '	<div class="form-floating col-2 pt-1">'
+			html += '		<button type="button" class="btn btn-primary btn-lg" id="search" style="width: 100%;">검색</button>'					
 			html += '	</div>'
 			html += '</div>'
 			

@@ -116,30 +116,34 @@
 			let content = $('[role=textbox]').html();
 			let username = '${username}';
 			
-			var test = {"title": title, "content": content, "username": username};
+			var data = {"title": title, "content": content, "username": username};
 			
-			$.ajax({
-				url: '${pageContext.request.contextPath}/request/insert',
-				type: 'post',
-				contentType: 'application/json; charset=utf-8',
-				data: JSON.stringify(test),
-				success: function(result) {
-					if(result == 1) {
-						swal({
-		        			title : "1:1 문의를 등록했습니다.",
-		        		    icon  : "success",
-		        		    closeOnClickOutside : false
-		        		}).then(function(){
-		        			window.location.href = '${pageContext.request.contextPath}/request';
-		        		});
-					} else {
-						swal("실패", "1:1문의 등록 과정에 오류가 발생했습니다. 확인 후 다시 시도해 주세요.", "error");
+			if(title == '' || $('[role=textbox]').children().text() == '') {
+				swal("등록 실패", "제목 또는 내용을 입력해주세요.", "error");
+			} else {				
+				$.ajax({
+					url: '${pageContext.request.contextPath}/request/insert',
+					type: 'post',
+					contentType: 'application/json; charset=utf-8',
+					data: JSON.stringify(data),
+					success: function(result) {
+						if(result == 1) {
+							swal({
+			        			title : "1:1 문의를 등록했습니다.",
+			        		    icon  : "success",
+			        		    closeOnClickOutside : false
+			        		}).then(function(){
+			        			window.location.href = '${pageContext.request.contextPath}/request';
+			        		});
+						} else {
+							swal("실패", "1:1문의 등록 과정에 오류가 발생했습니다. 확인 후 다시 시도해 주세요.", "error");
+						}
+					},
+					error: function() {
+						swal("에러", "응답에 오류가 있습니다. 확인 후 다시 시도해 주세요.", "error");
 					}
-				},
-				error: function() {
-					swal("에러", "응답에 오류가 있습니다. 확인 후 다시 시도해 주세요.", "error");
-				}
-			});
+				});
+			}
 		}
 	</script>
 </body>

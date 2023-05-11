@@ -38,7 +38,7 @@
 				<h6 class="mb-4">차량 상세 정보</h6>
 				<input type="hidden" name="idx" id="idx" value="${vehicle.idx }">
 				<div class="mb-3">
-					<img src="https://picsum.photos/200" alt="${vehicle.image }" style="width: 100%;">
+					<img src="<%=request.getContextPath() %>/resources/img/car/${vehicle.image}" alt="${vehicle.image }" style="width: 100%;">
 				</div>
 				<div class="form-floating mb-3 row">
 					<div class="form-floating col-6">

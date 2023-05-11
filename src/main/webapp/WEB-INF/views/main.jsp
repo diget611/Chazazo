@@ -116,58 +116,25 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-md-10 col-md-offset-1 col-sm-12 text-center page-title">
-						<h2>리뷰</h2> 
-						${reviewList }
-						${inquiryList }
+						<h2>리뷰</h2>
 					</div>
 				</div>
 				<div class="row">
 					<div class="col-md-12 col-xs-12 percent-blocks m-main" data-waypoint-scroll="true">
 						<div class="row">
-							<div class="col-sm-3 col-xs-6">
-								<div class="count-item">
-									<div class="count-item-circle">
-										<span class="pe-7s-users"></span>
-									</div>
-									<div class="chart" data-percent="5000">
-										<h2 class="percent" id="counter">1008</h2>
-										<h5>HAPPY CUSTOMER </h5>
+							<c:forEach items="${reviewList }" var="review">							
+								<div class="col-sm-3 col-xs-6">
+									<div class="count-item">
+										<div class="count-item-circle">
+											<span class="pe-7s-users"></span>
+										</div>
+										<div class="chart" data-percent="5000">
+											<div>${review.content }</div>
+											<h5>${review.username } </h5>
+										</div>
 									</div>
 								</div>
-							</div>
-							<div class="col-sm-3 col-xs-6">
-								<div class="count-item">
-									<div class="count-item-circle">
-										<span class="pe-7s-home"></span>
-									</div>
-									<div class="chart" data-percent="12000">
-										<h2 class="percent" id="counter1">1 300</h2>
-										<h5>Properties in stock</h5>
-									</div>
-								</div> 
-							</div> 
-							<div class="col-sm-3 col-xs-6">
-								<div class="count-item">
-									<div class="count-item-circle">
-										<span class="pe-7s-flag"></span>
-									</div>
-									<div class="chart" data-percent="120">
-										<h2 class="percent" id="counter2">146</h2>
-										<h5>City registered </h5>
-									</div>
-								</div> 
-							</div> 
-							<div class="col-sm-3 col-xs-6">
-								<div class="count-item">
-									<div class="count-item-circle">
-										<span class="pe-7s-graph2"></span>
-									</div>
-									<div class="chart" data-percent="5000">
-										<h2 class="percent" id="counter3">1023</h2>
-										<h5>DEALER BRANCHES</h5>
-									</div>
-								</div> 
-							</div>
+							</c:forEach>
 						</div>
 					</div>
 				</div>
@@ -186,7 +153,7 @@
 							<div class="col-sm-3 col-xs-6">
 								<div class="count-item">
 									<div class="count-item-circle">
-										<span class="pe-7s-users"></span>
+										<span class="pe-7s-ticket"></span>
 									</div>
 									<div class="chart" data-percent="5000">
 										<h2 class="percent" id="counter">${reserv }</h2>
@@ -197,7 +164,7 @@
 							<div class="col-sm-3 col-xs-6">
 								<div class="count-item">
 									<div class="count-item-circle">
-										<span class="pe-7s-home"></span>
+										<span class="pe-7s-comment"></span>
 									</div>
 									<div class="chart" data-percent="12000">
 										<h2 class="percent" id="counter1">${review }</h2>
@@ -219,13 +186,42 @@
 							<div class="col-sm-3 col-xs-6">
 								<div class="count-item">
 									<div class="count-item-circle">
-										<span class="pe-7s-graph2"></span>
+										<span class="pe-7s-home"></span>
 									</div>
 									<div class="chart" data-percent="5000">
 										<h2 class="percent" id="counter3">${location }</h2>
 										<h5>지점 수</h5>
 									</div>
 								</div> 
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="count-area">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-10 col-md-offset-1 col-sm-12 text-center page-title">
+						<h2>자주 묻는 질문</h2>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12 col-xs-12 percent-blocks m-main" data-waypoint-scroll="true">
+						<div class="row">
+							<div class="feat-list">
+								<div class="panel-group mb-2">
+									<div class="panel panel-default">
+										<c:forEach items="${inquiryList }" var="inquiry" varStatus="status"> 
+										<div class="panel-heading">	
+											<h4 class="panel-title fqa-title collapsed" data-toggle="collapse" data-target="#fqa${status.index }" aria-expanded="false">${inquiry.title }</h4>
+										</div>
+										<div id="fqa${status.index }" class="panel-collapse fqa-body collapse" aria-expanded="false" style="">
+											<div class="panel-body">${inquiry.content }</div>
+										</div>
+										</c:forEach>
+									</div>
+								</div>
 							</div>
 						</div>
 					</div>

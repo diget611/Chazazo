@@ -60,6 +60,7 @@
 		<typeAlias type="kh.spring.chazazo.admin.vehicle.model.dto.AdminVehicleRespDto" alias="adminVehicleRespDto"/>
 		<typeAlias type="kh.spring.chazazo.admin.vehicle.model.dto.AdminVehicleOneRespDto" alias="adminVehicleOneRespDto"/>
 		<typeAlias type="kh.spring.chazazo.admin.vehicle.model.dto.AdminVehicleUpdateReqDto" alias="adminVehicleUpdateReqDto"/>
+		<typeAlias type="kh.spring.chazazo.admin.vehicle.model.dto.AdminVehicleInsertDto" alias="adminVehicleInsertDto"/>
 		<typeAlias type="kh.spring.chazazo.admin.reservation.model.dto.AdminReservByModelRespDto" alias="adminReservByModelRespDto"/>
 		<typeAlias type="kh.spring.chazazo.admin.reservation.model.dto.AdminReservRespDto" alias="adminReservRespDto"/>
 		<typeAlias type="kh.spring.chazazo.admin.reservation.model.dto.AdminReservOneRespDto" alias="adminReservOneRespDto"/>

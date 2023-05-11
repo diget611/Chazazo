@@ -13,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import kh.spring.chazazo.admin.location.model.service.AdminLocationService;
 import kh.spring.chazazo.admin.mainpage.model.service.AdminService;
+import kh.spring.chazazo.admin.vehicle.model.dto.AdminVehicleInsertDto;
 import kh.spring.chazazo.admin.vehicle.model.dto.AdminVehicleUpdateReqDto;
 import kh.spring.chazazo.admin.vehicle.model.service.AdminVehicleService;
 import kh.spring.chazazo.common.Pagination;
@@ -58,8 +59,8 @@ public class AdminVehicleController {
 	}
 	
 	@PostMapping("/insert")
-	public int insertVehicle() {
-		int result = 0;
+	public int insertVehicle(@RequestBody AdminVehicleInsertDto data) {
+		int result = service.insertVehicle(data);
 		return result;
 	}
 	

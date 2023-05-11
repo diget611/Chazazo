@@ -123,7 +123,7 @@
 				fueltypeIdx: fueltype,
 				price: price,
 				year: year,
-				location: location
+				locationIdx: location
 		}
 		
 		$.ajax({
@@ -133,13 +133,20 @@
 			contentType: "application/json; charset=utf-8",
 			success: function(result) {
 				if(result == 1) {
-					alert('차량 등록 완료');
+					swal({
+	        			title : "차량 등록을 완료했습니다.",
+	        		    icon  : "success",
+	        		    closeOnClickOutside : false
+	        		}).then(function(){
+	        			opener.parent.location.reload();
+						window.close();
+	        		});			
 				} else {
-					alert('차량 등록 실패');
+					swal("실패", "차량 등록 과정에 오류가 발생했습니다. 확인 후 다시 시도해 주세요.", "error");
 				}
 			},
 			error: function() {
-				alert('에러');
+				swal("에러", "응답에 오류가 있습니다. 확인 후 다시 시도해 주세요.", "error");
 			}
 		});
 	}

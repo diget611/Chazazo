@@ -72,9 +72,12 @@ function resizeWindow(win)    {
 }
 
 
+var rate = 0;
 $('#discount').on('click', function() {
-var rate = $('input[name=coupon]:checked').val();
+	rate = $('input[name=coupon]:checked').val();
+	console.log(rate);
 var couponIdx = $('input[name=coupon]:checked').next().val();
+
 	opener.document.getElementById("discountRate").value = rate;
 	opener.document.getElementById("cIdx").value = couponIdx;
 	window.opener.calc();

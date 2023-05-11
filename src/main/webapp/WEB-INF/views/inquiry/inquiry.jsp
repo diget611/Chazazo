@@ -104,7 +104,7 @@
 							</div>
 							<sec:authorize access="hasRole('ROLE_ADMIN')">
 								<div style="text-align: right; margin-top: 30px;">
-									<button type="button" class="btn btn-primary" id="insertBtn">작성하기</button>
+									<button type="button" class="btn btn-primary" id="insertBtn" style="border-radius: 5px;">작성하기</button>
 								</div>								
 							</sec:authorize>
 						</section>	

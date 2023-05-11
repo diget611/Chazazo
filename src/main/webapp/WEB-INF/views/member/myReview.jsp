@@ -47,6 +47,7 @@ table {
 	border-top: 1px solid black;
 	text-align: center;
 	width: 100%;
+	cursor:pointer;
 }
 
 th {
@@ -56,10 +57,17 @@ th {
 
 td {
 	border-bottom: 1px solid black;
+	max-width: 100px;
+  	white-space: nowrap;
+  	overflow: hidden;
+  	text-overflow: ellipsis;
 }
 
 tbody tr:hover {
 	background-color: #f1f3f5;
+}
+thead {
+    user-select: none;
 }
 
 .coupon-item-container {
@@ -232,6 +240,8 @@ tbody tr:hover {
 											<br>
 										</c:if>
 										<div>내가 작성한 리뷰 수 : ${ countReview} 개</div>
+										<hr class="my-2">
+					
 										<table>
 											<thead>
 												<tr>

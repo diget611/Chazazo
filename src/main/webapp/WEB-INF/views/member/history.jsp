@@ -97,6 +97,13 @@ td {
 tbody tr:hover {
 	background-color: #f1f3f5;
 }
+.input-info{
+  border: none;
+  outline: none;
+  backgroud-color:rgb(255, 255, 255);
+  
+}
+
 </style>
 </head>
 <body>
@@ -173,11 +180,13 @@ tbody tr:hover {
 										<div class="clear">
 											<div class="col-xs-8 col-sm-8 ">
 												<h3 class="dealer-name">
-													<span> <input type="text" class="form-control"
-														name="name" value="${memberinfo.name }" readonly>
-														<input type="hidden" class="form-control" name="usernname"
-														id="username" value="${memberinfo.username }"> <input
-														type="hidden" class="form-control"
+													<span> 
+													<input type="text" class="input-info"
+														name="name" value="${memberinfo.name } 님" readonly>
+														<input type="hidden" class="input-info" name="usernname"
+														id="username" value="${memberinfo.username }">
+														 <input
+														type="hidden" class="input-info form-control"
 														value="${memberinfo.idx }">
 													</span>
 												</h3>
@@ -185,23 +194,19 @@ tbody tr:hover {
 										</div>
 										<div class="clear">
 											<ul class="dealer-contacts">
-												<li><i class="pe-7s-call strong"> </i> <input
-													type="text" class="form-control" name="phoneNumber"
-													value="${memberinfo.phoneNumber}" readonly></li>
-												<li><i class="pe-7s-mail strong"> </i> <input
-													type="text" class="form-control" name="email"
-													value="${memberinfo.email }" readonly></li>
+												<li>
+													<i class="pe-7s-call "> </i> 
+													<input type="text" class="input-info" name="phoneNumber" value="${memberinfo.phoneNumber}" readonly></li>
+												<li>
+												<i class="pe-7s-mail strong" style="margin-right: 8px;"> </i>
+												 <input type="text" class="input-info" name="email" value="${memberinfo.email }" readonly></li>
 											</ul>
 											<div>
-												<div
-													class="dc-flex justify-content-between px-2 mb-4 is-only-member">
-													<div
-														class="dc-flex flex-column flex-grow-1 text-center click-effect-press">
-														<img
-															src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjciIGhlaWdodD0iMjYiIHZpZXdCb3g9IjAgMCAyNyAyNiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxnIGNsaXAtcGF0aD0idXJsKCN4anBrYjR1NTlhKSI+CiAgICAgICAgPHJlY3QgeD0iMi4zMzMiIHk9IjQuNTEiIHdpZHRoPSIxOS4wMTIiIGhlaWdodD0iMTkuNDkiIHJ4PSIyIiBmaWxsPSIjQzdFMEZGIi8+CiAgICAgICAgPHBhdGggZD0iTTE5Ljc3MyA2LjgzM2MtLjk3NS0uOTU4LTEuMDU3LTIuNTA2LS4xODMtMy40NGwxLjU5Ni0xLjcwNWMuODczLS45MzQgMi4zODUtLjkxNCAzLjM2LjA0My45NzQuOTU4IDEuMDU2IDIuNTA2LjE4MiAzLjQ0bC0xLjU5NiAxLjcwNmMtLjg3My45MzMtMi4zODUuOTE0LTMuMzYtLjA0NHoiIGZpbGw9IiM5NkM2RkYiLz4KICAgICAgICA8cGF0aCBkPSJtMTAuNDM4IDEzLjEyMS0yLjI0OCA1LjU4Yy0uMTMxLjMyNS4xODMuNjM2LjQ5Ni40ODhsNS4zNDgtMi41MzUtMy41OTctMy41MzZ2LjAwM3oiIGZpbGw9IiNGQkZDRkYiLz4KICAgICAgICA8cGF0aCBkPSJtOC42NDYgMTcuNTcyIDEuMTI1IDEuMTA1LTEuMjE1LjU3N2MtLjI2My4xMjUtLjUyOS0uMTM3LS40MTgtLjQxMWwuNTExLTEuMjY4LS4wMDMtLjAwM3oiIGZpbGw9IiM5NkM2RkYiLz4KICAgICAgICA8cGF0aCBkPSJtMjEuODY0IDMuMzY0LTEuMTk4LTEuMTc4LTEwLjIyOCAxMC45MzUgMS4xOTcgMS4xNzZMMjEuODY0IDMuMzY0eiIgZmlsbD0iI0I5RDVGRiIvPgogICAgICAgIDxwYXRoIGQ9Ik0yMy4wNjQgNC41MzkgMjEuODY3IDMuMzZsLTEwLjIzIDEwLjkzNCAxLjE5OCAxLjE3OCA1LjExNC01LjQ2NyA1LjExNS01LjQ2N3pNMjQuMjYgNS43MmwtMS4xOTctMS4xNzgtNS4xMTUgNS40NjctNS4xMTQgNS40NjcgMS4xOTcgMS4xNzdMMjQuMjYxIDUuNzJ6IiBmaWxsPSIjOUFDMkZGIi8+CiAgICA8L2c+CiAgICA8ZGVmcz4KICAgICAgICA8Y2xpcFBhdGggaWQ9InhqcGtiNHU1OWEiPgogICAgICAgICAgICA8cGF0aCBmaWxsPSIjZmZmIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSguMzMzKSIgZD0iTTAgMGgyNnYyNkgweiIvPgogICAgICAgIDwvY2xpcFBhdGg+CiAgICA8L2RlZnM+Cjwvc3ZnPgo="
+												<div class="dc-flex justify-content-between px-2 mb-4 is-only-member">
+													<div class="dc-flex flex-column flex-grow-1 text-center click-effect-press">
+														<img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjciIGhlaWdodD0iMjYiIHZpZXdCb3g9IjAgMCAyNyAyNiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxnIGNsaXAtcGF0aD0idXJsKCN4anBrYjR1NTlhKSI+CiAgICAgICAgPHJlY3QgeD0iMi4zMzMiIHk9IjQuNTEiIHdpZHRoPSIxOS4wMTIiIGhlaWdodD0iMTkuNDkiIHJ4PSIyIiBmaWxsPSIjQzdFMEZGIi8+CiAgICAgICAgPHBhdGggZD0iTTE5Ljc3MyA2LjgzM2MtLjk3NS0uOTU4LTEuMDU3LTIuNTA2LS4xODMtMy40NGwxLjU5Ni0xLjcwNWMuODczLS45MzQgMi4zODUtLjkxNCAzLjM2LjA0My45NzQuOTU4IDEuMDU2IDIuNTA2LjE4MiAzLjQ0bC0xLjU5NiAxLjcwNmMtLjg3My45MzMtMi4zODUuOTE0LTMuMzYtLjA0NHoiIGZpbGw9IiM5NkM2RkYiLz4KICAgICAgICA8cGF0aCBkPSJtMTAuNDM4IDEzLjEyMS0yLjI0OCA1LjU4Yy0uMTMxLjMyNS4xODMuNjM2LjQ5Ni40ODhsNS4zNDgtMi41MzUtMy41OTctMy41MzZ2LjAwM3oiIGZpbGw9IiNGQkZDRkYiLz4KICAgICAgICA8cGF0aCBkPSJtOC42NDYgMTcuNTcyIDEuMTI1IDEuMTA1LTEuMjE1LjU3N2MtLjI2My4xMjUtLjUyOS0uMTM3LS40MTgtLjQxMWwuNTExLTEuMjY4LS4wMDMtLjAwM3oiIGZpbGw9IiM5NkM2RkYiLz4KICAgICAgICA8cGF0aCBkPSJtMjEuODY0IDMuMzY0LTEuMTk4LTEuMTc4LTEwLjIyOCAxMC45MzUgMS4xOTcgMS4xNzZMMjEuODY0IDMuMzY0eiIgZmlsbD0iI0I5RDVGRiIvPgogICAgICAgIDxwYXRoIGQ9Ik0yMy4wNjQgNC41MzkgMjEuODY3IDMuMzZsLTEwLjIzIDEwLjkzNCAxLjE5OCAxLjE3OCA1LjExNC01LjQ2NyA1LjExNS01LjQ2N3pNMjQuMjYgNS43MmwtMS4xOTctMS4xNzgtNS4xMTUgNS40NjctNS4xMTQgNS40NjcgMS4xOTcgMS4xNzdMMjQuMjYxIDUuNzJ6IiBmaWxsPSIjOUFDMkZGIi8+CiAgICA8L2c+CiAgICA8ZGVmcz4KICAgICAgICA8Y2xpcFBhdGggaWQ9InhqcGtiNHU1OWEiPgogICAgICAgICAgICA8cGF0aCBmaWxsPSIjZmZmIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSguMzMzKSIgZD0iTTAgMGgyNnYyNkgweiIvPgogICAgICAgIDwvY2xpcFBhdGg+CiAgICA8L2RlZnM+Cjwvc3ZnPgo="
 															height="26px">
-														<button
-															class="color-grey-3 text-14 btn btn-outline-primary"
+														<button class="color-grey-3 text-14 btn btn-outline-primary"
 															id="myReview" type="button">나의 리뷰</button>
 														<br>
 
@@ -288,12 +293,13 @@ tbody tr:hover {
 													id="rentHistorySelect" name="rentHistorySelect">
 													<option value="0" selected="selected">전체</option>
 													<option value="1">예약완료</option>
-													<option value="2">취소 대기중</option>
-													<option value="3">취소/환불</option>
+													<option value="2">취소대기</option>
+													<option value="3">취소완료</option>
 												</select>
 											</div>
 										</section>
-										<section class="carmore-section" >
+									<hr class="my-2">
+						
 											<div class="container">
 												<div class="" id="rent_history_container_exist"
 													style="display: none;">
@@ -320,21 +326,11 @@ tbody tr:hover {
 															</div>
 															<hr class="my-2">
 															<div class="dc-flex align juaenter">
-																<div
-																	class="text-16 font-weight-bold color-grey-2 vreserv-car-model-name"></div>
-																<div class="ml-1">
-																	<span
-																		class="badge-state badge-state-reserv-complete dc-none badge badge-primary">예약완료</span><span
-																		class="badge-state badge-state-driving dc-none badge badge-primary">대여중</span><span
-																		class="badge-state badge-state-return dc-none badge badge-dark">반납완료</span><span
-																		class="badge-state badge-state-cancel dc-none badge badge-dark">취소/환불</span><span
-																		class="badge-state badge-state-early-return-req dc-none badge badge-warning">조기반납
-																		신청중</span><span
-																		class="badge-state badge-state-contract-terminated dc-none badge badge-danger">계약종료</span><span
-																		class="badge-state badge-state-extend dc-none badge badge-primary ml-2">연장</span><span
-																		class="badge-state badge-state-reserv-waiting dc-none badge badge-primary">예약확정
-																		중</span><span
-																		class="badge-state badge-state-reserv-applying dc-none badge bg-color-grey-6 text-white">예약접수</span>
+																<div class="text-16 font-weight-bold color-grey-2 vreserv-car-model-name"></div>
+																<div class="ml-3">
+																	<span class="badge-state badge-state-reserv-complete dc-none badge badge-primary">예약완료</span>
+																	<span class="badge-state badge-state-return dc-none badge badge-dark">취소대기</span>
+																	<span class="badge-state badge-state-cancel dc-none badge badge-dark">취소/환불</span>
 																</div>
 															</div>
 															<div class="vreserv-txt-rent-period text-14 color-grey-2">&nbsp;</div>
@@ -412,9 +408,7 @@ tbody tr:hover {
 													</div>
 													
 												</div>
-												<div class="" id="rent_history_container_empty" style="">
-													<p class="space-1 text-center">조회된 기록이 없습니다.</p>
-												</div>
+												
 											</div>
 										
 									</div>
@@ -445,18 +439,8 @@ tbody tr:hover {
 														<tr>
 															<td>${list.idx }</td>
 															<td>${list.startDate }</td>
-															<c:choose>
-																<c:when test="${list.state eq 0 }">
-																	<td>예약완료</td>
-																</c:when>
-																<c:when test="${list.state eq 1 }">
-																	<td>취소 처리중</td>
-																</c:when>
-																<c:otherwise>
-																	<td>취소 완료</td>
-																</c:otherwise>
-															</c:choose>
-															<td>${list.vehicleModel }</td>
+															 <td>${list.state == 0 ? "예약완료" : (list.state == 1 ? "취소대기" : "취소완료")}</td>
+    								 						<td>${list.vehicleModel }</td>
 															<td>${list.rentLocationName }</td>
 															<td>${list.returnLocationName }</td>
 														</tr>
@@ -548,6 +532,11 @@ tbody tr:hover {
 	<script>
 		$('.main-nav').children().eq(2).children().css('color', '#18B4E9');
 		
+		$("#myReview").on("click", function(){
+			location.href="${pageContext.request.contextPath}/myReview";
+			
+		});
+		
 		$('#historyBtn').on('click', function() {
 			location.href='${pageContext.request.contextPath}/profile/history';
 		});
@@ -583,70 +572,47 @@ tbody tr:hover {
 			location.href = "${pageContext.request.contextPath}/profile/reservation/" + sss; 
 		});
 				
-		
 
 	
-	function select(){
-		html='';
-		
-		html='<table>';
-		html='	<thead>';
-		html='		<tr>';
-		html='				<th scope="row">예약</th>';
-		html='			<th scope="row">예약시작날짜</th>';
-		html='			<th scope="row">예약상태</th>';
-		html='				<th scope="row">차종류</th>';
-		html='				<th scope="row">대여지점</th>';
-		html='				<th scope="row">반납지점</th>';
-		html='		</tr>';
-		html='	</thead>';
-		html='	<tbody>';
-		html='		<c:forEach items="${completeRes }" var="res">';
-		html='			<tr>';
-		html='				<td>${res.idx }</td>';
-		html='				<td>${res.paidTime }</td>';
-		html='				<td>${res.state }</td>';
-		html='				<td>${res.vehicleModel }</td>';
-		html='				<td>${res.rentLocationName }</td>';
-		html='				<td>${res.returnLocationName }</td>';
-		html='		</tr>';
-		html='			</c:forEach>';
-		html='		</tbody>';
-		html='	</table>';
-		
-		$('#selectRes').html(html);
-	} 
-	/*
-	 $(document).ready(function() ){
-		 $('#rentHistorySelect').change(function(){
-		 var history =	$(this).val();
-		 $.ajax({
-			 url:'${pageContext.request.contextPath}/profile/history',
-			 type:'get',
-			 data:{option:history},
-			 success:function(){
-				 
-			 
-			 }
-			 });
-		 }
-
-		};
-			 
-			if(history == 0){
-				$("#hideRent").show();
-			}else if(history == 1){
-				$("#hideRent").hide();
-				$("#selectRes").show();
-			}else if(history == 2){
-				$("#hideRent").show();
-			}else{
-				$("#hideRent").hide();
-			}*/
-	
+	 $(document).ready(function(){
+			 $("#rentHistorySelect").change(function() {
+				    var value = $(this).val();
+				    if (value == "1") {
+				      $("tbody tr td:nth-child(3)").each(function() {
+				        var state = $(this).text();
+				        if (state == "예약완료") {
+				          $(this).parent().show();
+				        } else {
+				          $(this).parent().hide();
+				        }
+				      });
+				    } else if (value == "2") {
+				      $("tbody tr td:nth-child(3)").each(function() {
+				        var state = $(this).text();
+				        if (state == "취소대기") {
+				          $(this).parent().show();
+				        } else {
+				          $(this).parent().hide();
+				        }
+				      });
+				    } else if (value == "3") {
+					      $("tbody tr td:nth-child(3)").each(function() {
+					        var state = $(this).text();
+					        if (state == "취소완료") {
+					          $(this).parent().show();
+					        } else {
+					          $(this).parent().hide();
+					        }
+					      });
+				    } else {
+				      $("tbody tr").show();
+				    }
+				  });
+				});
+		 
+		 
 </script>
 
 
 </body>
 </html>
-

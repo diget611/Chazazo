@@ -67,7 +67,7 @@ public class PaymentServiceImpl implements PaymentService {
 	@Override
 	public int deleteReserv(int idx) {
 		int result = dao.deleteReserv(idx);
-		
+		int result1 = dao.reissueCoupon(idx);
 		return result;
 	}
 

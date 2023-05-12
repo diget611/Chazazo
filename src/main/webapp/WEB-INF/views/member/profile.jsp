@@ -387,7 +387,7 @@
 	             			 });
 	             			
 	                	}else{
-	                		Swal.fire("수정 실","입력하신 정보를 한 번 더 확인해주세요!", 'error')
+	                		Swal.fire("수정 실패","입력하신 정보를 한 번 더 확인해주세요!", 'error')
 	                	               	
 	            	      }
 	                },
@@ -402,8 +402,8 @@
 		function deleteMember(){
 	
 	Swal.fire({
-		   title: '정말로 그렇게 하시겠습니까?',
-		   text: '다시 되돌릴 수 없습니다. 신중하세요.',
+		title: '정말로 탈퇴하시겠습니까?',
+		   text: '탈퇴하시면 회원 전용 서비스를 이용할 수 없습니다',
 		   icon: 'warning',
 		   
 		   showCancelButton: true, // cancel버튼 보이기. 기본은 원래 없음
@@ -433,8 +433,14 @@
 				},
 				success : function(result) {
 						if(result == 1){
-						 Swal.fire('탈퇴성공  ', '탈퇴합니다 ', 'success');
-						 location.href = '${pageContext.request.contextPath}/member/register';
+							swal.fire({
+				      			title : "탈퇴완료",
+				      			 text: '차자조 렌트카를 이용해 주셔서 감사합니다',
+				      		    icon  : "success",
+				      		    closeOnClickOutside : false
+				      		}).then(function(){
+				      			location.href='${pageContext.request.contextPath}/logout';
+				      		});
 		                	
 						}else{
 							swal.fire("실패", "작업수행에 실패하였습니다.", "warining");

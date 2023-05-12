@@ -364,9 +364,14 @@
 					},
 					success : function(result) {
 							if(result == 1){
-							 Swal.fire('탈퇴성공  ', '탈퇴합니다 ', 'success');
-							 location.href = '${pageContext.request.contextPath}/member/register';
-			                	
+								 swal.fire({
+						      			title : "탈퇴완료",
+						      			 text: '차자조 렌트카를 이용해 주셔서 감사합니다',
+						      		    icon  : "success",
+						      		    closeOnClickOutside : false
+						      		}).then(function(){
+						      			location.href='${pageContext.request.contextPath}/logout';
+						      		});
 							}else{
 								swal.fire("실패", "작업수행에 실패하였습니다.", "warining");
 							}

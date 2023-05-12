@@ -13,14 +13,14 @@
 		 
 	</select>
 
-	<select id="allResList" resultType="PaymentReqDto">
-		SELECT (SELECT MODEL FROM VEHICLE WHERE IDX = TB_P.VEHICLE_IDX) AS VEHICLE_MODEL
-             , (SELECT NAME FROM LOCATION WHERE IDX = TB_P.RETURN_LOCATION) AS RETURN_LOCATION_NAME
+	<select id="allResList" resultType="PaymentReqDto" parameterType="map">
+		SELECT *
+		  FROM (SELECT ROWNUM AS RNUM, IDX, PAID_TIME, STATE
+             , (SELECT MODEL FROM VEHICLE WHERE IDX = TB_P.VEHICLE_IDX) AS VEHICLE_MODEL
              , (SELECT NAME FROM LOCATION WHERE IDX = TB_P.RENT_LOCATION) AS RENT_LOCATION_NAME
-             , TB_P.*
-		  FROM PAYMENT TB_P
-		 WHERE MEMBER_IDX IN (SELECT IDX FROM MEMBER WHERE USERNAME = #{username})
-		  ORDER BY TB_P.PAID_TIME DESC
+			 , (SELECT NAME FROM LOCATION WHERE IDX = TB_P.RETURN_LOCATION) AS RETURN_LOCATION_NAME
+			   FROM PAYMENT TB_P WHERE MEMBER_IDX IN (SELECT IDX FROM MEMBER WHERE USERNAME = #{username}) <if test="state != 4"> AND STATE = #{state} </if>) 
+                 WHERE RNUM BETWEEN #{pagination.start} AND #{pagination.end}  
 	</select>
 	
 	
@@ -171,5 +171,19 @@
 	<select id ="selectNmemPayInfo" resultType="PaymentReqDto">
 		SELECT N.*, P.*  FROM NMEMPAYMENT N, PAYMENT P 
 		WHERE N.PAYMENT_IDX=(SELECT IDX FROM PAYMENT P WHERE P.MERCHANT_UID = #{merchantUid}) AND P.MERCHANT_UID = #{merchantUid}
+	</select>
+	
+	<select id="paging" resultType="PaymentReqDto" parameterType="map">
+			  SELECT *
+		  FROM (SELECT ROWNUM AS RNUM, IDX, PAID_TIME, STATE
+             , (SELECT MODEL FROM VEHICLE WHERE IDX = TB_P.VEHICLE_IDX) AS VEHICLE_MODEL
+             , (SELECT NAME FROM LOCATION WHERE IDX = TB_P.RENT_LOCATION) AS RENT_LOCATION_NAME
+			 , (SELECT NAME FROM LOCATION WHERE IDX = TB_P.RETURN_LOCATION) AS RETURN_LOCATION_NAME
+			   FROM PAYMENT TB_P WHERE MEMBER_IDX IN (SELECT IDX FROM MEMBER WHERE USERNAME = #{username}) AND STATE = 0)
+                 WHERE RNUM BETWEEN #{pagination.start} AND #{pagination.end}
+	</select>
+	
+	<select id="countMember" resultType="_int" parameterType="map">
+		SELECT COUNT(*) FROM PAYMENT WHERE MEMBER_IDX IN (SELECT IDX FROM MEMBER WHERE USERNAME = #{username})<if test="state != 4"> AND STATE = #{state} </if>
 	</select>
 </mapper>

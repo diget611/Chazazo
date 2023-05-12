@@ -19,6 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.google.gson.Gson;
 
 import kh.spring.chazazo.admin.vehicle.model.service.AdminVehicleService;
+import kh.spring.chazazo.common.Pagination;
 import kh.spring.chazazo.coupon.dto.CouponReqDto;
 import kh.spring.chazazo.coupon.service.CouponService;
 import kh.spring.chazazo.member.model.service.MemberService;
@@ -115,10 +116,35 @@ private AdminVehicleService aService;
 	}	
 	
 	@GetMapping("profile/history")
-	public ModelAndView allReservationList(ModelAndView mv, Principal prin) {
-		String loginId = prin.getName();;
-		mv.addObject("memberinfo", mService.selectMypageOne(loginId));
-		mv.addObject("reservation", pService.allResList(loginId));
+	public ModelAndView allReservationList(ModelAndView mv, Principal prin,@RequestParam(required = false, defaultValue = "1") String page, @RequestParam(required = false, defaultValue = "4") String state) {
+		
+		
+		String username = prin.getName();
+		
+		int pageData = Integer.parseInt(page);
+		int stateData = Integer.parseInt(state);
+		
+		System.out.println(pageData + "|" + stateData);
+		Map<String, Object> map = new HashMap<String, Object>();
+		Map<String, Object> result = new HashMap<String, Object>();
+		map.put("username", username);
+		map.put("state", state);
+		int count = pService.countMember(map);
+		Pagination pagination = new Pagination();
+		pagination.pageInfo(10, pageData, count);
+	
+	
+		
+		
+		
+		result.put("pagination", pagination);
+		result.put("username", username);
+		result.put("state", state);
+		
+		 System.out.println(map+"ssssssssss");		
+		mv.addObject("memberinfo", mService.selectMypageOne(username));
+		mv.addObject("reservation", pService.allResList(result));
+		mv.addObject("pagination", pagination);
 		mv.setViewName("member/history");
 		return mv;
 		

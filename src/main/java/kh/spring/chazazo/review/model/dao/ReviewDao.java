@@ -1,6 +1,7 @@
 package kh.spring.chazazo.review.model.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,9 +40,6 @@ public class ReviewDao {
 		return sqlSession.insert("review.insertReport", data);
 	}
 
-	public List<ReviewDto> selectMyReview(String username) {
-		return sqlSession.selectList("review.selectMyReview", username);
-	}
 
 	public int checkResv(ReviewDto data) {
 		return sqlSession.selectOne("review.checkResv", data);
@@ -53,6 +51,15 @@ public class ReviewDao {
 	
 	public int countReview(String username) {
 		return sqlSession.selectOne("review.countReview",username);
+	}
+	
+	
+
+	public List<ReviewDto> selectMyReview(Map<String, Object> map) {
+		return sqlSession.selectList("review.selectMyReview", map);
+	}
+	public int reviewCount(String username) {
+		return sqlSession.selectOne("review.reviewCount", username);
 	}
 
 }

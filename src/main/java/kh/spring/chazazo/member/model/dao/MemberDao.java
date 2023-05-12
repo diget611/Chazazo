@@ -76,4 +76,8 @@ public class MemberDao {
 	public int deleteMemberInfo(String username) {
 		return sqlSession.update("member.deleteMemberInfo", username);
 	}
+	
+	public int countMember(String username) {
+		return sqlSession.selectOne("member.countMember",username);
+	}
 }

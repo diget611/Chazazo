@@ -107,5 +107,10 @@ public class MemberServiceImp implements MemberService {
 		}
 		return result;
 	}
+
+	@Override
+	public int countMember(String username) {
+		return dao.countMember(username);
+	}
 	
 }

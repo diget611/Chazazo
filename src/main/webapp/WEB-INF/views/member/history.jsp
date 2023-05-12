@@ -291,10 +291,10 @@ tbody tr:hover {
 												<h3 class="mt-0 pt-3">예약내역</h3>
 												<select class="custom-select custom-select-sm"
 													id="rentHistorySelect" name="rentHistorySelect">
-													<option value="0" selected="selected">전체</option>
-													<option value="1">예약완료</option>
-													<option value="2">취소대기</option>
-													<option value="3">취소완료</option>
+													<option value="4" selected="selected">전체</option>
+													<option value="0">예약완료</option>
+													<option value="1">취소대기</option>
+													<option value="2">취소완료</option>
 												</select>
 											</div>
 										</section>
@@ -438,7 +438,7 @@ tbody tr:hover {
 													<c:forEach items="${reservation }" var="list">
 														<tr>
 															<td>${list.idx }</td>
-															<td>${list.startDate }</td>
+															<td>${list.paidTime }</td>
 															 <td>${list.state == 0 ? "예약완료" : (list.state == 1 ? "취소대기" : "취소완료")}</td>
     								 						<td>${list.vehicleModel }</td>
 															<td>${list.rentLocationName }</td>
@@ -447,7 +447,37 @@ tbody tr:hover {
 													</c:forEach>
 												</tbody>
 											</table>
-										</sec:authorize>
+											
+										</sec:authorize>			
+										<div style='text-align: center;	margin-top: 10px;'>
+									<c:choose>
+										<c:when test="${pagination.currentPage eq 1 }">
+											<button type="button" class="btn btn-secondary disabled" id="preBtn">&lt&lt</button>
+										</c:when>
+										<c:otherwise>
+											<button type="button" class="btn btn-secondary" id="preBtn">&lt&lt</button>	
+										</c:otherwise>
+									</c:choose>
+									<c:forEach begin="${pagination.startPage }" end="${pagination.endPage }" step="1" var="page">
+										<c:choose>
+											<c:when test="${pagination.currentPage eq page }">
+												<button type="button" name="pageBtn" class="btn btn-secondary active" value="${page }">${page }</button>
+											</c:when>
+											<c:otherwise>
+													<button type="button" name="pageBtn" class="btn btn-secondary" value="${page }">${page }</button>
+											</c:otherwise>
+										</c:choose>
+									</c:forEach>
+								<c:choose>
+									<c:when test="${pagination.currentPage eq pagination.paging }">
+										<button type="button" class="btn btn-secondary disabled" name="nextBtn">&gt&gt</button>
+									</c:when>
+									<c:otherwise>
+										<button type="button" class="btn btn-secondary" name="nextBtn">&gt&gt</button>	
+									</c:otherwise>
+								</c:choose>
+							</div>
+										
 
 
 									</div>
@@ -530,12 +560,53 @@ tbody tr:hover {
 	<jsp:include page="/WEB-INF/views/base/footer.jsp" />
 
 	<script>
+	
+		var state;
+		var value;
+		$('#rentHistorySelect').on('change', function() {
+			value = $(this).val();
+			$(this).attr('selected', 'selected');
+			console.log(value);
+			if (value == "0") {
+			      $("tbody tr td:nth-child(3)").each(function() {
+			        state = $(this).text();
+			        if (state == "예약완료") {
+			          $(this).parent().show();
+			        } else {
+			          $(this).parent().hide();
+			        }
+			      });
+			    } else if (value == "1") {
+			      $("tbody tr td:nth-child(3)").each(function() {
+			       state = $(this).text();
+			        if (state == "취소대기") {
+			          $(this).parent().show();
+			        } else {
+			          $(this).parent().hide();
+			        }
+			      });
+			    } else if (value == "2") {
+				      $("tbody tr td:nth-child(3)").each(function() {
+				        state = $(this).text();
+				        if (state == "취소완료") {
+				          $(this).parent().show();
+				        } else {
+				          $(this).parent().hide();
+				        }
+				      });
+			    } else {
+			      $("tbody tr").show();
+			    }
+			
+			location.href="${pageContext.request.contextPath}/profile/history?page=1&&state=" + value ;
+			
+			  });
+		
+		
+		
 		$('.main-nav').children().eq(2).children().css('color', '#18B4E9');
 		
-		$("#myReview").on("click", function(){
-			location.href="${pageContext.request.contextPath}/myReview";
-			
-		});
+		
 		
 		$('#historyBtn').on('click', function() {
 			location.href='${pageContext.request.contextPath}/profile/history';
@@ -574,41 +645,63 @@ tbody tr:hover {
 				
 
 	
-	 $(document).ready(function(){
-			 $("#rentHistorySelect").change(function() {
-				    var value = $(this).val();
-				    if (value == "1") {
-				      $("tbody tr td:nth-child(3)").each(function() {
-				        var state = $(this).text();
-				        if (state == "예약완료") {
-				          $(this).parent().show();
-				        } else {
-				          $(this).parent().hide();
-				        }
-				      });
-				    } else if (value == "2") {
-				      $("tbody tr td:nth-child(3)").each(function() {
-				        var state = $(this).text();
-				        if (state == "취소대기") {
-				          $(this).parent().show();
-				        } else {
-				          $(this).parent().hide();
-				        }
-				      });
-				    } else if (value == "3") {
-					      $("tbody tr td:nth-child(3)").each(function() {
-					        var state = $(this).text();
-					        if (state == "취소완료") {
-					          $(this).parent().show();
-					        } else {
-					          $(this).parent().hide();
-					        }
-					      });
-				    } else {
-				      $("tbody tr").show();
-				    }
-				  });
-				});
+	
+	 
+		$('[name=pageBtn]').on('click', function() {
+		
+			var urlStr = window.location.href;
+			var url = new URL(urlStr);
+			var urlparams = url.searchParams;
+			 var value = urlparams.get('state');
+			 if(value == null) {
+				 value = '4';
+			 }
+			 
+			let page = $(this).val();
+			
+			location.href="${pageContext.request.contextPath}/profile/history?page=" + page +"&&state=" + value ;
+		})
+		
+		$('#preBtn').on('click', movePrev);
+		
+		function movePrev() {
+			var urlStr = window.location.href;
+			var url = new URL(urlStr);
+			var urlparams = url.searchParams;
+			 var value = urlparams.get('state');
+			 if(value == null) {
+				 value = '4';
+			 }
+			let page = ${pagination.currentPage};
+			
+			
+			if(page - 1 == 0) page = 1;
+			else page--;
+			
+			location.href="${pageContext.request.contextPath}/profile/history?page=" + page +"&&state=" + value ;
+	 	}
+		
+		$("[name=nextBtn]").on('click', moveNext);
+		
+		function moveNext() {
+			
+		var urlStr = window.location.href;
+		var url = new URL(urlStr);
+		var urlparams = url.searchParams;
+		 var value = urlparams.get('state');
+		 if(value == null) {
+			 value = '4';
+		 }
+		
+		
+			let page = ${pagination.currentPage};
+			if(page + 1 > ${pagination.paging}) page = ${pagination.paging};
+			else page++;
+			
+			location.href="${pageContext.request.contextPath}/profile/history?page=" + page +"&&state=" + value ;
+		}
+		
+		
 	 function deleteMember(){
 			
 			Swal.fire({
@@ -656,6 +749,10 @@ tbody tr:hover {
 							timeout:100000
 						});
 					}
+			
+
+		
+			
 		 
 </script>
 

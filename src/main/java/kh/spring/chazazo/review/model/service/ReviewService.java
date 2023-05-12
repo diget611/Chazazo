@@ -1,6 +1,7 @@
 package kh.spring.chazazo.review.model.service;
 
 import java.util.List;
+import java.util.Map;
 
 import kh.spring.chazazo.review.model.dto.ReviewDto;
 
@@ -19,4 +20,7 @@ public interface ReviewService {
 	public int checkResv(ReviewDto data);
 	
 	public int countReview(String username);
+	
+	public List<ReviewDto> selectMyReview(Map<String, Object> map);
+	public int reviewCount(String username);
 }

@@ -285,6 +285,35 @@ thead {
 											</tbody>
 										</table>
 
+										
+								<div style='text-align: center;	margin-top: 10px;'>
+									<c:choose>
+										<c:when test="${pagination.currentPage eq 1 }">
+											<button type="button" class="btn btn-secondary disabled" id="preBtn">&lt&lt</button>
+										</c:when>
+										<c:otherwise>
+											<button type="button" class="btn btn-secondary" id="preBtn">&lt&lt</button>	
+										</c:otherwise>
+									</c:choose>
+									<c:forEach begin="${pagination.startPage }" end="${pagination.endPage }" step="1" var="page">
+										<c:choose>
+											<c:when test="${pagination.currentPage eq page }">
+												<button type="button" name="pageBtn" class="btn btn-secondary active" value="${page }">${page }</button>
+											</c:when>
+											<c:otherwise>
+													<button type="button" name="pageBtn" class="btn btn-secondary" value="${page }">${page }</button>
+											</c:otherwise>
+										</c:choose>
+									</c:forEach>
+								<c:choose>
+									<c:when test="${pagination.currentPage eq pagination.paging }">
+										<button type="button" class="btn btn-secondary disabled" id="nextBtn">&gt&gt</button>
+									</c:when>
+									<c:otherwise>
+										<button type="button" class="btn btn-secondary" id="nextBtn">&gt&gt</button>	
+									</c:otherwise>
+								</c:choose>
+							</div>
 									</div>
 
 
@@ -417,7 +446,29 @@ thead {
 						});
 					}
 		
-	
+			$('[name=pageBtn]').on('click', function() {
+				let page = $(this).val();
+				location.href="${pageContext.request.contextPath}/myReview?page=" + page;
+			})
+			
+			$('#preBtn').on('click', function() {
+				let page = ${pagination.currentPage};
+				
+				if(page - 1 == 0) page = 1;
+				else page--;
+				
+				location.href="${pageContext.request.contextPath}/myReview?page=" + page;
+		 	})
+			
+			$("#nextBtn").on('click', function() {
+				let page = ${pagination.currentPage};
+				
+				if(page + 1 > ${pagination.paging}) page = ${pagination.paging};
+				else page++;
+				
+				location.href="${pageContext.request.contextPath}/myReview?page=" + page;
+			})
+			
 	
 				
 		

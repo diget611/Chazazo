@@ -7,6 +7,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import kh.spring.chazazo.common.Pagination;
 import kh.spring.chazazo.location.model.dto.LocationRespDto;
 import kh.spring.chazazo.payment.model.dto.PaymentInfoDto;
 import kh.spring.chazazo.payment.model.dto.PaymentReqDto;
@@ -26,11 +27,12 @@ public class PaymentDao {
 	public List<PaymentReqDto> optionResList(PaymentReqDto data){
 		return session.selectList("payment.optionResList",data);
 	}
-	
-//	public List<PaymentReqDto> cancelResList(String username){
-//		return session.selectList("payment.cancelResList",username);
-//	}
-	
+	public List<PaymentReqDto> pagingnation(Map<String, Object> map){
+		return session.selectList("payment.paging",map);
+	}
+	public int countMember(Map<String, Object> map) {
+		return session.selectOne("payment.countMember",map);
+	}
 	//예약상세  
 	public PaymentReqDto ReservationOne(int idx) {
 		return session.selectOne("payment.ReservationOne",idx);
@@ -68,9 +70,10 @@ public class PaymentDao {
 	}
 	
 	//전체 예약내역
-	public List<PaymentReqDto> allResList(String username) {
-	    return session.selectList("payment.allResList", username);
+	public List<PaymentReqDto> allResList(Map<String, Object> map) {
+	    return session.selectList("payment.allResList", map);
 	}
+	
 	
 	public int insertPayInfo(PaymentReqDto data) {
 		return session.insert("payment.insertPayInfo", data);

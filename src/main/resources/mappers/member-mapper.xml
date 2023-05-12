@@ -103,4 +103,7 @@
 		 WHERE IDX = (SELECT IDX FROM MEMBER WHERE USERNAME = #{username})
 	</update>
 	
+	<select id="countMember" resultType="_int">
+		SELECT COUNT(*) FROM PAYMENT WHERE MEMBER_IDX IN (SELECT IDX FROM MEMBER WHERE USERNAME = #{username})
+	</select>
 </mapper>

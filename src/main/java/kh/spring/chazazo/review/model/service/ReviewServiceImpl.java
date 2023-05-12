@@ -1,6 +1,7 @@
 package kh.spring.chazazo.review.model.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -58,10 +59,10 @@ public class ReviewServiceImpl implements ReviewService{
 		return result;
 	}
 
-	@Override
-	public List<ReviewDto> selectMyReview(String usesrname) {
-		return dao.selectMyReview(usesrname);
-	}
+//	@Override
+//	public List<ReviewDto> selectMyReview(String usesrname) {
+//		return dao.selectMyReview(usesrname);
+//	}
 
 	@Override
 	public int checkResv(ReviewDto data) {
@@ -71,6 +72,26 @@ public class ReviewServiceImpl implements ReviewService{
 	@Override
 	public int countReview(String username) {
 		return dao.countReview(username);
+	}
+
+	@Override
+	public List<ReviewDto> selectMyReview(Map<String, Object> map) {
+		return dao.selectMyReview(map);
+	}
+
+	@Override
+	public int reviewCount(String username) {
+		return dao.countReview(username);
+	}
+
+	
+	
+	
+	
+	@Override
+	public List<ReviewDto> selectMyReview(String username) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

@@ -2,8 +2,9 @@ package kh.spring.chazazo.member.controller;
 
 import java.security.Principal;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
-
+import java.util.Map;
 
 import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +20,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import kh.spring.chazazo.member.model.dto.MemberReqDto;
-
+import kh.spring.chazazo.admin.reservation.model.service.AdminReservationService;
+import kh.spring.chazazo.common.Pagination;
 import kh.spring.chazazo.common.email.MailSendService;
 import kh.spring.chazazo.member.model.dto.MemberInfoRespDto;
 import kh.spring.chazazo.member.model.service.MemberService;
@@ -60,20 +62,33 @@ public class MemberController {
 		return mv;
 	}
 
+
 	// 마이페이지에 들어가는 url
 	@GetMapping("/profile")
-	public ModelAndView viewMemberOne(ModelAndView mv, Principal prin) {
+	public ModelAndView viewMemberOne(ModelAndView mv, Principal prin,@RequestParam(required = false, defaultValue = "1") int page) {
 		
 		if(prin == null) {
 			mv.setViewName("member/mypage");
 			mv.addObject("noticeList", nService.selectNotice());
+			Pagination pagination = new Pagination();
+			mv.addObject("pagination", pagination);
 			
 		}else{
+			String username = prin.getName();
+			System.out.println(username);
+			Map<String, Object> map = new HashMap<String, Object>();
+			int count = mService.countMember(username);
+			Pagination pagination = new Pagination();
+			pagination.pageInfo(10, page, count);
+		
+			map.put("username", username);
+			map.put("pagination", pagination);
+	
 			
-			String loginId = prin.getName();
-			mv.addObject("memberinfo", mService.selectMypageOne(loginId));
-			mv.addObject("reservation", pService.selectList(loginId));
-			mv.addObject("noticeList", nService.selectNotice());
+			mv.addObject("memberinfo", mService.selectMypageOne(username));
+			mv.addObject("reservation", pService.pagingnation(map));
+			mv.addObject("pagination", pagination);
+			mv.addObject("noticeList", nService.selectNotice()); 
 			
 			mv.setViewName("member/mypage");
 		

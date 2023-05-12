@@ -162,6 +162,9 @@ tbody tr:hover {
 	
 	
 	</script>
+	
+	
+
 
 	<section>
 		<div class="content-area blog-page padding-top-40"
@@ -350,7 +353,7 @@ tbody tr:hover {
 											<table>
 												<thead>
 													<tr>
-														<th scope="row">예약</th>
+														<th scope="row">예약번호</th>
 														<th scope="row">예약날짜</th>
 														<th scope="row">예약상태</th>
 														<th scope="row">차종류</th>
@@ -381,7 +384,38 @@ tbody tr:hover {
 													</c:forEach>
 												</tbody>
 											</table>
-										</sec:authorize>
+											
+							</sec:authorize>
+							<sec:authorize access="isAuthenticated()">
+										<div style='text-align: center;	margin-top: 10px;'>
+									<c:choose>
+										<c:when test="${pagination.currentPage eq 1 }">
+											<button type="button" class="btn btn-secondary disabled" id="preBtn">&lt&lt</button>
+										</c:when>
+										<c:otherwise>
+											<button type="button" class="btn btn-secondary" id="preBtn">&lt&lt</button>	
+										</c:otherwise>
+									</c:choose>
+									<c:forEach begin="${pagination.startPage }" end="${pagination.endPage }" step="1" var="page">
+										<c:choose>
+											<c:when test="${pagination.currentPage eq page }">
+												<button type="button" name="pageBtn" class="btn btn-secondary active" value="${page }">${page }</button>
+											</c:when>
+											<c:otherwise>
+													<button type="button" name="pageBtn" class="btn btn-secondary" value="${page }">${page }</button>
+											</c:otherwise>
+										</c:choose>
+									</c:forEach>
+								<c:choose>
+									<c:when test="${pagination.currentPage eq pagination.paging }">
+										<button type="button" class="btn btn-secondary disabled" id="nextBtn">&gt&gt</button>
+									</c:when>
+									<c:otherwise>
+										<button type="button" class="btn btn-secondary" id="nextBtn">&gt&gt</button>	
+									</c:otherwise>
+								</c:choose>
+							</div>
+									</sec:authorize>		
 
 									</div>
 										<div id="content">
@@ -435,7 +469,9 @@ tbody tr:hover {
 	</section>
 
 				
-	
+	<sec:authorize access="isAuthenticated() " var="state">
+	 
+	</sec:authorize>
 	
 	
 
@@ -444,6 +480,7 @@ tbody tr:hover {
 
 	<script>
 	
+		var ismember = ${state};
 		
 		$('tr').on('click', function() {
 			
@@ -699,8 +736,33 @@ function deleteMember(){
 			})
 			
 		}
-	
+		console.log(state);
 		
+		$('[name=pageBtn]').on('click', function() {
+			let page = $(this).val();
+			location.href="${pageContext.request.contextPath}/member/profile?page=" + page;
+		})
+		
+		$('#preBtn').on('click', function() {
+			
+			let page =  ${pagination.currentPage};
+			if(page - 1 == 0) page = 1;
+			else page--;
+		
+			location.href="${pageContext.request.contextPath}/member/profile?page=" + page;
+	 	})
+		
+	 	
+		$("#nextBtn").on('click', function() {
+		if(ismember == true){
+			
+			let page =  ${pagination.paging};
+			if(page + 1 > ${pagination.paging}) page = ${pagination.paging};
+			else page++;
+			
+			location.href="${pageContext.request.contextPath}/member/profile?page=" + page;
+		}
+		})
 		
 	
 	</script>

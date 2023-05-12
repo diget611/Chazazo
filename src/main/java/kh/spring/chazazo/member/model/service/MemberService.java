@@ -18,5 +18,6 @@ public interface MemberService {
 	public MemberInfoRespDto getMemberInfo(String username);
 	public int updateInfo(MemberInfoRespDto dto);
 	public int deleteMember(String username);
+	public int countMember(String username);
 
 }

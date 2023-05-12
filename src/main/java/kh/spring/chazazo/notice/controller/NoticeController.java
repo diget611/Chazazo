@@ -1,6 +1,6 @@
 package kh.spring.chazazo.notice.controller;
 
-import java.util.List;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.google.gson.Gson;
+
 
 import kh.spring.chazazo.common.Pagination;
 import kh.spring.chazazo.notice.model.service.NoticeService;

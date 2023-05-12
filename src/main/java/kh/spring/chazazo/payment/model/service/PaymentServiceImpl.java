@@ -1,11 +1,12 @@
 package kh.spring.chazazo.payment.model.service;
 
 import java.util.List;
-
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import kh.spring.chazazo.common.Pagination;
 import kh.spring.chazazo.location.model.dto.LocationRespDto;
 import kh.spring.chazazo.payment.model.dao.PaymentDao;
 import kh.spring.chazazo.payment.model.dto.PaymentReqDto;
@@ -23,7 +24,9 @@ public class PaymentServiceImpl implements PaymentService {
 		return dao.selectList(username);
 	}
 
-
+	public List<PaymentReqDto> pagingnation(Map<String, Object> map){
+		return dao.pagingnation(map);
+	}
 
 	@Override
 	public int insertPayInfo(PaymentReqDto data, int isMember) {
@@ -75,8 +78,8 @@ public class PaymentServiceImpl implements PaymentService {
 
 	@Override
 
-	public List<PaymentReqDto> allResList(String username) {
-		return dao.allResList(username);
+	public List<PaymentReqDto> allResList(Map<String, Object> map) {
+		return dao.allResList(map);
 	}
 
 
@@ -93,5 +96,10 @@ public class PaymentServiceImpl implements PaymentService {
 	@Override
 	public List<PaymentReqDto> optionResList(PaymentReqDto data) {
 		return dao.optionResList(data);
+	}
+
+	@Override
+	public int countMember(Map<String, Object> map) {
+		return dao.countMember(map);
 	}
 }

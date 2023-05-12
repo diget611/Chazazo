@@ -44,4 +44,7 @@ public class AdminRequestDao {
 	public int deleteAnswer(String idx) {
 		return sqlSession.delete("answer.delete", idx);
 	}
+	public int answerCount(String idx) {
+		return sqlSession.selectOne("answer.count", idx);
+	}
 }

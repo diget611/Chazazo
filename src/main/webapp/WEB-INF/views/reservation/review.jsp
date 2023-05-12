@@ -65,7 +65,17 @@
 														<input type="hidden" id="reviewIdx" value="${review.idx }">
 														<div style="margin: 0px; float: left;">
 															<img src="<%=request.getContextPath()%>/resources/garoestate/assets/img/icon/person.png" style="width:25px; float:left;">
-															<input type="text" style="font-size:15px; float:left; width:50%; padding-left: 10px; margin-bottom: 10px;" value="${review.name}">
+															<c:choose>
+																<c:when test="${review.name eq '0' }">
+																	<input type="text" style="font-size:15px; float:left; width:50%; padding-left: 10px; margin-bottom: 10px;" value="탈퇴한 회원">
+																</c:when>
+																<c:otherwise>
+																	<input type="text" style="font-size:15px; float:left; width:50%; padding-left: 10px; margin-bottom: 10px;" value="${review.name}">
+																</c:otherwise>
+															</c:choose>
+														</div>
+														<div>
+															<small style="float: right; color:#Fcd637; font-size: 18px;" class=${review.score }></small>
 														</div>
 													</div>
 													<div>

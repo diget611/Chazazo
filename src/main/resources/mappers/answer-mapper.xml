@@ -15,4 +15,8 @@
 		DELETE FROM ANSWER
 		 WHERE REQUEST_IDX = #{idx}
 	</delete>
+	
+	<select id="count" resultType="_int">
+		SELECT COUNT(*) FROM ANSWER WHERE REQUEST_IDX = #{idx}
+	</select>
 </mapper>

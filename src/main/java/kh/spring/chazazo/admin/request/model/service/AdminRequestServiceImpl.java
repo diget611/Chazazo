@@ -55,10 +55,12 @@ public class AdminRequestServiceImpl implements AdminRequestService{
 	@Override
 	@Transactional
 	public int deleteRequest(String idx) {
-		int result = dao.deleteAnswer(idx);
-		System.out.println(result);
-		if(result == 1) {
-			dao.deleteRequest(idx);
+		int result = 0;
+		if(dao.answerCount(idx) == 0) {
+			result = dao.deleteRequest(idx); 
+		} else {
+			dao.deleteAnswer(idx);
+			result = dao.deleteRequest(idx); 
 		}
 		return result;
 	}

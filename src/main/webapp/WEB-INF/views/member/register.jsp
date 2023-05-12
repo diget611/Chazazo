@@ -115,7 +115,7 @@
 											<input type="text" class="form-control" name="checkEmail" 
 											disabled="disabled" placeholder="인증번호를 입력하세요." style="width:100%; border-radius: 2px;">
 										</div>
-										<div class="col-xs-1" id="timerTest"></div>
+										<div class="col-xs-1" id="timer" style="position: relative; top: 8px;"></div>
 										<div class="col-xs-2" >
 											<button id="confirmEmailBtn" type="button" disabled="disabled"
 											class="btn btn-default" style="width: 100%; border-radius: 2px;">확인</button>
@@ -123,7 +123,7 @@
 									</div>
 								</div>
 								<div class="text-center" style="margin-top: 30px;">
-									<button type="button" id="testBtn" class="btn btn-default" style="border-radius: 2px;">회원가입</button>
+									<button type="button" id="confirmBtn" class="btn btn-default" style="border-radius: 2px;">회원가입</button>
 								</div>
 							</form>
 						</div>
@@ -146,7 +146,7 @@
 		// 이메일 인증 번호
 		var certNum = 0;
 		
-		$('#testBtn').on('click', checkForm);
+		$('#confirmBtn').on('click', checkForm);
 		
 		function checkForm(){
 			let testId = /^[a-z]{1}[a-z0-9_-]{4,19}$/;
@@ -188,6 +188,7 @@
 						license : license,
 						email : email
 				}
+				
 				$.ajax({
 					url: '${pageContext.request.contextPath}/member/register',
 					type: 'post',
@@ -213,7 +214,7 @@
 			}
 		}
 		
-		// 아이디 중복 확인(AJAX)
+		// 아이디 중복 확인
 		$('#checkDupBtn').on('click', checkDup);
 		
 		function checkDup() {
@@ -303,8 +304,11 @@
 						let x = setInterval(function() {
 							min = parseInt(time / 60);
 							sec = time % 60;
+							if(sec.toString().length == 1) {
+								sec = '0' + sec;
+ 							}
 							
-							$('#timerTest').html(min + ':' + sec);
+							$('#timer').html(min + ':' + sec);
 							time--;
 							
 							if(time < 0) {

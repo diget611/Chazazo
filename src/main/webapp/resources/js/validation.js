@@ -106,3 +106,18 @@ $('[name=email]').on('blur', function(){
 		$('[name=email]').next().remove();
 	}
 });
+
+
+// 예약번호 유효성 체크
+$('[name=reservationCode]').on('blur', function(){
+	let testReservationCode = /^[0-9]*$/;
+	if($('[name=reservationCode]').val() == ''){
+		$('[name=reservationCode]').next().remove();
+		$('[name=reservationCode]').after('<div style="color: red;">예약번호를 입력하세요.</div>');
+	}  else if(!testReservationCode.test($('[name=reservationCode]').val())){
+		$('[name=reservationCode]').next().remove();
+		$('[name=reservationCode]').after('<div style="color: red;">예약번호를 확인하세요.</div>');
+	}else {
+		$('[name=reservationCode]').next().remove();
+	}
+});

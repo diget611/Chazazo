@@ -66,6 +66,8 @@ public class MemberController {
 		
 		if(prin == null) {
 			mv.setViewName("member/mypage");
+			mv.addObject("noticeList", nService.selectNotice());
+			
 		}else{
 			
 			String loginId = prin.getName();

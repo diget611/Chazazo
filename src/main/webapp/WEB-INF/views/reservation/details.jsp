@@ -541,7 +541,6 @@
 	          data: JSON.stringify(data),
 	          success: function(result) {
 	        	  if(result >0) {
-		  		  insertNmemInfo(payidx);
 	        	  } else {
 	        		  alert("결제가 완료되지 않았습니다")
 	        	  }

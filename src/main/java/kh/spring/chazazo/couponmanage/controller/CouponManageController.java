@@ -55,9 +55,11 @@ public class CouponManageController {
 		
 
 		int count = cmService.countCouponCode(couponCode);
-		if(totalCount == 0 && count == 1) {
-			cService.insertCoupon(map);
+		if(totalCount == 1) {
 			return 1;
+		}else if(totalCount == 0 && count == 1) {
+			cService.insertCoupon(map);
+			return 2;
 		}
 		return 0;
 	}

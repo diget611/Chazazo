@@ -165,7 +165,7 @@ tbody tr:hover {
 
 	<section>
 		<div class="content-area blog-page padding-top-40"
-			style="background-color: #FCFCFC; padding-bottom: 55px;">
+			style="background-color: #FCFCFC; padding-bottom: 300px;">
 			<div class="container">
 				<div class="pc-mobile-header-container">
 					<div class="pc-header space-2 text-center dc-none dc-lg-block">
@@ -383,8 +383,9 @@ tbody tr:hover {
 											</table>
 										</sec:authorize>
 
-
 									</div>
+										<div id="content">
+										</div>
 									
 									<hr class="my-2">
 	
@@ -395,15 +396,8 @@ tbody tr:hover {
 											<div class="pt-2 pb-3 text-50 color-grey-3">차자조 공지사항</div>
 											<a href="<%=request.getContextPath()%>/notice">더보기</a>
 										</div>
-									
-										
-										
-										
-											     
-										<c:forEach var="notice" items="${noticeList}">
-											   	
-											        <div class="title">${notice.title}</div>
-											    
+											<c:forEach var="notice" items="${noticeList}">
+											   <div class="title">${notice.title}</div>
 											</c:forEach>
 											
 											<!-- 모달 창 -->
@@ -556,8 +550,9 @@ function deleteMember(){
 				});
 			}
 		
-		
+	
 		$('#none-Member-history').on('click',content);
+		
 		function content(){
 			$.ajax({
 				url:"${pageContext.request.contextPath}/profile/reservation",
@@ -565,35 +560,19 @@ function deleteMember(){
 				dataType:'json',
 				success: function(result){
 					
-					memberResv(result);
 					$('#hideRent').hide();
+					memberResv(result);
+  	          
+					var test = "${pageContext.request.contextPath}/resources/js/validation.js";
+                	$('.footer-copy').after('<script src="' + test + '"/>');
+                	
 				},
 				error: function(){
-					alert("예약내역이 없습니다.");
+					 Swal.fire('경고창', '작업수행에 실패하였습니다. ', 'error');
 				}
 				
 			});
 		};
-		
-		function checkForm(){
-			var checkPass = 0;
-			let testReservationCode;
-			let testName = /^[가-힣]{2,10}$/;
-			let testPhone = /^01[0|1|6|7|8|9][0-9]{7,8}$/;
-			
-			 if( $('[name=name]').val() == ''
-			| $('[name=phoneNumber]').val() == '' | $('[name=reservationCode]').val() ) {
-				alert("다시 입력하세요");
-				return false;
-			} else if(!testName.test($('[name=name]').val()) | !testPhone.test($('[name=phoneNumber]').val()) 
-					|  !testReservationCode.test($('[name=reservationCode]').val()) ) {
-				alert("다시 입력하세요");
-				return false;		
-			} else {
-				return true;
-			}
-		}
-		
 		function memberResv(result){
 			var html = '';
 			if(result == 1){
@@ -601,17 +580,14 @@ function deleteMember(){
 				html += '			<form >';
 				html += '			<div class="form-group">';
 				html += '				<label>운전자 이름</label> <input type="text" class="form-control" id ="name" name="name" placeholder="성명을 입력해 주세요">';
-				html += '				<div class="invalid-feedback" id="vsnmr_input_driver_name_invalid_msg" style="display: block;">이름을 입력해 주세요</div>';
 				html += '				</div>';
 				html += '				<div class="form-group">';
 				html += '					<label>예약번호</label> <input type="text" class="form-control"';
-				html += '						name="reservationNumber" placeholder="예약번호를 입력해 주세요" id="reservationNumber">';
-				html += '					<div class="invalid-feedback"';
-				html += '						id="vsnmr_input_reserv_num_invalid_msg">예약번호를 입력해 주세요</div>';
-				html += '					<small class="color-blue">예약번호는 문자와 메일로 보내드린 예약내용에 재되어있습니다.</small>';
+				html += '						name="reservationCode" placeholder="예약번호를 입력해 주세요" id="reservationCode">';
 				html += '				</div>';
 				html += '				<div class="form-group">';
-				html += '					<label>전화번호</label> <input type="text" class="form-control" id="phone" name="phone" placeholder="전화번호를 입력해 주세요" required>';
+				html += '					<label>전화번호</label> ';
+				html += '	<input type="text" class="form-control" id="phoneNumber" name="phoneNumber" placeholder="전화번호를 입력해 주세요" required>';
 				html += '				</div>';
 				html += '				<div class="text-center">';	
 				html += '					<button type="button" class="btn btn-default" name = "noneMember" onclick="noMeberReser()">예약 조회하기</button>';
@@ -622,14 +598,36 @@ function deleteMember(){
 			$('#content').html(html);
 		}
 		
+		function checkForm(){
+			let testReservationCode = /^[0-9]*$/;
+			let testName = /^[가-힣]{2,10}$/;
+			let testPhone = /^01[0|1|6|7|8|9][0-9]{7,8}$/;
+			
+			 if( $('[name=name]').val() == ''
+			| $('[name=phoneNumber]').val() == '' | $('[name=reservationCode]').val() == '') {
+				 Swal.fire('모두 입력해주세요', '다시입력' ,'error');
+				return false;
+			} else if(!testName.test($('[name=name]').val()) | !testPhone.test($('[name=phoneNumber]').val()) 
+					|  !testReservationCode.test($('[name=reservationCode]').val()) ) {
+				Swal.fire('모두 입력해주세요', '다시입력' ,'error');
+				return false;		
+			} else {
+				return true;
+			}
+		}
+	
 
-		
-		
 		//비회원 예약 조회
 		function noMeberReser(){
+			
+			if(!checkForm()){
+				return;
+			}
+			
+			
 			var name = $('#name').val();
-			var phoneNumber = $('#phone').val();
-			var reservationNumber = $('#reservationNumber').val();
+			var phoneNumber = $('#phoneNumber').val();
+			var reservationCode = $('#reservationCode').val();
 	
 			$.ajax({
 				url:"${pageContext.request.contextPath}/profile/nonereservation",
@@ -638,23 +636,26 @@ function deleteMember(){
 				data : {
 						"name":name,
 						"phoneNumber":phoneNumber,
-						"paymentIdx":reservationNumber
+						"paymentIdx":reservationCode
 				},
 				success: function(result){
+					
 					if(result == 1){
-						alert("다시 입력하세요");
+						Swal.fire('예약내역이 없습니다', '입력하신 정보를 다시 확인해주세요',   'error');
 					}else{
 					getNoneResr(result);
 					console.log(result);
 					}
 				},
 				error: function(){
-					alert("예약내역이 없습니다.");
+					Swal.fire('경고',  '다시 입력해주세요', 'error');
 				}
 				
 			});
 		}
 		
+		
+	
 		
 		function getNoneResr(result){
 			var noneList = result.noneReservation;

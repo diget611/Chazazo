@@ -125,13 +125,13 @@
 	<select id="dayReservCount" resultType="_int">
 		SELECT COUNT(*) AS CNT
 		  FROM PAYMENT
-		 WHERE TO_CHAR(PAID_TIME,'YY/MM/DD') = TO_DATE(SYSDATE, 'YY/MM/DD') AND CANCEL_DATE IS NULL
+		 WHERE TO_CHAR(PAID_TIME,'YY/MM/DD') = TO_CHAR(SYSDATE, 'YY/MM/DD') AND CANCEL_DATE IS NULL
 	</select>
 	
 	<select id="dayReservSum" resultType="_int">
 		SELECT NVL(SUM(FINAL_PRICE), 0) AS SUM
 	      FROM PAYMENT
-	     WHERE TO_CHAR(PAID_TIME,'YY/MM/DD') = TO_DATE(SYSDATE, 'YY/MM/DD') AND CANCEL_DATE IS NULL
+	     WHERE TO_CHAR(PAID_TIME,'YY/MM/DD') = TO_CHAR(SYSDATE, 'YY/MM/DD') AND CANCEL_DATE IS NULL
 	</select>
 	
 	<select id="selectOneForAdmin" resultType="adminReservOneRespDto">

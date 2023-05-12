@@ -90,7 +90,7 @@
 	<select id="dayRegiCount" resultType="_int">
 		SELECT COUNT(*) AS CNT
 		  FROM MEMBER_INFO
-		 WHERE TO_CHAR(REGI_DATE,'YY/MM/DD') = TO_DATE(SYSDATE, 'YY/MM/DD')
+		 WHERE TO_CHAR(REGI_DATE,'YY/MM/DD') = TO_CHAR(SYSDATE, 'YY/MM/DD')
 	</select>
 	
 	<select id="checkAuth" resultType="string">

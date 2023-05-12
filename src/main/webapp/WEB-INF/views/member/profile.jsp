@@ -164,11 +164,12 @@
 					<section id="id-100" style="margin-top:200px;" >
 					<div class="card-body" id="passCheck">
 						<div class="text-center">
-							<div class="input-group input-group-outline my-4"style="margin-left:250px;">
-								<label>비밀번호 확인 </label>
-								<input type="password" id="passwordCheck" class="form-control" >
+							<div class="input-group " style="margin-left:200px; ">
+								<label><strong>비밀번호 확인이 필요합니다</strong> </label>
+								<input type="password" id="passwordCheck" class="form-control" style="border-left: 1px solid block;">
 							</div>
 						</div>
+						<br>
 						<div class="text-center">
 							<button class="btn bg-gradient-primary w-100 my-4 mb-2 " id="checkPwd"> 비밀번호 확인</button>
 						</div>
@@ -351,7 +352,6 @@
 			var data = {
  					name: $('#name').val(),
 					password :$('#password').val(),
-					
 					gender:$('#gender').val(),
 					birth:$('#birth').val(),
 					phoneNumber:$('#phoneNumber').val()
@@ -370,10 +370,11 @@
 	  	       	    //dataType:'json',
 	  	       	    //비밀번호 일치 확인..
 	                success: function(result){
-	                	if(result==1){
+	                	if(result==1 && checkPass==1){
+	                		
 	                		Swal.fire({
 	             			   title: '수정이 완료되었습니다!  ',
-	             			   text: '확인을 눌러주세요! ',
+	             			   text: '확인을 눌러주시면 첫화면으로 돌아갑니다!',
 	             			   icon: 'success',
 	             			  confirmButtonColor: '#3085d6', // confrim 버튼 색깔 지정
 	             			   confirmButtonText: '확인 ', // confirm 버튼 텍스트 지정
@@ -383,9 +384,11 @@
 	             			    	 location.href = '${pageContext.request.contextPath}/member/profile';
 	     			                
 	             			    }
-	             			});
+	             			 });
+	             			
 	                	}else{
-	                		alert("수정실패")	                	
+	                		Swal.fire("수정 실","입력하신 정보를 한 번 더 확인해주세요!", 'error')
+	                	               	
 	            	      }
 	                },
 	               	error: function(){

@@ -77,31 +77,40 @@
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/resources/css/main.css">
 <style>
-table {
-	border-top: 1px solid black;
-	text-align: center;
-	width: 100%;
-	cursor:pointer;
-	
-}
 
-th {
-	text-align: center;
-	border-bottom: 1px solid black;
-}
-
-td {
-	border-bottom: 1px solid black;
-}
-
-tbody tr:hover {
-	background-color: #f1f3f5;
-}
 .input-info{
   border: none;
   outline: none;
   backgroud-color:rgb(255, 255, 255);
   
+}
+.inner-wrapper {
+	margin: 0 0 8px;
+	border-radius: 16px;
+	box-shadow: 0 4px 14px 0 rgba(177, 177, 177, .2);
+	background-color: #fff;
+}
+.box-between{
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+
+	margin-left: 10px;
+
+}
+
+.reservation-List-content {
+	margin: 0 0 8px;
+	border-radius: 16px;
+	box-shadow: 0 4px 14px 0 rgba(177, 177, 177, .2);
+	background-color: #fff;
+	padding:5px;
+	margin-bottom: 15px;
+}
+ul{
+list-style:none;
+margin-right: 30px;
+padding-left:40px;
 }
 
 </style>
@@ -287,11 +296,11 @@ tbody tr:hover {
 									<div class="mypage-section" id="mypage_section_rent_history"
 										style="">
 										<section class="carmore-section pt-0 mobile-header-container">
-											<div class="container">
+											<div class="">
 												<h3 class="mt-0 pt-3">예약내역</h3>
 												<select class="custom-select custom-select-sm"
 													id="rentHistorySelect" name="rentHistorySelect">
-													<option value="4" selected="selected">전체</option>
+													<option value="4">전체</option>
 													<option value="0">예약완료</option>
 													<option value="1">취소대기</option>
 													<option value="2">취소완료</option>
@@ -300,112 +309,6 @@ tbody tr:hover {
 										</section>
 									<hr class="my-2">
 						
-											<div class="container">
-												<div class="" id="rent_history_container_exist"
-													style="display: none;">
-													<h3>히스토리</h3>
-													<div id="js_rent_history_container_list"></div>
-													<div class="dc-none" id="js_rent_history_template">
-														<div
-															class="js-vrsi-container bg-white bg-shadow p-3 rounded-sm mb-3">
-															<div
-																class="dc-flex justify-content-between align-items-center">
-																<div class="dc-flex align-items-center">
-																	<div
-																		class="square-30 bg-color-grey-7 dc-flex justify-content-center align-items-center rounded-circle">
-																		<img class="icon-16 js-vrsi-img-rent-type"
-																			src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCAxNiAxNiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxwYXRoIGZpbGwtcnVsZT0iZXZlbm9kZCIgY2xpcC1ydWxlPSJldmVub2RkIiBkPSJNMi4yNzMgNy41MyAzLjQyIDMuODk3QzMuNTkgMy4zNjMgNC4wOCAzIDQuNjMyIDNoNi43MzZjLjU1MyAwIDEuMDQyLjM2MyAxLjIxMS44OThsMS4xNDggMy42MzFjMC0uMzU3LjI4NS0uNjQ3LjYzNy0uNjQ3LjM1MSAwIC42MzYuMjkuNjM2LjY0N2EuNjQyLjY0MiAwIDAgMS0uNjM2LjY0N3YzLjg4M2EuNjQyLjY0MiAwIDAgMS0uNjM3LjY0N3YuNjQ3YS42NDIuNjQyIDAgMCAxLS42MzYuNjQ3aC0uNjM2YS42NDIuNjQyIDAgMCAxLS42MzctLjY0N3YtLjY0N0g0LjE4MnYuNjQ3YS42NDIuNjQyIDAgMCAxLS42MzcuNjQ3SDIuOTFhLjY0Mi42NDIgMCAwIDEtLjYzNi0uNjQ3di0uNjQ3YS42NDIuNjQyIDAgMCAxLS42MzctLjY0N1Y4LjE3N0EuNjQyLjY0MiAwIDAgMSAxIDcuNTI5YzAtLjM1Ny4yODUtLjY0Ny42MzYtLjY0Ny4zNTIgMCAuNjM3LjI5LjYzNy42NDdoMTEuNDU0SDIuMjczem0yLjU0NSAxLjYxN2MwIC41MzYtLjQyOC45Ny0uOTU1Ljk3YS45NjMuOTYzIDAgMCAxLS45NTQtLjk3YzAtLjUzNi40MjctLjk3Ljk1NC0uOTcuNTI3IDAgLjk1NS40MzQuOTU1Ljk3em03LjMxOC45N2EuOTYzLjk2MyAwIDAgMCAuOTU1LS45Ny45NjMuOTYzIDAgMCAwLS45NTUtLjk3Ljk2My45NjMgMCAwIDAtLjk1NS45N2MwIC41MzYuNDI4Ljk3Ljk1NS45N3pNNi4wOSA5LjQ3Mkg5Ljkxdi42NDdINi4wOVY5LjQ3eiIgZmlsbD0iIzk5OSIvPgo8L3N2Zz4K">
-																	</div>
-																	<div
-																		class="js-vrsi-txt-rent-type text-12 color-grey-2 ml-1"></div>
-																</div>
-																<div class="text-12 color-grey-2">
-																	<span>예약번호&nbsp;</span><span
-																		class="js-vrsi-txt-reserv-num font-weight-bold"></span>
-																</div>
-															</div>
-															<hr class="my-2">
-															<div class="dc-flex align juaenter">
-																<div class="text-16 font-weight-bold color-grey-2 vreserv-car-model-name"></div>
-																<div class="ml-3">
-																	<span class="badge-state badge-state-reserv-complete dc-none badge badge-primary">예약완료</span>
-																	<span class="badge-state badge-state-return dc-none badge badge-dark">취소대기</span>
-																	<span class="badge-state badge-state-cancel dc-none badge badge-dark">취소/환불</span>
-																</div>
-															</div>
-															<div class="vreserv-txt-rent-period text-14 color-grey-2">&nbsp;</div>
-															<div
-																class="js-vrsi-txt-branch-name js-budget-summarized-hide text-14 color-grey-5 mt-1"></div>
-															<hr class="my-2">
-															<div class="js-vrsi-container-pay-method dc-none mb-1">
-																<div
-																	class="dc-flex justify-content-between pay-type-container">
-																	<div class="color-grey-2 font-weight-bold">결제수단</div>
-																	<div class="dc-flex align-items-center">
-																		<img class="js-vrsi-img-pay-type-icon pay-type-icon">
-																		<div
-																			class="js-vrsi-txt-pay-type-name text-14 color-grey-2 ml-2"></div>
-																	</div>
-																</div>
-															</div>
-															<div
-																class="js-vrsi-container-total-price js-vrsi-container-price-wrap dc-none">
-																<div class="dc-flex justify-content-end mt-1">
-																	<div class="color-blue">
-																		<span class="text-12 font-weight-normal">총 결제
-																			금액</span><span
-																			class="js-vrsi-txt-total-price text-16 font-weight-bold ml-1">&nbsp;</span>
-																	</div>
-																</div>
-															</div>
-															<div
-																class="js-vrsi-container-subscribe-prices js-vrsi-container-price-wrap dc-none">
-																<div class="dc-flex justify-content-end">
-																	<div class="color-blue">
-																		<span class="text-12 font-weight-normal">첫 달 결제</span><span
-																			class="js-vrsi-txt-subscribe-first-month-price text-16 font-weight-bold ml-1">&nbsp;</span>
-																	</div>
-																</div>
-																<div
-																	class="js-vrsi-monthly-price dc-flex justify-content-end dc-none">
-																	<div class="color-grey-3">
-																		<span class="text-12 font-weight-normal">월 납부
-																			금액</span><span
-																			class="js-vrsi-txt-monthly-price text-16 font-weight-bold ml-1">&nbsp;</span>
-																	</div>
-																</div>
-															</div>
-															<div
-																class="js-vrsi-container-total-price-by-overseas-api js-vrsi-container-price-wrap dc-none">
-																<div class="dc-flex justify-content-end mt-1">
-																	<div class="color-blue">
-																		<span class="text-12 font-weight-normal">총 금액</span><span
-																			class="js-vrsi-txt-total-price-by-overseas-api text-16 font-weight-bold ml-1">&nbsp;</span>
-																	</div>
-																</div>
-																<div
-																	class="dc-flex justify-content-end align-items-center color-grey-3 text-12">
-																	<div class="dc-flex">
-																		온라인 결제&nbsp;<span
-																			class="js-vrsi-txt-online-price font-weight-bold"></span>
-																	</div>
-																	<div class="dc-flex js-vrsi-txt-poa-price-wrap dc-none">
-																		&nbsp;/&nbsp;현장 결제
-																		<div class="font-weight-bold ml-1">
-																			<span class="js-vrsi-txt-poa-price"></span>
-																		</div>
-																	</div>
-																</div>
-															</div>
-															
-																	
-																</div>
-															</div>
-															<div
-																class="js-vrsi-txt-write-review-desc mt-2 text-14 color-grey-5 text-center dc-none tmobi-dc-none">리뷰를
-																남겨주세요! 최대 3천원 쿠폰을 드립니다:D</div>
-														</div>
-													</div>
 													
 												</div>
 												
@@ -423,31 +326,62 @@ tbody tr:hover {
 												onclick="moveRent();">렌트하러 가기</button>
 										</c:if>
 										<sec:authorize access="hasRole('ROLE_USER')">
-											<table>
-												<thead>
-													<tr>
-														<th scope="row">예약</th>
-														<th scope="row">예약시작날짜</th>
-														<th scope="row">예약상태</th>
-														<th scope="row">차종류</th>
-														<th scope="row">대여지점</th>
-														<th scope="row">반납지점</th>
-													</tr>
-												</thead>
-												<tbody >
-													<c:forEach items="${reservation }" var="list">
-														<tr>
-															<td>${list.idx }</td>
-															<td>${list.paidTime }</td>
-															 <td>${list.state == 0 ? "예약완료" : (list.state == 1 ? "취소대기" : "취소완료")}</td>
-    								 						<td>${list.vehicleModel }</td>
-															<td>${list.rentLocationName }</td>
-															<td>${list.returnLocationName }</td>
-														</tr>
-													</c:forEach>
-												</tbody>
-											</table>
-											
+										<div class="infos-section">		
+										<c:forEach items="${reservation }" var="list">	
+											<div class="reservation-List-content">				
+												<ul class="tiket-list">
+													<li>
+														<div class="tiket-item coupon-item-container">
+															<div class="tiket-item-header" style="padding-top:7px;">
+																<strong class="txt-color-red" >예약번호 &nbsp; &nbsp; </strong>
+																<strong class="txt-color-red" id="reservationIdx" >${list.idx } </strong>
+																<p>${list.returnLocationName }</p>
+															</div>
+													<ul class="info-list">
+														<li>
+															<div class="cont box-between">
+																<span class="tit">대여차량</span>
+																<span>${list.vehicleModel }</span>
+															</div>
+														</li>
+												<hr class="my-1">
+												<li>
+													<div class="cont box-between">
+													<span class="tit">결제시간</span>
+														<span>${list.paidTime  }</span>
+													</div>
+												</li>	
+												
+												<li>
+													<div class="cont box-between">
+													<span class="tit">예약상태</span>
+														<span><c:choose>
+																<c:when test="${list.state eq 0 }">
+																	<td>예약완료</td>
+																</c:when>
+																<c:when test="${list.state eq 1 }">
+																	<td>취소 처리중</td>
+																</c:when>
+																<c:otherwise>
+																	<td>취소 완료</td>
+																</c:otherwise>
+															</c:choose>  </span>
+													</div>
+												</li>
+													<li>
+													<div class="cont box-between">
+														<span class="tit">반납지점</span>
+														<span>${list.returnLocationName }  </span>
+													</div>
+												</li>												
+											</ul>
+										</div>
+									</li>
+								</ul>
+								</div>
+							</c:forEach>
+						</div>
+										
 										</sec:authorize>			
 										<div style='text-align: center;	margin-top: 10px;'>
 									<c:choose>
@@ -561,47 +495,29 @@ tbody tr:hover {
 
 	<script>
 	
-		var state;
-		var value;
-		$('#rentHistorySelect').on('change', function() {
-			value = $(this).val();
-			$(this).attr('selected', 'selected');
-			console.log(value);
-			if (value == "0") {
-			      $("tbody tr td:nth-child(3)").each(function() {
-			        state = $(this).text();
-			        if (state == "예약완료") {
-			          $(this).parent().show();
-			        } else {
-			          $(this).parent().hide();
-			        }
-			      });
-			    } else if (value == "1") {
-			      $("tbody tr td:nth-child(3)").each(function() {
-			       state = $(this).text();
-			        if (state == "취소대기") {
-			          $(this).parent().show();
-			        } else {
-			          $(this).parent().hide();
-			        }
-			      });
-			    } else if (value == "2") {
-				      $("tbody tr td:nth-child(3)").each(function() {
-				        state = $(this).text();
-				        if (state == "취소완료") {
-				          $(this).parent().show();
-				        } else {
-				          $(this).parent().hide();
-				        }
-				      });
-			    } else {
-			      $("tbody tr").show();
-			    }
-			
-			location.href="${pageContext.request.contextPath}/profile/history?page=1&&state=" + value ;
-			
-			  });
-		
+
+	$(document).ready(function() {
+		  // selectbox 엘리먼트를 가져옵니다.
+		  const selectbox = document.getElementById('rentHistorySelect');
+
+		  // URL 매개변수에서 선택된 값을 가져옵니다.
+		  const urlParams = new URLSearchParams(window.location.search);
+		  const selectedValue = urlParams.get('state');
+
+		  // 선택된 값이 있는 경우, selectbox를 업데이트합니다.
+		  if (selectedValue) {
+		    selectbox.value = selectedValue;
+		  }
+
+		  // selectbox 값이 변경될 때마다, URL 매개변수를 업데이트합니다.
+		  selectbox.addEventListener('change', (event) => {
+		    const value = event.target.value;
+		    const url = new URL(window.location);
+		    url.searchParams.set('page', '1');
+		    url.searchParams.set('state', value);
+		    window.location.href = url;
+		  });
+		});
 		
 		
 		$('.main-nav').children().eq(2).children().css('color', '#18B4E9');
@@ -637,10 +553,11 @@ tbody tr:hover {
 			location.href='<%=request.getContextPath()%>/profile/favorites';
 		});
 		
-		$('tr').on('click', function() {
-			var sss = $(this).children(1).eq(0).text();
-			
-			location.href = "${pageContext.request.contextPath}/profile/reservation/" + sss; 
+		$('li').on('click', function() {
+		
+		var reservationIdx = $(this).find('#reservationIdx').text().trim(); // 예약번호 값 추출
+		
+			location.href = "${pageContext.request.contextPath}/profile/reservation/" + reservationIdx; 
 		});
 				
 
@@ -662,13 +579,16 @@ tbody tr:hover {
 			location.href="${pageContext.request.contextPath}/profile/history?page=" + page +"&&state=" + value ;
 		})
 		
+		
+		
 		$('#preBtn').on('click', movePrev);
 		
 		function movePrev() {
+	
 			var urlStr = window.location.href;
 			var url = new URL(urlStr);
 			var urlparams = url.searchParams;
-			 var value = urlparams.get('state');
+			 var value = urlparams.get('state'); 
 			 if(value == null) {
 				 value = '4';
 			 }

@@ -355,15 +355,16 @@ padding-left:40px;
 												<li>
 													<div class="cont box-between">
 													<span class="tit">예약상태</span>
-														<span><c:choose>
+														<span style="margin:2px;">
+														<c:choose>
 																<c:when test="${list.state eq 0 }">
-																	<td>예약완료</td>
+																	<span style="background-color: skyblue;  border-radius: 10px;" >&nbsp;&nbsp;예약완료&nbsp;&nbsp;</span>
 																</c:when>
 																<c:when test="${list.state eq 1 }">
-																	<td>취소 처리중</td>
+																	<span style="background-color: red; color:white; border-radius: 10px;">&nbsp;&nbsp;취소 처리중&nbsp;&nbsp;</span>
 																</c:when>
 																<c:otherwise>
-																	<td>취소 완료</td>
+																	<span  style="background-color: red; color:black; border-radius: 10px;">&nbsp;취소 완료&nbsp;</span>
 																</c:otherwise>
 															</c:choose>  </span>
 													</div>

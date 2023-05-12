@@ -378,9 +378,10 @@ padding-left:40px;
 												<li>
 													<div class="cont box-between">
 													<span class="tit">예약상태</span>
-														<span><c:choose>
+														<span style="background-color: skyblue; border-radius: 10px;"> 
+														<c:choose>
 																<c:when test="${list.state eq 0 }">
-																	<td>예약완료</td>
+																	<td>&nbsp;예약완료&nbsp;</td>
 																</c:when>
 																<c:when test="${list.state eq 1 }">
 																	<td>취소 처리중</td>

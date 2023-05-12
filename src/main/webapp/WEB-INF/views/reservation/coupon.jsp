@@ -44,7 +44,7 @@
 	 <div class="container-fluid pt-4 px-4">
 		<div class="col-sm-12 col-xl-6">
 			<div class="bg-light rounded h-100 p-4">
- 				<label style="font-size:20px; margin:5px;" > ${currentUserName}님의 쿠폰</label>
+ 				<label style="font-size:13px; margin:5px;" > ${currentUserName}님의 쿠폰</label>
  					<c:if test="${not empty cList }">
  					
 					<c:forEach items="${cList}" var="coupon" varStatus="i" >
@@ -58,6 +58,7 @@
 							<button type="button" id="discount" style="margin:15px; color:#4EA0D8; border-color:#4EA0D8;" >할인 적용</button>
 					</c:if>
 					<c:if test="${empty cList }">
+						<br>
 						<label>적용 가능한 쿠폰이 없습니다.</label>
 					</c:if>
 			</div>

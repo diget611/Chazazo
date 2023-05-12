@@ -28,12 +28,16 @@
 
 <details>
   <summary>회원가입 및 계정</summary>
-  <div>내용은 여기에</div>
+  
+  ![회원가입로그인](https://github.com/diget611/Chazazo/assets/115057175/399f885b-929b-4258-9af9-b1578587df37)
+  
 </details>
 
 <details>
   <summary>관리자 페이지</summary>
-  <div>내용은 여기에</div>
+  
+  ![관리자](https://github.com/diget611/Chazazo/assets/115057175/d59eabe1-2612-4fff-82a8-de20450185e3)
+  
 </details>
 
 <details>
@@ -47,7 +51,7 @@
 
 <details>
   <summary>상품 조회</summary>
-  <div>내용은 여기에</div>
+  <div>![search]<img src="https://github.com/diget611/Chazazo/assets/113296576/ebf06da8-df38-406d-9236-0be6e8f4892f"</div>
 </details>
 
 <details>

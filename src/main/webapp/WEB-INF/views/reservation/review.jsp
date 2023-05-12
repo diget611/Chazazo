@@ -117,13 +117,14 @@
 												<div style="margin-bottom :50px;">
 													<div>
 														<input type="hidden" id="reviewIdx" value="${review.idx }">
-														<div style="margin:0px">
-															<img src="<%=request.getContextPath()%>/resources/garoestate/assets/img/icon/person.png" style="width:20px; float:left;">
-															<input type="text" style="font-size:13px; width:200px;" value="${review.name}">
+														<div style="margin: 0px; float: left;">
+															<img src="<%=request.getContextPath()%>/resources/garoestate/assets/img/icon/person.png" style="width:25px; float:left;">
+															<input type="text" style="font-size:15px; float:left; width:50%; padding-left: 10px; margin-bottom: 10px;" value="비공개">
 														</div>
 													</div>
-													<div style="background-color: rgb(227, 248, 255); border-radius: 5px; padding: 10px; border-style: solid; border-width: 1px; border-color: #c9d9de;">
-														<p>신고 처리 중인 리뷰입니다.</p>
+													<br>
+													<div>
+														<textarea style="height:auto; overflow:hidden; resize: none; width: 100%; font-size:18px; background-color: #e3f8ff; border-radius: 5px; padding: 10px;"disabled>신고 처리중인 리뷰입니다</textarea>
 													</div>
 												</div>
 											</c:when>
@@ -131,13 +132,14 @@
 												<div style="margin-bottom :50px;">
 													<div>
 														<input type="hidden" id="reviewIdx" value="${review.idx }">
-															<div style="margin:0px">
-																<img src="<%=request.getContextPath()%>/resources/garoestate/assets/img/icon/person.png" style="width:20px;  float:left;">
-																<input type="text" style="font-size:13px; width:200px;" value="${review.name}">
+															<div style="margin: 0px; float: left;">
+																<img src="<%=request.getContextPath()%>/resources/garoestate/assets/img/icon/person.png" style="width:25px; float:left;">
+																<input type="text" style="font-size:15px; float:left; width:50%; padding-left: 10px; margin-bottom: 10px;" value="비공개">
 															</div>
 													</div>
-													<div style="background-color: rgb(227, 248, 255); border-radius: 5px; padding: 10px; border-style: solid; border-width: 1px; border-color: #c9d9de;">
-														<p>신고로 삭제된 리뷰입니다.</p>
+													<br>
+													<div>
+														<textarea style="height:auto; overflow:hidden; resize: none; width: 100%; font-size:18px; background-color: #e3f8ff; border-radius: 5px; padding: 10px;"disabled>신고로 블라인드된 리뷰입니다</textarea>
 													</div>
 												</div>
 											</c:when>

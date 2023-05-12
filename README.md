@@ -56,7 +56,9 @@
 
 <details>
   <summary>예약 / 결제</summary>
-  <div![memberpay](https://github.com/diget611/Chazazo/assets/113296576/8ad32b33-31ea-4a16-80f4-b87cc51c0210)</div>
+  
+ ![memberpay](https://github.com/diget611/Chazazo/assets/113296576/8ad32b33-31ea-4a16-80f4-b87cc51c0210)
+  
 </details>
 
 <details>

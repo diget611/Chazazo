@@ -319,11 +319,11 @@
 									style="display: block;">리뷰를 남겨주세요! 최대 3천원 쿠폰을 드립니다:D
 								</div>
 								<div class="dc-none js-vrsi-container-bottom-btn" data-type="r">
-					<button class="review-btn btn btn-sm btn-grey-7 btn-block text-16 mt-3">리뷰쓰기</button>
+									<button class="review-btn btn btn-sm btn-grey-7 btn-block text-16 mt-3">리뷰쓰기</button>
+								</div>
+							</div>
+						</c:if>
 					</div>
-							</div>
-							</c:if>
-							</div>
 							
 					
 					

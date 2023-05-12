@@ -227,7 +227,7 @@
 											문의</button>
 										<br>
 										<sec:authorize access="isAuthenticated()">
-											<button type="button" id="coupon" s
+											<button type="button" id="coupon" 
 												class="btn btn-outline-primary">쿠폰 관리</button>
 											<br>
 											<button type="button" class="btn btn-outline-primary"
@@ -465,7 +465,7 @@
 				type: "POST",
 				data:{"couponCode": couponCode},
 				success:function(result){
-						if(result==1){
+						if(result==2){
 							swal.fire({
 				      			title : "쿠폰등록완료!",
 				      			 text: '쿠폰이 성공적으로 등록되었습니다 :)',
@@ -474,6 +474,15 @@
 				      		}).then(function(){
 				      			location.reload();
 				      		});
+						}else if(result == 1){
+							swal.fire({
+				      			title : "중복쿠폰",
+				      			 text: '쿠폰 번호를 다시 입력하세요',
+				      		    icon  : "error",
+				      		    closeOnClickOutside : false
+				      		})
+							
+							
 						}else{
 							swal.fire({
 				      			title : "쿠폰등록실패",
@@ -481,7 +490,6 @@
 				      		    icon  : "error",
 				      		    closeOnClickOutside : false
 				      		})
-							
 							
 						}
 						},

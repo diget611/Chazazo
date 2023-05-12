@@ -42,7 +42,9 @@
 
 <details>
   <summary>채팅 문의</summary>
-  <div>내용은 여기에</div>
+  
+  ![채팅문의](https://github.com/diget611/Chazazo/assets/115057175/9c95f36f-a6ec-4476-bbe6-19c6425c5331)
+  
 </details>
 
 ---

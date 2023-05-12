@@ -51,12 +51,14 @@
 
 <details>
   <summary>상품 조회</summary>
-  <div>![search]<img src="https://github.com/diget611/Chazazo/assets/113296576/ebf06da8-df38-406d-9236-0be6e8f4892f"</div>
+  <div><img src="https://github.com/diget611/Chazazo/assets/113296576/ebf06da8-df38-406d-9236-0be6e8f4892f"</div>
 </details>
 
 <details>
   <summary>예약 / 결제</summary>
-  <div>내용은 여기에</div>
+  
+ ![memberpay](https://github.com/diget611/Chazazo/assets/113296576/8ad32b33-31ea-4a16-80f4-b87cc51c0210)
+  
 </details>
 
 <details>

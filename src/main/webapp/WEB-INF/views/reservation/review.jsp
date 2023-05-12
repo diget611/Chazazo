@@ -76,19 +76,25 @@
 													<div style="display: inline-block; position: relative; left: 77%;">${review.createdate}</div>
 													<div style="display: inline-block; position: relative; top: 5px; left: 80%;">
 														<c:if test="${empty info.name}">
-															<input src="<%=request.getContextPath()%>/resources/garoestate/assets/img/icon/like.png" type="image" style=" width:30px; padding: 0px;">
-															<span>${review.recommend}</span>
+																<input src="<%=request.getContextPath()%>/resources/garoestate/assets/img/icon/like.png" type="image" style=" width:30px; padding: 0px;">
+																<span>${review.recommend}</span>
 														</c:if>
-													<c:if test="${not empty info.name }">
-														<input data-idx="${review.idx}" data-recommend="${review.recommend}" src="<%=request.getContextPath()%>/resources/garoestate/assets/img/icon/like.png"
-															class="likebtn" type="image" style="box-sizing:border-box; resize:none; padding: 0px; width: 30px;">
-														<span>${review.recommend}</span>
-													</c:if>
+														<c:if test="${not empty info.name }">
+															<c:if test="${info.name ne review.name }">
+																<input src="<%=request.getContextPath()%>/resources/garoestate/assets/img/icon/like.png"
+																	onClick="likebtn(${review.idx})" type="image" style="box-sizing:border-box; resize:none; padding: 0px; width: 30px;">
+																<span>${review.recommend}</span>
+															</c:if>
+															<c:if test="${info.name eq review.name }"> 
+																<input src="<%=request.getContextPath()%>/resources/garoestate/assets/img/icon/like.png" type="image" style=" width:30px; padding: 0px;">
+																<span>${review.recommend}</span>
+															</c:if>
+														</c:if>
 													</div>
 													<div style="display: inline-block; position: relative; top: 5px; left: -20%;">
 														<c:if test="${info.name eq review.name }">
-															<input data-idx="${review.idx }" src="<%=request.getContextPath()%>/resources/garoestate/assets/img/icon/delete.png" style="float:right; width:50px; " type="image" class="delete" value="삭제">
-															<input data-idx="${review.idx }" src="<%=request.getContextPath()%>/resources/garoestate/assets/img/icon/edit.png"  style=" float:right;  width:50px; " type="image" class="edit" value="수정" >
+															<input data-idx="${review.idx}" src="<%=request.getContextPath()%>/resources/garoestate/assets/img/icon/delete.png" style="float:right; width:50px; " type="image" class="delete" value="삭제">
+															<input data-idx="${review.idx}" src="<%=request.getContextPath()%>/resources/garoestate/assets/img/icon/edit.png"  style=" float:right;  width:50px; " type="image" class="edit" value="수정" >
 														</c:if>
 													</div>
 													</div>
@@ -287,26 +293,22 @@ function postReview() {
 
 
 //리뷰 좋아요
- $('.likebtn').click(function(){
-	var reviewidx = $(this).data("idx");
-	var recommend = $(this).data("recommend");
-
+	function likebtn(idx){
+	var reviewidx =idx;
 	$.ajax({
 		url:'${pageContext.request.contextPath}/insertLike',
          type: 'post',
 	     data: {
-	 		"idx" : reviewidx,
-			"recommend" :recommend
+	 		"idx" : reviewidx
 		},
-
          success: function(result) {
         	  location.reload();
           },
           error: function() {
           	alert('좋아요 등록 실패');
           }
-	});		
-});
+		});		
+	};
 
 
 //리뷰 수정 누르면 다른 리뷰수정 disabled

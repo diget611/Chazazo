@@ -21,11 +21,11 @@
 	</select>
 	
 	<update id="return" parameterType="adminReportUpdateReqDto">
-		UPDATE REPORT SET STATUS = 2, END_DATE = SYSTIMESTAMP WHERE IDX = #{idx}
+		UPDATE REPORT SET STATUS = 0, END_DATE = SYSTIMESTAMP WHERE IDX = #{idx}
 	</update>
 	
 	<update id="confirm" parameterType="adminReportUpdateReqDto">
-		UPDATE REPORT SET STATUS = 1, END_DATE = SYSTIMESTAMP WHERE IDX = #{idx}	
+		UPDATE REPORT SET STATUS = 2, END_DATE = SYSTIMESTAMP WHERE IDX = #{idx}	
 	</update>
 	
 </mapper>

@@ -14,7 +14,7 @@
 ![팀원소개](https://github.com/diget611/Chazazo/assets/115057175/6af89aaf-d1fd-4032-ab23-775b0743a23d)
 ---
 ### 개발환경
-![개발환경](https://github.com/diget611/Chazazo/assets/115057175/01125196-c129-4870-8046-02f7f98b4d06)
+![개발환경](https://github.com/diget611/Chazazo/assets/115057175/d4ae43f4-eb2d-4a36-8be6-c5ef7ea53df5)
 ---
 ### 프로젝트기획
 > #### 일정

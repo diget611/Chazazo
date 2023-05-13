@@ -420,52 +420,64 @@ padding-left:40px;
 				
 					</c:if>		
 					</div>	
+					</div></div>
+				</div>
+							<div id="content" style="display:none; padding-top:70px;">
+							  <div>
+							  <div style="font-size:30px; text-align: center;">
+							예약 취소 완료!! 
+								</div>
+								<br>
+								<div style="font-size:20px; text-align: center;">
+							결제 취소는 1~2일이내 처리됩니다.
 							</div>
-							<div id="content" style="display:none;">
-							  
-							<div class="infos-section">		
-											
-							<ul class="tiket-list">
-									<li>
-										<div class="tiket-item coupon-item-container">
-											<div class="tiket-item-header">
-												<strong class="txt-color-red"></strong>
-												<p></p>
-											</div>
-											<ul class="info-list">
-												<li>
-													<span class="tit">예약 취소 완료!!</span>
-													<div class="cont">
-													
+							<br>
+							</div>
+								<div class="infos-section" style="margin-top">		
+										
+											<div class="reservation-List-content">				
+												<ul class="tiket-list">
+													<li>
+														<div class="tiket-item coupon-item-container">
+															<div class="tiket-item-header" style="padding-top:7px;">
+																<strong class="txt-color-red" >예약번호 &nbsp; &nbsp; </strong>
+																<strong class="txt-color-red" id="reservationIdx" >${reservation.idx } </strong>
+																<p>${reservation.startDate} ~ ${reservation.endDate}</p>
+															</div>
+													<ul class="info-list">
+														<li>
+															<div class="cont box-between">
+																<span class="tit">대여차량</span>
+																<span>${reservation.vehicleModel }</span>
+															</div>
+														</li>
+												<hr class="my-1">
+												
+													<li>
+													<div class="cont box-between">
+														<span class="tit">환불금액</span>
+														<span style="color: #109CFF;">${reservation.finalPrice  }  </span>
 													</div>
-												</li>
-												<li>
-													<span class="tit">유효기간</span>
-													<div class="cont">
-														
-													</div>
-												</li>											
+												</li>												
 											</ul>
 										</div>
 									</li>
 								</ul>
-							
+								
 						</div>
-							
-							예약 취소 완료!! 
-							결제 취소는 1~2일이내 처리됩니다.
-							</div>
+						</div>
+						</div>
 					</section>
 				</div>
 			</div>
 				</div>
 									
-								</div>
 								
 								
-		</div>
+								
+		
 		</section>
-	</section>
+	
 	
 	<jsp:include page="/WEB-INF/views/base/chat.jsp"/>
 	<jsp:include page="/WEB-INF/views/base/footer.jsp" />

@@ -25,6 +25,7 @@ import kh.spring.chazazo.common.Pagination;
 import kh.spring.chazazo.common.email.MailSendService;
 import kh.spring.chazazo.member.model.dto.MemberInfoRespDto;
 import kh.spring.chazazo.member.model.service.MemberService;
+import kh.spring.chazazo.notice.model.dto.NoticeDto;
 import kh.spring.chazazo.notice.model.service.NoticeService;
 import kh.spring.chazazo.payment.model.service.PaymentService;
 
@@ -79,17 +80,15 @@ public class MemberController {
 			Map<String, Object> map = new HashMap<String, Object>();
 			int count = mService.countMember(username);
 			Pagination pagination = new Pagination();
-			pagination.pageInfo(5, page, count);
+			pagination.pageInfo(7, page, count);
 		
 			map.put("username", username);
 			map.put("pagination", pagination);
 	
-			
 			mv.addObject("memberinfo", mService.selectMypageOne(username));
 			mv.addObject("reservation", pService.pagingnation(map));
 			mv.addObject("pagination", pagination);
 			mv.addObject("noticeList", nService.selectNotice()); 
-			
 			mv.setViewName("member/mypage");
 		
 		}

@@ -111,6 +111,7 @@ ul{
 list-style:none;
 margin-right: 30px;
 padding-left:40px;
+cursor:pointer;
 }
 
 </style>
@@ -318,13 +319,15 @@ padding-left:40px;
 									<div id="hideRent">
 										<c:if test="${empty reservation }">
 											<p style="text-align: center; font-size: large;">
-												<strong> 진행 중인 렌트 내역이 없습니다 !!</strong>
+												<strong> 내역이 없습니다 !!</strong>
 											</p>
 											<br>
 											<button
 												class="js-mypage-btn-go-car-list btn btn-outline-primary btn-block max-w-lg-40rem mx-auto py-1"
 												onclick="moveRent();">렌트하러 가기</button>
 										</c:if>
+										
+										
 										<sec:authorize access="hasRole('ROLE_USER')">
 										<div class="infos-section">		
 										<c:forEach items="${reservation }" var="list">	

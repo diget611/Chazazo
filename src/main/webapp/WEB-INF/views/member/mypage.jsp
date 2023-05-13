@@ -139,6 +139,7 @@ ul{
 list-style:none;
 margin-right: 30px;
 padding-left:40px;
+cursor:pointer;
 }
 
 </style>
@@ -212,8 +213,40 @@ padding-left:40px;
 								</section>
 
 							</sec:authorize>
+							<sec:authorize access="hasRole('ROLE_ADMIN')">
+							
+							
+								<section class="carmore-section p-0 bg-white cm-rounded bg-shadow mb-3">
+									<div>
+										<div class="pt-4 position-relative" id="js_mypage_top_info">
+											<div
+												class="dc-flex justify-content-between align-items-center pb-3 pt-lg-0 pt-2">
+												<div class="dc-flex align-items-start pr-2">
+													<div>
+														<div
+															class="js-mypage-btn-login is-only-none-member click-effect-press">
+															<div class="color-grey-3 wordbreak-breakword" style="font-size:26px;"> 관리자입니다. </div>
+														</div>
+													</div>
+												</div>
+											</div>
+											<br>
+											<div>
+												<div class="mb-3" id="js_mypage_btn_pc_login"
+													style="display: block;">
+													<a href="<%=request.getContextPath()%>/logout"
+														class="js-mypage-btn-login btn btn-primary btn-block max-w-lg-40rem mx-auto click-effect-press">
+														회원으로 돌아가기</a>
 
-							<sec:authorize access="isAuthenticated()">
+												</div>
+											</div>
+										</div>
+									</div>
+								</section>
+							
+							</sec:authorize>
+
+							<sec:authorize access="hasRole('ROLE_USER')">
 								<div class="">
 									<div class="inner-wrapper">
 
@@ -266,11 +299,12 @@ padding-left:40px;
 									style="visibility: visible; animation-name: fadeInRight;">
 									<div class="panel-heading">
 										<h3 class="panel-title">
-											<sec:authorize access="isAuthenticated()">
+											<sec:authorize  access="hasRole('ROLE_USER')">
 												<button id="historyBtn" type="button"
 													class="btn btn-outline-primary">예약내역</button>
 												<br>
 											</sec:authorize>
+											
 											<sec:authorize access="!isAuthenticated()">
 												<button id="none-Member-history" type="button"
 													class="btn btn-outline-primary">비회원 예약 조회</button>
@@ -280,8 +314,7 @@ padding-left:40px;
 									</div>
 								</div>
 							</div>
-
-							<sec:authorize access="isAuthenticated()">
+								<sec:authorize  access="hasRole('ROLE_USER')">
 								<div class="blog-asside-right">
 									<div
 										class="panel panel-default sidebar-menu wow fadeInRight animated animated animated"
@@ -302,6 +335,7 @@ padding-left:40px;
 									</div>
 								</div>
 							</sec:authorize>
+							
 							<div class="blog-asside-right">
 								<div
 									class="panel panel-default sidebar-menu wow fadeInRight animated animated animated"
@@ -310,7 +344,7 @@ padding-left:40px;
 										<button type="button" id="request"
 											class="btn btn-outline-primary">1:1 문의</button>
 										<br>
-										<sec:authorize access="isAuthenticated()">
+										<sec:authorize  access="hasRole('ROLE_USER')">
 											<button id="coupon" type="button"
 												class="btn btn-outline-primary">쿠폰 관리</button>
 											<br>
@@ -336,6 +370,7 @@ padding-left:40px;
 									
 										<c:if test="${empty reservation }">
 											<p style="text-align: center; font-size: large;">
+												<img src="<%=request.getContextPath()%>/resources/img/rentcar.png"  style=" max-width: 100%;height: auto;">
 												<strong> 진행 중인 렌트 내역이 없습니다 !!</strong>
 											</p>
 											<br>
@@ -345,11 +380,12 @@ padding-left:40px;
 										</c:if>
 										
 										<sec:authorize access="hasRole('ROLE_USER')">
+										<c:if test="${!empty reservation }">
 										<div>
-										<p>
-										${memberinfo.name } 님이 현재 예약하신 내역입니다 !
+										<p>${memberinfo.name } 님이 현재 예약하신 내역입니다 !
 										</p>
 									</div>
+									</c:if>
 									<div class="infos-section">		
 										<c:forEach items="${reservation }" var="list">	
 											<div class="reservation-List-content">				
@@ -409,6 +445,9 @@ padding-left:40px;
 									
 											
 							</sec:authorize>
+							<c:if test="${!empty reservation }">
+										
+							
 							<sec:authorize access="isAuthenticated()">
 										<div style='text-align: center;	margin-top: 10px;'>
 									<c:choose>
@@ -439,8 +478,11 @@ padding-left:40px;
 								</c:choose>
 							</div>
 									</sec:authorize>		
-
+									</c:if>
+									
 									</div>
+									
+									
 										<div id="content">
 										</div>
 									

@@ -314,11 +314,13 @@
 			 if( $('[name=name]').val() == ''
 			| $('[name=birth]').val() == ''  | $('[name=password]').val() == ''
 			| $('[name=phoneNumber]').val() == '' | $('[name=gender]').val() == '' | $('[name=passwordCh]').val() == '' ) {
-				alert("다시 입력하세요");
+				 Swal.fire("수정 실패","입력하신 정보를 한 번 더 확인해주세요!", 'error')
+           	  
 				return false;
 			} else if(!testName.test($('[name=name]').val()) | !testBirth.test($('[name=birth]').val())
 			| !testPhone.test($('[name=phoneNumber]').val()) | !testPass.test($('[name=password]').val()) ) {
-				alert("다시 입력하세요");
+				Swal.fire("수정 실패","입력하신 정보를 한 번 더 확인해주세요!", 'error')
+          	  
 				return false;		
 			} else {
 				return true;
@@ -363,12 +365,8 @@
 			 $.ajax({
 	                type: 'POST',
 	                url: "${pageContext.request.contextPath}/member/profile/update",
-	                //contentType: 'application/json; charset=utf-8',
-	  	       		//data: JSON.stringify(data),
+	               
 	  	       		data:data,
-	  	       		
-	  	       	    //dataType:'json',
-	  	       	    //비밀번호 일치 확인..
 	                success: function(result){
 	                	if(result==1 && checkPass==1){
 	                		

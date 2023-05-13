@@ -5,6 +5,7 @@
   3. [개발환경](#개발환경)
   4. [프로젝트기획](#프로젝트기획)
   5. [주요기능](#주요기능)
+  6. [테스트케이스](#테스트케이스)
 ---
 ### 기획의도
 ![기획의도](https://github.com/diget611/Chazazo/assets/115057175/76900a41-4656-44e4-b869-473818cbb27c)
@@ -86,3 +87,7 @@
   <summary>쿠폰 관리</summary>
   <div>내용은 여기에</div>
 </details>
+  
+---
+### 테스트케이스
+  https://docs.google.com/spreadsheets/d/1rj9soiH1hyUUnbb_U4HiE6TtXz4YejvCEcRbCBFXKgE/edit?usp=share_link

@@ -178,7 +178,7 @@
   
 ---
 ### 테스트케이스
-  https://docs.google.com/spreadsheets/d/1rj9soiH1hyUUnbb_U4HiE6TtXz4YejvCEcRbCBFXKgE/edit?usp=share_link
+> [테스트케이스 보러가기](https://docs.google.com/spreadsheets/d/1rj9soiH1hyUUnbb_U4HiE6TtXz4YejvCEcRbCBFXKgE/edit?usp=share_link)
   
   
 ![Footer](https://capsule-render.vercel.app/api?type=wave&color=a5c4e0&height=300&section=footer&text=감사합니다&fontSize=90)

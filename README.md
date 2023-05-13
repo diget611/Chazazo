@@ -74,7 +74,14 @@
 
 <details>
   <summary>상품 조회</summary>
-  <div><img src="https://github.com/diget611/Chazazo/assets/113296576/ebf06da8-df38-406d-9236-0be6e8f4892f"</div>
+![search](https://github.com/diget611/Chazazo/assets/113296576/d96713f5-f4e5-435a-9402-b5ae5bc06c50)
+
+  ![상품조회3](https://github.com/diget611/Chazazo/assets/113296576/8bf883d4-2a94-46bc-9350-4e43175a9f78)
+
+  ![상품조회2](https://github.com/diget611/Chazazo/assets/113296576/dbee8d59-5782-4acf-b36f-2df18cc1d069)
+
+  ![상품조회](https://github.com/diget611/Chazazo/assets/113296576/957821c1-2eb1-4a07-a880-60e86358cc1f)
+
 </details>
 
 <details>
@@ -82,6 +89,20 @@
   
  ![memberpay](https://github.com/diget611/Chazazo/assets/113296576/8ad32b33-31ea-4a16-80f4-b87cc51c0210)
   
+  ![예약](https://github.com/diget611/Chazazo/assets/113296576/e22e6e9b-6d03-4de4-b426-1609d8852edf)
+
+  ![예약2](https://github.com/diget611/Chazazo/assets/113296576/33e637d5-641a-4f41-b50a-48b2297426a2)
+
+  ![예약3](https://github.com/diget611/Chazazo/assets/113296576/f7c42283-a484-4a2f-9d7b-90cf321ada8c)
+
+  ![결제](https://github.com/diget611/Chazazo/assets/113296576/b724f4a0-4e59-4e6f-8d12-0ed07ec45b4f)
+
+  ![결제2](https://github.com/diget611/Chazazo/assets/113296576/75aae227-2d2f-4ab4-b690-e1d375ccfc49)
+
+  ![결제3](https://github.com/diget611/Chazazo/assets/113296576/c58b72c2-0bdd-4149-acb3-79b07883a23d)
+
+  ![결제4](https://github.com/diget611/Chazazo/assets/113296576/3fb1b910-1c54-4c7f-86d8-503e3892d27a)
+
 </details>
 
 <details>
@@ -89,8 +110,14 @@
   
   ![review](https://github.com/diget611/Chazazo/assets/113296576/72d34f70-e845-4378-94d4-8f6dc2949254)
   
-  ![review2](https://github.com/diget611/Chazazo/assets/113296576/5e566c9d-acde-422b-af7b-af092e5af3eb)
+  ![리뷰](https://github.com/diget611/Chazazo/assets/113296576/91faa4cc-889f-4136-86b1-e0a6950131cb)
   
+![리뷰2](https://github.com/diget611/Chazazo/assets/113296576/11706e78-3ece-4c52-9f67-54e14ec5a8e8)
+  
+![리뷰3](https://github.com/diget611/Chazazo/assets/113296576/7a9bd3f6-b28d-4ecb-8360-2a13a128b6ef)
+  
+![review2](https://github.com/diget611/Chazazo/assets/113296576/5e566c9d-acde-422b-af7b-af092e5af3eb)
+
 </details>
 
 ---

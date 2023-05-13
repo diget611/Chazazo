@@ -99,17 +99,34 @@
 
 <details>
   <summary>회원 정보 관리</summary>
-  <div>내용은 여기에</div>
+  
+  
+  ![비밀번호 확인](https://github.com/diget611/Chazazo/assets/114971252/50688c6f-ddda-4d5f-ad2e-c35c2b55240d)
+  ![회원정보수정](https://github.com/diget611/Chazazo/assets/114971252/7e5f3c01-d7a5-49b3-9f5f-6fce8920e4c1)
+
+  
 </details>
 
 <details>
   <summary>예약 관리</summary>
-  <div>내용은 여기에</div>
+  
+  ![예약내역](https://github.com/diget611/Chazazo/assets/114971252/8e776ed7-8c6d-4fd3-9457-bb9ebf7ae734)
+  ![예약취소](https://github.com/diget611/Chazazo/assets/114971252/130c6f4b-8302-47d6-a173-182a074ba770)
+  ##### 비회원
+  ![비회원 예약](https://github.com/diget611/Chazazo/assets/114971252/4ae01cd9-529b-45c8-9f7a-fde3e168fd37)
+
+
+  
 </details>
 
 <details>
   <summary>쿠폰 관리</summary>
-  <div>내용은 여기에</div>
+  
+  ![쿠폰관리](https://github.com/diget611/Chazazo/assets/114971252/3936c856-1aaf-4c0f-8f26-9ae559903978)
+  ![관심지점](https://github.com/diget611/Chazazo/assets/114971252/5c756115-8d78-48a9-bb79-f5cdd470b62b)
+
+
+  
 </details>
   
 ---

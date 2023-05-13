@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>리뷰 신고하기</title>
+<title>쿠폰 선택</title>
 
 <head>
 

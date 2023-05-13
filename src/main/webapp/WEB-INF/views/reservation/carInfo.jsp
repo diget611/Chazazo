@@ -50,7 +50,7 @@
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/main.css">
 
 <body>
-					<div id="box" class="col-md-4 p0" style="float:left; padding:10px; display:inline-block; position:fixed;">
+					<div id="box" class="col-md-4 p0" style="float:left; padding:5px; display:inline-block; position:fixed;">
 							<aside style="background-color:white; margin-left:10px; padding:10px;">
 								<section class="mt-3 p-3">
 										<form >

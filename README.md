@@ -21,10 +21,27 @@
 ### 프로젝트기획
 > #### 일정
 > ![일정](https://github.com/diget611/Chazazo/assets/115057175/6aecf65f-aaf1-432b-beba-560007ebb229)
+> #### 요구사항 정의서
+> ![요구사항정의서1](https://github.com/diget611/Chazazo/assets/115057175/fafbd8ab-09b7-44ab-ad64-8ec40be8e3ce)
+> ![요구사항정의서2](https://github.com/diget611/Chazazo/assets/115057175/9bd6285b-f9dc-4fff-bf67-5228248be8c3)
+> ---
 > #### ERD
 > ![ERD](https://github.com/diget611/Chazazo/assets/115057175/a88ef430-1e01-43a8-8a20-e02182441c9b)
 > #### 클래스 다이어그램
+> [전체 클래스 다이어그램 보기](https://github.com/diget611/Chazazo/assets/115057175/67e35919-7281-459f-b2c3-9da5934eb000)
+> ---
+> ![common](https://github.com/diget611/Chazazo/assets/115057175/2ba27a32-a73c-4861-9026-d4bfa6d8b45d)
+> ---
+> ![main1](https://github.com/diget611/Chazazo/assets/115057175/155f9184-f58f-40ee-b279-038e59b0781f)
+> ![main2](https://github.com/diget611/Chazazo/assets/115057175/8c494613-f512-4d40-91b6-25f0ba720df5)
+> > ---
+> ![admin1](https://github.com/diget611/Chazazo/assets/115057175/a482479d-fc3f-4a6b-ba1c-c4a3669bb5e6)
+> ![admin2](https://github.com/diget611/Chazazo/assets/115057175/ab5012db-9751-4157-a319-f93aa91b657c)
+> ---
 > #### 시퀀스 다이어그램
+> ![시퀀스1](https://github.com/diget611/Chazazo/assets/115057175/e1d6ddb5-d3ad-4d36-8764-778b4a5babe6)
+> ![시퀀스2](https://github.com/diget611/Chazazo/assets/115057175/1ec3957c-91c7-4794-99b2-d16787ca7d26)
+> ---
 > #### URL매핑
 > ![URL매핑](https://github.com/diget611/Chazazo/assets/115057175/d67f5a4c-2182-44d4-b0b0-b92d02240390)
 ---

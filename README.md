@@ -70,7 +70,11 @@
 
 <details>
   <summary>리뷰</summary>
-  <div>내용은 여기에</div>
+  
+  ![review](https://github.com/diget611/Chazazo/assets/113296576/72d34f70-e845-4378-94d4-8f6dc2949254)
+  
+  ![review2](https://github.com/diget611/Chazazo/assets/113296576/5e566c9d-acde-422b-af7b-af092e5af3eb)
+  
 </details>
 
 ---

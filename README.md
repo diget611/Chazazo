@@ -32,6 +32,10 @@
   
   ![회원가입로그인](https://github.com/diget611/Chazazo/assets/115057175/399f885b-929b-4258-9af9-b1578587df37)
   
+  ![회원가입](https://github.com/diget611/Chazazo/assets/115057175/b796e576-e548-4683-b567-c7451087ad3a)
+  
+  ![로그인-로그아웃](https://github.com/diget611/Chazazo/assets/115057175/516cb2eb-e7ca-42df-981c-5c55e95b0bed)
+  
 </details>
 
 <details>

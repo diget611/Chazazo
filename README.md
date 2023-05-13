@@ -17,6 +17,8 @@
 ![개발환경](https://github.com/diget611/Chazazo/assets/115057175/01125196-c129-4870-8046-02f7f98b4d06)
 ---
 ### 프로젝트기획
+> #### 일정
+> ![일정](https://github.com/diget611/Chazazo/assets/115057175/6aecf65f-aaf1-432b-beba-560007ebb229)
 > #### ERD
 > ![ERD](https://github.com/diget611/Chazazo/assets/115057175/a88ef430-1e01-43a8-8a20-e02182441c9b)
 > #### 클래스 다이어그램
@@ -43,12 +45,24 @@
   
   ![관리자](https://github.com/diget611/Chazazo/assets/115057175/d59eabe1-2612-4fff-82a8-de20450185e3)
   
+  ![통계1](https://github.com/diget611/Chazazo/assets/115057175/38ba9fe8-068a-4ec0-9ff0-88fd86bebd57)
+  
+  ![통계2](https://github.com/diget611/Chazazo/assets/115057175/3edffb2a-48a0-4dea-843a-8c66817963f6)
+  
 </details>
 
 <details>
   <summary>채팅 문의</summary>
   
   ![채팅문의](https://github.com/diget611/Chazazo/assets/115057175/9c95f36f-a6ec-4476-bbe6-19c6425c5331)
+  
+  ![채팅설정](https://github.com/diget611/Chazazo/assets/115057175/c3dbe352-2d20-4db4-8f16-c421a3abf4ab)
+  
+  ![채팅방설정](https://github.com/diget611/Chazazo/assets/115057175/69e3a270-6666-44d6-89d5-c5c6059cb2b5)
+  
+  ![채팅섭](https://github.com/diget611/Chazazo/assets/115057175/7e8952e2-8f12-43e8-ac63-a7fcc1f69c18)
+
+  ![채팅펍](https://github.com/diget611/Chazazo/assets/115057175/9ba05574-9c63-407a-ba4e-927b46cc1464)
   
 </details>
 

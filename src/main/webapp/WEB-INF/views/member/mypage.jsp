@@ -370,7 +370,7 @@ cursor:pointer;
 									
 										<c:if test="${empty reservation }">
 											<p style="text-align: center; font-size: large;">
-												<img src="<%=request.getContextPath()%>/resources/img/rentcar.png"  style=" max-width: 100%;height: auto;">
+												<img src="<%=request.getContextPath()%>/resources/img/rentcar.png" width="200" height="200" style=" max-width: 100%;height: auto;">
 												<strong> 진행 중인 렌트 내역이 없습니다 !!</strong>
 											</p>
 											<br>
@@ -479,10 +479,7 @@ cursor:pointer;
 							</div>
 									</sec:authorize>		
 									</c:if>
-									
 									</div>
-									
-									
 										<div id="content">
 										</div>
 									
@@ -544,11 +541,7 @@ cursor:pointer;
 	<script>
 	
 		
-		$('tr').on('click', function() {
-			
-			var sss = $(this).children().eq(0).text();
-			location.href = "${pageContext.request.contextPath}/profile/reservation/" + sss; 
-		})
+		
 				
 		$('.main-nav').children().eq(2).children().css('color', '#18B4E9');
 		
@@ -769,39 +762,51 @@ function deleteMember(){
 			if(noneList == null) {
 				html += '					<p style="text-align: center; font-size: large;"><strong>예약 정보가 없습니다.</strong></p><br>'
 			} else {
-				html += '				<div>'
-				html += '					<h3>'+ noneList.name +'님의 예약내역</h3>'
-				html += '				</div>'
-				html += '						<table>'
-				html += '							<thead>'
-				html += '							<tr>'
-				html += '								<th scope="row">예약번호</th>'
-				html += '								<th scope="row">예약시작날짜</th>'
-				html += '								<th scope="row">예약상태</th>'
-				html += '								<th scope="row">차종류</th>'
-				html += '								<th scope="row">대여지점</th>'
-				html += '								<th scope="row">반납지점</th>'
-				html += '							</tr>'
-				html += '							</thead>'
-				html += '							<tbody>'
-				html += '								<tr>'
-				html += '									<td>' + noneList.idx + '</td>'
-				html += '									<td>' + noneList.startDate + '</td>'
-				html += '	 <td>${noneList.state == 0 ? "예약완료" : (noneList.state == 1 ? "취소대기" : "취소완료")}</td>'
-				html += '									<td>' + noneList.vehicleModel+ '</td>'
-				html += '									<td>' + noneList.rentLocationName + '</td>'
-				html += '									<td>' + noneList.returnLocationName + '</td>'
-				html += '								</tr>'
-				html += '							<tbody>'
-				html += '							</table>'
+					html += '				<div>'
+						html += '					<h3>'+ noneList.name +'님의 예약내역</h3>';
+						html += '				</div>'
+						html += '		<div class="infos-section" style="margin-top">	';		
+						html += '			<div class="reservation-List-content">		';		
+						html += '				<ul class="tiket-list">';
+						html += '					<li>';
+						html += '						<div class="tiket-item coupon-item-container"';
+						html += '							<div class="tiket-item-header" style="padding-top:7px;">';
+						html += '								<strong class="txt-color-red" >예약번호 &nbsp; &nbsp; </strong>';
+						html += '								<strong class="txt-color-red" id="reservationIdx" >'+ noneList.idx  +'</strong>';
+						html += '									<p>'+ noneList.startDate +' ~ '+noneList.endDate+'</p>';
+						
+						html += '								</div>';
+						html += '						<ul class="info-list">';
+						html += '							<li>';
+						html += '									<div class="cont box-between">';
+						html += '					<span class="tit">대여차량</span>';
+						html += '										<span>'+noneList.vehicleModel +'</span>';
+						html += '				</div>';
+						html += '				</li>';
+						html += '				<hr class="my-1">';
+						html += '					<li>';
+						html += '					<div class="cont box-between">';
+						html += '					<span class="tit">결제금액</span>';
+						html += '					<span style="color: #109CFF;">'+noneList.finalPrice  +' </span>';
+						html += '	</div>	';
+						html += '			</li>												';
+						html += '				</ul>		';
+						html += '			</div>';
+					html += '		</li>		';
+					html += '		</ul>';
+			
+					html += '	</div>';
+						html += '	</div>';
+					
 			}
 			$('#content').html(html);
 			
-			$('tr').on('click', function() {
-				var sss = $(this).children().eq(0).text();
-				console.log(sss);
-				location.href = "${pageContext.request.contextPath}/profile/reservation/" + sss; 
-			})
+			$('li').on('click', function() {
+				
+				var reservationIdx = $(this).find('#reservationIdx').text().trim(); // 예약번호 값 추출
+				
+					location.href = "${pageContext.request.contextPath}/profile/reservation/" + reservationIdx; 
+				});
 			
 		}
 		

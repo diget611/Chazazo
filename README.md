@@ -74,7 +74,8 @@
 
 <details>
   <summary>상품 조회</summary>
-![search](https://github.com/diget611/Chazazo/assets/113296576/d96713f5-f4e5-435a-9402-b5ae5bc06c50)
+
+  ![search](https://github.com/diget611/Chazazo/assets/113296576/d96713f5-f4e5-435a-9402-b5ae5bc06c50)
 
   ![상품조회3](https://github.com/diget611/Chazazo/assets/113296576/8bf883d4-2a94-46bc-9350-4e43175a9f78)
 

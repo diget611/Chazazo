@@ -1,3 +1,5 @@
+![header](https://capsule-render.vercel.app/api?type=wave&color=a5c4e0&height=300&section=header&text=CHAZAZO&fontSize=90)
+
 # chazazo
 ## CONTENTS
   1. [기획의도](#기획의도)
@@ -30,7 +32,7 @@
 <p align="center"><img src="https://github.com/diget611/Chazazo/assets/115057175/08c78c2a-db36-4810-84cb-395a30e9ea0b" style="width: 510px;"></p>
 
 <details>
-  <summary>회원가입 및 계정</summary>
+  <summary>🔎회원가입 및 계정</summary>
   
   ![회원가입로그인](https://github.com/diget611/Chazazo/assets/115057175/399f885b-929b-4258-9af9-b1578587df37)
   
@@ -43,7 +45,7 @@
 </details>
 
 <details>
-  <summary>관리자 페이지</summary>
+  <summary>🔎관리자 페이지</summary>
   
   ![관리자](https://github.com/diget611/Chazazo/assets/115057175/d59eabe1-2612-4fff-82a8-de20450185e3)
   
@@ -54,7 +56,7 @@
 </details>
 
 <details>
-  <summary>채팅 문의</summary>
+  <summary>🔎채팅 문의</summary>
   
   ![채팅문의](https://github.com/diget611/Chazazo/assets/115057175/9c95f36f-a6ec-4476-bbe6-19c6425c5331)
   
@@ -73,7 +75,7 @@
 <p align="center"><img src="https://github.com/diget611/Chazazo/assets/115057175/ea1eef52-0015-4c2b-b32d-94b2dc03c0d7" style="width: 510px;"></p>
 
 <details>
-  <summary>상품 조회</summary>
+  <summary>🔎상품 조회</summary>
 
   ![search](https://github.com/diget611/Chazazo/assets/113296576/d96713f5-f4e5-435a-9402-b5ae5bc06c50)
 
@@ -86,7 +88,7 @@
 </details>
 
 <details>
-  <summary>예약 / 결제</summary>
+  <summary>🔎예약 / 결제</summary>
   
  ![memberpay](https://github.com/diget611/Chazazo/assets/113296576/8ad32b33-31ea-4a16-80f4-b87cc51c0210)
   
@@ -107,7 +109,7 @@
 </details>
 
 <details>
-  <summary>리뷰</summary>
+  <summary>🔎리뷰</summary>
   
   ![review](https://github.com/diget611/Chazazo/assets/113296576/72d34f70-e845-4378-94d4-8f6dc2949254)
   
@@ -126,7 +128,7 @@
 <p align="center"><img src="https://github.com/diget611/Chazazo/assets/115057175/c9076f84-2ebd-4bfe-b2ee-35e56aa2e2ab" style="width: 510px;"></p>
 
 <details>
-  <summary>회원 정보 관리</summary>
+  <summary>🔎회원 정보 관리</summary>
   
   
   ![비밀번호 확인](https://github.com/diget611/Chazazo/assets/114971252/50688c6f-ddda-4d5f-ad2e-c35c2b55240d)
@@ -136,7 +138,7 @@
 </details>
 
 <details>
-  <summary>예약 관리</summary>
+  <summary>🔎예약 관리</summary>
   
   ![예약내역](https://github.com/diget611/Chazazo/assets/114971252/8e776ed7-8c6d-4fd3-9457-bb9ebf7ae734)
   ![예약취소](https://github.com/diget611/Chazazo/assets/114971252/130c6f4b-8302-47d6-a173-182a074ba770)
@@ -148,7 +150,7 @@
 </details>
 
 <details>
-  <summary>쿠폰 관리</summary>
+  <summary>🔎쿠폰 관리</summary>
   
   ![쿠폰관리](https://github.com/diget611/Chazazo/assets/114971252/3936c856-1aaf-4c0f-8f26-9ae559903978)
   ![관심지점](https://github.com/diget611/Chazazo/assets/114971252/5c756115-8d78-48a9-bb79-f5cdd470b62b)

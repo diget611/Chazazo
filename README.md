@@ -46,7 +46,9 @@
 > ![URL매핑](https://github.com/diget611/Chazazo/assets/115057175/d67f5a4c-2182-44d4-b0b0-b92d02240390)
 ---
 ### 주요기능
-<p align="center"><img src="https://github.com/diget611/Chazazo/assets/115057175/08c78c2a-db36-4810-84cb-395a30e9ea0b" style="width: 510px;"></p>
+<p align="center">
+  
+  ![상현](https://github.com/diget611/Chazazo/assets/113296576/35bcb739-1fc6-4e9a-b690-9b55f631f039)
 
 <details>
   <summary>회원가입 및 계정🔎</summary>
@@ -89,8 +91,10 @@
 
 ---
 
-<p align="center"><img src="https://github.com/diget611/Chazazo/assets/115057175/ea1eef52-0015-4c2b-b32d-94b2dc03c0d7" style="width: 510px;"></p>
-
+<p align="center">
+  
+  ![수정](https://github.com/diget611/Chazazo/assets/113296576/35092927-e327-4ee6-849f-85bba9ff0b3d)
+  
 <details>
   <summary>상품 조회🔎</summary>
 
@@ -142,8 +146,10 @@
 
 ---
 
-<p align="center"><img src="https://github.com/diget611/Chazazo/assets/115057175/c9076f84-2ebd-4bfe-b2ee-35e56aa2e2ab" style="width: 510px;"></p>
-
+<p align="center">
+  
+  ![유진](https://github.com/diget611/Chazazo/assets/113296576/6522077b-264e-4fe0-9e45-2d37ba5422fc)
+  
 <details>
   <summary>회원 정보 관리🔎</summary>
   

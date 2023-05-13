@@ -5,6 +5,7 @@
   3. [개발환경](#개발환경)
   4. [프로젝트기획](#프로젝트기획)
   5. [주요기능](#주요기능)
+  6. [테스트케이스](#테스트케이스)
 ---
 ### 기획의도
 ![기획의도](https://github.com/diget611/Chazazo/assets/115057175/76900a41-4656-44e4-b869-473818cbb27c)
@@ -28,17 +29,23 @@
 
 <details>
   <summary>회원가입 및 계정</summary>
-  <div>내용은 여기에</div>
+  
+  ![회원가입로그인](https://github.com/diget611/Chazazo/assets/115057175/399f885b-929b-4258-9af9-b1578587df37)
+  
 </details>
 
 <details>
   <summary>관리자 페이지</summary>
-  <div>내용은 여기에</div>
+  
+  ![관리자](https://github.com/diget611/Chazazo/assets/115057175/d59eabe1-2612-4fff-82a8-de20450185e3)
+  
 </details>
 
 <details>
   <summary>채팅 문의</summary>
-  <div>내용은 여기에</div>
+  
+  ![채팅문의](https://github.com/diget611/Chazazo/assets/115057175/9c95f36f-a6ec-4476-bbe6-19c6425c5331)
+  
 </details>
 
 ---
@@ -47,12 +54,14 @@
 
 <details>
   <summary>상품 조회</summary>
-  <div>내용은 여기에</div>
+  <div><img src="https://github.com/diget611/Chazazo/assets/113296576/ebf06da8-df38-406d-9236-0be6e8f4892f"</div>
 </details>
 
 <details>
   <summary>예약 / 결제</summary>
-  <div>내용은 여기에</div>
+  
+ ![memberpay](https://github.com/diget611/Chazazo/assets/113296576/8ad32b33-31ea-4a16-80f4-b87cc51c0210)
+  
 </details>
 
 <details>
@@ -78,3 +87,7 @@
   <summary>쿠폰 관리</summary>
   <div>내용은 여기에</div>
 </details>
+  
+---
+### 테스트케이스
+  https://docs.google.com/spreadsheets/d/1rj9soiH1hyUUnbb_U4HiE6TtXz4YejvCEcRbCBFXKgE/edit?usp=share_link

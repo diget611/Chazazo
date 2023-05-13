@@ -79,7 +79,7 @@ public class MemberController {
 			Map<String, Object> map = new HashMap<String, Object>();
 			int count = mService.countMember(username);
 			Pagination pagination = new Pagination();
-			pagination.pageInfo(10, page, count);
+			pagination.pageInfo(5, page, count);
 		
 			map.put("username", username);
 			map.put("pagination", pagination);

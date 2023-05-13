@@ -90,7 +90,48 @@
 	background-color: #fff;
 }
 
+ul{
+list-style:none;
+margin-right: 30px;
+padding-left:0px;
+}
 
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.4);
+}
+
+.modal-content {
+  background-color: #fff;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+  position: relative;
+}
+
+.close {
+  color: #aaa;
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
 </style>
 </head>
 <body>
@@ -254,20 +295,19 @@
 									<p class="txt-align">
 										<span class="icon talk-small"></span> 할인쿠폰을 등록하시면 결제 시 사용하실 수 있습니다. 
 									</p>								
-									<button  onclick="openForm()" type="button" class="btn-normal black layer-mypage-open" id="popupBtn" data-layer="layer-registCoupon">
+									<button  type="button" class="btn-normal black layer-mypage-open" id="popupBtn" >
 									할인쿠폰 등록하기 <span class="icon coupon"></span>
 									</button>								
 									</div>
 								</div>
-																	
-							
-						<div id="myForm" style="display:none;">				
+											
+						<div id="myForm" class = "modal" style="display:none;">				
 						<form  name="defaultFrm" action="<%=request.getContextPath() %>/registerCoupon" method="post">
-						<div class="layer-wrap layer-popup layer-mypage layer-registCoupon active" style="top: 293px; left: 298px; opacity: 0;">
-							<div class="pop-inner">
+						<div class="layer-wrap layer-popup layer-mypage layer-registCoupon active" style="top: 193px; left: 450px; opacity: 0;">
+							<div class="pop-inner modal-content ">
 								<div class="popup-top">
 									<h4>할인쿠폰 등록</h4>
-									<button type="button" class="layer-popup-close" data-layer="layer-registCoupon" onclick="closeForm()"><i class="fa-light fa-circle-x"></i>닫기 버튼</button>
+									<button type="button" class="layer-popup-close close" data-layer="layer-registCoupon" onclick="closeForm()"><i class="fa-light fa-circle-x"></i>x</button>
 								</div>
 								<div class="popup-cont layer-iscroll">
 									<div class="iscroll-in">
@@ -302,7 +342,7 @@
 						</form>
 						</div>		
 			
-									
+			 						
 								</div>
 		
 							<div>
@@ -320,9 +360,9 @@
 							<div class="infos-section">		
 							
 							<c:forEach items="${couponList }" var="coupon">					
-							<ul class="tiket-list">
+							<ul class="tiket-list" style="padding:10px;">
 									<li>
-										<div class="tiket-item coupon-item-container">
+										<div class="tiket-item coupon-item-container" style="padding:5px; padding-left:30px; ">
 											<div class="tiket-item-header">
 												<strong class="txt-color-red">${coupon.rate }% 할인</strong>
 												<p>${coupon.name }</p>
@@ -367,6 +407,20 @@
 	<jsp:include page="/WEB-INF/views/base/footer.jsp" />
 
 	<script>
+	
+	const popupBtn = document.getElementById('popupBtn');
+	popupBtn.addEventListener('click', () => {
+	  const myForm = document.getElementById('myForm');
+	  myForm.style.display = 'block';
+	});
+
+	// 모달창 닫기 함수
+	function closeForm() {
+	  const myForm = document.getElementById('myForm');
+	  myForm.style.display = 'none';
+	}
+	
+	
 	$('.main-nav').children().eq(2).children().css('color', '#18B4E9');
 
 	$('#historyBtn').on('click', function() {
@@ -400,8 +454,8 @@
 		function deleteMember(){
 			
 		Swal.fire({
-			   title: '정말로 그렇게 하시겠습니까?',
-			   text: '다시 되돌릴 수 없습니다. 신중하세요.',
+			   title: '정말로 탈퇴하시겠습니까?',
+			   text: '탈퇴하시면 회원 전용 서비스를 이용할 수 없습니다',
 			   icon: 'warning',
 			   
 			   showCancelButton: true, // cancel버튼 보이기. 기본은 원래 없음
@@ -431,9 +485,14 @@
 					},
 					success : function(result) {
 							if(result == 1){
-							 Swal.fire('탈퇴성공  ', '탈퇴합니다 ', 'success');
-							 location.href = '${pageContext.request.contextPath}/member/register';
-			                	
+								swal.fire({
+					      			title : "탈퇴완료",
+					      			 text: '차자조 렌트카를 이용해 주셔서 감사합니다',
+					      		    icon  : "success",
+					      		    closeOnClickOutside : false
+					      		}).then(function(){
+					      			location.href='${pageContext.request.contextPath}/logout';
+					      		});
 							}else{
 								swal.fire("실패", "작업수행에 실패하였습니다.", "warining");
 							}

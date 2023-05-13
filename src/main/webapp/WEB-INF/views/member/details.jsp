@@ -59,8 +59,8 @@
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	margin-right: 100px;
-	margin-left: 20px;
+	margin-right: 50px;
+	margin-left: 30px;
 
 }
 
@@ -71,7 +71,18 @@
 	box-shadow: 0 4px 14px 0 rgba(177, 177, 177, .2);
 	background-color: #fff;
 }
-
+.reservation-List-content {
+	margin: 0 0 8px;
+	border-radius: 16px;
+	box-shadow: 0 4px 14px 0 rgba(177, 177, 177, .2);
+	background-color: #fff;
+	padding:5px;
+	margin-bottom: 15px;
+}
+ul{
+list-style:none;
+padding-left:40px;
+}
 
 </style>
 </head>
@@ -247,72 +258,65 @@
 					<section class="carmore-section">
 						<div class="reservationList" style="padding-left:50px;" id="reservationList">
 							<div class="js-vrsi-container bg-white bg-shadow p-3 rounded-sm mb-3">
-								<div class="dc-flex justify-content-between align-items-center">
+								<div class="dc-flex justify-content-between align-items-center" style="margin-top:40px;">
 									<div class="dc-flex align-items-center">
-										<div
-											class="square-30 bg-color-grey-7 dc-flex justify-content-center align-items-center rounded-circle">
-											</div>
-									</div>
-									<div class="text-12 color-grey-2">
-										<span>예약번호&nbsp;</span><span
-											class="js-vrsi-txt-reserv-num font-weight-bold">${reservation.idx }</span>
-									</div>
-								</div>
-								<hr class="my-2">
-								<div class="dc-flex align juaenter">
-									<div
-										class="text-16 font-weight-bold color-grey-2 vreserv-car-model-name">${reservation.vehicleModel }</div>
-									<div class="ml-1">
-											<c:choose>
+								
+								
+					
+										<div class="infos-section">		
+										
+											<div class="reservation-List-content">				
+												<ul class="tiket-list">
+													<li>
+														<div class="tiket-item coupon-item-container">
+															<div class="tiket-item-header" style="padding-top:7px;">
+																<strong class="txt-color-red" >예약번호 &nbsp; &nbsp; </strong>
+																<strong class="txt-color-red" id="reservationIdx" >${reservation.idx } </strong>
+																<p>${reservation.startDate} ~ ${reservation.endDate}</p>
+															</div>
+													<ul class="info-list">
+														<li>
+															<div class="cont box-between">
+																<span class="tit">대여차량</span>
+																<span>${reservation.vehicleModel }</span>
+															</div>
+														</li>
+												<hr class="my-1">
+												
+												
+												<li>
+													<div class="cont box-between">
+													<span class="tit">예약상태</span>
+														<span><c:choose>
 																<c:when test="${reservation.state eq 0 }">
-																	<span class="badge-state badge-state-reserv-complete badge badge-primary"
-											style="display: none;">예약완료</span>
+																	<td>예약완료</td>
+																</c:when>
+																<c:when test="${reservation.state eq 1 }">
+																	<td>취소 처리중</td>
 																</c:when>
 																<c:otherwise>
-																	<span class="badge-state badge-state-cancel dc-none badge badge-dark"
-											style="display: none;">취소/환불</span>
+																	<td>취소 완료</td>
 																</c:otherwise>
-												</c:choose>
-										<span
-											class="badge-state badge-state-reserv-complete badge badge-primary"
-											style="">예약완료</span><span
-											class="badge-state badge-state-driving dc-none badge badge-primary"
-											style="display: none;">대여중</span><span
-											class="badge-state badge-state-return dc-none badge badge-dark"
-											style="display: none;">반납완료</span><span
-											class="badge-state badge-state-cancel dc-none badge badge-dark"
-											style="display: none;">취소/환불</span><span
-											class="badge-state badge-state-early-return-req dc-none badge badge-warning"
-											style="display: none;">조기반납 신청중</span><span
-											class="badge-state badge-state-contract-terminated dc-none badge badge-danger"
-											style="display: none;">계약종료</span><span
-											class="badge-state badge-state-extend dc-none badge badge-primary ml-2"
-											style="display: none;">연장</span><span
-											class="badge-state badge-state-reserv-waiting dc-none badge badge-primary"
-											style="display: none;">예약확정 중</span><span
-											class="badge-state badge-state-reserv-applying dc-none badge bg-color-grey-6 text-white"
-											style="display: none;">예약접수</span>
-									</div>
-								</div>
-								
-								<div
-									class="js-vrsi-txt-branch-name js-budget-summarized-hide text-14 color-grey-5 mt-1">${reservation.startDate} ~ ${reservation.endDate}</div>
-								<hr class="my-2">
-								<div class="js-vrsi-container-pay-method mb-1">
-									
-								</div>
-								<div class="js-vrsi-container-total-price js-vrsi-container-price-wrap ">
-									
-										
-									<div class="color-blue box-between">
-											<span class="text-12 font-weight-normal">총 결제 금액</span>
-											<span class="js-vrsi-txt-total-price text-16 font-weight-bold ml-1 font-300" style="color: #109CFF;">${reservation.finalPrice } 원</span>
+															</c:choose> </span>
+													</div>
+												</li>
+												<li>
+													<div class="cont box-between">
+													<span class="tit">결제시간</span>
+														<span>${reservation.paidTime  }</span>
+													</div>
+												</li>	
+													<li>
+													<div class="cont box-between">
+														<span class="tit">결제금액</span>
+														<span style="color: #109CFF;">${reservation.finalPrice  }  </span>
+													</div>
+												</li>												
+											</ul>
 										</div>
-								</div>
-								
-							<hr class="my-2">
-					
-						<c:if test="${reservation.state eq 0 }">
+									</li>
+								</ul>
+								<c:if test="${reservation.state eq 0 }">
 							<div>
 								<div
 									class="js-vrsi-txt-write-review-desc mt-2 text-14 color-grey-5 text-center dc-none tmobi-dc-none"
@@ -323,13 +327,19 @@
 								</div>
 							</div>
 						</c:if>
+						</div>
+						</div>
+					
+					
+					
 					</div>
 							
 					
 					
 					
-						<hr class="my-2">
+						<br>
 						
+						<div style="padding-right:10px; margin:10px;">
 						<div class="js-vrsi-container-total-price js-vrsi-container-price-wrap ">
 									운전자 정보
 										<div class="color-blue box-between">
@@ -349,7 +359,7 @@
 									
 										<div class="color-blue box-between">
 											<span class="text-12 font-weight-normal">가입된 보험</span>
-											<span class="js-vrsi-txt-total-price text-16 font-weight-bold ml-1 font-300">${reservation.insuranceName}</span>
+											<span class="js-vrsi-txt-total-price text-16 font-weight-bold ml-1 font-300">${reservation.insuranceName}보험</span>
 										</div>
 										
 									
@@ -403,16 +413,13 @@
 					
 					<hr class="my-2">
 					<c:if test="${reservation.state eq 0 }">
-					<div class="text-center space-1 dc-none dc-lg-block">
-						<button type="button" class="js-vpr-btn-go-main btn btn-wide btn-pill mx-auto px-6 btn-primary" id="delReserv-btn">예약 취소하기</button>
+					<div class="text-center space-1 dc-none dc-lg-block" style="margin-bottom: 20px;">
+						<button type="button" style="margin-bottom: 20px;" class="js-vpr-btn-go-main btn btn-wide btn-pill mx-auto px-6 btn-primary" id="delReserv-btn">예약 취소하기</button>
 					</div>
-					<div class="text-center space-2 dc-none dc-lg-block">
-						<button type="button" class="js-vpr-btn-go-main btn btn-wide btn-pill mx-auto px-6 btn-primary" id="review-btn">리뷰 쓰러가기</button>
-					</div>
-					<div class="dc-none js-vrsi-container-bottom-btn" data-type="r">
-					<button class="js-vrsi-btn-write-review btn btn-sm btn-grey-7 btn-block text-16 mt-3">리뷰쓰기</button>
-					</div>
-					</c:if>			
+					
+				
+					</c:if>		
+					</div>	
 							</div>
 							<div id="content" style="display:none;">
 							  
@@ -451,9 +458,13 @@
 					</section>
 				</div>
 			</div>
-			
+				</div>
+									
+								</div>
+								
+								
 		</div>
-		
+		</section>
 	</section>
 	
 	<jsp:include page="/WEB-INF/views/base/chat.jsp"/>
@@ -633,9 +644,14 @@
 				},
 				success : function(result) {
 						if(result == 1){
-						 Swal.fire('탈퇴성공  ', '탈퇴합니다 ', 'success');
-						 location.href = '${pageContext.request.contextPath}/member/register';
-		                	
+							swal.fire({
+				      			title : "탈퇴완료",
+				      			 text: '차자조 렌트카를 이용해 주셔서 감사합니다',
+				      		    icon  : "success",
+				      		    closeOnClickOutside : false
+				      		}).then(function(){
+				      			location.href='${pageContext.request.contextPath}/logout';
+				      		});	
 						}else{
 							swal.fire("실패", "작업수행에 실패하였습니다.", "warining");
 						}
@@ -650,9 +666,10 @@
 	function deleteMember(){
 		
 		Swal.fire({
-			   title: '정말로 그렇게 하시겠습니까?',
-			   text: '다시 되돌릴 수 없습니다. 신중하세요.',
+			title: '정말로 탈퇴하시겠습니까?',
+			   text: '탈퇴하시면 회원 전용 서비스를 이용할 수 없습니다',
 			   icon: 'warning',
+			   
 			   
 			   showCancelButton: true, // cancel버튼 보이기. 기본은 원래 없음
 			   confirmButtonColor: '#3085d6', // confrim 버튼 색깔 지정

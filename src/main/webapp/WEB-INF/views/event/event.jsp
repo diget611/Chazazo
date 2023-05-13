@@ -199,14 +199,28 @@
 			html += '	src="https://d1y0pslxvt2ep5.cloudfront.net/event/banner/banner_146_20230210020330.png">';
 			html += '		<div class="px-3 py-2">';
 			html += '		<div class="dc-flex flex-wrap justify-content-between align-items-center text-16 my-md-1">';
-			html += '		<span class="js-event-list-item-txt-peroid event-list-item-txt-peroid text-12 color-grey-5">2022.02.15~2023.06.30</span>';
+			html += '		<span class="js-event-list-item-txt-peroid event-list-item-txt-peroid text-12 color-grey-5">2023.02.15~2023.06.30</span>';
 			html += '	</div></div></div></div>';
 			html += '<div class="panel panel-default"><a class="js-btn-event link text-decoration-none w-100 mb-3 bg-shadow border-radius-16 overflow-hidden click-effect-press" id="js_event_list_item" data-s="225" data-p="0" data-i="3" data-l="event_tap" href="" style="display: block;">';
 			html += '<div class="cm-rounded bg-white"><img class="js-event-list-item-img event-list-item-img center-crop object-fit w-100" src="https://d1y0pslxvt2ep5.cloudfront.net/event/banner/banner_225_20230427012224.png">';
 			html += '	<div class="px-3 py-2"><div class="dc-flex flex-wrap justify-content-between align-items-center text-16 my-md-1"><span class="js-event-list-item-txt-peroid event-list-item-txt-peroid text-12 color-grey-5">2023.05.02~2023.06.01</span>';
 			html += '</div></div></div></a></div>';
-			html += '<div class="panel panel-default"><img src="https://dummyimage.com/700x150/a76bcf/fff" alt="없어"></div>';
-			html += '<div class="panel panel-default"><img src="https://dummyimage.com/700x150/589430/fff" alt="없어"></div>';
+			html += '<div class="panel panel-default">';
+			html += '<div class="cm-rounded bg-white">';
+			html += '<img class="js-event-list-item-img event-list-item-img center-crop object-fit w-100" src="https://d1y0pslxvt2ep5.cloudfront.net/event/banner/banner_83_20230111053029.png">';
+			html += '<div class="px-3 py-2">';
+			html += '<div class="dc-flex flex-wrap justify-content-between align-items-center text-16 my-md-1">';
+			html += '<span class="js-event-list-item-txt-peroid event-list-item-txt-peroid text-12 color-grey-5">2022.09.06~2024.12.31</span>';
+			html += '</div></div></div>';
+			html += '	</div>';
+			html += '<div class="panel panel-default">';
+			html += '<div class="cm-rounded bg-white">';
+			html += '<img class="js-event-list-item-img event-list-item-img center-crop object-fit w-100" src="<%=request.getContextPath()%>/resources/garoestate/assets/img/slide1/slider-image-1.jpg"style="height:172px;">';
+			html += '<div class="px-3 py-2">';
+			html += '<div class="dc-flex flex-wrap justify-content-between align-items-center text-16 my-md-1">';
+			html += '<span class="js-event-list-item-txt-peroid event-list-item-txt-peroid text-12 color-grey-5">2022.09.06~2024.12.31</span>';
+			html += '</div></div></div>';
+			html += '	</div>';
 			$('.panel-group').html(html);
 		}
 	</script>

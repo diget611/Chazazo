@@ -164,11 +164,12 @@
 					<section id="id-100" style="margin-top:200px;" >
 					<div class="card-body" id="passCheck">
 						<div class="text-center">
-							<div class="input-group input-group-outline my-4"style="margin-left:250px;">
-								<label>비밀번호 확인 </label>
-								<input type="password" id="passwordCheck" class="form-control" >
+							<div class="input-group " style="margin-left:200px; ">
+								<label><strong>비밀번호 확인이 필요합니다</strong> </label>
+								<input type="password" id="passwordCheck" class="form-control" style="border-left: 1px solid block;">
 							</div>
 						</div>
+						<br>
 						<div class="text-center">
 							<button class="btn bg-gradient-primary w-100 my-4 mb-2 " id="checkPwd"> 비밀번호 확인</button>
 						</div>
@@ -351,7 +352,6 @@
 			var data = {
  					name: $('#name').val(),
 					password :$('#password').val(),
-					
 					gender:$('#gender').val(),
 					birth:$('#birth').val(),
 					phoneNumber:$('#phoneNumber').val()
@@ -370,10 +370,11 @@
 	  	       	    //dataType:'json',
 	  	       	    //비밀번호 일치 확인..
 	                success: function(result){
-	                	if(result==1){
+	                	if(result==1 && checkPass==1){
+	                		
 	                		Swal.fire({
 	             			   title: '수정이 완료되었습니다!  ',
-	             			   text: '확인을 눌러주세요! ',
+	             			   text: '확인을 눌러주시면 첫화면으로 돌아갑니다!',
 	             			   icon: 'success',
 	             			  confirmButtonColor: '#3085d6', // confrim 버튼 색깔 지정
 	             			   confirmButtonText: '확인 ', // confirm 버튼 텍스트 지정
@@ -383,9 +384,11 @@
 	             			    	 location.href = '${pageContext.request.contextPath}/member/profile';
 	     			                
 	             			    }
-	             			});
+	             			 });
+	             			
 	                	}else{
-	                		alert("수정실패")	                	
+	                		Swal.fire("수정 실패","입력하신 정보를 한 번 더 확인해주세요!", 'error')
+	                	               	
 	            	      }
 	                },
 	               	error: function(){
@@ -399,8 +402,8 @@
 		function deleteMember(){
 	
 	Swal.fire({
-		   title: '정말로 그렇게 하시겠습니까?',
-		   text: '다시 되돌릴 수 없습니다. 신중하세요.',
+		title: '정말로 탈퇴하시겠습니까?',
+		   text: '탈퇴하시면 회원 전용 서비스를 이용할 수 없습니다',
 		   icon: 'warning',
 		   
 		   showCancelButton: true, // cancel버튼 보이기. 기본은 원래 없음
@@ -430,8 +433,14 @@
 				},
 				success : function(result) {
 						if(result == 1){
-						 Swal.fire('탈퇴성공  ', '탈퇴합니다 ', 'success');
-						 location.href = '${pageContext.request.contextPath}/member/register';
+							swal.fire({
+				      			title : "탈퇴완료",
+				      			 text: '차자조 렌트카를 이용해 주셔서 감사합니다',
+				      		    icon  : "success",
+				      		    closeOnClickOutside : false
+				      		}).then(function(){
+				      			location.href='${pageContext.request.contextPath}/logout';
+				      		});
 		                	
 						}else{
 							swal.fire("실패", "작업수행에 실패하였습니다.", "warining");

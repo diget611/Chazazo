@@ -69,7 +69,7 @@
 								</div>
 							</div>
 							<div id="chartDiv">
-								<canvas id="chart" class="chartCanvas" height="300"></canvas>
+								<canvas id="chart" class="chartCanvas" height="450"></canvas>
 							</div>
 						</div>
 					</div>
@@ -159,7 +159,7 @@
 		            }]
 		        },
 		        options: {
-		            responsive: true
+		        	maintainAspectRatio: false
 		        }			
 			});			
 		} else if($('#type').val() == 2) {
@@ -187,11 +187,25 @@
 		            }]
 		        },
 		        options: {
-		            responsive: true
+		        	maintainAspectRatio: false
 		        }			
 			});
 		}
 	}
+	
+	const canvas = $('.chartCanvas');
+    const cv = canvas.get(0).getContext('2d')
+	
+    const heig = $('#recentCanvas').height();
+    $(window).resize(function() {
+    	canvas.height(heig);
+        canvas.width($('#recentCanvas').width());
+    });
+    
+   	window.onload = function() {
+   		canvas.height(heig);
+        canvas.width($('#recentCanvas').width());
+   	};
 </script>
 </body>
 

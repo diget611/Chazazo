@@ -193,7 +193,8 @@
 	        		    icon  : "success",
 	        		    closeOnClickOutside : false
 	        		}).then(function(){
-						$('.modal').css('display', 'none');        			
+						$('.modal').css('display', 'none');
+						window.location.reload();
 	        		});
 				} else {
 					swal("에러", "상담 종료 과정에 오류가 발생했습니다. 잠시 후 다시 시도해 주세요.", "error");
@@ -203,8 +204,6 @@
 				swal("에러", "응답에 오류가 있습니다. 확인 후 다시 시도해 주세요.", "error");
 			}
 		});
-		
-		window.location.reload();
 	}
 	
 	function chatCheck() {

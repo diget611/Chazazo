@@ -82,36 +82,14 @@
 	box-shadow: 0 4px 14px 0 rgba(177, 177, 177, .2);
 	background-color: #fff;
 }
-
-table {
-	border-top: 1px solid black;
-	text-align: center;
-	width: 100%;
-	cursor: pointer;
-}
 .box-between{
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	margin-right: 100px;
-	margin-left: 20px;
+
+	margin-left: 10px;
 
 }
-th {
-	text-align: center;
-	border-bottom: 1px solid black;
-}
-
-td {
-	border-bottom: 1px solid black;
-}
-
-tbody tr:hover {
-	background-color: #f1f3f5;
-}
-
-
-
 .modal {
   display: none;
   position: fixed;
@@ -147,6 +125,20 @@ tbody tr:hover {
   color: black;
   text-decoration: none;
   cursor: pointer;
+}
+
+.reservation-List-content {
+	margin: 0 0 8px;
+	border-radius: 16px;
+	box-shadow: 0 4px 14px 0 rgba(177, 177, 177, .2);
+	background-color: #fff;
+	padding:5px;
+	margin-bottom: 15px;
+}
+ul{
+list-style:none;
+margin-right: 30px;
+padding-left:40px;
 }
 
 </style>
@@ -222,7 +214,7 @@ tbody tr:hover {
 							</sec:authorize>
 
 							<sec:authorize access="isAuthenticated()">
-								<div class="dealer-content">
+								<div class="">
 									<div class="inner-wrapper">
 
 
@@ -340,6 +332,8 @@ tbody tr:hover {
 									style="display: block; margin-top: 100px;">
 
 									<div id="hideRent">
+									
+									
 										<c:if test="${empty reservation }">
 											<p style="text-align: center; font-size: large;">
 												<strong> 진행 중인 렌트 내역이 없습니다 !!</strong>
@@ -349,26 +343,45 @@ tbody tr:hover {
 												class="js-mypage-btn-go-car-list btn btn-outline-primary btn-block max-w-lg-40rem mx-auto py-1"
 												onclick="moveRent();">렌트하러 가기</button>
 										</c:if>
+										
 										<sec:authorize access="hasRole('ROLE_USER')">
-											<table>
-												<thead>
-													<tr>
-														<th scope="row">예약번호</th>
-														<th scope="row">예약날짜</th>
-														<th scope="row">예약상태</th>
-														<th scope="row">차종류</th>
-														<th scope="row">대여지점</th>
-														<th scope="row">반납지점</th>
-													</tr>
-												</thead>
-												<tbody>
-													<c:forEach items="${reservation }" var="list">
-														<tr>
-															<td>${list.idx }</td>
-															<td>${list.paidTime }</td>
-															<c:choose>
+										<div>
+										<p>
+										${memberinfo.name } 님이 현재 예약하신 내역입니다 !
+										</p>
+									</div>
+									<div class="infos-section">		
+										<c:forEach items="${reservation }" var="list">	
+											<div class="reservation-List-content">				
+												<ul class="tiket-list">
+													<li>
+														<div class="tiket-item coupon-item-container">
+															<div class="tiket-item-header" style="padding-top:7px;">
+																<strong class="txt-color-red">예약번호 &nbsp; &nbsp; ${list.idx } </strong>
+																<p>${list.returnLocationName }</p>
+															</div>
+													<ul class="info-list">
+														<li>
+															<div class="cont box-between">
+																<span class="tit">대여차량</span>
+																<span>${list.vehicleModel }</span>
+															</div>
+														</li>
+												<hr class="my-1">
+												<li>
+													<div class="cont box-between">
+													<span class="tit">결제시간</span>
+														<span>${list.paidTime  }</span>
+													</div>
+												</li>	
+												
+												<li>
+													<div class="cont box-between">
+													<span class="tit">예약상태</span>
+														<span style="background-color: skyblue; border-radius: 10px;"> 
+														<c:choose>
 																<c:when test="${list.state eq 0 }">
-																	<td>예약완료</td>
+																	<td>&nbsp;예약완료&nbsp;</td>
 																</c:when>
 																<c:when test="${list.state eq 1 }">
 																	<td>취소 처리중</td>
@@ -376,14 +389,24 @@ tbody tr:hover {
 																<c:otherwise>
 																	<td>취소 완료</td>
 																</c:otherwise>
-															</c:choose>
-															<td>${list.vehicleModel }</td>
-															<td>${list.rentLocationName }</td>
-															<td>${list.returnLocationName }</td>
-														</tr>
-													</c:forEach>
-												</tbody>
-											</table>
+															</c:choose>  </span>
+													</div>
+												</li>
+													<li>
+													<div class="cont box-between">
+														<span class="tit">반납지점</span>
+														<span>${list.returnLocationName }  </span>
+													</div>
+												</li>												
+											</ul>
+										</div>
+									</li>
+								</ul>
+								</div>
+							</c:forEach>
+						</div>
+
+									
 											
 							</sec:authorize>
 							<sec:authorize access="isAuthenticated()">
@@ -469,9 +492,7 @@ tbody tr:hover {
 	</section>
 
 				
-	<sec:authorize access="isAuthenticated() " var="state">
-	 
-	</sec:authorize>
+	
 	
 	
 
@@ -480,7 +501,6 @@ tbody tr:hover {
 
 	<script>
 	
-		var ismember = ${state};
 		
 		$('tr').on('click', function() {
 			
@@ -542,9 +562,10 @@ tbody tr:hover {
 function deleteMember(){
 	
 	Swal.fire({
-		   title: '정말로 그렇게 하시겠습니까?',
-		   text: '다시 되돌릴 수 없습니다. 신중하세요.',
+		title: '정말로 탈퇴하시겠습니까?',
+		   text: '탈퇴하시면 회원 전용 서비스를 이용할 수 없습니다',
 		   icon: 'warning',
+		   
 		   
 		   showCancelButton: true, // cancel버튼 보이기. 기본은 원래 없음
 		   confirmButtonColor: '#3085d6', // confrim 버튼 색깔 지정
@@ -573,9 +594,14 @@ function deleteMember(){
 				},
 				success : function(result) {
 						if(result == 1){
-						 Swal.fire('탈퇴성공  ', '탈퇴합니다 ', 'success');
-						 location.href = '${pageContext.request.contextPath}/member/register';
-		                	
+							 swal.fire({
+					      			title : "탈퇴완료",
+					      			 text: '차자조 렌트카를 이용해 주셔서 감사합니다',
+					      		    icon  : "success",
+					      		    closeOnClickOutside : false
+					      		}).then(function(){
+					      			location.href='${pageContext.request.contextPath}/logout';
+					      		});
 						}else{
 							swal.fire("실패", "작업수행에 실패하였습니다.", "warining");
 						}
@@ -736,7 +762,6 @@ function deleteMember(){
 			})
 			
 		}
-		console.log(state);
 		
 		$('[name=pageBtn]').on('click', function() {
 			let page = $(this).val();
@@ -754,14 +779,14 @@ function deleteMember(){
 		
 	 	
 		$("#nextBtn").on('click', function() {
-		if(ismember == true){
+		
 			
 			let page =  ${pagination.paging};
 			if(page + 1 > ${pagination.paging}) page = ${pagination.paging};
 			else page++;
 			
 			location.href="${pageContext.request.contextPath}/member/profile?page=" + page;
-		}
+		
 		})
 		
 	

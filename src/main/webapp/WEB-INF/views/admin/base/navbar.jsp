@@ -7,4 +7,7 @@
 	<a href="#" class="sidebar-toggler flex-shrink-0">
 		<i class="fa fa-bars"></i>
 	</a>
+	<a href="<%=request.getContextPath()%>" class="flex-shrink-0" style="margin-left:950px; border-radius: 50%;padding: 8px 10px; background-color:white;">
+		<i class="fa fa-home"></i>
+	</a>
 </nav>

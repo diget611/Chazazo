@@ -8,7 +8,7 @@
   4. [프로젝트기획](#프로젝트기획)
   5. [주요기능](#주요기능)
   6. [테스트케이스](#테스트케이스)
-  7. [HISTORY]
+  7. [히스토리](#히스토리)
 ---
 ### 기획의도
 ![기획의도](https://github.com/diget611/Chazazo/assets/115057175/76900a41-4656-44e4-b869-473818cbb27c)
@@ -269,7 +269,7 @@
 > [테스트케이스 보러가기](https://docs.google.com/spreadsheets/d/1rj9soiH1hyUUnbb_U4HiE6TtXz4YejvCEcRbCBFXKgE/edit?usp=share_link)
   
  ---
- ### ✅HISTORY
+ ### ✅히스토리
   
 ![히스토리](https://github.com/diget611/Chazazo/assets/113296576/77f42091-7132-45d0-9e31-94277dacba3f)
 

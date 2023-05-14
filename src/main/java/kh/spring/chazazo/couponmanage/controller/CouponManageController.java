@@ -51,9 +51,6 @@ public class CouponManageController {
 	
 		int totalCount = cService.totalCoupon(map);
 		
-		System.out.println(totalCount);
-		
-
 		int count = cmService.countCouponCode(couponCode);
 		if(totalCount == 1) {
 			return 1;

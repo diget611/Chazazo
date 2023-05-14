@@ -205,12 +205,20 @@ padding-left:40px;
 								style="visibility: visible; animation-name: fadeInRight;">
 								<div class="panel-heading">
 									<h3 class="panel-title">
+									<sec:authorize access="isAuthenticated()">
 										<button id="historyBtn" type="button"
 											class="btn btn-outline-primary">예약내역</button>
 										<br>
+										</sec:authorize>
+										<sec:authorize access="!isAuthenticated()">
+												<button id="none-Member-history" type="button"
+													class="btn btn-outline-primary">비회원 예약 조회</button>
+												<br>
+											</sec:authorize>
 
 									</h3>
 								</div>
+								
 							</div>
 						</div>
 						<sec:authorize access="isAuthenticated()">
@@ -316,6 +324,7 @@ padding-left:40px;
 										</div>
 									</li>
 								</ul>
+								<sec:authorize access="hasRole('ROLE_USER')">
 								<c:if test="${reservation.state eq 0 }">
 							<div>
 								<div
@@ -327,6 +336,7 @@ padding-left:40px;
 								</div>
 							</div>
 						</c:if>
+						</sec:authorize>
 						</div>
 						</div>
 					
@@ -617,7 +627,6 @@ padding-left:40px;
 
 	})
 	
-		
 	
 	function deleteReservation(){
 		

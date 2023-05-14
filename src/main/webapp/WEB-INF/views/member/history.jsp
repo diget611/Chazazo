@@ -652,7 +652,6 @@ cursor:pointer;
 			
 			function delMember(){
 				var username = $('#username').val();
-				console.log(username);
 				$.ajax({
 						url:"${pageContext.request.contextPath}/member/profile" ,
 						type: "DELETE",

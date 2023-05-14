@@ -489,13 +489,14 @@ cursor:pointer;
 										
 										
 										<div class="color-blue box-between">
-											<div class="pt-2 pb-3 text-50 color-grey-3">차자조 공지사항</div>
+											<div class="pt-2 pb-3 text-50 color-grey-3" style="font-size:20px; font-style: italic;">차자조 공지사항</div>
 											<a href="<%=request.getContextPath()%>/notice">더보기</a>
 										</div>
+										<div style="cursor:pointer;">
 											<c:forEach var="notice" items="${noticeList}">
 											   <div class="title">${notice.title}</div>
 											</c:forEach>
-											
+										</div>
 											<!-- 모달 창 -->
 											<div id="myModal" class="modal">
 											    <div class="modal-content">
@@ -620,7 +621,6 @@ function deleteMember(){
 	
 	function delMember(){
 		var username = $('#username').val();
-		console.log(username);
 		$.ajax({
 				url:"${pageContext.request.contextPath}/member/profile" ,
 				type: "DELETE",
@@ -696,6 +696,8 @@ function deleteMember(){
 			$('#content').html(html);
 		}
 		
+		
+		
 		function checkForm(){
 			let testReservationCode = /^[0-9]*$/;
 			let testName = /^[가-힣]{2,10}$/;
@@ -742,7 +744,6 @@ function deleteMember(){
 						Swal.fire('예약내역이 없습니다', '입력하신 정보를 다시 확인해주세요',   'error');
 					}else{
 					getNoneResr(result);
-					console.log(result);
 					}
 				},
 				error: function(){
@@ -757,7 +758,7 @@ function deleteMember(){
 		
 		function getNoneResr(result){
 			var noneList = result.noneReservation;
-			console.log(noneList);
+			
 			var html = '';
 			if(noneList == null) {
 				html += '					<p style="text-align: center; font-size: large;"><strong>예약 정보가 없습니다.</strong></p><br>'
@@ -776,27 +777,38 @@ function deleteMember(){
 						html += '									<p>'+ noneList.startDate +' ~ '+noneList.endDate+'</p>';
 						
 						html += '								</div>';
-						html += '						<ul class="info-list">';
-						html += '							<li>';
+						html += '									<ul class="info-list">';
+						html += '									<li>';
 						html += '									<div class="cont box-between">';
-						html += '					<span class="tit">대여차량</span>';
+						html += '										<span class="tit">대여차량</span>';
 						html += '										<span>'+noneList.vehicleModel +'</span>';
-						html += '				</div>';
-						html += '				</li>';
-						html += '				<hr class="my-1">';
-						html += '					<li>';
-						html += '					<div class="cont box-between">';
-						html += '					<span class="tit">결제금액</span>';
-						html += '					<span style="color: #109CFF;">'+noneList.finalPrice  +' </span>';
-						html += '	</div>	';
-						html += '			</li>												';
-						html += '				</ul>		';
-						html += '			</div>';
-					html += '		</li>		';
-					html += '		</ul>';
-			
-					html += '	</div>';
-						html += '	</div>';
+						html += '									</div>';
+						html += '									</li>';
+						html += '										<hr class="my-1">';
+						html += '									<li>';
+						html += '										<div class="cont box-between">';
+						html += '										<span class="tit">예약상태</span>';
+									if (noneList.state === 0) {			
+						html += '  										<span style="color: #109CFF; border-radius: 10px;">예약완료</span>';
+									} else if (noneList.state === 1) {
+						html += '  										<span style="color:red; color:white; border-radius: 10px;">취소대기중</span>';
+									}
+						html +=  ' 										 <span style="color:red; border-radius: 10px;">예약취소</span>';
+							       
+						html += '									 </div>	';
+						html += '									</li>';
+						html += '									<li>';				
+						html += '										<div class="cont box-between">';
+						html += '											<span class="tit">결제금액</span>';
+						html += '											<span style="color: #109CFF;">'+noneList.finalPrice  +' </span>';
+						html += '										</div>	';
+						html += '										</li>												';
+						html += '									</ul>		';
+						html += '								</div>';
+						html += '								</li>		';
+						html += '							</ul>';
+						html += '							</div>';
+						html += '							</div>';
 					
 			}
 			$('#content').html(html);

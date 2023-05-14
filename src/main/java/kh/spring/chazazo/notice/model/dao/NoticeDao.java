@@ -26,4 +26,8 @@ public class NoticeDao {
 	public int noticeCount() {
 		return session.selectOne("notice.count");
 	}
+	
+	public List<NoticeDto> selectSearch(String searchword){
+		return session.selectList("notice.selectSearch", searchword);
+	}
 }

@@ -94,29 +94,30 @@ private AdminVehicleService aService;
 	@GetMapping("/profile/reservation")
 	public String viewReservationListUser(ModelAndView mv, Principal prin) {
 	
-		Map<String, Object> result = new HashMap<String,Object>();
+		Map<String, Object> map = new HashMap<String,Object>();
 		
 		if(prin == null) {
 			mv.setViewName("member/mypage");
 			return "1";
 			
 		}else {
-			String loginId = prin.getName();
+			String username = prin.getName();
 			
-			mv.addObject("reservation", pService.selectList(loginId));
-			result.put("reservation", pService.selectList(loginId));
+			mv.addObject("reservation", pService.selectList(username));
+			map.put("reservation", pService.selectList(username));
 			
-			mv.addObject("memberinfo", mService.selectMypageOne(loginId));
-			result.put("memberinfo", mService.selectMypageOne(loginId));
+			mv.addObject("memberinfo", mService.selectMypageOne(username));
+			map.put("memberinfo", mService.selectMypageOne(username));
 			
 			
-			return new Gson().toJson(result);
+			return new Gson().toJson(map);
 		}
 		
 	}	
 	
 	@GetMapping("profile/history")
-	public ModelAndView allReservationList(ModelAndView mv, Principal prin,@RequestParam(required = false, defaultValue = "1") String page, @RequestParam(required = false, defaultValue = "4") String state) {
+	public ModelAndView allReservationList(ModelAndView mv, Principal prin,@RequestParam(required = false, defaultValue = "1") String page, 
+											@RequestParam(required = false, defaultValue = "4") String state) {
 		
 		
 		String username = prin.getName();
@@ -124,24 +125,22 @@ private AdminVehicleService aService;
 		int pageData = Integer.parseInt(page);
 		int stateData = Integer.parseInt(state);
 		
-		System.out.println(pageData + "|" + stateData);
 		Map<String, Object> map = new HashMap<String, Object>();
-		Map<String, Object> result = new HashMap<String, Object>();
+		
 		map.put("username", username);
 		map.put("state", state);
+		
 		int count = pService.countMember(map);
 		Pagination pagination = new Pagination();
 		pagination.pageInfo(10, pageData, count);
 	
 	
-		
-		
+		Map<String, Object> result = new HashMap<String, Object>();
 		
 		result.put("pagination", pagination);
 		result.put("username", username);
 		result.put("state", state);
 		
-		 System.out.println(map+"ssssssssss");		
 		mv.addObject("memberinfo", mService.selectMypageOne(username));
 		mv.addObject("reservation", pService.allResList(result));
 		mv.addObject("pagination", pagination);
@@ -156,9 +155,6 @@ private AdminVehicleService aService;
 	// 비회원 예약 조회 
 	@GetMapping("/profile/nonereservation")
 	public String viewNoneReservationListUser(ModelAndView mv, int paymentIdx, PaymentReqDto data) {
-		
-		
-		
 		Map<String, Object> map = new HashMap<String,Object>();
 		 
 			int result = pService.selectNoneM(data);
@@ -221,11 +217,7 @@ private AdminVehicleService aService;
 		return result;
 	}
 	
-	//결제환불처리
-	@PostMapping("/profile/payment/{idx}")
-	public ModelAndView cancelKpay(ModelAndView mv) {
-		return mv;
-	}
+	
 	
 
 }

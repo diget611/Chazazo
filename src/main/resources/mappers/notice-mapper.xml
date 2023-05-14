@@ -34,7 +34,20 @@
 	</select>
 	
 	<select id="selectNotice" resultType="NoticeDto">
-		SELECT * FROM NOTICE WHERE IDX BETWEEN 1 AND 4 ORDER BY CREATE_DATE DESC
+		SELECT *
+ 			FROM (
+		    SELECT *
+		    FROM NOTICE
+		    ORDER BY CREATE_DATE
+			 )WHERE ROWNUM &lt;= 4
 	</select>
 	
+	<select id="selectSearch" resultType="NoticeDto">
+		SELECT * FROM NOTICE
+		<trim prefix="where">
+			<if test="searchWord != null">
+				TITLE LIKE '%' || #{searchWord} || '%' OR CONTENT LIKE '%' || #{searchWord} || '%' 
+			</if>
+		</trim>
+	</select>
 </mapper>

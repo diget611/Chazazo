@@ -64,7 +64,6 @@ public class MemberController {
 	}
 
 
-	// 마이페이지에 들어가는 url
 	@GetMapping("/profile")
 	public ModelAndView viewMemberOne(ModelAndView mv, Principal prin,@RequestParam(required = false, defaultValue = "1") int page) {
 		
@@ -76,11 +75,11 @@ public class MemberController {
 			
 		}else{
 			String username = prin.getName();
-			System.out.println(username);
-			Map<String, Object> map = new HashMap<String, Object>();
 			int count = mService.countMember(username);
 			Pagination pagination = new Pagination();
 			pagination.pageInfo(7, page, count);
+			
+			Map<String, Object> map = new HashMap<String, Object>();
 		
 			map.put("username", username);
 			map.put("pagination", pagination);
@@ -88,7 +87,7 @@ public class MemberController {
 			mv.addObject("memberinfo", mService.selectMypageOne(username));
 			mv.addObject("reservation", pService.pagingnation(map));
 			mv.addObject("pagination", pagination);
-			mv.addObject("noticeList", nService.selectNotice()); 
+			mv.addObject("noticeList", nService.selectNotice());
 			mv.setViewName("member/mypage");
 		
 		}
@@ -196,7 +195,7 @@ public class MemberController {
 	
 	@DeleteMapping("/profile")
 	public int deleteMember(Principal prin) {
-		// 회원탈퇴 / DeleteMapping
+		
 		String username = prin.getName();
 		int result = mService.deleteMember(username);
 		return result;

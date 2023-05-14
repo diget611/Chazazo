@@ -134,18 +134,7 @@
 										</div>
 									</a>
 								</div>
-								<div class="panel panel-default">
-									<img src="https://dummyimage.com/700x150/18B4E9/fff" alt="없어">
-								</div>
-								<div class="panel panel-default">
-									<img src="https://dummyimage.com/700x150/18B4E9/fff" alt="없어">
-								</div>
-								<div class="panel panel-default">
-									<img src="https://dummyimage.com/700x150/18B4E9/fff" alt="없어">
-								</div>
-								<div class="panel panel-default">
-									<img src="https://dummyimage.com/700x150/18B4E9/fff" alt="없어">
-								</div>
+								
 							</div>
 					</div>
 	</section>
@@ -221,6 +210,23 @@
 			html += '<span class="js-event-list-item-txt-peroid event-list-item-txt-peroid text-12 color-grey-5">2022.09.06~2024.12.31</span>';
 			html += '</div></div></div>';
 			html += '	</div>';
+			html += '<div class="panel panel-default">';
+			html += '<div class="cm-rounded bg-white">';
+			html += '<img class="js-event-list-item-img event-list-item-img center-crop object-fit w-100" src="<%=request.getContextPath()%>/resources/img/banner design.jpeg"style="height:172px;">';
+			html += '<div class="px-3 py-2">';
+			html += '<div class="dc-flex flex-wrap justify-content-between align-items-center text-16 my-md-1">';
+			html += '<span class="js-event-list-item-txt-peroid event-list-item-txt-peroid text-12 color-grey-5">2022.03.06~2024.01.31</span>';
+			html += '</div></div></div>';
+			html += '	</div>';
+			html += '<div class="panel panel-default">';
+			html += '<div class="cm-rounded bg-white">';
+			html += '<img class="js-event-list-item-img event-list-item-img center-crop object-fit w-100" src="<%=request.getContextPath()%>/resources/img/reviewbanner.png"style="height:172px;">';
+			html += '<div class="px-3 py-2">';
+			html += '<div class="dc-flex flex-wrap justify-content-between align-items-center text-16 my-md-1">';
+			html += '<span class="js-event-list-item-txt-peroid event-list-item-txt-peroid text-12 color-grey-5">~2026.12.31</span>';
+			html += '</div></div></div>';
+			html += '	</div>';
+
 			$('.panel-group').html(html);
 		}
 	</script>

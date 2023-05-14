@@ -289,7 +289,6 @@
 		            		 $('#updateForm').show();
 		            		 $('#passCheck').hide();
 		            	 } else {
-		            		 console.log('불일치');
 		            		 swal.fire("비밀번호 오류","비밀번호가 일치하지 않습니다.", {icon: "error"});
 		            	 }
 		             },
@@ -374,8 +373,8 @@
 	             			   title: '수정이 완료되었습니다!  ',
 	             			   text: '확인을 눌러주시면 첫화면으로 돌아갑니다!',
 	             			   icon: 'success',
-	             			  confirmButtonColor: '#3085d6', // confrim 버튼 색깔 지정
-	             			   confirmButtonText: '확인 ', // confirm 버튼 텍스트 지정
+	             			   confirmButtonColor: '#3085d6', 
+	             			   confirmButtonText: '확인 ', 
 	         
 	             			}).then(result => {
 	             			    if (result.isConfirmed) { // 만약 모달창에서 confirm 버튼을 눌렀다면

@@ -219,8 +219,12 @@
   <summary>회원 정보 관리🔎</summary>
   
   ![비밀번호 확인](https://github.com/diget611/Chazazo/assets/114971252/50688c6f-ddda-4d5f-ad2e-c35c2b55240d)
-  ![회원정보수정](https://github.com/diget611/Chazazo/assets/114971252/7e5f3c01-d7a5-49b3-9f5f-6fce8920e4c1)
 
+  ![회원정보](https://github.com/diget611/Chazazo/assets/114971252/04a49e37-4dde-4208-8373-32975cdc4e17)
+  ![회원정보수정](https://github.com/diget611/Chazazo/assets/114971252/7e5f3c01-d7a5-49b3-9f5f-6fce8920e4c1)
+  ![회원정보1](https://github.com/diget611/Chazazo/assets/114971252/89a60abd-21ed-46c7-b11d-7635f0594f33)
+
+  ![회원정보2](https://github.com/diget611/Chazazo/assets/114971252/52ef57f6-9658-4618-9399-4e9436c89ccc)
    |핵심 기능|기능 설명|
   |--|----|
   |**회원정보**|로그인한 회원 정보 출력|
@@ -236,9 +240,19 @@
   <summary>예약 관리🔎</summary>
   
   ![예약내역](https://github.com/diget611/Chazazo/assets/114971252/8e776ed7-8c6d-4fd3-9457-bb9ebf7ae734)
+  ![예약](https://github.com/diget611/Chazazo/assets/114971252/78cf9da8-2809-4da5-925c-1d53b51a1c83)
+
   ![예약취소](https://github.com/diget611/Chazazo/assets/114971252/130c6f4b-8302-47d6-a173-182a074ba770)
+  ![예약3](https://github.com/diget611/Chazazo/assets/114971252/cbe97cea-9576-425f-a76e-c71cc02e53b6)
+  ![예약취소](https://github.com/diget611/Chazazo/assets/114971252/c53ee63c-d309-4008-a318-c9256cec20c2)
+
+
   ##### 비회원
   ![비회원 예약](https://github.com/diget611/Chazazo/assets/114971252/4ae01cd9-529b-45c8-9f7a-fde3e168fd37)
+  ![예약1](https://github.com/diget611/Chazazo/assets/114971252/829e9e3b-4c4d-480e-a12b-d9f5429d284f)
+  ![예약2](https://github.com/diget611/Chazazo/assets/114971252/6fdc3ccb-6207-4d77-ae00-9f853e0a3a46)
+
+
   
   |핵심 기능|기능 설명|
   |--|----|
@@ -254,12 +268,15 @@
   <summary>쿠폰 관리🔎</summary>
   
   ![쿠폰관리](https://github.com/diget611/Chazazo/assets/114971252/3936c856-1aaf-4c0f-8f26-9ae559903978)
-  ![관심지점](https://github.com/diget611/Chazazo/assets/114971252/5c756115-8d78-48a9-bb79-f5cdd470b62b)
+  ![쿠폰](https://github.com/diget611/Chazazo/assets/114971252/47d59523-c272-4644-b0fb-684144a7b464)
 
-    |핵심 기능|기능 설명|
+  <!-- ![관심지점](https://github.com/diget611/Chazazo/assets/114971252/5c756115-8d78-48a9-bb79-f5cdd470b62b) -->
+
+  |핵심 기능|기능 설명|
   |--|----|
-  |**쿠폰 등록**|쿠폰 중복 검사 후 쿠폰 등록|
+  |**쿠폰 등록**|쿠폰 중복 검사 후 쿠폰 등록 |
   |**쿠폰 조회**|사용가능한 쿠폰 조회|
+  
 
   
 </details>

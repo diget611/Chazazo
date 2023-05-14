@@ -118,27 +118,10 @@ tbody tr:hover {
 						
 							
 								
-								<div class="tbl-box">
-									<table class="tbl-type01">
-										
-										<thead>
-											<tr>
-												<th>번호</th>
-												<th>제목</th>
-												<th>작성일</th>
-											</tr>
-										</thead>
-									<c:forEach items="${noticeList }" var="list">
-									<tbody>
-										<tr>
-											<td>${list.idx }</td>
-											<td>${list.title }</td>
-											<td>${list.createDate}</td>
-										</tr>
-									</tbody>
-									</c:forEach>
-									</table>
-								</div>
+								
+								<div class="feat-list">
+								<div class="panel-group"></div>
+							</div>
 								<!-- //게시판 -->
 
 								<div style='text-align: center;	margin-top: 10px;'>
@@ -208,10 +191,8 @@ tbody tr:hover {
 	
 	
 	
-	
-	
-	
-	
+		window.onload = loadPage();
+		$('#search').on('input', loadPage);
 		
 		function loadPage() {
 			
@@ -222,13 +203,11 @@ tbody tr:hover {
 			} else {
 			}
 			
-			let data = {
-				"searchWord" : searchWord
-			};
-			
 			$.ajax({
-				url: '${pageContext.request.contextPath}/inquiry/pageload',
-				data: data,
+				url: '${pageContext.request.contextPath}/notice/search',
+				data: {
+					"searchWord" : searchWord
+				},
 				type: 'get',
 				dataType: 'json',
 				success: function(result) {
@@ -239,8 +218,23 @@ tbody tr:hover {
 				}
 			});
 		}
-		
-		
+		function getList(result) {
+			var html = '';
+       	 	for(var i in result) {
+       			var list = result[i];
+       			html += '<div class="panel panel-default">'
+           		html += '	<div class="panel-heading">'
+				html += '		<h4 class="panel-title fqa-title collapsed" data-toggle="collapse" data-target="#fqa' + i + '" aria-expanded="false">' + list.title + '</h4>'
+				html += '	</div>'
+				html += '	<div id="fqa' + i + '" class="panel-collapse fqa-body collapse" aria-expanded="false" style="height: 0px;">'
+				html += '		<div class="panel-body">'+ list.content +'</div>'
+				html += '	</div>'
+				html += '</div>'
+				}
+       		$('.panel-group').html(html);
+		}
+			
+
 	</script>
 </body>
 </html>

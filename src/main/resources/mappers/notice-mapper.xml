@@ -42,12 +42,12 @@
 			 )WHERE ROWNUM &lt;= 4
 	</select>
 	
-	<select id="selectSearch" resultType="NoticeDto">
-		SELECT * FROM NOTICE
-		<trim prefix="where">
-			<if test="searchWord != null">
+	<select id="selectSearch" parameterType="map" resultType="NoticeDto">
+	    SELECT * FROM NOTICE
+	   	 <trim prefix="where" >
+	        <if test="searchWord != null">
 				TITLE LIKE '%' || #{searchWord} || '%' OR CONTENT LIKE '%' || #{searchWord} || '%' 
 			</if>
-		</trim>
+  		  </trim>
 	</select>
 </mapper>

@@ -1,6 +1,7 @@
 package kh.spring.chazazo.notice.model.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +28,7 @@ public class NoticeDao {
 		return session.selectOne("notice.count");
 	}
 	
-	public List<NoticeDto> selectSearch(String searchword){
-		return session.selectList("notice.selectSearch", searchword);
+	public List<NoticeDto> selectSearch(Map<String, String> data){
+		return session.selectList("notice.selectSearch", data);
 	}
 }

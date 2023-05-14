@@ -494,10 +494,10 @@ cursor:pointer;
 										</div>
 										<div style="cursor:pointer;">
 											<c:forEach var="notice" items="${noticeList}">
-											   <div class="title">${notice.title}</div>
+											    <div class="title">${notice.title}</div>
 											</c:forEach>
 										</div>
-											<!-- 모달 창 -->
+											<!-- 모달 창-->
 											<div id="myModal" class="modal">
 											    <div class="modal-content">
 											        <span class="close">&times;</span>
@@ -508,7 +508,7 @@ cursor:pointer;
 											        </c:forEach>
 											        </p>
 											    </div>
-											</div>
+											</div> 
 										
 									</section>
 
@@ -576,7 +576,6 @@ cursor:pointer;
 		});
 		
 		
-		
 		$(document).ready(function() {
 		    // title 클릭 시 모달 창 띄우기
 		    $(".title").click(function() {
@@ -593,7 +592,7 @@ cursor:pointer;
 		    });
 		});
 
-	
+
 
 function deleteMember(){
 	

@@ -17,5 +17,7 @@ public class NoticeDto {
 	private Date createDate;
 	private Date updateDate;
 	private Date deleteDate;
+	private String searchWord;
+	
 
 }

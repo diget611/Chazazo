@@ -1,6 +1,7 @@
 package kh.spring.chazazo.notice.model.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,6 +29,11 @@ public class NoticeServiceImpl implements NoticeService {
 	@Override
 	public int noticeCount() {
 		return dao.noticeCount();
+	}
+
+	@Override
+	public List<NoticeDto> selectSearch(Map<String, String> data) {
+		return dao.selectSearch(data);
 	}
 
 }

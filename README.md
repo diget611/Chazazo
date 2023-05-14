@@ -1,6 +1,6 @@
 ![header](https://capsule-render.vercel.app/api?type=wave&color=a5c4e0&height=300&section=header&text=CHAZAZO&fontSize=90)
 
-# chazazo
+# chazazo :blue_car: 렌트카 사이트 
 ## CONTENTS
   1. [기획의도](#기획의도)
   2. [팀원소개](#팀원소개)

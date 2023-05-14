@@ -13,7 +13,7 @@
 ![기획의도](https://github.com/diget611/Chazazo/assets/115057175/76900a41-4656-44e4-b869-473818cbb27c)
 ---
 ### 팀원소개
-![팀원소개](https://github.com/diget611/Chazazo/assets/115057175/6af89aaf-d1fd-4032-ab23-775b0743a23d)
+![팀원소개](https://github.com/diget611/Chazazo/assets/113296576/e2510030-03ab-454d-92bc-3e89849bb994)
 ---
 ### 개발환경
 ![개발환경](https://github.com/diget611/Chazazo/assets/115057175/d4ae43f4-eb2d-4a36-8be6-c5ef7ea53df5)

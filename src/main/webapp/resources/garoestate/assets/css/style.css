@@ -1192,6 +1192,7 @@ Asside widgets CSS
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
+    color:black;
 }
 .panel.sidebar-menu .panel-heading {
     text-transform: uppercase;
@@ -1963,6 +1964,7 @@ single property page
 .single-property-content {
     background-color: #FFF;
     padding: 0px 15px 20px;
+    color:black;
 } 
 
 .lSGallery {

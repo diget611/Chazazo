@@ -47,7 +47,9 @@
 	box-shadow: 0 4px 14px 0 rgba(177, 177, 177, .2);
 	background-color: #fff;
 }
-
+body{
+color:black;
+}
 table {
 	border-top: 1px solid black;
 	text-align: center;

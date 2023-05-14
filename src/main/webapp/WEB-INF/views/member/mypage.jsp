@@ -141,6 +141,9 @@ margin-right: 30px;
 padding-left:40px;
 cursor:pointer;
 }
+body{
+color:black;
+}
 
 </style>
 </head>
@@ -485,13 +488,14 @@ cursor:pointer;
 									
 									<hr class="my-2">
 	
-									<section class="carmore-section pb-0" id="js_mypage_section_notice" style="display: block;">
+									<section class="carmore-section pb-0" id="js_mypage_section_notice" style="display: block; color:#777777;">
 										
 										
 										<div class="color-blue box-between">
 											<div class="pt-2 pb-3 text-50 color-grey-3" style="font-size:20px; font-style: italic;">차자조 공지사항</div>
 											<a href="<%=request.getContextPath()%>/notice">더보기</a>
 										</div>
+										<br>
 										<div style="cursor:pointer;">
 											<c:forEach var="notice" items="${noticeList}">
 											    <div class="title">${notice.title}</div>

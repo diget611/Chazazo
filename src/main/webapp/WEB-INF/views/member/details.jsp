@@ -49,7 +49,9 @@
 .bg-shadow, .filter-section {
     box-shadow: 0 7px 18px -6px rgba(65,78,118,.1);
 }
-
+body{
+color:black;
+}
 .cover{
 	display: flex;
     justify-content: space-between;

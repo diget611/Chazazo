@@ -44,6 +44,9 @@
 	.category {
 		cursor: pointer;
 	}
+	body{
+	color:black;
+	}
 </style>
 </head>
 <body>

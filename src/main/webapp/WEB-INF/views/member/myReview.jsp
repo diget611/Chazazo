@@ -54,7 +54,9 @@ th {
 	text-align: center;
 	border-bottom: 1px solid black;
 }
-
+body{
+color:black;
+}
 td {
 	border-bottom: 1px solid black;
 	max-width: 100px;

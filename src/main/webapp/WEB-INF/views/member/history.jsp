@@ -84,6 +84,9 @@
   backgroud-color:rgb(255, 255, 255);
   
 }
+body{
+color:black;
+}
 .inner-wrapper {
 	margin: 0 0 8px;
 	border-radius: 16px;
@@ -386,7 +389,8 @@ cursor:pointer;
 							</c:forEach>
 						</div>
 										
-										</sec:authorize>			
+										</sec:authorize>	
+										<c:if test="${!empty reservation }">		
 										<div style='text-align: center;	margin-top: 10px;'>
 									<c:choose>
 										<c:when test="${pagination.currentPage eq 1 }">
@@ -416,7 +420,7 @@ cursor:pointer;
 								</c:choose>
 							</div>
 										
-
+							</c:if>
 
 									</div>
 									</section>
@@ -424,63 +428,8 @@ cursor:pointer;
 									
 									
 									</div>
-									<button id="change" type="button"></button>
-									<div id="content"></div>
-									<hr class="my-2">
-
-									<section class="carmore-section pb-0"
-										id="js_mypage_section_notice" style="display: block;">
-
-										<div class="feat-list">
-											<div class="panel-group">
-												<div class="panel panel-default">
-													<div class="panel-heading">
-														<h4 class=" collapsed" data-toggle="collapse"
-															data-target="#fqa0" aria-expanded="false">공지사항</h4>
-													</div>
-													<div id="fqa0" class="panel-collapse fqa-body collapse"
-														aria-expanded="false" style="height: 0px;">
-														<div class="panel-body">공지사항1</div>
-													</div>
-												</div>
-												<div class="panel panel-default">
-													<div class="panel-heading">
-														<h4 class="panel-title fqa-title collapsed"
-															data-toggle="collapse" data-target="#fqa1"
-															aria-expanded="false">공지사항 2</h4>
-													</div>
-													<div id="fqa1" class="panel-collapse fqa-body collapse"
-														aria-expanded="false" style="height: 0px;">
-														<div class="panel-body">공지사항 2</div>
-													</div>
-												</div>
-												<div class="panel panel-default">
-													<div class="panel-heading">
-														<h4 class="panel-title fqa-title collapsed"
-															data-toggle="collapse" data-target="#fqa2"
-															aria-expanded="false">공지사항 3</h4>
-													</div>
-													<div id="fqa2" class="panel-collapse fqa-body collapse"
-														aria-expanded="false" style="height: 0px;">
-														<div class="panel-body">공지사항 3</div>
-													</div>
-												</div>
-												<div class="panel panel-default">
-													<div class="panel-heading">
-														<h4 class="panel-title fqa-title collapsed"
-															data-toggle="collapse" data-target="#fqa3"
-															aria-expanded="false">자주 묻는 질문 제목 4</h4>
-													</div>
-													<div id="fqa3" class="panel-collapse fqa-body collapse"
-														aria-expanded="false" style="height: 0px;">
-														<div class="panel-body">자주 묻는 질문 내용 테스트 4</div>
-													</div>
-												</div>
-
-											</div>
-										</div>
-									</section>
-
+									
+									
 
 
 								</div>

@@ -89,7 +89,9 @@
 	box-shadow: 0 4px 14px 0 rgba(177, 177, 177, .2);
 	background-color: #fff;
 }
-
+body{
+color:black;
+}
 ul{
 list-style:none;
 margin-right: 30px;

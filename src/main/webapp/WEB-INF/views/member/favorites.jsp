@@ -48,6 +48,10 @@
 	box-shadow: 0 4px 14px 0 rgba(177, 177, 177, .2);
 	background-color: #fff;
 }
+body{
+color:black;
+}
+
 </style>
 </head>
 <body>
@@ -179,7 +183,7 @@
 									class="btn-normal black">전국지점안내 전체보기</a>
 							</div>
 						</div>
-						<div class="infos-section">
+						<div class="infos-section" >
 
 
 
@@ -230,7 +234,7 @@
 										</ul>
 										<div class="btns">
 											
-											<button type="button" class="btn-auto delBtn black"
+											<button type="button" style="padding: 4px 40px;  color:white; margin:10px 20px; background-color:#18B4E9;"class="btn-auto delBtn black"
 												 value="${like.locationIdx }">삭제</button>
 										</div>
 									</div>

@@ -190,7 +190,8 @@
  ---
  ### ✅HISTORY
   
-  ![HISTORY](https://github.com/diget611/Chazazo/assets/113296576/39757008-5bba-42a9-a8e6-e9af241789ff)
+![히스토리](https://github.com/diget611/Chazazo/assets/113296576/77f42091-7132-45d0-9e31-94277dacba3f)
+
   
 ---
   

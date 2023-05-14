@@ -187,5 +187,10 @@
 > [테스트케이스 보러가기](https://docs.google.com/spreadsheets/d/1rj9soiH1hyUUnbb_U4HiE6TtXz4YejvCEcRbCBFXKgE/edit?usp=share_link)
   
  ---
+ ### ✅HISTORY
+  
+  ![HISTORY](https://github.com/diget611/Chazazo/assets/113296576/39757008-5bba-42a9-a8e6-e9af241789ff)
+  
+---
   
 ![Footer](https://capsule-render.vercel.app/api?type=wave&color=a5c4e0&height=300&section=footer&text=감사합니다&fontSize=90)

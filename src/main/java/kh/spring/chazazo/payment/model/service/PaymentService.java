@@ -31,8 +31,7 @@ public interface PaymentService {
 	public PaymentReqDto noneReser(int idx);
 	public int selectNoneM(PaymentReqDto dto);
 
-	
-	
+	public PaymentReqDto nmemInfo(int paymentIdx);
 	
 	public int insertPayInfo(PaymentReqDto data, int isMember);
 

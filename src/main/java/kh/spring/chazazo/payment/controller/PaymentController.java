@@ -182,7 +182,9 @@ private AdminVehicleService aService;
 		if(prin == null) {
 			mv.addObject("reservation", pService.ReservationOne(idx));	
 			mv.addObject("location",pService.resvLocation(idx));
+			mv.addObject("info",pService.nmemInfo(idx));
 			mv.setViewName("member/details");
+			
 			
 		}else{
 			String loginId = prin.getName();

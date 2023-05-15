@@ -102,4 +102,9 @@ public class PaymentServiceImpl implements PaymentService {
 	public int countMember(Map<String, Object> map) {
 		return dao.countMember(map);
 	}
+
+	@Override
+	public PaymentReqDto nmemInfo(int paymentIdx) {
+		return dao.nmemInfo(paymentIdx);
+	}
 }

@@ -55,6 +55,10 @@
 		  
 	</select>
 	
+	<select id="nmemInfo" resultType="PaymentReqDto">
+	 select * from nmempayment where payment_idx = #{paymentIdx}
+	
+	</select>
 	
 	<select id="reservLocation" resultType="LocationRespDto">
 		SELECT * FROM LOCATION WHERE IDX IN (SELECT RENT_LOCATION FROM PAYMENT WHERE IDX = #{idx} )

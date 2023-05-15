@@ -73,7 +73,9 @@ public class PaymentDao {
 	public List<PaymentReqDto> allResList(Map<String, Object> map) {
 	    return session.selectList("payment.allResList", map);
 	}
-	
+	public PaymentReqDto nmemInfo(int paymentIdx) {
+		return session.selectOne("payment.nmemInfo", paymentIdx);
+	}
 	
 	public int insertPayInfo(PaymentReqDto data) {
 		return session.insert("payment.insertPayInfo", data);

@@ -350,9 +350,9 @@ padding-left:40px;
 					
 					
 						<br>
-						
+						<sec:authorize access="hasRole('ROLE_USER')">
 						<div style="padding-right:10px; margin:10px;">
-						<div class="js-vrsi-container-total-price js-vrsi-container-price-wrap ">
+								<div class="js-vrsi-container-total-price js-vrsi-container-price-wrap ">
 									운전자 정보
 										<div class="color-blue box-between">
 											<span class="text-12 font-weight-normal">이름</span>
@@ -364,6 +364,21 @@ padding-left:40px;
 										</div>
 									
 								</div>
+								</sec:authorize>
+								<sec:authorize access="!isAuthenticated()">
+									<div class="js-vrsi-container-total-price js-vrsi-container-price-wrap ">
+									운전자 정보
+										<div class="color-blue box-between">
+											<span class="text-12 font-weight-normal">이름</span>
+											<span class="js-vrsi-txt-total-price text-16 font-weight-bold ml-1 font-300">${info.name }</span>
+										</div>
+										<div class="color-blue box-between">
+											<span class="text-12 font-weight-normal">전화번호</span>
+											<span class="js-vrsi-txt-total-price text-16 font-weight-bold ml-1 font-300">${info.phoneNumber }</span>
+										</div>
+									
+								</div>
+								</sec:authorize>
 					<hr class="my-2">
 					
 					

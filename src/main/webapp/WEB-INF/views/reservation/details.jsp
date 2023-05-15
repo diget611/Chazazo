@@ -361,7 +361,7 @@
 	        pg: 'html5_inicis',  // 실제 계약 후에는 실제 상점아이디로 변경
 	        pay_method: 'card', // 'card'만 지원됩니다.
 	        merchant_uid: merchantUid, // 상점에서 관리하는 주문 번호
-	        name: '차자조 테스트 결제', // 상품 이름
+	        name: '차자조 ${car.model}', // 상품 이름
 	        amount: finalprice, // 결제창에 표시될 금액. 실제 승인이 이뤄지지는 않습니다.
 	        buyer_email: '${info.email }',
 	        buyer_name: '${info.name }',
@@ -408,7 +408,7 @@
 	        pg: 'kakaopay',  // 실제 계약 후에는 실제 상점아이디로 변경
 	        pay_method: 'card', // 'card'만 지원됩니다.
 	        merchant_uid: merchantUid, // 상점에서 관리하는 주문 번호
-	        name: '차자조 테스트 결제', // 상품 이름
+	        name: '차자조 ${car.model}', // 상품 이름
 	        amount: finalprice, // 결제창에 표시될 금액. 실제 승인이 이뤄지지는 않습니다.
 	        buyer_email: '${info.email }',
 	        buyer_name: '${info.name }',

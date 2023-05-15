@@ -115,7 +115,7 @@
   
   ![채팅방설정](https://github.com/diget611/Chazazo/assets/115057175/69e3a270-6666-44d6-89d5-c5c6059cb2b5)
   
-  ![채팅섭](https://github.com/diget611/Chazazo/assets/115057175/7e8952e2-8f12-43e8-ac63-a7fcc1f69c18)
+  ![채팅섭](https://github.com/diget611/Chazazo/assets/115057175/13accb0d-26f8-4675-9a1f-700e28c22286)
 
   ![채팅펍](https://github.com/diget611/Chazazo/assets/115057175/9ba05574-9c63-407a-ba4e-927b46cc1464)
   

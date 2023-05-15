@@ -150,6 +150,9 @@
 
   ![상품조회](https://github.com/diget611/Chazazo/assets/113296576/957821c1-2eb1-4a07-a880-60e86358cc1f)
   
+  ![리스트 쿼리](https://github.com/diget611/Chazazo/assets/113296576/1acb74e6-c62c-4f47-8309-e4b1d32dc05c)
+
+  
 
 </details>
 

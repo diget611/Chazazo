@@ -54,7 +54,7 @@ public class PaymentReqDto {
 	private int paymentIdx;
 	private int idx;
 	private String merchantUid;
-	
+	private String carPrice;
 	
 	
 }

@@ -319,7 +319,7 @@ padding-left:40px;
 													<li>
 													<div class="cont box-between">
 														<span class="tit">결제금액</span>
-														<span style="color: #109CFF;">${reservation.finalPrice  }  </span>
+														<span style="color: #109CFF;">${reservation.finalPrice  } 원 </span>
 													</div>
 												</li>												
 											</ul>
@@ -401,12 +401,14 @@ padding-left:40px;
 									결제정보
 										<div class="color-blue box-between">
 											<span class="text-12 font-weight-normal">대여요금</span>
-											<span class="js-vrsi-txt-total-price text-16 font-weight-bold ml-1 font-300">${vehicle.price } 원</span>
+											<span class="js-vrsi-txt-total-price text-16 font-weight-bold ml-1 font-300">${reservation.carPrice } 원</span>
 										</div>
+										<c:if test="${reservation.coupon ne 0}">
 										<div class="color-blue box-between">
 											<span class="text-12 font-weight-normal">할인적용</span>
 											<span class="js-vrsi-txt-total-price text-16 font-weight-bold ml-1 font-300">${reservation.coupon } %</span>
 										</div>
+										</c:if >
 										<div class="color-blue box-between">
 											<span class="text-12 font-weight-normal">총 결제요금</span>
 											<span class="js-vrsi-txt-total-price text-16 font-weight-bold ml-1 font-300">${reservation.finalPrice } 원</span>

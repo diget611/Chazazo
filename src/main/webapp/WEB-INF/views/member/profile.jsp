@@ -203,14 +203,7 @@ color:black;
 								
 								<!-- 정보 수정 시 정규식 확인?  -->
 								
-								<div class="form-group">
-									<label>성별</label>
-									<select class="form-control" name="gender" id="gender" value="${memberinfo.gender }" >
-										<option selected="selected" hidden="hidden" value="2">성별</option>
-										<option value="0">남성</option>
-										<option value="1">여성</option>
-									</select>
-								</div>
+								
 								<div class="form-group">
 									<label>생년월일</label>
 									<input type="text" class="form-control" name="birth" id="birth" value="${memberinfo.birth }" >
@@ -315,7 +308,7 @@ color:black;
 			
 			 if( $('[name=name]').val() == ''
 			| $('[name=birth]').val() == ''  | $('[name=password]').val() == ''
-			| $('[name=phoneNumber]').val() == '' | $('[name=gender]').val() == '' | $('[name=passwordCh]').val() == '' ) {
+			| $('[name=phoneNumber]').val() == '' |  $('[name=passwordCh]').val() == '' ) {
 				 Swal.fire("수정 실패","입력하신 정보를 한 번 더 확인해주세요!", 'error')
            	  
 				return false;
@@ -356,7 +349,6 @@ color:black;
 			var data = {
  					name: $('#name').val(),
 					password :$('#password').val(),
-					gender:$('#gender').val(),
 					birth:$('#birth').val(),
 					phoneNumber:$('#phoneNumber').val()
 					

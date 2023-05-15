@@ -364,7 +364,7 @@ cursor:pointer;
 														<span style="margin:2px;">
 														<c:choose>
 																<c:when test="${list.state eq 0 }">
-																	<span style="background-color: skyblue;  border-radius: 10px;" >&nbsp;&nbsp;예약완료&nbsp;&nbsp;</span>
+																	<span style="background-color: 109CFF;  border-radius: 10px;" >&nbsp;&nbsp;예약완료&nbsp;&nbsp;</span>
 																</c:when>
 																<c:when test="${list.state eq 1 }">
 																	<span style="background-color: red; color:white; border-radius: 10px;">&nbsp;&nbsp;취소 처리중&nbsp;&nbsp;</span>

@@ -792,11 +792,11 @@ function deleteMember(){
 						html += '										<div class="cont box-between">';
 						html += '										<span class="tit">예약상태</span>';
 									if (noneList.state === 0) {			
-						html += '  										<span style="color: #109CFF; border-radius: 10px;">예약완료</span>';
+						html += '  										<span style="background-color: 109CFF;  border-radius: 10px;">예약완료</span>';
 									} else if (noneList.state === 1) {
-						html += '  										<span style="color:red; color:white; border-radius: 10px;">취소대기중</span>';
+						html += '  										<span style="background-color:red; color:white; border-radius: 10px;">취소대기중</span>';
 									} else if (noneList.state === 2) {
-						html +=  ' 										 <span style="color:red; border-radius: 10px;">취소완룐</span>';
+						html +=  ' 										 <span style="background-color:red; border-radius: 10px;">취소완룐</span>';
 									}
 						html += '									 </div>	';
 						html += '									</li>';

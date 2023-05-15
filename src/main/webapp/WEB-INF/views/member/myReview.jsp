@@ -250,7 +250,7 @@ thead {
 										</c:if>
 										<div>내가 작성한 리뷰 수 : ${ countReview} 개</div>
 										<hr class="my-2">
-					
+										<c:if test="${!empty myReview }">
 										<table>
 											<thead>
 												<tr>
@@ -260,9 +260,10 @@ thead {
 													<th scope="row">별점</th>
 													<th scope="row">예약한 차량</th>
 													<th scope="row">상태</th>
-													
+													<th scope="row"></th>
 												</tr>
 											</thead>
+											</c:if>
 											<tbody>
 												<c:forEach items="${myReview }" var="list">
 													<tr>
@@ -279,10 +280,17 @@ thead {
 																<td>신고처리중</td>
 															</c:when>
 																<c:otherwise>
-																<td>삭제</td>
+																<td>삭제한 리뷰</td>
 															</c:otherwise>
 														</c:choose>
-													</tr>
+													<c:if test="${list.status == 0 }">
+															<td>
+																<button data-idx="${list.idx}" type="button"  class="delete" value="삭제">삭제하기</button>
+															</td>
+														</c:if>
+													<td></td>
+														</tr>
+													
 												</c:forEach>
 											</tbody>
 										</table>
@@ -479,6 +487,31 @@ thead {
 			
 	
 				
+//리뷰 삭제
+$('.delete').on('click', function(){
+	var reviewidx = $(this).data("idx");
+		$.ajax({
+			url:'${pageContext.request.contextPath}/deleteReview',
+	         type: 'patch',
+		     data: {
+		 		idx : reviewidx
+			},
+	         success: function(result) {
+	       	  swal.fire({
+      			title : "리뷰가 삭제되었습니다",
+      		    icon  : "success",
+      		    closeOnClickOutside : false
+      		}).then(function(){
+      			location.reload();
+      		});
+      	  }
+     	 	  ,
+	          error: function() {
+	          	alert('리뷰 수정 실패');
+	          }
+		});	
+		
+});
 		
 	</script>
 </body>

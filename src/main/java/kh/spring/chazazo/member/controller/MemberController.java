@@ -77,7 +77,7 @@ public class MemberController {
 			String username = prin.getName();
 			int count = mService.countMember(username);
 			Pagination pagination = new Pagination();
-			pagination.pageInfo(7, page, count);
+			pagination.pageInfo(10, page, count);
 			
 			Map<String, Object> map = new HashMap<String, Object>();
 		

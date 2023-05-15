@@ -183,6 +183,9 @@
   ![결제3](https://github.com/diget611/Chazazo/assets/113296576/c58b72c2-0bdd-4149-acb3-79b07883a23d)
 
   ![결제4](https://github.com/diget611/Chazazo/assets/113296576/3fb1b910-1c54-4c7f-86d8-503e3892d27a)
+  
+  ![결제 추가](https://github.com/diget611/Chazazo/assets/113296576/b49f7bb6-77c7-446b-bb34-b742a27aad44)
+
 
 </details>
 

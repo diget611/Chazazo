@@ -353,6 +353,7 @@
 		var useridx = $('#useridx').val();
 	    var IMP = window.IMP;
 	    var merchantUid ='merchant_' + new Date().getTime();
+	    var finalprice = $('#finalprice').val();
 	    IMP.init("imp01440251");
 	    // 원포트 관리자 페이지 -> 내정보 -> 가맹점식별코드
 	    // ''안에 띄어쓰기 없이 가맹점 식별코드를 붙여넣어주세요. 안그러면 결제창이 안뜹니다.
@@ -361,7 +362,7 @@
 	        pay_method: 'card', // 'card'만 지원됩니다.
 	        merchant_uid: merchantUid, // 상점에서 관리하는 주문 번호
 	        name: '차자조 테스트 결제', // 상품 이름
-	        amount: 100, // 결제창에 표시될 금액. 실제 승인이 이뤄지지는 않습니다.
+	        amount: finalprice, // 결제창에 표시될 금액. 실제 승인이 이뤄지지는 않습니다.
 	        buyer_email: '${info.email }',
 	        buyer_name: '${info.name }',
 	        buyer_tel: '${info.phoneNumber}',
@@ -398,6 +399,7 @@
 	function kakaopay() {
 		var useridx = $('#useridx').val();
 	    var IMP = window.IMP;
+	    var finalprice = $('#finalprice').val();
 	    var merchantUid ='merchant_' + new Date().getTime();
 	    IMP.init("imp01440251");
 	    // 원포트 관리자 페이지 -> 내정보 -> 가맹점식별코드
@@ -407,7 +409,7 @@
 	        pay_method: 'card', // 'card'만 지원됩니다.
 	        merchant_uid: merchantUid, // 상점에서 관리하는 주문 번호
 	        name: '차자조 테스트 결제', // 상품 이름
-	        amount: 100, // 결제창에 표시될 금액. 실제 승인이 이뤄지지는 않습니다.
+	        amount: finalprice, // 결제창에 표시될 금액. 실제 승인이 이뤄지지는 않습니다.
 	        buyer_email: '${info.email }',
 	        buyer_name: '${info.name }',
 	        buyer_tel: '${info.phoneNumber}',

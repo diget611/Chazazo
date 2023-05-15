@@ -150,7 +150,7 @@
 
   ![상품조회](https://github.com/diget611/Chazazo/assets/113296576/957821c1-2eb1-4a07-a880-60e86358cc1f)
   
-  ![리스트 쿼리](https://github.com/diget611/Chazazo/assets/113296576/1acb74e6-c62c-4f47-8309-e4b1d32dc05c)
+![리스트쿼리](https://github.com/diget611/Chazazo/assets/113296576/b34359ac-32a8-446a-9942-6afdd177c287)
 
   
 
@@ -184,8 +184,7 @@
 
   ![결제4](https://github.com/diget611/Chazazo/assets/113296576/3fb1b910-1c54-4c7f-86d8-503e3892d27a)
   
-  ![결제 추가](https://github.com/diget611/Chazazo/assets/113296576/b49f7bb6-77c7-446b-bb34-b742a27aad44)
-
+![결제 추가](https://github.com/diget611/Chazazo/assets/113296576/bf6c788f-9d52-4e61-ae41-289612c78842)
 
 </details>
 

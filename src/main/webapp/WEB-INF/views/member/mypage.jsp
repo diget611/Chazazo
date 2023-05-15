@@ -492,7 +492,7 @@ color:black;
 										
 										
 										<div class="color-blue box-between">
-											<div class="pt-2 pb-3 text-50 color-grey-3" style="font-size:20px; font-style: italic;">차자조 공지사항</div>
+											<div class="pt-2 pb-3 text-50 color-grey-3" style="font-size:20px; ">차자조 공지사항</div>
 											<a href="<%=request.getContextPath()%>/notice">더보기</a>
 										</div>
 										<br>
@@ -795,9 +795,9 @@ function deleteMember(){
 						html += '  										<span style="color: #109CFF; border-radius: 10px;">예약완료</span>';
 									} else if (noneList.state === 1) {
 						html += '  										<span style="color:red; color:white; border-radius: 10px;">취소대기중</span>';
+									} else if (noneList.state === 2) {
+						html +=  ' 										 <span style="color:red; border-radius: 10px;">취소완룐</span>';
 									}
-						html +=  ' 										 <span style="color:red; border-radius: 10px;">예약취소</span>';
-							       
 						html += '									 </div>	';
 						html += '									</li>';
 						html += '									<li>';				

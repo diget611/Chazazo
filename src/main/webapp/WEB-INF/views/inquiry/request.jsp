@@ -45,7 +45,7 @@
 	<jsp:include page="/WEB-INF/views/base/header.jsp"/>
 	
 	<section>
-		<div class="content-area blog-page padding-top-40" style="background-color: #FCFCFC; padding-bottom: 55px;">
+		<div class="content-area blog-page padding-top-40" style="background-color: #FCFCFC; padding-bottom: 551px;">
 			<div class="container">
 				<div class="row">
 					<div class="blog-asside-right col-md-3">

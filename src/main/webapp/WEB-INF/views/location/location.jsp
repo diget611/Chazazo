@@ -45,6 +45,16 @@
 <script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/main.css">
+<style>
+.box-between{
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin-right:120px;
+
+
+}
+</style>
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/base/header.jsp"/>	
@@ -58,13 +68,17 @@
 						<div >
 							<ul class="footer-menu">
 								<c:forEach items="${locationList }" var="location">
-									<li><a href="${pageContext.request.contextPath}/location/${location.idx }">${location.name } </a></li>
-									<div>
+									
+									<li style="margin-bottom:6px;">
+									<div class="box-between">
+										<span><a href="${pageContext.request.contextPath}/location/${location.idx }">${location.name } </a>
+									</span>
+									<span>
 									<c:choose>
 										<c:when test="${location.liked == 0 }">
 											<div class="w3-border w3-center w3-padding">
 												<button class="w3-button w3-black w3-round rec_update" data-idx="${ location.idx }">
-													<i class="fa fa-heart" style="font-size:16px;color:white"></i>
+													<i class="fa fa-heart" style="font-size:16px;color:white; "></i>
 													&nbsp;<span class="rec_count"></span>
 												</button> 
 											</div>
@@ -80,8 +94,10 @@
 											</div>
 										</c:otherwise>
 									</c:choose>
-									
-								</div>
+									</span>
+									</div>
+								</li>
+								
 								</c:forEach>
 								
 							</ul>
